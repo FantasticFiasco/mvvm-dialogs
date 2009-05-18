@@ -5,7 +5,7 @@ namespace MVVM_Dialogs.ViewModel
 	/// <summary>
 	/// Acts as viewmodel for PersonDialog.
 	/// </summary>
-	class PersonDialogViewModel : ViewModelBase
+	public class PersonDialogViewModel : ViewModelBase
 	{
 		private Person person;
 

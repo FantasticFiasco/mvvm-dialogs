@@ -5,7 +5,7 @@ using System.Windows;
 
 namespace MVVM_Dialogs.Service
 {
-	class DialogService : IDialogService
+	public class DialogService : IDialogService
 	{
 		private static IDialogService instance;
 		private HashSet<FrameworkElement> views;

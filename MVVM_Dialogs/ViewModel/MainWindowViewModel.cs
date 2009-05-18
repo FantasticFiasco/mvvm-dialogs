@@ -12,8 +12,10 @@ namespace MVVM_Dialogs.ViewModel
 	/// <summary>
 	/// Acts as viewmodel for MainWindow.
 	/// </summary>
-	class MainWindowViewModel : ViewModelBase
+	public class MainWindowViewModel : ViewModelBase
 	{
+		private IDialogService dialogService;
+
 		private ObservableCollection<PersonViewModel> persons;
 		private ICommand showInformationCommand;
 		private ICommand deleteCommand;
@@ -75,8 +77,10 @@ namespace MVVM_Dialogs.ViewModel
 		}
 
 
-		public MainWindowViewModel(IPersonService personService)
+		public MainWindowViewModel(IDialogService dialogService, IPersonService personService)
 		{
+			this.dialogService = dialogService;
+
 			persons = new ObservableCollection<PersonViewModel>(
 				from person in personService.Get()
 				select new PersonViewModel(person));
@@ -106,7 +110,7 @@ namespace MVVM_Dialogs.ViewModel
 			PersonDialogViewModel personDialogViewModel = new PersonDialogViewModel(selectedPerson.Person);
 
 			// Show the dialog
-			DialogService.Instance.ShowDialog<PersonDialog>(this, personDialogViewModel);
+			dialogService.ShowDialog<PersonDialog>(this, personDialogViewModel);
 		}
 
 
@@ -128,7 +132,7 @@ namespace MVVM_Dialogs.ViewModel
 			PersonViewModel selectedPerson = persons.Single(p => p.IsSelected);
 
 			// Display confirmation messagebox
-			MessageBoxResult result = DialogService.Instance.ShowMessageBox(this,
+			MessageBoxResult result = dialogService.ShowMessageBox(this,
 				string.Format(Resources.MainWindowViewModel_Delete, selectedPerson.Name),
 				Resources.MainWindowViewModel_DeleteCaption,
 				MessageBoxButton.YesNo,

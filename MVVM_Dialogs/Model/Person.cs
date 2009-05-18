@@ -4,7 +4,7 @@ namespace MVVM_Dialogs.Model
 	/// <summary>
 	/// Describing a person.
 	/// </summary>
-	class Person
+	public class Person
 	{
 		/// <summary>
 		/// Gets the name of the person.
