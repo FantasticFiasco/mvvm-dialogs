@@ -12,7 +12,7 @@ namespace MVVM_Dialogs
 
 			// Create and show main window
 			View.MainWindow view = new View.MainWindow();
-			view.DataContext = new MainWindowViewModel(new PersonService());
+			view.DataContext = new MainWindowViewModel(DialogService.Instance, new PersonService());
 			view.Show();
 		}
 	}

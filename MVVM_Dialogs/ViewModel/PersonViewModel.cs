@@ -5,7 +5,7 @@ namespace MVVM_Dialogs.ViewModel
 	/// <summary>
 	/// Acts as viewmodel of a Person in MainWindow list.
 	/// </summary>
-	class PersonViewModel : ViewModelBase
+	public class PersonViewModel : ViewModelBase
 	{
 		private bool isSelected;
 

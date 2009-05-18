@@ -3,7 +3,7 @@ using MVVM_Dialogs.Model;
 
 namespace MVVM_Dialogs.Service
 {
-	interface IPersonService
+	public interface IPersonService
 	{
 		/// <summary>
 		/// Gets all persons.

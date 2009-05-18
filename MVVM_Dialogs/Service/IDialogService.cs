@@ -2,7 +2,7 @@
 
 namespace MVVM_Dialogs.Service
 {
-	interface IDialogService
+	public interface IDialogService
 	{
 		/// <summary>
 		/// Registers a view.
