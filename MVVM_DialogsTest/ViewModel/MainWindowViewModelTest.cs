@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
+using System.Windows;
 using Moq;
 using MVVM_Dialogs.Model;
 using MVVM_Dialogs.Service;
+using MVVM_Dialogs.View;
 using MVVM_Dialogs.ViewModel;
 using NUnit.Framework;
-using MVVM_Dialogs.View;
-using System.Windows;
 
 namespace MVVM_DialogsTest.ViewModel
 {
