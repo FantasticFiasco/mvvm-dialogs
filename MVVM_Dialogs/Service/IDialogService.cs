@@ -21,9 +21,9 @@ namespace MVVM_Dialogs.Service
 		/// <summary>
 		/// Shows a dialog.
 		/// </summary>
-		/// <param name="ownerViewModel">A viewmodel that represents the owner window of
+		/// <param name="ownerViewModel">A ViewModel that represents the owner window of
 		/// the dialog.</param>
-		/// <param name="viewModel">The viewmodel of the new dialog.</param>
+		/// <param name="viewModel">The ViewModel of the new dialog.</param>
 		/// <returns>A nullable value of type bool that signifies how a window was closed
 		/// by the user.</returns>
 		bool? ShowDialog<T>(object ownerViewModel, object viewModel) where T : Window;
@@ -32,7 +32,7 @@ namespace MVVM_Dialogs.Service
 		/// <summary>
 		/// Shows a message box.
 		/// </summary>
-		/// <param name="ownerViewModel">A viewmodel that represents the owner window of
+		/// <param name="ownerViewModel">A ViewModel that represents the owner window of
 		/// the message box.</param>
 		/// <param name="messageBoxText">A string that specifies the text to display.</param>
 		/// <param name="caption">A string that specifies the title bar caption to display.</param>

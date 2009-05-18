@@ -29,7 +29,7 @@
 			<!-- ListBox resources -->
 			<ListBox.Resources>
 				
-				<!-- Binds IsSelected property on ListBoxItem to the property on viewmodel -->
+				<!-- Binds IsSelected property on ListBoxItem to the property on ViewModel -->
 				<Style TargetType="ListBoxItem">
 					<Setter Property="IsSelected" Value="{Binding IsSelected}"/>
 				</Style>

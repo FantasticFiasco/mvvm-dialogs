@@ -3,7 +3,7 @@
 namespace MVVM_Dialogs.ViewModel
 {
 	/// <summary>
-	/// Acts as viewmodel of a Person in MainWindow list.
+	/// Acts as ViewModel of a Person in MainWindow list.
 	/// </summary>
 	public class PersonViewModel : ViewModelBase
 	{
@@ -39,7 +39,7 @@ namespace MVVM_Dialogs.ViewModel
 		/// <summary>
 		/// Gets the person model. This property is not intended for binding!
 		/// 
-		/// If there exists better ways to expose the model from the viewmodel, please tell me
+		/// If there exists better ways to expose the model from the ViewModel, please tell me
 		/// because I don't like this soultion at all.
 		/// </summary>
 		internal Person Person { get; private set; }
