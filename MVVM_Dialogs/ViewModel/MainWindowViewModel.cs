@@ -10,7 +10,7 @@ using MVVM_Dialogs.View;
 namespace MVVM_Dialogs.ViewModel
 {
 	/// <summary>
-	/// Acts as viewmodel for MainWindow.
+	/// Acts as ViewModel for MainWindow.
 	/// </summary>
 	public class MainWindowViewModel : ViewModelBase
 	{
@@ -103,10 +103,10 @@ namespace MVVM_Dialogs.ViewModel
 		/// </summary>
 		private void ShowInformation(object o)
 		{
-			// Get the selected person viewmodel
+			// Get the selected person ViewModel
 			PersonViewModel selectedPerson = persons.Single(p => p.IsSelected);
-			
-			// Create the PersonDialog viewmodel
+
+			// Create the PersonDialog ViewModel
 			PersonDialogViewModel personDialogViewModel = new PersonDialogViewModel(selectedPerson.Person);
 
 			// Show the dialog
@@ -128,7 +128,7 @@ namespace MVVM_Dialogs.ViewModel
 		/// </summary>
 		private void Delete(object o)
 		{
-			// Get the selected person viewmodel
+			// Get the selected person ViewModel
 			PersonViewModel selectedPerson = persons.Single(p => p.IsSelected);
 
 			// Display confirmation messagebox

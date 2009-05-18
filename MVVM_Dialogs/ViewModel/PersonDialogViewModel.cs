@@ -3,7 +3,7 @@
 namespace MVVM_Dialogs.ViewModel
 {
 	/// <summary>
-	/// Acts as viewmodel for PersonDialog.
+	/// Acts as ViewModel for PersonDialog.
 	/// </summary>
 	public class PersonDialogViewModel : ViewModelBase
 	{
