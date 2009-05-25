@@ -5,20 +5,6 @@ namespace MVVM_Dialogs.Service
 	public interface IDialogService
 	{
 		/// <summary>
-		/// Registers a view.
-		/// </summary>
-		/// <param name="view">The registered view.</param>
-		void Register(FrameworkElement view);
-
-
-		/// <summary>
-		/// Unregisters a view.
-		/// </summary>
-		/// <param name="view">The unregistered view.</param>
-		void Unregister(FrameworkElement view);
-
-
-		/// <summary>
 		/// Shows a dialog.
 		/// </summary>
 		/// <param name="ownerViewModel">A ViewModel that represents the owner window of
