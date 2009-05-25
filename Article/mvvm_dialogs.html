@@ -80,53 +80,48 @@ License:     <a href="http://www.codeproject.com/info/cpol10.aspx">CPOL</a>
 	<a name="intro">Introduction</a>
 </h2>
 
-<p>This article will address one of the problems a developer might run into when using the
-	MVVM pattern, namely opening dialogs from ViewModels. Basic knowledge of the pattern is expected. Josh Smith has written a fantastic
-	<a href="http://msdn.microsoft.com/en-us/magazine/dd419663.aspx">article</a>
+<p>This article will address one of the problems a developer might run into when using the MVVM
+	pattern, namely opening dialogs from ViewModels. Basic knowledge of the pattern is expected. Josh
+	Smith has written a fantastic <a href="http://msdn.microsoft.com/en-us/magazine/dd419663.aspx">article</a>
 	in MSDN Magazine which can serve as starting point for those that are unfamiliar with the pattern.</p>
 	
-<p>There already 
-		exists some solutions exploring this area, but none of them seems to be widely 
-		accepted among the MVVM community. <a href="http://wpfonyx.codeplex.com/">Onyx</a> on CodePlex 
-		is one solution, but requires the developer to connect ViewModel and View at compile time using attached properties.
-		Onyx also handles dependency injection to the ViewModel, something one already might have a solution for.
-		Sacha Barber <a href="http://sachabarber.net/?p=518">announced</a> that 
-		he is working on a new MVVM framework, but hasn&#39;t set any release date. At 
-	the same time <a href="http://groups.google.com/group/wpf-disciples">WPF Disciples</a> are teaming up to create a
-	<a href="http://www.codeplex.com/mvvmref">MVVM reference</a> application, again 
-	with no release date yet.</p>
+<p>There already exists some solutions exploring this area, but none of them seems to be widely
+	accepted among the MVVM community. <a href="http://wpfonyx.codeplex.com/">Onyx</a> on CodePlex
+	is one solution, but requires the developer to connect ViewModel and View at compile time
+	using attached properties. Onyx also handles dependency injection to the ViewModel, something
+	one already might have a solution for. Sacha Barber <a href="http://sachabarber.net/?p=518">announced</a>
+	that he is working on a new MVVM framework, but hasn&#39;t set any release date. At the same time
+	<a href="http://groups.google.com/group/wpf-disciples">WPF Disciples</a> are teaming up to create
+	a <a href="http://www.codeplex.com/mvvmref">MVVM reference</a> application, again with no release
+	date yet.</p>
 
 <h2>
 	<a name="my_mvvm">My Interpretation of MVVM</a>
 </h2>
 
-<p>I am possibly sticking my neck out here, but I would like to state some of my 
-	own interpretations of the MVVM pattern:</p>
+<p>I am possibly sticking my neck out here, but I would like to state some of my own
+	interpretations of the MVVM pattern:</p>
 
 <ul>
-<li>The fundamental core is separation of UI and logic. ViewModel and View 
-	can communicate using bindings, making it possible for the View to be happily 
-	unaware of the ViewModel and vice versa. I know some of you might say: <i>&quot;well, 
-	actually the View knows about the ViewModel since the ViewModel is stored within 
-	the DataContext property, and the View is declaring it&#39;s bindings to match 
-	properties on the ViewModel, surely the View must know the ViewModel?&quot;</i>. I 
-	don&#39;t think so; we have to analyze what <i>knows</i> actually means. The 
-	ViewModel is stored in the DataContext property, that is correct, but 
-	DataContext is of type <code>Object</code>. From the View&#39;s point, the only 
-	thing it knows is whether the property has been set or not, nothing about the 
-	actual content. Let&#39;s get to the bindings that are declared in the View, do they 
-	say something about the ViewModel? I would have to say no here as well. The View 
-	might declare whatever bindings it wishes, but the ViewModel isn&#39;t enforced to 
-	implement them.</li>
-	<li>The ViewModel should serve the View with data, but 
-		one might argue where the separation between View and ViewModel is. If for 
-		instance the ViewModel is holding a list of items presented in a <code>ListView</code>, I 
-		would argue that sorting, grouping and filtering could be the responsibility of 
-		the View, not the ViewModel. Attached properties can solve this for us, making 
-		the ViewModel happily unaware of the item presentation.</li>
+	<li>The fundamental core is separation of UI and logic. ViewModel and View can communicate using
+		bindings, making it possible for the View to be happily unaware of the ViewModel and vice
+		versa. I know some of you might say: <i>&quot;well, actually the View knows about the ViewModel
+		since the ViewModel is stored within the DataContext property, and the View is declaring its
+		bindings to match properties on the ViewModel, surely the View must know the ViewModel?&quot;</i>.
+		I don&#39;t think so; we have to analyze what <i>knows</i> actually means. The ViewModel is
+		stored in the DataContext property, that is correct, but DataContext is of type <code>Object</code>.
+		From the View&#39;s point, the only thing it knows is whether the property has been set or not,
+		nothing about the actual content. Let&#39;s get to the bindings declared in the View, do they
+		say something about the ViewModel? I would have to say no here as well. The View might declare
+		whatever bindings it wishes, but the ViewModel isn&#39;t enforced to implement them.</li>
+	
+	<li>The ViewModel should serve the View with data, but one might argue where the separation
+		between View and ViewModel is. If for instance the ViewModel is holding a list of items
+		presented in a <code>ListView</code>, I would argue that sorting, grouping and filtering could
+		be the responsibility of the View, not the ViewModel. Attached properties can solve this for us,
+		making the ViewModel happily unaware of the item presentation.</li>
 
-	<li>The ViewModel 
-		should not contain anything used purely in tests, either a class is testable or 
+	<li>The ViewModel should not contain anything used purely in tests, either a class is testable or
 		it isn&#39;t.</li>
 </ul>
 
@@ -134,10 +129,10 @@ License:     <a href="http://www.codeproject.com/info/cpol10.aspx">CPOL</a>
 	<a name="dialog_service">The Dialog Service</a>
 </h2>
 
-<p>The concept of letting services handle relations between ViewModel and View 
-	seems to be the most accepted solution. My contribution is <code>IDialogService</code>; 
-	an interface that currently only holds two interesting methods. <code>ShowDialog</code> will 
-	open any <code>Window</code> as a dialog and <code>ShowMessageBox</code> will open a <code>MessageBox</code>.</p>
+<p>The concept of letting services handle relations between ViewModel and View seems to be the most
+	accepted solution. My contribution is <code>IDialogService</code>; an interface that currently
+	only holds two interesting methods. <code>ShowDialog</code> will open any <code>Window</code> as
+	a dialog and <code>ShowMessageBox</code> will open a <code>MessageBox</code>.</p>
 
 <pre lang="cs">
 public interface IDialogService
@@ -383,9 +378,8 @@ public class DialogService : IDialogService
 }
 </pre>
 
-<p>The design is pretty straight forward. A View is registering itself as part of 
-	the MVVM pattern by setting the attached property <code>IsRegisteredView</code> 
-	on any element in the logical tree.</p>
+<p>The design is pretty straight forward. A View is registering itself as part of the MVVM pattern
+	by setting the attached property <code>IsRegisteredView</code> on any element in the logical tree.</p>
 	
 <pre lang="xml">
 &lt;Window
@@ -396,16 +390,15 @@ public class DialogService : IDialogService
   Service:DialogService.IsRegisteredView="True">
 </pre>
 
-<p>The View is now remembered by the dialog service. When a ViewModel is 
-	requesting to show some kind of dialog, the correct View is found by the service and its owning 
-	Window is used as owner.</p>
+<p>The View is now remembered by the dialog service. When a ViewModel is requesting to show some
+	kind of dialog, the correct View is found by the service and its owning Window is used as owner.</p>
 
 <h2>
 	<a name="what_now">What Now?</a>
 </h2>
 
-<p>I would like to hear your thought about the idea. Perhaps you have a better 
-	solution? Don&#39;t be afraid, leave a comment ;-)</p>
+<p>I would like to hear your thought about the idea. Perhaps you have a better solution? Don&#39;t
+	be afraid, leave a comment...</p>
 
 <!-------------------------------    That's it!   --------------------------->
 </body>
