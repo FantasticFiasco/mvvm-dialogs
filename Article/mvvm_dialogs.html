@@ -58,7 +58,7 @@ License:     <a href="http://www.codeproject.com/info/cpol10.aspx">CPOL</a>
 <!--  Include download and sample image information.                       --> 
 
 <ul class=download>
-	<li><a href="MVVM_Dialogs.zip">Download source - ?.?? MB</a></li>
+	<li><a href="MVVM_Dialogs.zip">Download source - 172 kB</a></li>
 </ul>
 
 <p><img src="Application.png" alt="Screenshot of application" width=302 height=302></p>
@@ -73,6 +73,7 @@ License:     <a href="http://www.codeproject.com/info/cpol10.aspx">CPOL</a>
 	<li><a href="#intro">Introduction</a></li>
 	<li><a href="#my_mvvm">My Interpretation of MVVM</a></li>
 	<li><a href="#dialog_service">The Dialog Service</a></li>
+	<li><a href="#what_now">What Now?</a></li>
 </ul>
 
 <h2>
@@ -80,7 +81,7 @@ License:     <a href="http://www.codeproject.com/info/cpol10.aspx">CPOL</a>
 </h2>
 
 <p>This article will address one of the problems a developer might run into when using the
-	MVVM pattern, namely opening dialogs from ViewModels. Basic knowleadge of the pattern is expected. Josh Smith has written a fantastic
+	MVVM pattern, namely opening dialogs from ViewModels. Basic knowledge of the pattern is expected. Josh Smith has written a fantastic
 	<a href="http://msdn.microsoft.com/en-us/magazine/dd419663.aspx">article</a>
 	in MSDN Magazine which can serve as starting point for those that are unfamiliar with the pattern.</p>
 	
@@ -90,7 +91,10 @@ License:     <a href="http://www.codeproject.com/info/cpol10.aspx">CPOL</a>
 		is one solution, but requires the developer to connect ViewModel and View at compile time using attached properties.
 		Onyx also handles dependency injection to the ViewModel, something one already might have a solution for.
 		Sacha Barber <a href="http://sachabarber.net/?p=518">announced</a> that 
-		he is working on a new MVVM framework, but hasn&#39;t set any release date.</p>
+		he is working on a new MVVM framework, but hasn&#39;t set any release date. At 
+	the same time <a href="http://groups.google.com/group/wpf-disciples">WPF Disciples</a> are teaming up to create a
+	<a href="http://www.codeplex.com/mvvmref">MVVM reference</a> application, again 
+	with no release date yet.</p>
 
 <h2>
 	<a name="my_mvvm">My Interpretation of MVVM</a>
@@ -102,47 +106,26 @@ License:     <a href="http://www.codeproject.com/info/cpol10.aspx">CPOL</a>
 <ul>
 <li>The fundamental core is separation of UI and logic. ViewModel and View 
 	can communicate using bindings, making it possible for the View to be happily 
-	unaware of the ViewModel and vica versa. I know some of you might say: <i>&quot;well, 
+	unaware of the ViewModel and vice versa. I know some of you might say: <i>&quot;well, 
 	actually the View knows about the ViewModel since the ViewModel is stored within 
 	the DataContext property, and the View is declaring it&#39;s bindings to match 
-	properties on the ViewModel, surely the View must know the ViewModel!&quot;</i>. I 
-	don&#39;t think so, we have to analyse what <i>knows</i> actually means. The 
+	properties on the ViewModel, surely the View must know the ViewModel?&quot;</i>. I 
+	don&#39;t think so; we have to analyze what <i>knows</i> actually means. The 
 	ViewModel is stored in the DataContext property, that is correct, but 
-	DataContext is of type <code>Object</code>. From the View&#39;s point, the only thing it knows is 
-	whether the property has been set or not, nothing about the actual content. Lets 
-	get to the bindings that are declared in the View, do they say something about 
-	the ViewModel? I would have to say no here as well. The View might declare 
-	whatever bindings it wishes, but the ViewModel isn&#39;t enforced to implement them, 
-	it is declared using a interface. </li>
-	<li></li>
-	<li></li>
-	<li></li>
-	<li>&nbsp;of the View. To me that is a definition How well these two are separated 
-		. It is however more 
-		uncertain whether a view may know its ViewModel, or reverse the ViewModel 
-		knowing the view. I perhaps have to explain my definition of <i>know</i> and the different 
-		guidelines I try to live by when coding MVVM.</li>
+	DataContext is of type <code>Object</code>. From the View&#39;s point, the only 
+	thing it knows is whether the property has been set or not, nothing about the 
+	actual content. Let&#39;s get to the bindings that are declared in the View, do they 
+	say something about the ViewModel? I would have to say no here as well. The View 
+	might declare whatever bindings it wishes, but the ViewModel isn&#39;t enforced to 
+	implement them.</li>
+	<li>The ViewModel should serve the View with data, but 
+		one might argue where the separation between View and ViewModel is. If for 
+		instance the ViewModel is holding a list of items presented in a <code>ListView</code>, I 
+		would argue that sorting, grouping and filtering could be the responsibility of 
+		the View, not the ViewModel. Attached properties can solve this for us, making 
+		the ViewModel happily unaware of the item presentation.</li>
 
-<li>Know in my universe means 
-		holding a reference to a class, and know without reflection or casting the true 
-		nature of the class. A view will always hold a reference to the ViewModel since 
-		the ViewModel is stored within the DataContext property, but that is not <i>
-		knowing</i>. The view has no idea of how to interact with the ViewModel since 
-		DataContect is typed to Object. One might argue that the view has knowleadge of 
-		the ViewModel since it binds XAML to properties exposed by ViewModel, but I 
-		don&#39;t call this knowing eather. The view will surely miss data in the view if a 
-		binding fails, but the WPF framework is designed to ignore failed binding and 
-		the view will present itself regardless of whether the ViewModel provides all 
-		properties declared int the UI.</li>
-	<li>It would be nice if the ViewModel would be 
-		happily unaware of the view. The ViewModel should serve the view with data, but 
-		one might argue where the separation between view and ViewModel is. If for 
-		instance the ViewModel is holding a list of items presented in a ListView, I 
-		would argue that sorting, grouping and filtering could be the responsibity of 
-		the view, not the ViewModel. Attached properties can solve this for us, making 
-		the ViewModel happily unaware of the item formatting.</li>
-
-	<li>Keeping logic in the ViewModel allows for good test coverage. The ViewModel 
+	<li>The ViewModel 
 		should not contain anything used purely in tests, either a class is testable or 
 		it isn&#39;t.</li>
 </ul>
@@ -152,25 +135,13 @@ License:     <a href="http://www.codeproject.com/info/cpol10.aspx">CPOL</a>
 </h2>
 
 <p>The concept of letting services handle relations between ViewModel and View 
-	seems to be the most accepted solution. My contribution is <code>IDialogService</code>, 
-	a interface that currently only holds two interesting methods. <code>ShowDialog</code> will 
+	seems to be the most accepted solution. My contribution is <code>IDialogService</code>; 
+	an interface that currently only holds two interesting methods. <code>ShowDialog</code> will 
 	open any <code>Window</code> as a dialog and <code>ShowMessageBox</code> will open a <code>MessageBox</code>.</p>
 
 <pre lang="cs">
 public interface IDialogService
 {
-  /// &lt;summary>
-  /// Registers a view.
-  /// &lt;/summary>
-  /// &lt;param name="view">The registered view.&lt;/param>
-  void Register(FrameworkElement view);
-
-  /// &lt;summary>
-  /// Unregisters a view.
-  /// &lt;/summary>
-  /// &lt;param name="view">The unregistered view.&lt;/param>
-  void Unregister(FrameworkElement view);
-
   /// &lt;summary>
   /// Shows a dialog.
   /// &lt;/summary>
@@ -230,44 +201,6 @@ public class DialogService : IDialogService
   #region IDialogService Members
 
   /// &lt;summary>
-  /// Registers a view.
-  /// &lt;/summary>
-  /// &lt;param name="view">The registered view.&lt;/param>
-  public void Register(FrameworkElement view)
-  {
-    if (views.Contains(view)) throw new ArgumentException("View has already been registered.");
-
-    // Get owner window
-    Window owner = view as Window;
-    if (owner == null)
-    {
-      owner = Window.GetWindow(view);
-    }
-						
-    if (owner == null)
-    {
-      throw new InvalidOperationException("View is not contained within a Window.");
-    }
-
-    // Register for owner window closing, since we then should unregister view reference,
-    // preventing memory leaks
-    owner.Closed += OwnerClosed;
-
-    views.Add(view);
-  }
-
-  /// &lt;summary>
-  /// Unregisters a view.
-  /// &lt;/summary>
-  /// &lt;param name="view">The unregistered view.&lt;/param>
-  public void Unregister(FrameworkElement view)
-  {
-    if (!views.Contains(view)) throw new ArgumentException("View has never been registered.");
-
-    views.Remove(view);
-  }
-
-  /// &lt;summary>
   /// Shows a dialog.
   /// &lt;/summary>
   /// &lt;param name="ownerViewModel">A ViewModel that represents the owner window of
@@ -309,7 +242,7 @@ public class DialogService : IDialogService
   #region Attached properties
 
   /// &lt;summary>
-  /// Attached property describing whether a FrameworkElement is acting as a view in MVVM.
+  /// Attached property describing whether a FrameworkElement is acting as a View in MVVM.
   /// &lt;/summary>
   public static readonly DependencyProperty IsRegisteredViewProperty = DependencyProperty.RegisterAttached(
     "IsRegisteredView",
@@ -318,7 +251,7 @@ public class DialogService : IDialogService
     new UIPropertyMetadata(IsRegisteredViewPropertyChanged));
 
   /// &lt;summary>
-  /// Gets value describing whether FrameworkElement is acting as view in MVVM.
+  /// Gets value describing whether FrameworkElement is acting as View in MVVM.
   /// &lt;/summary>
   public static bool GetIsRegisteredView(FrameworkElement target)
   {
@@ -326,7 +259,7 @@ public class DialogService : IDialogService
   }
 
   /// &lt;summary>
-  /// Sets value describing whether FrameworkElement is acting as view in MVVM.
+  /// Sets value describing whether FrameworkElement is acting as View in MVVM.
   /// &lt;/summary>
   public static void SetIsRegisteredView(FrameworkElement target, bool value)
   {
@@ -335,7 +268,7 @@ public class DialogService : IDialogService
 
   /// &lt;summary>
   /// Is responsible for handling IsRegisteredViewProperty changes, i.e. whether
-  /// FrameworkElement is acting as view in MVVM or not.
+  /// FrameworkElement is acting as View in MVVM or not.
   /// &lt;/summary>
   private static void IsRegisteredViewPropertyChanged(DependencyObject target,
     DependencyPropertyChangedEventArgs e)
@@ -361,6 +294,44 @@ public class DialogService : IDialogService
   #endregion
 
   /// &lt;summary>
+  /// Registers a View.
+  /// &lt;/summary>
+  /// &lt;param name="view">The registered View.&lt;/param>
+  private void Register(FrameworkElement view)
+  {
+    if (views.Contains(view)) throw new ArgumentException("View has already been registered.");
+
+    // Get owner window
+    Window owner = view as Window;
+    if (owner == null)
+    {
+      owner = Window.GetWindow(view);
+    }
+						
+    if (owner == null)
+    {
+      throw new InvalidOperationException("View is not contained within a Window.");
+    }
+
+    // Register for owner window closing, since we then should unregister View reference,
+    // preventing memory leaks
+    owner.Closed += OwnerClosed;
+
+    views.Add(view);
+  }
+
+  /// &lt;summary>
+  /// Unregisters a View.
+  /// &lt;/summary>
+  /// &lt;param name="view">The unregistered View.&lt;/param>
+  private void Unregister(FrameworkElement view)
+  {
+    if (!views.Contains(view)) throw new ArgumentException("View has never been registered.");
+
+    views.Remove(view);
+  }
+
+  /// &lt;summary>
   /// Finds window corresponding to specified ViewModel.
   /// &lt;/summary>
   private Window FindOwnerWindow(object viewModel)
@@ -368,7 +339,7 @@ public class DialogService : IDialogService
     FrameworkElement view = views.SingleOrDefault(v => ReferenceEquals(v.DataContext, viewModel));
     if (view == null)
     {
-      throw new ArgumentException("ViewModel is not referenced by any registered view.");
+      throw new ArgumentException("ViewModel is not referenced by any registered View.");
     }
 
     // Get owner window
@@ -387,9 +358,8 @@ public class DialogService : IDialogService
     return owner;
   }
 
-
   /// &lt;summary>
-  /// Handles owner window closed, view service should then unregister all views acting
+  /// Handles owner window closed, View service should then unregister all Views acting
   /// within the closed window.
   /// &lt;/summary>
   private void OwnerClosed(object sender, EventArgs e)
@@ -397,13 +367,13 @@ public class DialogService : IDialogService
     Window owner = sender as Window;
     if (owner != null)
     {
-      // Find views acting within closed window
+      // Find Views acting within closed window
       IEnumerable&lt;FrameworkElement> windowViews =
         from view in views
         where Window.GetWindow(view) == owner
         select view;
 
-      // Unregister views in window
+      // Unregister Views in window
       foreach (FrameworkElement view in windowViews.ToArray())
       {
         Unregister(view);
@@ -413,7 +383,7 @@ public class DialogService : IDialogService
 }
 </pre>
 
-<p>The design is pretty straight forward. A view is registering itself as part of 
+<p>The design is pretty straight forward. A View is registering itself as part of 
 	the MVVM pattern by setting the attached property <code>IsRegisteredView</code> 
 	on any element in the logical tree.</p>
 	
@@ -426,9 +396,16 @@ public class DialogService : IDialogService
   Service:DialogService.IsRegisteredView="True">
 </pre>
 
-<p>The view is then remembered by the dialog service, and when a ViewModel is 
-	requesting to show some kind of dialog, the view with specified owner ViewModel 
-	if found, thus providing the owner of the new dialog.</p>
+<p>The View is now remembered by the dialog service. When a ViewModel is 
+	requesting to show some kind of dialog, the correct View is found by the service and its owning 
+	Window is used as owner.</p>
+
+<h2>
+	<a name="what_now">What Now?</a>
+</h2>
+
+<p>I would like to hear your thought about the idea. Perhaps you have a better 
+	solution? Don&#39;t be afraid, leave a comment ;-)</p>
 
 <!-------------------------------    That's it!   --------------------------->
 </body>

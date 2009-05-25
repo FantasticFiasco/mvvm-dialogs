@@ -7,14 +7,14 @@ namespace MVVM_Dialogs.Service
 {
 	public class DialogService : IDialogService
 	{
-		private static IDialogService instance;
+		private static DialogService instance;
 		private HashSet<FrameworkElement> views;
 
 
 		/// <summary>
 		/// The Singleton instance of this class.
 		/// </summary>
-		public static IDialogService Instance
+		public static DialogService Instance
 		{
 			get
 			{
@@ -34,46 +34,6 @@ namespace MVVM_Dialogs.Service
 
 
 		#region IDialogService Members
-
-		/// <summary>
-		/// Registers a view.
-		/// </summary>
-		/// <param name="view">The registered view.</param>
-		public void Register(FrameworkElement view)
-		{
-			if (views.Contains(view)) throw new ArgumentException("View has already been registered.");
-
-			// Get owner window
-			Window owner = view as Window;
-			if (owner == null)
-			{
-				owner = Window.GetWindow(view);
-			}
-						
-			if (owner == null)
-			{
-				throw new InvalidOperationException("View is not contained within a Window.");
-			}
-
-			// Register for owner window closing, since we then should unregister view reference,
-			// preventing memory leaks
-			owner.Closed += OwnerClosed;
-
-			views.Add(view);
-		}
-
-
-		/// <summary>
-		/// Unregisters a view.
-		/// </summary>
-		/// <param name="view">The unregistered view.</param>
-		public void Unregister(FrameworkElement view)
-		{
-			if (!views.Contains(view)) throw new ArgumentException("View has never been registered.");
-
-			views.Remove(view);
-		}
-
 
 		/// <summary>
 		/// Shows a dialog.
@@ -119,7 +79,7 @@ namespace MVVM_Dialogs.Service
 		#region Attached properties
 
 		/// <summary>
-		/// Attached property describing whether a FrameworkElement is acting as a view in MVVM.
+		/// Attached property describing whether a FrameworkElement is acting as a View in MVVM.
 		/// </summary>
 		public static readonly DependencyProperty IsRegisteredViewProperty = DependencyProperty.RegisterAttached(
 			"IsRegisteredView",
@@ -129,7 +89,7 @@ namespace MVVM_Dialogs.Service
 
 
 		/// <summary>
-		/// Gets value describing whether FrameworkElement is acting as view in MVVM.
+		/// Gets value describing whether FrameworkElement is acting as View in MVVM.
 		/// </summary>
 		public static bool GetIsRegisteredView(FrameworkElement target)
 		{
@@ -138,7 +98,7 @@ namespace MVVM_Dialogs.Service
 
 
 		/// <summary>
-		/// Sets value describing whether FrameworkElement is acting as view in MVVM.
+		/// Sets value describing whether FrameworkElement is acting as View in MVVM.
 		/// </summary>
 		public static void SetIsRegisteredView(FrameworkElement target, bool value)
 		{
@@ -148,7 +108,7 @@ namespace MVVM_Dialogs.Service
 
 		/// <summary>
 		/// Is responsible for handling IsRegisteredViewProperty changes, i.e. whether
-		/// FrameworkElement is acting as view in MVVM or not.
+		/// FrameworkElement is acting as View in MVVM or not.
 		/// </summary>
 		private static void IsRegisteredViewPropertyChanged(DependencyObject target,
 			DependencyPropertyChangedEventArgs e)
@@ -175,6 +135,45 @@ namespace MVVM_Dialogs.Service
 
 
 		/// <summary>
+		/// Registers a View.
+		/// </summary>
+		/// <param name="view">The registered View.</param>
+		private void Register(FrameworkElement view)
+		{
+			if (views.Contains(view)) throw new ArgumentException("View has already been registered.");
+
+			// Get owner window
+			Window owner = view as Window;
+			if (owner == null)
+			{
+				owner = Window.GetWindow(view);
+			}
+
+			if (owner == null)
+			{
+				throw new InvalidOperationException("View is not contained within a Window.");
+			}
+
+			// Register for owner window closing, since we then should unregister View reference,
+			// preventing memory leaks
+			owner.Closed += OwnerClosed;
+
+			views.Add(view);
+		}
+
+
+		/// <summary>
+		/// Unregisters a View.
+		/// </summary>
+		/// <param name="view">The unregistered View.</param>
+		private void Unregister(FrameworkElement view)
+		{
+			if (!views.Contains(view)) throw new ArgumentException("View has never been registered.");
+
+			views.Remove(view);
+		}
+
+		/// <summary>
 		/// Finds window corresponding to specified ViewModel.
 		/// </summary>
 		private Window FindOwnerWindow(object viewModel)
@@ -182,7 +181,7 @@ namespace MVVM_Dialogs.Service
 			FrameworkElement view = views.SingleOrDefault(v => ReferenceEquals(v.DataContext, viewModel));
 			if (view == null)
 			{
-				throw new ArgumentException("Viewmodel is not referenced by any registered view.");
+				throw new ArgumentException("Viewmodel is not referenced by any registered View.");
 			}
 
 			// Get owner window
@@ -203,7 +202,7 @@ namespace MVVM_Dialogs.Service
 
 
 		/// <summary>
-		/// Handles owner window closed, view service should then unregister all views acting
+		/// Handles owner window closed, View service should then unregister all Views acting
 		/// within the closed window.
 		/// </summary>
 		private void OwnerClosed(object sender, EventArgs e)
@@ -211,13 +210,13 @@ namespace MVVM_Dialogs.Service
 			Window owner = sender as Window;
 			if (owner != null)
 			{
-				// Find views acting within closed window
+				// Find Views acting within closed window
 				IEnumerable<FrameworkElement> windowViews =
 					from view in views
 					where Window.GetWindow(view) == owner
 					select view;
 
-				// Unregister views in window
+				// Unregister Views in window
 				foreach (FrameworkElement view in windowViews.ToArray())
 				{
 					Unregister(view);
