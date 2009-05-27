@@ -1,0 +1,336 @@
+
+
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head><title>
+	CodeProject: Article HTML. Free source code and programming help
+</title><link rel="stylesheet" type="text/css" href="/App_Themes/NetCommunity/CodeProject.css?dt=&lt;%=AppSettings.Version %>" /></head>
+<base href="http://www.codeproject.com/KB/architecture/" />
+<body>
+    <!--  HTML for article "Showing Dialogs When Using MVVM Pattern" by disore\nURL: http://www.codeproject.com/KB/architecture/MVVM_Dialogs.aspx
+Copyright 2009 by disore\nAll formatting, additions and  alterations Copyright © CodeProject, 1999-2009 -->
+	
+    <p><b>Please choose 'View Source' in your browser to view the HTML, or  
+File | Save to save this file to your hard drive for editing.</b></p>
+<hr class="Divider subdue" />
+    <div>
+    <span id="ArticleContent">
+
+<ul class="download">
+<li><a href="MVVM_Dialogs/MVVM_Dialogs.zip">Download source - 172.37 KB</a></li>
+</ul>
+<img height="302" src="MVVM_Dialogs/Application.png" width="302" /> 
+<h2>Contents</h2>
+
+<ul>
+<li><a href="#intro">Introduction</a></li>
+
+<li><a href="#my_mvvm">My Interpretation of MVVM</a></li>
+
+<li><a href="#dialog_service">The Dialog Service</a></li>
+
+<li><a href="#what_now">What Now?</a></li>
+
+<li><a href="#history">History</a></li>
+</ul>
+
+<h2><a name="intro">Introduction</a> </h2>
+
+<p>This article will address one of the problems a developer might run into when using the MVVM pattern, namely opening dialogs from ViewModels. Basic knowledge of the pattern is expected. Josh Smith has written a fantastic <a href="http://msdn.microsoft.com/en-us/magazine/dd419663.aspx">article</a> in MSDN Magazine which can serve as the&nbsp;starting point for those that are unfamiliar with the pattern.</p>
+
+<p>There already exist some solutions exploring this area, but none of them seem to be widely accepted among the MVVM community. <a href="http://wpfonyx.codeplex.com/">Onyx</a> on CodePlex is one solution, but requires the developer to connect ViewModel and View at compile time using attached properties. Onyx also handles dependency injection to the ViewModel, something one already might have a solution for. Sacha Barber <a href="http://sachabarber.net/?p=518">announced</a> that he is working on a new MVVM framework, but hasn't set any release date. At the same time <a href="http://groups.google.com/group/wpf-disciples">WPF Disciples</a> are teaming up to create a <a href="http://www.codeplex.com/mvvmref">MVVM reference</a> application, again with no release date yet.</p>
+
+<h2><a name="my_mvvm">My Interpretation of MVVM</a> </h2>
+
+<p>I am possibly sticking my neck out here, but I would like to state some of my own interpretations of the MVVM pattern:</p>
+
+<ul>
+<li>The fundamental core is separation of UI and logic. ViewModel and View can communicate using bindings, making it possible for the View to be happily unaware of the ViewModel and vice versa. I know some of you might say: <em>&quot;well, actually the View knows about the ViewModel since the ViewModel is stored within the DataContext property, and the View is declaring its bindings to match properties on the ViewModel, surely the View must know the ViewModel?&quot;</em>. I don't think so; we have to analyze what <em>knows</em> actually means. The ViewModel is stored in the <code>DataContext </code>property, that is correct, but <code>DataContext </code>is of type <code>Object</code>. From the View's point, the only thing it knows is whether the property has been set or not, nothing about the actual content. Let's get to the bindings declared in the View, do they say something about the ViewModel? I would have to say no here as well. The View might declare whatever bindings it wishes, but the ViewModel isn't enforced to implement them.</li>
+
+<li>The ViewModel should serve the View with data, but one might argue where the separation between View and ViewModel is. If for instance the ViewModel is holding a list of items presented in a <code>ListView</code>, I would argue that sorting, grouping and filtering could be the responsibility of the View, not the ViewModel. Attached properties can solve this for us, making the ViewModel happily unaware of the item presentation.</li>
+
+<li>The ViewModel should not contain anything used purely in tests, either a class is testable or it isn't.</li>
+</ul>
+
+<h2><a name="dialog_service">The Dialog Service</a> </h2>
+
+<p>The concept of letting services handle relations between ViewModel and View seems to be the most accepted solution. My contribution is <code>IDialogService</code>; an interface that currently only holds two interesting methods. <code>ShowDialog</code> will open any <code>Window</code> as a dialog and <code>ShowMessageBox</code> will open a <code>MessageBox</code>.</p>
+
+<pre lang="cs">public interface IDialogService
+{
+  /// &lt;summary&gt;
+  /// Shows a dialog.
+  /// &lt;/summary&gt;
+  /// &lt;param name=&quot;ownerViewModel&quot;&gt;A ViewModel that represents the owner window of
+  /// the dialog.&lt;/param&gt;
+  /// &lt;param name=&quot;viewModel&quot;&gt;The ViewModel of the new dialog.&lt;/param&gt;
+  /// &lt;returns&gt;A nullable value of type bool that signifies how a window was closed
+  /// by the user.&lt;/returns&gt;
+  bool? ShowDialog&lt;T&gt;(object ownerViewModel, object viewModel) where T : Window;
+
+  /// &lt;summary&gt;
+  /// Shows a message box.
+  /// &lt;/summary&gt;
+  /// &lt;param name=&quot;ownerViewModel&quot;&gt;A ViewModel that represents the owner window of
+  /// the message box.&lt;/param&gt;
+  /// &lt;param name=&quot;messageBoxText&quot;&gt;A string that specifies the text to display.&lt;/param&gt;
+  /// &lt;param name=&quot;caption&quot;&gt;A string that specifies the title bar caption to display.
+  /// &lt;/param&gt;
+  /// &lt;param name=&quot;button&quot;&gt;A MessageBoxButton value that specifies which button 
+  /// or buttons to display.&lt;/param&gt;
+  /// &lt;param name=&quot;icon&quot;&gt;A MessageBoxImage value that specifies the icon to display.
+  /// &lt;/param&gt;
+  /// &lt;returns&gt;A MessageBoxResult value that specifies which 
+  /// message box button is clicked by the user.&lt;/returns&gt;
+  MessageBoxResult ShowMessageBox(object ownerViewModel, string messageBoxText, 
+	string caption, MessageBoxButton button, MessageBoxImage icon);
+}</pre>
+
+<p>The actual implementation of <code>IDialogServiceis</code> is <code>DialogService</code>.</p>
+
+<pre lang="cs">public class DialogService : IDialogService
+{
+  private static IDialogService instance;
+  private HashSet&lt;FrameworkElement&gt; views;
+
+  /// &lt;summary&gt;
+  /// The Singleton instance of this class.
+  /// &lt;/summary&gt;
+  public static IDialogService Instance
+  {
+    get
+    {
+      if (instance == null)
+      {
+        instance = new DialogService();
+      }
+      return instance;
+    }
+  }
+
+  private DialogService()
+  {
+    views = new HashSet&lt;FrameworkElement&gt;();
+  }
+
+  #region IDialogService Members
+
+  /// &lt;summary&gt;
+  /// Shows a dialog.
+  /// &lt;/summary&gt;
+  /// &lt;param name=&quot;ownerViewModel&quot;&gt;A ViewModel that represents the owner window of
+  /// the dialog.&lt;/param&gt;
+  /// &lt;param name=&quot;viewModel&quot;&gt;The ViewModel of the new dialog.&lt;/param&gt;
+  /// &lt;returns&gt;A nullable value of type bool that signifies how a window was closed
+  /// by the user.&lt;/returns&gt;
+  public bool? ShowDialog&lt;T&gt;(object ownerViewModel, object viewModel) where T : Window
+  {
+    // Create dialog and set properties
+    T dialog = Activator.CreateInstance&lt;t&gt;();
+    dialog.Owner = FindOwnerWindow(ownerViewModel);
+    dialog.DataContext = viewModel;
+
+    // Show dialog
+    return dialog.ShowDialog();
+  }
+
+  /// &lt;summary&gt;
+  /// Shows a message box.
+  /// &lt;/summary&gt;
+  /// &lt;param name=&quot;ownerViewModel&quot;&gt;A ViewModel that represents the owner window of
+  /// the message box.&lt;/param&gt;
+  /// &lt;param name=&quot;messageBoxText&quot;&gt;A string that specifies the text to display.&lt;/param&gt;
+  /// &lt;param name=&quot;caption&quot;&gt;A string that specifies the title bar caption to display.
+  /// &lt;/param&gt;
+  /// &lt;param name=&quot;button&quot;&gt;A MessageBoxButton value that specifies which button
+  /// or buttons to display.&lt;/param&gt;
+  /// &lt;param name=&quot;icon&quot;&gt;A MessageBoxImage value that specifies the icon to display.
+  /// &lt;/param&gt;
+  /// &lt;returns&gt;A MessageBoxResult value that specifies which message box button 
+  /// is clicked by the user.&lt;/returns&gt;
+  public MessageBoxResult ShowMessageBox(object ownerViewModel, string messageBoxText, 
+	string caption, MessageBoxButton button, MessageBoxImage icon)
+  {
+    return MessageBox.Show(FindOwnerWindow(ownerViewModel), 
+			messageBoxText, caption, button, icon);
+  }
+
+  #endregion
+
+  #region Attached properties
+
+  /// &lt;summary&gt;
+  /// Attached property describing whether a FrameworkElement 
+  /// is acting as a View in MVVM.
+  /// &lt;/summary&gt;
+  public static readonly DependencyProperty IsRegisteredViewProperty = 
+    DependencyProperty.RegisterAttached(
+    &quot;IsRegisteredView&quot;,
+    typeof(bool),
+    typeof(DialogService),
+    new UIPropertyMetadata(IsRegisteredViewPropertyChanged));
+
+  /// &lt;summary&gt;
+  /// Gets value describing whether FrameworkElement is acting as View in MVVM.
+  /// &lt;/summary&gt;
+  public static bool GetIsRegisteredView(FrameworkElement target)
+  {
+    return (bool)target.GetValue(IsRegisteredViewProperty);
+  }
+
+  /// &lt;summary&gt;
+  /// Sets value describing whether FrameworkElement is acting as View in MVVM.
+  /// &lt;/summary&gt;
+  public static void SetIsRegisteredView(FrameworkElement target, bool value)
+  {
+    target.SetValue(IsRegisteredViewProperty, value);
+  }
+
+  /// &lt;summary&gt;
+  /// Is responsible for handling IsRegisteredViewProperty changes, i.e. whether
+  /// FrameworkElement is acting as View in MVVM or not.
+  /// &lt;/summary&gt;
+  private static void IsRegisteredViewPropertyChanged(DependencyObject target,
+    DependencyPropertyChangedEventArgs e)
+  {
+    FrameworkElement view = target as FrameworkElement;
+    if (view != null)
+    {
+      // Cast values
+      bool newValue = (bool)e.NewValue;
+      bool oldValue = (bool)e.OldValue;
+
+      if (newValue)
+      {
+        Instance.Register(view);
+      }
+      else
+      {
+        Instance.Unregister(view);
+      }
+    }
+  }
+
+  #endregion
+
+  /// &lt;summary&gt;
+  /// Registers a View.
+  /// &lt;/summary&gt;
+  /// &lt;param name=&quot;view&quot;&gt;The registered View.&lt;/param&gt;
+  private void Register(FrameworkElement view)
+  {
+    if (views.Contains(view)) throw new ArgumentException
+			(&quot;View has already been registered.&quot;);
+
+    // Get owner window
+    Window owner = view as Window;
+    if (owner == null)
+    {
+      owner = Window.GetWindow(view);
+    }
+						
+    if (owner == null)
+    {
+      throw new InvalidOperationException(&quot;View is not contained within a Window.&quot;);
+    }
+
+    // Register for owner window closing, since we then 
+    // should unregister View reference,
+    // preventing memory leaks
+    owner.Closed += OwnerClosed;
+
+    views.Add(view);
+  }
+
+  /// &lt;summary&gt;
+  /// Unregisters a View.
+  /// &lt;/summary&gt;
+  /// &lt;param name=&quot;view&quot;&gt;The unregistered View.&lt;/param&gt;
+  private void Unregister(FrameworkElement view)
+  {
+    if (!views.Contains(view)) throw new ArgumentException
+				(&quot;View has never been registered.&quot;);
+
+    views.Remove(view);
+  }
+
+  /// &lt;summary&gt;
+  /// Finds window corresponding to specified ViewModel.
+  /// &lt;/summary&gt;
+  private Window FindOwnerWindow(object viewModel)
+  {
+    FrameworkElement view = 
+	views.SingleOrDefault(v =&gt; ReferenceEquals(v.DataContext, viewModel));
+    if (view == null)
+    {
+      throw new ArgumentException
+	(&quot;ViewModel is not referenced by any registered View.&quot;);
+    }
+
+    // Get owner window
+    Window owner = view as Window;
+    if (owner == null)
+    {
+      owner = Window.GetWindow(view);
+    }
+
+    // Make sure owner window was found
+    if (owner == null)
+    {
+      throw new InvalidOperationException(&quot;View is not contained within a Window.&quot;);
+    }
+
+    return owner;
+  }
+
+  /// &lt;summary&gt;
+  /// Handles owner window closed, View service should then unregister all Views acting
+  /// within the closed window.
+  /// &lt;/summary&gt;
+  private void OwnerClosed(object sender, EventArgs e)
+  {
+    Window owner = sender as Window;
+    if (owner != null)
+    {
+      // Find Views acting within closed window
+      IEnumerable&lt;FrameworkElement&gt; windowViews =
+        from view in views
+        where Window.GetWindow(view) == owner
+        select view;
+
+      // Unregister Views in window
+      foreach (FrameworkElement view in windowViews.ToArray())
+      {
+        Unregister(view);
+      }
+    }
+  }
+}</pre>
+
+<p>The design is pretty straight forward. A View is registering itself as part of the MVVM pattern by setting the attached property <code>IsRegisteredView</code> on any element in the logical tree.</p>
+
+<pre lang="xml">&lt;Window
+  x:Class=&quot;MVVM_Dialogs.View.MainWindow&quot;
+  xmlns=&quot;http://schemas.microsoft.com/winfx/2006/xaml/presentation&quot;
+  xmlns:x=&quot;http://schemas.microsoft.com/winfx/2006/xaml&quot;
+  xmlns:Service=&quot;clr-namespace:MVVM_Dialogs.Service&quot;
+  Service:DialogService.IsRegisteredView=&quot;True&quot;&gt;</pre>
+
+<p>The View is now remembered by the dialog service. When a ViewModel is requesting to show some kind of dialog, the correct View is found by the service and its owning Window is used as owner.</p>
+
+<h2><a name="what_now">What Now?</a> </h2>
+
+<p>I would like to hear your thoughts about the idea. Perhaps you have a better solution? Don't be afraid, leave a comment...</p>
+
+<h2><a name="history">History</a></h2>
+
+<ul>
+<li>25<sup>th</sup> May, 2009: Initial version</li>
+</ul>
+
+
+
+</span>
+    </div>
+ 
+</body>
+</html>
