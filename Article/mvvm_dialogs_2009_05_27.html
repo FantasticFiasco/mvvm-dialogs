@@ -1,4 +1,4 @@
-
+﻿
 
 <html xmlns="http://www.w3.org/1999/xhtml" >
 <head><title>
@@ -37,7 +37,7 @@ File | Save to save this file to your hard drive for editing.</b></p>
 
 <p>This article will address one of the problems a developer might run into when using the MVVM pattern, namely opening dialogs from ViewModels. Basic knowledge of the pattern is expected. Josh Smith has written a fantastic <a href="http://msdn.microsoft.com/en-us/magazine/dd419663.aspx">article</a> in MSDN Magazine which can serve as the&nbsp;starting point for those that are unfamiliar with the pattern.</p>
 
-<p>There already exist some solutions exploring this area, but none of them seem to be widely accepted among the MVVM community. <a href="http://wpfonyx.codeplex.com/">Onyx</a> on CodePlex is one solution, but requires the developer to connect ViewModel and View at compile time using attached properties. Onyx also handles dependency injection to the ViewModel, something one already might have a solution for. Sacha Barber <a href="http://sachabarber.net/?p=518">announced</a> that he is working on a new MVVM framework, but hasn't set any release date. At the same time <a href="http://groups.google.com/group/wpf-disciples">WPF Disciples</a> are teaming up to create a <a href="http://www.codeplex.com/mvvmref">MVVM reference</a> application, again with no release date yet.</p>
+<p>There already exist some solutions exploring this area, but none of them seem to be widely accepted among the MVVM community. <a href="http://wpfonyx.codeplex.com/">Onyx</a> on CodePlex is probably the most complete solution. Sacha Barber <a href="http://sachabarber.net/?p=518">announced</a> that he is working on a new MVVM framework, but hasn't set any release date. At the same time <a href="http://groups.google.com/group/wpf-disciples">WPF Disciples</a> are teaming up to create a <a href="http://www.codeplex.com/mvvmref">MVVM reference</a> application, again with no release date yet.</p>
 
 <h2><a name="my_mvvm">My Interpretation of MVVM</a> </h2>
 
@@ -82,7 +82,7 @@ File | Save to save this file to your hard drive for editing.</b></p>
   /// &lt;returns&gt;A MessageBoxResult value that specifies which 
   /// message box button is clicked by the user.&lt;/returns&gt;
   MessageBoxResult ShowMessageBox(object ownerViewModel, string messageBoxText, 
-	string caption, MessageBoxButton button, MessageBoxImage icon);
+    string caption, MessageBoxButton button, MessageBoxImage icon);
 }</pre>
 
 <p>The actual implementation of <code>IDialogServiceis</code> is <code>DialogService</code>.</p>
@@ -148,10 +148,9 @@ File | Save to save this file to your hard drive for editing.</b></p>
   /// &lt;returns&gt;A MessageBoxResult value that specifies which message box button 
   /// is clicked by the user.&lt;/returns&gt;
   public MessageBoxResult ShowMessageBox(object ownerViewModel, string messageBoxText, 
-	string caption, MessageBoxButton button, MessageBoxImage icon)
+    string caption, MessageBoxButton button, MessageBoxImage icon)
   {
-    return MessageBox.Show(FindOwnerWindow(ownerViewModel), 
-			messageBoxText, caption, button, icon);
+    return MessageBox.Show(FindOwnerWindow(ownerViewModel), messageBoxText, caption, button, icon);
   }
 
   #endregion
@@ -219,7 +218,7 @@ File | Save to save this file to your hard drive for editing.</b></p>
   private void Register(FrameworkElement view)
   {
     if (views.Contains(view)) throw new ArgumentException
-			(&quot;View has already been registered.&quot;);
+      (&quot;View has already been registered.&quot;);
 
     // Get owner window
     Window owner = view as Window;
@@ -248,7 +247,7 @@ File | Save to save this file to your hard drive for editing.</b></p>
   private void Unregister(FrameworkElement view)
   {
     if (!views.Contains(view)) throw new ArgumentException
-				(&quot;View has never been registered.&quot;);
+      (&quot;View has never been registered.&quot;);
 
     views.Remove(view);
   }
@@ -263,7 +262,7 @@ File | Save to save this file to your hard drive for editing.</b></p>
     if (view == null)
     {
       throw new ArgumentException
-	(&quot;ViewModel is not referenced by any registered View.&quot;);
+        (&quot;ViewModel is not referenced by any registered View.&quot;);
     }
 
     // Get owner window
@@ -324,6 +323,7 @@ File | Save to save this file to your hard drive for editing.</b></p>
 <h2><a name="history">History</a></h2>
 
 <ul>
+<li>27<sup>th</sup> May, 2009: Updated introduction after comments from William E. Kempf</li>
 <li>25<sup>th</sup> May, 2009: Initial version</li>
 </ul>
 
