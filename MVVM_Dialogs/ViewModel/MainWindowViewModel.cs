@@ -123,6 +123,7 @@ namespace MVVM_Dialogs.ViewModel
 			// Create ViewModel to OpenFileDialog
 			OpenFileDialogViewModel viewModel = new OpenFileDialogViewModel
 			{
+				FileName = "LoadMe.xml",
 				Filter = Resources.MainWindowViewModel_LoadPersonsFilter,
 				InitialDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location),
 				Title = Resources.MainWindowViewModel_LoadPersonsTitle
