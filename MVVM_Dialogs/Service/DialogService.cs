@@ -9,33 +9,56 @@ namespace MVVM_Dialogs.Service
 {
 	public class DialogService : IDialogService
 	{
-		private static DialogService instance;
 		private HashSet<FrameworkElement> views;
 
 
-		/// <summary>
-		/// The Singleton instance of this class.
-		/// </summary>
-		public static DialogService Instance
-		{
-			get
-			{
-				if (instance == null)
-				{
-					instance = new DialogService();
-				}
-				return instance;
-			}
-		}
-
-
-		private DialogService()
+		public DialogService()
 		{
 			views = new HashSet<FrameworkElement>();
 		}
 
 
 		#region IDialogService Members
+
+		/// <summary>
+		/// Registers a View.
+		/// </summary>
+		/// <param name="view">The registered View.</param>
+		public void Register(FrameworkElement view)
+		{
+			if (views.Contains(view)) throw new ArgumentException("View has already been registered.");
+
+			// Get owner window
+			Window owner = view as Window;
+			if (owner == null)
+			{
+				owner = Window.GetWindow(view);
+			}
+
+			if (owner == null)
+			{
+				throw new InvalidOperationException("View is not contained within a Window.");
+			}
+
+			// Register for owner window closing, since we then should unregister View reference,
+			// preventing memory leaks
+			owner.Closed += OwnerClosed;
+
+			views.Add(view);
+		}
+
+
+		/// <summary>
+		/// Unregisters a View.
+		/// </summary>
+		/// <param name="view">The unregistered View.</param>
+		public void Unregister(FrameworkElement view)
+		{
+			if (!views.Contains(view)) throw new ArgumentException("View has never been registered.");
+
+			views.Remove(view);
+		}
+
 
 		/// <summary>
 		/// Shows a dialog.
@@ -141,56 +164,17 @@ namespace MVVM_Dialogs.Service
 
 				if (newValue)
 				{
-					Instance.Register(view);
+					ServiceLocator.Resolve<IDialogService>().Register(view);
 				}
 				else
 				{
-					Instance.Unregister(view);
+					ServiceLocator.Resolve<IDialogService>().Unregister(view);
 				}
 			}
 		}
 
 		#endregion
 
-
-		/// <summary>
-		/// Registers a View.
-		/// </summary>
-		/// <param name="view">The registered View.</param>
-		private void Register(FrameworkElement view)
-		{
-			if (views.Contains(view)) throw new ArgumentException("View has already been registered.");
-
-			// Get owner window
-			Window owner = view as Window;
-			if (owner == null)
-			{
-				owner = Window.GetWindow(view);
-			}
-
-			if (owner == null)
-			{
-				throw new InvalidOperationException("View is not contained within a Window.");
-			}
-
-			// Register for owner window closing, since we then should unregister View reference,
-			// preventing memory leaks
-			owner.Closed += OwnerClosed;
-
-			views.Add(view);
-		}
-
-
-		/// <summary>
-		/// Unregisters a View.
-		/// </summary>
-		/// <param name="view">The unregistered View.</param>
-		private void Unregister(FrameworkElement view)
-		{
-			if (!views.Contains(view)) throw new ArgumentException("View has never been registered.");
-
-			views.Remove(view);
-		}
 
 		/// <summary>
 		/// Finds window corresponding to specified ViewModel.

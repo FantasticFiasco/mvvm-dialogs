@@ -10,9 +10,13 @@ namespace MVVM_Dialogs
 		{
 			base.OnStartup(e);
 
+			// Configure service locator
+			ServiceLocator.Add<IDialogService>(new DialogService());
+			ServiceLocator.Add<IPersonService>(new PersonService());
+
 			// Create and show main window
 			View.MainWindow view = new View.MainWindow();
-			view.DataContext = new MainWindowViewModel(DialogService.Instance, new PersonService());
+			view.DataContext = new MainWindowViewModel();
 			view.Show();
 		}
 	}
