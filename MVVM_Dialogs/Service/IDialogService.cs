@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Forms;
-using MVVM_Dialogs.Service.LegacyFrameworkDialogs;
+using MVVM_Dialogs.Service.LegacyFrameworkDialogs.OpenFile;
 
 namespace MVVM_Dialogs.Service
 {
