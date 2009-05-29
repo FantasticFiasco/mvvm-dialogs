@@ -10,6 +10,7 @@ using MVVM_Dialogs.Properties;
 using MVVM_Dialogs.Service;
 using MVVM_Dialogs.Service.LegacyFrameworkDialogs;
 using MVVM_Dialogs.View;
+using MVVM_Dialogs.Model;
 
 
 namespace MVVM_Dialogs.ViewModel
@@ -20,6 +21,7 @@ namespace MVVM_Dialogs.ViewModel
 	public class MainWindowViewModel : ViewModelBase
 	{
 		private IDialogService dialogService;
+		private IPersonService personService;
 
 		private ObservableCollection<PersonViewModel> persons;
 		private ICommand loadPersonsCommand;
@@ -99,9 +101,10 @@ namespace MVVM_Dialogs.ViewModel
 		}
 
 
-		public MainWindowViewModel(IDialogService dialogService)
+		public MainWindowViewModel(IDialogService dialogService, IPersonService personService)
 		{
 			this.dialogService = dialogService;
+			this.personService = personService;
 
 			persons = new ObservableCollection<PersonViewModel>();
 		}
@@ -131,11 +134,15 @@ namespace MVVM_Dialogs.ViewModel
 				Title = Resources.MainWindowViewModel_LoadPersonsTitle
 			};
 
-			// Open the dialog and get the result
+			// Open the dialog
 			DialogResult result = dialogService.ShowOpenFileDialog(this, viewModel);
 			if (result == DialogResult.OK)
 			{
-				System.Diagnostics.Debugger.Break();
+				// Load the persons
+				foreach (Person person in personService.Load(viewModel.FileName))
+				{
+					persons.Add(new PersonViewModel(person));
+				}
 			}
 		}
 

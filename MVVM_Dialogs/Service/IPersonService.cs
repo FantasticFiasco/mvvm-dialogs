@@ -6,8 +6,8 @@ namespace MVVM_Dialogs.Service
 	public interface IPersonService
 	{
 		/// <summary>
-		/// Gets all persons.
+		/// Load all persons from file on disk.
 		/// </summary>
-		List<Person> Get();
+		List<Person> Load(string fileName);
 	}
 }
