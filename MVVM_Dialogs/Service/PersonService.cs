@@ -1,4 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Xml.Serialization;
 using MVVM_Dialogs.Model;
 
 namespace MVVM_Dialogs.Service
@@ -6,17 +9,23 @@ namespace MVVM_Dialogs.Service
 	class PersonService : IPersonService
 	{
 		/// <summary>
-		/// Get all persons.
+		/// Load all persons from file on disk.
 		/// </summary>
-		public List<Person> Get()
+		public List<Person> Load(string fileName)
 		{
-			return new List<Person>
+			try
 			{
-				new Person("Barbara", Gender.Female),
-				new Person("Mike", Gender.Male),
-				new Person("Savannah", Gender.Female),
-				new Person("Will", Gender.Male)
-			};
+				using (StreamReader reader = new StreamReader(fileName))
+				{
+					XmlSerializer serializer = new XmlSerializer(typeof(List<Person>));
+					return (List<Person>)serializer.Deserialize(reader);
+				}
+			}
+			catch (Exception)
+			{
+				// I wouldn't catch System.Exception in production code
+				return new List<Person>();
+			}
 		}
 	}
 }

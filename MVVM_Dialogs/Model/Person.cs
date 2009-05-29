@@ -6,21 +6,14 @@
 	public class Person
 	{
 		/// <summary>
-		/// Gets the name of the person.
+		/// Gets or sets the name.
 		/// </summary>
-		public string Name { get; private set; }
+		public string Name { get; set; }
 
 
 		/// <summary>
-		/// Gets the gender of the person.
+		/// Gets or sets the gender.
 		/// </summary>
-		public Gender Gender { get; private set; }
-
-
-		public Person(string name, Gender gender)
-		{
-			Name = name;
-			Gender = gender;
-		}
+		public Gender Gender { get; set; }
 	}
 }
