@@ -22,17 +22,17 @@ namespace MVVM_DialogsTest.ViewModel
 		[SetUp]
 		public void SetUp()
 		{
-			person1 = new Person("Some name 1", Gender.Female);
-			person1 = new Person("Some name 2", Gender.Male);
+			//person1 = new Person("Some name 1", Gender.Female);
+			//person1 = new Person("Some name 2", Gender.Male);
 			
-			dialogServiceMock = new Mock<IDialogService>();
+			//dialogServiceMock = new Mock<IDialogService>();
 
-			personServiceMock = new Mock<IPersonService>();
-			personServiceMock
-				.Setup(m => m.Get())
-				.Returns(new List<Person> { person1, person2 });
+			//personServiceMock = new Mock<IPersonService>();
+			//personServiceMock
+			//  .Setup(m => m.Get())
+			//  .Returns(new List<Person> { person1, person2 });
 
-			viewModel = new MainWindowViewModel(dialogServiceMock.Object, personServiceMock.Object);
+			//viewModel = new MainWindowViewModel(dialogServiceMock.Object, personServiceMock.Object);
 		}
 
 

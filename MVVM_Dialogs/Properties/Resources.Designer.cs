@@ -77,5 +77,23 @@ namespace MVVM_Dialogs.Properties {
                 return ResourceManager.GetString("MainWindowViewModel_DeleteCaption", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to XML files (*.xml)|*.xml|All files (*.*)|*.*.
+        /// </summary>
+        internal static string MainWindowViewModel_LoadPersonsFilter {
+            get {
+                return ResourceManager.GetString("MainWindowViewModel_LoadPersonsFilter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Load People.
+        /// </summary>
+        internal static string MainWindowViewModel_LoadPersonsTitle {
+            get {
+                return ResourceManager.GetString("MainWindowViewModel_LoadPersonsTitle", resourceCulture);
+            }
+        }
     }
 }

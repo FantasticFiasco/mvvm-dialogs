@@ -7,7 +7,7 @@
 	WindowStartupLocation="CenterScreen"
 	Service:DialogService.IsRegisteredView="True"
 	Height="300"
-	Width="300">
+	Width="400">
 	
 	<!-- Resources -->
 	<Window.Resources>
@@ -37,8 +37,13 @@
 		</ListBox>
 
 		<!-- Grid holding the buttons -->
-		<UniformGrid Grid.Row="1" Columns="2">
+		<UniformGrid Grid.Row="1" Columns="3">
 		
+			<!-- Load persons button -->
+			<Button
+				Content="Load persons"
+				Command="{Binding LoadPersonsCommand}"/>
+			
 			<!-- Delete button -->
 			<Button
 				Content="Show information"

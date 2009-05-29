@@ -1,4 +1,6 @@
 ﻿using System.Windows;
+using System.Windows.Forms;
+using MVVM_Dialogs.Service.LegacyFrameworkDialogs;
 
 namespace MVVM_Dialogs.Service
 {
@@ -29,5 +31,15 @@ namespace MVVM_Dialogs.Service
 		/// by the user.</returns>
 		MessageBoxResult ShowMessageBox(object ownerViewModel, string messageBoxText, string caption,
 			MessageBoxButton button, MessageBoxImage icon);
+
+
+		/// <summary>
+		/// Shows the OpenFileDialog.
+		/// </summary>
+		/// <param name="ownerViewModel">A ViewModel that represents the owner window of
+		/// the message box.</param>
+		/// <param name="viewModel">The ViewModel of the OpenFileDialog.</param>
+		/// <returns>The IOpenFileDialogResult if successful; otherwise null.</returns>
+		DialogResult ShowOpenFileDialog(object ownerViewModel, OpenFileDialogViewModel viewModel);
 	}
 }
