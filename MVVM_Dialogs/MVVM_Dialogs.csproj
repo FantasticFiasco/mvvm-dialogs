@@ -86,11 +86,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Properties\Settings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Settings.settings</DependentUpon>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-    </Compile>
     <Compile Include="RelayCommand.cs" />
     <Compile Include="Service\DialogService.cs" />
     <Compile Include="Service\ServiceLocator.cs" />
@@ -102,7 +97,7 @@
     <Compile Include="Service\IDialogService.cs" />
     <Compile Include="Service\IPersonService.cs" />
     <Compile Include="Service\PersonService.cs" />
-    <Compile Include="Service\WindowWrapper.cs" />
+    <Compile Include="Service\LegacyFrameworkDialogs\WindowWrapper.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
     <Compile Include="ViewModel\PersonDialogViewModel.cs" />
     <Compile Include="ViewModel\PersonViewModel.cs" />
@@ -114,10 +109,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-    </None>
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>

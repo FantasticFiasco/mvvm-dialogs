@@ -9,19 +9,25 @@ namespace MVVM_Dialogs.Service
 
 
 		/// <summary>
-		/// Adds a service to the service locator.
+		/// Adds a service.
 		/// </summary>
-		public static void Add<T>(object service)
+		public static void Add<T>(T service)
 		{
+			if (services.ContainsKey(typeof(T)))
+				throw new ArgumentException("Service is already added");
+
 			services.Add(typeof(T), service);
 		}
 
 
 		/// <summary>
-		/// Resolves a service from the service locator.
+		/// Resolves a service.
 		/// </summary>
 		public static T Resolve<T>()
 		{
+			if (!services.ContainsKey(typeof(T)))
+				throw new ArgumentException("Service hasn't been added");
+
 			return (T)services[typeof(T)];
 		}
 	}
