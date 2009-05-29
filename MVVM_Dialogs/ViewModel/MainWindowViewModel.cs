@@ -1,11 +1,16 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Windows;
+using System.Windows.Forms;
 using System.Windows.Input;
 using MVVM_Dialogs.Properties;
 using MVVM_Dialogs.Service;
+using MVVM_Dialogs.Service.LegacyFrameworkDialogs;
 using MVVM_Dialogs.View;
+
 
 namespace MVVM_Dialogs.ViewModel
 {
@@ -17,6 +22,7 @@ namespace MVVM_Dialogs.ViewModel
 		private IDialogService dialogService;
 
 		private ObservableCollection<PersonViewModel> persons;
+		private ICommand loadPersonsCommand;
 		private ICommand showInformationCommand;
 		private ICommand deleteCommand;
 
@@ -27,6 +33,22 @@ namespace MVVM_Dialogs.ViewModel
 		public ReadOnlyObservableCollection<PersonViewModel> Persons
 		{
 			get { return new ReadOnlyObservableCollection<PersonViewModel>(persons); }
+		}
+
+
+		/// <summary>
+		/// Gets the command loading persons from disk.
+		/// </summary>
+		public ICommand LoadPersonsCommand
+		{
+			get
+			{
+				if (loadPersonsCommand == null)
+				{
+					loadPersonsCommand = new RelayCommand(LoadPersons, CanLoadPersons);
+				}
+				return loadPersonsCommand;
+			}
 		}
 
 
@@ -77,17 +99,46 @@ namespace MVVM_Dialogs.ViewModel
 		}
 
 
-		public MainWindowViewModel(IDialogService dialogService, IPersonService personService)
+		public MainWindowViewModel(IDialogService dialogService)
 		{
 			this.dialogService = dialogService;
 
-			persons = new ObservableCollection<PersonViewModel>(
-				from person in personService.Get()
-				select new PersonViewModel(person));
+			persons = new ObservableCollection<PersonViewModel>();
 		}
 
 
 		#region Command methods
+
+		/// <summary>
+		/// Returns whether load persons command can execute.
+		/// </summary>
+		private bool CanLoadPersons(object o)
+		{
+			return SelectedPersons.Count() == 0;
+		}
+
+
+		/// <summary>
+		/// Executes load persons.
+		/// </summary>
+		private void LoadPersons(object o)
+		{
+			// Create ViewModel to OpenFileDialog
+			OpenFileDialogViewModel viewModel = new OpenFileDialogViewModel
+			{
+				Filter = Resources.MainWindowViewModel_LoadPersonsFilter,
+				InitialDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location),
+				Title = Resources.MainWindowViewModel_LoadPersonsTitle
+			};
+
+			// Open the dialog and get the result
+			DialogResult result = dialogService.ShowOpenFileDialog(this, viewModel);
+			if (result == DialogResult.OK)
+			{
+				System.Diagnostics.Debugger.Break();
+			}
+		}
+
 
 		/// <summary>
 		/// Returns whether show person information command can execute.

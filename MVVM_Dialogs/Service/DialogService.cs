@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
+using MVVM_Dialogs.Service.LegacyFrameworkDialogs;
+using DialogResult = System.Windows.Forms.DialogResult;
 
 namespace MVVM_Dialogs.Service
 {
@@ -71,6 +73,23 @@ namespace MVVM_Dialogs.Service
 			MessageBoxButton button, MessageBoxImage icon)
 		{
 			return MessageBox.Show(FindOwnerWindow(ownerViewModel), messageBoxText, caption, button, icon);
+		}
+
+
+		/// <summary>
+		/// Shows the OpenFileDialog.
+		/// </summary>
+		/// <param name="ownerViewModel">A ViewModel that represents the owner window of
+		/// the message box.</param>
+		/// <param name="viewModel">The ViewModel of the OpenFileDialog.</param>
+		/// <returns>The IOpenFileDialogResult if successful; otherwise null.</returns>
+		public DialogResult ShowOpenFileDialog(object ownerViewModel, OpenFileDialogViewModel viewModel)
+		{
+			// Create OpenFileDialog with specified ViewModel
+			OpenFileDialog dialog = new OpenFileDialog(viewModel);
+
+			// Show dialog
+			return dialog.ShowDialog(new WindowWrapper(FindOwnerWindow(ownerViewModel)));
 		}
 
 		#endregion

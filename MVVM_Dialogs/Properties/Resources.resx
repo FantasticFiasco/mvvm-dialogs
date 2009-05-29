@@ -123,4 +123,10 @@
   <data name="MainWindowViewModel_DeleteCaption" xml:space="preserve">
     <value>Confirm Delete Person</value>
   </data>
+  <data name="MainWindowViewModel_LoadPersonsFilter" xml:space="preserve">
+    <value>XML files (*.xml)|*.xml|All files (*.*)|*.*</value>
+  </data>
+  <data name="MainWindowViewModel_LoadPersonsTitle" xml:space="preserve">
+    <value>Load People</value>
+  </data>
 </root>
