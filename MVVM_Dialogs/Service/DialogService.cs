@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using MVVM_Dialogs.Service.LegacyFrameworkDialogs;
+using MVVM_Dialogs.Service.LegacyFrameworkDialogs.OpenFile;
 using DialogResult = System.Windows.Forms.DialogResult;
 
 namespace MVVM_Dialogs.Service

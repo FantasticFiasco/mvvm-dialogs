@@ -1,4 +1,4 @@
-﻿namespace MVVM_Dialogs.Service.LegacyFrameworkDialogs
+﻿namespace MVVM_Dialogs.Service.LegacyFrameworkDialogs.OpenFile
 {
 	/// <summary>
 	/// ViewModel of the OpenFileDialog.

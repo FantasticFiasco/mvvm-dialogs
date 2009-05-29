@@ -9,7 +9,7 @@ using System.Windows.Input;
 using MVVM_Dialogs.Model;
 using MVVM_Dialogs.Properties;
 using MVVM_Dialogs.Service;
-using MVVM_Dialogs.Service.LegacyFrameworkDialogs;
+using MVVM_Dialogs.Service.LegacyFrameworkDialogs.OpenFile;
 using MVVM_Dialogs.View;
 
 
