@@ -6,11 +6,11 @@ using System.Reflection;
 using System.Windows;
 using System.Windows.Forms;
 using System.Windows.Input;
+using MVVM_Dialogs.Model;
 using MVVM_Dialogs.Properties;
 using MVVM_Dialogs.Service;
 using MVVM_Dialogs.Service.LegacyFrameworkDialogs;
 using MVVM_Dialogs.View;
-using MVVM_Dialogs.Model;
 
 
 namespace MVVM_Dialogs.ViewModel
@@ -132,7 +132,8 @@ namespace MVVM_Dialogs.ViewModel
 			DialogResult result = ServiceLocator.Resolve<IDialogService>().ShowOpenFileDialog(this, viewModel);
 			if (result == DialogResult.OK)
 			{
-				// Load the persons
+				// Load the persons, usually one investigates whether the file was loaded successfully,
+				// but this is only a sample
 				foreach (Person person in ServiceLocator.Resolve<IPersonService>().Load(viewModel.FileName))
 				{
 					persons.Add(new PersonViewModel(person));
