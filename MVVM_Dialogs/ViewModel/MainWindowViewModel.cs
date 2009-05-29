@@ -20,9 +20,6 @@ namespace MVVM_Dialogs.ViewModel
 	/// </summary>
 	public class MainWindowViewModel : ViewModelBase
 	{
-		private IDialogService dialogService;
-		private IPersonService personService;
-
 		private ObservableCollection<PersonViewModel> persons;
 		private ICommand loadPersonsCommand;
 		private ICommand showInformationCommand;
@@ -101,11 +98,8 @@ namespace MVVM_Dialogs.ViewModel
 		}
 
 
-		public MainWindowViewModel(IDialogService dialogService, IPersonService personService)
+		public MainWindowViewModel()
 		{
-			this.dialogService = dialogService;
-			this.personService = personService;
-
 			persons = new ObservableCollection<PersonViewModel>();
 		}
 
@@ -117,7 +111,7 @@ namespace MVVM_Dialogs.ViewModel
 		/// </summary>
 		private bool CanLoadPersons(object o)
 		{
-			return SelectedPersons.Count() == 0;
+			return Persons.Count() == 0;
 		}
 
 
@@ -135,11 +129,11 @@ namespace MVVM_Dialogs.ViewModel
 			};
 
 			// Open the dialog
-			DialogResult result = dialogService.ShowOpenFileDialog(this, viewModel);
+			DialogResult result = ServiceLocator.Resolve<IDialogService>().ShowOpenFileDialog(this, viewModel);
 			if (result == DialogResult.OK)
 			{
 				// Load the persons
-				foreach (Person person in personService.Load(viewModel.FileName))
+				foreach (Person person in ServiceLocator.Resolve<IPersonService>().Load(viewModel.FileName))
 				{
 					persons.Add(new PersonViewModel(person));
 				}
@@ -168,7 +162,7 @@ namespace MVVM_Dialogs.ViewModel
 			PersonDialogViewModel personDialogViewModel = new PersonDialogViewModel(selectedPerson.Person);
 
 			// Show the dialog
-			dialogService.ShowDialog<PersonDialog>(this, personDialogViewModel);
+			ServiceLocator.Resolve<IDialogService>().ShowDialog<PersonDialog>(this, personDialogViewModel);
 		}
 
 
@@ -190,7 +184,7 @@ namespace MVVM_Dialogs.ViewModel
 			PersonViewModel selectedPerson = persons.Single(p => p.IsSelected);
 
 			// Display confirmation messagebox
-			MessageBoxResult result = dialogService.ShowMessageBox(this,
+			MessageBoxResult result = ServiceLocator.Resolve<IDialogService>().ShowMessageBox(this,
 				string.Format(Resources.MainWindowViewModel_Delete, selectedPerson.Name),
 				Resources.MainWindowViewModel_DeleteCaption,
 				MessageBoxButton.YesNo,
