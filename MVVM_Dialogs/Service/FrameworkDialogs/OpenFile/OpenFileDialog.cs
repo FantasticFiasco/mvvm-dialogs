@@ -2,7 +2,7 @@
 using System.Windows.Forms;
 using FormsOpenFileDialog = System.Windows.Forms.OpenFileDialog;
 
-namespace MVVM_Dialogs.Service.LegacyFrameworkDialogs.OpenFile
+namespace MVVM_Dialogs.Service.FrameworkDialogs.OpenFile
 {
 	/// <summary>
 	/// Class wrapping System.Windows.Forms.OpenFileDialog, making it accept a ViewModel.
