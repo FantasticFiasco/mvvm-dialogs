@@ -88,16 +88,16 @@
     </Compile>
     <Compile Include="RelayCommand.cs" />
     <Compile Include="Service\DialogService.cs" />
-    <Compile Include="Service\LegacyFrameworkDialogs\OpenFile\IOpenFileDialog.cs" />
-    <Compile Include="Service\LegacyFrameworkDialogs\OpenFile\OpenFileDialog.cs" />
-    <Compile Include="Service\LegacyFrameworkDialogs\OpenFile\OpenFileDialogViewModel.cs" />
+    <Compile Include="Service\FrameworkDialogs\FileDialogViewModel.cs" />
+    <Compile Include="Service\FrameworkDialogs\IFileDialog.cs" />
+    <Compile Include="Service\FrameworkDialogs\OpenFile\IOpenFileDialog.cs" />
+    <Compile Include="Service\FrameworkDialogs\OpenFile\OpenFileDialog.cs" />
+    <Compile Include="Service\FrameworkDialogs\OpenFile\OpenFileDialogViewModel.cs" />
+    <Compile Include="Service\FrameworkDialogs\WindowWrapper.cs" />
     <Compile Include="Service\ServiceLocator.cs" />
-    <Compile Include="Service\LegacyFrameworkDialogs\FileDialogViewModel.cs" />
-    <Compile Include="Service\LegacyFrameworkDialogs\IFileDialog.cs" />
     <Compile Include="Service\IDialogService.cs" />
     <Compile Include="Service\IPersonService.cs" />
     <Compile Include="Service\PersonService.cs" />
-    <Compile Include="Service\LegacyFrameworkDialogs\WindowWrapper.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
     <Compile Include="ViewModel\PersonDialogViewModel.cs" />
     <Compile Include="ViewModel\PersonViewModel.cs" />
