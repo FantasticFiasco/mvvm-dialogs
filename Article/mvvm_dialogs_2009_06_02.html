@@ -53,61 +53,64 @@ File | Save to save this file to your hard drive for editing.</b></p>
 
 <h2><a name="dialog_service">The Dialog Service</a> </h2>
 
-<p>The concept of letting services handle relations between ViewModel and View seems to be the most accepted solution. My contribution is <code>IDialogService</code>; an interface that currently only holds two interesting methods. <code>ShowDialog</code> will open any <code>Window</code> as a dialog and <code>ShowMessageBox</code> will open a <code>MessageBox</code>.</p>
+<p>The concept of letting services handle relations between ViewModel and View seems to be the most accepted solution. My contribution is <code>IDialogService</code>.</p>
 
 <pre lang="cs">public interface IDialogService
 {
   /// &lt;summary&gt;
+  /// Registers a View.
+  /// &lt;/summary&gt;
+  /// &lt;param name=&quot;view&quot;&gt;The registered View.&lt;/param&gt;
+  void Register(FrameworkElement view);
+
+  /// &lt;summary&gt;
+  /// Unregisters a View.
+  /// &lt;/summary&gt;
+  /// &lt;param name=&quot;view&quot;&gt;The unregistered View.&lt;/param&gt;
+  void Unregister(FrameworkElement view);
+
+  /// &lt;summary&gt;
   /// Shows a dialog.
   /// &lt;/summary&gt;
-  /// &lt;param name=&quot;ownerViewModel&quot;&gt;A ViewModel that represents the owner window of
-  /// the dialog.&lt;/param&gt;
+  /// &lt;param name=&quot;ownerViewModel&quot;&gt;A ViewModel that represents the owner window of the
+  /// dialog.&lt;/param&gt;
   /// &lt;param name=&quot;viewModel&quot;&gt;The ViewModel of the new dialog.&lt;/param&gt;
-  /// &lt;returns&gt;A nullable value of type bool that signifies how a window was closed
-  /// by the user.&lt;/returns&gt;
+  /// &lt;returns&gt;A nullable value of type bool that signifies how a window was closed by the
+  /// user.&lt;/returns&gt;
   bool? ShowDialog&lt;T&gt;(object ownerViewModel, object viewModel) where T : Window;
 
   /// &lt;summary&gt;
   /// Shows a message box.
   /// &lt;/summary&gt;
-  /// &lt;param name=&quot;ownerViewModel&quot;&gt;A ViewModel that represents the owner window of
-  /// the message box.&lt;/param&gt;
+  /// &lt;param name=&quot;ownerViewModel&quot;&gt;A ViewModel that represents the owner window of the message
+  /// box.&lt;/param&gt;
   /// &lt;param name=&quot;messageBoxText&quot;&gt;A string that specifies the text to display.&lt;/param&gt;
-  /// &lt;param name=&quot;caption&quot;&gt;A string that specifies the title bar caption to display.
-  /// &lt;/param&gt;
-  /// &lt;param name=&quot;button&quot;&gt;A MessageBoxButton value that specifies which button 
-  /// or buttons to display.&lt;/param&gt;
-  /// &lt;param name=&quot;icon&quot;&gt;A MessageBoxImage value that specifies the icon to display.
-  /// &lt;/param&gt;
-  /// &lt;returns&gt;A MessageBoxResult value that specifies which 
-  /// message box button is clicked by the user.&lt;/returns&gt;
-  MessageBoxResult ShowMessageBox(object ownerViewModel, string messageBoxText, 
-    string caption, MessageBoxButton button, MessageBoxImage icon);
+  /// &lt;param name=&quot;caption&quot;&gt;A string that specifies the title bar caption to display.&lt;/param&gt;
+  /// &lt;param name=&quot;button&quot;&gt;A MessageBoxButton value that specifies which button or buttons to
+  /// display.&lt;/param&gt;
+  /// &lt;param name=&quot;icon&quot;&gt;A MessageBoxImage value that specifies the icon to display.&lt;/param&gt;
+  /// &lt;returns&gt;A MessageBoxResult value that specifies which message box button is clicked by the
+  /// user.&lt;/returns&gt;
+  MessageBoxResult ShowMessageBox(object ownerViewModel, string messageBoxText, string caption,
+    MessageBoxButton button, MessageBoxImage icon);
+
+  /// &lt;summary&gt;
+  /// Shows the OpenFileDialog.
+  /// &lt;/summary&gt;
+  /// &lt;param name=&quot;ownerViewModel&quot;&gt;A ViewModel that represents the owner window of the message
+  /// box.&lt;/param&gt;
+  /// &lt;param name=&quot;viewModel&quot;&gt;The ViewModel of the OpenFileDialog.&lt;/param&gt;
+  /// &lt;returns&gt;The IOpenFileDialogResult if successful; otherwise null.&lt;/returns&gt;
+  DialogResult ShowOpenFileDialog(object ownerViewModel, OpenFileDialogViewModel viewModel);
 }</pre>
 
 <p>The actual implementation of <code>IDialogServiceis</code> is <code>DialogService</code>.</p>
 
-<pre lang="cs">public class DialogService : IDialogService
+<pre lang="cs">class DialogService : IDialogService
 {
-  private static IDialogService instance;
   private HashSet&lt;FrameworkElement&gt; views;
 
-  /// &lt;summary&gt;
-  /// The Singleton instance of this class.
-  /// &lt;/summary&gt;
-  public static IDialogService Instance
-  {
-    get
-    {
-      if (instance == null)
-      {
-        instance = new DialogService();
-      }
-      return instance;
-    }
-  }
-
-  private DialogService()
+  public DialogService()
   {
     views = new HashSet&lt;FrameworkElement&gt;();
   }
@@ -115,17 +118,55 @@ File | Save to save this file to your hard drive for editing.</b></p>
   #region IDialogService Members
 
   /// &lt;summary&gt;
+  /// Registers a View.
+  /// &lt;/summary&gt;
+  /// &lt;param name=&quot;view&quot;&gt;The registered View.&lt;/param&gt;
+  public void Register(FrameworkElement view)
+  {
+    if (views.Contains(view)) throw new ArgumentException(&quot;View has already been registered.&quot;);
+
+    // Get owner window
+    Window owner = view as Window;
+    if (owner == null)
+    {
+      owner = Window.GetWindow(view);
+    }
+
+    if (owner == null)
+    {
+      throw new InvalidOperationException(&quot;View is not contained within a Window.&quot;);
+    }
+
+    // Register for owner window closing, since we then should unregister View reference,
+    // preventing memory leaks
+    owner.Closed += OwnerClosed;
+
+    views.Add(view);
+  }
+
+  /// &lt;summary&gt;
+  /// Unregisters a View.
+  /// &lt;/summary&gt;
+  /// &lt;param name=&quot;view&quot;&gt;The unregistered View.&lt;/param&gt;
+  public void Unregister(FrameworkElement view)
+  {
+    if (!views.Contains(view)) throw new ArgumentException(&quot;View has never been registered.&quot;);
+
+    views.Remove(view);
+  }
+
+  /// &lt;summary&gt;
   /// Shows a dialog.
   /// &lt;/summary&gt;
-  /// &lt;param name=&quot;ownerViewModel&quot;&gt;A ViewModel that represents the owner window of
-  /// the dialog.&lt;/param&gt;
+  /// &lt;param name=&quot;ownerViewModel&quot;&gt;A ViewModel that represents the owner window of the
+  /// dialog.&lt;/param&gt;
   /// &lt;param name=&quot;viewModel&quot;&gt;The ViewModel of the new dialog.&lt;/param&gt;
-  /// &lt;returns&gt;A nullable value of type bool that signifies how a window was closed
-  /// by the user.&lt;/returns&gt;
+  /// &lt;returns&gt;A nullable value of type bool that signifies how a window was closed by the
+  /// user.&lt;/returns&gt;
   public bool? ShowDialog&lt;T&gt;(object ownerViewModel, object viewModel) where T : Window
   {
     // Create dialog and set properties
-    T dialog = Activator.CreateInstance&lt;t&gt;();
+    T dialog = Activator.CreateInstance&lt;T&gt;();
     dialog.Owner = FindOwnerWindow(ownerViewModel);
     dialog.DataContext = viewModel;
 
@@ -136,22 +177,35 @@ File | Save to save this file to your hard drive for editing.</b></p>
   /// &lt;summary&gt;
   /// Shows a message box.
   /// &lt;/summary&gt;
-  /// &lt;param name=&quot;ownerViewModel&quot;&gt;A ViewModel that represents the owner window of
-  /// the message box.&lt;/param&gt;
+  /// &lt;param name=&quot;ownerViewModel&quot;&gt;A ViewModel that represents the owner window of the message
+  /// box.&lt;/param&gt;
   /// &lt;param name=&quot;messageBoxText&quot;&gt;A string that specifies the text to display.&lt;/param&gt;
-  /// &lt;param name=&quot;caption&quot;&gt;A string that specifies the title bar caption to display.
-  /// &lt;/param&gt;
-  /// &lt;param name=&quot;button&quot;&gt;A MessageBoxButton value that specifies which button
-  /// or buttons to display.&lt;/param&gt;
-  /// &lt;param name=&quot;icon&quot;&gt;A MessageBoxImage value that specifies the icon to display.
-  /// &lt;/param&gt;
-  /// &lt;returns&gt;A MessageBoxResult value that specifies which message box button 
-  /// is clicked by the user.&lt;/returns&gt;
-  public MessageBoxResult ShowMessageBox(object ownerViewModel, string messageBoxText, 
-    string caption, MessageBoxButton button, MessageBoxImage icon)
+  /// &lt;param name=&quot;caption&quot;&gt;A string that specifies the title bar caption to display.&lt;/param&gt;
+  /// &lt;param name=&quot;button&quot;&gt;A MessageBoxButton value that specifies which button or buttons to
+  /// display.&lt;/param&gt;
+  /// &lt;param name=&quot;icon&quot;&gt;A MessageBoxImage value that specifies the icon to display.&lt;/param&gt;
+  /// &lt;returns&gt;A MessageBoxResult value that specifies which message box button is clicked by the
+  /// user.&lt;/returns&gt;
+  public MessageBoxResult ShowMessageBox(object ownerViewModel, string messageBoxText, string caption,
+    MessageBoxButton button, MessageBoxImage icon)
   {
-    return MessageBox.Show(FindOwnerWindow(ownerViewModel), 
-				messageBoxText, caption, button, icon);
+    return MessageBox.Show(FindOwnerWindow(ownerViewModel), messageBoxText, caption, button, icon);
+  }
+
+  /// &lt;summary&gt;
+  /// Shows the OpenFileDialog.
+  /// &lt;/summary&gt;
+  /// &lt;param name=&quot;ownerViewModel&quot;&gt;A ViewModel that represents the owner window of the message
+  /// box.&lt;/param&gt;
+  /// &lt;param name=&quot;viewModel&quot;&gt;The ViewModel of the OpenFileDialog.&lt;/param&gt;
+  /// &lt;returns&gt;The IOpenFileDialogResult if successful; otherwise null.&lt;/returns&gt;
+  public DialogResult ShowOpenFileDialog(object ownerViewModel, OpenFileDialogViewModel viewModel)
+  {
+    // Create OpenFileDialog with specified ViewModel
+    OpenFileDialog dialog = new OpenFileDialog(viewModel);
+
+    // Show dialog
+    return dialog.ShowDialog(new WindowWrapper(FindOwnerWindow(ownerViewModel)));
   }
 
   #endregion
@@ -159,11 +213,9 @@ File | Save to save this file to your hard drive for editing.</b></p>
   #region Attached properties
 
   /// &lt;summary&gt;
-  /// Attached property describing whether a FrameworkElement 
-  /// is acting as a View in MVVM.
+  /// Attached property describing whether a FrameworkElement is acting as a View in MVVM.
   /// &lt;/summary&gt;
-  public static readonly DependencyProperty IsRegisteredViewProperty = 
-    DependencyProperty.RegisterAttached(
+  public static readonly DependencyProperty IsRegisteredViewProperty = DependencyProperty.RegisterAttached(
     &quot;IsRegisteredView&quot;,
     typeof(bool),
     typeof(DialogService),
@@ -201,11 +253,11 @@ File | Save to save this file to your hard drive for editing.</b></p>
 
       if (newValue)
       {
-        Instance.Register(view);
+        ServiceLocator.Resolve&lt;IDialogService&gt;().Register(view);
       }
       else
       {
-        Instance.Unregister(view);
+        ServiceLocator.Resolve&lt;IDialogService&gt;().Unregister(view);
       }
     }
   }
@@ -213,57 +265,14 @@ File | Save to save this file to your hard drive for editing.</b></p>
   #endregion
 
   /// &lt;summary&gt;
-  /// Registers a View.
-  /// &lt;/summary&gt;
-  /// &lt;param name=&quot;view&quot;&gt;The registered View.&lt;/param&gt;
-  private void Register(FrameworkElement view)
-  {
-    if (views.Contains(view)) throw new ArgumentException
-      (&quot;View has already been registered.&quot;);
-
-    // Get owner window
-    Window owner = view as Window;
-    if (owner == null)
-    {
-      owner = Window.GetWindow(view);
-    }
-						
-    if (owner == null)
-    {
-      throw new InvalidOperationException(&quot;View is not contained within a Window.&quot;);
-    }
-
-    // Register for owner window closing, since we then 
-    // should unregister View reference,
-    // preventing memory leaks
-    owner.Closed += OwnerClosed;
-
-    views.Add(view);
-  }
-
-  /// &lt;summary&gt;
-  /// Unregisters a View.
-  /// &lt;/summary&gt;
-  /// &lt;param name=&quot;view&quot;&gt;The unregistered View.&lt;/param&gt;
-  private void Unregister(FrameworkElement view)
-  {
-    if (!views.Contains(view)) throw new ArgumentException
-      (&quot;View has never been registered.&quot;);
-
-    views.Remove(view);
-  }
-
-  /// &lt;summary&gt;
   /// Finds window corresponding to specified ViewModel.
   /// &lt;/summary&gt;
   private Window FindOwnerWindow(object viewModel)
   {
-    FrameworkElement view = 
-	views.SingleOrDefault(v =&gt; ReferenceEquals(v.DataContext, viewModel));
+    FrameworkElement view = views.SingleOrDefault(v =&gt; ReferenceEquals(v.DataContext, viewModel));
     if (view == null)
     {
-      throw new ArgumentException
-        (&quot;ViewModel is not referenced by any registered View.&quot;);
+      throw new ArgumentException(&quot;Viewmodel is not referenced by any registered View.&quot;);
     }
 
     // Get owner window
@@ -324,12 +333,20 @@ File | Save to save this file to your hard drive for editing.</b></p>
 <h2><a name="history">History</a></h2>
 
 <ul>
-<li>27<sup>th</sup> May, 2009: Updated introduction after comments from William E. Kempf</li>
-
-<li>25<sup>th</sup> May, 2009: Initial version</li>
+<li>2 June 2009: Code update<ul>
+<li>Added <code>ShowOpenFileDialog</code> method to <code>IDialogService</code></li>
+<li>Implemented a service locator instead of keeping <code>DialogService</code> as a Singleton</li>
 </ul>
+</li>
 
+<li>27 May 2009: Article update</li>
+<ul>
+<li>Updated introduction after comments from William E. Kempf</li>
+</ul>
+</li>
 
+<li>25 May 2009: Initial version</li>
+</ul>
 
 </span>
     </div>
