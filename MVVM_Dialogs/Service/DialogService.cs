@@ -103,10 +103,10 @@ namespace MVVM_Dialogs.Service
 		/// <summary>
 		/// Shows the OpenFileDialog.
 		/// </summary>
-		/// <param name="ownerViewModel">A ViewModel that represents the owner window of the message
-		/// box.</param>
+		/// <param name="ownerViewModel">A ViewModel that represents the owner window of the
+		/// dialog</param>
 		/// <param name="viewModel">The ViewModel of the OpenFileDialog.</param>
-		/// <returns>The IOpenFileDialogResult if successful; otherwise null.</returns>
+		/// <returns>DialogResult.OK if successful; otherwise DialogResult.Cancel.</returns>
 		public DialogResult ShowOpenFileDialog(object ownerViewModel, OpenFileDialogViewModel viewModel)
 		{
 			// Create OpenFileDialog with specified ViewModel
