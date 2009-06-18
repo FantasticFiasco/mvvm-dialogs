@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Windows;
 using MVVM_Dialogs.Service.FrameworkDialogs;
@@ -156,6 +157,11 @@ namespace MVVM_Dialogs.Service
 		private static void IsRegisteredViewPropertyChanged(DependencyObject target,
 			DependencyPropertyChangedEventArgs e)
 		{
+			// The Visual Studio Designer or Blend will run this code when setting the attached
+			// property, however at that point there is no IDialogService registered
+			// in the ServiceLocator which will cause the Resolve method to throw a ArgumentException.
+			if (DesignerProperties.GetIsInDesignMode(target)) return;
+
 			FrameworkElement view = target as FrameworkElement;
 			if (view != null)
 			{
