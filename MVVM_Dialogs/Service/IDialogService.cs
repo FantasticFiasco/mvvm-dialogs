@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Forms;
+using MVVM_Dialogs.Service.FrameworkDialogs.FolderBrowse;
 using MVVM_Dialogs.Service.FrameworkDialogs.OpenFile;
 
 namespace MVVM_Dialogs.Service
@@ -55,5 +56,15 @@ namespace MVVM_Dialogs.Service
 		/// <param name="viewModel">The ViewModel of the OpenFileDialog.</param>
 		/// <returns>DialogResult.OK if successful; otherwise DialogResult.Cancel.</returns>
 		DialogResult ShowOpenFileDialog(object ownerViewModel, OpenFileDialogViewModel viewModel);
+
+
+		/// <summary>
+		/// Shows the FolderBrowserDialog.
+		/// </summary>
+		/// <param name="ownerViewModel">A ViewModel that represents the owner window of the dialog.
+		/// </param>
+		/// <param name="viewModel">The ViewModel of the FolderBrowserDialog.</param>
+		/// <returns>The DialogResult.OK if successful; otherwise DialogResult.Cancel.</returns>
+		DialogResult ShowFolderBrowserDialog(object ownerViewModel, FolderBrowserDialogViewModel viewModel);
 	}
 }
