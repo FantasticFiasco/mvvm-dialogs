@@ -89,6 +89,9 @@
     <Compile Include="RelayCommand.cs" />
     <Compile Include="Service\DialogService.cs" />
     <Compile Include="Service\FrameworkDialogs\FileDialogViewModel.cs" />
+    <Compile Include="Service\FrameworkDialogs\FolderBrowse\FolderBrowserDialog.cs" />
+    <Compile Include="Service\FrameworkDialogs\FolderBrowse\FolderBrowserDialogViewModel.cs" />
+    <Compile Include="Service\FrameworkDialogs\FolderBrowse\IFolderBrowserDialog.cs" />
     <Compile Include="Service\FrameworkDialogs\IFileDialog.cs" />
     <Compile Include="Service\FrameworkDialogs\OpenFile\IOpenFileDialog.cs" />
     <Compile Include="Service\FrameworkDialogs\OpenFile\OpenFileDialog.cs" />
