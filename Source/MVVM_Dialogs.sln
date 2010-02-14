@@ -1,6 +1,6 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 10.00
-# Visual Studio 2008
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVVM_Dialogs", "MVVM_Dialogs\MVVM_Dialogs.csproj", "{AB577548-B7F6-49AE-94D6-C41639BD0FF6}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVVM_DialogsTest", "MVVM_DialogsTest\MVVM_DialogsTest.csproj", "{A72166A5-297F-4198-A098-05A9A06C2574}"
