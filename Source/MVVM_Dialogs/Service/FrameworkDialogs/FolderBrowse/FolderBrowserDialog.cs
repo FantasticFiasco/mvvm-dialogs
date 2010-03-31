@@ -10,26 +10,26 @@ namespace MVVM_Dialogs.Service.FrameworkDialogs.FolderBrowse
 	/// </summary>
 	public class FolderBrowserDialog : IDisposable
 	{
-		private readonly FolderBrowserDialogViewModel viewModel;
-		private WinFormsFolderBrowserDialog folderBrowserDialog;
+		private readonly IFolderBrowserDialog folderBrowserDialog;
+		private WinFormsFolderBrowserDialog concreteFolderBrowserDialog;
 		
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="FolderBrowserDialog"/> class.
 		/// </summary>
-		/// <param name="viewModel">The ViewModel representing the folder browser dialog.</param>
-		public FolderBrowserDialog(FolderBrowserDialogViewModel viewModel)
+		/// <param name="folderBrowserDialog">The interface of a folder browser dialog.</param>
+		public FolderBrowserDialog(IFolderBrowserDialog folderBrowserDialog)
 		{
-			Contract.Requires(viewModel != null);
+			Contract.Requires(folderBrowserDialog != null);
 
-			this.viewModel = viewModel;
+			this.folderBrowserDialog = folderBrowserDialog;
 
-			// Create FolderBrowserDialog
-			folderBrowserDialog = new WinFormsFolderBrowserDialog
+			// Create concrete FolderBrowserDialog
+			concreteFolderBrowserDialog = new WinFormsFolderBrowserDialog
 			{
-				Description = viewModel.Description,
-				SelectedPath = viewModel.SelectedPath,
-				ShowNewFolderButton = viewModel.ShowNewFolderButton
+				Description = folderBrowserDialog.Description,
+				SelectedPath = folderBrowserDialog.SelectedPath,
+				ShowNewFolderButton = folderBrowserDialog.ShowNewFolderButton
 			};
 		}
 
@@ -49,10 +49,10 @@ namespace MVVM_Dialogs.Service.FrameworkDialogs.FolderBrowse
 		{
 			Contract.Requires(owner != null);
 
-			DialogResult result = folderBrowserDialog.ShowDialog(owner);
+			DialogResult result = concreteFolderBrowserDialog.ShowDialog(owner);
 
 			// Update ViewModel
-			viewModel.SelectedPath = folderBrowserDialog.SelectedPath;
+			folderBrowserDialog.SelectedPath = concreteFolderBrowserDialog.SelectedPath;
 
 			return result;
 		}
@@ -81,10 +81,10 @@ namespace MVVM_Dialogs.Service.FrameworkDialogs.FolderBrowse
 		{
 			if (disposing)
 			{
-				if (folderBrowserDialog != null)
+				if (concreteFolderBrowserDialog != null)
 				{
-					folderBrowserDialog.Dispose();
-					folderBrowserDialog = null;
+					concreteFolderBrowserDialog.Dispose();
+					concreteFolderBrowserDialog = null;
 				}
 			}
 		}

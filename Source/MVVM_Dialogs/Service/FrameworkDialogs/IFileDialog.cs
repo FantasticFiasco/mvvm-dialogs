@@ -35,13 +35,13 @@
 		/// <summary>
 		/// Gets or sets a string containing the file name selected in the file dialog box.
 		/// </summary>
-		string FileName { get; }
+		string FileName { get; set; }
 
 
 		/// <summary>
-		/// Gets the file names of all selected files in the dialog box.
+		/// Gets or sets the file names of all selected files in the dialog box.
 		/// </summary>
-		string[] FileNames { get; }
+		string[] FileNames { get; set; }
 
 
 		/// <summary>
