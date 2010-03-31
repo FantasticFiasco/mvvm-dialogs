@@ -14,9 +14,10 @@ namespace MVVM_DialogsTest.ViewModel
 	[TestFixture]
 	public class MainWindowViewModelTest
 	{
-		Mock<IPersonService> personServiceMock;
-		Mock<IDialogService> dialogServiceMock;
 		private MainWindowViewModel viewModel;
+		private Mock<IDialogService> dialogServiceMock;
+		private Mock<IPersonService> personServiceMock;
+		private Mock<IOpenFileDialog> openFileDialogMock;
 		private Person person1;
 		private Person person2;
 
@@ -27,35 +28,35 @@ namespace MVVM_DialogsTest.ViewModel
 			person1 = new Person { Name = "Some name 1", Gender = Gender.Female };
 			person2 = new Person { Name = "Some name 2", Gender = Gender.Male };
 
+			dialogServiceMock = new Mock<IDialogService>();
+			openFileDialogMock = new Mock<IOpenFileDialog>();
 			personServiceMock = new Mock<IPersonService>();
 			personServiceMock
 				.Setup(m => m.Load(It.IsAny<string>()))
 				.Returns(new List<Person> { person1, person2 });
-
-			dialogServiceMock = new Mock<IDialogService>();
-
-			ServiceLocator.Add<IPersonService>(personServiceMock.Object);
-			ServiceLocator.Add<IDialogService>(dialogServiceMock.Object);
 		}
 
 
 		[SetUp]
 		public void SetUp()
 		{
-			viewModel = new MainWindowViewModel();
+			viewModel = new MainWindowViewModel(
+				dialogServiceMock.Object,
+				personServiceMock.Object,
+				() => openFileDialogMock.Object);
 		}
 
 
 		[Test]
 		public void CanLoadPersonsTest()
 		{
-			// Make sure list is empty
+			// Make sure list is empty, thus making it possible to load the persons from start
 			Assert.That(viewModel.Persons, Is.Empty);
 			Assert.That(viewModel.LoadPersonsCommand.CanExecute(null), Is.True);
 
 			// Load persons but cancel
 			dialogServiceMock
-				.Setup(m => m.ShowOpenFileDialog(viewModel, It.IsAny<OpenFileDialogViewModel>()))
+				.Setup(m => m.ShowOpenFileDialog(viewModel, It.IsAny<IOpenFileDialog>()))
 				.Returns(DialogResult.Cancel);
 			viewModel.LoadPersonsCommand.Execute(null);
 			Assert.That(viewModel.LoadPersonsCommand.CanExecute(null), Is.True);
@@ -71,12 +72,16 @@ namespace MVVM_DialogsTest.ViewModel
 		{
 			// Make sure list is empty
 			Assert.That(viewModel.Persons, Is.Empty);
-			
+
 			// Loading person
 			LoadPersons();
 			Assert.That(viewModel.Persons.Count, Is.EqualTo(2));
 			Assert.That(viewModel.Persons[0].Person, Is.EqualTo(person1));
 			Assert.That(viewModel.Persons[1].Person, Is.EqualTo(person2));
+			openFileDialogMock.VerifySet(m => m.FileName);
+			openFileDialogMock.VerifySet(m => m.Filter);
+			openFileDialogMock.VerifySet(m => m.InitialDirectory);
+			openFileDialogMock.VerifySet(m => m.Title);
 		}
 
 
@@ -112,6 +117,8 @@ namespace MVVM_DialogsTest.ViewModel
 				.Setup(m => m.ShowDialog<PersonDialog>(viewModel, It.IsAny<object>()))
 				.Returns(false);
 			viewModel.ShowInformationCommand.Execute(null);
+			dialogServiceMock
+				.Verify(m => m.ShowDialog<PersonDialog>(viewModel, It.IsAny<PersonDialogViewModel>()));
 		}
 
 
@@ -178,7 +185,7 @@ namespace MVVM_DialogsTest.ViewModel
 		{
 			// Simulte loading persons
 			dialogServiceMock
-				.Setup(m => m.ShowOpenFileDialog(viewModel, It.IsAny<OpenFileDialogViewModel>()))
+				.Setup(m => m.ShowOpenFileDialog(viewModel, It.IsAny<IOpenFileDialog>()))
 				.Returns(DialogResult.OK);
 			viewModel.LoadPersonsCommand.Execute(null);
 		}
