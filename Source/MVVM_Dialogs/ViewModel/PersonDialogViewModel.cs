@@ -1,4 +1,5 @@
-﻿using MVVM_Dialogs.Model;
+﻿using System.Diagnostics.Contracts;
+using MVVM_Dialogs.Model;
 
 namespace MVVM_Dialogs.ViewModel
 {
@@ -7,7 +8,19 @@ namespace MVVM_Dialogs.ViewModel
 	/// </summary>
 	public class PersonDialogViewModel : ViewModelBase
 	{
-		private Person person;
+		private readonly Person person;
+
+
+		/// <summary>
+		/// Initializes a new instance of the <see cref="PersonDialogViewModel"/> class.
+		/// </summary>
+		/// <param name="person">The person.</param>
+		public PersonDialogViewModel(Person person)
+		{
+			Contract.Requires(person != null);
+
+			this.person = person;
+		}
 
 
 		/// <summary>
@@ -28,12 +41,6 @@ namespace MVVM_Dialogs.ViewModel
 		public Gender Gender
 		{
 			get { return person.Gender; }
-		}
-
-
-		public PersonDialogViewModel(Person person)
-		{
-			this.person = person;
 		}
 	}
 }

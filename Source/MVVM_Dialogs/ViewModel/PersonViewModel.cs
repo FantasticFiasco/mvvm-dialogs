@@ -1,4 +1,5 @@
-﻿using MVVM_Dialogs.Model;
+﻿using System.Diagnostics.Contracts;
+using MVVM_Dialogs.Model;
 
 namespace MVVM_Dialogs.ViewModel
 {
@@ -8,6 +9,18 @@ namespace MVVM_Dialogs.ViewModel
 	public class PersonViewModel : ViewModelBase
 	{
 		private bool isSelected;
+
+
+		/// <summary>
+		/// Initializes a new instance of the <see cref="PersonViewModel"/> class.
+		/// </summary>
+		/// <param name="person">The person.</param>
+		public PersonViewModel(Person person)
+		{
+			Contract.Requires(person != null);
+
+			Person = person;
+		}
 
 
 		/// <summary>
@@ -40,14 +53,8 @@ namespace MVVM_Dialogs.ViewModel
 		/// Gets the person model. This property is not intended for binding!
 		/// 
 		/// If there exists better ways to expose the model from the ViewModel, please tell me
-		/// because I don't like this soultion at all.
+		/// because I don't like this solution at all.
 		/// </summary>
 		internal Person Person { get; private set; }
-
-
-		public PersonViewModel(Person person)
-		{
-			Person = person;
-		}
 	}
 }

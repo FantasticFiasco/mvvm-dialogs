@@ -5,6 +5,21 @@
 	/// </summary>
 	public abstract class FileDialogViewModel : IFileDialog
 	{
+		public FileDialogViewModel()
+		{
+			// Set default values
+			AddExtension = true;
+			CheckFileExists = true;
+			CheckPathExists = true;
+			DefaultExt = string.Empty;
+			FileName = string.Empty;
+			FileNames = new string[] { string.Empty };
+			Filter = string.Empty;
+			InitialDirectory = string.Empty;
+			Title = string.Empty;
+		}
+
+
 		/// <summary>
 		/// Gets or sets a value indicating whether the dialog box automatically adds an extension to a
 		/// file name if the user omits the extension.
@@ -61,20 +76,5 @@
 		/// Gets or sets the file dialog box title.
 		/// </summary>
 		public string Title { get; set; }
-
-
-		public FileDialogViewModel()
-		{
-			// Set default values
-			AddExtension = true;
-			CheckFileExists = true;
-			CheckPathExists = true;
-			DefaultExt = string.Empty;
-			FileName = string.Empty;
-			FileNames = new string[] { string.Empty };
-			Filter = string.Empty;
-			InitialDirectory = string.Empty;
-			Title = string.Empty;
-		}
 	}
 }

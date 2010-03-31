@@ -2,7 +2,7 @@
 using System.Diagnostics;
 using System.Windows.Input;
 
-namespace MVVM_Dialogs
+namespace MVVM_Dialogs.ViewModel
 {
 	/// <summary>
 	/// Code from http://msdn.microsoft.com/en-us/magazine/dd419663.aspx
