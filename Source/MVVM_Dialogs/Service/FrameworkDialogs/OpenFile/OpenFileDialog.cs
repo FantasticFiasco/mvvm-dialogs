@@ -6,36 +6,36 @@ using WinFormsOpenFileDialog = System.Windows.Forms.OpenFileDialog;
 namespace MVVM_Dialogs.Service.FrameworkDialogs.OpenFile
 {
 	/// <summary>
-	/// Class wrapping System.Windows.Forms.OpenFileDialog, making it accept a ViewModel.
+	/// Class wrapping System.Windows.Forms.OpenFileDialog, making it accept a IOpenFileDialog.
 	/// </summary>
 	public class OpenFileDialog : IDisposable
 	{
-		private WinFormsOpenFileDialog openFileDialog;
-		private OpenFileDialogViewModel viewModel;
-
+		private readonly IOpenFileDialog openFileDialog;
+		private WinFormsOpenFileDialog concreteOpenFileDialog;
+		
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="OpenFileDialog"/> class.
 		/// </summary>
-		/// <param name="viewModel">The ViewModel representing the open file dialog.</param>
-		public OpenFileDialog(OpenFileDialogViewModel viewModel)
+		/// <param name="openFileDialog">The interface of a open file dialog.</param>
+		public OpenFileDialog(IOpenFileDialog openFileDialog)
 		{
-			Contract.Requires(viewModel != null);
+			Contract.Requires(openFileDialog != null);
 
-			this.viewModel = viewModel;
+			this.openFileDialog = openFileDialog;
 
-			// Create OpenFileDialog
-			openFileDialog = new WinFormsOpenFileDialog
+			// Create concrete OpenFileDialog
+			concreteOpenFileDialog = new WinFormsOpenFileDialog
 			{
-				AddExtension = viewModel.AddExtension,
-				CheckFileExists = viewModel.CheckFileExists,
-				CheckPathExists = viewModel.CheckPathExists,
-				DefaultExt = viewModel.DefaultExt,
-				FileName = viewModel.FileName,
-				Filter = viewModel.Filter,
-				InitialDirectory = viewModel.InitialDirectory,
-				Multiselect = viewModel.Multiselect,
-				Title = viewModel.Title
+				AddExtension = openFileDialog.AddExtension,
+				CheckFileExists = openFileDialog.CheckFileExists,
+				CheckPathExists = openFileDialog.CheckPathExists,
+				DefaultExt = openFileDialog.DefaultExt,
+				FileName = openFileDialog.FileName,
+				Filter = openFileDialog.Filter,
+				InitialDirectory = openFileDialog.InitialDirectory,
+				Multiselect = openFileDialog.Multiselect,
+				Title = openFileDialog.Title
 			};
 		}
 
@@ -51,11 +51,11 @@ namespace MVVM_Dialogs.Service.FrameworkDialogs.OpenFile
 		{
 			Contract.Requires(owner != null);
 
-			DialogResult result = openFileDialog.ShowDialog(owner);
+			DialogResult result = concreteOpenFileDialog.ShowDialog(owner);
 
 			// Update ViewModel
-			viewModel.FileName = openFileDialog.FileName;
-			viewModel.FileNames = openFileDialog.FileNames;
+			openFileDialog.FileName = concreteOpenFileDialog.FileName;
+			openFileDialog.FileNames = concreteOpenFileDialog.FileNames;
 
 			return result;
 		}
@@ -84,10 +84,10 @@ namespace MVVM_Dialogs.Service.FrameworkDialogs.OpenFile
 		{
 			if (disposing)
 			{
-				if (openFileDialog != null)
+				if (concreteOpenFileDialog != null)
 				{
-					openFileDialog.Dispose();
-					openFileDialog = null;
+					concreteOpenFileDialog.Dispose();
+					concreteOpenFileDialog = null;
 				}
 			}
 		}

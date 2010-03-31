@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics.Contracts;
 using System.IO;
@@ -13,7 +14,6 @@ using MVVM_Dialogs.Service;
 using MVVM_Dialogs.Service.FrameworkDialogs.OpenFile;
 using MVVM_Dialogs.View;
 
-
 namespace MVVM_Dialogs.ViewModel
 {
 	/// <summary>
@@ -23,6 +23,7 @@ namespace MVVM_Dialogs.ViewModel
 	{
 		private readonly IDialogService dialogService;
 		private readonly IPersonService personService;
+		private readonly Func<IOpenFileDialog> openFileDialogFactory;
 		private readonly ObservableCollection<PersonViewModel> persons;
 
 
@@ -30,7 +31,10 @@ namespace MVVM_Dialogs.ViewModel
 		/// Initializes a new instance of the <see cref="MainWindowViewModel"/> class.
 		/// </summary>
 		public MainWindowViewModel()
-			: this(ServiceLocator.Resolve<IDialogService>(), ServiceLocator.Resolve<IPersonService>())
+			: this(
+			ServiceLocator.Resolve<IDialogService>(),
+			ServiceLocator.Resolve<IPersonService>(),
+			() => new OpenFileDialogViewModel())
 		{
 		}
 
@@ -40,13 +44,19 @@ namespace MVVM_Dialogs.ViewModel
 		/// </summary>
 		/// <param name="dialogService">The dialog service.</param>
 		/// <param name="personService">The person service.</param>
-		public MainWindowViewModel(IDialogService dialogService, IPersonService personService)
+		/// <param name="openFileDialogFactory">The open file dialog factory.</param>
+		public MainWindowViewModel(
+			IDialogService dialogService,
+			IPersonService personService,
+			Func<IOpenFileDialog> openFileDialogFactory)
 		{
 			Contract.Requires(dialogService != null);
 			Contract.Requires(personService != null);
+			Contract.Requires(openFileDialogFactory != null);
 
 			this.dialogService = dialogService;
 			this.personService = personService;
+			this.openFileDialogFactory = openFileDialogFactory;
 			persons = new ObservableCollection<PersonViewModel>();
 			
 			LoadPersonsCommand = new RelayCommand(LoadPersons, CanLoadPersons);
@@ -107,22 +117,20 @@ namespace MVVM_Dialogs.ViewModel
 		/// </summary>
 		private void LoadPersons(object o)
 		{
-			// Create ViewModel to OpenFileDialog
-			OpenFileDialogViewModel viewModel = new OpenFileDialogViewModel
-			{
-				FileName = "LoadMe.xml",
-				Filter = Resources.MainWindowViewModel_LoadPersonsFilter,
-				InitialDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location),
-				Title = Resources.MainWindowViewModel_LoadPersonsTitle
-			};
+			// Let factory create the IOpenFileDialog
+			IOpenFileDialog openFileDialog = openFileDialogFactory();
+			openFileDialog.FileName = "LoadMe.xml";
+			openFileDialog.Filter = Resources.MainWindowViewModel_LoadPersonsFilter;
+			openFileDialog.InitialDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+			openFileDialog.Title = Resources.MainWindowViewModel_LoadPersonsTitle;
 
 			// Open the dialog
-			DialogResult result = dialogService.ShowOpenFileDialog(this, viewModel);
+			DialogResult result = dialogService.ShowOpenFileDialog(this, openFileDialog);
 			if (result == DialogResult.OK)
 			{
 				// Load the persons, usually one investigates whether the file was loaded successfully,
 				// but this is only a sample
-				foreach (Person person in personService.Load(viewModel.FileName))
+				foreach (Person person in personService.Load(openFileDialog.FileName))
 				{
 					persons.Add(new PersonViewModel(person));
 				}

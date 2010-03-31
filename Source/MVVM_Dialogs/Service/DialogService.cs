@@ -116,15 +116,15 @@ namespace MVVM_Dialogs.Service
 		/// </summary>
 		/// <param name="ownerViewModel">A ViewModel that represents the owner window of the
 		/// dialog</param>
-		/// <param name="viewModel">The ViewModel of the OpenFileDialog.</param>
+		/// <param name="openFileDialog">The interface of a open file dialog.</param>
 		/// <returns>DialogResult.OK if successful; otherwise DialogResult.Cancel.</returns>
-		public DialogResult ShowOpenFileDialog(object ownerViewModel, OpenFileDialogViewModel viewModel)
+		public DialogResult ShowOpenFileDialog(object ownerViewModel, IOpenFileDialog openFileDialog)
 		{
 			Contract.Requires(ownerViewModel != null);
-			Contract.Requires(viewModel != null);
+			Contract.Requires(openFileDialog != null);
 
 			// Create OpenFileDialog with specified ViewModel
-			OpenFileDialog dialog = new OpenFileDialog(viewModel);
+			OpenFileDialog dialog = new OpenFileDialog(openFileDialog);
 
 			// Show dialog
 			return dialog.ShowDialog(new WindowWrapper(FindOwnerWindow(ownerViewModel)));
@@ -136,15 +136,15 @@ namespace MVVM_Dialogs.Service
 		/// </summary>
 		/// <param name="ownerViewModel">A ViewModel that represents the owner window of the dialog.
 		/// </param>
-		/// <param name="viewModel">The ViewModel of the FolderBrowserDialog.</param>
+		/// <param name="folderBrowserDialog">The interface of a folder browser dialog.</param>
 		/// <returns>The DialogResult.OK if successful; otherwise DialogResult.Cancel.</returns>
-		public DialogResult ShowFolderBrowserDialog(object ownerViewModel, FolderBrowserDialogViewModel viewModel)
+		public DialogResult ShowFolderBrowserDialog(object ownerViewModel, IFolderBrowserDialog folderBrowserDialog)
 		{
 			Contract.Requires(ownerViewModel != null);
-			Contract.Requires(viewModel != null);
+			Contract.Requires(folderBrowserDialog != null);
 
 			// Create FolderBrowserDialog with specified ViewModel
-			FolderBrowserDialog dialog = new FolderBrowserDialog(viewModel);
+			FolderBrowserDialog dialog = new FolderBrowserDialog(folderBrowserDialog);
 
 			// Show dialog
 			return dialog.ShowDialog(new WindowWrapper(FindOwnerWindow(ownerViewModel)));

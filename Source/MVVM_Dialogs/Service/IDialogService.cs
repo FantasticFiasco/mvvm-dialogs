@@ -53,9 +53,9 @@ namespace MVVM_Dialogs.Service
 		/// </summary>
 		/// <param name="ownerViewModel">A ViewModel that represents the owner window of the
 		/// dialog.</param>
-		/// <param name="viewModel">The ViewModel of the OpenFileDialog.</param>
+		/// <param name="openFileDialog">The interface of a open file dialog.</param>
 		/// <returns>DialogResult.OK if successful; otherwise DialogResult.Cancel.</returns>
-		DialogResult ShowOpenFileDialog(object ownerViewModel, OpenFileDialogViewModel viewModel);
+		DialogResult ShowOpenFileDialog(object ownerViewModel, IOpenFileDialog openFileDialog);
 
 
 		/// <summary>
@@ -63,8 +63,8 @@ namespace MVVM_Dialogs.Service
 		/// </summary>
 		/// <param name="ownerViewModel">A ViewModel that represents the owner window of the dialog.
 		/// </param>
-		/// <param name="viewModel">The ViewModel of the FolderBrowserDialog.</param>
+		/// <param name="folderBrowserDialog">The interface of a folder browser dialog.</param>
 		/// <returns>The DialogResult.OK if successful; otherwise DialogResult.Cancel.</returns>
-		DialogResult ShowFolderBrowserDialog(object ownerViewModel, FolderBrowserDialogViewModel viewModel);
+		DialogResult ShowFolderBrowserDialog(object ownerViewModel, IFolderBrowserDialog folderBrowserDialog);
 	}
 }
