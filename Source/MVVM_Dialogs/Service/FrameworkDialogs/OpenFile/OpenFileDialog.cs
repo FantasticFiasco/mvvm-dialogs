@@ -1,6 +1,7 @@
 ﻿using System;
+using System.Diagnostics.Contracts;
 using System.Windows.Forms;
-using FormsOpenFileDialog = System.Windows.Forms.OpenFileDialog;
+using WinFormsOpenFileDialog = System.Windows.Forms.OpenFileDialog;
 
 namespace MVVM_Dialogs.Service.FrameworkDialogs.OpenFile
 {
@@ -9,16 +10,22 @@ namespace MVVM_Dialogs.Service.FrameworkDialogs.OpenFile
 	/// </summary>
 	public class OpenFileDialog : IDisposable
 	{
-		private FormsOpenFileDialog openFileDialog;
+		private WinFormsOpenFileDialog openFileDialog;
 		private OpenFileDialogViewModel viewModel;
 
 
+		/// <summary>
+		/// Initializes a new instance of the <see cref="OpenFileDialog"/> class.
+		/// </summary>
+		/// <param name="viewModel">The ViewModel representing the open file dialog.</param>
 		public OpenFileDialog(OpenFileDialogViewModel viewModel)
 		{
+			Contract.Requires(viewModel != null);
+
 			this.viewModel = viewModel;
 
 			// Create OpenFileDialog
-			openFileDialog = new FormsOpenFileDialog
+			openFileDialog = new WinFormsOpenFileDialog
 			{
 				AddExtension = viewModel.AddExtension,
 				CheckFileExists = viewModel.CheckFileExists,
@@ -42,6 +49,8 @@ namespace MVVM_Dialogs.Service.FrameworkDialogs.OpenFile
 		/// otherwise, System.Windows.Forms.DialogResult.Cancel.</returns>
 		public DialogResult ShowDialog(IWin32Window owner)
 		{
+			Contract.Requires(owner != null);
+
 			DialogResult result = openFileDialog.ShowDialog(owner);
 
 			// Update ViewModel

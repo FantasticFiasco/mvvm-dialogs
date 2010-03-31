@@ -1,24 +1,31 @@
 ﻿using System;
+using System.Diagnostics.Contracts;
 using System.Windows.Forms;
-using FormsFolderBrowserDialog = System.Windows.Forms.FolderBrowserDialog;
+using WinFormsFolderBrowserDialog = System.Windows.Forms.FolderBrowserDialog;
 
 namespace MVVM_Dialogs.Service.FrameworkDialogs.FolderBrowse
 {
 	/// <summary>
 	/// Class wrapping System.Windows.Forms.FolderBrowserDialog, making it accept a ViewModel.
 	/// </summary>
-	class FolderBrowserDialog : IDisposable
+	public class FolderBrowserDialog : IDisposable
 	{
-		private FormsFolderBrowserDialog folderBrowserDialog;
-		private FolderBrowserDialogViewModel viewModel;
+		private readonly FolderBrowserDialogViewModel viewModel;
+		private WinFormsFolderBrowserDialog folderBrowserDialog;
+		
 
-
+		/// <summary>
+		/// Initializes a new instance of the <see cref="FolderBrowserDialog"/> class.
+		/// </summary>
+		/// <param name="viewModel">The ViewModel representing the folder browser dialog.</param>
 		public FolderBrowserDialog(FolderBrowserDialogViewModel viewModel)
 		{
+			Contract.Requires(viewModel != null);
+
 			this.viewModel = viewModel;
 
 			// Create FolderBrowserDialog
-			folderBrowserDialog = new FormsFolderBrowserDialog
+			folderBrowserDialog = new WinFormsFolderBrowserDialog
 			{
 				Description = viewModel.Description,
 				SelectedPath = viewModel.SelectedPath,
@@ -30,12 +37,18 @@ namespace MVVM_Dialogs.Service.FrameworkDialogs.FolderBrowse
 		/// <summary>
 		/// Runs a common dialog box with the specified owner.
 		/// </summary>
-		/// <param name="owner">Any object that implements System.Windows.Forms.IWin32Window that
-		/// represents the top-level window that will own the modal dialog box.</param>
-		/// <returns>System.Windows.Forms.DialogResult.OK if the user clicks OK in the dialog box;
-		/// otherwise, System.Windows.Forms.DialogResult.Cancel.</returns>
+		/// <param name="owner">
+		/// Any object that implements System.Windows.Forms.IWin32Window that represents the top-level
+		/// window that will own the modal dialog box.
+		/// </param>
+		/// <returns>
+		/// System.Windows.Forms.DialogResult.OK if the user clicks OK in the dialog box; otherwise,
+		/// System.Windows.Forms.DialogResult.Cancel.
+		/// </returns>
 		public DialogResult ShowDialog(IWin32Window owner)
 		{
+			Contract.Requires(owner != null);
+
 			DialogResult result = folderBrowserDialog.ShowDialog(owner);
 
 			// Update ViewModel

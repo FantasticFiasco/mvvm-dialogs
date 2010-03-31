@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics.Contracts;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -20,10 +21,38 @@ namespace MVVM_Dialogs.ViewModel
 	/// </summary>
 	public class MainWindowViewModel : ViewModelBase
 	{
-		private ObservableCollection<PersonViewModel> persons;
-		private ICommand loadPersonsCommand;
-		private ICommand showInformationCommand;
-		private ICommand deleteCommand;
+		private readonly IDialogService dialogService;
+		private readonly IPersonService personService;
+		private readonly ObservableCollection<PersonViewModel> persons;
+
+
+		/// <summary>
+		/// Initializes a new instance of the <see cref="MainWindowViewModel"/> class.
+		/// </summary>
+		public MainWindowViewModel()
+			: this(ServiceLocator.Resolve<IDialogService>(), ServiceLocator.Resolve<IPersonService>())
+		{
+		}
+
+
+		/// <summary>
+		/// Initializes a new instance of the <see cref="MainWindowViewModel"/> class.
+		/// </summary>
+		/// <param name="dialogService">The dialog service.</param>
+		/// <param name="personService">The person service.</param>
+		public MainWindowViewModel(IDialogService dialogService, IPersonService personService)
+		{
+			Contract.Requires(dialogService != null);
+			Contract.Requires(personService != null);
+
+			this.dialogService = dialogService;
+			this.personService = personService;
+			persons = new ObservableCollection<PersonViewModel>();
+			
+			LoadPersonsCommand = new RelayCommand(LoadPersons, CanLoadPersons);
+			ShowInformationCommand = new RelayCommand(ShowInformation, CanShowInformation);
+			DeleteCommand = new RelayCommand(Delete, CanDelete);
+		}
 
 
 		/// <summary>
@@ -36,73 +65,31 @@ namespace MVVM_Dialogs.ViewModel
 
 
 		/// <summary>
+		/// Gets the selected persons.
+		/// </summary>
+		public IEnumerable<PersonViewModel> SelectedPersons
+		{
+			get { return persons.Where(person => person.IsSelected); }
+		}
+
+
+		/// <summary>
 		/// Gets the command loading persons from disk.
 		/// </summary>
-		public ICommand LoadPersonsCommand
-		{
-			get
-			{
-				if (loadPersonsCommand == null)
-				{
-					loadPersonsCommand = new RelayCommand(LoadPersons, CanLoadPersons);
-				}
-				return loadPersonsCommand;
-			}
-		}
+		public ICommand LoadPersonsCommand { get; private set; }
 
 
 		/// <summary>
 		/// Gets the command showing information about a person.
 		/// </summary>
-		public ICommand ShowInformationCommand
-		{
-			get
-			{
-				if (showInformationCommand == null)
-				{
-					showInformationCommand = new RelayCommand(ShowInformation, CanShowInformation);
-				}
-				return showInformationCommand;
-			}
-		}
+		public ICommand ShowInformationCommand { get; private set; }
 
 
 		/// <summary>
 		/// Gets the command deleting a selected person.
 		/// </summary>
-		public ICommand DeleteCommand
-		{
-			get
-			{
-				if (deleteCommand == null)
-				{
-					deleteCommand = new RelayCommand(Delete, CanDelete);
-				}
-				return deleteCommand;
-			}
-		}
-
-
-		/// <summary>
-		/// Gets the selected persons.
-		/// </summary>
-		public IEnumerable<PersonViewModel> SelectedPersons
-		{
-			get
-			{
-				return
-					from person in persons
-					where person.IsSelected
-					select person;
-			}
-		}
-
-
-		public MainWindowViewModel()
-		{
-			persons = new ObservableCollection<PersonViewModel>();
-		}
-
+		public ICommand DeleteCommand { get; private set; }
+		
 
 		#region Command methods
 
@@ -111,7 +98,7 @@ namespace MVVM_Dialogs.ViewModel
 		/// </summary>
 		private bool CanLoadPersons(object o)
 		{
-			return Persons.Count() == 0;
+			return !Persons.Any();
 		}
 
 
@@ -130,12 +117,12 @@ namespace MVVM_Dialogs.ViewModel
 			};
 
 			// Open the dialog
-			DialogResult result = ServiceLocator.Resolve<IDialogService>().ShowOpenFileDialog(this, viewModel);
+			DialogResult result = dialogService.ShowOpenFileDialog(this, viewModel);
 			if (result == DialogResult.OK)
 			{
 				// Load the persons, usually one investigates whether the file was loaded successfully,
 				// but this is only a sample
-				foreach (Person person in ServiceLocator.Resolve<IPersonService>().Load(viewModel.FileName))
+				foreach (Person person in personService.Load(viewModel.FileName))
 				{
 					persons.Add(new PersonViewModel(person));
 				}
@@ -164,7 +151,7 @@ namespace MVVM_Dialogs.ViewModel
 			PersonDialogViewModel personDialogViewModel = new PersonDialogViewModel(selectedPerson.Person);
 
 			// Show the dialog
-			ServiceLocator.Resolve<IDialogService>().ShowDialog<PersonDialog>(this, personDialogViewModel);
+			dialogService.ShowDialog<PersonDialog>(this, personDialogViewModel);
 		}
 
 
@@ -186,7 +173,8 @@ namespace MVVM_Dialogs.ViewModel
 			PersonViewModel selectedPerson = persons.Single(p => p.IsSelected);
 
 			// Display confirmation messagebox
-			MessageBoxResult result = ServiceLocator.Resolve<IDialogService>().ShowMessageBox(this,
+			MessageBoxResult result = dialogService.ShowMessageBox(
+				this,
 				string.Format(Resources.MainWindowViewModel_Delete, selectedPerson.Name),
 				Resources.MainWindowViewModel_DeleteCaption,
 				MessageBoxButton.YesNo,

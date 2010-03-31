@@ -1,8 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.Contracts;
 
 namespace MVVM_Dialogs.Service
 {
+	/// <summary>
+	/// A very simple service locator.
+	/// </summary>
 	static class ServiceLocator
 	{
 		private static Dictionary<Type, object> services = new Dictionary<Type, object>();
@@ -13,8 +17,7 @@ namespace MVVM_Dialogs.Service
 		/// </summary>
 		public static void Add<T>(T service)
 		{
-			if (services.ContainsKey(typeof(T)))
-				throw new ArgumentException("Service is already added");
+			Contract.Requires(!services.ContainsKey(typeof(T)));
 
 			services.Add(typeof(T), service);
 		}
@@ -25,8 +28,7 @@ namespace MVVM_Dialogs.Service
 		/// </summary>
 		public static T Resolve<T>()
 		{
-			if (!services.ContainsKey(typeof(T)))
-				throw new ArgumentException("Service hasn't been added");
+			Contract.Requires(services.ContainsKey(typeof(T)));
 
 			return (T)services[typeof(T)];
 		}

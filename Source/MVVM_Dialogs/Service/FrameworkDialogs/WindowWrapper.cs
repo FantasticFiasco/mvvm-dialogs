@@ -11,13 +11,6 @@ namespace MVVM_Dialogs.Service.FrameworkDialogs
 	class WindowWrapper : IWin32Window
 	{
 		/// <summary>
-		/// Gets the handle to the window represented by the implementer.
-		/// </summary>
-		/// <returns>A handle to the window represented by the implementer.</returns>
-		public IntPtr Handle { get; private set; }
-
-
-		/// <summary>
 		/// Construct a new wrapper taking a WPF window.
 		/// </summary>
 		/// <param name="window">The WPF window to wrap.</param>
@@ -25,5 +18,12 @@ namespace MVVM_Dialogs.Service.FrameworkDialogs
 		{
 			Handle = new WindowInteropHelper(window).Handle;
 		}
+
+
+		/// <summary>
+		/// Gets the handle to the window represented by the implementer.
+		/// </summary>
+		/// <returns>A handle to the window represented by the implementer.</returns>
+		public IntPtr Handle { get; private set; }
 	}
 }
