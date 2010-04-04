@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using MVVM_Dialogs.Service;
+using MVVM_Dialogs.Service.FrameworkDialogs.OpenFile;
 using MVVM_Dialogs.ViewModel;
 
 namespace MVVM_Dialogs
@@ -11,8 +12,9 @@ namespace MVVM_Dialogs
 			base.OnStartup(e);
 
 			// Configure service locator
-			ServiceLocator.Add<IDialogService>(new DialogService());
-			ServiceLocator.Add<IPersonService>(new PersonService());
+			ServiceLocator.RegisterSingleton<IDialogService, DialogService>();
+			ServiceLocator.RegisterSingleton<IPersonService, PersonService>();
+			ServiceLocator.Register<IOpenFileDialog, OpenFileDialogViewModel>();
 
 			// Create and show main window
 			View.MainWindow view = new View.MainWindow();

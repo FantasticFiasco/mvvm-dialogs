@@ -9,28 +9,94 @@ namespace MVVM_Dialogs.Service
 	/// </summary>
 	static class ServiceLocator
 	{
-		private static Dictionary<Type, object> services = new Dictionary<Type, object>();
+		private static Dictionary<Type, ServiceInfo> services = new Dictionary<Type, ServiceInfo>();
 
 
 		/// <summary>
-		/// Adds a service.
+		/// Registers a service.
 		/// </summary>
-		public static void Add<T>(T service)
+		public static void Register<TInterface, TImplemention>() where TImplemention : TInterface
 		{
-			Contract.Requires(!services.ContainsKey(typeof(T)));
+			Register<TInterface, TImplemention>(false);
+		}
 
-			services.Add(typeof(T), service);
+
+		/// <summary>
+		/// Registers a service as a singleton.
+		/// </summary>
+		public static void RegisterSingleton<TInterface, TImplemention>() where TImplemention : TInterface
+		{
+			Register<TInterface, TImplemention>(true);
 		}
 
 
 		/// <summary>
 		/// Resolves a service.
 		/// </summary>
-		public static T Resolve<T>()
+		public static TInterface Resolve<TInterface>()
 		{
-			Contract.Requires(services.ContainsKey(typeof(T)));
+			Contract.Requires(services.ContainsKey(typeof(TInterface)));
 
-			return (T)services[typeof(T)];
+			return (TInterface)services[typeof(TInterface)].ServiceImplementation;
+		}
+
+
+		/// <summary>
+		/// Registers a service.
+		/// </summary>
+		/// <param name="isSingleton">true if service is Singleton; otherwise false.</param>
+		private static void Register<TInterface, TImplemention>(bool isSingleton) where TImplemention : TInterface
+		{
+			Contract.Requires(!services.ContainsKey(typeof(TInterface)));
+
+			services.Add(typeof(TInterface), new ServiceInfo(typeof(TImplemention), isSingleton));
+		}
+
+
+		/// <summary>
+		/// Class holding service information.
+		/// </summary>
+		class ServiceInfo
+		{
+			private Type serviceImplementationType;
+			private object serviceImplementation;
+			private bool isSingleton;
+
+
+			/// <summary>
+			/// Initializes a new instance of the <see cref="ServiceInfo"/> class.
+			/// </summary>
+			/// <param name="serviceImplementationType">Type of the service implementation.</param>
+			/// <param name="isSingleton">Whether the service is a Singleton.</param>
+			public ServiceInfo(Type serviceImplementationType, bool isSingleton)
+			{
+				this.serviceImplementationType = serviceImplementationType;
+				this.isSingleton = isSingleton;
+			}
+
+			
+			/// <summary>
+			/// Gets the service implementation.
+			/// </summary>
+			public object ServiceImplementation
+			{
+				get
+				{
+					if (isSingleton)
+					{
+						if (serviceImplementation == null)
+						{
+							serviceImplementation = Activator.CreateInstance(serviceImplementationType);
+						}
+
+						return serviceImplementation;
+					}
+					else
+					{
+						return Activator.CreateInstance(serviceImplementationType);
+					}
+				}
+			}
 		}
 	}
 }

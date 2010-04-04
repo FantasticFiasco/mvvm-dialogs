@@ -34,7 +34,7 @@ namespace MVVM_Dialogs.ViewModel
 			: this(
 			ServiceLocator.Resolve<IDialogService>(),
 			ServiceLocator.Resolve<IPersonService>(),
-			() => new OpenFileDialogViewModel())
+			() => ServiceLocator.Resolve<IOpenFileDialog>())
 		{
 		}
 
