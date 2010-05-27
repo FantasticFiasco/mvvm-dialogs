@@ -34,15 +34,13 @@ namespace MVVM_Dialogs.Service
 			Contract.Requires(!views.Contains(view));
 
 			// Get owner window
-			Window owner = view as Window;
+			Window owner = GetOwner(view);
 			if (owner == null)
 			{
-				owner = Window.GetWindow(view);
-			}
-
-			if (owner == null)
-			{
-				throw new InvalidOperationException("View is not contained within a Window.");
+				// Perform a late register when the View hasn't been loaded yet.
+				// This will happen if e.g. the View is contained in a Frame
+				view.Loaded += LateRegister;
+				return;
 			}
 
 			// Register for owner window closing, since we then should unregister View reference,
@@ -245,6 +243,24 @@ namespace MVVM_Dialogs.Service
 
 
 		/// <summary>
+		/// Callback for late View register. It wasn't possible to do a instant register since the
+		/// View wasn't at that point part of the logical nor visual tree.
+		/// </summary>
+		private void LateRegister(object sender, RoutedEventArgs e)
+		{
+			FrameworkElement view = sender as FrameworkElement;
+			if (view != null)
+			{
+				// Unregister loaded event
+				view.Loaded -= LateRegister;
+
+				// Register the view
+				Register(view);
+			}
+		}
+
+
+		/// <summary>
 		/// Handles owner window closed, View service should then unregister all Views acting
 		/// within the closed window.
 		/// </summary>
@@ -265,6 +281,17 @@ namespace MVVM_Dialogs.Service
 					Unregister(view);
 				}
 			}
+		}
+
+
+		/// <summary>
+		/// Gets the owning Window of a view.
+		/// </summary>
+		/// <param name="view">The view.</param>
+		/// <returns>The owning Window if found; otherwise null.</returns>
+		private Window GetOwner(FrameworkElement view)
+		{
+			return view as Window ?? Window.GetWindow(view);
 		}
 	}
 }
