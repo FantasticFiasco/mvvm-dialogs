@@ -114,11 +114,11 @@ namespace MVVM_DialogsTest.ViewModel
 
 			// Solely for coverage since the dialog doesn't return anything
 			dialogServiceMock
-				.Setup(m => m.ShowDialog<PersonDialog>(viewModel, It.IsAny<object>()))
+				.Setup(m => m.ShowDialog(viewModel, It.IsAny<object>()))
 				.Returns(false);
 			viewModel.ShowInformationCommand.Execute(null);
 			dialogServiceMock
-				.Verify(m => m.ShowDialog<PersonDialog>(viewModel, It.IsAny<PersonDialogViewModel>()));
+				.Verify(m => m.ShowDialog(viewModel, It.IsAny<PersonDialogViewModel>()));
 		}
 
 

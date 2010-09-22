@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.Composition;
+using System.ComponentModel.Composition.Hosting;
 using System.Diagnostics.Contracts;
+using System.Reflection;
 
 namespace MVVM_Dialogs.Service
 {
@@ -58,6 +61,8 @@ namespace MVVM_Dialogs.Service
 		/// </summary>
 		class ServiceInfo
 		{
+			private static Lazy<CompositionContainer> container;
+
 			private Type serviceImplementationType;
 			private object serviceImplementation;
 			private bool isSingleton;
@@ -70,6 +75,12 @@ namespace MVVM_Dialogs.Service
 			/// <param name="isSingleton">Whether the service is a Singleton.</param>
 			public ServiceInfo(Type serviceImplementationType, bool isSingleton)
 			{
+				container = new Lazy<CompositionContainer>(() =>
+				{
+					var catalog = new AssemblyCatalog(Assembly.GetExecutingAssembly());
+					return new CompositionContainer(catalog);
+				});
+
 				this.serviceImplementationType = serviceImplementationType;
 				this.isSingleton = isSingleton;
 			}
@@ -87,13 +98,17 @@ namespace MVVM_Dialogs.Service
 						if (serviceImplementation == null)
 						{
 							serviceImplementation = Activator.CreateInstance(serviceImplementationType);
+							container.Value.ComposeParts(serviceImplementation);
 						}
 
 						return serviceImplementation;
 					}
 					else
 					{
-						return Activator.CreateInstance(serviceImplementationType);
+						var serviceImplementation = Activator.CreateInstance(serviceImplementationType);
+						container.Value.ComposeParts(serviceImplementation);
+						
+						return serviceImplementation;
 					}
 				}
 			}
