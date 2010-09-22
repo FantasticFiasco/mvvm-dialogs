@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.Composition;
 using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Windows;
 using MVVM_Dialogs.Service.FrameworkDialogs;
 using MVVM_Dialogs.Service.FrameworkDialogs.FolderBrowse;
 using MVVM_Dialogs.Service.FrameworkDialogs.OpenFile;
+using MVVM_Dialogs.WindowViewModelMapping;
 using DialogResult = System.Windows.Forms.DialogResult;
 
 namespace MVVM_Dialogs.Service
@@ -15,10 +17,16 @@ namespace MVVM_Dialogs.Service
 	{
 		private HashSet<FrameworkElement> views;
 
+		[Import]
+		private IWindowViewModelMappings windowViewModelMappings;
+
 
 		public DialogService()
 		{
 			views = new HashSet<FrameworkElement>();
+			
+			// Initiate field in order to supress compile warnings
+			windowViewModelMappings = null;
 		}
 
 
@@ -38,7 +46,7 @@ namespace MVVM_Dialogs.Service
 			if (owner == null)
 			{
 				// Perform a late register when the View hasn't been loaded yet.
-				// This will happen if e.g. the View is contained in a Frame
+				// This will happen if e.g. the View is contained in a Frame.
 				view.Loaded += LateRegister;
 				return;
 			}
@@ -71,13 +79,14 @@ namespace MVVM_Dialogs.Service
 		/// <param name="viewModel">The ViewModel of the new dialog.</param>
 		/// <returns>A nullable value of type bool that signifies how a window was closed by the
 		/// user.</returns>
-		public bool? ShowDialog<T>(object ownerViewModel, object viewModel) where T : Window
+		public bool? ShowDialog(object ownerViewModel, object viewModel)
 		{
 			Contract.Requires(ownerViewModel != null);
 			Contract.Requires(viewModel != null);
 
 			// Create dialog and set properties
-			T dialog = Activator.CreateInstance<T>();
+			Type dialogType = windowViewModelMappings.GetWindowTypeFromViewModelType(viewModel.GetType());
+			Window dialog = (Window)Activator.CreateInstance(dialogType);
 			dialog.Owner = FindOwnerWindow(ownerViewModel);
 			dialog.DataContext = viewModel;
 

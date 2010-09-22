@@ -29,7 +29,7 @@ namespace MVVM_Dialogs.Service
 		/// <param name="viewModel">The ViewModel of the new dialog.</param>
 		/// <returns>A nullable value of type bool that signifies how a window was closed by the
 		/// user.</returns>
-		bool? ShowDialog<T>(object ownerViewModel, object viewModel) where T : Window;
+		bool? ShowDialog(object ownerViewModel, object viewModel);
 
 
 		/// <summary>
