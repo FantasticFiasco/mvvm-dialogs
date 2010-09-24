@@ -13,6 +13,9 @@ using DialogResult = System.Windows.Forms.DialogResult;
 
 namespace MVVM_Dialogs.Service
 {
+	/// <summary>
+	/// Class responsible for abstracting ViewModels from Views.
+	/// </summary>
 	class DialogService : IDialogService
 	{
 		private HashSet<FrameworkElement> views;
@@ -21,11 +24,14 @@ namespace MVVM_Dialogs.Service
 		private IWindowViewModelMappings windowViewModelMappings;
 
 
+		/// <summary>
+		/// Initializes a new instance of the <see cref="DialogService"/> class.
+		/// </summary>
 		public DialogService()
 		{
 			views = new HashSet<FrameworkElement>();
 			
-			// Initiate field in order to supress compile warnings
+			// Initiate field in order to suppress compile warnings
 			windowViewModelMappings = null;
 		}
 
