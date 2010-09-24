@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics.Contracts;
 using System.IO;
 using System.Xml.Serialization;
 using MVVM_Dialogs.Model;
@@ -14,8 +13,6 @@ namespace MVVM_Dialogs.Service
 		/// </summary>
 		public List<Person> Load(string fileName)
 		{
-			Contract.Requires(!string.IsNullOrWhiteSpace(fileName));
-
 			try
 			{
 				using (StreamReader reader = new StreamReader(fileName))

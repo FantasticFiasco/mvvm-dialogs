@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.ComponentModel.Composition;
-using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Windows;
 using MVVM_Dialogs.Service.FrameworkDialogs;
@@ -33,14 +33,20 @@ namespace MVVM_Dialogs.Service
 		#region IDialogService Members
 
 		/// <summary>
+		/// Gets the registered views.
+		/// </summary>
+		public ReadOnlyCollection<FrameworkElement> Views
+		{
+			get { return new ReadOnlyCollection<FrameworkElement>(views.ToList()); }
+		}
+
+
+		/// <summary>
 		/// Registers a View.
 		/// </summary>
 		/// <param name="view">The registered View.</param>
 		public void Register(FrameworkElement view)
 		{
-			Contract.Requires(view != null);
-			Contract.Requires(!views.Contains(view));
-
 			// Get owner window
 			Window owner = GetOwner(view);
 			if (owner == null)
@@ -65,8 +71,6 @@ namespace MVVM_Dialogs.Service
 		/// <param name="view">The unregistered View.</param>
 		public void Unregister(FrameworkElement view)
 		{
-			Contract.Requires(views.Contains(view));
-
 			views.Remove(view);
 		}
 
@@ -81,9 +85,6 @@ namespace MVVM_Dialogs.Service
 		/// user.</returns>
 		public bool? ShowDialog(object ownerViewModel, object viewModel)
 		{
-			Contract.Requires(ownerViewModel != null);
-			Contract.Requires(viewModel != null);
-
 			// Create dialog and set properties
 			Type dialogType = windowViewModelMappings.GetWindowTypeFromViewModelType(viewModel.GetType());
 			Window dialog = (Window)Activator.CreateInstance(dialogType);
@@ -110,10 +111,6 @@ namespace MVVM_Dialogs.Service
 		public MessageBoxResult ShowMessageBox(object ownerViewModel, string messageBoxText, string caption,
 			MessageBoxButton button, MessageBoxImage icon)
 		{
-			Contract.Requires(ownerViewModel != null);
-			Contract.Requires(!string.IsNullOrWhiteSpace(messageBoxText));
-			Contract.Requires(!string.IsNullOrWhiteSpace(caption));
-			
 			return MessageBox.Show(FindOwnerWindow(ownerViewModel), messageBoxText, caption, button, icon);
 		}
 
@@ -127,9 +124,6 @@ namespace MVVM_Dialogs.Service
 		/// <returns>DialogResult.OK if successful; otherwise DialogResult.Cancel.</returns>
 		public DialogResult ShowOpenFileDialog(object ownerViewModel, IOpenFileDialog openFileDialog)
 		{
-			Contract.Requires(ownerViewModel != null);
-			Contract.Requires(openFileDialog != null);
-
 			// Create OpenFileDialog with specified ViewModel
 			OpenFileDialog dialog = new OpenFileDialog(openFileDialog);
 
@@ -147,9 +141,6 @@ namespace MVVM_Dialogs.Service
 		/// <returns>The DialogResult.OK if successful; otherwise DialogResult.Cancel.</returns>
 		public DialogResult ShowFolderBrowserDialog(object ownerViewModel, IFolderBrowserDialog folderBrowserDialog)
 		{
-			Contract.Requires(ownerViewModel != null);
-			Contract.Requires(folderBrowserDialog != null);
-
 			// Create FolderBrowserDialog with specified ViewModel
 			FolderBrowserDialog dialog = new FolderBrowserDialog(folderBrowserDialog);
 

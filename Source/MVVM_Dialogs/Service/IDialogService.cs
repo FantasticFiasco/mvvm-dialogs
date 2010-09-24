@@ -1,12 +1,21 @@
-﻿using System.Windows;
+﻿using System.Collections.ObjectModel;
+using System.Diagnostics.Contracts;
+using System.Windows;
 using System.Windows.Forms;
 using MVVM_Dialogs.Service.FrameworkDialogs.FolderBrowse;
 using MVVM_Dialogs.Service.FrameworkDialogs.OpenFile;
 
 namespace MVVM_Dialogs.Service
 {
+	[ContractClass(typeof(IDialogServiceContract))]
 	public interface IDialogService
 	{
+		/// <summary>
+		/// Gets the registered views.
+		/// </summary>
+		ReadOnlyCollection<FrameworkElement> Views { get; }
+
+
 		/// <summary>
 		/// Registers a View.
 		/// </summary>

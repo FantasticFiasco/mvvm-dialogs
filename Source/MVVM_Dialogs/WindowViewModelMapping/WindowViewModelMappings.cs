@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
-using System.Diagnostics.Contracts;
-using System.Windows;
 using MVVM_Dialogs.View;
 using MVVM_Dialogs.ViewModel;
 
@@ -24,7 +22,7 @@ namespace MVVM_Dialogs.WindowViewModelMapping
 		{
 			mappings = new Dictionary<Type, Type>
 			{
-				{ typeof(MainWindowViewModel), typeof(MainWindow) },
+				{ typeof(MainWindowViewModel), typeof(string) },
 				{ typeof(PersonDialogViewModel), typeof(PersonDialog) }			
 			};
 		}
@@ -37,12 +35,7 @@ namespace MVVM_Dialogs.WindowViewModelMapping
 		/// <returns>The window type based on registered ViewModel type.</returns>
 		public Type GetWindowTypeFromViewModelType(Type viewModelType)
 		{
-			Contract.Requires(mappings.ContainsKey(viewModelType));
-
-			Type windowType = mappings[viewModelType];
-			Contract.Assert(windowType.IsSubclassOf(typeof(Window)));
-			
-			return windowType;
+			return mappings[viewModelType];
 		}
 	}
 }
