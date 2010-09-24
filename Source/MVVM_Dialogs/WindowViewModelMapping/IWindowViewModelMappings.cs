@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Diagnostics.Contracts;
 
 namespace MVVM_Dialogs.WindowViewModelMapping
 {
 	/// <summary>
 	/// Interface describing the Window-ViewModel mappings used by the dialog service.
 	/// </summary>
+	[ContractClass(typeof(IWindowViewModelMappingsContract))]
 	public interface IWindowViewModelMappings
 	{
 		/// <summary>

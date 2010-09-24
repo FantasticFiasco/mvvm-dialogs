@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.ComponentModel.Composition.Hosting;
-using System.Diagnostics.Contracts;
 using System.Reflection;
 
 namespace MVVM_Dialogs.Service
@@ -38,8 +37,6 @@ namespace MVVM_Dialogs.Service
 		/// </summary>
 		public static TInterface Resolve<TInterface>()
 		{
-			Contract.Requires(services.ContainsKey(typeof(TInterface)));
-
 			return (TInterface)services[typeof(TInterface)].ServiceImplementation;
 		}
 
@@ -50,8 +47,6 @@ namespace MVVM_Dialogs.Service
 		/// <param name="isSingleton">true if service is Singleton; otherwise false.</param>
 		private static void Register<TInterface, TImplemention>(bool isSingleton) where TImplemention : TInterface
 		{
-			Contract.Requires(!services.ContainsKey(typeof(TInterface)));
-
 			services.Add(typeof(TInterface), new ServiceInfo(typeof(TImplemention), isSingleton));
 		}
 
