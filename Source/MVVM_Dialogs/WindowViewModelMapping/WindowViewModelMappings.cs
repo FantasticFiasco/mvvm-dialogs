@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.Composition;
 using MVVM_Dialogs.View;
 using MVVM_Dialogs.ViewModel;
 
@@ -9,7 +8,6 @@ namespace MVVM_Dialogs.WindowViewModelMapping
 	/// <summary>
 	/// Class describing the Window-ViewModel mappings used by the dialog service.
 	/// </summary>
-	[Export(typeof(IWindowViewModelMappings))]
 	public class WindowViewModelMappings : IWindowViewModelMappings
 	{
 		private IDictionary<Type, Type> mappings;

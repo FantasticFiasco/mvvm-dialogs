@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.ComponentModel.Composition;
 using System.Linq;
 using System.Windows;
 using MVVM_Dialogs.Service.FrameworkDialogs;
@@ -18,21 +17,18 @@ namespace MVVM_Dialogs.Service
 	/// </summary>
 	class DialogService : IDialogService
 	{
-		private HashSet<FrameworkElement> views;
-
-		[Import]
-		private IWindowViewModelMappings windowViewModelMappings;
+		private readonly HashSet<FrameworkElement> views;
+		private readonly IWindowViewModelMappings windowViewModelMappings;
 
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="DialogService"/> class.
 		/// </summary>
-		public DialogService()
+		public DialogService(IWindowViewModelMappings windowViewModelMappings)
 		{
+			this.windowViewModelMappings = windowViewModelMappings;
+
 			views = new HashSet<FrameworkElement>();
-			
-			// Initiate field in order to suppress compile warnings
-			windowViewModelMappings = null;
 		}
 
 
