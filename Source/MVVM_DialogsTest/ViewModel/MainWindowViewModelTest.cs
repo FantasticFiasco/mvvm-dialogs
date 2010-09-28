@@ -5,7 +5,6 @@ using Moq;
 using MVVM_Dialogs.Model;
 using MVVM_Dialogs.Service;
 using MVVM_Dialogs.Service.FrameworkDialogs.OpenFile;
-using MVVM_Dialogs.View;
 using MVVM_Dialogs.ViewModel;
 using NUnit.Framework;
 
