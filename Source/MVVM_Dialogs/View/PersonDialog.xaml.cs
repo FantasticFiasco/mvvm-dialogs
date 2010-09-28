@@ -7,6 +7,9 @@ namespace MVVM_Dialogs.View
 	/// </summary>
 	public partial class PersonDialog : Window
 	{
+		/// <summary>
+		/// Initializes a new instance of the <see cref="PersonDialog"/> class.
+		/// </summary>
 		public PersonDialog()
 		{
 			InitializeComponent();

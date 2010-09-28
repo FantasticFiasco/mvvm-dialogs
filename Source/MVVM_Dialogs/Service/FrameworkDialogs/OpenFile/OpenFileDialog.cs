@@ -43,10 +43,14 @@ namespace MVVM_Dialogs.Service.FrameworkDialogs.OpenFile
 		/// <summary>
 		/// Runs a common dialog box with the specified owner.
 		/// </summary>
-		/// <param name="owner">Any object that implements System.Windows.Forms.IWin32Window that
-		/// represents the top-level window that will own the modal dialog box.</param>
-		/// <returns>System.Windows.Forms.DialogResult.OK if the user clicks OK in the dialog box;
-		/// otherwise, System.Windows.Forms.DialogResult.Cancel.</returns>
+		/// <param name="owner">
+		/// Any object that implements System.Windows.Forms.IWin32Window that represents the top-level
+		/// window that will own the modal dialog box.
+		/// </param>
+		/// <returns>
+		/// System.Windows.Forms.DialogResult.OK if the user clicks OK in the dialog box; otherwise,
+		/// System.Windows.Forms.DialogResult.Cancel.
+		/// </returns>
 		public DialogResult ShowDialog(IWin32Window owner)
 		{
 			Contract.Requires(owner != null);

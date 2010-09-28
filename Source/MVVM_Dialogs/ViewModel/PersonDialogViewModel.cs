@@ -35,8 +35,8 @@ namespace MVVM_Dialogs.ViewModel
 		/// <summary>
 		/// Gets the gender of the person.
 		/// 
-		/// In production code it wouldn't be allowed to return an enum to UI, but this isn't
-		/// production code ;-)
+		/// In production code it wouldn't be allowed to return an enum to UI, but this isn't production
+		/// code ;-)
 		/// </summary>
 		public Gender Gender
 		{
