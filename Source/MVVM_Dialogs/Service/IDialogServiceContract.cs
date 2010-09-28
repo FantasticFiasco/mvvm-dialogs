@@ -43,6 +43,9 @@ namespace MVVM_Dialogs.Service
 		/// <summary>
 		/// Shows a dialog.
 		/// </summary>
+		/// <remarks>
+		/// The dialog used to represent the ViewModel is retrieved from the registered mappings.
+		/// </remarks>
 		/// <param name="ownerViewModel">
 		/// A ViewModel that represents the owner window of the dialog.
 		/// </param>
@@ -56,6 +59,23 @@ namespace MVVM_Dialogs.Service
 			Contract.Requires(ownerViewModel != null);
 			Contract.Requires(viewModel != null);
 
+			return default(bool?);
+		}
+
+
+		/// <summary>
+		/// Shows a dialog.
+		/// </summary>
+		/// <param name="ownerViewModel">A ViewModel that represents the owner window of the
+		/// dialog.</param>
+		/// <param name="viewModel">The ViewModel of the new dialog.</param>
+		/// <returns>A nullable value of type bool that signifies how a window was closed by the
+		/// user.</returns>
+		public bool? ShowDialog<T>(object ownerViewModel, object viewModel) where T : Window
+		{
+			Contract.Requires(ownerViewModel != null);
+			Contract.Requires(viewModel != null);
+			
 			return default(bool?);
 		}
 
