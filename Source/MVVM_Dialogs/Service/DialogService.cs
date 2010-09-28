@@ -80,6 +80,9 @@ namespace MVVM_Dialogs.Service
 		/// <summary>
 		/// Shows a dialog.
 		/// </summary>
+		/// <remarks>
+		/// The dialog used to represent the ViewModel is retrieved from the registered mappings.
+		/// </remarks>
 		/// <param name="ownerViewModel">A ViewModel that represents the owner window of the
 		/// dialog.</param>
 		/// <param name="viewModel">The ViewModel of the new dialog.</param>
@@ -87,14 +90,22 @@ namespace MVVM_Dialogs.Service
 		/// user.</returns>
 		public bool? ShowDialog(object ownerViewModel, object viewModel)
 		{
-			// Create dialog and set properties
 			Type dialogType = windowViewModelMappings.GetWindowTypeFromViewModelType(viewModel.GetType());
-			Window dialog = (Window)Activator.CreateInstance(dialogType);
-			dialog.Owner = FindOwnerWindow(ownerViewModel);
-			dialog.DataContext = viewModel;
+			return ShowDialog(ownerViewModel, viewModel, dialogType);
+		}
 
-			// Show dialog
-			return dialog.ShowDialog();
+
+		/// <summary>
+		/// Shows a dialog.
+		/// </summary>
+		/// <param name="ownerViewModel">A ViewModel that represents the owner window of the
+		/// dialog.</param>
+		/// <param name="viewModel">The ViewModel of the new dialog.</param>
+		/// <returns>A nullable value of type bool that signifies how a window was closed by the
+		/// user.</returns>
+		public bool? ShowDialog<T>(object ownerViewModel, object viewModel) where T : Window
+		{
+			return ShowDialog(ownerViewModel, viewModel, typeof(T));
 		}
 
 
@@ -215,6 +226,27 @@ namespace MVVM_Dialogs.Service
 
 		#endregion
 
+
+
+		/// <summary>
+		/// Shows a dialog.
+		/// </summary>
+		/// <param name="ownerViewModel">A ViewModel that represents the owner window of the
+		/// dialog.</param>
+		/// <param name="viewModel">The ViewModel of the new dialog.</param>
+		/// <param name="dialogType">The type of the dialog.</param>
+		/// <returns>A nullable value of type bool that signifies how a window was closed by the
+		/// user.</returns>
+		public bool? ShowDialog(object ownerViewModel, object viewModel, Type dialogType)
+		{
+			// Create dialog and set properties
+			Window dialog = (Window)Activator.CreateInstance(dialogType);
+			dialog.Owner = FindOwnerWindow(ownerViewModel);
+			dialog.DataContext = viewModel;
+
+			// Show dialog
+			return dialog.ShowDialog();
+		}
 
 		/// <summary>
 		/// Finds window corresponding to specified ViewModel.
