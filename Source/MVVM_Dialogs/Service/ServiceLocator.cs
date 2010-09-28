@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.Composition;
-using System.ComponentModel.Composition.Hosting;
+using System.Linq;
 using System.Reflection;
 
 namespace MVVM_Dialogs.Service
@@ -56,8 +55,6 @@ namespace MVVM_Dialogs.Service
 		/// </summary>
 		class ServiceInfo
 		{
-			private static Lazy<CompositionContainer> container;
-
 			private Type serviceImplementationType;
 			private object serviceImplementation;
 			private bool isSingleton;
@@ -70,12 +67,6 @@ namespace MVVM_Dialogs.Service
 			/// <param name="isSingleton">Whether the service is a Singleton.</param>
 			public ServiceInfo(Type serviceImplementationType, bool isSingleton)
 			{
-				container = new Lazy<CompositionContainer>(() =>
-				{
-					var catalog = new AssemblyCatalog(Assembly.GetExecutingAssembly());
-					return new CompositionContainer(catalog);
-				});
-
 				this.serviceImplementationType = serviceImplementationType;
 				this.isSingleton = isSingleton;
 			}
@@ -92,20 +83,37 @@ namespace MVVM_Dialogs.Service
 					{
 						if (serviceImplementation == null)
 						{
-							serviceImplementation = Activator.CreateInstance(serviceImplementationType);
-							container.Value.ComposeParts(serviceImplementation);
+							serviceImplementation = CreateInstance(serviceImplementationType);
 						}
 
 						return serviceImplementation;
 					}
 					else
 					{
-						var serviceImplementation = Activator.CreateInstance(serviceImplementationType);
-						container.Value.ComposeParts(serviceImplementation);
-						
-						return serviceImplementation;
+						return CreateInstance(serviceImplementationType);
 					}
 				}
+			}
+
+
+			/// <summary>
+			/// Creates an instance of a specific type.
+			/// </summary>
+			/// <param name="type">The type of the instance to create.</param>
+			private static object CreateInstance(Type type)
+			{
+				if (services.ContainsKey(type))
+				{
+					return services[type].ServiceImplementation;
+				}
+
+				ConstructorInfo ctor = type.GetConstructors().First();
+
+				var parameters =
+					from parameter in ctor.GetParameters()
+					select CreateInstance(parameter.ParameterType);
+
+				return Activator.CreateInstance(type, parameters.ToArray());
 			}
 		}
 	}
