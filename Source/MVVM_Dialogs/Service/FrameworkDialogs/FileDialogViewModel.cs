@@ -5,6 +5,9 @@
 	/// </summary>
 	public abstract class FileDialogViewModel : IFileDialog
 	{
+		/// <summary>
+		/// Initializes a new instance of the <see cref="FileDialogViewModel"/> class.
+		/// </summary>
 		public FileDialogViewModel()
 		{
 			// Set default values

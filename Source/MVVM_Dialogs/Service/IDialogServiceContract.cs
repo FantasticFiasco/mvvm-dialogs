@@ -51,8 +51,7 @@ namespace MVVM_Dialogs.Service
 		/// </param>
 		/// <param name="viewModel">The ViewModel of the new dialog.</param>
 		/// <returns>
-		/// A nullable value of type bool that signifies how a window was closed by the
-		/// user.
+		/// A nullable value of type bool that signifies how a window was closed by the user.
 		/// </returns>
 		public bool? ShowDialog(object ownerViewModel, object viewModel)
 		{
@@ -66,11 +65,13 @@ namespace MVVM_Dialogs.Service
 		/// <summary>
 		/// Shows a dialog.
 		/// </summary>
-		/// <param name="ownerViewModel">A ViewModel that represents the owner window of the
-		/// dialog.</param>
+		/// <param name="ownerViewModel">
+		/// A ViewModel that represents the owner window of the dialog.
+		/// </param>
 		/// <param name="viewModel">The ViewModel of the new dialog.</param>
-		/// <returns>A nullable value of type bool that signifies how a window was closed by the
-		/// user.</returns>
+		/// <returns>
+		/// A nullable value of type bool that signifies how a window was closed by the user.
+		/// </returns>
 		public bool? ShowDialog<T>(object ownerViewModel, object viewModel) where T : Window
 		{
 			Contract.Requires(ownerViewModel != null);
@@ -93,10 +94,14 @@ namespace MVVM_Dialogs.Service
 		/// </param>
 		/// <param name="icon">A MessageBoxImage value that specifies the icon to display.</param>
 		/// <returns>
-		/// A MessageBoxResult value that specifies which message box button is clicked by the
-		/// user.
+		/// A MessageBoxResult value that specifies which message box button is clicked by the user.
 		/// </returns>
-		public MessageBoxResult ShowMessageBox(object ownerViewModel, string messageBoxText, string caption, MessageBoxButton button, MessageBoxImage icon)
+		public MessageBoxResult ShowMessageBox(
+			object ownerViewModel,
+			string messageBoxText,
+			string caption,
+			MessageBoxButton button,
+			MessageBoxImage icon)
 		{
 			Contract.Requires(ownerViewModel != null);
 			Contract.Requires(!string.IsNullOrWhiteSpace(messageBoxText));
@@ -109,7 +114,9 @@ namespace MVVM_Dialogs.Service
 		/// <summary>
 		/// Shows the OpenFileDialog.
 		/// </summary>
-		/// <param name="ownerViewModel">A ViewModel that represents the owner window of the dialog.</param>
+		/// <param name="ownerViewModel">
+		/// A ViewModel that represents the owner window of the dialog.
+		/// </param>
 		/// <param name="openFileDialog">The interface of a open file dialog.</param>
 		/// <returns>
 		/// DialogResult.OK if successful; otherwise DialogResult.Cancel.
@@ -126,7 +133,9 @@ namespace MVVM_Dialogs.Service
 		/// <summary>
 		/// Shows the FolderBrowserDialog.
 		/// </summary>
-		/// <param name="ownerViewModel">A ViewModel that represents the owner window of the dialog.</param>
+		/// <param name="ownerViewModel">
+		/// A ViewModel that represents the owner window of the dialog.
+		/// </param>
 		/// <param name="folderBrowserDialog">The interface of a folder browser dialog.</param>
 		/// <returns>
 		/// The DialogResult.OK if successful; otherwise DialogResult.Cancel.
