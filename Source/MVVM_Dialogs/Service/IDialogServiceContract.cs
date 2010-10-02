@@ -69,6 +69,7 @@ namespace MVVM_Dialogs.Service
 		/// A ViewModel that represents the owner window of the dialog.
 		/// </param>
 		/// <param name="viewModel">The ViewModel of the new dialog.</param>
+		/// <typeparam name="T">The type of the dialog to show.</typeparam>
 		/// <returns>
 		/// A nullable value of type bool that signifies how a window was closed by the user.
 		/// </returns>

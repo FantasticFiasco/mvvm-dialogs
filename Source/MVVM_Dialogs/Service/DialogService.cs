@@ -107,6 +107,7 @@ namespace MVVM_Dialogs.Service
 		/// A ViewModel that represents the owner window of the dialog.
 		/// </param>
 		/// <param name="viewModel">The ViewModel of the new dialog.</param>
+		/// <typeparam name="T">The type of the dialog to show.</typeparam>
 		/// <returns>
 		/// A nullable value of type bool that signifies how a window was closed by the user.
 		/// </returns>
@@ -256,7 +257,7 @@ namespace MVVM_Dialogs.Service
 		/// <returns>
 		/// A nullable value of type bool that signifies how a window was closed by the user.
 		/// </returns>
-		public bool? ShowDialog(object ownerViewModel, object viewModel, Type dialogType)
+		private bool? ShowDialog(object ownerViewModel, object viewModel, Type dialogType)
 		{
 			// Create dialog and set properties
 			Window dialog = (Window)Activator.CreateInstance(dialogType);
