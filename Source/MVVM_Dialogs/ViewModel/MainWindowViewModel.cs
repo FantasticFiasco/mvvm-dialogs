@@ -12,6 +12,7 @@ using MVVM_Dialogs.Model;
 using MVVM_Dialogs.Properties;
 using MVVM_Dialogs.Service;
 using MVVM_Dialogs.Service.FrameworkDialogs.OpenFile;
+using MVVM_Dialogs.View;
 
 namespace MVVM_Dialogs.ViewModel
 {
@@ -157,8 +158,15 @@ namespace MVVM_Dialogs.ViewModel
 			// Create the PersonDialog ViewModel
 			PersonDialogViewModel personDialogViewModel = new PersonDialogViewModel(selectedPerson.Person);
 
-			// Show the dialog
-			dialogService.ShowDialog(this, personDialogViewModel);
+			// Showing the dialog, alternative 1.
+			// Showing a specified dialog. This doesn't require any form of mapping using 
+			// IWindowViewModelMappings.
+			dialogService.ShowDialog<PersonDialog>(this, personDialogViewModel);
+
+			// Showing the dialog, alternative 2.
+			// Showing a dialog without specifying the type. This require some form of mapping using 
+			// IWindowViewModelMappings.
+			//dialogService.ShowDialog(this, personDialogViewModel);
 		}
 
 
