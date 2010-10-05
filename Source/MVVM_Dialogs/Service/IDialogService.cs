@@ -7,6 +7,9 @@ using MVVM_Dialogs.Service.FrameworkDialogs.OpenFile;
 
 namespace MVVM_Dialogs.Service
 {
+	/// <summary>
+	/// Interface responsible for abstracting ViewModels from Views.
+	/// </summary>
 	[ContractClass(typeof(IDialogServiceContract))]
 	public interface IDialogService
 	{
