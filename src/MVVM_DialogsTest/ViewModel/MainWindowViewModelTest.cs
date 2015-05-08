@@ -77,10 +77,10 @@ namespace MVVM_DialogsTest.ViewModel
 			Assert.That(viewModel.Persons.Count, Is.EqualTo(2));
 			Assert.That(viewModel.Persons[0].Person, Is.EqualTo(person1));
 			Assert.That(viewModel.Persons[1].Person, Is.EqualTo(person2));
-			openFileDialogMock.VerifySet(m => m.FileName);
-			openFileDialogMock.VerifySet(m => m.Filter);
-			openFileDialogMock.VerifySet(m => m.InitialDirectory);
-			openFileDialogMock.VerifySet(m => m.Title);
+			openFileDialogMock.VerifySet(m => m.FileName = It.IsAny<string>());
+            openFileDialogMock.VerifySet(m => m.Filter = It.IsAny<string>());
+            openFileDialogMock.VerifySet(m => m.InitialDirectory = It.IsAny<string>());
+            openFileDialogMock.VerifySet(mock => mock.Title = It.IsAny<string>());
 		}
 
 
