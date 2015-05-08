@@ -4,39 +4,52 @@ using NUnit.Framework;
 
 namespace MVVM_DialogsTest.ViewModel
 {
-	[TestFixture]
-	public class PersonViewModelTest
-	{
-		[Test]
-		public void NameTest()
-		{
-			Person person = new Person { Name = "Some name", Gender = Gender.Female };
-			PersonViewModel viewModel = new PersonViewModel(person);
+    [TestFixture]
+    public class PersonViewModelTest
+    {
+        [Test]
+        public void NameTest()
+        {
+            Person person = new Person
+            {
+                Name = "Some name",
+                Gender = Gender.Female
+            };
 
-			Assert.That(viewModel.Name, Is.EqualTo(person.Name));
-		}
+            PersonViewModel viewModel = new PersonViewModel(person);
 
+            Assert.That(viewModel.Name, Is.EqualTo(person.Name));
+        }
+        
+        [Test]
+        public void IsSelectedTest()
+        {
+            Person person = new Person
+            {
+                Name = "Some name",
+                Gender = Gender.Female
+            };
 
-		[Test]
-		public void IsSelectedTest()
-		{
-			Person person = new Person { Name = "Some name", Gender = Gender.Female };
-			PersonViewModel viewModel = new PersonViewModel(person);
+            PersonViewModel viewModel = new PersonViewModel(person);
 
-			Assert.That(viewModel.IsSelected, Is.False);
+            Assert.That(viewModel.IsSelected, Is.False);
 
-			viewModel.IsSelected = true;
-			Assert.That(viewModel.IsSelected, Is.True);
-		}
+            viewModel.IsSelected = true;
+            Assert.That(viewModel.IsSelected, Is.True);
+        }
+        
+        [Test]
+        public void PersonTest()
+        {
+            Person person = new Person
+            {
+                Name = "Some name",
+                Gender = Gender.Female
+            };
 
+            PersonViewModel viewModel = new PersonViewModel(person);
 
-		[Test]
-		public void PersonTest()
-		{
-			Person person = new Person { Name = "Some name", Gender = Gender.Female };
-			PersonViewModel viewModel = new PersonViewModel(person);
-
-			Assert.That(person, Is.EqualTo(viewModel.Person));
-		}
-	}
+            Assert.That(person, Is.EqualTo(viewModel.Person));
+        }
+    }
 }
