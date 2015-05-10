@@ -1,4 +1,4 @@
-﻿namespace MVVM_Dialogs.Service.FrameworkDialogs.FolderBrowse
+﻿namespace MvvmDialogs.FrameworkDialogs.FolderBrowse
 {
     /// <summary>
     /// Interface describing the FolderBrowserDialog.

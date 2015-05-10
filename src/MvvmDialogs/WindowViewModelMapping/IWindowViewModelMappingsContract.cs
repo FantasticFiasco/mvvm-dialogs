@@ -2,7 +2,7 @@
 using System.Diagnostics.Contracts;
 using System.Windows;
 
-namespace MVVM_Dialogs.WindowViewModelMapping
+namespace MvvmDialogs.WindowViewModelMapping
 {
     [ContractClassFor(typeof(IWindowViewModelMappings))]
     internal abstract class IWindowViewModelMappingsContract : IWindowViewModelMappings

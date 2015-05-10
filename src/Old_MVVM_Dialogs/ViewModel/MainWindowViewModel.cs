@@ -8,10 +8,11 @@ using System.Reflection;
 using System.Windows;
 using System.Windows.Forms;
 using System.Windows.Input;
+using MvvmDialogs;
+using MvvmDialogs.FrameworkDialogs.OpenFile;
 using MVVM_Dialogs.Model;
 using MVVM_Dialogs.Properties;
 using MVVM_Dialogs.Service;
-using MVVM_Dialogs.Service.FrameworkDialogs.OpenFile;
 using MVVM_Dialogs.View;
 
 namespace MVVM_Dialogs.ViewModel

@@ -1,6 +1,8 @@
 ﻿using System.Windows;
+using MvvmDialogs;
+using MvvmDialogs.FrameworkDialogs.OpenFile;
+using MvvmDialogs.WindowViewModelMapping;
 using MVVM_Dialogs.Service;
-using MVVM_Dialogs.Service.FrameworkDialogs.OpenFile;
 using MVVM_Dialogs.ViewModel;
 using MVVM_Dialogs.WindowViewModelMapping;
 

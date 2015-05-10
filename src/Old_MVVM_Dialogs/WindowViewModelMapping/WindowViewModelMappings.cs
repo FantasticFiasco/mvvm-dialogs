@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using MvvmDialogs.WindowViewModelMapping;
 using MVVM_Dialogs.View;
 using MVVM_Dialogs.ViewModel;
 

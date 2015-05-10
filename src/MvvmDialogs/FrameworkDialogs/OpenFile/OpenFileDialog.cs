@@ -3,7 +3,7 @@ using System.Diagnostics.Contracts;
 using System.Windows.Forms;
 using WinFormsOpenFileDialog = System.Windows.Forms.OpenFileDialog;
 
-namespace MVVM_Dialogs.Service.FrameworkDialogs.OpenFile
+namespace MvvmDialogs.FrameworkDialogs.OpenFile
 {
     /// <summary>
     /// Class wrapping System.Windows.Forms.OpenFileDialog, making it accept a IOpenFileDialog.

@@ -4,13 +4,13 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows;
-using MVVM_Dialogs.Service.FrameworkDialogs;
-using MVVM_Dialogs.Service.FrameworkDialogs.FolderBrowse;
-using MVVM_Dialogs.Service.FrameworkDialogs.OpenFile;
-using MVVM_Dialogs.WindowViewModelMapping;
+using MvvmDialogs.FrameworkDialogs;
+using MvvmDialogs.FrameworkDialogs.FolderBrowse;
+using MvvmDialogs.FrameworkDialogs.OpenFile;
+using MvvmDialogs.WindowViewModelMapping;
 using DialogResult = System.Windows.Forms.DialogResult;
 
-namespace MVVM_Dialogs.Service
+namespace MvvmDialogs
 {
     /// <summary>
     /// Class responsible for abstracting ViewModels from Views.

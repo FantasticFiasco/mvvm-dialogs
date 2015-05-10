@@ -1,4 +1,4 @@
-﻿namespace MVVM_Dialogs.Service.FrameworkDialogs
+﻿namespace MvvmDialogs.FrameworkDialogs
 {
     /// <summary>
     /// ViewModel of the abstract FileDialog.

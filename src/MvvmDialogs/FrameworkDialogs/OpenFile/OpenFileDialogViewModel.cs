@@ -1,4 +1,4 @@
-﻿namespace MVVM_Dialogs.Service.FrameworkDialogs.OpenFile
+﻿namespace MvvmDialogs.FrameworkDialogs.OpenFile
 {
     /// <summary>
     /// ViewModel of the OpenFileDialog.
