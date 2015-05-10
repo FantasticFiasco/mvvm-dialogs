@@ -26,6 +26,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MVVM_Dialogs", "MVVM_Dialog
 		..\publication\CodeProject\MVVM_Dialogs\MVVM_Dialogs.zip = ..\publication\CodeProject\MVVM_Dialogs\MVVM_Dialogs.zip
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvvmDialogs", "MvvmDialogs\MvvmDialogs.csproj", "{29051B6F-74C5-4EF6-A792-4E382CE233FA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -40,6 +42,10 @@ Global
 		{A72166A5-297F-4198-A098-05A9A06C2574}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A72166A5-297F-4198-A098-05A9A06C2574}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A72166A5-297F-4198-A098-05A9A06C2574}.Release|Any CPU.Build.0 = Release|Any CPU
+		{29051B6F-74C5-4EF6-A792-4E382CE233FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{29051B6F-74C5-4EF6-A792-4E382CE233FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{29051B6F-74C5-4EF6-A792-4E382CE233FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{29051B6F-74C5-4EF6-A792-4E382CE233FA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
