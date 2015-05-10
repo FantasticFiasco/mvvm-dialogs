@@ -24,6 +24,7 @@
             <!-- Example: -->
             <!-- <Word>whatever</Word> -->
             <Word>mvvm</Word>
+            <Word>multiselect</Word>
         </Recognized>
 
         <!-- 

@@ -32,19 +32,19 @@ namespace MvvmDialogs
                 new UIPropertyMetadata(IsRegisteredViewChanged));
 
         /// <summary>
-        /// Gets value describing whether <see cref="FrameworkElement"/> is acting as a view for a
+        /// Gets value describing whether <see cref="DependencyObject"/> is acting as a view for a
         /// view model in the MVVM pattern.
         /// </summary>
-        public static bool GetIsRegisteredView(FrameworkElement target)
+        public static bool GetIsRegisteredView(DependencyObject target)
         {
             return (bool)target.GetValue(IsRegisteredViewProperty);
         }
 
         /// <summary>
-        /// Sets value describing whether <see cref="FrameworkElement"/> is acting as a view for a
+        /// Sets value describing whether <see cref="DependencyObject"/> is acting as a view for a
         /// view model in the MVVM pattern.
         /// </summary>
-        public static void SetIsRegisteredView(FrameworkElement target, bool value)
+        public static void SetIsRegisteredView(DependencyObject target, bool value)
         {
             target.SetValue(IsRegisteredViewProperty, value);
         }
@@ -79,6 +79,16 @@ namespace MvvmDialogs
         }
 
         #endregion
+
+        /// <summary>
+        /// Gets the owning <see cref="Window"/> of a view.
+        /// </summary>
+        /// <param name="view">The view to find the <see cref="Window"/> for.</param>
+        /// <returns>The owning <see cref="Window"/> if found; otherwise null.</returns>
+        internal static Window GetOwner(FrameworkElement view)
+        {
+            return view as Window ?? Window.GetWindow(view);
+        }
 
         /// <summary>
         /// Registers specified view.
@@ -159,16 +169,6 @@ namespace MvvmDialogs
                     Unregister(windowView);
                 }
             }
-        }
-
-        /// <summary>
-        /// Gets the owning <see cref="Window"/> of a view.
-        /// </summary>
-        /// <param name="view">The view to find the <see cref="Window"/> for.</param>
-        /// <returns>The owning <see cref="Window"/> if found; otherwise null.</returns>
-        private static Window GetOwner(FrameworkElement view)
-        {
-            return view as Window ?? Window.GetWindow(view);
         }
     }
 }

@@ -244,11 +244,10 @@ namespace MvvmDialogs
             if (openFileDialogViewModel == null)
                 throw new ArgumentNullException("openFileDialogViewModel");
 
-            // Create OpenFileDialog with specified view model
-            var dialog = new OpenFileDialogWrapper(openFileDialogViewModel);
-
-            // Show dialog
-            return dialog.ShowDialog(new WindowWrapper(FindOwnerWindow(ownerViewModel)));
+            using (var dialog = new OpenFileDialogWrapper(openFileDialogViewModel))
+            {
+                return dialog.ShowDialog(new WindowWrapper(FindOwnerWindow(ownerViewModel)));    
+            }
         }
 
         /// <summary>
@@ -271,11 +270,10 @@ namespace MvvmDialogs
             if (saveFileDialogViewModel == null)
                 throw new ArgumentNullException("saveFileDialogViewModel");
 
-            // Create SaveFileDialog with specified view model
-            var dialog = new SaveFileDialogWrapper(saveFileDialogViewModel);
-
-            // Show dialog
-            return dialog.ShowDialog(new WindowWrapper(FindOwnerWindow(ownerViewModel)));
+            using (var dialog = new SaveFileDialogWrapper(saveFileDialogViewModel))
+            {
+                return dialog.ShowDialog(new WindowWrapper(FindOwnerWindow(ownerViewModel)));    
+            }
         }
 
         /// <summary>
@@ -300,11 +298,10 @@ namespace MvvmDialogs
             if (folderBrowserDialogViewModel == null)
                 throw new ArgumentNullException("folderBrowserDialogViewModel");
 
-            // Create FolderBrowserDialogWrapper with specified view model
-            var dialog = new FolderBrowserDialogWrapper(folderBrowserDialogViewModel);
-
-            // Show dialog
-            return dialog.ShowDialog(new WindowWrapper(FindOwnerWindow(ownerViewModel)));
+            using (var dialog = new FolderBrowserDialogWrapper(folderBrowserDialogViewModel))
+            {
+                return dialog.ShowDialog(new WindowWrapper(FindOwnerWindow(ownerViewModel)));    
+            }
         }
 
         #endregion
@@ -321,7 +318,7 @@ namespace MvvmDialogs
         /// A nullable value of type <see cref="bool"/> that signifies how a window was closed by
         /// the user.
         /// </returns>
-        private bool? ShowDialog(object ownerViewModel, object viewModel, Type dialogType)
+        private static bool? ShowDialog(object ownerViewModel, object viewModel, Type dialogType)
         {
             // Create dialog and set properties
             var dialog = (Window)Activator.CreateInstance(dialogType);
@@ -335,26 +332,18 @@ namespace MvvmDialogs
         /// <summary>
         /// Finds window corresponding to specified view model.
         /// </summary>
-        private Window FindOwnerWindow(object viewModel)
+        private static Window FindOwnerWindow(object viewModel)
         {
-            FrameworkElement view = DialogServiceBehaviors.Views.SingleOrDefault(v => ReferenceEquals(v.DataContext, viewModel));
+            FrameworkElement view = DialogServiceBehaviors.Views.SingleOrDefault(
+                registeredView => ReferenceEquals(registeredView.DataContext, viewModel));
+            
             if (view == null)
-            {
-                throw new ArgumentException("View model is not referenced by any registered view.");
-            }
+                throw new ArgumentException("View model of type {0} is not referenced by any registered view.".InvariantFormat(viewModel.GetType()));
 
             // Get owner window
-            var owner = view as Window;
+            Window owner = DialogServiceBehaviors.GetOwner(view);
             if (owner == null)
-            {
-                owner = Window.GetWindow(view);
-            }
-
-            // Make sure owner window was found
-            if (owner == null)
-            {
-                throw new InvalidOperationException("View is not contained within a Window.");
-            }
+                throw new InvalidOperationException("View of type {0} is not contained within a Window.".InvariantFormat(view.GetType()));
 
             return owner;
         }

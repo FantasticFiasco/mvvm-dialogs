@@ -72,6 +72,7 @@
     <Compile Include="FrameworkDialogs\WindowWrapper.cs" />
     <Compile Include="FrameworkDialogs\SaveFile\SaveFileDialogWrapper.cs" />
     <Compile Include="FrameworkDialogs\SaveFile\SaveFileDialogViewModel.cs" />
+    <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="IDialogService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
