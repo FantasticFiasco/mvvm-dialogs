@@ -51,6 +51,11 @@ namespace MvvmDialogs
         /// <param name="view">The registered View.</param>
         public void Register(FrameworkElement view)
         {
+            if (view == null)
+                throw new ArgumentNullException("view");
+            if (views.Contains(view))
+                throw new ArgumentException("View of type {0} has already been already registered.".InvariantFormat(view.GetType()), "view");
+            
             // Get owner window
             Window owner = GetOwner(view);
             if (owner == null)
@@ -74,6 +79,11 @@ namespace MvvmDialogs
         /// <param name="view">The unregistered View.</param>
         public void Unregister(FrameworkElement view)
         {
+            if (view == null)
+                throw new ArgumentNullException("view");
+            if (views.Contains(view))
+                throw new ArgumentException("View of type {0} has never been registered.".InvariantFormat(view.GetType()), "view");
+            
             views.Remove(view);
         }
         
@@ -92,6 +102,11 @@ namespace MvvmDialogs
         /// </returns>
         public bool? ShowDialog(object ownerViewModel, object viewModel)
         {
+            if (ownerViewModel == null)
+                throw new ArgumentNullException("ownerViewModel");
+            if (viewModel == null)
+                throw new ArgumentNullException("viewModel");
+
             Type dialogType = windowViewModelMappings.GetWindowTypeFromViewModelType(viewModel.GetType());
             return ShowDialog(ownerViewModel, viewModel, dialogType);
         }
@@ -109,6 +124,11 @@ namespace MvvmDialogs
         /// </returns>
         public bool? ShowDialog<T>(object ownerViewModel, object viewModel) where T : Window
         {
+            if (ownerViewModel == null)
+                throw new ArgumentNullException("ownerViewModel");
+            if (viewModel == null)
+                throw new ArgumentNullException("viewModel");
+
             return ShowDialog(ownerViewModel, viewModel, typeof(T));
         }
 
@@ -134,21 +154,31 @@ namespace MvvmDialogs
             MessageBoxButton button,
             MessageBoxImage icon)
         {
+            if (ownerViewModel == null)
+                throw new ArgumentNullException("ownerViewModel");
+            
             return MessageBox.Show(FindOwnerWindow(ownerViewModel), messageBoxText, caption, button, icon);
         }
 
         /// <summary>
-        /// Shows the OpenFileDialog.
+        /// Shows the <see cref="System.Windows.Forms.OpenFileDialog"/>.
         /// </summary>
         /// <param name="ownerViewModel">
         /// A view model that represents the owner window of the dialog.
         /// </param>
         /// <param name="openFileDialogViewModel">The interface of a open file dialog.</param>
         /// <returns>DialogResult.OK if successful; otherwise DialogResult.Cancel.</returns>
-        public DialogResult ShowOpenFileDialog(object ownerViewModel, IOpenFileDialogViewModel openFileDialogViewModel)
+        public DialogResult ShowOpenFileDialog(
+            object ownerViewModel,
+            IOpenFileDialogViewModel openFileDialogViewModel)
         {
+            if (ownerViewModel == null)
+                throw new ArgumentNullException("ownerViewModel");
+            if (openFileDialogViewModel == null)
+                throw new ArgumentNullException("openFileDialogViewModel");
+
             // Create OpenFileDialog with specified view model
-            OpenFileDialogWrapper dialog = new OpenFileDialogWrapper(openFileDialogViewModel);
+            var dialog = new OpenFileDialogWrapper(openFileDialogViewModel);
 
             // Show dialog
             return dialog.ShowDialog(new WindowWrapper(FindOwnerWindow(ownerViewModel)));
@@ -162,10 +192,17 @@ namespace MvvmDialogs
         /// </param>
         /// <param name="folderBrowserDialogViewModel">The interface of a folder browser dialog.</param>
         /// <returns>The DialogResult.OK if successful; otherwise DialogResult.Cancel.</returns>
-        public DialogResult ShowFolderBrowserDialog(object ownerViewModel, IFolderBrowserDialogViewModel folderBrowserDialogViewModel)
+        public DialogResult ShowFolderBrowserDialog(
+            object ownerViewModel,
+            IFolderBrowserDialogViewModel folderBrowserDialogViewModel)
         {
+            if (ownerViewModel == null)
+                throw new ArgumentNullException("ownerViewModel");
+            if (folderBrowserDialogViewModel == null)
+                throw new ArgumentNullException("folderBrowserDialogViewModel");
+
             // Create FolderBrowserDialogWrapper with specified view model
-            FolderBrowserDialogWrapper dialog = new FolderBrowserDialogWrapper(folderBrowserDialogViewModel);
+            var dialog = new FolderBrowserDialogWrapper(folderBrowserDialogViewModel);
 
             // Show dialog
             return dialog.ShowDialog(new WindowWrapper(FindOwnerWindow(ownerViewModel)));

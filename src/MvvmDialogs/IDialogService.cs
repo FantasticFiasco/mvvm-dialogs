@@ -1,5 +1,4 @@
 ﻿using System.Collections.ObjectModel;
-using System.Diagnostics.Contracts;
 using System.Windows;
 using System.Windows.Forms;
 using MvvmDialogs.FrameworkDialogs.FolderBrowser;
@@ -10,7 +9,6 @@ namespace MvvmDialogs
     /// <summary>
     /// Interface responsible for abstracting ViewModels from Views.
     /// </summary>
-    [ContractClass(typeof(IDialogServiceContract))]
     public interface IDialogService
     {
         /// <summary>
