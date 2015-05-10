@@ -7,7 +7,7 @@ using MvvmDialogs.FrameworkDialogs.OpenFile;
 namespace MvvmDialogs
 {
     /// <summary>
-    /// Interface responsible for abstracting ViewModels from Views.
+    /// Interface responsible for abstracting view models from Views.
     /// </summary>
     public interface IDialogService
     {

@@ -33,7 +33,7 @@ File | Save to save this file to your hard drive for editing.</b></p>
 
 <h2><a name="intro">Introduction</a> </h2>
 
-<p>This article will address one of the problems a developer might run into when using the MVVM pattern, namely opening dialogs from ViewModels. Basic knowledge of the pattern is expected. Josh Smith has written a fantastic <a href="http://msdn.microsoft.com/en-us/magazine/dd419663.aspx">article</a> in MSDN Magazine which can serve as the&nbsp;starting point for those that are unfamiliar with the pattern.</p>
+<p>This article will address one of the problems a developer might run into when using the MVVM pattern, namely opening dialogs from view models. Basic knowledge of the pattern is expected. Josh Smith has written a fantastic <a href="http://msdn.microsoft.com/en-us/magazine/dd419663.aspx">article</a> in MSDN Magazine which can serve as the&nbsp;starting point for those that are unfamiliar with the pattern.</p>
 
 <p>There already exist some solutions exploring this area, but none of them seem to be widely accepted among the MVVM community. <a href="http://wpfonyx.codeplex.com/">Onyx</a> on CodePlex is probably the most complete solution. Sacha Barber <a href="http://sachabarber.net/?p=518">announced</a> that he is working on a new MVVM framework, but hasn't set any release date. At the same time <a href="http://groups.google.com/group/wpf-disciples">WPF Disciples</a> are teaming up to create a <a href="http://www.codeplex.com/mvvmref">MVVM reference</a> application, again with no release date yet.</p>
 
@@ -54,7 +54,7 @@ File | Save to save this file to your hard drive for editing.</b></p>
 <p>The concept of letting services handle relations between ViewModel and View seems to be the most accepted solution. My contribution is <code>IDialogService</code>.</p>
 
 <pre lang="cs">/// &lt;summary&gt;
-/// Interface responsible for abstracting ViewModels from Views.
+/// Interface responsible for abstracting view models from views.
 /// &lt;/summary&gt;
 public interface IDialogService
 {
@@ -149,7 +149,7 @@ public interface IDialogService
 <p>The actual implementation of <code>IDialogServiceis</code> is <code>DialogService</code>.</p>
 
 <pre lang="cs">/// &lt;summary&gt;
-/// Class responsible for abstracting ViewModels from Views.
+/// Class responsible for abstracting view models from views.
 /// &lt;/summary&gt;
 class DialogService : IDialogService
 {
