@@ -3,6 +3,7 @@ using System.Windows;
 using System.Windows.Forms;
 using MvvmDialogs.FrameworkDialogs.FolderBrowser;
 using MvvmDialogs.FrameworkDialogs.OpenFile;
+using MvvmDialogs.FrameworkDialogs.SaveFile;
 
 namespace MvvmDialogs
 {
@@ -87,6 +88,16 @@ namespace MvvmDialogs
         /// <param name="openFileDialogViewModel">The interface of a open file dialog.</param>
         /// <returns>DialogResult.OK if successful; otherwise DialogResult.Cancel.</returns>
         DialogResult ShowOpenFileDialog(object ownerViewModel, IOpenFileDialogViewModel openFileDialogViewModel);
+
+        /// <summary>
+        /// Shows the SaveFileDialog.
+        /// </summary>
+        /// <param name="ownerViewModel">
+        /// A view model that represents the owner window of the dialog.
+        /// </param>
+        /// <param name="saveFileDialogViewModel">The interface of a save file dialog.</param>
+        /// <returns>DialogResult.OK if successful; otherwise DialogResult.Cancel.</returns>
+        DialogResult ShowSaveFileDialog(object ownerViewModel, ISaveFileDialogViewModel saveFileDialogViewModel);
         
         /// <summary>
         /// Shows the FolderBrowserDialog.

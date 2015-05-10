@@ -9,6 +9,8 @@ using MvvmDialogs.FrameworkDialogs.FolderBrowser.Internal;
 using MvvmDialogs.FrameworkDialogs.Internal;
 using MvvmDialogs.FrameworkDialogs.OpenFile;
 using MvvmDialogs.FrameworkDialogs.OpenFile.Internal;
+using MvvmDialogs.FrameworkDialogs.SaveFile;
+using MvvmDialogs.FrameworkDialogs.SaveFile.Internal;
 using MvvmDialogs.WindowViewModelMapping;
 using DialogResult = System.Windows.Forms.DialogResult;
 
@@ -179,6 +181,33 @@ namespace MvvmDialogs
 
             // Create OpenFileDialog with specified view model
             var dialog = new OpenFileDialogWrapper(openFileDialogViewModel);
+
+            // Show dialog
+            return dialog.ShowDialog(new WindowWrapper(FindOwnerWindow(ownerViewModel)));
+        }
+
+        /// <summary>
+        /// Shows the SaveFileDialog.
+        /// </summary>
+        /// <param name="ownerViewModel">
+        /// A view model that represents the owner window of the dialog.
+        /// </param>
+        /// <param name="saveFileDialogViewModel"></param>
+        /// <returns>
+        /// DialogResult.OK if successful; otherwise DialogResult.Cancel.
+        /// </returns>
+        /// <exception cref="NotImplementedException"></exception>
+        public DialogResult ShowSaveFileDialog(
+            object ownerViewModel,
+            ISaveFileDialogViewModel saveFileDialogViewModel)
+        {
+            if (ownerViewModel == null)
+                throw new ArgumentNullException("ownerViewModel");
+            if (saveFileDialogViewModel == null)
+                throw new ArgumentNullException("saveFileDialogViewModel");
+
+            // Create SaveFileDialog with specified view model
+            var dialog = new SaveFileDialogWrapper(saveFileDialogViewModel);
 
             // Show dialog
             return dialog.ShowDialog(new WindowWrapper(FindOwnerWindow(ownerViewModel)));
