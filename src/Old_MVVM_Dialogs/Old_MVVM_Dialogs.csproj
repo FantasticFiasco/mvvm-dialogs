@@ -124,6 +124,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ServiceLocator.cs" />
     <Compile Include="WindowViewModelMapping\WindowViewModelMappings.cs" />
     <Page Include="Resources\ApplicationResources.xaml">
       <SubType>Designer</SubType>

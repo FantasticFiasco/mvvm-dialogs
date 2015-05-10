@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
-namespace MvvmDialogs
+namespace MVVM_Dialogs
 {
     /// <summary>
     /// A very simple service locator.
