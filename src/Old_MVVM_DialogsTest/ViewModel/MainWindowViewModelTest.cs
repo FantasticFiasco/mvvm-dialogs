@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel;
 using System.Windows;
 using System.Windows.Forms;
 using Moq;
@@ -6,6 +7,7 @@ using MvvmDialogs;
 using MvvmDialogs.FrameworkDialogs.OpenFile;
 using MVVM_Dialogs.Model;
 using MVVM_Dialogs.Service;
+using MVVM_Dialogs.View;
 using MVVM_Dialogs.ViewModel;
 using NUnit.Framework;
 
@@ -121,11 +123,11 @@ namespace MVVM_DialogsTest.ViewModel
 
             // Solely for coverage since the dialog doesn't return anything
             dialogServiceMock
-                .Setup(m => m.ShowDialog(viewModel, It.IsAny<object>()))
+                .Setup(m => m.ShowDialog<MainWindow>(viewModel, It.IsAny<INotifyPropertyChanged>()))
                 .Returns(false);
             viewModel.ShowInformationCommand.Execute(null);
             dialogServiceMock
-                .Verify(m => m.ShowDialog(viewModel, It.IsAny<PersonDialogViewModel>()));
+                .Verify(m => m.ShowDialog<MainWindow>(viewModel, It.IsAny<PersonDialogViewModel>()));
         }
         
         [Test]

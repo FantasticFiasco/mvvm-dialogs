@@ -1,14 +1,19 @@
 ﻿using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Windows;
-using System.Windows.Forms;
 using MvvmDialogs.FrameworkDialogs.FolderBrowser;
 using MvvmDialogs.FrameworkDialogs.OpenFile;
 using MvvmDialogs.FrameworkDialogs.SaveFile;
+using DialogResult = System.Windows.Forms.DialogResult;
+using FolderBrowserDialog = System.Windows.Forms.FolderBrowserDialog;
+using OpenFileDialog = System.Windows.Forms.OpenFileDialog;
+using SaveFileDialog = System.Windows.Forms.SaveFileDialog;
 
 namespace MvvmDialogs
 {
     /// <summary>
-    /// Interface responsible for abstracting view models from Views.
+    /// Interface abstracting the interaction between view models and views when it comes to
+    /// opening dialogs using the MVVM pattern in WPF.
     /// </summary>
     public interface IDialogService
     {
@@ -18,34 +23,19 @@ namespace MvvmDialogs
         ReadOnlyCollection<FrameworkElement> Views { get; }
         
         /// <summary>
-        /// Registers a View.
+        /// Registers a view.
         /// </summary>
-        /// <param name="view">The registered View.</param>
+        /// <param name="view">The view to register.</param>
         void Register(FrameworkElement view);
         
         /// <summary>
-        /// Unregisters a View.
+        /// Unregisters a view.
         /// </summary>
-        /// <param name="view">The unregistered View.</param>
+        /// <param name="view">The view to unregister.</param>
         void Unregister(FrameworkElement view);
         
         /// <summary>
-        /// Shows a dialog.
-        /// </summary>
-        /// <remarks>
-        /// The dialog used to represent the view model is retrieved from the registered mappings.
-        /// </remarks>
-        /// <param name="ownerViewModel">
-        /// A view model that represents the owner window of the dialog.
-        /// </param>
-        /// <param name="viewModel">The view model of the new dialog.</param>
-        /// <returns>
-        /// A nullable value of type bool that signifies how a window was closed by the user.
-        /// </returns>
-        bool? ShowDialog(object ownerViewModel, object viewModel);
-        
-        /// <summary>
-        /// Shows a dialog.
+        /// Shows a dialog of specified type <typeparamref name="T"/>.
         /// </summary>
         /// <param name="ownerViewModel">
         /// A view model that represents the owner window of the dialog.
@@ -53,12 +43,16 @@ namespace MvvmDialogs
         /// <param name="viewModel">The view model of the new dialog.</param>
         /// <typeparam name="T">The type of the dialog to show.</typeparam>
         /// <returns>
-        /// A nullable value of type bool that signifies how a window was closed by the user.
+        /// A nullable value of type <see cref="bool"/> that signifies how a window was closed by
+        /// the user.
         /// </returns>
-        bool? ShowDialog<T>(object ownerViewModel, object viewModel) where T : Window;
+        bool? ShowDialog<T>(
+            INotifyPropertyChanged ownerViewModel,
+            INotifyPropertyChanged viewModel)
+            where T : Window;
         
         /// <summary>
-        /// Shows a message box.
+        /// Shows a <see cref="MessageBox"/>.
         /// </summary>
         /// <param name="ownerViewModel">
         /// A view model that represents the owner window of the message box.
@@ -66,47 +60,68 @@ namespace MvvmDialogs
         /// <param name="messageBoxText">A string that specifies the text to display.</param>
         /// <param name="caption">A string that specifies the title bar caption to display.</param>
         /// <param name="button">
-        /// A MessageBoxButton value that specifies which button or buttons to display.
+        /// A <see cref="MessageBoxButton"/> value that specifies which button or buttons to
+        /// display.
         /// </param>
-        /// <param name="icon">A MessageBoxImage value that specifies the icon to display.</param>
+        /// <param name="icon">
+        /// A <see cref="MessageBoxImage"/> value that specifies the icon to display.
+        /// </param>
         /// <returns>
-        /// A MessageBoxResult value that specifies which message box button is clicked by the user.
+        /// A <see cref="MessageBoxResult"/> value that specifies which message box button is
+        /// clicked by the user.
         /// </returns>
         MessageBoxResult ShowMessageBox(
-            object ownerViewModel,
+            INotifyPropertyChanged ownerViewModel,
             string messageBoxText,
             string caption,
             MessageBoxButton button,
             MessageBoxImage icon);
         
         /// <summary>
-        /// Shows the OpenFileDialog.
+        /// Shows the <see cref="OpenFileDialog"/>.
         /// </summary>
         /// <param name="ownerViewModel">
         /// A view model that represents the owner window of the dialog.
         /// </param>
-        /// <param name="openFileDialogViewModel">The interface of a open file dialog.</param>
-        /// <returns>DialogResult.OK if successful; otherwise DialogResult.Cancel.</returns>
-        DialogResult ShowOpenFileDialog(object ownerViewModel, IOpenFileDialogViewModel openFileDialogViewModel);
+        /// <param name="openFileDialogViewModel">The view model of a open file dialog.</param>
+        /// <returns>
+        /// <see cref="DialogResult.OK"/> if successful; otherwise
+        /// <see cref="DialogResult.Cancel"/>.
+        /// </returns>
+        DialogResult ShowOpenFileDialog(
+            INotifyPropertyChanged ownerViewModel,
+            IOpenFileDialogViewModel openFileDialogViewModel);
 
         /// <summary>
-        /// Shows the SaveFileDialog.
+        /// Shows the <see cref="SaveFileDialog"/>.
         /// </summary>
         /// <param name="ownerViewModel">
         /// A view model that represents the owner window of the dialog.
         /// </param>
-        /// <param name="saveFileDialogViewModel">The interface of a save file dialog.</param>
-        /// <returns>DialogResult.OK if successful; otherwise DialogResult.Cancel.</returns>
-        DialogResult ShowSaveFileDialog(object ownerViewModel, ISaveFileDialogViewModel saveFileDialogViewModel);
+        /// <param name="saveFileDialogViewModel">The view model of a save file dialog.</param>
+        /// <returns>
+        /// <see cref="DialogResult.OK"/> if successful; otherwise
+        /// <see cref="DialogResult.Cancel"/>.
+        /// </returns>
+        DialogResult ShowSaveFileDialog(
+            INotifyPropertyChanged ownerViewModel,
+            ISaveFileDialogViewModel saveFileDialogViewModel);
         
         /// <summary>
-        /// Shows the FolderBrowserDialog.
+        /// Shows the <see cref="FolderBrowserDialog"/>.
         /// </summary>
         /// <param name="ownerViewModel">
         /// A view model that represents the owner window of the dialog.
         /// </param>
-        /// <param name="folderBrowserDialogViewModel">The interface of a folder browser dialog.</param>
-        /// <returns>The DialogResult.OK if successful; otherwise DialogResult.Cancel.</returns>
-        DialogResult ShowFolderBrowserDialog(object ownerViewModel, IFolderBrowserDialogViewModel folderBrowserDialogViewModel);
+        /// <param name="folderBrowserDialogViewModel">
+        /// The view model of a folder browser dialog.
+        /// </param>
+        /// <returns>
+        /// <see cref="DialogResult.OK"/> if successful; otherwise
+        /// <see cref="DialogResult.Cancel"/>.
+        /// </returns>
+        DialogResult ShowFolderBrowserDialog(
+            INotifyPropertyChanged ownerViewModel,
+            IFolderBrowserDialogViewModel folderBrowserDialogViewModel);
     }
 }

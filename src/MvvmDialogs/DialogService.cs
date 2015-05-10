@@ -11,8 +11,10 @@ using MvvmDialogs.FrameworkDialogs.OpenFile;
 using MvvmDialogs.FrameworkDialogs.OpenFile.Internal;
 using MvvmDialogs.FrameworkDialogs.SaveFile;
 using MvvmDialogs.FrameworkDialogs.SaveFile.Internal;
-using MvvmDialogs.WindowViewModelMapping;
 using DialogResult = System.Windows.Forms.DialogResult;
+using FolderBrowserDialog = System.Windows.Forms.FolderBrowserDialog;
+using OpenFileDialog = System.Windows.Forms.OpenFileDialog;
+using SaveFileDialog = System.Windows.Forms.SaveFileDialog;
 
 namespace MvvmDialogs
 {
@@ -22,18 +24,12 @@ namespace MvvmDialogs
     public class DialogService : IDialogService
     {
         private readonly HashSet<FrameworkElement> views;
-        private readonly IWindowViewModelMappings windowViewModelMappings;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="DialogService"/> class.
         /// </summary>
-        /// <param name="windowViewModelMappings">
-        /// The window view model mappings. Default value is null.
-        /// </param>
-        public DialogService(IWindowViewModelMappings windowViewModelMappings = null)
+        public DialogService()
         {
-            this.windowViewModelMappings = windowViewModelMappings;
-
             views = new HashSet<FrameworkElement>();
         }
 
@@ -48,9 +44,9 @@ namespace MvvmDialogs
         }
         
         /// <summary>
-        /// Registers a View.
+        /// Registers a view.
         /// </summary>
-        /// <param name="view">The registered View.</param>
+        /// <param name="view">The registered view.</param>
         public void Register(FrameworkElement view)
         {
             if (view == null)
@@ -62,13 +58,13 @@ namespace MvvmDialogs
             Window owner = GetOwner(view);
             if (owner == null)
             {
-                // Perform a late register when the View hasn't been loaded yet.
-                // This will happen if e.g. the View is contained in a Frame.
+                // Perform a late register when the view hasn't been loaded yet.
+                // This will happen if e.g. the view is contained in a Frame.
                 view.Loaded += LateRegister;
                 return;
             }
 
-            // Register for owner window closing, since we then should unregister View reference,
+            // Register for owner window closing, since we then should unregister view reference,
             // preventing memory leaks
             owner.Closed += OwnerClosed;
 
@@ -76,9 +72,9 @@ namespace MvvmDialogs
         }
         
         /// <summary>
-        /// Unregisters a View.
+        /// Unregisters a view.
         /// </summary>
-        /// <param name="view">The unregistered View.</param>
+        /// <param name="view">The unregistered view.</param>
         public void Unregister(FrameworkElement view)
         {
             if (view == null)
@@ -88,33 +84,9 @@ namespace MvvmDialogs
             
             views.Remove(view);
         }
-        
-        /// <summary>
-        /// Shows a dialog.
-        /// </summary>
-        /// <remarks>
-        /// The dialog used to represent the view model is retrieved from the registered mappings.
-        /// </remarks>
-        /// <param name="ownerViewModel">
-        /// A view model that represents the owner window of the dialog.
-        /// </param>
-        /// <param name="viewModel">The view model of the new dialog.</param>
-        /// <returns>
-        /// A nullable value of type bool that signifies how a window was closed by the user.
-        /// </returns>
-        public bool? ShowDialog(object ownerViewModel, object viewModel)
-        {
-            if (ownerViewModel == null)
-                throw new ArgumentNullException("ownerViewModel");
-            if (viewModel == null)
-                throw new ArgumentNullException("viewModel");
-
-            Type dialogType = windowViewModelMappings.GetWindowTypeFromViewModelType(viewModel.GetType());
-            return ShowDialog(ownerViewModel, viewModel, dialogType);
-        }
 
         /// <summary>
-        /// Shows a dialog.
+        /// Shows a dialog of specified type <typeparamref name="T"/>.
         /// </summary>
         /// <param name="ownerViewModel">
         /// A view model that represents the owner window of the dialog.
@@ -122,9 +94,13 @@ namespace MvvmDialogs
         /// <param name="viewModel">The view model of the new dialog.</param>
         /// <typeparam name="T">The type of the dialog to show.</typeparam>
         /// <returns>
-        /// A nullable value of type bool that signifies how a window was closed by the user.
+        /// A nullable value of type <see cref="bool"/> that signifies how a window was closed by
+        /// the user.
         /// </returns>
-        public bool? ShowDialog<T>(object ownerViewModel, object viewModel) where T : Window
+        public bool? ShowDialog<T>(
+            INotifyPropertyChanged ownerViewModel,
+            INotifyPropertyChanged viewModel)
+            where T : Window
         {
             if (ownerViewModel == null)
                 throw new ArgumentNullException("ownerViewModel");
@@ -135,7 +111,7 @@ namespace MvvmDialogs
         }
 
         /// <summary>
-        /// Shows a message box.
+        /// Shows a <see cref="MessageBox"/>.
         /// </summary>
         /// <param name="ownerViewModel">
         /// A view model that represents the owner window of the message box.
@@ -143,14 +119,18 @@ namespace MvvmDialogs
         /// <param name="messageBoxText">A string that specifies the text to display.</param>
         /// <param name="caption">A string that specifies the title bar caption to display.</param>
         /// <param name="button">
-        /// A MessageBoxButton value that specifies which button or buttons to display.
+        /// A <see cref="MessageBoxButton"/> value that specifies which button or buttons to
+        /// display.
         /// </param>
-        /// <param name="icon">A MessageBoxImage value that specifies the icon to display.</param>
+        /// <param name="icon">
+        /// A <see cref="MessageBoxImage"/> value that specifies the icon to display.
+        /// </param>
         /// <returns>
-        /// A MessageBoxResult value that specifies which message box button is clicked by the user.
+        /// A <see cref="MessageBoxResult"/> value that specifies which message box button is
+        /// clicked by the user.
         /// </returns>
         public MessageBoxResult ShowMessageBox(
-            object ownerViewModel,
+            INotifyPropertyChanged ownerViewModel,
             string messageBoxText,
             string caption,
             MessageBoxButton button,
@@ -163,15 +143,18 @@ namespace MvvmDialogs
         }
 
         /// <summary>
-        /// Shows the <see cref="System.Windows.Forms.OpenFileDialog"/>.
+        /// Shows the <see cref="OpenFileDialog"/>.
         /// </summary>
         /// <param name="ownerViewModel">
         /// A view model that represents the owner window of the dialog.
         /// </param>
-        /// <param name="openFileDialogViewModel">The interface of a open file dialog.</param>
-        /// <returns>DialogResult.OK if successful; otherwise DialogResult.Cancel.</returns>
+        /// <param name="openFileDialogViewModel">The view model of a open file dialog.</param>
+        /// <returns>
+        /// <see cref="DialogResult.OK"/> if successful; otherwise
+        /// <see cref="DialogResult.Cancel"/>.
+        /// </returns>
         public DialogResult ShowOpenFileDialog(
-            object ownerViewModel,
+            INotifyPropertyChanged ownerViewModel,
             IOpenFileDialogViewModel openFileDialogViewModel)
         {
             if (ownerViewModel == null)
@@ -187,18 +170,18 @@ namespace MvvmDialogs
         }
 
         /// <summary>
-        /// Shows the SaveFileDialog.
+        /// Shows the <see cref="SaveFileDialog"/>.
         /// </summary>
         /// <param name="ownerViewModel">
         /// A view model that represents the owner window of the dialog.
         /// </param>
-        /// <param name="saveFileDialogViewModel"></param>
+        /// <param name="saveFileDialogViewModel">The view model of a save file dialog.</param>
         /// <returns>
-        /// DialogResult.OK if successful; otherwise DialogResult.Cancel.
+        /// <see cref="DialogResult.OK"/> if successful; otherwise
+        /// <see cref="DialogResult.Cancel"/>.
         /// </returns>
-        /// <exception cref="NotImplementedException"></exception>
         public DialogResult ShowSaveFileDialog(
-            object ownerViewModel,
+            INotifyPropertyChanged ownerViewModel,
             ISaveFileDialogViewModel saveFileDialogViewModel)
         {
             if (ownerViewModel == null)
@@ -214,15 +197,20 @@ namespace MvvmDialogs
         }
 
         /// <summary>
-        /// Shows the FolderBrowserDialog.
+        /// Shows the <see cref="FolderBrowserDialog"/>.
         /// </summary>
         /// <param name="ownerViewModel">
         /// A view model that represents the owner window of the dialog.
         /// </param>
-        /// <param name="folderBrowserDialogViewModel">The interface of a folder browser dialog.</param>
-        /// <returns>The DialogResult.OK if successful; otherwise DialogResult.Cancel.</returns>
+        /// <param name="folderBrowserDialogViewModel">
+        /// The view model of a folder browser dialog.
+        /// </param>
+        /// <returns>
+        /// <see cref="DialogResult.OK"/> if successful; otherwise
+        /// <see cref="DialogResult.Cancel"/>.
+        /// </returns>
         public DialogResult ShowFolderBrowserDialog(
-            object ownerViewModel,
+            INotifyPropertyChanged ownerViewModel,
             IFolderBrowserDialogViewModel folderBrowserDialogViewModel)
         {
             if (ownerViewModel == null)
@@ -242,7 +230,7 @@ namespace MvvmDialogs
         #region Attached properties
 
         /// <summary>
-        /// Attached property describing whether a FrameworkElement is acting as a View in MVVM.
+        /// Attached property describing whether a FrameworkElement is acting as a view in MVVM.
         /// </summary>
         public static readonly DependencyProperty IsRegisteredViewProperty =
             DependencyProperty.RegisterAttached(
@@ -253,7 +241,7 @@ namespace MvvmDialogs
 
 
         /// <summary>
-        /// Gets value describing whether FrameworkElement is acting as View in MVVM.
+        /// Gets value describing whether FrameworkElement is acting as view in MVVM.
         /// </summary>
         public static bool GetIsRegisteredView(FrameworkElement target)
         {
@@ -261,7 +249,7 @@ namespace MvvmDialogs
         }
 
         /// <summary>
-        /// Sets value describing whether FrameworkElement is acting as View in MVVM.
+        /// Sets value describing whether FrameworkElement is acting as view in MVVM.
         /// </summary>
         public static void SetIsRegisteredView(FrameworkElement target, bool value)
         {
@@ -270,7 +258,7 @@ namespace MvvmDialogs
 
         /// <summary>
         /// Is responsible for handling IsRegisteredViewProperty changes, i.e. whether
-        /// FrameworkElement is acting as View in MVVM or not.
+        /// FrameworkElement is acting as view in MVVM or not.
         /// </summary>
         private static void IsRegisteredViewPropertyChanged(
             DependencyObject target,
@@ -333,7 +321,7 @@ namespace MvvmDialogs
             FrameworkElement view = views.SingleOrDefault(v => ReferenceEquals(v.DataContext, viewModel));
             if (view == null)
             {
-                throw new ArgumentException("Viewmodel is not referenced by any registered View.");
+                throw new ArgumentException("Viewmodel is not referenced by any registered view.");
             }
 
             // Get owner window
@@ -353,8 +341,8 @@ namespace MvvmDialogs
         }
 
         /// <summary>
-        /// Callback for late View register. It wasn't possible to do a instant register since the
-        /// View wasn't at that point part of the logical nor visual tree.
+        /// Callback for late view register. It wasn't possible to do a instant register since the
+        /// view wasn't at that point part of the logical nor visual tree.
         /// </summary>
         private void LateRegister(object sender, RoutedEventArgs e)
         {
@@ -370,7 +358,7 @@ namespace MvvmDialogs
         }
 
         /// <summary>
-        /// Handles owner window closed, View service should then unregister all Views acting
+        /// Handles owner window closed, view service should then unregister all Views acting
         /// within the closed window.
         /// </summary>
         private void OwnerClosed(object sender, EventArgs e)
