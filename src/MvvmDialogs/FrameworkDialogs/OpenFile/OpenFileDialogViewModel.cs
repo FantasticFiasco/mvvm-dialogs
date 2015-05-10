@@ -1,7 +1,7 @@
 ﻿namespace MvvmDialogs.FrameworkDialogs.OpenFile
 {
     /// <summary>
-    /// ViewModel of the OpenFileDialog.
+    /// view model of the OpenFileDialog.
     /// </summary>
     public class OpenFileDialogViewModel : FileDialogViewModel, IOpenFileDialog
     {

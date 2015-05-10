@@ -1,7 +1,7 @@
 ﻿namespace MvvmDialogs.FrameworkDialogs
 {
     /// <summary>
-    /// ViewModel of the abstract FileDialog.
+    /// view model of the abstract FileDialog.
     /// </summary>
     public abstract class FileDialogViewModel : IFileDialog
     {

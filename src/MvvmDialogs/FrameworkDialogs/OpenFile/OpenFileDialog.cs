@@ -55,7 +55,7 @@ namespace MvvmDialogs.FrameworkDialogs.OpenFile
 
             DialogResult result = concreteOpenFileDialog.ShowDialog(owner);
 
-            // Update ViewModel
+            // Update view model
             openFileDialog.FileName = concreteOpenFileDialog.FileName;
             openFileDialog.FileNames = concreteOpenFileDialog.FileNames;
 

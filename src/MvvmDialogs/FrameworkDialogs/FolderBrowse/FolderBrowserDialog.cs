@@ -6,7 +6,7 @@ using WinFormsFolderBrowserDialog = System.Windows.Forms.FolderBrowserDialog;
 namespace MvvmDialogs.FrameworkDialogs.FolderBrowse
 {
     /// <summary>
-    /// Class wrapping System.Windows.Forms.FolderBrowserDialog, making it accept a ViewModel.
+    /// Class wrapping System.Windows.Forms.FolderBrowserDialog, making it accept a view model.
     /// </summary>
     public class FolderBrowserDialog : IDisposable
     {
@@ -49,7 +49,7 @@ namespace MvvmDialogs.FrameworkDialogs.FolderBrowse
 
             DialogResult result = concreteFolderBrowserDialog.ShowDialog(owner);
 
-            // Update ViewModel
+            // Update view model
             folderBrowserDialog.SelectedPath = concreteFolderBrowserDialog.SelectedPath;
 
             return result;

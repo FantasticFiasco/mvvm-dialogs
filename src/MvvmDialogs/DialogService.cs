@@ -13,7 +13,7 @@ using DialogResult = System.Windows.Forms.DialogResult;
 namespace MvvmDialogs
 {
     /// <summary>
-    /// Class responsible for abstracting ViewModels from Views.
+    /// Class responsible for abstracting view models from Views.
     /// </summary>
     public class DialogService : IDialogService
     {
@@ -24,7 +24,7 @@ namespace MvvmDialogs
         /// Initializes a new instance of the <see cref="DialogService"/> class.
         /// </summary>
         /// <param name="windowViewModelMappings">
-        /// The window ViewModel mappings. Default value is null.
+        /// The window view model mappings. Default value is null.
         /// </param>
         public DialogService(IWindowViewModelMappings windowViewModelMappings = null)
         {
@@ -79,12 +79,12 @@ namespace MvvmDialogs
         /// Shows a dialog.
         /// </summary>
         /// <remarks>
-        /// The dialog used to represent the ViewModel is retrieved from the registered mappings.
+        /// The dialog used to represent the view model is retrieved from the registered mappings.
         /// </remarks>
         /// <param name="ownerViewModel">
-        /// A ViewModel that represents the owner window of the dialog.
+        /// A view model that represents the owner window of the dialog.
         /// </param>
-        /// <param name="viewModel">The ViewModel of the new dialog.</param>
+        /// <param name="viewModel">The view model of the new dialog.</param>
         /// <returns>
         /// A nullable value of type bool that signifies how a window was closed by the user.
         /// </returns>
@@ -98,9 +98,9 @@ namespace MvvmDialogs
         /// Shows a dialog.
         /// </summary>
         /// <param name="ownerViewModel">
-        /// A ViewModel that represents the owner window of the dialog.
+        /// A view model that represents the owner window of the dialog.
         /// </param>
-        /// <param name="viewModel">The ViewModel of the new dialog.</param>
+        /// <param name="viewModel">The view model of the new dialog.</param>
         /// <typeparam name="T">The type of the dialog to show.</typeparam>
         /// <returns>
         /// A nullable value of type bool that signifies how a window was closed by the user.
@@ -114,7 +114,7 @@ namespace MvvmDialogs
         /// Shows a message box.
         /// </summary>
         /// <param name="ownerViewModel">
-        /// A ViewModel that represents the owner window of the message box.
+        /// A view model that represents the owner window of the message box.
         /// </param>
         /// <param name="messageBoxText">A string that specifies the text to display.</param>
         /// <param name="caption">A string that specifies the title bar caption to display.</param>
@@ -139,13 +139,13 @@ namespace MvvmDialogs
         /// Shows the OpenFileDialog.
         /// </summary>
         /// <param name="ownerViewModel">
-        /// A ViewModel that represents the owner window of the dialog.
+        /// A view model that represents the owner window of the dialog.
         /// </param>
         /// <param name="openFileDialog">The interface of a open file dialog.</param>
         /// <returns>DialogResult.OK if successful; otherwise DialogResult.Cancel.</returns>
         public DialogResult ShowOpenFileDialog(object ownerViewModel, IOpenFileDialog openFileDialog)
         {
-            // Create OpenFileDialog with specified ViewModel
+            // Create OpenFileDialog with specified view model
             OpenFileDialog dialog = new OpenFileDialog(openFileDialog);
 
             // Show dialog
@@ -156,13 +156,13 @@ namespace MvvmDialogs
         /// Shows the FolderBrowserDialog.
         /// </summary>
         /// <param name="ownerViewModel">
-        /// A ViewModel that represents the owner window of the dialog.
+        /// A view model that represents the owner window of the dialog.
         /// </param>
         /// <param name="folderBrowserDialog">The interface of a folder browser dialog.</param>
         /// <returns>The DialogResult.OK if successful; otherwise DialogResult.Cancel.</returns>
         public DialogResult ShowFolderBrowserDialog(object ownerViewModel, IFolderBrowserDialog folderBrowserDialog)
         {
-            // Create FolderBrowserDialog with specified ViewModel
+            // Create FolderBrowserDialog with specified view model
             FolderBrowserDialog dialog = new FolderBrowserDialog(folderBrowserDialog);
 
             // Show dialog
@@ -239,9 +239,9 @@ namespace MvvmDialogs
         /// Shows a dialog.
         /// </summary>
         /// <param name="ownerViewModel">
-        /// A ViewModel that represents the owner window of the dialog.
+        /// A view model that represents the owner window of the dialog.
         /// </param>
-        /// <param name="viewModel">The ViewModel of the new dialog.</param>
+        /// <param name="viewModel">The view model of the new dialog.</param>
         /// <param name="dialogType">The type of the dialog.</param>
         /// <returns>
         /// A nullable value of type bool that signifies how a window was closed by the user.
@@ -258,7 +258,7 @@ namespace MvvmDialogs
         }
 
         /// <summary>
-        /// Finds window corresponding to specified ViewModel.
+        /// Finds window corresponding to specified view model.
         /// </summary>
         private Window FindOwnerWindow(object viewModel)
         {

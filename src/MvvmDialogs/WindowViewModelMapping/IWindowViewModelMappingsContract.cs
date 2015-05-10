@@ -8,11 +8,11 @@ namespace MvvmDialogs.WindowViewModelMapping
     internal abstract class IWindowViewModelMappingsContract : IWindowViewModelMappings
     {
         /// <summary>
-        /// Gets the window type based on registered ViewModel type.
+        /// Gets the window type based on registered view model type.
         /// </summary>
-        /// <param name="viewModelType">The type of the ViewModel.</param>
+        /// <param name="viewModelType">The type of the view model.</param>
         /// <returns>
-        /// The window type based on registered ViewModel type.
+        /// The window type based on registered view model type.
         /// </returns>
         public Type GetWindowTypeFromViewModelType(Type viewModelType)
         {
