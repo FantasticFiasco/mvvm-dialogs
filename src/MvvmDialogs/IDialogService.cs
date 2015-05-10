@@ -1,5 +1,4 @@
-﻿using System.Collections.ObjectModel;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Windows;
 using MvvmDialogs.FrameworkDialogs.FolderBrowser;
 using MvvmDialogs.FrameworkDialogs.OpenFile;
@@ -18,24 +17,7 @@ namespace MvvmDialogs
     public interface IDialogService
     {
         /// <summary>
-        /// Gets the registered views.
-        /// </summary>
-        ReadOnlyCollection<FrameworkElement> Views { get; }
-        
-        /// <summary>
-        /// Registers a view.
-        /// </summary>
-        /// <param name="view">The view to register.</param>
-        void Register(FrameworkElement view);
-        
-        /// <summary>
-        /// Unregisters a view.
-        /// </summary>
-        /// <param name="view">The view to unregister.</param>
-        void Unregister(FrameworkElement view);
-        
-        /// <summary>
-        /// Shows a dialog of specified type <typeparamref name="T"/>.
+        /// Displays a dialog of specified type <typeparamref name="T"/>.
         /// </summary>
         /// <param name="ownerViewModel">
         /// A view model that represents the owner window of the dialog.
@@ -50,15 +32,86 @@ namespace MvvmDialogs
             INotifyPropertyChanged ownerViewModel,
             INotifyPropertyChanged viewModel)
             where T : Window;
-        
+
         /// <summary>
-        /// Shows a <see cref="MessageBox"/>.
+        /// Displays a message box that has a message and that returns a result.
         /// </summary>
         /// <param name="ownerViewModel">
-        /// A view model that represents the owner window of the message box.
+        /// A view model that represents the owner window of the dialog.
         /// </param>
-        /// <param name="messageBoxText">A string that specifies the text to display.</param>
-        /// <param name="caption">A string that specifies the title bar caption to display.</param>
+        /// <param name="messageBoxText">
+        /// A <see cref="string"/> that specifies the text to display.
+        /// </param>
+        /// <returns>
+        /// A <see cref="MessageBoxResult"/> value that specifies which message box button is
+        /// clicked by the user.
+        /// </returns>
+        MessageBoxResult ShowMessageBox(
+            INotifyPropertyChanged ownerViewModel,
+            string messageBoxText);
+
+        /// <summary>
+        /// Displays a message box that has a message and title bar caption; and that returns a
+        /// result.
+        /// </summary>
+        /// <param name="ownerViewModel">
+        /// A view model that represents the owner window of the dialog.
+        /// </param>
+        /// <param name="messageBoxText">
+        /// A <see cref="string"/> that specifies the text to display.
+        /// </param>
+        /// <param name="caption">
+        /// A <see cref="string"/> that specifies the title bar caption to display.
+        /// </param>
+        /// <returns>
+        /// A <see cref="MessageBoxResult"/> value that specifies which message box button is
+        /// clicked by the user.
+        /// </returns>
+        MessageBoxResult ShowMessageBox(
+            INotifyPropertyChanged ownerViewModel,
+            string messageBoxText,
+            string caption);
+
+        /// <summary>
+        /// Displays a message box that has a message, title bar caption, and button; and that
+        /// returns a result.
+        /// </summary>
+        /// <param name="ownerViewModel">
+        /// A view model that represents the owner window of the dialog.
+        /// </param>
+        /// <param name="messageBoxText">
+        /// A <see cref="string"/> that specifies the text to display.
+        /// </param>
+        /// <param name="caption">
+        /// A <see cref="string"/> that specifies the title bar caption to display.
+        /// </param>
+        /// <param name="button">
+        /// A <see cref="MessageBoxButton"/> value that specifies which button or buttons to
+        /// display.
+        /// </param>
+        /// <returns>
+        /// A <see cref="MessageBoxResult"/> value that specifies which message box button is
+        /// clicked by the user.
+        /// </returns>
+        MessageBoxResult ShowMessageBox(
+            INotifyPropertyChanged ownerViewModel,
+            string messageBoxText,
+            string caption,
+            MessageBoxButton button);
+        
+        /// <summary>
+        /// Displays a message box that has a message, title bar caption, button, and icon; and
+        /// that returns a result.
+        /// </summary>
+        /// <param name="ownerViewModel">
+        /// A view model that represents the owner window of the dialog.
+        /// </param>
+        /// <param name="messageBoxText">
+        /// A <see cref="string"/> that specifies the text to display.
+        /// </param>
+        /// <param name="caption">
+        /// A <see cref="string"/> that specifies the title bar caption to display.
+        /// </param>
         /// <param name="button">
         /// A <see cref="MessageBoxButton"/> value that specifies which button or buttons to
         /// display.
@@ -76,9 +129,45 @@ namespace MvvmDialogs
             string caption,
             MessageBoxButton button,
             MessageBoxImage icon);
+
+        /// <summary>
+        /// Displays a message box that has a message, title bar caption, button, and icon; and
+        /// that accepts a default message box result and returns a result.
+        /// </summary>
+        /// <param name="ownerViewModel">
+        /// A view model that represents the owner window of the dialog.
+        /// </param>
+        /// <param name="messageBoxText">
+        /// A <see cref="string"/> that specifies the text to display.
+        /// </param>
+        /// <param name="caption">
+        /// A <see cref="string"/> that specifies the title bar caption to display.
+        /// </param>
+        /// <param name="button">
+        /// A <see cref="MessageBoxButton"/> value that specifies which button or buttons to
+        /// display.
+        /// </param>
+        /// <param name="icon">
+        /// A <see cref="MessageBoxImage"/> value that specifies the icon to display.
+        /// </param>
+        /// <param name="defaultResult">
+        /// A <see cref="MessageBoxResult"/> value that specifies the default result of the
+        /// message box.
+        /// </param>
+        /// <returns>
+        /// A <see cref="MessageBoxResult"/> value that specifies which message box button is
+        /// clicked by the user.
+        /// </returns>
+        MessageBoxResult ShowMessageBox(
+            INotifyPropertyChanged ownerViewModel,
+            string messageBoxText,
+            string caption,
+            MessageBoxButton button,
+            MessageBoxImage icon,
+            MessageBoxResult defaultResult);
         
         /// <summary>
-        /// Shows the <see cref="OpenFileDialog"/>.
+        /// Displays the <see cref="OpenFileDialog"/>.
         /// </summary>
         /// <param name="ownerViewModel">
         /// A view model that represents the owner window of the dialog.
@@ -93,7 +182,7 @@ namespace MvvmDialogs
             OpenFileDialogViewModel openFileDialogViewModel);
 
         /// <summary>
-        /// Shows the <see cref="SaveFileDialog"/>.
+        /// Displays the <see cref="SaveFileDialog"/>.
         /// </summary>
         /// <param name="ownerViewModel">
         /// A view model that represents the owner window of the dialog.
@@ -108,7 +197,7 @@ namespace MvvmDialogs
             SaveFileDialogViewModel saveFileDialogViewModel);
         
         /// <summary>
-        /// Shows the <see cref="FolderBrowserDialog"/>.
+        /// Displays the <see cref="FolderBrowserDialog"/>.
         /// </summary>
         /// <param name="ownerViewModel">
         /// A view model that represents the owner window of the dialog.

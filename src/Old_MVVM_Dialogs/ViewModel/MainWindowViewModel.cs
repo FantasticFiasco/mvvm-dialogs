@@ -24,7 +24,6 @@ namespace MVVM_Dialogs.ViewModel
     {
         private readonly IDialogService dialogService;
         private readonly IPersonService personService;
-        private readonly Func<OpenFileDialogViewModel> openFileDialogFactory;
         private readonly ObservableCollection<PersonViewModel> persons;
         
         /// <summary>
@@ -33,8 +32,7 @@ namespace MVVM_Dialogs.ViewModel
         public MainWindowViewModel()
             : this(
                 ServiceLocator.Resolve<IDialogService>(),
-                ServiceLocator.Resolve<IPersonService>(),
-                () => ServiceLocator.Resolve<OpenFileDialogViewModel>())
+                ServiceLocator.Resolve<IPersonService>())
         {
         }
 
@@ -43,19 +41,15 @@ namespace MVVM_Dialogs.ViewModel
         /// </summary>
         /// <param name="dialogService">The dialog service.</param>
         /// <param name="personService">The person service.</param>
-        /// <param name="openFileDialogFactory">The open file dialog factory.</param>
         public MainWindowViewModel(
             IDialogService dialogService,
-            IPersonService personService,
-            Func<OpenFileDialogViewModel> openFileDialogFactory)
+            IPersonService personService)
         {
             Contract.Requires(dialogService != null);
             Contract.Requires(personService != null);
-            Contract.Requires(openFileDialogFactory != null);
 
             this.dialogService = dialogService;
             this.personService = personService;
-            this.openFileDialogFactory = openFileDialogFactory;
             persons = new ObservableCollection<PersonViewModel>();
 
             LoadPersonsCommand = new RelayCommand(LoadPersons, CanLoadPersons);
@@ -110,7 +104,7 @@ namespace MVVM_Dialogs.ViewModel
         private void LoadPersons(object o)
         {
             // Let factory create the IOpenFileDialogViewModel
-            OpenFileDialogViewModel openFileDialogViewModel = openFileDialogFactory();
+            var openFileDialogViewModel = new OpenFileDialogViewModel();
             openFileDialogViewModel.FileName = "LoadMe.xml";
             openFileDialogViewModel.Filter = Resources.MainWindowViewModel_LoadPersonsFilter;
             openFileDialogViewModel.InitialDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);

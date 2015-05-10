@@ -62,6 +62,7 @@
       <Link>Properties\SolutionInfo.cs</Link>
     </Compile>
     <Compile Include="DialogService.cs" />
+    <Compile Include="DialogServiceBehaviors.cs" />
     <Compile Include="Extensions\System\StringExtensions.cs" />
     <Compile Include="FrameworkDialogs\FileDialogViewModel.cs" />
     <Compile Include="FrameworkDialogs\FolderBrowser\FolderBrowserDialogWrapper.cs" />

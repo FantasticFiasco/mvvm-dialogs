@@ -55,8 +55,7 @@ namespace MVVM_DialogsTest.ViewModel
         {
             viewModel = new MainWindowViewModel(
                 dialogServiceMock.Object,
-                personServiceMock.Object,
-                () => openFileDialog);
+                personServiceMock.Object);
         }
         
         [Test]

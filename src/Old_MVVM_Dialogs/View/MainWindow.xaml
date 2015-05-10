@@ -5,7 +5,7 @@
     xmlns:Service="clr-namespace:MvvmDialogs;assembly=MvvmDialogs"
     Title="MVVM Dialog Example"
     WindowStartupLocation="CenterScreen"
-    Service:DialogService.IsRegisteredView="True"
+    Service:DialogServiceBehaviors.IsRegisteredView="True"
     Height="300"
     Width="400">
     
