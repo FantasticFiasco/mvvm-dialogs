@@ -2,7 +2,7 @@
 using System.Diagnostics.Contracts;
 using System.Windows;
 using System.Windows.Forms;
-using MvvmDialogs.FrameworkDialogs.FolderBrowse;
+using MvvmDialogs.FrameworkDialogs.FolderBrowser;
 using MvvmDialogs.FrameworkDialogs.OpenFile;
 
 namespace MvvmDialogs
@@ -86,9 +86,9 @@ namespace MvvmDialogs
         /// <param name="ownerViewModel">
         /// A view model that represents the owner window of the dialog.
         /// </param>
-        /// <param name="openFileDialog">The interface of a open file dialog.</param>
+        /// <param name="openFileDialogViewModel">The interface of a open file dialog.</param>
         /// <returns>DialogResult.OK if successful; otherwise DialogResult.Cancel.</returns>
-        DialogResult ShowOpenFileDialog(object ownerViewModel, IOpenFileDialog openFileDialog);
+        DialogResult ShowOpenFileDialog(object ownerViewModel, IOpenFileDialogViewModel openFileDialogViewModel);
         
         /// <summary>
         /// Shows the FolderBrowserDialog.
@@ -96,8 +96,8 @@ namespace MvvmDialogs
         /// <param name="ownerViewModel">
         /// A view model that represents the owner window of the dialog.
         /// </param>
-        /// <param name="folderBrowserDialog">The interface of a folder browser dialog.</param>
+        /// <param name="folderBrowserDialogViewModel">The interface of a folder browser dialog.</param>
         /// <returns>The DialogResult.OK if successful; otherwise DialogResult.Cancel.</returns>
-        DialogResult ShowFolderBrowserDialog(object ownerViewModel, IFolderBrowserDialog folderBrowserDialog);
+        DialogResult ShowFolderBrowserDialog(object ownerViewModel, IFolderBrowserDialogViewModel folderBrowserDialogViewModel);
     }
 }

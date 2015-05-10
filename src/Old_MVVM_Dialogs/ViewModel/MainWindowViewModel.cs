@@ -24,7 +24,7 @@ namespace MVVM_Dialogs.ViewModel
     {
         private readonly IDialogService dialogService;
         private readonly IPersonService personService;
-        private readonly Func<IOpenFileDialog> openFileDialogFactory;
+        private readonly Func<IOpenFileDialogViewModel> openFileDialogFactory;
         private readonly ObservableCollection<PersonViewModel> persons;
         
         /// <summary>
@@ -34,7 +34,7 @@ namespace MVVM_Dialogs.ViewModel
             : this(
                 ServiceLocator.Resolve<IDialogService>(),
                 ServiceLocator.Resolve<IPersonService>(),
-                () => ServiceLocator.Resolve<IOpenFileDialog>())
+                () => ServiceLocator.Resolve<IOpenFileDialogViewModel>())
         {
         }
 
@@ -47,7 +47,7 @@ namespace MVVM_Dialogs.ViewModel
         public MainWindowViewModel(
             IDialogService dialogService,
             IPersonService personService,
-            Func<IOpenFileDialog> openFileDialogFactory)
+            Func<IOpenFileDialogViewModel> openFileDialogFactory)
         {
             Contract.Requires(dialogService != null);
             Contract.Requires(personService != null);
@@ -109,20 +109,20 @@ namespace MVVM_Dialogs.ViewModel
         /// </summary>
         private void LoadPersons(object o)
         {
-            // Let factory create the IOpenFileDialog
-            IOpenFileDialog openFileDialog = openFileDialogFactory();
-            openFileDialog.FileName = "LoadMe.xml";
-            openFileDialog.Filter = Resources.MainWindowViewModel_LoadPersonsFilter;
-            openFileDialog.InitialDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-            openFileDialog.Title = Resources.MainWindowViewModel_LoadPersonsTitle;
+            // Let factory create the IOpenFileDialogViewModel
+            IOpenFileDialogViewModel openFileDialogViewModel = openFileDialogFactory();
+            openFileDialogViewModel.FileName = "LoadMe.xml";
+            openFileDialogViewModel.Filter = Resources.MainWindowViewModel_LoadPersonsFilter;
+            openFileDialogViewModel.InitialDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+            openFileDialogViewModel.Title = Resources.MainWindowViewModel_LoadPersonsTitle;
 
             // Open the dialog
-            DialogResult result = dialogService.ShowOpenFileDialog(this, openFileDialog);
+            DialogResult result = dialogService.ShowOpenFileDialog(this, openFileDialogViewModel);
             if (result == DialogResult.OK)
             {
                 // Load the persons, usually one investigates whether the file was loaded successfully,
                 // but this is only a sample
-                foreach (Person person in personService.Load(openFileDialog.FileName))
+                foreach (Person person in personService.Load(openFileDialogViewModel.FileName))
                 {
                     persons.Add(new PersonViewModel(person));
                 }

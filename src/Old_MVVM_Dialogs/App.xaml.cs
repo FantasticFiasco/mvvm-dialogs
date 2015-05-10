@@ -18,7 +18,7 @@ namespace MVVM_Dialogs
             ServiceLocator.RegisterSingleton<IDialogService, DialogService>();
             ServiceLocator.RegisterSingleton<IPersonService, PersonService>();
             ServiceLocator.RegisterSingleton<IWindowViewModelMappings, WindowViewModelMappings>();
-            ServiceLocator.Register<IOpenFileDialog, OpenFileDialogViewModel>();
+            ServiceLocator.Register<IOpenFileDialogViewModel, OpenFileDialogViewModel>();
 
             // Create and show main window
             View.MainWindow view = new View.MainWindow();

@@ -4,9 +4,11 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows;
-using MvvmDialogs.FrameworkDialogs;
-using MvvmDialogs.FrameworkDialogs.FolderBrowse;
+using MvvmDialogs.FrameworkDialogs.FolderBrowser;
+using MvvmDialogs.FrameworkDialogs.FolderBrowser.Internal;
+using MvvmDialogs.FrameworkDialogs.Internal;
 using MvvmDialogs.FrameworkDialogs.OpenFile;
+using MvvmDialogs.FrameworkDialogs.OpenFile.Internal;
 using MvvmDialogs.WindowViewModelMapping;
 using DialogResult = System.Windows.Forms.DialogResult;
 
@@ -141,12 +143,12 @@ namespace MvvmDialogs
         /// <param name="ownerViewModel">
         /// A view model that represents the owner window of the dialog.
         /// </param>
-        /// <param name="openFileDialog">The interface of a open file dialog.</param>
+        /// <param name="openFileDialogViewModel">The interface of a open file dialog.</param>
         /// <returns>DialogResult.OK if successful; otherwise DialogResult.Cancel.</returns>
-        public DialogResult ShowOpenFileDialog(object ownerViewModel, IOpenFileDialog openFileDialog)
+        public DialogResult ShowOpenFileDialog(object ownerViewModel, IOpenFileDialogViewModel openFileDialogViewModel)
         {
             // Create OpenFileDialog with specified view model
-            OpenFileDialog dialog = new OpenFileDialog(openFileDialog);
+            OpenFileDialogWrapper dialog = new OpenFileDialogWrapper(openFileDialogViewModel);
 
             // Show dialog
             return dialog.ShowDialog(new WindowWrapper(FindOwnerWindow(ownerViewModel)));
@@ -158,12 +160,12 @@ namespace MvvmDialogs
         /// <param name="ownerViewModel">
         /// A view model that represents the owner window of the dialog.
         /// </param>
-        /// <param name="folderBrowserDialog">The interface of a folder browser dialog.</param>
+        /// <param name="folderBrowserDialogViewModel">The interface of a folder browser dialog.</param>
         /// <returns>The DialogResult.OK if successful; otherwise DialogResult.Cancel.</returns>
-        public DialogResult ShowFolderBrowserDialog(object ownerViewModel, IFolderBrowserDialog folderBrowserDialog)
+        public DialogResult ShowFolderBrowserDialog(object ownerViewModel, IFolderBrowserDialogViewModel folderBrowserDialogViewModel)
         {
-            // Create FolderBrowserDialog with specified view model
-            FolderBrowserDialog dialog = new FolderBrowserDialog(folderBrowserDialog);
+            // Create FolderBrowserDialogWrapper with specified view model
+            FolderBrowserDialogWrapper dialog = new FolderBrowserDialogWrapper(folderBrowserDialogViewModel);
 
             // Show dialog
             return dialog.ShowDialog(new WindowWrapper(FindOwnerWindow(ownerViewModel)));

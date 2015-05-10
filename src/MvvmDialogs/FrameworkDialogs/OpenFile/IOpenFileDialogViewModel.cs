@@ -1,9 +1,11 @@
-﻿namespace MvvmDialogs.FrameworkDialogs.OpenFile
+﻿using System.Windows.Forms;
+
+namespace MvvmDialogs.FrameworkDialogs.OpenFile
 {
     /// <summary>
-    /// Interface describing the OpenFileDialog.
+    /// Interface of a view model describing the <see cref="OpenFileDialog"/>.
     /// </summary>
-    public interface IOpenFileDialog : IFileDialog
+    public interface IOpenFileDialogViewModel : IFileDialogViewModel
     {
         /// <summary>
         /// Gets or sets a value indicating whether the dialog box allows multiple files to be

@@ -63,14 +63,14 @@
     </Compile>
     <Compile Include="DialogService.cs" />
     <Compile Include="FrameworkDialogs\FileDialogViewModel.cs" />
-    <Compile Include="FrameworkDialogs\FolderBrowse\FolderBrowserDialog.cs" />
-    <Compile Include="FrameworkDialogs\FolderBrowse\FolderBrowserDialogViewModel.cs" />
-    <Compile Include="FrameworkDialogs\FolderBrowse\IFolderBrowserDialog.cs" />
-    <Compile Include="FrameworkDialogs\IFileDialog.cs" />
-    <Compile Include="FrameworkDialogs\OpenFile\IOpenFileDialog.cs" />
-    <Compile Include="FrameworkDialogs\OpenFile\OpenFileDialog.cs" />
+    <Compile Include="FrameworkDialogs\FolderBrowser\Internal\FolderBrowserDialogWrapper.cs" />
+    <Compile Include="FrameworkDialogs\FolderBrowser\FolderBrowserDialogViewModel.cs" />
+    <Compile Include="FrameworkDialogs\FolderBrowser\IFolderBrowserDialogViewModel.cs" />
+    <Compile Include="FrameworkDialogs\IFileDialogViewModel.cs" />
+    <Compile Include="FrameworkDialogs\OpenFile\IOpenFileDialogViewModel.cs" />
+    <Compile Include="FrameworkDialogs\OpenFile\Internal\OpenFileDialogWrapper.cs" />
     <Compile Include="FrameworkDialogs\OpenFile\OpenFileDialogViewModel.cs" />
-    <Compile Include="FrameworkDialogs\WindowWrapper.cs" />
+    <Compile Include="FrameworkDialogs\Internal\WindowWrapper.cs" />
     <Compile Include="IDialogService.cs" />
     <Compile Include="IDialogServiceContract.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

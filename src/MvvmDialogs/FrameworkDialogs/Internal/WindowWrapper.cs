@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Windows;
-using System.Windows.Forms;
-using WindowInteropHelper = System.Windows.Interop.WindowInteropHelper;
+using System.Windows.Interop;
+using IWin32Window = System.Windows.Forms.IWin32Window;
 
-namespace MvvmDialogs.FrameworkDialogs
+namespace MvvmDialogs.FrameworkDialogs.Internal
 {
     /// <summary>
-    /// WindowWrapper is an IWin32Window wrapper around a WPF window.
+    /// Class describing a <see cref="IWin32Window"/> wrapper around a WPF window.
     /// </summary>
     internal class WindowWrapper : IWin32Window
     {

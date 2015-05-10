@@ -1,13 +1,15 @@
-﻿namespace MvvmDialogs.FrameworkDialogs
+﻿using System.Windows.Forms;
+
+namespace MvvmDialogs.FrameworkDialogs
 {
     /// <summary>
-    /// Interface describing the FileDialog.
+    /// Interface of a view model describing the <see cref="FileDialog"/>.
     /// </summary>
-    public interface IFileDialog
+    public interface IFileDialogViewModel
     {
         /// <summary>
-        /// Gets or sets a value indicating whether the dialog box automatically adds an extension to a
-        /// file name if the user omits the extension.
+        /// Gets or sets a value indicating whether the dialog box automatically adds an extension
+        /// to a file name if the user omits the extension.
         /// </summary>
         bool AddExtension { get; set; }
 
@@ -39,8 +41,8 @@
         string[] FileNames { get; set; }
 
         /// <summary>
-        /// Gets or sets the current file name filter string, which determines the choices that appear
-        /// in the "Save as file type" or "Files of type" box in the dialog box.
+        /// Gets or sets the current file name filter string, which determines the choices that
+        /// appear in the "Save as file type" or "Files of type" box in the dialog box.
         /// </summary>
         string Filter { get; set; }
 

@@ -17,7 +17,7 @@ namespace MVVM_DialogsTest.ViewModel
         private MainWindowViewModel viewModel;
         private Mock<IDialogService> dialogServiceMock;
         private Mock<IPersonService> personServiceMock;
-        private Mock<IOpenFileDialog> openFileDialogMock;
+        private Mock<IOpenFileDialogViewModel> openFileDialogMock;
         private Person person1;
         private Person person2;
         
@@ -36,7 +36,7 @@ namespace MVVM_DialogsTest.ViewModel
             };
 
             dialogServiceMock = new Mock<IDialogService>();
-            openFileDialogMock = new Mock<IOpenFileDialog>();
+            openFileDialogMock = new Mock<IOpenFileDialogViewModel>();
             personServiceMock = new Mock<IPersonService>();
             personServiceMock
                 .Setup(m => m.Load(It.IsAny<string>()))
@@ -66,7 +66,7 @@ namespace MVVM_DialogsTest.ViewModel
 
             // Load persons but cancel
             dialogServiceMock
-                .Setup(m => m.ShowOpenFileDialog(viewModel, It.IsAny<IOpenFileDialog>()))
+                .Setup(m => m.ShowOpenFileDialog(viewModel, It.IsAny<IOpenFileDialogViewModel>()))
                 .Returns(DialogResult.Cancel);
             viewModel.LoadPersonsCommand.Execute(null);
             Assert.That(viewModel.LoadPersonsCommand.CanExecute(null), Is.True);
@@ -188,7 +188,7 @@ namespace MVVM_DialogsTest.ViewModel
         {
             // Simulte loading persons
             dialogServiceMock
-                .Setup(m => m.ShowOpenFileDialog(viewModel, It.IsAny<IOpenFileDialog>()))
+                .Setup(m => m.ShowOpenFileDialog(viewModel, It.IsAny<IOpenFileDialogViewModel>()))
                 .Returns(DialogResult.OK);
             viewModel.LoadPersonsCommand.Execute(null);
         }

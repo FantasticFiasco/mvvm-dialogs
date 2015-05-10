@@ -1,33 +1,31 @@
-﻿namespace MvvmDialogs.FrameworkDialogs
+﻿using System.Windows.Forms;
+
+namespace MvvmDialogs.FrameworkDialogs
 {
     /// <summary>
-    /// view model of the abstract FileDialog.
+    /// View model describing the <see cref="FileDialog"/>.
     /// </summary>
-    public abstract class FileDialogViewModel : IFileDialog
+    public abstract class FileDialogViewModel : IFileDialogViewModel
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="FileDialogViewModel"/> class.
         /// </summary>
-        public FileDialogViewModel()
+        protected FileDialogViewModel()
         {
-            // Set default values
             AddExtension = true;
             CheckFileExists = true;
             CheckPathExists = true;
             DefaultExt = string.Empty;
             FileName = string.Empty;
-            FileNames = new string[]
-            {
-                string.Empty
-            };
+            FileNames = new [] { string.Empty };
             Filter = string.Empty;
             InitialDirectory = string.Empty;
             Title = string.Empty;
         }
 
         /// <summary>
-        /// Gets or sets a value indicating whether the dialog box automatically adds an extension to a
-        /// file name if the user omits the extension.
+        /// Gets or sets a value indicating whether the dialog box automatically adds an extension
+        /// to a file name if the user omits the extension.
         /// </summary>
         public bool AddExtension { get; set; }
         
@@ -59,8 +57,8 @@
         public string[] FileNames { get; set; }
         
         /// <summary>
-        /// Gets or sets the current file name filter string, which determines the choices that appear
-        /// in the "Save as file type" or "Files of type" box in the dialog box.
+        /// Gets or sets the current file name filter string, which determines the choices that
+        /// appear in the "Save as file type" or "Files of type" box in the dialog box.
         /// </summary>
         public string Filter { get; set; }
         
