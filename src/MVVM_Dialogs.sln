@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVVM_Dialogs", "MVVM_Dialogs\MVVM_Dialogs.csproj", "{AB577548-B7F6-49AE-94D6-C41639BD0FF6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Old_MVVM_Dialogs", "Old_MVVM_Dialogs\Old_MVVM_Dialogs.csproj", "{AB577548-B7F6-49AE-94D6-C41639BD0FF6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVVM_DialogsTest", "MVVM_DialogsTest\MVVM_DialogsTest.csproj", "{A72166A5-297F-4198-A098-05A9A06C2574}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Old_MVVM_DialogsTest", "Old_MVVM_DialogsTest\Old_MVVM_DialogsTest.csproj", "{A72166A5-297F-4198-A098-05A9A06C2574}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{DC4187E3-76A5-45E5-8B57-F77FA039C327}"
 	ProjectSection(SolutionItems) = preProject

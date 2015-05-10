@@ -84,9 +84,9 @@
     <Compile Include="ViewModel\PersonViewModelTest.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MVVM_Dialogs\MVVM_Dialogs.csproj">
+    <ProjectReference Include="..\Old_MVVM_Dialogs\Old_MVVM_Dialogs.csproj">
       <Project>{AB577548-B7F6-49AE-94D6-C41639BD0FF6}</Project>
-      <Name>MVVM_Dialogs</Name>
+      <Name>Old_MVVM_Dialogs</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
