@@ -1,21 +1,21 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace MvvmDialogs.FrameworkDialogs.SaveFile.Internal
+namespace MvvmDialogs.FrameworkDialogs.SaveFile
 {
     /// <summary>
     /// Class wrapping <see cref="SaveFileDialog"/>, making it accept a view model.
     /// </summary>
     internal sealed class SaveFileDialogWrapper : IDisposable
     {
-        private readonly ISaveFileDialogViewModel saveFileDialogViewModel;
+        private readonly SaveFileDialogViewModel saveFileDialogViewModel;
         private readonly SaveFileDialog saveFileDialog;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SaveFileDialogWrapper"/> class.
         /// </summary>
         /// <param name="saveFileDialogViewModel">The save file dialog view model.</param>
-        public SaveFileDialogWrapper(ISaveFileDialogViewModel saveFileDialogViewModel)
+        public SaveFileDialogWrapper(SaveFileDialogViewModel saveFileDialogViewModel)
         {
             if (saveFileDialogViewModel == null)
                 throw new ArgumentNullException("saveFileDialogViewModel");

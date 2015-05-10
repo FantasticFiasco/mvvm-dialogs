@@ -90,7 +90,7 @@ namespace MvvmDialogs
         /// </returns>
         DialogResult ShowOpenFileDialog(
             INotifyPropertyChanged ownerViewModel,
-            IOpenFileDialogViewModel openFileDialogViewModel);
+            OpenFileDialogViewModel openFileDialogViewModel);
 
         /// <summary>
         /// Shows the <see cref="SaveFileDialog"/>.
@@ -105,7 +105,7 @@ namespace MvvmDialogs
         /// </returns>
         DialogResult ShowSaveFileDialog(
             INotifyPropertyChanged ownerViewModel,
-            ISaveFileDialogViewModel saveFileDialogViewModel);
+            SaveFileDialogViewModel saveFileDialogViewModel);
         
         /// <summary>
         /// Shows the <see cref="FolderBrowserDialog"/>.
@@ -122,6 +122,6 @@ namespace MvvmDialogs
         /// </returns>
         DialogResult ShowFolderBrowserDialog(
             INotifyPropertyChanged ownerViewModel,
-            IFolderBrowserDialogViewModel folderBrowserDialogViewModel);
+            FolderBrowserDialogViewModel folderBrowserDialogViewModel);
     }
 }

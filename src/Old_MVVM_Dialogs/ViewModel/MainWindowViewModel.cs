@@ -24,7 +24,7 @@ namespace MVVM_Dialogs.ViewModel
     {
         private readonly IDialogService dialogService;
         private readonly IPersonService personService;
-        private readonly Func<IOpenFileDialogViewModel> openFileDialogFactory;
+        private readonly Func<OpenFileDialogViewModel> openFileDialogFactory;
         private readonly ObservableCollection<PersonViewModel> persons;
         
         /// <summary>
@@ -34,7 +34,7 @@ namespace MVVM_Dialogs.ViewModel
             : this(
                 ServiceLocator.Resolve<IDialogService>(),
                 ServiceLocator.Resolve<IPersonService>(),
-                () => ServiceLocator.Resolve<IOpenFileDialogViewModel>())
+                () => ServiceLocator.Resolve<OpenFileDialogViewModel>())
         {
         }
 
@@ -47,7 +47,7 @@ namespace MVVM_Dialogs.ViewModel
         public MainWindowViewModel(
             IDialogService dialogService,
             IPersonService personService,
-            Func<IOpenFileDialogViewModel> openFileDialogFactory)
+            Func<OpenFileDialogViewModel> openFileDialogFactory)
         {
             Contract.Requires(dialogService != null);
             Contract.Requires(personService != null);
@@ -110,7 +110,7 @@ namespace MVVM_Dialogs.ViewModel
         private void LoadPersons(object o)
         {
             // Let factory create the IOpenFileDialogViewModel
-            IOpenFileDialogViewModel openFileDialogViewModel = openFileDialogFactory();
+            OpenFileDialogViewModel openFileDialogViewModel = openFileDialogFactory();
             openFileDialogViewModel.FileName = "LoadMe.xml";
             openFileDialogViewModel.Filter = Resources.MainWindowViewModel_LoadPersonsFilter;
             openFileDialogViewModel.InitialDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);

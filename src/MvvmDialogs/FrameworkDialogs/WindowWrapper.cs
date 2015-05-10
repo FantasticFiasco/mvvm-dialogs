@@ -3,7 +3,7 @@ using System.Windows;
 using System.Windows.Interop;
 using IWin32Window = System.Windows.Forms.IWin32Window;
 
-namespace MvvmDialogs.FrameworkDialogs.Internal
+namespace MvvmDialogs.FrameworkDialogs
 {
     /// <summary>
     /// Class describing a <see cref="IWin32Window"/> wrapper around a WPF window.

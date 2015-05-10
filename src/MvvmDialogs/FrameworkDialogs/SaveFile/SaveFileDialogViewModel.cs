@@ -5,7 +5,7 @@ namespace MvvmDialogs.FrameworkDialogs.SaveFile
     /// <summary>
     /// View model describing the <see cref="SaveFileDialog"/>.
     /// </summary>
-    public class SaveFileDialogViewModel : FileDialogViewModel, ISaveFileDialogViewModel
+    public class SaveFileDialogViewModel : FileDialogViewModel
     {
         /// <summary>
         /// Gets or sets a value indicating whether the dialog box prompts the user for permission

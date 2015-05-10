@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace MvvmDialogs.FrameworkDialogs.OpenFile.Internal
+namespace MvvmDialogs.FrameworkDialogs.OpenFile
 {
     /// <summary>
     /// Class wrapping <see cref="OpenFileDialog"/>, making it accept a view model.
     /// </summary>
     internal sealed class OpenFileDialogWrapper : IDisposable
     {
-        private readonly IOpenFileDialogViewModel openFileDialogViewModel;
+        private readonly OpenFileDialogViewModel openFileDialogViewModel;
         private readonly OpenFileDialog openFileDialog;
         
         /// <summary>
@@ -17,7 +17,7 @@ namespace MvvmDialogs.FrameworkDialogs.OpenFile.Internal
         /// <param name="openFileDialogViewModel">
         /// The open file dialog view model.
         /// </param>
-        public OpenFileDialogWrapper(IOpenFileDialogViewModel openFileDialogViewModel)
+        public OpenFileDialogWrapper(OpenFileDialogViewModel openFileDialogViewModel)
         {
             if (openFileDialogViewModel == null)
                 throw new ArgumentNullException("openFileDialogViewModel");

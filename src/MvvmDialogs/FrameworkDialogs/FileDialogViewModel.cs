@@ -5,7 +5,7 @@ namespace MvvmDialogs.FrameworkDialogs
     /// <summary>
     /// View model describing the <see cref="FileDialog"/>.
     /// </summary>
-    public abstract class FileDialogViewModel : IFileDialogViewModel
+    public abstract class FileDialogViewModel
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="FileDialogViewModel"/> class.

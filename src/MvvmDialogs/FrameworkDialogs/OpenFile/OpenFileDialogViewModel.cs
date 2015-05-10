@@ -5,7 +5,7 @@ namespace MvvmDialogs.FrameworkDialogs.OpenFile
     /// <summary>
     /// View model describing the <see cref="OpenFileDialog"/>.
     /// </summary>
-    public class OpenFileDialogViewModel : FileDialogViewModel, IOpenFileDialogViewModel
+    public class OpenFileDialogViewModel : FileDialogViewModel
     {
         /// <summary>
         /// Gets or sets a value indicating whether the dialog box allows multiple files to be

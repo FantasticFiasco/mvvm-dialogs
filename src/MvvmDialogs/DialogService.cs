@@ -4,13 +4,10 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows;
+using MvvmDialogs.FrameworkDialogs;
 using MvvmDialogs.FrameworkDialogs.FolderBrowser;
-using MvvmDialogs.FrameworkDialogs.FolderBrowser.Internal;
-using MvvmDialogs.FrameworkDialogs.Internal;
 using MvvmDialogs.FrameworkDialogs.OpenFile;
-using MvvmDialogs.FrameworkDialogs.OpenFile.Internal;
 using MvvmDialogs.FrameworkDialogs.SaveFile;
-using MvvmDialogs.FrameworkDialogs.SaveFile.Internal;
 using DialogResult = System.Windows.Forms.DialogResult;
 using FolderBrowserDialog = System.Windows.Forms.FolderBrowserDialog;
 using OpenFileDialog = System.Windows.Forms.OpenFileDialog;
@@ -155,7 +152,7 @@ namespace MvvmDialogs
         /// </returns>
         public DialogResult ShowOpenFileDialog(
             INotifyPropertyChanged ownerViewModel,
-            IOpenFileDialogViewModel openFileDialogViewModel)
+            OpenFileDialogViewModel openFileDialogViewModel)
         {
             if (ownerViewModel == null)
                 throw new ArgumentNullException("ownerViewModel");
@@ -182,7 +179,7 @@ namespace MvvmDialogs
         /// </returns>
         public DialogResult ShowSaveFileDialog(
             INotifyPropertyChanged ownerViewModel,
-            ISaveFileDialogViewModel saveFileDialogViewModel)
+            SaveFileDialogViewModel saveFileDialogViewModel)
         {
             if (ownerViewModel == null)
                 throw new ArgumentNullException("ownerViewModel");
@@ -211,7 +208,7 @@ namespace MvvmDialogs
         /// </returns>
         public DialogResult ShowFolderBrowserDialog(
             INotifyPropertyChanged ownerViewModel,
-            IFolderBrowserDialogViewModel folderBrowserDialogViewModel)
+            FolderBrowserDialogViewModel folderBrowserDialogViewModel)
         {
             if (ownerViewModel == null)
                 throw new ArgumentNullException("ownerViewModel");

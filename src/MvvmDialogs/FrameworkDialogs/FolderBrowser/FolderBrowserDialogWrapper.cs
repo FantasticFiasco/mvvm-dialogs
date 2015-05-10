@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace MvvmDialogs.FrameworkDialogs.FolderBrowser.Internal
+namespace MvvmDialogs.FrameworkDialogs.FolderBrowser
 {
     /// <summary>
     /// Class wrapping <see cref="FolderBrowserDialog"/>, making it accept a
@@ -9,7 +9,7 @@ namespace MvvmDialogs.FrameworkDialogs.FolderBrowser.Internal
     /// </summary>
     internal sealed class FolderBrowserDialogWrapper : IDisposable
     {
-        private readonly IFolderBrowserDialogViewModel folderBrowserDialogViewModel;
+        private readonly FolderBrowserDialogViewModel folderBrowserDialogViewModel;
         private readonly FolderBrowserDialog folderBrowserDialog;
         
         /// <summary>
@@ -18,7 +18,7 @@ namespace MvvmDialogs.FrameworkDialogs.FolderBrowser.Internal
         /// <param name="folderBrowserDialogViewModel">
         /// The folder browser dialog view model.
         /// </param>
-        public FolderBrowserDialogWrapper(IFolderBrowserDialogViewModel folderBrowserDialogViewModel)
+        public FolderBrowserDialogWrapper(FolderBrowserDialogViewModel folderBrowserDialogViewModel)
         {
             if (folderBrowserDialogViewModel == null)
                 throw new ArgumentNullException("folderBrowserDialogViewModel");
