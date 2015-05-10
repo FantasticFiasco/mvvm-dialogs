@@ -23,13 +23,7 @@
         <Recognized>
             <!-- Example: -->
             <!-- <Word>whatever</Word> -->
-            <Word>autofac</Word>
-            <Word>dto</Word>
-            <Word>exif</Word>
-            <Word>gps</Word>
-            <Word>ioc</Word>
-            <Word>loggly</Word>
-            <Word>serilog</Word>
+            <Word>mvvm</Word>
         </Recognized>
 
         <!-- 
@@ -59,7 +53,6 @@
         <Compound>
             <!-- Example: -->
             <!-- <Term CompoundAlternate="DataBind">databind</Term> -->
-            <Term CompoundAlternate="Db">db</Term>
         </Compound>
 
         <!--
@@ -80,7 +73,6 @@
         <CasingExceptions>
             <!-- Example: -->
             <!-- <Acronym>Pv</Acronym> -->
-            <Acronym>db</Acronym>
         </CasingExceptions>
     </Acronyms>
 </Dictionary>
