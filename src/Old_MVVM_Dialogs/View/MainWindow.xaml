@@ -2,7 +2,7 @@
     x:Class="MVVM_Dialogs.View.MainWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:Service="clr-namespace:MVVM_Dialogs.Service"
+    xmlns:Service="clr-namespace:MVVM_Dialogs.Service;assembly=MvvmDialogs"
     Title="MVVM Dialog Example"
     WindowStartupLocation="CenterScreen"
     Service:DialogService.IsRegisteredView="True"

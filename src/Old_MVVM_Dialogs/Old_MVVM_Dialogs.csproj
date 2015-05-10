@@ -124,6 +124,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="WindowViewModelMapping\WindowViewModelMappings.cs" />
     <Page Include="Resources\ApplicationResources.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -146,12 +147,8 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Service\IDialogServiceContract.cs" />
     <Compile Include="Service\IPersonServiceContract.cs" />
-    <Compile Include="WindowViewModelMapping\IWindowViewModelMappings.cs" />
     <Compile Include="ViewModel\RelayCommand.cs" />
-    <Compile Include="WindowViewModelMapping\IWindowViewModelMappingsContract.cs" />
-    <Compile Include="WindowViewModelMapping\WindowViewModelMappings.cs" />
     <Compile Include="View\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -168,18 +165,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Service\DialogService.cs" />
-    <Compile Include="Service\FrameworkDialogs\FileDialogViewModel.cs" />
-    <Compile Include="Service\FrameworkDialogs\FolderBrowse\FolderBrowserDialog.cs" />
-    <Compile Include="Service\FrameworkDialogs\FolderBrowse\FolderBrowserDialogViewModel.cs" />
-    <Compile Include="Service\FrameworkDialogs\FolderBrowse\IFolderBrowserDialog.cs" />
-    <Compile Include="Service\FrameworkDialogs\IFileDialog.cs" />
-    <Compile Include="Service\FrameworkDialogs\OpenFile\IOpenFileDialog.cs" />
-    <Compile Include="Service\FrameworkDialogs\OpenFile\OpenFileDialog.cs" />
-    <Compile Include="Service\FrameworkDialogs\OpenFile\OpenFileDialogViewModel.cs" />
-    <Compile Include="Service\FrameworkDialogs\WindowWrapper.cs" />
-    <Compile Include="Service\ServiceLocator.cs" />
-    <Compile Include="Service\IDialogService.cs" />
     <Compile Include="Service\IPersonService.cs" />
     <Compile Include="Service\PersonService.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
@@ -217,6 +202,12 @@
       <ProductName>Windows Installer 3.1</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MvvmDialogs\MvvmDialogs.csproj">
+      <Project>{29051b6f-74c5-4ef6-a792-4e382ce233fa}</Project>
+      <Name>MvvmDialogs</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

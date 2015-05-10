@@ -15,7 +15,7 @@ namespace MVVM_Dialogs.Service
     /// <summary>
     /// Class responsible for abstracting ViewModels from Views.
     /// </summary>
-    internal class DialogService : IDialogService
+    public class DialogService : IDialogService
     {
         private readonly HashSet<FrameworkElement> views;
         private readonly IWindowViewModelMappings windowViewModelMappings;
