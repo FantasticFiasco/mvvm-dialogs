@@ -14,6 +14,18 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{DC4187
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CodeProject publication", "CodeProject publication", "{E4F454E6-16F3-4353-82B6-03DB95033E4E}"
+	ProjectSection(SolutionItems) = preProject
+		..\publication\CodeProject\Link.url = ..\publication\CodeProject\Link.url
+		..\publication\CodeProject\mvvm_dialogs.html = ..\publication\CodeProject\mvvm_dialogs.html
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MVVM_Dialogs", "MVVM_Dialogs", "{8F2888AC-429A-41A7-A46D-59F09C5A005C}"
+	ProjectSection(SolutionItems) = preProject
+		..\publication\CodeProject\MVVM_Dialogs\Application.png = ..\publication\CodeProject\MVVM_Dialogs\Application.png
+		..\publication\CodeProject\MVVM_Dialogs\MVVM_Dialogs.zip = ..\publication\CodeProject\MVVM_Dialogs\MVVM_Dialogs.zip
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,5 +43,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{8F2888AC-429A-41A7-A46D-59F09C5A005C} = {E4F454E6-16F3-4353-82B6-03DB95033E4E}
 	EndGlobalSection
 EndGlobal
