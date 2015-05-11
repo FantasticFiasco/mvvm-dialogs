@@ -5,7 +5,9 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("MvvmDialogs")]
+using System.Windows.Markup;
+
+[assembly: AssemblyTitle("MVVM Dialogs")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 
@@ -18,3 +20,6 @@ using System.Runtime.InteropServices;
 [assembly: Guid("711d0c7f-a938-4e4b-b553-aaa2faee5161")]
 
 [assembly: CLSCompliant(true)]
+
+[assembly: XmlnsPrefix("https://github.com/fantasticfiasco/mvvm-dialogs", "md")]
+[assembly: XmlnsDefinition("https://github.com/fantasticfiasco/mvvm-dialogs", "MvvmDialogs")]

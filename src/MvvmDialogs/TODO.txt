@@ -1,4 +1,3 @@
-﻿* Add XAML prefixes making it possible to reference the library in XAML using a URL
-* Release as NuGet for .NET4.0 and .NET4.5, and maybe also .NET3.5?
+﻿* Release as NuGet for .NET4.0 and .NET4.5, and maybe also .NET3.5?
 * When closing demo application: 'A first chance exception of type 'System.ArgumentException' occurred in MvvmDialogs.dll'
 * Should we use FrameworkDialogs from WinForms or the other? Which looks most up to date?
