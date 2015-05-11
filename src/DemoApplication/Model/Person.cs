@@ -1,4 +1,4 @@
-﻿namespace MVVM_Dialogs.Model
+﻿namespace DemoApplication.Model
 {
     /// <summary>
     /// Describing a person.

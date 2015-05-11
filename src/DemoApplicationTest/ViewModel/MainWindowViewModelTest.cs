@@ -2,16 +2,15 @@
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Forms;
+using DemoApplication.Model;
+using DemoApplication.Service;
+using DemoApplication.View;
 using Moq;
 using MvvmDialogs;
 using MvvmDialogs.FrameworkDialogs.OpenFile;
-using MVVM_Dialogs.Model;
-using MVVM_Dialogs.Service;
-using MVVM_Dialogs.View;
-using MVVM_Dialogs.ViewModel;
 using NUnit.Framework;
 
-namespace MVVM_DialogsTest.ViewModel
+namespace DemoApplication.ViewModel
 {
     [TestFixture]
     public class MainWindowViewModelTest
@@ -19,37 +18,36 @@ namespace MVVM_DialogsTest.ViewModel
         private MainWindowViewModel viewModel;
         private Mock<IDialogService> dialogServiceMock;
         private Mock<IPersonService> personServiceMock;
-        private OpenFileDialogViewModel openFileDialog;
-        private Person person1;
-        private Person person2;
-        
+        private Person femalePerson;
+        private Person malePerson;
+
         [TestFixtureSetUp]
         public void TestFixtureSetUp()
         {
-            person1 = new Person
+            femalePerson = new Person
             {
-                Name = "Some name 1",
+                Name = "Jane Doe",
                 Gender = Gender.Female
             };
-            person2 = new Person
+
+            malePerson = new Person
             {
-                Name = "Some name 2",
+                Name = "John Doe",
                 Gender = Gender.Male
             };
 
             dialogServiceMock = new Mock<IDialogService>();
-            openFileDialog = new OpenFileDialogViewModel();
             personServiceMock = new Mock<IPersonService>();
             personServiceMock
                 .Setup(m => m.Load(It.IsAny<string>()))
                 .Returns(
                     new List<Person>
                     {
-                        person1,
-                        person2
+                        femalePerson,
+                        malePerson
                     });
         }
-        
+
         [SetUp]
         public void SetUp()
         {
@@ -57,9 +55,9 @@ namespace MVVM_DialogsTest.ViewModel
                 dialogServiceMock.Object,
                 personServiceMock.Object);
         }
-        
+
         [Test]
-        public void CanLoadPersonsTest()
+        public void CanLoadPersons()
         {
             // Make sure list is empty, thus making it possible to load the persons from start
             Assert.That(viewModel.Persons, Is.Empty);
@@ -76,7 +74,7 @@ namespace MVVM_DialogsTest.ViewModel
             LoadPersons();
             Assert.That(viewModel.LoadPersonsCommand.CanExecute(null), Is.False);
         }
-        
+
         [Test]
         public void LoadPersonsTest()
         {
@@ -86,14 +84,14 @@ namespace MVVM_DialogsTest.ViewModel
             // Loading person
             LoadPersons();
             Assert.That(viewModel.Persons.Count, Is.EqualTo(2));
-            Assert.That(viewModel.Persons[0].Person, Is.EqualTo(person1));
-            Assert.That(viewModel.Persons[1].Person, Is.EqualTo(person2));
+            Assert.That(viewModel.Persons[0].Person, Is.EqualTo(femalePerson));
+            Assert.That(viewModel.Persons[1].Person, Is.EqualTo(malePerson));
             //openFileDialogMock.VerifySet(m => m.FileName = It.IsAny<string>());
             //openFileDialogMock.VerifySet(m => m.Filter = It.IsAny<string>());
             //openFileDialogMock.VerifySet(m => m.InitialDirectory = It.IsAny<string>());
             //openFileDialogMock.VerifySet(mock => mock.Title = It.IsAny<string>());
         }
-        
+
         [Test]
         public void CanShowInformationTest()
         {
@@ -111,7 +109,7 @@ namespace MVVM_DialogsTest.ViewModel
             viewModel.Persons[1].IsSelected = true;
             Assert.That(viewModel.ShowInformationCommand.CanExecute(null), Is.False);
         }
-        
+
         [Test]
         public void ShowInformationTest()
         {
@@ -128,7 +126,7 @@ namespace MVVM_DialogsTest.ViewModel
             dialogServiceMock
                 .Verify(m => m.ShowDialog<MainWindow>(viewModel, It.IsAny<PersonDialogViewModel>()));
         }
-        
+
         [Test]
         public void CanDeleteTest()
         {
@@ -146,7 +144,7 @@ namespace MVVM_DialogsTest.ViewModel
             viewModel.Persons[1].IsSelected = true;
             Assert.That(viewModel.ShowInformationCommand.CanExecute(null), Is.False);
         }
-        
+
         [Test]
         public void CancelDeleteTest()
         {
@@ -164,7 +162,7 @@ namespace MVVM_DialogsTest.ViewModel
             viewModel.DeleteCommand.Execute(null);
             Assert.That(viewModel.Persons.Count, Is.EqualTo(personCount));
         }
-        
+
         [Test]
         public void ConfirmDeleteTest()
         {
@@ -182,12 +180,12 @@ namespace MVVM_DialogsTest.ViewModel
             viewModel.DeleteCommand.Execute(null);
             Assert.That(viewModel.Persons.Count, Is.EqualTo(personCount - 1));
         }
-        
+
         #region Utility methods
 
         private void LoadPersons()
         {
-            // Simulte loading persons
+            // Simulate loading persons
             dialogServiceMock
                 .Setup(m => m.ShowOpenFileDialog(viewModel, It.IsAny<OpenFileDialogViewModel>()))
                 .Returns(DialogResult.OK);

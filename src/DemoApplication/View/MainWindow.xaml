@@ -1,17 +1,22 @@
 ﻿<Window
-    x:Class="MVVM_Dialogs.View.MainWindow"
+    x:Class="DemoApplication.View.MainWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:Service="clr-namespace:MvvmDialogs;assembly=MvvmDialogs"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:mvvmdialogs="clr-namespace:MvvmDialogs;assembly=MvvmDialogs"
+    xmlns:viewmodel="clr-namespace:DemoApplication.ViewModel"
+    mc:Ignorable="d"
     Title="MVVM Dialog Example"
     WindowStartupLocation="CenterScreen"
-    Service:DialogServiceBehaviors.IsRegisteredView="True"
+    mvvmdialogs:DialogServiceBehaviors.IsRegisteredView="True"
     Height="300"
-    Width="400">
+    Width="400"
+    d:DataContext="{d:DesignInstance d:Type=viewmodel:MainWindowViewModel}">
     
     <!-- Resources -->
     <Window.Resources>
-        <ResourceDictionary Source="/MVVM_Dialogs;component/Resources/ApplicationResources.xaml"/>
+        <ResourceDictionary Source="ApplicationResources.xaml"/>
     </Window.Resources>
     
     <!-- Root element -->
@@ -29,7 +34,7 @@
             <!-- ListBox resources -->
             <ListBox.Resources>
                 
-                <!-- Binds IsSelected property on ListBoxItem to the property on ViewModel -->
+                <!-- Binds IsSelected property on ListBoxItem to the property on view model -->
                 <Style TargetType="ListBoxItem">
                     <Setter Property="IsSelected" Value="{Binding IsSelected}"/>
                 </Style>
@@ -51,10 +56,8 @@
 		
             <!-- Show info button -->
             <Button
-                Grid.Column="1"
                 Content="Delete"
                 Command="{Binding DeleteCommand}"/>
         </UniformGrid>
-		
     </Grid>
 </Window>

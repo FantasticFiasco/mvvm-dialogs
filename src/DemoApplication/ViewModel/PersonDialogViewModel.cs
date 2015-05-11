@@ -1,10 +1,12 @@
-﻿using System.Diagnostics.Contracts;
-using MVVM_Dialogs.Model;
+﻿using System;
+using DemoApplication.Model;
+using DemoApplication.View;
+using GalaSoft.MvvmLight;
 
-namespace MVVM_Dialogs.ViewModel
+namespace DemoApplication.ViewModel
 {
     /// <summary>
-    /// Acts as ViewModel for PersonDialog.
+    /// Acts as view model for <see cref="PersonDialog"/>.
     /// </summary>
     public class PersonDialogViewModel : ViewModelBase
     {
@@ -16,7 +18,8 @@ namespace MVVM_Dialogs.ViewModel
         /// <param name="person">The person.</param>
         public PersonDialogViewModel(Person person)
         {
-            Contract.Requires(person != null);
+            if (person == null)
+                throw new ArgumentNullException("person");
 
             this.person = person;
         }
@@ -31,9 +34,6 @@ namespace MVVM_Dialogs.ViewModel
         
         /// <summary>
         /// Gets the gender of the person.
-        /// 
-        /// In production code it wouldn't be allowed to return an enum to UI, but this isn't production
-        /// code ;-)
         /// </summary>
         public Gender Gender
         {

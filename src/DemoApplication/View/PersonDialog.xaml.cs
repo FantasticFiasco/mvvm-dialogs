@@ -1,11 +1,9 @@
-﻿using System.Windows;
-
-namespace MVVM_Dialogs.View
+﻿namespace DemoApplication.View
 {
     /// <summary>
     /// Dialog displaying information about a person.
     /// </summary>
-    public partial class PersonDialog : Window
+    public partial class PersonDialog
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="PersonDialog"/> class.

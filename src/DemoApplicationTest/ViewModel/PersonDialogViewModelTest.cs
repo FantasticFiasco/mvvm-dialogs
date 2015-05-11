@@ -1,8 +1,7 @@
-﻿using MVVM_Dialogs.Model;
-using MVVM_Dialogs.ViewModel;
+﻿using DemoApplication.Model;
 using NUnit.Framework;
 
-namespace MVVM_DialogsTest.ViewModel
+namespace DemoApplication.ViewModel
 {
     [TestFixture]
     public class PersonDialogViewModelTest
@@ -10,25 +9,27 @@ namespace MVVM_DialogsTest.ViewModel
         [Test]
         public void NameTest()
         {
-            Person person = new Person
+            var person = new Person
             {
                 Name = "Some name",
                 Gender = Gender.Female
             };
-            PersonDialogViewModel viewModel = new PersonDialogViewModel(person);
+
+            var viewModel = new PersonDialogViewModel(person);
 
             Assert.That(viewModel.Name, Is.EqualTo(person.Name));
         }
-        
+
         [Test]
         public void GenderTest()
         {
-            Person person = new Person
+            var person = new Person
             {
                 Name = "Some name",
                 Gender = Gender.Female
             };
-            PersonDialogViewModel viewModel = new PersonDialogViewModel(person);
+
+            var viewModel = new PersonDialogViewModel(person);
 
             Assert.That(viewModel.Gender, Is.EqualTo(person.Gender));
         }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.ComponentModel.Composition;
 using System.Linq;
 using System.Windows;
 using MvvmDialogs.FrameworkDialogs;
@@ -17,6 +18,7 @@ namespace MvvmDialogs
     /// Class abstracting the interaction between view models and views when it comes to
     /// opening dialogs using the MVVM pattern in WPF.
     /// </summary>
+    [Export(typeof(IDialogService))]
     public class DialogService : IDialogService
     {
         #region IDialogService Members

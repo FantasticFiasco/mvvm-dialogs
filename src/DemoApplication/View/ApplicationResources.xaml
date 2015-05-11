@@ -2,13 +2,13 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     
-    <!-- NAMED RESOURCES -->
+    <!-- Named Resources -->
     
     <Style x:Key="BaseStyle" TargetType="FrameworkElement">
         <Setter Property="Margin" Value="3"/>
     </Style>
     
-    <!-- GENERIC RESOURCES -->
+    <!-- Generic Resources -->
     
     <Style TargetType="Button" BasedOn="{StaticResource BaseStyle}"/>
     

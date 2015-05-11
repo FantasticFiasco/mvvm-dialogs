@@ -1,29 +1,34 @@
 ﻿<Window
-    x:Class="MVVM_Dialogs.View.PersonDialog"
+    x:Class="DemoApplication.View.PersonDialog"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewmodel="clr-namespace:DemoApplication.ViewModel"
+    mc:Ignorable="d"
     Title="Information"
     WindowStartupLocation="CenterOwner"
     SizeToContent="Height"
     Width="150"
-    ResizeMode="NoResize">
+    ResizeMode="NoResize"
+    d:DataContext="{d:DesignInstance d:Type=viewmodel:PersonDialogViewModel}">
     
     <!-- Resources -->
     <Window.Resources>
-        <ResourceDictionary Source="/MVVM_Dialogs;component/Resources/ApplicationResources.xaml"/>
+        <ResourceDictionary Source="ApplicationResources.xaml"/>
     </Window.Resources>
     
     <!-- Root element -->
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
         
         <!-- Name -->
         <TextBlock
