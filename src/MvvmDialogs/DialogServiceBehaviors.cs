@@ -126,7 +126,7 @@ namespace MvvmDialogs
         {
             if (view == null)
                 throw new ArgumentNullException("view");
-            if (Views.Contains(view))
+            if (!Views.Contains(view))
                 throw new ArgumentException("View of type {0} has never been registered.".InvariantFormat(view.GetType()), "view");
 
             Views.Remove(view);
