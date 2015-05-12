@@ -343,7 +343,7 @@ namespace MvvmDialogs
                 throw new ArgumentException("View model of type {0} is not referenced by any registered view.".InvariantFormat(viewModel.GetType()));
 
             // Get owner window
-            Window owner = DialogServiceBehaviors.GetOwner(view);
+            Window owner = view.GetOwner();
             if (owner == null)
                 throw new InvalidOperationException("View of type {0} is not contained within a Window.".InvariantFormat(view.GetType()));
 

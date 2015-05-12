@@ -81,16 +81,6 @@ namespace MvvmDialogs
         #endregion
 
         /// <summary>
-        /// Gets the owning <see cref="Window"/> of a view.
-        /// </summary>
-        /// <param name="view">The view to find the <see cref="Window"/> for.</param>
-        /// <returns>The owning <see cref="Window"/> if found; otherwise null.</returns>
-        internal static Window GetOwner(FrameworkElement view)
-        {
-            return view as Window ?? Window.GetWindow(view);
-        }
-
-        /// <summary>
         /// Registers specified view.
         /// </summary>
         /// <param name="view">The view to register.</param>
@@ -102,7 +92,7 @@ namespace MvvmDialogs
                 throw new ArgumentException("View of type {0} has already been already registered.".InvariantFormat(view.GetType()), "view");
 
             // Get owner window
-            Window owner = GetOwner(view);
+            Window owner = view.GetOwner();
             if (owner == null)
             {
                 // Perform a late register when the view hasn't been loaded yet.
