@@ -216,7 +216,7 @@
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=399CD8D0BDF27346954CD1D0D7E4282D/ShortenQualifiedReferences/@EntryValue">True</s:Boolean>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=399CD8D0BDF27346954CD1D0D7E4282D/Text/@EntryValue">using System;&#xD;
 using NUnit.Framework;&#xD;
-using Rhino.Mocks;&#xD;
+using Moq;&#xD;
 &#xD;
 namespace $NAMESPACE$&#xD;
 {&#xD;
