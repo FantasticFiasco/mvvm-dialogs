@@ -35,7 +35,7 @@
             <ListBox.Resources>
                 
                 <!-- Binds IsSelected property on ListBoxItem to the property on view model -->
-                <Style TargetType="ListBoxItem">
+                <Style TargetType="{x:Type ListBoxItem}">
                     <Setter Property="IsSelected" Value="{Binding IsSelected}"/>
                 </Style>
             </ListBox.Resources>
