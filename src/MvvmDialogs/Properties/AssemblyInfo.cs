@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 // General Information about an assembly is controlled through the following 
@@ -23,3 +24,5 @@ using System.Windows.Markup;
 
 [assembly: XmlnsPrefix("https://github.com/fantasticfiasco/mvvm-dialogs", "md")]
 [assembly: XmlnsDefinition("https://github.com/fantasticfiasco/mvvm-dialogs", "MvvmDialogs")]
+
+[assembly: InternalsVisibleTo("MvvmDialogsTest, PublicKey=00240000048000009400000006020000002400005253413100040000010001001b1f126f6e1a716de6fdab870277c563e84f315798ee88a081c63964a1d14a29de40d0fa194dc52f08aaf97f91f130d14b6252dddb79ed8824e02ac7c06521eb2160025208f2538351910934568dab092d265355c9d2fb0e4d065595b57090a11a488b1ca900d1e5d58b9270d25a64bb2bd1b59ac3e7dff08b55d96d9082afc3")]
