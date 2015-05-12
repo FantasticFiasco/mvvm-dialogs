@@ -12,7 +12,7 @@
     md:DialogServiceBehaviors.IsRegisteredView="True"
     Height="300"
     Width="400"
-    d:DataContext="{d:DesignInstance d:Type=viewmodel:MainWindowViewModel}">
+    d:DataContext="{d:DesignInstance viewmodel:MainWindowViewModel}">
     
     <!-- Resources -->
     <Window.Resources>
@@ -35,7 +35,9 @@
             <ListBox.Resources>
                 
                 <!-- Binds IsSelected property on ListBoxItem to the property on view model -->
-                <Style TargetType="{x:Type ListBoxItem}">
+                <Style
+                    TargetType="{x:Type ListBoxItem}"
+                    d:DataContext="{d:DesignInstance viewmodel:PersonViewModel}">
                     <Setter Property="IsSelected" Value="{Binding IsSelected}"/>
                 </Style>
             </ListBox.Resources>

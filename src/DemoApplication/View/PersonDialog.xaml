@@ -11,7 +11,7 @@
     SizeToContent="Height"
     Width="150"
     ResizeMode="NoResize"
-    d:DataContext="{d:DesignInstance d:Type=viewmodel:PersonDialogViewModel}">
+    d:DataContext="{d:DesignInstance viewmodel:PersonDialogViewModel}">
     
     <!-- Resources -->
     <Window.Resources>
