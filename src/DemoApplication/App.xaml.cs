@@ -1,9 +1,11 @@
 ﻿using System.ComponentModel.Composition;
 using System.ComponentModel.Composition.Hosting;
+using System.ComponentModel.Composition.Registration;
 using System.Windows;
 using DemoApplication.View;
 using DemoApplication.ViewModel;
 using MvvmDialogs;
+using MvvmDialogs.DialogLocators;
 
 namespace DemoApplication
 {
@@ -12,10 +14,10 @@ namespace DemoApplication
         private CompositionContainer container;
 
         [Import]
-        private MainWindow view;
+        public MainWindow View;
 
         [Import]
-        private MainWindowViewModel viewModel;
+        public  MainWindowViewModel ViewModel;
 
         protected override void OnStartup(StartupEventArgs e)
         {
@@ -24,8 +26,8 @@ namespace DemoApplication
             container = CreateContainer();
             container.SatisfyImportsOnce(this);
 
-            view.DataContext = viewModel;
-            view.Show();
+            View.DataContext = ViewModel;
+            View.Show();
         }
 
         protected override void OnExit(ExitEventArgs e)
@@ -38,9 +40,18 @@ namespace DemoApplication
         private static CompositionContainer CreateContainer()
         {
             var catalog = new AggregateCatalog();
-            catalog.Catalogs.Add(new AssemblyCatalog(typeof(App).Assembly));
-            catalog.Catalogs.Add(new AssemblyCatalog(typeof(DialogService).Assembly));
 
+            // MvvmDialogs assembly
+            var picker = new RegistrationBuilder();
+            picker
+                .ForType<NameConventionDialogTypeLocator>()
+                .Export<IDialogTypeLocator>();
+
+            catalog.Catalogs.Add(new AssemblyCatalog(typeof(DialogService).Assembly, picker));
+
+            // This assembly
+            catalog.Catalogs.Add(new AssemblyCatalog(typeof(App).Assembly));
+            
             return new CompositionContainer(catalog);
         }
     }

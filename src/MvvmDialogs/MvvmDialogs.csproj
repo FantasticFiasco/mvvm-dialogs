@@ -75,6 +75,9 @@
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="IDialogService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="DialogLocators\DialogTypeException.cs" />
+    <Compile Include="DialogLocators\IDialogTypeLocator.cs" />
+    <Compile Include="DialogLocators\NameConventionDialogTypeLocator.cs" />
   </ItemGroup>
   <ItemGroup>
     <CodeAnalysisDictionary Include="..\CustomDictionary.xml">

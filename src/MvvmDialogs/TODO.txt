@@ -1,2 +1,3 @@
 ﻿* Release as NuGet for .NET4.0 and .NET4.5, and maybe also .NET3.5?
 * Should we use FrameworkDialogs from WinForms or the other? Which looks most up to date?
+* Exception messages in resources? See other open source projects.

@@ -60,6 +60,12 @@
     <Compile Include="..\SolutionInfo.cs">
       <Link>Properties\SolutionInfo.cs</Link>
     </Compile>
+    <Compile Include="DialogLocators\NameConventionDialogTypeLocatorTest.cs" />
+    <Compile Include="DialogLocators\ViewModel\InvalidNameVM.cs" />
+    <Compile Include="DialogLocators\ViewModel\MissingDialogTypeViewModel.cs" />
+    <Compile Include="DialogLocators\ViewModel\TestDialogViewModel.cs" />
+    <Compile Include="DialogLocators\ViewModel\ViewModel.cs" />
+    <Compile Include="DialogLocators\View\TestDialog.cs" />
     <Compile Include="DialogServiceBehaviorsTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

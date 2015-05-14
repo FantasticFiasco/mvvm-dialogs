@@ -154,7 +154,7 @@ namespace DemoApplication.ViewModel
             var personDialogViewModel = new PersonDialogViewModel(SelectedPerson.Person);
 
             // Show the dialog
-            dialogService.ShowDialog<PersonDialog>(this, personDialogViewModel);
+            dialogService.ShowDialog(this, personDialogViewModel);
         }
 
         /// <summary>

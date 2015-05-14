@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.ComponentModel.Composition;
 using System.Linq;
 using System.Windows;
+using MvvmDialogs.DialogLocators;
 using MvvmDialogs.FrameworkDialogs;
 using MvvmDialogs.FrameworkDialogs.FolderBrowser;
 using MvvmDialogs.FrameworkDialogs.OpenFile;
@@ -21,6 +22,21 @@ namespace MvvmDialogs
     [Export(typeof(IDialogService))]
     public class DialogService : IDialogService
     {
+        private readonly IDialogTypeLocator dialogTypeLocator;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DialogService"/> class.
+        /// </summary>
+        /// <param name="dialogTypeLocator">
+        /// The dialog type locator. Specifying a <see cref="IDialogTypeLocator"/> is required when
+        /// using <see cref="IDialogService.ShowDialog"/>.
+        /// </param>
+        [ImportingConstructor]
+        public DialogService(IDialogTypeLocator dialogTypeLocator = null)
+        {
+            this.dialogTypeLocator = dialogTypeLocator;
+        }
+                
         #region IDialogService Members
 
         /// <summary>
@@ -46,6 +62,31 @@ namespace MvvmDialogs
                 throw new ArgumentNullException("viewModel");
 
             return ShowDialog(ownerViewModel, viewModel, typeof(T));
+        }
+
+        /// <summary>
+        /// Displays a dialog of a type that is determined by the <see cref="IDialogTypeLocator" />
+        /// specified in <see cref="DialogService(IDialogTypeLocator)" />.
+        /// </summary>
+        /// <param name="ownerViewModel">
+        /// A view model that represents the owner window of the dialog.
+        /// </param>
+        /// <param name="viewModel">The view model of the new dialog.</param>
+        /// <returns>
+        /// A nullable value of type <see cref="bool" /> that signifies how a window was closed by
+        /// the user.
+        /// </returns>
+        public bool? ShowDialog(INotifyPropertyChanged ownerViewModel, INotifyPropertyChanged viewModel)
+        {
+            if (ownerViewModel == null)
+                throw new ArgumentNullException("ownerViewModel");
+            if (viewModel == null)
+                throw new ArgumentNullException("viewModel");
+            if (dialogTypeLocator == null)
+                throw new InvalidOperationException("Dialog type must be explicitly specified since instance isn't configured to use a dialog type locator.");
+
+            Type dialogType = dialogTypeLocator.LocateDialogTypeFor(viewModel);
+            return ShowDialog(ownerViewModel, viewModel, dialogType);
         }
 
         /// <summary>

@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using System.Windows;
+using MvvmDialogs.DialogLocators;
 using MvvmDialogs.FrameworkDialogs.FolderBrowser;
 using MvvmDialogs.FrameworkDialogs.OpenFile;
 using MvvmDialogs.FrameworkDialogs.SaveFile;
@@ -32,6 +33,22 @@ namespace MvvmDialogs
             INotifyPropertyChanged ownerViewModel,
             INotifyPropertyChanged viewModel)
             where T : Window;
+
+        /// <summary>
+        /// Displays a dialog of a type that is determined by the <see cref="IDialogTypeLocator"/>
+        /// specified in <see cref="DialogService(IDialogTypeLocator)"/>.
+        /// </summary>
+        /// <param name="ownerViewModel">
+        /// A view model that represents the owner window of the dialog.
+        /// </param>
+        /// <param name="viewModel">The view model of the new dialog.</param>
+        /// <returns>
+        /// A nullable value of type <see cref="bool"/> that signifies how a window was closed by
+        /// the user.
+        /// </returns>
+        bool? ShowDialog(
+            INotifyPropertyChanged ownerViewModel,
+            INotifyPropertyChanged viewModel);
 
         /// <summary>
         /// Displays a message box that has a message and that returns a result.
