@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows;
+using MvvmDialogs.Properties;
 
 namespace MvvmDialogs
 {
@@ -89,7 +90,7 @@ namespace MvvmDialogs
             if (view == null)
                 throw new ArgumentNullException("view");
             if (Views.Contains(view))
-                throw new ArgumentException("View of type {0} has already been already registered.".InvariantFormat(view.GetType()), "view");
+                throw new ArgumentException(Resources.ViewNotRegistered.CurrentFormat(view.GetType()), "view");
 
             // Get owner window
             Window owner = view.GetOwner();
@@ -117,7 +118,7 @@ namespace MvvmDialogs
             if (view == null)
                 throw new ArgumentNullException("view");
             if (!Views.Contains(view))
-                throw new ArgumentException("View of type {0} has never been registered.".InvariantFormat(view.GetType()), "view");
+                throw new ArgumentException(Resources.ViewNotRegistered.CurrentFormat(view.GetType()), "view");
 
             Views.Remove(view);
         }

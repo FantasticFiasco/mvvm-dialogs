@@ -8,6 +8,7 @@ using MvvmDialogs.FrameworkDialogs;
 using MvvmDialogs.FrameworkDialogs.FolderBrowser;
 using MvvmDialogs.FrameworkDialogs.OpenFile;
 using MvvmDialogs.FrameworkDialogs.SaveFile;
+using MvvmDialogs.Properties;
 using DialogResult = System.Windows.Forms.DialogResult;
 using FolderBrowserDialog = System.Windows.Forms.FolderBrowserDialog;
 using OpenFileDialog = System.Windows.Forms.OpenFileDialog;
@@ -83,7 +84,7 @@ namespace MvvmDialogs
             if (viewModel == null)
                 throw new ArgumentNullException("viewModel");
             if (dialogTypeLocator == null)
-                throw new InvalidOperationException("Dialog type must be explicitly specified since instance isn't configured to use a dialog type locator.");
+                throw new InvalidOperationException(Resources.ImplicitUseProhibited);
 
             Type dialogType = dialogTypeLocator.LocateDialogTypeFor(viewModel);
             return ShowDialog(ownerViewModel, viewModel, dialogType);
@@ -381,12 +382,12 @@ namespace MvvmDialogs
                 registeredView => ReferenceEquals(registeredView.DataContext, viewModel));
             
             if (view == null)
-                throw new ArgumentException("View model of type {0} is not referenced by any registered view.".InvariantFormat(viewModel.GetType()));
+                throw new ArgumentException(Resources.ViewModelNotReferenced.CurrentFormat(viewModel.GetType()));
 
             // Get owner window
             Window owner = view.GetOwner();
             if (owner == null)
-                throw new InvalidOperationException("View of type {0} is not contained within a Window.".InvariantFormat(view.GetType()));
+                throw new InvalidOperationException(Resources.ViewNotRegistered.CurrentFormat(view.GetType()));
 
             return owner;
         }

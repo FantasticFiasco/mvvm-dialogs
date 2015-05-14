@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using MvvmDialogs.Properties;
 
 namespace MvvmDialogs.DialogLocators
 {
@@ -57,7 +58,7 @@ namespace MvvmDialogs.DialogLocators
 
             dialogType = Type.GetType(dialogFullName);
             if (dialogType == null)
-                throw new DialogTypeException("Dialog with full name '{0}' doesn't exist.".InvariantFormat(dialogFullName));
+                throw new DialogTypeException(Resources.DialogTypeMissing.CurrentFormat(dialogFullName));
 
             AddToCache(viewModelType, dialogType);
             
@@ -67,12 +68,12 @@ namespace MvvmDialogs.DialogLocators
         private static string GetDialogNamespace(Type viewModelType)
         {
             if (viewModelType.Namespace == null)
-                throw new DialogTypeException("View model of type '{0}' doesn't have a namespace.".InvariantFormat(viewModelType));
+                throw new DialogTypeException(Resources.ViewModelNamespaceMissing.CurrentFormat(viewModelType));
 
             string[] parts = viewModelType.Namespace.Split('.');
 
             if (parts.Last() != ViewModel)
-                throw new DialogTypeException("View model of type '{0}' doesn't follow naming convention since it doesn't have a namespace that ends with '{1}'.".InvariantFormat(viewModelType, ViewModel));
+                throw new DialogTypeException(Resources.ViewModelNamespaceInvalid.CurrentFormat(viewModelType, ViewModel));
 
             parts[parts.Length - 1] = View;
 
@@ -82,7 +83,7 @@ namespace MvvmDialogs.DialogLocators
         private static string GetDialogClassName(Type viewModelType)
         {
             if (!viewModelType.Name.EndsWith(ViewModel, StringComparison.Ordinal))
-                throw new DialogTypeException("View model of type '{0}' doesn't follow naming convention since it isn't suffixed with '{1}'".InvariantFormat(viewModelType, ViewModel));
+                throw new DialogTypeException(Resources.ViewModelNameInvalid.CurrentFormat(viewModelType, ViewModel));
 
             return viewModelType.Name.Substring(
                 0,
