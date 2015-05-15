@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Reflection;
+using System.Resources;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
@@ -19,6 +20,8 @@ using System.Windows.Markup;
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
 [assembly: Guid("711d0c7f-a938-4e4b-b553-aaa2faee5161")]
+
+[assembly: NeutralResourcesLanguage("en-US")]
 
 [assembly: CLSCompliant(true)]
 
