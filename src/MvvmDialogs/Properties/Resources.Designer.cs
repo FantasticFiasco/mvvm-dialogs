@@ -115,11 +115,29 @@ namespace MvvmDialogs.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to View model of type &apos;{0}&apos; has not been mapped to a dialog..
+        /// </summary>
+        internal static string ViewModelNotMapped {
+            get {
+                return ResourceManager.GetString("ViewModelNotMapped", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to View model of type &apos;{0}&apos; is not referenced by any registered view..
         /// </summary>
         internal static string ViewModelNotReferenced {
             get {
                 return ResourceManager.GetString("ViewModelNotReferenced", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to View model of type &apos;{0}&apos; is already added..
+        /// </summary>
+        internal static string ViewModelTypeAlreadyAdded {
+            get {
+                return ResourceManager.GetString("ViewModelTypeAlreadyAdded", resourceCulture);
             }
         }
         

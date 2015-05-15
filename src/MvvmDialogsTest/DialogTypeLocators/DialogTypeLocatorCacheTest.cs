@@ -8,41 +8,42 @@ namespace MvvmDialogs.DialogTypeLocators
     [TestFixture]
     public class DialogTypeLocatorCacheTest
     {
-        [TearDown]
-        public void TearDown()
+        private DialogTypeLocatorCache cache;
+
+        [SetUp]
+        public void SetUp()
         {
-            DialogTypeLocatorCache.Clear();
+            cache = new DialogTypeLocatorCache();
         }
 
         [Test]
         public void Add()
         {
             // ACT
-            DialogTypeLocatorCache.Add(typeof(TestDialogViewModel), typeof(TestDialog));
+            cache.Add(typeof(TestDialogViewModel), typeof(TestDialog));
             
             // ASSERT
-            Assert.That(DialogTypeLocatorCache.Count, Is.EqualTo(1));
+            Assert.That(cache.Count, Is.EqualTo(1));
         }
 
         [Test]
         public void AddSameTwice()
         {
-            // ACT
-            DialogTypeLocatorCache.Add(typeof(TestDialogViewModel), typeof(TestDialog));
-            DialogTypeLocatorCache.Add(typeof(TestDialogViewModel), typeof(TestDialog));
+            // ARRANGE
+            cache.Add(typeof(TestDialogViewModel), typeof(TestDialog));
 
             // ASSERT
-            Assert.That(DialogTypeLocatorCache.Count, Is.EqualTo(1));
+            Assert.Throws<ArgumentException>(() => cache.Add(typeof(TestDialogViewModel), typeof(TestDialog)));
         }
 
         [Test]
         public void Get()
         {
             // ARRANGE
-            DialogTypeLocatorCache.Add(typeof(TestDialogViewModel), typeof(TestDialog));
+            cache.Add(typeof(TestDialogViewModel), typeof(TestDialog));
 
             // ACT
-            Type dialogType = DialogTypeLocatorCache.Get(typeof(TestDialogViewModel));
+            Type dialogType = cache.Get(typeof(TestDialogViewModel));
 
             // ASSERT
             Assert.That(dialogType, Is.EqualTo(typeof(TestDialog)));

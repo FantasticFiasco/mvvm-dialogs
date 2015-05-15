@@ -18,6 +18,18 @@ namespace MvvmDialogs.DialogTypeLocators
         private const string View = "View";
         private const string ViewModel = "ViewModel";
 
+        private readonly DialogTypeLocatorCache cache;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="NameConventionDialogTypeLocator"/> class.
+        /// </summary>
+        public NameConventionDialogTypeLocator()
+        {
+            cache = new DialogTypeLocatorCache();
+        }
+
+        #region IDialogTypeLocator Members
+
         /// <summary>
         /// Locates the dialog type representing the specified view model in a user interface.
         /// </summary>
@@ -35,7 +47,7 @@ namespace MvvmDialogs.DialogTypeLocators
 
             Type viewModelType = viewModel.GetType();
 
-            Type dialogType = DialogTypeLocatorCache.Get(viewModelType);
+            Type dialogType = cache.Get(viewModelType);
             if (dialogType != null)
             {
                 return dialogType;
@@ -54,10 +66,12 @@ namespace MvvmDialogs.DialogTypeLocators
             if (dialogType == null)
                 throw new DialogTypeException(Resources.DialogTypeMissing.CurrentFormat(dialogFullName));
 
-            DialogTypeLocatorCache.Add(viewModelType, dialogType);
+            cache.Add(viewModelType, dialogType);
             
             return dialogType;
         }
+
+        #endregion
 
         private static string GetDialogNamespace(Type viewModelType)
         {

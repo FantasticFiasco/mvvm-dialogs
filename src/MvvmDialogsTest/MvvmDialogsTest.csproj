@@ -61,6 +61,7 @@
       <Link>Properties\SolutionInfo.cs</Link>
     </Compile>
     <Compile Include="DialogTypeLocators\DialogTypeLocatorCacheTest.cs" />
+    <Compile Include="DialogTypeLocators\MappableDialogTypeLocatorTest.cs" />
     <Compile Include="DialogTypeLocators\NameConventionDialogTypeLocatorTest.cs" />
     <Compile Include="DialogTypeLocators\ViewModel\InvalidNameVM.cs" />
     <Compile Include="DialogTypeLocators\ViewModel\MissingDialogTypeViewModel.cs" />

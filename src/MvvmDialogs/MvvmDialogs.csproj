@@ -63,6 +63,7 @@
     <Compile Include="DialogService.cs" />
     <Compile Include="DialogServiceBehaviors.cs" />
     <Compile Include="DialogTypeLocators\DialogTypeLocatorCache.cs" />
+    <Compile Include="DialogTypeLocators\MappedDialogTypeLocator.cs" />
     <Compile Include="Extensions\System\StringExtensions.cs" />
     <Compile Include="Extensions\System\Windows\FrameworkElementExtensions.cs" />
     <Compile Include="FrameworkDialogs\FileDialogViewModel.cs" />

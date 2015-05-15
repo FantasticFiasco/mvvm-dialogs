@@ -135,8 +135,14 @@
   <data name="ViewModelNamespaceMissing" xml:space="preserve">
     <value>View model of type '{0}' doesn't have a namespace.</value>
   </data>
+  <data name="ViewModelNotMapped" xml:space="preserve">
+    <value>View model of type '{0}' has not been mapped to a dialog.</value>
+  </data>
   <data name="ViewModelNotReferenced" xml:space="preserve">
     <value>View model of type '{0}' is not referenced by any registered view.</value>
+  </data>
+  <data name="ViewModelTypeAlreadyAdded" xml:space="preserve">
+    <value>View model of type '{0}' is already added.</value>
   </data>
   <data name="ViewNotChildOfWindow" xml:space="preserve">
     <value>View of type '{0}' is not contained within a Window.</value>
