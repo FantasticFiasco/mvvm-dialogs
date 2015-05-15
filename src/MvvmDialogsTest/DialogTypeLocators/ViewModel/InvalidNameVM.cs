@@ -1,4 +1,4 @@
-﻿namespace MvvmDialogs.DialogLocators.ViewModel
+﻿namespace MvvmDialogs.DialogTypeLocators.ViewModel
 {
 // ReSharper disable once InconsistentNaming
     public class InvalidNameVM : ViewModel

@@ -1,9 +1,9 @@
 ﻿using System;
-using MvvmDialogs.DialogLocators.View;
-using MvvmDialogs.DialogLocators.ViewModel;
+using MvvmDialogs.DialogTypeLocators.View;
+using MvvmDialogs.DialogTypeLocators.ViewModel;
 using NUnit.Framework;
 
-namespace MvvmDialogs.DialogLocators
+namespace MvvmDialogs.DialogTypeLocators
 {
     [TestFixture]
     public class NameConventionDialogTypeLocatorTest

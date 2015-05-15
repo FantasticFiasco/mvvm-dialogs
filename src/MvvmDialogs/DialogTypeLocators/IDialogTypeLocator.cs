@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 
-namespace MvvmDialogs.DialogLocators
+namespace MvvmDialogs.DialogTypeLocators
 {
     /// <summary>
     /// Interface responsible for locating dialog types for specified view models.

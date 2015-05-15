@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace MvvmDialogs.DialogLocators.View
+namespace MvvmDialogs.DialogTypeLocators.View
 {
     public class TestDialog : Window
     {

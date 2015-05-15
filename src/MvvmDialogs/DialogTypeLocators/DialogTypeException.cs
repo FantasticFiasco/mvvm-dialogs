@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.Serialization;
 
-namespace MvvmDialogs.DialogLocators
+namespace MvvmDialogs.DialogTypeLocators
 {
     /// <summary>
     /// The exception that is thrown when a dialog type isn't located by

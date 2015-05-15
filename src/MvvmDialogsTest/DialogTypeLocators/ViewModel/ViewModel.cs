@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace MvvmDialogs.DialogLocators.ViewModel
+namespace MvvmDialogs.DialogTypeLocators.ViewModel
 {
     public abstract class ViewModel : INotifyPropertyChanged
     {

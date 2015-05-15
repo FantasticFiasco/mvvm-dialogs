@@ -4,7 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using MvvmDialogs.Properties;
 
-namespace MvvmDialogs.DialogLocators
+namespace MvvmDialogs.DialogTypeLocators
 {
     /// <summary>
     /// Class responsible for locating dialog types for specified view models based on a naming

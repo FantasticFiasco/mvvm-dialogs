@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 using System.Windows;
-using MvvmDialogs.DialogLocators;
+using MvvmDialogs.DialogTypeLocators;
 using MvvmDialogs.FrameworkDialogs.FolderBrowser;
 using MvvmDialogs.FrameworkDialogs.OpenFile;
 using MvvmDialogs.FrameworkDialogs.SaveFile;

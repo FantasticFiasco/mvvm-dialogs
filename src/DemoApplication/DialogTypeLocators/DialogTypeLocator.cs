@@ -1,5 +1,5 @@
 ﻿using System.ComponentModel.Composition;
-using MvvmDialogs.DialogLocators;
+using MvvmDialogs.DialogTypeLocators;
 
 namespace DemoApplication.DialogTypeLocators
 {
