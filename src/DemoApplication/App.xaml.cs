@@ -1,11 +1,9 @@
 ﻿using System.ComponentModel.Composition;
 using System.ComponentModel.Composition.Hosting;
-using System.ComponentModel.Composition.Registration;
 using System.Windows;
 using DemoApplication.View;
 using DemoApplication.ViewModel;
 using MvvmDialogs;
-using MvvmDialogs.DialogLocators;
 
 namespace DemoApplication
 {
@@ -42,12 +40,7 @@ namespace DemoApplication
             var catalog = new AggregateCatalog();
 
             // MvvmDialogs assembly
-            var picker = new RegistrationBuilder();
-            picker
-                .ForType<NameConventionDialogTypeLocator>()
-                .Export<IDialogTypeLocator>();
-
-            catalog.Catalogs.Add(new AssemblyCatalog(typeof(DialogService).Assembly, picker));
+            catalog.Catalogs.Add(new AssemblyCatalog(typeof(DialogService).Assembly));
 
             // This assembly
             catalog.Catalogs.Add(new AssemblyCatalog(typeof(App).Assembly));
