@@ -7,7 +7,7 @@
     xmlns:md="https://github.com/fantasticfiasco/mvvm-dialogs"
     xmlns:viewmodel="clr-namespace:DemoApplication.ViewModel"
     mc:Ignorable="d"
-    Title="MVVM Dialog Example"
+    Title="MVVM Dialogs"
     WindowStartupLocation="CenterScreen"
     md:DialogServiceBehaviors.IsRegisteredView="True"
     Height="300"
@@ -21,45 +21,5 @@
     
     <!-- Root element -->
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
-        
-        <!-- List of persons -->
-        <ListBox
-            ItemsSource="{Binding Persons}"
-            DisplayMemberPath="Name">
-            
-            <!-- ListBox resources -->
-            <ListBox.Resources>
-                
-                <!-- Binds IsSelected property on ListBoxItem to the property on view model -->
-                <Style
-                    TargetType="{x:Type ListBoxItem}"
-                    d:DataContext="{d:DesignInstance viewmodel:PersonViewModel}">
-                    <Setter Property="IsSelected" Value="{Binding IsSelected}"/>
-                </Style>
-            </ListBox.Resources>
-        </ListBox>
-        
-        <!-- Grid holding the buttons -->
-        <UniformGrid Grid.Row="1" Columns="3">
-
-            <!-- Load persons button -->
-            <Button
-                Content="Load persons"
-                Command="{Binding LoadPersonsCommand}"/>
-            
-            <!-- Delete button -->
-            <Button
-                Content="Show information"
-                Command="{Binding ShowInformationCommand}"/>
-		
-            <!-- Show info button -->
-            <Button
-                Content="Delete"
-                Command="{Binding DeleteCommand}"/>
-        </UniformGrid>
     </Grid>
 </Window>
