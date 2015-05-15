@@ -88,7 +88,14 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="ViewModel\Dialog\ExplicitDialogTabItemViewModel.cs" />
+    <Compile Include="ViewModel\Dialog\ImplicitDialogTabItemViewModel.cs" />
+    <Compile Include="ViewModel\FolderBrowserDialog\FolderBrowserTabItemViewModel.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
+    <Compile Include="ViewModel\MessageBox\MessageBoxTabItemViewModel.cs" />
+    <Compile Include="ViewModel\OpenFileDialog\OpenFileTabItemViewModel.cs" />
+    <Compile Include="ViewModel\SaveFileDialog\SaveFileTabItemViewModel.cs" />
+    <Compile Include="ViewModel\TabItemViewModel.cs" />
     <Compile Include="View\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
@@ -125,6 +132,7 @@
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

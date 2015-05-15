@@ -10,8 +10,8 @@
     Title="MVVM Dialogs"
     WindowStartupLocation="CenterScreen"
     md:DialogServiceBehaviors.IsRegisteredView="True"
-    Height="300"
-    Width="400"
+    Height="400"
+    Width="600"
     d:DataContext="{d:DesignInstance viewmodel:MainWindowViewModel}">
     
     <!-- Resources -->
@@ -20,6 +20,24 @@
     </Window.Resources>
     
     <!-- Root element -->
-    <Grid>
-    </Grid>
+    <TabControl
+        ItemsSource="{Binding Items}"
+        SelectedIndex="0">
+        
+        <TabControl.ItemTemplate>
+            <DataTemplate>
+                <HeaderedContentControl d:DataContext="{d:DesignInstance viewmodel:TabItemViewModel}">
+                    <TextBlock Text="{Binding Title}" />
+                </HeaderedContentControl>
+            </DataTemplate>
+        </TabControl.ItemTemplate>
+        
+        <TabControl.ContentTemplate>
+            <DataTemplate>
+                <ContentControl
+                    d:DataContext="{d:DesignInstance viewmodel:TabItemViewModel}"
+                    Content="{Binding Content}"/>
+            </DataTemplate>
+        </TabControl.ContentTemplate>
+    </TabControl>
 </Window>
