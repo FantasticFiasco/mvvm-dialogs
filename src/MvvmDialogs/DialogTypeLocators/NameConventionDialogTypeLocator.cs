@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using MvvmDialogs.Properties;
@@ -20,11 +19,6 @@ namespace MvvmDialogs.DialogTypeLocators
         private const string ViewModel = "ViewModel";
 
         /// <summary>
-        /// A cache holding the known mappings between view model types and dialog types.
-        /// </summary>
-        internal static readonly Dictionary<Type, Type> Cache = new Dictionary<Type, Type>(); 
-
-        /// <summary>
         /// Locates the dialog type representing the specified view model in a user interface.
         /// </summary>
         /// <param name="viewModel">The view model to find the dialog type for.</param>
@@ -41,7 +35,7 @@ namespace MvvmDialogs.DialogTypeLocators
 
             Type viewModelType = viewModel.GetType();
 
-            Type dialogType = GetFromCache(viewModelType);
+            Type dialogType = DialogTypeLocatorCache.Get(viewModelType);
             if (dialogType != null)
             {
                 return dialogType;
@@ -60,7 +54,7 @@ namespace MvvmDialogs.DialogTypeLocators
             if (dialogType == null)
                 throw new DialogTypeException(Resources.DialogTypeMissing.CurrentFormat(dialogFullName));
 
-            AddToCache(viewModelType, dialogType);
+            DialogTypeLocatorCache.Add(viewModelType, dialogType);
             
             return dialogType;
         }
@@ -93,20 +87,6 @@ namespace MvvmDialogs.DialogTypeLocators
         private static string GetAssemblyFullName(Type viewModelType)
         {
             return viewModelType.Assembly.FullName;
-        }
-
-        private static Type GetFromCache(Type viewModelType)
-        {
-            Type dialogType;
-            
-            return Cache.TryGetValue(viewModelType, out dialogType) ?
-                dialogType :
-                null;
-        }
-
-        private static void AddToCache(Type viewModelType, Type dialogType)
-        {
-            Cache.Add(viewModelType, dialogType);
         }
     }
 }

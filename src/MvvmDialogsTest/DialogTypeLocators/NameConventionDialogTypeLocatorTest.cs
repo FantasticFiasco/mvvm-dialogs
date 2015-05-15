@@ -16,12 +16,6 @@ namespace MvvmDialogs.DialogTypeLocators
             dialogTypeLocator = new NameConventionDialogTypeLocator();
         }
 
-        [TearDown]
-        public void TearDown()
-        {
-            NameConventionDialogTypeLocator.Cache.Clear();
-        }
-        
         [Test]
         public void Successful()
         {
@@ -53,27 +47,6 @@ namespace MvvmDialogs.DialogTypeLocators
 
             // ASSERT
             Assert.Throws<DialogTypeException>(() => dialogTypeLocator.LocateDialogTypeFor(viewModel));
-        }
-
-        [Test]
-        public void NewDialogTypeUpdatesCache()
-        {
-            // ACT
-            dialogTypeLocator.LocateDialogTypeFor(new TestDialogViewModel());
-
-            // ASSERT
-            Assert.That(NameConventionDialogTypeLocator.Cache.Count, Is.EqualTo(1));
-        }
-
-        [Test]
-        public void KnownDialogTypeDoesNotUpdateCache()
-        {
-            // ACT
-            dialogTypeLocator.LocateDialogTypeFor(new TestDialogViewModel());
-            dialogTypeLocator.LocateDialogTypeFor(new TestDialogViewModel());
-
-            // ASSERT
-            Assert.That(NameConventionDialogTypeLocator.Cache.Count, Is.EqualTo(1));
         }
     }
 }
