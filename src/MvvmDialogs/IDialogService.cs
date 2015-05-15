@@ -191,10 +191,10 @@ namespace MvvmDialogs
         /// </param>
         /// <param name="openFileDialogViewModel">The view model of a open file dialog.</param>
         /// <returns>
-        /// <see cref="DialogResult.OK"/> if successful; otherwise
-        /// <see cref="DialogResult.Cancel"/>.
+        /// If the user clicks the OK button of the dialog that is displayed, true is returned;
+        /// otherwise false.
         /// </returns>
-        DialogResult ShowOpenFileDialog(
+        bool? ShowOpenFileDialog(
             INotifyPropertyChanged ownerViewModel,
             OpenFileDialogViewModel openFileDialogViewModel);
 
@@ -206,10 +206,10 @@ namespace MvvmDialogs
         /// </param>
         /// <param name="saveFileDialogViewModel">The view model of a save file dialog.</param>
         /// <returns>
-        /// <see cref="DialogResult.OK"/> if successful; otherwise
-        /// <see cref="DialogResult.Cancel"/>.
+        /// If the user clicks the OK button of the dialog that is displayed, true is returned;
+        /// otherwise false.
         /// </returns>
-        DialogResult ShowSaveFileDialog(
+        bool? ShowSaveFileDialog(
             INotifyPropertyChanged ownerViewModel,
             SaveFileDialogViewModel saveFileDialogViewModel);
         
@@ -223,10 +223,10 @@ namespace MvvmDialogs
         /// The view model of a folder browser dialog.
         /// </param>
         /// <returns>
-        /// <see cref="DialogResult.OK"/> if successful; otherwise
-        /// <see cref="DialogResult.Cancel"/>.
+        /// If the user clicks the OK button of the dialog that is displayed, true is returned;
+        /// otherwise false.
         /// </returns>
-        DialogResult ShowFolderBrowserDialog(
+        bool? ShowFolderBrowserDialog(
             INotifyPropertyChanged ownerViewModel,
             FolderBrowserDialogViewModel folderBrowserDialogViewModel);
     }

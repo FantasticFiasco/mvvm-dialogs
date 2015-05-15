@@ -276,10 +276,10 @@ namespace MvvmDialogs
         /// </param>
         /// <param name="openFileDialogViewModel">The view model of a open file dialog.</param>
         /// <returns>
-        /// <see cref="DialogResult.OK"/> if successful; otherwise
-        /// <see cref="DialogResult.Cancel"/>.
+        /// If the user clicks the OK button of the dialog that is displayed, true is returned;
+        /// otherwise false.
         /// </returns>
-        public DialogResult ShowOpenFileDialog(
+        public bool? ShowOpenFileDialog(
             INotifyPropertyChanged ownerViewModel,
             OpenFileDialogViewModel openFileDialogViewModel)
         {
@@ -288,10 +288,8 @@ namespace MvvmDialogs
             if (openFileDialogViewModel == null)
                 throw new ArgumentNullException("openFileDialogViewModel");
 
-            using (var dialog = new OpenFileDialogWrapper(openFileDialogViewModel))
-            {
-                return dialog.ShowDialog(new WindowWrapper(FindOwnerWindow(ownerViewModel)));    
-            }
+            var dialog = new OpenFileDialogWrapper(openFileDialogViewModel);
+            return dialog.ShowDialog(FindOwnerWindow(ownerViewModel));
         }
 
         /// <summary>
@@ -302,10 +300,10 @@ namespace MvvmDialogs
         /// </param>
         /// <param name="saveFileDialogViewModel">The view model of a save file dialog.</param>
         /// <returns>
-        /// <see cref="DialogResult.OK"/> if successful; otherwise
-        /// <see cref="DialogResult.Cancel"/>.
+        /// If the user clicks the OK button of the dialog that is displayed, true is returned;
+        /// otherwise false.
         /// </returns>
-        public DialogResult ShowSaveFileDialog(
+        public bool? ShowSaveFileDialog(
             INotifyPropertyChanged ownerViewModel,
             SaveFileDialogViewModel saveFileDialogViewModel)
         {
@@ -314,10 +312,8 @@ namespace MvvmDialogs
             if (saveFileDialogViewModel == null)
                 throw new ArgumentNullException("saveFileDialogViewModel");
 
-            using (var dialog = new SaveFileDialogWrapper(saveFileDialogViewModel))
-            {
-                return dialog.ShowDialog(new WindowWrapper(FindOwnerWindow(ownerViewModel)));    
-            }
+            var dialog = new SaveFileDialogWrapper(saveFileDialogViewModel);
+            return dialog.ShowDialog(FindOwnerWindow(ownerViewModel));
         }
 
         /// <summary>
@@ -330,10 +326,10 @@ namespace MvvmDialogs
         /// The view model of a folder browser dialog.
         /// </param>
         /// <returns>
-        /// <see cref="DialogResult.OK"/> if successful; otherwise
-        /// <see cref="DialogResult.Cancel"/>.
+        /// If the user clicks the OK button of the dialog that is displayed, true is returned;
+        /// otherwise false.
         /// </returns>
-        public DialogResult ShowFolderBrowserDialog(
+        public bool? ShowFolderBrowserDialog(
             INotifyPropertyChanged ownerViewModel,
             FolderBrowserDialogViewModel folderBrowserDialogViewModel)
         {
@@ -344,7 +340,8 @@ namespace MvvmDialogs
 
             using (var dialog = new FolderBrowserDialogWrapper(folderBrowserDialogViewModel))
             {
-                return dialog.ShowDialog(new WindowWrapper(FindOwnerWindow(ownerViewModel)));    
+                DialogResult result = dialog.ShowDialog(new WindowWrapper(FindOwnerWindow(ownerViewModel)));
+                return result == DialogResult.OK;
             }
         }
 

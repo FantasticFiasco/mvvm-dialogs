@@ -6,7 +6,6 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Windows;
-using System.Windows.Forms;
 using System.Windows.Input;
 using DemoApplication.Model;
 using DemoApplication.Properties;
@@ -126,8 +125,8 @@ namespace DemoApplication.ViewModel
             };
             
             // Open the dialog
-            DialogResult result = dialogService.ShowOpenFileDialog(this, openFileDialogViewModel);
-            if (result == DialogResult.OK)
+            bool? result = dialogService.ShowOpenFileDialog(this, openFileDialogViewModel);
+            if (result == true)
             {
                 // Load the persons, usually one investigates whether the file was loaded successfully,
                 // but this is only a demo application

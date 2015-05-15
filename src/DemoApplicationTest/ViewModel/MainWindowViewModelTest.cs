@@ -66,7 +66,7 @@ namespace DemoApplication.ViewModel
             // Load persons but cancel
             dialogServiceMock
                 .Setup(m => m.ShowOpenFileDialog(viewModel, It.IsAny<OpenFileDialogViewModel>()))
-                .Returns(DialogResult.Cancel);
+                .Returns(false);
             viewModel.LoadPersonsCommand.Execute(null);
             Assert.That(viewModel.LoadPersonsCommand.CanExecute(null), Is.True);
 
@@ -188,7 +188,7 @@ namespace DemoApplication.ViewModel
             // Simulate loading persons
             dialogServiceMock
                 .Setup(m => m.ShowOpenFileDialog(viewModel, It.IsAny<OpenFileDialogViewModel>()))
-                .Returns(DialogResult.OK);
+                .Returns(true);
             viewModel.LoadPersonsCommand.Execute(null);
         }
 

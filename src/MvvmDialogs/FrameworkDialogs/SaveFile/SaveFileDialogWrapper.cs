@@ -1,12 +1,13 @@
 ﻿using System;
-using System.Windows.Forms;
+using System.Windows;
+using Microsoft.Win32;
 
 namespace MvvmDialogs.FrameworkDialogs.SaveFile
 {
     /// <summary>
     /// Class wrapping <see cref="SaveFileDialog"/>, making it accept a view model.
     /// </summary>
-    internal sealed class SaveFileDialogWrapper : IDisposable
+    internal sealed class SaveFileDialogWrapper
     {
         private readonly SaveFileDialogViewModel saveFileDialogViewModel;
         private readonly SaveFileDialog saveFileDialog;
@@ -41,19 +42,18 @@ namespace MvvmDialogs.FrameworkDialogs.SaveFile
         /// Runs a common dialog box with the specified owner.
         /// </summary>
         /// <param name="owner">
-        /// Any object that implements <see cref="IWin32Window"/> that represents the top-level
-        /// window that will own the modal dialog box.
+        /// Handle to the window that owns the dialog.
         /// </param>
         /// <returns>
-        /// <see cref="DialogResult.OK"/> if the user clicks OK in the dialog box; otherwise,
-        /// <see cref="DialogResult.Cancel"/>.
+        /// If the user clicks the OK button of the dialog that is displayed, true is returned;
+        /// otherwise false.
         /// </returns>
-        public DialogResult ShowDialog(IWin32Window owner)
+        public bool? ShowDialog(Window owner)
         {
             if (owner == null)
                 throw new ArgumentNullException("owner");
 
-            DialogResult result = saveFileDialog.ShowDialog(owner);
+            bool? result = saveFileDialog.ShowDialog(owner);
 
             // Update view model
             saveFileDialogViewModel.FileName = saveFileDialog.FileName;
@@ -61,21 +61,5 @@ namespace MvvmDialogs.FrameworkDialogs.SaveFile
 
             return result;
         }
-
-        #region IDisposable Members
-
-        /// <summary>
-        /// Performs application-defined tasks associated with freeing, releasing, or resetting
-        /// unmanaged resources.
-        /// </summary>
-        public void Dispose()
-        {
-            if (saveFileDialog != null)
-            {
-                saveFileDialog.Dispose();
-            }
-        }
-
-        #endregion
     }
 }
