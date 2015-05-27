@@ -1,10 +1,9 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel.Composition;
-using DemoApplication.Features.Dialog.ViewModels;
-using DemoApplication.Features.FolderBrowserDialog.ViewModels;
-using DemoApplication.Features.MessageBox.ViewModels;
-using DemoApplication.Features.OpenFileDialog.ViewModels;
-using DemoApplication.Features.SaveFileDialog.ViewModels;
+using System.Linq;
+using DemoApplication.TabItemInfrastructure;
 using GalaSoft.MvvmLight;
 
 namespace DemoApplication
@@ -20,17 +19,14 @@ namespace DemoApplication
         /// <summary>
         /// Initializes a new instance of the <see cref="MainWindowViewModel"/> class.
         /// </summary>
-        public MainWindowViewModel()
+        [ImportingConstructor]
+        public MainWindowViewModel([ImportMany] IEnumerable<Lazy<TabItemViewModel, ITabItemPriority>> tabItems)
         {
-            items = new ObservableCollection<TabItemViewModel>
-            {
-                new ImplicitDialogTabItemViewModel(),
-                new ExplicitDialogTabItemViewModel(),
-                new MessageBoxTabItemViewModel(),
-                new OpenFileTabItemViewModel(),
-                new SaveFileTabItemViewModel(),
-                new FolderBrowserTabItemViewModel()
-            };
+            IEnumerable<TabItemViewModel> orderedTabItems = tabItems
+                .OrderBy(tabItem => tabItem.Metadata.Priority)
+                .Select(tabItem => tabItem.Value);
+
+            items = new ObservableCollection<TabItemViewModel>(orderedTabItems);
         }
 
         public ObservableCollection<TabItemViewModel> Items

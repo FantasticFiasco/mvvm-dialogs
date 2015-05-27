@@ -6,6 +6,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
     xmlns:md="https://github.com/fantasticfiasco/mvvm-dialogs"
     xmlns:local="clr-namespace:DemoApplication"
+    xmlns:tabiteminfrastructure="clr-namespace:DemoApplication.TabItemInfrastructure"
     mc:Ignorable="d"
     Title="MVVM Dialogs"
     WindowStartupLocation="CenterScreen"
@@ -26,7 +27,7 @@
         
         <TabControl.ItemTemplate>
             <DataTemplate>
-                <HeaderedContentControl d:DataContext="{d:DesignInstance local:TabItemViewModel}">
+                <HeaderedContentControl d:DataContext="{d:DesignInstance tabiteminfrastructure:TabItemViewModel}">
                     <TextBlock Text="{Binding Title}" />
                 </HeaderedContentControl>
             </DataTemplate>
@@ -35,7 +36,7 @@
         <TabControl.ContentTemplate>
             <DataTemplate>
                 <ContentControl
-                    d:DataContext="{d:DesignInstance local:TabItemViewModel}"
+                    d:DataContext="{d:DesignInstance tabiteminfrastructure:TabItemViewModel}"
                     Content="{Binding Content}"/>
             </DataTemplate>
         </TabControl.ContentTemplate>
