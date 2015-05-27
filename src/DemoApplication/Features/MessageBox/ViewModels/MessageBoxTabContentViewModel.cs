@@ -1,14 +1,13 @@
 ﻿using System.ComponentModel.Composition;
 using System.Windows;
 using System.Windows.Input;
-using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.CommandWpf;
 using MvvmDialogs;
+using MvvmFoundation.Wpf;
 
 namespace DemoApplication.Features.MessageBox.ViewModels
 {
     [Export]
-    public class MessageBoxTabContentViewModel : ViewModelBase
+    public class MessageBoxTabContentViewModel : ObservableObject
     {
         private readonly IDialogService dialogService;
         private readonly ICommand showMessageBoxWithMessageCommand;

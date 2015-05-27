@@ -4,7 +4,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel.Composition;
 using System.Linq;
 using DemoApplication.TabItemInfrastructure;
-using GalaSoft.MvvmLight;
+using MvvmFoundation.Wpf;
 
 namespace DemoApplication
 {
@@ -12,7 +12,7 @@ namespace DemoApplication
     /// Acts as view model for <see cref="MainWindow"/>.
     /// </summary>
     [Export]
-    public class MainWindowViewModel : ViewModelBase
+    public class MainWindowViewModel : ObservableObject
     {
         private readonly ObservableCollection<TabItemViewModel> items;
 

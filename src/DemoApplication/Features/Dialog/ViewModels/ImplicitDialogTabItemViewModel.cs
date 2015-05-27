@@ -1,6 +1,6 @@
-﻿using System.ComponentModel.Composition;
+﻿using System.ComponentModel;
+using System.ComponentModel.Composition;
 using DemoApplication.TabItemInfrastructure;
-using GalaSoft.MvvmLight;
 
 namespace DemoApplication.Features.Dialog.ViewModels
 {
@@ -13,7 +13,7 @@ namespace DemoApplication.Features.Dialog.ViewModels
             get { return "Implicit Dialog"; }
         }
 
-        public override ViewModelBase Content
+        public override INotifyPropertyChanged Content
         {
             get { return null; }
         }

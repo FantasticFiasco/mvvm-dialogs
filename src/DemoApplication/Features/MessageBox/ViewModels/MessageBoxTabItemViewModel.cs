@@ -1,6 +1,6 @@
-﻿using System.ComponentModel.Composition;
+﻿using System.ComponentModel;
+using System.ComponentModel.Composition;
 using DemoApplication.TabItemInfrastructure;
-using GalaSoft.MvvmLight;
 
 namespace DemoApplication.Features.MessageBox.ViewModels
 {
@@ -21,7 +21,7 @@ namespace DemoApplication.Features.MessageBox.ViewModels
             get { return "Message Box"; }
         }
 
-        public override ViewModelBase Content
+        public override INotifyPropertyChanged Content
         {
             get { return contentViewModel; }
         }

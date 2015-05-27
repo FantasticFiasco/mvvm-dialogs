@@ -1,6 +1,6 @@
-﻿using System.ComponentModel.Composition;
+﻿using System.ComponentModel;
+using System.ComponentModel.Composition;
 using DemoApplication.TabItemInfrastructure;
-using GalaSoft.MvvmLight;
 
 namespace DemoApplication.Features.OpenFileDialog.ViewModels
 {
@@ -13,7 +13,7 @@ namespace DemoApplication.Features.OpenFileDialog.ViewModels
             get { return "Open File"; }
         }
 
-        public override ViewModelBase Content
+        public override INotifyPropertyChanged Content
         {
             get { return null; }
         }

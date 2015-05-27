@@ -1,11 +1,12 @@
-﻿using GalaSoft.MvvmLight;
+﻿using System.ComponentModel;
+using MvvmFoundation.Wpf;
 
 namespace DemoApplication.TabItemInfrastructure
 {
-    public abstract class TabItemViewModel : ViewModelBase
+    public abstract class TabItemViewModel : ObservableObject
     {
         public abstract string Title { get; }
 
-        public abstract ViewModelBase Content { get; }
+        public abstract INotifyPropertyChanged Content { get; }
     }
 }
