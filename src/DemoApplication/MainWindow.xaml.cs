@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.Composition;
 
-namespace DemoApplication.View
+namespace DemoApplication
 {
     /// <summary>
     /// Main window of the application.

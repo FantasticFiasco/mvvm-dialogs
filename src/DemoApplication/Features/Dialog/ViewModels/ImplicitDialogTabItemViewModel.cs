@@ -1,12 +1,12 @@
 ﻿using GalaSoft.MvvmLight;
 
-namespace DemoApplication.ViewModel.SaveFileDialog
+namespace DemoApplication.Features.Dialog.ViewModels
 {
-    public class SaveFileTabItemViewModel : TabItemViewModel
+    public class ImplicitDialogTabItemViewModel : TabItemViewModel
     {
         public override string Title
         {
-            get { return "Save File"; }
+            get { return "Implicit Dialog"; }
         }
 
         public override ViewModelBase Content

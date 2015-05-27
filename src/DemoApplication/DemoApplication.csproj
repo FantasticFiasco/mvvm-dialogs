@@ -82,21 +82,21 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="DialogTypeLocator.cs" />
+    <Compile Include="DialogTypeLocators\DialogTypeLocator.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="ViewModel\Dialog\ExplicitDialogTabItemViewModel.cs" />
-    <Compile Include="ViewModel\Dialog\ImplicitDialogTabItemViewModel.cs" />
-    <Compile Include="ViewModel\FolderBrowserDialog\FolderBrowserTabItemViewModel.cs" />
-    <Compile Include="ViewModel\MainWindowViewModel.cs" />
-    <Compile Include="ViewModel\MessageBox\MessageBoxTabItemViewModel.cs" />
-    <Compile Include="ViewModel\OpenFileDialog\OpenFileTabItemViewModel.cs" />
-    <Compile Include="ViewModel\SaveFileDialog\SaveFileTabItemViewModel.cs" />
-    <Compile Include="ViewModel\TabItemViewModel.cs" />
-    <Compile Include="View\MainWindow.xaml.cs">
+    <Compile Include="Features\Dialog\ViewModels\ExplicitDialogTabItemViewModel.cs" />
+    <Compile Include="Features\Dialog\ViewModels\ImplicitDialogTabItemViewModel.cs" />
+    <Compile Include="Features\FolderBrowserDialog\ViewModels\FolderBrowserTabItemViewModel.cs" />
+    <Compile Include="MainWindowViewModel.cs" />
+    <Compile Include="Features\MessageBox\ViewModels\MessageBoxTabItemViewModel.cs" />
+    <Compile Include="Features\OpenFileDialog\ViewModels\OpenFileTabItemViewModel.cs" />
+    <Compile Include="Features\SaveFileDialog\ViewModels\SaveFileTabItemViewModel.cs" />
+    <Compile Include="TabItemViewModel.cs" />
+    <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
@@ -113,11 +113,11 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Page Include="View\ApplicationResources.xaml">
+    <Page Include="Resources\ApplicationResources.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="View\MainWindow.xaml">
+    <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

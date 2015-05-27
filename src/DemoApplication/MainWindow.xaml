@@ -1,22 +1,22 @@
 ﻿<Window
-    x:Class="DemoApplication.View.MainWindow"
+    x:Class="DemoApplication.MainWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
     xmlns:md="https://github.com/fantasticfiasco/mvvm-dialogs"
-    xmlns:viewmodel="clr-namespace:DemoApplication.ViewModel"
+    xmlns:local="clr-namespace:DemoApplication"
     mc:Ignorable="d"
     Title="MVVM Dialogs"
     WindowStartupLocation="CenterScreen"
     md:DialogServiceBehaviors.IsRegisteredView="True"
     Height="400"
     Width="600"
-    d:DataContext="{d:DesignInstance viewmodel:MainWindowViewModel}">
+    d:DataContext="{d:DesignInstance local:MainWindowViewModel}">
     
     <!-- Resources -->
     <Window.Resources>
-        <ResourceDictionary Source="ApplicationResources.xaml"/>
+        <ResourceDictionary Source="Resources\ApplicationResources.xaml"/>
     </Window.Resources>
     
     <!-- Root element -->
@@ -26,7 +26,7 @@
         
         <TabControl.ItemTemplate>
             <DataTemplate>
-                <HeaderedContentControl d:DataContext="{d:DesignInstance viewmodel:TabItemViewModel}">
+                <HeaderedContentControl d:DataContext="{d:DesignInstance local:TabItemViewModel}">
                     <TextBlock Text="{Binding Title}" />
                 </HeaderedContentControl>
             </DataTemplate>
@@ -35,7 +35,7 @@
         <TabControl.ContentTemplate>
             <DataTemplate>
                 <ContentControl
-                    d:DataContext="{d:DesignInstance viewmodel:TabItemViewModel}"
+                    d:DataContext="{d:DesignInstance local:TabItemViewModel}"
                     Content="{Binding Content}"/>
             </DataTemplate>
         </TabControl.ContentTemplate>

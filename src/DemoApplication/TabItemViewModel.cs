@@ -1,6 +1,6 @@
 ﻿using GalaSoft.MvvmLight;
 
-namespace DemoApplication.ViewModel
+namespace DemoApplication
 {
     public abstract class TabItemViewModel : ViewModelBase
     {

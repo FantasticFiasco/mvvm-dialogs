@@ -1,12 +1,12 @@
 ﻿using GalaSoft.MvvmLight;
 
-namespace DemoApplication.ViewModel.OpenFileDialog
+namespace DemoApplication.Features.Dialog.ViewModels
 {
-    public class OpenFileTabItemViewModel : TabItemViewModel
+    public class ExplicitDialogTabItemViewModel : TabItemViewModel
     {
         public override string Title
         {
-            get { return "Open File"; }
+            get { return "Explicit Dialog"; }
         }
 
         public override ViewModelBase Content

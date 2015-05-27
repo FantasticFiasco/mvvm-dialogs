@@ -1,9 +1,7 @@
 ﻿using System.ComponentModel.Composition;
 using System.ComponentModel.Composition.Hosting;
+using System.Reflection;
 using System.Windows;
-using DemoApplication.View;
-using DemoApplication.ViewModel;
-using MvvmDialogs;
 
 namespace DemoApplication
 {
@@ -39,11 +37,8 @@ namespace DemoApplication
         {
             var catalog = new AggregateCatalog();
 
-            // MvvmDialogs assembly
-            catalog.Catalogs.Add(new AssemblyCatalog(typeof(DialogService).Assembly));
-
-            // This assembly
-            catalog.Catalogs.Add(new AssemblyCatalog(typeof(App).Assembly));
+            catalog.Catalogs.Add(new AssemblyCatalog(Assembly.Load("DemoApplication")));
+            catalog.Catalogs.Add(new AssemblyCatalog(Assembly.Load("MvvmDialogs")));
             
             return new CompositionContainer(catalog);
         }

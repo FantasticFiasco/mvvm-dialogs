@@ -1,14 +1,13 @@
 ﻿using System.Collections.ObjectModel;
 using System.ComponentModel.Composition;
-using DemoApplication.View;
-using DemoApplication.ViewModel.Dialog;
-using DemoApplication.ViewModel.FolderBrowserDialog;
-using DemoApplication.ViewModel.MessageBox;
-using DemoApplication.ViewModel.OpenFileDialog;
-using DemoApplication.ViewModel.SaveFileDialog;
+using DemoApplication.Features.Dialog.ViewModels;
+using DemoApplication.Features.FolderBrowserDialog.ViewModels;
+using DemoApplication.Features.MessageBox.ViewModels;
+using DemoApplication.Features.OpenFileDialog.ViewModels;
+using DemoApplication.Features.SaveFileDialog.ViewModels;
 using GalaSoft.MvvmLight;
 
-namespace DemoApplication.ViewModel
+namespace DemoApplication
 {
     /// <summary>
     /// Acts as view model for <see cref="MainWindow"/>.

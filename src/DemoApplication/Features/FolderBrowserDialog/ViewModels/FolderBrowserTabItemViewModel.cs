@@ -1,12 +1,12 @@
 ﻿using GalaSoft.MvvmLight;
 
-namespace DemoApplication.ViewModel.Dialog
+namespace DemoApplication.Features.FolderBrowserDialog.ViewModels
 {
-    public class ExplicitDialogTabItemViewModel : TabItemViewModel
+    public class FolderBrowserTabItemViewModel : TabItemViewModel
     {
         public override string Title
         {
-            get { return "Explicit Dialog"; }
+            get { return "Folder Browser"; }
         }
 
         public override ViewModelBase Content
