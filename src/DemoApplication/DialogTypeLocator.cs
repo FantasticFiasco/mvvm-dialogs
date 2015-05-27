@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.Composition;
 using MvvmDialogs.DialogTypeLocators;
 
-namespace DemoApplication.DialogTypeLocators
+namespace DemoApplication
 {
     /// <summary>
     /// Class exporting the different <see cref="IDialogTypeLocator"/> implementations to MEF. Only
