@@ -127,10 +127,10 @@
     <value>View of type '{0}' is already registered.</value>
   </data>
   <data name="ViewModelNameInvalid" xml:space="preserve">
-    <value>View model of type '{0}' doesn't follow naming convention since it isn't suffixed with '{1}'.</value>
+    <value>View model of type '{0}' doesn't follow naming convention since it isn't suffixed with 'ViewModel'.</value>
   </data>
   <data name="ViewModelNamespaceInvalid" xml:space="preserve">
-    <value>View model of type '{0}' doesn't follow naming convention since it doesn't have a namespace that ends with '{1}'.</value>
+    <value>View model of type '{0}' doesn't follow naming convention since it doesn't have a namespace that contains any of the following parts: {1}.</value>
   </data>
   <data name="ViewModelNamespaceMissing" xml:space="preserve">
     <value>View model of type '{0}' doesn't have a namespace.</value>

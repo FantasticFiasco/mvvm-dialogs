@@ -63,13 +63,10 @@
     <Compile Include="DialogTypeLocators\DialogTypeLocatorCacheTest.cs" />
     <Compile Include="DialogTypeLocators\MappableDialogTypeLocatorTest.cs" />
     <Compile Include="DialogTypeLocators\NameConventionDialogTypeLocatorTest.cs" />
-    <Compile Include="DialogTypeLocators\ViewModel\InvalidNameVM.cs" />
-    <Compile Include="DialogTypeLocators\ViewModel\MissingDialogTypeViewModel.cs" />
-    <Compile Include="DialogTypeLocators\ViewModel\TestDialogViewModel.cs" />
-    <Compile Include="DialogTypeLocators\ViewModel\ViewModel.cs" />
-    <Compile Include="DialogTypeLocators\View\TestDialog.cs" />
     <Compile Include="DialogServiceBehaviorsTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TestAssemblyBuilder.cs" />
+    <Compile Include="ViewModelBase.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MvvmDialogs\MvvmDialogs.csproj">

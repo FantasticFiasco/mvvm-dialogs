@@ -1,6 +1,4 @@
 ﻿using System;
-using MvvmDialogs.DialogTypeLocators.View;
-using MvvmDialogs.DialogTypeLocators.ViewModel;
 using NUnit.Framework;
 
 namespace MvvmDialogs.DialogTypeLocators
@@ -40,5 +38,17 @@ namespace MvvmDialogs.DialogTypeLocators
             // ASSERT
             Assert.Throws<DialogTypeException>(() => dialogTypeLocator.LocateDialogTypeFor(viewModel));
         }
+
+        #region Helper classes
+
+        private class TestDialogViewModel : ViewModelBase
+        {
+        }
+
+        private class TestDialog
+        {
+        }
+
+        #endregion
     }
 }

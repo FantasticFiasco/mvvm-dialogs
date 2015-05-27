@@ -88,7 +88,7 @@ namespace MvvmDialogs.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to View model of type &apos;{0}&apos; doesn&apos;t follow naming convention since it isn&apos;t suffixed with &apos;{1}&apos;..
+        ///   Looks up a localized string similar to View model of type &apos;{0}&apos; doesn&apos;t follow naming convention since it isn&apos;t suffixed with &apos;ViewModel&apos;..
         /// </summary>
         internal static string ViewModelNameInvalid {
             get {
@@ -97,7 +97,7 @@ namespace MvvmDialogs.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to View model of type &apos;{0}&apos; doesn&apos;t follow naming convention since it doesn&apos;t have a namespace that ends with &apos;{1}&apos;..
+        ///   Looks up a localized string similar to View model of type &apos;{0}&apos; doesn&apos;t follow naming convention since it doesn&apos;t have a namespace that contains any of the following parts: {1}..
         /// </summary>
         internal static string ViewModelNamespaceInvalid {
             get {

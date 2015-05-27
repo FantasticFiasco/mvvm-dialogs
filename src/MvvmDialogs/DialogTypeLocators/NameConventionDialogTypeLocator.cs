@@ -1,6 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
 using MvvmDialogs.Properties;
 
 namespace MvvmDialogs.DialogTypeLocators
@@ -10,22 +10,27 @@ namespace MvvmDialogs.DialogTypeLocators
     /// convention used in a multitude of articles and code samples describing the MVVM pattern.
     /// 
     /// The convention states that if the full name of the view model is
-    /// 'MyNamespace.ViewModel.MyDialogViewModel' then the full name of the dialog is
-    /// 'MyNamespace.View.MyDialog'.
+    /// 'MyNamespace.Module.ViewModel.MyDialogViewModel' then the full name of the dialog is
+    /// 'MyNamespace.Module.View.MyDialog'.
     /// </summary>
     public class NameConventionDialogTypeLocator : IDialogTypeLocator
     {
-        private const string View = "View";
         private const string ViewModel = "ViewModel";
 
         private readonly DialogTypeLocatorCache cache;
-
+        private readonly IDictionary<string, string> namespaceReplacements;
+        
         /// <summary>
         /// Initializes a new instance of the <see cref="NameConventionDialogTypeLocator"/> class.
         /// </summary>
         public NameConventionDialogTypeLocator()
         {
             cache = new DialogTypeLocatorCache();
+            namespaceReplacements = new Dictionary<string, string>
+            {
+                { "ViewModel", "View" },
+                { "ViewModels", "Views" }
+            };
         }
 
         #region IDialogTypeLocator Members
@@ -61,7 +66,7 @@ namespace MvvmDialogs.DialogTypeLocators
                 dialogNamespace,
                 dialogClassName,
                 dialogAssemblyFullName);
-
+            
             dialogType = Type.GetType(dialogFullName);
             if (dialogType == null)
                 throw new DialogTypeException(Resources.DialogTypeMissing.CurrentFormat(dialogFullName));
@@ -73,17 +78,35 @@ namespace MvvmDialogs.DialogTypeLocators
 
         #endregion
 
-        private static string GetDialogNamespace(Type viewModelType)
+        private string GetDialogNamespace(Type viewModelType)
         {
             if (viewModelType.Namespace == null)
                 throw new DialogTypeException(Resources.ViewModelNamespaceMissing.CurrentFormat(viewModelType));
 
             string[] parts = viewModelType.Namespace.Split('.');
 
-            if (parts.Last() != ViewModel)
-                throw new DialogTypeException(Resources.ViewModelNamespaceInvalid.CurrentFormat(viewModelType, ViewModel));
+            int index = -1;
+            string foundNamespaceReplacement = null;
+            
+            foreach (KeyValuePair<string, string> namespaceReplacement in namespaceReplacements)
+            {
+                index = Array.IndexOf(parts, namespaceReplacement.Key);
+                if (index != -1)
+                {
+                    foundNamespaceReplacement = namespaceReplacement.Value;
+                    break;
+                }
+            }
 
-            parts[parts.Length - 1] = View;
+            if (index == -1)
+            {
+                throw new DialogTypeException(
+                    Resources.ViewModelNamespaceInvalid.CurrentFormat(
+                        viewModelType,
+                        string.Join(", ", namespaceReplacements.Keys)));
+            }
+
+            parts[index] = foundNamespaceReplacement;
 
             return string.Join(".", parts);
         }
@@ -91,7 +114,7 @@ namespace MvvmDialogs.DialogTypeLocators
         private static string GetDialogClassName(Type viewModelType)
         {
             if (!viewModelType.Name.EndsWith(ViewModel, StringComparison.Ordinal))
-                throw new DialogTypeException(Resources.ViewModelNameInvalid.CurrentFormat(viewModelType, ViewModel));
+                throw new DialogTypeException(Resources.ViewModelNameInvalid.CurrentFormat(viewModelType));
 
             return viewModelType.Name.Substring(
                 0,
