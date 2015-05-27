@@ -8,12 +8,12 @@ namespace DemoApplication.Features.MessageBox.ViewModels
     [ExportMetadata("Priority", 3)]
     public class MessageBoxTabItemViewModel : TabItemViewModel
     {
-        private readonly MessageBoxTabContentViewModel contentViewModel;
+        private readonly MessageBoxTabContentViewModel content;
 
         [ImportingConstructor]
-        public MessageBoxTabItemViewModel(MessageBoxTabContentViewModel contentViewModel)
+        public MessageBoxTabItemViewModel(MessageBoxTabContentViewModel content)
         {
-            this.contentViewModel = contentViewModel;
+            this.content = content;
         }
 
         public override string Title
@@ -23,7 +23,7 @@ namespace DemoApplication.Features.MessageBox.ViewModels
 
         public override INotifyPropertyChanged Content
         {
-            get { return contentViewModel; }
+            get { return content; }
         }
     }
 }

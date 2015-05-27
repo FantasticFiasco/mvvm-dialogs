@@ -4,6 +4,7 @@
 
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="../Features/MessageBox/Views/DataTemplate.xaml" />
+        <ResourceDictionary Source="../Features/OpenFileDialog/Views/DataTemplate.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
 </ResourceDictionary>

@@ -1,8 +1,8 @@
 ﻿namespace DemoApplication.Features.MessageBox.Views
 {
-    public partial class MessageBoxTabItemView
+    public partial class MessageBoxTabContent
     {
-        public MessageBoxTabItemView()
+        public MessageBoxTabContent()
         {
             InitializeComponent();
         }

@@ -8,6 +8,14 @@ namespace DemoApplication.Features.OpenFileDialog.ViewModels
     [ExportMetadata("Priority", 4)]
     public class OpenFileTabItemViewModel : TabItemViewModel
     {
+        private readonly OpenFileTabContentViewModel content;
+
+        [ImportingConstructor]
+        public OpenFileTabItemViewModel(OpenFileTabContentViewModel content)
+        {
+            this.content = content;
+        }
+
         public override string Title
         {
             get { return "Open File"; }
@@ -15,7 +23,7 @@ namespace DemoApplication.Features.OpenFileDialog.ViewModels
 
         public override INotifyPropertyChanged Content
         {
-            get { return null; }
+            get { return content; }
         }
     }
 }

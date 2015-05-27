@@ -72,8 +72,12 @@
     </Compile>
     <Compile Include="DialogTypeLocators\DialogTypeLocator.cs" />
     <Compile Include="Features\MessageBox\ViewModels\MessageBoxTabContentViewModel.cs" />
-    <Compile Include="Features\MessageBox\Views\MessageBoxTabItemView.xaml.cs">
-      <DependentUpon>MessageBoxTabItemView.xaml</DependentUpon>
+    <Compile Include="Features\MessageBox\Views\MessageBoxTabContent.xaml.cs">
+      <DependentUpon>MessageBoxTabContent.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Features\OpenFileDialog\ViewModels\OpenFileTabContentViewModel.cs" />
+    <Compile Include="Features\OpenFileDialog\Views\OpenFileTabContent.xaml.cs">
+      <DependentUpon>OpenFileTabContent.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -110,7 +114,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Features\MessageBox\Views\MessageBoxTabItemView.xaml">
+    <Page Include="Features\MessageBox\Views\MessageBoxTabContent.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Features\OpenFileDialog\Views\DataTemplate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Features\OpenFileDialog\Views\OpenFileTabContent.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

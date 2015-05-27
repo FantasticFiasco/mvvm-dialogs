@@ -5,7 +5,7 @@
     xmlns:vm="clr-namespace:DemoApplication.Features.MessageBox.ViewModels">
 
     <DataTemplate DataType="{x:Type vm:MessageBoxTabContentViewModel}">
-        <local:MessageBoxTabItemView/>
+        <local:MessageBoxTabContent />
     </DataTemplate>
 
 </ResourceDictionary>
