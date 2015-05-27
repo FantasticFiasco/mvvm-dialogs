@@ -1,13 +1,13 @@
 ﻿<UserControl
-    x:Class="DemoApplication.Features.OpenFileDialog.Views.OpenFileTabContent"
+    x:Class="DemoApplication.Features.SaveFileDialog.Views.SaveFileTabContent"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:md="https://github.com/fantasticfiasco/mvvm-dialogs"
-    xmlns:vm="clr-namespace:DemoApplication.Features.OpenFileDialog.ViewModels"
+    xmlns:vm="clr-namespace:DemoApplication.Features.SaveFileDialog.ViewModels"
     mc:Ignorable="d"
-    d:DataContext="{d:DesignInstance vm:OpenFileTabContentViewModel}"
+    d:DataContext="{d:DesignInstance vm:SaveFileTabContentViewModel}"
     md:DialogServiceBehaviors.IsRegisteredView="True">
     
     <Grid VerticalAlignment="Center">
@@ -21,7 +21,7 @@
             Text="{Binding Path}" />
         <Button
             Grid.Column="1"
-            Content="Open..."
-            Command="{Binding OpenFileCommand}" />
+            Content="Save..."
+            Command="{Binding SaveFileCommand}" />
     </Grid>
 </UserControl>

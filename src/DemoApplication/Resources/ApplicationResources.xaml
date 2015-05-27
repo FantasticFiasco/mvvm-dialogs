@@ -10,15 +10,13 @@
         <Setter Property="Margin" Value="3"/>
     </Style>
     
-    <Style x:Key="BrowseButtonStyle" TargetType="{x:Type Button}" BasedOn="{StaticResource BaseStyle}">
-        <Setter Property="Width" Value="25" />
-    </Style>
-    
     <!--
         Generic Resources
     -->
 
-    <Style TargetType="{x:Type Button}" BasedOn="{StaticResource BaseStyle}"/>
+    <Style TargetType="{x:Type Button}" BasedOn="{StaticResource BaseStyle}">
+        <Setter Property="MinWidth" Value="75" />
+    </Style>
 
     <Style TargetType="{x:Type ListBox}" BasedOn="{StaticResource BaseStyle}"/>
 

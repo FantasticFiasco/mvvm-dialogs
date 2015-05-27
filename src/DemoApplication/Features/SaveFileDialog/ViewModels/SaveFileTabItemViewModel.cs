@@ -8,6 +8,14 @@ namespace DemoApplication.Features.SaveFileDialog.ViewModels
     [ExportMetadata("Priority", 5)]
     public class SaveFileTabItemViewModel : TabItemViewModel
     {
+        private readonly SaveFileTabContentViewModel content;
+
+        [ImportingConstructor]
+        public SaveFileTabItemViewModel(SaveFileTabContentViewModel content)
+        {
+            this.content = content;
+        }
+
         public override string Title
         {
             get { return "Save File"; }
@@ -15,7 +23,7 @@ namespace DemoApplication.Features.SaveFileDialog.ViewModels
 
         public override INotifyPropertyChanged Content
         {
-            get { return null; }
+            get { return content; }
         }
     }
 }

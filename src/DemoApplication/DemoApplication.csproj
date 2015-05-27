@@ -79,6 +79,10 @@
     <Compile Include="Features\OpenFileDialog\Views\OpenFileTabContent.xaml.cs">
       <DependentUpon>OpenFileTabContent.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Features\SaveFileDialog\ViewModels\SaveFileTabContentViewModel.cs" />
+    <Compile Include="Features\SaveFileDialog\Views\SaveFileTabContent.xaml.cs">
+      <DependentUpon>SaveFileTabContent.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -123,6 +127,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Features\OpenFileDialog\Views\OpenFileTabContent.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Features\SaveFileDialog\Views\DataTemplate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Features\SaveFileDialog\Views\SaveFileTabContent.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

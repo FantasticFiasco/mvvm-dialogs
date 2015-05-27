@@ -2,24 +2,24 @@
 using System.ComponentModel.Composition;
 using System.Windows.Input;
 using MvvmDialogs;
-using MvvmDialogs.FrameworkDialogs.OpenFile;
+using MvvmDialogs.FrameworkDialogs.SaveFile;
 using MvvmFoundation.Wpf;
 
-namespace DemoApplication.Features.OpenFileDialog.ViewModels
+namespace DemoApplication.Features.SaveFileDialog.ViewModels
 {
     [Export]
-    public class OpenFileTabContentViewModel : ObservableObject
+    public class SaveFileTabContentViewModel : ObservableObject
     {
         private readonly IDialogService dialogService;
-        private readonly ICommand openFileCommand;
+        private readonly ICommand saveFileCommand;
 
         private string path;
 
         [ImportingConstructor]
-        public OpenFileTabContentViewModel(IDialogService dialogService)
+        public SaveFileTabContentViewModel(IDialogService dialogService)
         {
             this.dialogService = dialogService;
-            openFileCommand = new RelayCommand(OpenFile);
+            saveFileCommand = new RelayCommand(SaveFile);
         }
 
         public string Path
@@ -35,24 +35,24 @@ namespace DemoApplication.Features.OpenFileDialog.ViewModels
             }
         }
 
-        public ICommand OpenFileCommand
+        public ICommand SaveFileCommand
         {
-            get { return openFileCommand; }
+            get { return saveFileCommand; }
         }
 
-        private void OpenFile()
+        private void SaveFile()
         {
-            var openFileDialogViewModel = new OpenFileDialogViewModel
+            var saveFileDialogViewModel = new SaveFileDialogViewModel
             {
                 InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
                 Title = "This Is The Title",
                 Filter = "Text Documents (*.txt)|*.txt|All Files (*.*)|*.*"
             };
 
-            bool? success = dialogService.ShowOpenFileDialog(this, openFileDialogViewModel);
+            bool? success = dialogService.ShowSaveFileDialog(this, saveFileDialogViewModel);
             if (success == true)
             {
-                Path = openFileDialogViewModel.FileName;
+                Path = saveFileDialogViewModel.FileName;
             }
         }
     }
