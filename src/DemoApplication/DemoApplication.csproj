@@ -89,6 +89,14 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Features\Dialog\ViewModels\CurrentTimeDialogViewModel.cs" />
+    <Compile Include="Features\Dialog\ViewModels\DialogTabContentViewModel.cs" />
+    <Compile Include="Features\Dialog\Views\CurrentTimeDialog.xaml.cs">
+      <DependentUpon>CurrentTimeDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Features\Dialog\Views\DialogTabContent.xaml.cs">
+      <DependentUpon>DialogTabContent.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Features\FolderBrowserDialog\ViewModels\FolderBrowserTabContentViewModel.cs" />
     <Compile Include="Features\FolderBrowserDialog\Views\FolderBrowserTabContent.xaml.cs">
       <DependentUpon>FolderBrowserTabContent.xaml</DependentUpon>
@@ -110,8 +118,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Features\Dialog\ViewModels\ExplicitDialogTabItemViewModel.cs" />
-    <Compile Include="Features\Dialog\ViewModels\ImplicitDialogTabItemViewModel.cs" />
+    <Compile Include="Features\Dialog\ViewModels\DialogTabItemViewModel.cs" />
     <Compile Include="Features\FolderBrowserDialog\ViewModels\FolderBrowserTabItemViewModel.cs" />
     <Compile Include="MainWindowViewModel.cs" />
     <Compile Include="Features\MessageBox\ViewModels\MessageBoxTabItemViewModel.cs" />
@@ -136,6 +143,18 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Features\Dialog\Views\DataTemplate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Features\Dialog\Views\CurrentTimeDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Features\Dialog\Views\DialogTabContent.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Features\FolderBrowserDialog\Views\DataTemplate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

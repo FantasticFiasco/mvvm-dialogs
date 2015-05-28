@@ -5,7 +5,7 @@ using DemoApplication.TabItemInfrastructure;
 namespace DemoApplication.Features.OpenFileDialog.ViewModels
 {
     [Export(typeof(TabItemViewModel))]
-    [ExportMetadata("Priority", 4)]
+    [ExportMetadata("Priority", 3)]
     public class OpenFileTabItemViewModel : TabItemViewModel
     {
         private readonly OpenFileTabContentViewModel content;

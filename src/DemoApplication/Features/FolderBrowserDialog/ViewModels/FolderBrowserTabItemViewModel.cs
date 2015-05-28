@@ -5,7 +5,7 @@ using DemoApplication.TabItemInfrastructure;
 namespace DemoApplication.Features.FolderBrowserDialog.ViewModels
 {
     [Export(typeof(TabItemViewModel))]
-    [ExportMetadata("Priority", 6)]
+    [ExportMetadata("Priority", 5)]
     public class FolderBrowserTabItemViewModel : TabItemViewModel
     {
         private readonly FolderBrowserTabContentViewModel content;

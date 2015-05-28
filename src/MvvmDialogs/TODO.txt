@@ -3,3 +3,4 @@
 * DialogService should hold the registered views using weak references.
 * Rename 'DialogServiceBehaviors.IsRegisteredView' to 'DialogServiceBehaviors.ViewModelHandlesDialogs'?
 * Read up on http://brianlagunas.com/getting-started-prisms-new-viewmodellocator/ and look at the implementation of the locator and also see if I should use the same SetXXX pattern where the locator and factory are set.
+* Make sure dialog view model can set a value of true or false depending on the outcome of the dialog.

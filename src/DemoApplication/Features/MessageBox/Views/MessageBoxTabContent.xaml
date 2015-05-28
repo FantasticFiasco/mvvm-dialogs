@@ -10,13 +10,6 @@
     d:DataContext="{d:DesignInstance vm:MessageBoxTabContentViewModel}"
     md:DialogServiceBehaviors.IsRegisteredView="True">
     
-    <UserControl.Resources>
-        <Style TargetType="{x:Type TextBlock}">
-            <Setter Property="TextWrapping" Value="Wrap" />
-            <Setter Property="TextAlignment" Value="Center" />
-        </Style>
-    </UserControl.Resources>
-    
     <UniformGrid Columns="2" Rows="3">
         <Button Command="{Binding ShowMessageBoxWithMessageCommand}">
             <TextBlock Text="Show message box with message" />

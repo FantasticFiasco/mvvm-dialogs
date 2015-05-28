@@ -22,6 +22,7 @@
 
     <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource BaseStyle}">
         <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="TextWrapping" Value="Wrap" />
     </Style>
 
     <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource BaseStyle}"/>
