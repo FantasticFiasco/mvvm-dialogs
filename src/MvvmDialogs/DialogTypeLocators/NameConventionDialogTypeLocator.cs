@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 using MvvmDialogs.Properties;
 
 namespace MvvmDialogs.DialogTypeLocators
@@ -103,7 +104,7 @@ namespace MvvmDialogs.DialogTypeLocators
                 throw new DialogTypeException(
                     Resources.ViewModelNamespaceInvalid.CurrentFormat(
                         viewModelType,
-                        string.Join(", ", namespaceReplacements.Keys)));
+                        string.Join(", ", namespaceReplacements.Keys.ToArray())));
             }
 
             parts[index] = foundNamespaceReplacement;

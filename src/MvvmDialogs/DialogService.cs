@@ -1,6 +1,5 @@
 ﻿using System;
 using System.ComponentModel;
-using System.ComponentModel.Composition;
 using System.Linq;
 using System.Windows;
 using MvvmDialogs.DialogTypeLocators;
@@ -20,7 +19,6 @@ namespace MvvmDialogs
     /// Class abstracting the interaction between view models and views when it comes to
     /// opening dialogs using the MVVM pattern in WPF.
     /// </summary>
-    [Export(typeof(IDialogService))]
     public class DialogService : IDialogService
     {
         private readonly IDialogTypeLocator dialogTypeLocator;
@@ -32,7 +30,6 @@ namespace MvvmDialogs
         /// The dialog type locator. Specifying a <see cref="IDialogTypeLocator"/> is required when
         /// using <see cref="IDialogService.ShowDialog"/>.
         /// </param>
-        [ImportingConstructor]
         public DialogService(IDialogTypeLocator dialogTypeLocator = null)
         {
             this.dialogTypeLocator = dialogTypeLocator;

@@ -1,5 +1,4 @@
-﻿using System.Diagnostics.Contracts;
-using System.Globalization;
+﻿using System.Globalization;
 
 // ReSharper disable once CheckNamespace
 namespace System
@@ -20,7 +19,6 @@ namespace System
         /// A copy of format in which the format items have been replaced by the string
         /// representation of the corresponding objects in args.
         /// </returns>
-        [Pure]
         internal static string InvariantFormat(this string format, params object[] args)
         {
             return string.Format(CultureInfo.InvariantCulture, format, args);
@@ -37,7 +35,6 @@ namespace System
         /// A copy of format in which the format items have been replaced by the string
         /// representation of the corresponding objects in args.
         /// </returns>
-        [Pure]
         public static string CurrentFormat(this string format, params object[] args)
         {
             return string.Format(CultureInfo.CurrentCulture, format, args);
