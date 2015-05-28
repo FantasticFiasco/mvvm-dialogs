@@ -8,6 +8,14 @@ namespace DemoApplication.Features.FolderBrowserDialog.ViewModels
     [ExportMetadata("Priority", 6)]
     public class FolderBrowserTabItemViewModel : TabItemViewModel
     {
+        private readonly FolderBrowserTabContentViewModel content;
+
+        [ImportingConstructor]
+        public FolderBrowserTabItemViewModel(FolderBrowserTabContentViewModel content)
+        {
+            this.content = content;
+        }
+
         public override string Title
         {
             get { return "Folder Browser"; }
@@ -15,7 +23,7 @@ namespace DemoApplication.Features.FolderBrowserDialog.ViewModels
 
         public override INotifyPropertyChanged Content
         {
-            get { return null; }
+            get { return content; }
         }
     }
 }

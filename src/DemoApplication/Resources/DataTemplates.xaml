@@ -3,6 +3,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="../Features/FolderBrowserDialog/Views/DataTemplate.xaml" />
         <ResourceDictionary Source="../Features/MessageBox/Views/DataTemplate.xaml" />
         <ResourceDictionary Source="../Features/OpenFileDialog/Views/DataTemplate.xaml" />
         <ResourceDictionary Source="../Features/SaveFileDialog/Views/DataTemplate.xaml" />

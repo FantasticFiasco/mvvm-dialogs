@@ -89,6 +89,10 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Features\FolderBrowserDialog\ViewModels\FolderBrowserTabContentViewModel.cs" />
+    <Compile Include="Features\FolderBrowserDialog\Views\FolderBrowserTabContent.xaml.cs">
+      <DependentUpon>FolderBrowserTabContent.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Features\MessageBox\ViewModels\MessageBoxTabContentViewModel.cs" />
     <Compile Include="Features\MessageBox\Views\MessageBoxTabContent.xaml.cs">
       <DependentUpon>MessageBoxTabContent.xaml</DependentUpon>
@@ -132,6 +136,14 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Features\FolderBrowserDialog\Views\DataTemplate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Features\FolderBrowserDialog\Views\FolderBrowserTabContent.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Features\MessageBox\Views\DataTemplate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
