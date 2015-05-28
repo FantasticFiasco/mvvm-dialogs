@@ -1,30 +1,41 @@
-﻿using System.ComponentModel.Composition;
+﻿using System;
+using System.ComponentModel.Composition;
 using System.Windows;
 using System.Windows.Input;
 using MvvmDialogs;
-using MvvmFoundation.Wpf;
+using ReactiveUI;
 
 namespace DemoApplication.Features.MessageBox.ViewModels
 {
     [Export]
-    public class MessageBoxTabContentViewModel : ObservableObject
+    public class MessageBoxTabContentViewModel : ReactiveObject
     {
         private readonly IDialogService dialogService;
-        private readonly ICommand showMessageBoxWithMessageCommand;
-        private readonly ICommand showMessageBoxWithCaptionCommand;
-        private readonly ICommand showMessageBoxWithButtonCommand;
-        private readonly ICommand showMessageBoxWithIconCommand;
-        private readonly ICommand showMessageBoxWithDefaultResultCommand;
+        private readonly ReactiveCommand<object> showMessageBoxWithMessageCommand;
+        private readonly ReactiveCommand<object> showMessageBoxWithCaptionCommand;
+        private readonly ReactiveCommand<object> showMessageBoxWithButtonCommand;
+        private readonly ReactiveCommand<object> showMessageBoxWithIconCommand;
+        private readonly ReactiveCommand<object> showMessageBoxWithDefaultResultCommand;
 
         [ImportingConstructor]
         public MessageBoxTabContentViewModel(IDialogService dialogService)
         {
             this.dialogService = dialogService;
-            showMessageBoxWithMessageCommand = new RelayCommand(ShowMessageBoxWithMessage);
-            showMessageBoxWithCaptionCommand = new RelayCommand(ShowMessageBoxWithCaption);
-            showMessageBoxWithButtonCommand = new RelayCommand(ShowMessageBoxWithButton);
-            showMessageBoxWithIconCommand = new RelayCommand(ShowMessageBoxWithIcon);
-            showMessageBoxWithDefaultResultCommand = new RelayCommand(ShowMessageBoxWithDefaultResult);
+
+            showMessageBoxWithMessageCommand = ReactiveCommand.Create();
+            showMessageBoxWithMessageCommand.Subscribe(_ => ShowMessageBoxWithMessage());
+
+            showMessageBoxWithCaptionCommand = ReactiveCommand.Create();
+            showMessageBoxWithCaptionCommand.Subscribe(_ => ShowMessageBoxWithCaption());
+
+            showMessageBoxWithButtonCommand = ReactiveCommand.Create();
+            showMessageBoxWithButtonCommand.Subscribe(_ => ShowMessageBoxWithButton());
+
+            showMessageBoxWithIconCommand = ReactiveCommand.Create();
+            showMessageBoxWithIconCommand.Subscribe(_ => ShowMessageBoxWithIcon());
+
+            showMessageBoxWithDefaultResultCommand = ReactiveCommand.Create();
+            showMessageBoxWithDefaultResultCommand.Subscribe(_ => ShowMessageBoxWithDefaultResult());
         }
 
         public ICommand ShowMessageBoxWithMessageCommand

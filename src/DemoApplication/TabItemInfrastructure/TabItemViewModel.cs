@@ -1,9 +1,9 @@
 ﻿using System.ComponentModel;
-using MvvmFoundation.Wpf;
+using ReactiveUI;
 
 namespace DemoApplication.TabItemInfrastructure
 {
-    public abstract class TabItemViewModel : ObservableObject
+    public abstract class TabItemViewModel : ReactiveObject
     {
         public abstract string Title { get; }
 

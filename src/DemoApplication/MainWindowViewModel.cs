@@ -4,7 +4,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel.Composition;
 using System.Linq;
 using DemoApplication.TabItemInfrastructure;
-using MvvmFoundation.Wpf;
+using ReactiveUI;
 
 namespace DemoApplication
 {
@@ -12,7 +12,7 @@ namespace DemoApplication
     /// Acts as view model for <see cref="MainWindow"/>.
     /// </summary>
     [Export]
-    public class MainWindowViewModel : ObservableObject
+    public class MainWindowViewModel : ReactiveObject
     {
         private readonly ObservableCollection<TabItemViewModel> items;
 

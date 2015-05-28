@@ -3,15 +3,15 @@ using System.ComponentModel.Composition;
 using System.Windows.Input;
 using MvvmDialogs;
 using MvvmDialogs.FrameworkDialogs.OpenFile;
-using MvvmFoundation.Wpf;
+using ReactiveUI;
 
 namespace DemoApplication.Features.OpenFileDialog.ViewModels
 {
     [Export]
-    public class OpenFileTabContentViewModel : ObservableObject
+    public class OpenFileTabContentViewModel : ReactiveObject
     {
         private readonly IDialogService dialogService;
-        private readonly ICommand openFileCommand;
+        private readonly ReactiveCommand<object> openFileCommand;
 
         private string path;
 
@@ -19,20 +19,15 @@ namespace DemoApplication.Features.OpenFileDialog.ViewModels
         public OpenFileTabContentViewModel(IDialogService dialogService)
         {
             this.dialogService = dialogService;
-            openFileCommand = new RelayCommand(OpenFile);
+            
+            openFileCommand = ReactiveCommand.Create();
+            openFileCommand.Subscribe(_ => OpenFile());
         }
 
         public string Path
         {
             get { return path; }
-            set
-            {
-                if (path == value)
-                    return;
-
-                path = value;
-                RaisePropertyChanged("Path");
-            }
+            set { this.RaiseAndSetIfChanged(ref path, value); }
         }
 
         public ICommand OpenFileCommand
@@ -44,8 +39,8 @@ namespace DemoApplication.Features.OpenFileDialog.ViewModels
         {
             var openFileDialogViewModel = new OpenFileDialogViewModel
             {
-                InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
                 Title = "This Is The Title",
+                InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
                 Filter = "Text Documents (*.txt)|*.txt|All Files (*.*)|*.*"
             };
 
