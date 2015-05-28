@@ -24,6 +24,7 @@ namespace DemoApplication.Features.Dialog.ViewModels
 
         private void OnTick(object sender, EventArgs e)
         {
+// ReSharper disable once ExplicitCallerInfoArgument
             this.RaisePropertyChanged("CurrentTime");
         }
     }
