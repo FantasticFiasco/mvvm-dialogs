@@ -2,7 +2,7 @@
 using System.ComponentModel.Composition;
 using DemoApplication.TabItemInfrastructure;
 
-namespace DemoApplication.Features.Dialog.ViewModels
+namespace DemoApplication.Features.Dialog.Modal.ViewModels
 {
     [Export(typeof(TabItemViewModel))]
     [ExportMetadata("Priority", 1)]
@@ -18,7 +18,7 @@ namespace DemoApplication.Features.Dialog.ViewModels
 
         public override string Title
         {
-            get { return "Dialog"; }
+            get { return "Modal Dialog"; }
         }
 
         public override INotifyPropertyChanged Content

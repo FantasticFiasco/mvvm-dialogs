@@ -89,12 +89,12 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Features\Dialog\ViewModels\AddTextDialogViewModel.cs" />
-    <Compile Include="Features\Dialog\ViewModels\DialogTabContentViewModel.cs" />
-    <Compile Include="Features\Dialog\Views\AddTextDialog.xaml.cs">
+    <Compile Include="Features\Dialog\Modal\ViewModels\AddTextDialogViewModel.cs" />
+    <Compile Include="Features\Dialog\Modal\ViewModels\DialogTabContentViewModel.cs" />
+    <Compile Include="Features\Dialog\Modal\Views\AddTextDialog.xaml.cs">
       <DependentUpon>AddTextDialog.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Features\Dialog\Views\DialogTabContent.xaml.cs">
+    <Compile Include="Features\Dialog\Modal\Views\DialogTabContent.xaml.cs">
       <DependentUpon>DialogTabContent.xaml</DependentUpon>
     </Compile>
     <Compile Include="Features\FolderBrowserDialog\ViewModels\FolderBrowserTabContentViewModel.cs" />
@@ -118,7 +118,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Features\Dialog\ViewModels\DialogTabItemViewModel.cs" />
+    <Compile Include="Features\Dialog\Modal\ViewModels\DialogTabItemViewModel.cs" />
     <Compile Include="Features\FolderBrowserDialog\ViewModels\FolderBrowserTabItemViewModel.cs" />
     <Compile Include="MainWindowViewModel.cs" />
     <Compile Include="Features\MessageBox\ViewModels\MessageBoxTabItemViewModel.cs" />
@@ -143,15 +143,15 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Page Include="Features\Dialog\Views\DataTemplate.xaml">
+    <Page Include="Features\Dialog\Modal\Views\DataTemplate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Features\Dialog\Views\AddTextDialog.xaml">
+    <Page Include="Features\Dialog\Modal\Views\AddTextDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Features\Dialog\Views\DialogTabContent.xaml">
+    <Page Include="Features\Dialog\Modal\Views\DialogTabContent.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

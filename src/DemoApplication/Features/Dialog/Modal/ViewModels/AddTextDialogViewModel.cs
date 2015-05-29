@@ -2,7 +2,7 @@
 using System.Windows.Input;
 using ReactiveUI;
 
-namespace DemoApplication.Features.Dialog.ViewModels
+namespace DemoApplication.Features.Dialog.Modal.ViewModels
 {
     public class AddTextDialogViewModel : ReactiveObject
     {

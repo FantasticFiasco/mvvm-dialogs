@@ -2,11 +2,11 @@
 using System.Collections.ObjectModel;
 using System.ComponentModel.Composition;
 using System.Windows.Input;
-using DemoApplication.Features.Dialog.Views;
+using DemoApplication.Features.Dialog.Modal.Views;
 using MvvmDialogs;
 using ReactiveUI;
 
-namespace DemoApplication.Features.Dialog.ViewModels
+namespace DemoApplication.Features.Dialog.Modal.ViewModels
 {
     [Export]
     public class DialogTabContentViewModel : ReactiveObject

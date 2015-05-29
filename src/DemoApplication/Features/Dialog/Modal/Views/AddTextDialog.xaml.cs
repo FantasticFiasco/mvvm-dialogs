@@ -1,4 +1,4 @@
-﻿namespace DemoApplication.Features.Dialog.Views
+﻿namespace DemoApplication.Features.Dialog.Modal.Views
 {
     public partial class AddTextDialog
     {
