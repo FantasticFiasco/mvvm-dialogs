@@ -60,7 +60,7 @@ namespace DemoApplication
                 .ForType<DialogService>()
                 .ExportInterfaces();
             picker
-                .ForType<NameConventionDialogTypeLocator>()
+                .ForType<NamingConventionDialogTypeLocator>()
                 .ExportInterfaces();
 
             return new AssemblyCatalog(Assembly.Load("MvvmDialogs"), picker);

@@ -6,15 +6,15 @@ using NUnit.Framework;
 namespace MvvmDialogs.DialogTypeLocators
 {
     [TestFixture]
-    public class NameConventionDialogTypeLocatorTest
+    public class IDataSourceContainer
     {
-        private NameConventionDialogTypeLocator dialogTypeLocator;
+        private NamingConventionDialogTypeLocator dialogTypeLocator;
         private Assembly testAssembly;
 
         [TestFixtureSetUp]
         public void TestFixtureSetUp()
         {
-            dialogTypeLocator = new NameConventionDialogTypeLocator();
+            dialogTypeLocator = new NamingConventionDialogTypeLocator();
             var assemblyBuilder = new TestAssemblyBuilder("TestAssembly");
 
             // Create types used in tests

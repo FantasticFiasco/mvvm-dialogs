@@ -14,7 +14,7 @@ namespace MvvmDialogs.DialogTypeLocators
     /// 'MyNamespace.Module.ViewModel.MyDialogViewModel' then the full name of the dialog is
     /// 'MyNamespace.Module.View.MyDialog'.
     /// </summary>
-    public class NameConventionDialogTypeLocator : IDialogTypeLocator
+    public class NamingConventionDialogTypeLocator : IDialogTypeLocator
     {
         private const string ViewModel = "ViewModel";
 
@@ -22,9 +22,9 @@ namespace MvvmDialogs.DialogTypeLocators
         private readonly IDictionary<string, string> namespaceReplacements;
         
         /// <summary>
-        /// Initializes a new instance of the <see cref="NameConventionDialogTypeLocator"/> class.
+        /// Initializes a new instance of the <see cref="NamingConventionDialogTypeLocator"/> class.
         /// </summary>
-        public NameConventionDialogTypeLocator()
+        public NamingConventionDialogTypeLocator()
         {
             cache = new DialogTypeLocatorCache();
             namespaceReplacements = new Dictionary<string, string>
