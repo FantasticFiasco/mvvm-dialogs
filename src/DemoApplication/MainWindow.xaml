@@ -19,8 +19,8 @@
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="Resources\ApplicationResources.xaml" />
-                <ResourceDictionary Source="Resources/DataTemplates.xaml" />
+                <ResourceDictionary Source="/Resources/ApplicationResources.xaml" />
+                <ResourceDictionary Source="/Resources/DataTemplates.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Window.Resources>

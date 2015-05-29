@@ -10,12 +10,22 @@
     d:DataContext="{d:DesignInstance vm:DialogTabContentViewModel}"
     md:DialogServiceBehaviors.IsRegisteredView="True">
 
-    <UniformGrid Rows="2">
-        <Button Command="{Binding ShowImplicitDialogCommand}">
-            <TextBlock Text="Show dialog using the dialog type locator" />
-        </Button>
-        <Button Command="{Binding ShowExplicitDialogCommand}">
-            <TextBlock Text="Show dialog by specifying dialog type" />
-        </Button>
-    </UniformGrid>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        
+        <ListBox ItemsSource="{Binding Texts}" />
+        
+        <StackPanel Grid.Column="1">
+            <Button Command="{Binding ShowImplicitDialogCommand}">
+                <TextBlock Text="Add text using the dialog type locator..." />
+            </Button>
+            <Button Command="{Binding ShowExplicitDialogCommand}">
+                <TextBlock Text="Add text by specifying dialog type..." />
+            </Button>
+        </StackPanel>
+    </Grid>
 </UserControl>

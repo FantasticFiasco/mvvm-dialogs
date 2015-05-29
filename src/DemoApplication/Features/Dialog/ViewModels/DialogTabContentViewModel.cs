@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.ObjectModel;
 using System.ComponentModel.Composition;
 using System.Windows.Input;
 using DemoApplication.Features.Dialog.Views;
@@ -11,6 +12,7 @@ namespace DemoApplication.Features.Dialog.ViewModels
     public class DialogTabContentViewModel : ReactiveObject
     {
         private readonly IDialogService dialogService;
+        private readonly ObservableCollection<string> texts; 
         private readonly ReactiveCommand<object> showImplicitDialogCommand;
         private readonly ReactiveCommand<object> showExplicitDialogCommand;
 
@@ -19,11 +21,18 @@ namespace DemoApplication.Features.Dialog.ViewModels
         {
             this.dialogService = dialogService;
 
+            texts = new ObservableCollection<string>();
+
             showImplicitDialogCommand = ReactiveCommand.Create();
             showImplicitDialogCommand.Subscribe(_ => ShowImplicitDialog());
 
             showExplicitDialogCommand = ReactiveCommand.Create();
             showExplicitDialogCommand.Subscribe(_ => ShowExplicitDialog());
+        }
+
+        public ObservableCollection<string> Texts
+        {
+            get { return texts; }
         }
 
         public ICommand ShowImplicitDialogCommand
@@ -38,14 +47,24 @@ namespace DemoApplication.Features.Dialog.ViewModels
 
         private void ShowImplicitDialog()
         {
-            var dialogViewModel = new CurrentTimeDialogViewModel();
-            dialogService.ShowDialog(this, dialogViewModel);
+            var dialogViewModel = new AddTextDialogViewModel();
+            
+            bool? success = dialogService.ShowDialog(this, dialogViewModel);
+            if (success == true)
+            {
+                Texts.Add(dialogViewModel.Text);
+            }
         }
 
         private void ShowExplicitDialog()
         {
-            var dialogViewModel = new CurrentTimeDialogViewModel();
-            dialogService.ShowDialog<CurrentTimeDialog>(this, dialogViewModel);
+            var dialogViewModel = new AddTextDialogViewModel();
+
+            bool? success = dialogService.ShowDialog<AddTextDialog>(this, dialogViewModel);
+            if (success == true)
+            {
+                Texts.Add(dialogViewModel.Text);
+            }
         }
     }
 }

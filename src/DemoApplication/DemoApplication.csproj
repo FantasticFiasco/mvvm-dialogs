@@ -89,10 +89,10 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Features\Dialog\ViewModels\CurrentTimeDialogViewModel.cs" />
+    <Compile Include="Features\Dialog\ViewModels\AddTextDialogViewModel.cs" />
     <Compile Include="Features\Dialog\ViewModels\DialogTabContentViewModel.cs" />
-    <Compile Include="Features\Dialog\Views\CurrentTimeDialog.xaml.cs">
-      <DependentUpon>CurrentTimeDialog.xaml</DependentUpon>
+    <Compile Include="Features\Dialog\Views\AddTextDialog.xaml.cs">
+      <DependentUpon>AddTextDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="Features\Dialog\Views\DialogTabContent.xaml.cs">
       <DependentUpon>DialogTabContent.xaml</DependentUpon>
@@ -147,7 +147,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Features\Dialog\Views\CurrentTimeDialog.xaml">
+    <Page Include="Features\Dialog\Views\AddTextDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
