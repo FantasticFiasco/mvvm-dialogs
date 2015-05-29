@@ -97,24 +97,6 @@ namespace MvvmDialogs.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to View model of type &apos;{0}&apos; doesn&apos;t follow naming convention since it doesn&apos;t have a namespace that contains any of the following parts: {1}..
-        /// </summary>
-        internal static string ViewModelNamespaceInvalid {
-            get {
-                return ResourceManager.GetString("ViewModelNamespaceInvalid", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to View model of type &apos;{0}&apos; doesn&apos;t have a namespace..
-        /// </summary>
-        internal static string ViewModelNamespaceMissing {
-            get {
-                return ResourceManager.GetString("ViewModelNamespaceMissing", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to View model of type &apos;{0}&apos; has not been mapped to a dialog..
         /// </summary>
         internal static string ViewModelNotMapped {

@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
 using MvvmDialogs.Properties;
 
 namespace MvvmDialogs.DialogTypeLocators
@@ -10,16 +8,13 @@ namespace MvvmDialogs.DialogTypeLocators
     /// Class responsible for locating dialog types for specified view models based on a naming
     /// convention used in a multitude of articles and code samples describing the MVVM pattern.
     /// 
-    /// The convention states that if the full name of the view model is
-    /// 'MyNamespace.Module.ViewModel.MyDialogViewModel' then the full name of the dialog is
-    /// 'MyNamespace.Module.View.MyDialog'.
+    /// The convention states that if the name of the view model is
+    /// 'MyNamespace.ViewModels.MyDialogViewModel' then the name of the dialog is
+    /// 'MyNamespace.Views.MyDialog'.
     /// </summary>
     public class NamingConventionDialogTypeLocator : IDialogTypeLocator
     {
-        private const string ViewModel = "ViewModel";
-
         private readonly DialogTypeLocatorCache cache;
-        private readonly IDictionary<string, string> namespaceReplacements;
         
         /// <summary>
         /// Initializes a new instance of the <see cref="NamingConventionDialogTypeLocator"/> class.
@@ -27,11 +22,6 @@ namespace MvvmDialogs.DialogTypeLocators
         public NamingConventionDialogTypeLocator()
         {
             cache = new DialogTypeLocatorCache();
-            namespaceReplacements = new Dictionary<string, string>
-            {
-                { "ViewModel", "View" },
-                { "ViewModels", "Views" }
-            };
         }
 
         #region IDialogTypeLocator Members
@@ -59,14 +49,12 @@ namespace MvvmDialogs.DialogTypeLocators
                 return dialogType;
             }
 
-            string dialogNamespace = GetDialogNamespace(viewModelType);
-            string dialogClassName = GetDialogClassName(viewModelType);
-            string dialogAssemblyFullName = GetAssemblyFullName(viewModelType);
+            string dialogName = GetDialogName(viewModelType);
+            string dialogAssemblyName = GetAssemblyFullName(viewModelType);
 
-            string dialogFullName = "{0}.{1}, {2}".InvariantFormat(
-                dialogNamespace,
-                dialogClassName,
-                dialogAssemblyFullName);
+            string dialogFullName = "{0}, {1}".InvariantFormat(
+                dialogName,
+                dialogAssemblyName);
             
             dialogType = Type.GetType(dialogFullName);
             if (dialogType == null)
@@ -78,48 +66,17 @@ namespace MvvmDialogs.DialogTypeLocators
         }
 
         #endregion
-
-        private string GetDialogNamespace(Type viewModelType)
+        
+        private static string GetDialogName(Type viewModelType)
         {
-            if (viewModelType.Namespace == null)
-                throw new DialogTypeException(Resources.ViewModelNamespaceMissing.CurrentFormat(viewModelType));
+            string dialogName = viewModelType.FullName.Replace(".ViewModels.", ".Views.");
 
-            string[] parts = viewModelType.Namespace.Split('.');
-
-            int index = -1;
-            string foundNamespaceReplacement = null;
-            
-            foreach (KeyValuePair<string, string> namespaceReplacement in namespaceReplacements)
-            {
-                index = Array.IndexOf(parts, namespaceReplacement.Key);
-                if (index != -1)
-                {
-                    foundNamespaceReplacement = namespaceReplacement.Value;
-                    break;
-                }
-            }
-
-            if (index == -1)
-            {
-                throw new DialogTypeException(
-                    Resources.ViewModelNamespaceInvalid.CurrentFormat(
-                        viewModelType,
-                        string.Join(", ", namespaceReplacements.Keys.ToArray())));
-            }
-
-            parts[index] = foundNamespaceReplacement;
-
-            return string.Join(".", parts);
-        }
-
-        private static string GetDialogClassName(Type viewModelType)
-        {
-            if (!viewModelType.Name.EndsWith(ViewModel, StringComparison.Ordinal))
+            if (!dialogName.EndsWith("ViewModel", StringComparison.Ordinal))
                 throw new DialogTypeException(Resources.ViewModelNameInvalid.CurrentFormat(viewModelType));
 
-            return viewModelType.Name.Substring(
+            return dialogName.Substring(
                 0,
-                viewModelType.Name.Length - ViewModel.Length);
+                dialogName.Length - "ViewModel".Length);
         }
 
         private static string GetAssemblyFullName(Type viewModelType)

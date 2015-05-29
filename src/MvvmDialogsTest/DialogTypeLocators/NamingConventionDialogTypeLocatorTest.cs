@@ -6,7 +6,7 @@ using NUnit.Framework;
 namespace MvvmDialogs.DialogTypeLocators
 {
     [TestFixture]
-    public class IDataSourceContainer
+    public class NamingConventionDialogTypeLocatorTest
     {
         private NamingConventionDialogTypeLocator dialogTypeLocator;
         private Assembly testAssembly;
@@ -18,38 +18,30 @@ namespace MvvmDialogs.DialogTypeLocators
             var assemblyBuilder = new TestAssemblyBuilder("TestAssembly");
 
             // Create types used in tests
-            assemblyBuilder.CreateType("TestAssmebly.ViewModel.DialogViewModel", typeof(ViewModelBase));
-            assemblyBuilder.CreateType("TestAssmebly.View.Dialog");
+            assemblyBuilder.CreateType("TestAssembly.DialogViewModel", typeof(ViewModelBase));
+            assemblyBuilder.CreateType("TestAssembly.Dialog");
 
-            assemblyBuilder.CreateType("TestAssmebly.ViewModels.DialogViewModel", typeof(ViewModelBase));
-            assemblyBuilder.CreateType("TestAssmebly.Views.Dialog");
+            assemblyBuilder.CreateType("TestAssembly.ViewModels.DialogViewModel", typeof(ViewModelBase));
+            assemblyBuilder.CreateType("TestAssembly.Views.Dialog");
 
-            assemblyBuilder.CreateType("TestAssmebly.ViewModel.Module.DialogViewModel", typeof(ViewModelBase));
-            assemblyBuilder.CreateType("TestAssmebly.View.Module.Dialog");
+            assemblyBuilder.CreateType("TestAssembly.ViewModels.Module.DialogViewModel", typeof(ViewModelBase));
+            assemblyBuilder.CreateType("TestAssembly.Views.Module.Dialog");
 
-            assemblyBuilder.CreateType("TestAssmebly.ViewModels.Module.DialogViewModel", typeof(ViewModelBase));
-            assemblyBuilder.CreateType("TestAssmebly.Views.Module.Dialog");
+            assemblyBuilder.CreateType("TestAssembly.Module.ViewModels.DialogViewModel", typeof(ViewModelBase));
+            assemblyBuilder.CreateType("TestAssembly.Module.Views.Dialog");
 
-            assemblyBuilder.CreateType("TestAssmebly.Module.ViewModel.DialogViewModel", typeof(ViewModelBase));
-            assemblyBuilder.CreateType("TestAssmebly.Module.View.Dialog");
+            assemblyBuilder.CreateType("TestAssembly.ModuleWithoutViewNamespace.ViewModel.DialogViewModel", typeof(ViewModelBase));
 
-            assemblyBuilder.CreateType("TestAssmebly.Module.ViewModels.DialogViewModel", typeof(ViewModelBase));
-            assemblyBuilder.CreateType("TestAssmebly.Module.Views.Dialog");
-
-            assemblyBuilder.CreateType("TestAssmebly.ModuleWithoutViewNamespace.ViewModel.DialogViewModel", typeof(ViewModelBase));
-
-            assemblyBuilder.CreateType("TestAssmebly.UnconventionalNamespace.DialogViewModel", typeof(ViewModelBase));
+            assemblyBuilder.CreateType("TestAssembly.UnconventionalNamespace.DialogViewModel", typeof(ViewModelBase));
 
             // Create assembly
             testAssembly = assemblyBuilder.Build();
         }
 
-        [TestCase("TestAssmebly.ViewModel.DialogViewModel", "TestAssmebly.View.Dialog")]
-        [TestCase("TestAssmebly.ViewModels.DialogViewModel", "TestAssmebly.Views.Dialog")]
-        [TestCase("TestAssmebly.ViewModel.Module.DialogViewModel", "TestAssmebly.View.Module.Dialog")]
-        [TestCase("TestAssmebly.ViewModels.Module.DialogViewModel", "TestAssmebly.Views.Module.Dialog")]
-        [TestCase("TestAssmebly.Module.ViewModel.DialogViewModel", "TestAssmebly.Module.View.Dialog")]
-        [TestCase("TestAssmebly.Module.ViewModels.DialogViewModel", "TestAssmebly.Module.Views.Dialog")]
+        [TestCase("TestAssembly.DialogViewModel", "TestAssembly.Dialog")]
+        [TestCase("TestAssembly.ViewModels.DialogViewModel", "TestAssembly.Views.Dialog")]
+        [TestCase("TestAssembly.ViewModels.Module.DialogViewModel", "TestAssembly.Views.Module.Dialog")]
+        [TestCase("TestAssembly.Module.ViewModels.DialogViewModel", "TestAssembly.Module.Views.Dialog")]
         public void LocateDialogTypeSuccessful(string viewModelFullName, string viewFullName)
         {
             // ARRANGE
@@ -65,8 +57,8 @@ namespace MvvmDialogs.DialogTypeLocators
             Assert.That(dialogType.FullName, Is.EqualTo(viewFullName));
         }
 
-        [TestCase("TestAssmebly.ModuleWithoutViewNamespace.ViewModel.DialogViewModel")]
-        [TestCase("TestAssmebly.UnconventionalNamespace.DialogViewModel")]
+        [TestCase("TestAssembly.ModuleWithoutViewNamespace.ViewModel.DialogViewModel")]
+        [TestCase("TestAssembly.UnconventionalNamespace.DialogViewModel")]
         public void LocateDialogTypeUnsuccessful(string viewModelFullName)
         {
             // ARRANGE

@@ -112,10 +112,10 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="DialogTypeMissing" xml:space="preserve">
     <value>Dialog with full name '{0}' is missing.</value>
@@ -128,12 +128,6 @@
   </data>
   <data name="ViewModelNameInvalid" xml:space="preserve">
     <value>View model of type '{0}' doesn't follow naming convention since it isn't suffixed with 'ViewModel'.</value>
-  </data>
-  <data name="ViewModelNamespaceInvalid" xml:space="preserve">
-    <value>View model of type '{0}' doesn't follow naming convention since it doesn't have a namespace that contains any of the following parts: {1}.</value>
-  </data>
-  <data name="ViewModelNamespaceMissing" xml:space="preserve">
-    <value>View model of type '{0}' doesn't have a namespace.</value>
   </data>
   <data name="ViewModelNotMapped" xml:space="preserve">
     <value>View model of type '{0}' has not been mapped to a dialog.</value>
