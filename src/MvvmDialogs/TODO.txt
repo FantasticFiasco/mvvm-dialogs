@@ -1,5 +1,4 @@
 ﻿* Release as NuGet for .NET4.0 and .NET4.5, and maybe also .NET3.5?
-* Redesign demo application to show off all features
 * DialogService should hold the registered views using weak references.
 * Rename 'DialogServiceBehaviors.IsRegisteredView' to 'DialogServiceBehaviors.ViewModelHandlesDialogs'?
 * Read up on http://brianlagunas.com/getting-started-prisms-new-viewmodellocator/ and look at the implementation of the locator and also see if I should use the same SetXXX pattern where the locator and factory are set.
