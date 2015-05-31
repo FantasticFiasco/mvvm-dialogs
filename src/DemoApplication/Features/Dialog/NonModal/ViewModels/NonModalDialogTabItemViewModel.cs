@@ -2,23 +2,23 @@
 using System.ComponentModel.Composition;
 using DemoApplication.TabItemInfrastructure;
 
-namespace DemoApplication.Features.Dialog.Modal.ViewModels
+namespace DemoApplication.Features.Dialog.NonModal.ViewModels
 {
     [Export(typeof(TabItemViewModel))]
-    [ExportMetadata("Priority", 1)]
-    public class DialogTabItemViewModel : TabItemViewModel
+    [ExportMetadata("Priority", 2)]
+    public class NonModalDialogTabItemViewModel : TabItemViewModel
     {
-        private readonly DialogTabContentViewModel content;
+        private readonly NonModalDialogTabContentViewModel content;
 
         [ImportingConstructor]
-        public DialogTabItemViewModel(DialogTabContentViewModel content)
+        public NonModalDialogTabItemViewModel(NonModalDialogTabContentViewModel content)
         {
             this.content = content;
         }
 
         public override string Title
         {
-            get { return "Modal Dialog"; }
+            get { return "Non-Modal Dialog"; }
         }
 
         public override INotifyPropertyChanged Content

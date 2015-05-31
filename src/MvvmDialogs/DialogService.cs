@@ -38,7 +38,47 @@ namespace MvvmDialogs
         #region IDialogService Members
 
         /// <summary>
-        /// Displays a dialog of specified type <typeparamref name="T"/>.
+        /// Displays a non-modal dialog of specified type <typeparamref name="T"/>.
+        /// </summary>
+        /// <param name="ownerViewModel">
+        /// A view model that represents the owner window of the dialog.
+        /// </param>
+        /// <param name="viewModel">The view model of the new dialog.</param>
+        /// <typeparam name="T">The type of the dialog to show.</typeparam>
+        public void Show<T>(INotifyPropertyChanged ownerViewModel, INotifyPropertyChanged viewModel) where T : Window
+        {
+            if (ownerViewModel == null)
+                throw new ArgumentNullException("ownerViewModel");
+            if (viewModel == null)
+                throw new ArgumentNullException("viewModel");
+
+            Show(ownerViewModel, viewModel, typeof(T));
+        }
+
+        /// <summary>
+        /// Displays a non-modal dialog of a type that is determined by the
+        /// <see cref="IDialogTypeLocator"/> specified in
+        /// <see cref="DialogService(IDialogTypeLocator)"/>.
+        /// </summary>
+        /// <param name="ownerViewModel">
+        /// A view model that represents the owner window of the dialog.
+        /// </param>
+        /// <param name="viewModel">The view model of the new dialog.</param>
+        public void Show(INotifyPropertyChanged ownerViewModel, INotifyPropertyChanged viewModel)
+        {
+            if (ownerViewModel == null)
+                throw new ArgumentNullException("ownerViewModel");
+            if (viewModel == null)
+                throw new ArgumentNullException("viewModel");
+            if (dialogTypeLocator == null)
+                throw new InvalidOperationException(Resources.ImplicitUseProhibited);
+
+            Type dialogType = dialogTypeLocator.LocateDialogTypeFor(viewModel);
+            Show(ownerViewModel, viewModel, dialogType);
+        }
+
+        /// <summary>
+        /// Displays a modal dialog of specified type <typeparamref name="T"/>.
         /// </summary>
         /// <param name="ownerViewModel">
         /// A view model that represents the owner window of the dialog.
@@ -63,8 +103,9 @@ namespace MvvmDialogs
         }
 
         /// <summary>
-        /// Displays a dialog of a type that is determined by the <see cref="IDialogTypeLocator" />
-        /// specified in <see cref="DialogService(IDialogTypeLocator)" />.
+        /// Displays a modal dialog of a type that is determined by the
+        /// <see cref="IDialogTypeLocator" /> specified in
+        /// <see cref="DialogService(IDialogTypeLocator)" />.
         /// </summary>
         /// <param name="ownerViewModel">
         /// A view model that represents the owner window of the dialog.
@@ -343,34 +384,41 @@ namespace MvvmDialogs
         }
 
         #endregion
-        
-        /// <summary>
-        /// Shows a dialog.
-        /// </summary>
-        /// <param name="ownerViewModel">
-        /// A view model that represents the owner window of the dialog.
-        /// </param>
-        /// <param name="viewModel">The view model of the new dialog.</param>
-        /// <param name="dialogType">The type of the dialog.</param>
-        /// <returns>
-        /// A nullable value of type <see cref="bool"/> that signifies how a window was closed by
-        /// the user.
-        /// </returns>
-        private static bool? ShowDialog(object ownerViewModel, object viewModel, Type dialogType)
+
+        private static void Show(
+            INotifyPropertyChanged ownerViewModel,
+            INotifyPropertyChanged viewModel,
+            Type dialogType)
         {
-            // Create dialog and set properties
+            Window dialog = CreateDialog(dialogType, ownerViewModel, viewModel);
+            dialog.Show();
+        }
+
+        private static bool? ShowDialog(
+            INotifyPropertyChanged ownerViewModel,
+            INotifyPropertyChanged viewModel,
+            Type dialogType)
+        {
+            Window dialog = CreateDialog(dialogType, ownerViewModel, viewModel);
+            return dialog.ShowDialog();
+        }
+
+        private static Window CreateDialog(
+            Type dialogType,
+            INotifyPropertyChanged ownerViewModel,
+            INotifyPropertyChanged viewModel)
+        {
             var dialog = (Window)Activator.CreateInstance(dialogType);
             dialog.Owner = FindOwnerWindow(ownerViewModel);
             dialog.DataContext = viewModel;
 
-            // Show dialog
-            return dialog.ShowDialog();
+            return dialog;
         }
 
         /// <summary>
         /// Finds window corresponding to specified view model.
         /// </summary>
-        private static Window FindOwnerWindow(object viewModel)
+        private static Window FindOwnerWindow(INotifyPropertyChanged viewModel)
         {
             FrameworkElement view = DialogServiceBehaviors.Views.SingleOrDefault(
                 registeredView => ReferenceEquals(registeredView.DataContext, viewModel));

@@ -17,7 +17,33 @@ namespace MvvmDialogs
     public interface IDialogService
     {
         /// <summary>
-        /// Displays a dialog of specified type <typeparamref name="T"/>.
+        /// Displays a non-modal dialog of specified type <typeparamref name="T"/>.
+        /// </summary>
+        /// <param name="ownerViewModel">
+        /// A view model that represents the owner window of the dialog.
+        /// </param>
+        /// <param name="viewModel">The view model of the new dialog.</param>
+        /// <typeparam name="T">The type of the dialog to show.</typeparam>
+        void Show<T>(
+            INotifyPropertyChanged ownerViewModel,
+            INotifyPropertyChanged viewModel)
+            where T : Window;
+
+        /// <summary>
+        /// Displays a non-modal dialog of a type that is determined by the
+        /// <see cref="IDialogTypeLocator"/> specified in
+        /// <see cref="DialogService(IDialogTypeLocator)"/>.
+        /// </summary>
+        /// <param name="ownerViewModel">
+        /// A view model that represents the owner window of the dialog.
+        /// </param>
+        /// <param name="viewModel">The view model of the new dialog.</param>
+        void Show(
+            INotifyPropertyChanged ownerViewModel,
+            INotifyPropertyChanged viewModel);
+
+        /// <summary>
+        /// Displays a modal dialog of specified type <typeparamref name="T"/>.
         /// </summary>
         /// <param name="ownerViewModel">
         /// A view model that represents the owner window of the dialog.
@@ -34,8 +60,9 @@ namespace MvvmDialogs
             where T : Window;
 
         /// <summary>
-        /// Displays a dialog of a type that is determined by the <see cref="IDialogTypeLocator"/>
-        /// specified in <see cref="DialogService(IDialogTypeLocator)"/>.
+        /// Displays a modal dialog of a type that is determined by the
+        /// <see cref="IDialogTypeLocator"/> specified in
+        /// <see cref="DialogService(IDialogTypeLocator)"/>.
         /// </summary>
         /// <param name="ownerViewModel">
         /// A view model that represents the owner window of the dialog.

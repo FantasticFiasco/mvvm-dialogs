@@ -1,8 +1,8 @@
 ﻿namespace DemoApplication.Features.Dialog.Modal.Views
 {
-    public partial class DialogTabContent
+    public partial class ModalDialogTabContent
     {
-        public DialogTabContent()
+        public ModalDialogTabContent()
         {
             InitializeComponent();
         }

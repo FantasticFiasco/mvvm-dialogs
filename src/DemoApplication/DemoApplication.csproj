@@ -90,12 +90,21 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Features\Dialog\Modal\ViewModels\AddTextDialogViewModel.cs" />
-    <Compile Include="Features\Dialog\Modal\ViewModels\DialogTabContentViewModel.cs" />
+    <Compile Include="Features\Dialog\Modal\ViewModels\ModalDialogTabContentViewModel.cs" />
     <Compile Include="Features\Dialog\Modal\Views\AddTextDialog.xaml.cs">
       <DependentUpon>AddTextDialog.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Features\Dialog\Modal\Views\DialogTabContent.xaml.cs">
-      <DependentUpon>DialogTabContent.xaml</DependentUpon>
+    <Compile Include="Features\Dialog\Modal\Views\ModalDialogTabContent.xaml.cs">
+      <DependentUpon>ModalDialogTabContent.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Features\Dialog\NonModal\ViewModels\CurrentTimeDialogViewModel.cs" />
+    <Compile Include="Features\Dialog\NonModal\ViewModels\NonModalDialogTabContentViewModel.cs" />
+    <Compile Include="Features\Dialog\NonModal\ViewModels\NonModalDialogTabItemViewModel.cs" />
+    <Compile Include="Features\Dialog\NonModal\Views\CurrentTimeDialog.xaml.cs">
+      <DependentUpon>CurrentTimeDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Features\Dialog\NonModal\Views\NonModalDialogTabContent.xaml.cs">
+      <DependentUpon>NonModalDialogTabContent.xaml</DependentUpon>
     </Compile>
     <Compile Include="Features\FolderBrowserDialog\ViewModels\FolderBrowserTabContentViewModel.cs" />
     <Compile Include="Features\FolderBrowserDialog\Views\FolderBrowserTabContent.xaml.cs">
@@ -118,7 +127,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Features\Dialog\Modal\ViewModels\DialogTabItemViewModel.cs" />
+    <Compile Include="Features\Dialog\Modal\ViewModels\ModalDialogTabItemViewModel.cs" />
     <Compile Include="Features\FolderBrowserDialog\ViewModels\FolderBrowserTabItemViewModel.cs" />
     <Compile Include="MainWindowViewModel.cs" />
     <Compile Include="Features\MessageBox\ViewModels\MessageBoxTabItemViewModel.cs" />
@@ -151,7 +160,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Features\Dialog\Modal\Views\DialogTabContent.xaml">
+    <Page Include="Features\Dialog\Modal\Views\ModalDialogTabContent.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Features\Dialog\NonModal\Views\CurrentTimeDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Features\Dialog\NonModal\Views\DataTemplate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Features\Dialog\NonModal\Views\NonModalDialogTabContent.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

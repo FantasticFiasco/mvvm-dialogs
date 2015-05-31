@@ -5,7 +5,7 @@ using DemoApplication.TabItemInfrastructure;
 namespace DemoApplication.Features.MessageBox.ViewModels
 {
     [Export(typeof(TabItemViewModel))]
-    [ExportMetadata("Priority", 2)]
+    [ExportMetadata("Priority", 3)]
     public class MessageBoxTabItemViewModel : TabItemViewModel
     {
         private readonly MessageBoxTabContentViewModel content;

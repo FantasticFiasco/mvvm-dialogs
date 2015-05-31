@@ -4,8 +4,8 @@
     xmlns:vm="clr-namespace:DemoApplication.Features.Dialog.Modal.ViewModels"
     xmlns:local="clr-namespace:DemoApplication.Features.Dialog.Modal.Views">
 
-    <DataTemplate DataType="{x:Type vm:DialogTabContentViewModel}">
-        <local:DialogTabContent />
+    <DataTemplate DataType="{x:Type vm:ModalDialogTabContentViewModel}">
+        <local:ModalDialogTabContent />
     </DataTemplate>
 
 </ResourceDictionary>

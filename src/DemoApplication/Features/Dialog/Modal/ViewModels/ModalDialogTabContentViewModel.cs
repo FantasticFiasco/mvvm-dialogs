@@ -9,25 +9,25 @@ using ReactiveUI;
 namespace DemoApplication.Features.Dialog.Modal.ViewModels
 {
     [Export]
-    public class DialogTabContentViewModel : ReactiveObject
+    public class ModalDialogTabContentViewModel : ReactiveObject
     {
         private readonly IDialogService dialogService;
         private readonly ObservableCollection<string> texts; 
-        private readonly ReactiveCommand<object> showImplicitDialogCommand;
-        private readonly ReactiveCommand<object> showExplicitDialogCommand;
+        private readonly ReactiveCommand<object> implicitShowDialogCommand;
+        private readonly ReactiveCommand<object> explicitShowDialogCommand;
 
         [ImportingConstructor]
-        public DialogTabContentViewModel(IDialogService dialogService)
+        public ModalDialogTabContentViewModel(IDialogService dialogService)
         {
             this.dialogService = dialogService;
 
             texts = new ObservableCollection<string>();
 
-            showImplicitDialogCommand = ReactiveCommand.Create();
-            showImplicitDialogCommand.Subscribe(_ => ShowImplicitDialog());
+            implicitShowDialogCommand = ReactiveCommand.Create();
+            implicitShowDialogCommand.Subscribe(_ => ImplicitShowDialog());
 
-            showExplicitDialogCommand = ReactiveCommand.Create();
-            showExplicitDialogCommand.Subscribe(_ => ShowExplicitDialog());
+            explicitShowDialogCommand = ReactiveCommand.Create();
+            explicitShowDialogCommand.Subscribe(_ => ExplicitShowDialog());
         }
 
         public ObservableCollection<string> Texts
@@ -35,17 +35,17 @@ namespace DemoApplication.Features.Dialog.Modal.ViewModels
             get { return texts; }
         }
 
-        public ICommand ShowImplicitDialogCommand
+        public ICommand ImplicitShowDialogCommand
         {
-            get { return showImplicitDialogCommand; }
+            get { return implicitShowDialogCommand; }
         }
 
-        public ICommand ShowExplicitDialogCommand
+        public ICommand ExplicitShowDialogCommand
         {
-            get { return showExplicitDialogCommand; }
+            get { return explicitShowDialogCommand; }
         }
 
-        private void ShowImplicitDialog()
+        private void ImplicitShowDialog()
         {
             var dialogViewModel = new AddTextDialogViewModel();
             
@@ -56,7 +56,7 @@ namespace DemoApplication.Features.Dialog.Modal.ViewModels
             }
         }
 
-        private void ShowExplicitDialog()
+        private void ExplicitShowDialog()
         {
             var dialogViewModel = new AddTextDialogViewModel();
 
