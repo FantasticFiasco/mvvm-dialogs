@@ -37,15 +37,15 @@ namespace DemoApplication.Features.FolderBrowserDialog.ViewModels
 
         private void BrowseFolder()
         {
-            var folderBrowserDialogViewModel = new FolderBrowserDialogViewModel
+            var settings = new FolderBrowserDialogSettings
             {
                 Description = "This is a description"
             };
 
-            bool? success = dialogService.ShowFolderBrowserDialog(this, folderBrowserDialogViewModel);
+            bool? success = dialogService.ShowFolderBrowserDialog(this, settings);
             if (success == true)
             {
-                Path = folderBrowserDialogViewModel.SelectedPath;
+                Path = settings.SelectedPath;
             }
         }
     }

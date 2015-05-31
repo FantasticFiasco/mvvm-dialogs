@@ -3,14 +3,14 @@
 namespace MvvmDialogs.FrameworkDialogs
 {
     /// <summary>
-    /// View model describing the <see cref="FileDialog"/>.
+    /// Settings for <see cref="FileDialog"/>.
     /// </summary>
-    public abstract class FileDialogViewModel
+    public abstract class FileDialogSettings
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="FileDialogViewModel"/> class.
+        /// Initializes a new instance of the <see cref="FileDialogSettings"/> class.
         /// </summary>
-        protected FileDialogViewModel()
+        protected FileDialogSettings()
         {
             AddExtension = true;
             CheckFileExists = true;

@@ -312,21 +312,21 @@ namespace MvvmDialogs
         /// <param name="ownerViewModel">
         /// A view model that represents the owner window of the dialog.
         /// </param>
-        /// <param name="openFileDialogViewModel">The view model of a open file dialog.</param>
+        /// <param name="settings">The settings for the open file dialog.</param>
         /// <returns>
         /// If the user clicks the OK button of the dialog that is displayed, true is returned;
         /// otherwise false.
         /// </returns>
         public bool? ShowOpenFileDialog(
             INotifyPropertyChanged ownerViewModel,
-            OpenFileDialogViewModel openFileDialogViewModel)
+            OpenFileDialogSettings settings)
         {
             if (ownerViewModel == null)
                 throw new ArgumentNullException("ownerViewModel");
-            if (openFileDialogViewModel == null)
-                throw new ArgumentNullException("openFileDialogViewModel");
+            if (settings == null)
+                throw new ArgumentNullException("settings");
 
-            var dialog = new OpenFileDialogWrapper(openFileDialogViewModel);
+            var dialog = new OpenFileDialogWrapper(settings);
             return dialog.ShowDialog(FindOwnerWindow(ownerViewModel));
         }
 
@@ -336,21 +336,21 @@ namespace MvvmDialogs
         /// <param name="ownerViewModel">
         /// A view model that represents the owner window of the dialog.
         /// </param>
-        /// <param name="saveFileDialogViewModel">The view model of a save file dialog.</param>
+        /// <param name="settings">The settings for the save file dialog.</param>
         /// <returns>
         /// If the user clicks the OK button of the dialog that is displayed, true is returned;
         /// otherwise false.
         /// </returns>
         public bool? ShowSaveFileDialog(
             INotifyPropertyChanged ownerViewModel,
-            SaveFileDialogViewModel saveFileDialogViewModel)
+            SaveFileDialogSettings settings)
         {
             if (ownerViewModel == null)
                 throw new ArgumentNullException("ownerViewModel");
-            if (saveFileDialogViewModel == null)
-                throw new ArgumentNullException("saveFileDialogViewModel");
+            if (settings == null)
+                throw new ArgumentNullException("settings");
 
-            var dialog = new SaveFileDialogWrapper(saveFileDialogViewModel);
+            var dialog = new SaveFileDialogWrapper(settings);
             return dialog.ShowDialog(FindOwnerWindow(ownerViewModel));
         }
 
@@ -360,23 +360,21 @@ namespace MvvmDialogs
         /// <param name="ownerViewModel">
         /// A view model that represents the owner window of the dialog.
         /// </param>
-        /// <param name="folderBrowserDialogViewModel">
-        /// The view model of a folder browser dialog.
-        /// </param>
+        /// <param name="settings">The settings for the folder browser dialog.</param>
         /// <returns>
         /// If the user clicks the OK button of the dialog that is displayed, true is returned;
         /// otherwise false.
         /// </returns>
         public bool? ShowFolderBrowserDialog(
             INotifyPropertyChanged ownerViewModel,
-            FolderBrowserDialogViewModel folderBrowserDialogViewModel)
+            FolderBrowserDialogSettings settings)
         {
             if (ownerViewModel == null)
                 throw new ArgumentNullException("ownerViewModel");
-            if (folderBrowserDialogViewModel == null)
-                throw new ArgumentNullException("folderBrowserDialogViewModel");
+            if (settings == null)
+                throw new ArgumentNullException("settings");
 
-            using (var dialog = new FolderBrowserDialogWrapper(folderBrowserDialogViewModel))
+            using (var dialog = new FolderBrowserDialogWrapper(settings))
             {
                 DialogResult result = dialog.ShowDialog(new WindowWrapper(FindOwnerWindow(ownerViewModel)));
                 return result == DialogResult.OK;

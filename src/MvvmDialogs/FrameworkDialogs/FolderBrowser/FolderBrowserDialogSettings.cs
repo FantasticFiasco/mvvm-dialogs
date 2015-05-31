@@ -3,9 +3,9 @@
 namespace MvvmDialogs.FrameworkDialogs.FolderBrowser
 {
     /// <summary>
-    /// View model describing the <see cref="FolderBrowserDialog"/>.
+    /// Settings for <see cref="FolderBrowserDialog"/>.
     /// </summary>
-    public class FolderBrowserDialogViewModel
+    public class FolderBrowserDialogSettings
     {
         /// <summary>
         /// Gets or sets the descriptive text displayed above the tree view control in the dialog

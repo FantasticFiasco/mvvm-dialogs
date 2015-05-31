@@ -5,36 +5,36 @@ using Microsoft.Win32;
 namespace MvvmDialogs.FrameworkDialogs.SaveFile
 {
     /// <summary>
-    /// Class wrapping <see cref="SaveFileDialog"/>, making it accept a view model.
+    /// Class wrapping <see cref="SaveFileDialog"/>.
     /// </summary>
     internal sealed class SaveFileDialogWrapper
     {
-        private readonly SaveFileDialogViewModel saveFileDialogViewModel;
+        private readonly SaveFileDialogSettings settings;
         private readonly SaveFileDialog saveFileDialog;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SaveFileDialogWrapper"/> class.
         /// </summary>
-        /// <param name="saveFileDialogViewModel">The save file dialog view model.</param>
-        public SaveFileDialogWrapper(SaveFileDialogViewModel saveFileDialogViewModel)
+        /// <param name="settings">The settings for the save file dialog.</param>
+        public SaveFileDialogWrapper(SaveFileDialogSettings settings)
         {
-            if (saveFileDialogViewModel == null)
-                throw new ArgumentNullException("saveFileDialogViewModel");
+            if (settings == null)
+                throw new ArgumentNullException("settings");
 
-            this.saveFileDialogViewModel = saveFileDialogViewModel;
+            this.settings = settings;
 
             saveFileDialog = new SaveFileDialog
             {
-                AddExtension = saveFileDialogViewModel.AddExtension,
-                CheckFileExists = saveFileDialogViewModel.CheckFileExists,
-                CheckPathExists = saveFileDialogViewModel.CheckPathExists,
-                CreatePrompt = saveFileDialogViewModel.CreatePrompt,
-                DefaultExt = saveFileDialogViewModel.DefaultExt,
-                FileName = saveFileDialogViewModel.FileName,
-                Filter = saveFileDialogViewModel.Filter,
-                InitialDirectory = saveFileDialogViewModel.InitialDirectory,
-                OverwritePrompt = saveFileDialogViewModel.OverwritePrompt,
-                Title = saveFileDialogViewModel.Title
+                AddExtension = settings.AddExtension,
+                CheckFileExists = settings.CheckFileExists,
+                CheckPathExists = settings.CheckPathExists,
+                CreatePrompt = settings.CreatePrompt,
+                DefaultExt = settings.DefaultExt,
+                FileName = settings.FileName,
+                Filter = settings.Filter,
+                InitialDirectory = settings.InitialDirectory,
+                OverwritePrompt = settings.OverwritePrompt,
+                Title = settings.Title
             };
         }
 
@@ -55,9 +55,9 @@ namespace MvvmDialogs.FrameworkDialogs.SaveFile
 
             bool? result = saveFileDialog.ShowDialog(owner);
 
-            // Update view model
-            saveFileDialogViewModel.FileName = saveFileDialog.FileName;
-            saveFileDialogViewModel.FileNames = saveFileDialog.FileNames;
+            // Update settings
+            settings.FileName = saveFileDialog.FileName;
+            settings.FileNames = saveFileDialog.FileNames;
 
             return result;
         }

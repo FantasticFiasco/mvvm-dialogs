@@ -37,17 +37,17 @@ namespace DemoApplication.Features.OpenFileDialog.ViewModels
 
         private void OpenFile()
         {
-            var openFileDialogViewModel = new OpenFileDialogViewModel
+            var settings = new OpenFileDialogSettings
             {
                 Title = "This Is The Title",
                 InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
                 Filter = "Text Documents (*.txt)|*.txt|All Files (*.*)|*.*"
             };
 
-            bool? success = dialogService.ShowOpenFileDialog(this, openFileDialogViewModel);
+            bool? success = dialogService.ShowOpenFileDialog(this, settings);
             if (success == true)
             {
-                Path = openFileDialogViewModel.FileName;
+                Path = settings.FileName;
             }
         }
     }

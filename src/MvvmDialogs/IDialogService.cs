@@ -215,14 +215,14 @@ namespace MvvmDialogs
         /// <param name="ownerViewModel">
         /// A view model that represents the owner window of the dialog.
         /// </param>
-        /// <param name="openFileDialogViewModel">The view model of a open file dialog.</param>
+        /// <param name="settings">The settings for the open file dialog.</param>
         /// <returns>
         /// If the user clicks the OK button of the dialog that is displayed, true is returned;
         /// otherwise false.
         /// </returns>
         bool? ShowOpenFileDialog(
             INotifyPropertyChanged ownerViewModel,
-            OpenFileDialogViewModel openFileDialogViewModel);
+            OpenFileDialogSettings settings);
 
         /// <summary>
         /// Displays the <see cref="SaveFileDialog"/>.
@@ -230,14 +230,14 @@ namespace MvvmDialogs
         /// <param name="ownerViewModel">
         /// A view model that represents the owner window of the dialog.
         /// </param>
-        /// <param name="saveFileDialogViewModel">The view model of a save file dialog.</param>
+        /// <param name="settings">The settings for the save file dialog.</param>
         /// <returns>
         /// If the user clicks the OK button of the dialog that is displayed, true is returned;
         /// otherwise false.
         /// </returns>
         bool? ShowSaveFileDialog(
             INotifyPropertyChanged ownerViewModel,
-            SaveFileDialogViewModel saveFileDialogViewModel);
+            SaveFileDialogSettings settings);
         
         /// <summary>
         /// Displays the <see cref="FolderBrowserDialog"/>.
@@ -245,15 +245,13 @@ namespace MvvmDialogs
         /// <param name="ownerViewModel">
         /// A view model that represents the owner window of the dialog.
         /// </param>
-        /// <param name="folderBrowserDialogViewModel">
-        /// The view model of a folder browser dialog.
-        /// </param>
+        /// <param name="settings">The settings for the folder browser dialog.</param>
         /// <returns>
         /// If the user clicks the OK button of the dialog that is displayed, true is returned;
         /// otherwise false.
         /// </returns>
         bool? ShowFolderBrowserDialog(
             INotifyPropertyChanged ownerViewModel,
-            FolderBrowserDialogViewModel folderBrowserDialogViewModel);
+            FolderBrowserDialogSettings settings);
     }
 }

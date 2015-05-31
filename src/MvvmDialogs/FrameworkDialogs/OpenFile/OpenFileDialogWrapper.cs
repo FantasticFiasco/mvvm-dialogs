@@ -5,37 +5,35 @@ using Microsoft.Win32;
 namespace MvvmDialogs.FrameworkDialogs.OpenFile
 {
     /// <summary>
-    /// Class wrapping <see cref="OpenFileDialog"/>, making it accept a view model.
+    /// Class wrapping <see cref="OpenFileDialog"/>.
     /// </summary>
     internal sealed class OpenFileDialogWrapper
     {
-        private readonly OpenFileDialogViewModel openFileDialogViewModel;
+        private readonly OpenFileDialogSettings settings;
         private readonly OpenFileDialog openFileDialog;
         
         /// <summary>
         /// Initializes a new instance of the <see cref="OpenFileDialogWrapper"/> class.
         /// </summary>
-        /// <param name="openFileDialogViewModel">
-        /// The open file dialog view model.
-        /// </param>
-        public OpenFileDialogWrapper(OpenFileDialogViewModel openFileDialogViewModel)
+        /// <param name="settings">The settings for the open file dialog.</param>
+        public OpenFileDialogWrapper(OpenFileDialogSettings settings)
         {
-            if (openFileDialogViewModel == null)
-                throw new ArgumentNullException("openFileDialogViewModel");
+            if (settings == null)
+                throw new ArgumentNullException("settings");
 
-            this.openFileDialogViewModel = openFileDialogViewModel;
+            this.settings = settings;
 
             openFileDialog = new OpenFileDialog
             {
-                AddExtension = openFileDialogViewModel.AddExtension,
-                CheckFileExists = openFileDialogViewModel.CheckFileExists,
-                CheckPathExists = openFileDialogViewModel.CheckPathExists,
-                DefaultExt = openFileDialogViewModel.DefaultExt,
-                FileName = openFileDialogViewModel.FileName,
-                Filter = openFileDialogViewModel.Filter,
-                InitialDirectory = openFileDialogViewModel.InitialDirectory,
-                Multiselect = openFileDialogViewModel.Multiselect,
-                Title = openFileDialogViewModel.Title
+                AddExtension = settings.AddExtension,
+                CheckFileExists = settings.CheckFileExists,
+                CheckPathExists = settings.CheckPathExists,
+                DefaultExt = settings.DefaultExt,
+                FileName = settings.FileName,
+                Filter = settings.Filter,
+                InitialDirectory = settings.InitialDirectory,
+                Multiselect = settings.Multiselect,
+                Title = settings.Title
             };
         }
 
@@ -56,9 +54,9 @@ namespace MvvmDialogs.FrameworkDialogs.OpenFile
 
             bool? result = openFileDialog.ShowDialog(owner);
 
-            // Update view model
-            openFileDialogViewModel.FileName = openFileDialog.FileName;
-            openFileDialogViewModel.FileNames = openFileDialog.FileNames;
+            // Update settings
+            settings.FileName = openFileDialog.FileName;
+            settings.FileNames = openFileDialog.FileNames;
 
             return result;
         }

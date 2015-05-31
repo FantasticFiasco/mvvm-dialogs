@@ -4,32 +4,29 @@ using System.Windows.Forms;
 namespace MvvmDialogs.FrameworkDialogs.FolderBrowser
 {
     /// <summary>
-    /// Class wrapping <see cref="FolderBrowserDialog"/>, making it accept a
-    /// view model.
+    /// Class wrapping <see cref="FolderBrowserDialog"/>.
     /// </summary>
     internal sealed class FolderBrowserDialogWrapper : IDisposable
     {
-        private readonly FolderBrowserDialogViewModel folderBrowserDialogViewModel;
+        private readonly FolderBrowserDialogSettings settings;
         private readonly FolderBrowserDialog folderBrowserDialog;
         
         /// <summary>
         /// Initializes a new instance of the <see cref="FolderBrowserDialogWrapper"/> class.
         /// </summary>
-        /// <param name="folderBrowserDialogViewModel">
-        /// The folder browser dialog view model.
-        /// </param>
-        public FolderBrowserDialogWrapper(FolderBrowserDialogViewModel folderBrowserDialogViewModel)
+        /// <param name="settings">The settings for the folder browser dialog.</param>
+        public FolderBrowserDialogWrapper(FolderBrowserDialogSettings settings)
         {
-            if (folderBrowserDialogViewModel == null)
-                throw new ArgumentNullException("folderBrowserDialogViewModel");
+            if (settings == null)
+                throw new ArgumentNullException("settings");
 
-            this.folderBrowserDialogViewModel = folderBrowserDialogViewModel;
+            this.settings = settings;
 
             folderBrowserDialog = new FolderBrowserDialog
             {
-                Description = folderBrowserDialogViewModel.Description,
-                SelectedPath = folderBrowserDialogViewModel.SelectedPath,
-                ShowNewFolderButton = folderBrowserDialogViewModel.ShowNewFolderButton
+                Description = settings.Description,
+                SelectedPath = settings.SelectedPath,
+                ShowNewFolderButton = settings.ShowNewFolderButton
             };
         }
 
@@ -51,8 +48,8 @@ namespace MvvmDialogs.FrameworkDialogs.FolderBrowser
 
             DialogResult result = folderBrowserDialog.ShowDialog(owner);
 
-            // Update view model
-            folderBrowserDialogViewModel.SelectedPath = folderBrowserDialog.SelectedPath;
+            // Update settings
+            settings.SelectedPath = folderBrowserDialog.SelectedPath;
 
             return result;
         }

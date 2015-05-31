@@ -37,7 +37,7 @@ namespace DemoApplication.Features.SaveFileDialog.ViewModels
 
         private void SaveFile()
         {
-            var saveFileDialogViewModel = new SaveFileDialogViewModel
+            var settings = new SaveFileDialogSettings
             {
                 Title = "This Is The Title",
                 InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
@@ -45,10 +45,10 @@ namespace DemoApplication.Features.SaveFileDialog.ViewModels
                 CheckFileExists = false
             };
 
-            bool? success = dialogService.ShowSaveFileDialog(this, saveFileDialogViewModel);
+            bool? success = dialogService.ShowSaveFileDialog(this, settings);
             if (success == true)
             {
-                Path = saveFileDialogViewModel.FileName;
+                Path = settings.FileName;
             }
         }
     }
