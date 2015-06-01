@@ -6,25 +6,15 @@ namespace MvvmDialogs.DialogTypeLocators
 {
     /// <summary>
     /// Class responsible for locating dialog types for specified view models based on a naming
-    /// convention used in a multitude of articles and code samples describing the MVVM pattern.
+    /// convention used in a multitude of articles and code samples regarding the MVVM pattern.
     /// 
     /// The convention states that if the name of the view model is
     /// 'MyNamespace.ViewModels.MyDialogViewModel' then the name of the dialog is
     /// 'MyNamespace.Views.MyDialog'.
     /// </summary>
-    public class NamingConventionDialogTypeLocator : IDialogTypeLocator
+    internal static class NamingConventionDialogTypeLocator
     {
-        private readonly DialogTypeLocatorCache cache;
-        
-        /// <summary>
-        /// Initializes a new instance of the <see cref="NamingConventionDialogTypeLocator"/> class.
-        /// </summary>
-        public NamingConventionDialogTypeLocator()
-        {
-            cache = new DialogTypeLocatorCache();
-        }
-
-        #region IDialogTypeLocator Members
+        internal static readonly DialogTypeLocatorCache Cache = new DialogTypeLocatorCache();
 
         /// <summary>
         /// Locates the dialog type representing the specified view model in a user interface.
@@ -33,17 +23,14 @@ namespace MvvmDialogs.DialogTypeLocators
         /// <returns>
         /// The dialog type representing the specified view model in a user interface.
         /// </returns>
-        /// <exception cref="DialogTypeException">
-        /// Dialog type was not located for specified view model.
-        /// </exception>
-        public Type LocateDialogTypeFor(INotifyPropertyChanged viewModel)
+        internal static Type LocateDialogType(INotifyPropertyChanged viewModel)
         {
             if (viewModel == null)
                 throw new ArgumentNullException("viewModel");
 
             Type viewModelType = viewModel.GetType();
 
-            Type dialogType = cache.Get(viewModelType);
+            Type dialogType = Cache.Get(viewModelType);
             if (dialogType != null)
             {
                 return dialogType;
@@ -58,21 +45,19 @@ namespace MvvmDialogs.DialogTypeLocators
             
             dialogType = Type.GetType(dialogFullName);
             if (dialogType == null)
-                throw new DialogTypeException(Resources.DialogTypeMissing.CurrentFormat(dialogFullName));
+                throw new Exception(Resources.DialogTypeMissing.CurrentFormat(dialogFullName));
 
-            cache.Add(viewModelType, dialogType);
+            Cache.Add(viewModelType, dialogType);
             
             return dialogType;
         }
 
-        #endregion
-        
         private static string GetDialogName(Type viewModelType)
         {
             string dialogName = viewModelType.FullName.Replace(".ViewModels.", ".Views.");
 
             if (!dialogName.EndsWith("ViewModel", StringComparison.Ordinal))
-                throw new DialogTypeException(Resources.ViewModelNameInvalid.CurrentFormat(viewModelType));
+                throw new Exception(Resources.ViewModelNameInvalid.CurrentFormat(viewModelType));
 
             return dialogName.Substring(
                 0,

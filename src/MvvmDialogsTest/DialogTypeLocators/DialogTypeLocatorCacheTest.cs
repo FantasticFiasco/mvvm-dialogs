@@ -47,6 +47,19 @@ namespace MvvmDialogs.DialogTypeLocators
             Assert.That(dialogType, Is.EqualTo(typeof(TestDialog)));
         }
 
+        [Test]
+        public void Clear()
+        {
+            // ARRANGE
+            cache.Add(typeof(TestDialogViewModel), typeof(TestDialog));
+
+            // ACT
+            cache.Clear();
+
+            // ASSERT
+            Assert.That(cache.Count, Is.EqualTo(0));
+        }
+
         #region Helper classes
 
         private class TestDialogViewModel : ViewModelBase

@@ -61,7 +61,6 @@
       <Link>Properties\SolutionInfo.cs</Link>
     </Compile>
     <Compile Include="DialogTypeLocators\DialogTypeLocatorCacheTest.cs" />
-    <Compile Include="DialogTypeLocators\MappableDialogTypeLocatorTest.cs" />
     <Compile Include="DialogTypeLocators\NamingConventionDialogTypeLocatorTest.cs" />
     <Compile Include="DialogServiceBehaviorsTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

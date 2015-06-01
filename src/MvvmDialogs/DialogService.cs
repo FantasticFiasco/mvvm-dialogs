@@ -21,18 +21,24 @@ namespace MvvmDialogs
     /// </summary>
     public class DialogService : IDialogService
     {
-        private readonly IDialogTypeLocator dialogTypeLocator;
+        private readonly Func<INotifyPropertyChanged, Type> dialogTypeLocator;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="DialogService"/> class.
         /// </summary>
         /// <param name="dialogTypeLocator">
-        /// The dialog type locator. Specifying a <see cref="IDialogTypeLocator"/> is required when
-        /// using <see cref="IDialogService.ShowDialog"/>.
+        /// Function returning the dialog type based on view model instance. If no dialog type
+        /// locator is specified a naming convention based approach is used where the dialog type
+        /// is based on the name of the view model. The convention states that if the name of the
+        /// view model is 'MyNamespace.ViewModels.MyDialogViewModel' then the name of the dialog is
+        /// 'MyNamespace.Views.MyDialog'.
+        /// 
+        /// This naming convention is used in a multitude of articles and code samples regarding
+        /// the MVVM pattern and is a good default strategy.
         /// </param>
-        public DialogService(IDialogTypeLocator dialogTypeLocator = null)
+        public DialogService(Func<INotifyPropertyChanged, Type> dialogTypeLocator = null)
         {
-            this.dialogTypeLocator = dialogTypeLocator;
+            this.dialogTypeLocator = dialogTypeLocator ?? NamingConventionDialogTypeLocator.LocateDialogType;
         }
                 
         #region IDialogService Members
@@ -56,9 +62,8 @@ namespace MvvmDialogs
         }
 
         /// <summary>
-        /// Displays a non-modal dialog of a type that is determined by the
-        /// <see cref="IDialogTypeLocator"/> specified in
-        /// <see cref="DialogService(IDialogTypeLocator)"/>.
+        /// Displays a non-modal dialog of a type that is determined by the dialog type locator
+        /// specified in <see cref="DialogService(Func{INotifyPropertyChanged, Type})"/>.
         /// </summary>
         /// <param name="ownerViewModel">
         /// A view model that represents the owner window of the dialog.
@@ -73,7 +78,7 @@ namespace MvvmDialogs
             if (dialogTypeLocator == null)
                 throw new InvalidOperationException(Resources.ImplicitUseProhibited);
 
-            Type dialogType = dialogTypeLocator.LocateDialogTypeFor(viewModel);
+            Type dialogType = dialogTypeLocator(viewModel);
             Show(ownerViewModel, viewModel, dialogType);
         }
 
@@ -103,9 +108,8 @@ namespace MvvmDialogs
         }
 
         /// <summary>
-        /// Displays a modal dialog of a type that is determined by the
-        /// <see cref="IDialogTypeLocator" /> specified in
-        /// <see cref="DialogService(IDialogTypeLocator)" />.
+        /// Displays a modal dialog of a type that is determined by the dialog type locator
+        /// specified in <see cref="DialogService(Func{INotifyPropertyChanged, Type})"/>.
         /// </summary>
         /// <param name="ownerViewModel">
         /// A view model that represents the owner window of the dialog.
@@ -124,7 +128,7 @@ namespace MvvmDialogs
             if (dialogTypeLocator == null)
                 throw new InvalidOperationException(Resources.ImplicitUseProhibited);
 
-            Type dialogType = dialogTypeLocator.LocateDialogTypeFor(viewModel);
+            Type dialogType = dialogTypeLocator(viewModel);
             return ShowDialog(ownerViewModel, viewModel, dialogType);
         }
 

@@ -1,11 +1,9 @@
 ﻿using System.ComponentModel.Composition;
 using System.ComponentModel.Composition.Hosting;
-using System.ComponentModel.Composition.Primitives;
-using System.ComponentModel.Composition.Registration;
 using System.Reflection;
 using System.Windows;
+using MefContrib.Hosting;
 using MvvmDialogs;
-using MvvmDialogs.DialogTypeLocators;
 
 namespace DemoApplication
 {
@@ -39,31 +37,12 @@ namespace DemoApplication
 
         private static CompositionContainer CreateContainer()
         {
-            var catalog = new AggregateCatalog();
-
-            catalog.Catalogs.Add(CreateDemoApplicationCatalog());
-            catalog.Catalogs.Add(CreateMvvmDialogsCatalog());
+            var executingAssemblyCatalog = new AssemblyCatalog(Assembly.GetExecutingAssembly());
             
-            return new CompositionContainer(catalog);
-        }
+            var dialogServiceProvider = new FactoryExportProvider()
+                .RegisterInstance<IDialogService>(_ => new DialogService());
 
-        private static ComposablePartCatalog CreateDemoApplicationCatalog()
-        {
-            return new AssemblyCatalog(Assembly.GetExecutingAssembly());
-        }
-
-        private static ComposablePartCatalog CreateMvvmDialogsCatalog()
-        {
-            // Since MvvmDialogs doesn't use MEF attributes, we have to configure the exports
-            var picker = new RegistrationBuilder();
-            picker
-                .ForType<DialogService>()
-                .ExportInterfaces();
-            picker
-                .ForType<NamingConventionDialogTypeLocator>()
-                .ExportInterfaces();
-
-            return new AssemblyCatalog(Assembly.Load("MvvmDialogs"), picker);
+            return new CompositionContainer(executingAssemblyCatalog, dialogServiceProvider);
         }
     }
 }

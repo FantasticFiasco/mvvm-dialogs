@@ -1,6 +1,6 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.Windows;
-using MvvmDialogs.DialogTypeLocators;
 using MvvmDialogs.FrameworkDialogs.FolderBrowser;
 using MvvmDialogs.FrameworkDialogs.OpenFile;
 using MvvmDialogs.FrameworkDialogs.SaveFile;
@@ -30,9 +30,8 @@ namespace MvvmDialogs
             where T : Window;
 
         /// <summary>
-        /// Displays a non-modal dialog of a type that is determined by the
-        /// <see cref="IDialogTypeLocator"/> specified in
-        /// <see cref="DialogService(IDialogTypeLocator)"/>.
+        /// Displays a non-modal dialog of a type that is determined by the dialog type locator
+        /// specified in <see cref="DialogService(Func{INotifyPropertyChanged, Type})"/>.
         /// </summary>
         /// <param name="ownerViewModel">
         /// A view model that represents the owner window of the dialog.
@@ -60,9 +59,8 @@ namespace MvvmDialogs
             where T : Window;
 
         /// <summary>
-        /// Displays a modal dialog of a type that is determined by the
-        /// <see cref="IDialogTypeLocator"/> specified in
-        /// <see cref="DialogService(IDialogTypeLocator)"/>.
+        /// Displays a modal dialog of a type that is determined by the dialog type locator
+        /// specified in <see cref="DialogService(Func{INotifyPropertyChanged, Type})"/>.
         /// </summary>
         /// <param name="ownerViewModel">
         /// A view model that represents the owner window of the dialog.

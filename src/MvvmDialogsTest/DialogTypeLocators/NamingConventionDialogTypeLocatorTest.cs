@@ -8,13 +8,13 @@ namespace MvvmDialogs.DialogTypeLocators
     [TestFixture]
     public class NamingConventionDialogTypeLocatorTest
     {
-        private NamingConventionDialogTypeLocator dialogTypeLocator;
         private Assembly testAssembly;
 
         [TestFixtureSetUp]
         public void TestFixtureSetUp()
         {
-            dialogTypeLocator = new NamingConventionDialogTypeLocator();
+            NamingConventionDialogTypeLocator.Cache.Clear();
+
             var assemblyBuilder = new TestAssemblyBuilder("TestAssembly");
 
             // Create types used in tests
@@ -51,7 +51,7 @@ namespace MvvmDialogs.DialogTypeLocators
             var viewModel = (INotifyPropertyChanged)Activator.CreateInstance(viewModelType);
             
             // ACT
-            Type dialogType = dialogTypeLocator.LocateDialogTypeFor(viewModel);
+            Type dialogType = NamingConventionDialogTypeLocator.LocateDialogType(viewModel);
 
             // ASSERT
             Assert.That(dialogType.FullName, Is.EqualTo(viewFullName));
@@ -68,7 +68,7 @@ namespace MvvmDialogs.DialogTypeLocators
             var viewModel = (INotifyPropertyChanged)Activator.CreateInstance(viewModelType);
 
             // ASSERT
-            Assert.Throws<DialogTypeException>(() => dialogTypeLocator.LocateDialogTypeFor(viewModel));
+            Assert.Throws<Exception>(() => NamingConventionDialogTypeLocator.LocateDialogType(viewModel));
         }
     }
 }

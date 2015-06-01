@@ -52,6 +52,14 @@ namespace MvvmDialogs.DialogTypeLocators
         }
 
         /// <summary>
+        /// Removes all view model types with its corresponding dialog types.
+        /// </summary>
+        internal void Clear()
+        {
+            cache.Clear();
+        }
+
+        /// <summary>
         /// Gets the number of dialog type/view model type pairs contained in the cache.
         /// </summary>
         internal int Count
