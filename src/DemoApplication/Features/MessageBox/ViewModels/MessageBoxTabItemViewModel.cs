@@ -1,16 +1,12 @@
 ﻿using System.ComponentModel;
-using System.ComponentModel.Composition;
 using DemoApplication.TabItemInfrastructure;
 
 namespace DemoApplication.Features.MessageBox.ViewModels
 {
-    [Export(typeof(TabItemViewModel))]
-    [ExportMetadata("Priority", 3)]
     public class MessageBoxTabItemViewModel : TabItemViewModel
     {
         private readonly MessageBoxTabContentViewModel content;
 
-        [ImportingConstructor]
         public MessageBoxTabItemViewModel(MessageBoxTabContentViewModel content)
         {
             this.content = content;
@@ -24,6 +20,11 @@ namespace DemoApplication.Features.MessageBox.ViewModels
         public override INotifyPropertyChanged Content
         {
             get { return content; }
+        }
+
+        public override int Priority
+        {
+            get { return 3; }
         }
     }
 }

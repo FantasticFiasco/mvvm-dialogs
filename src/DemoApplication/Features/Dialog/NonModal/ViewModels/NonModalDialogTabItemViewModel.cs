@@ -1,16 +1,12 @@
 ﻿using System.ComponentModel;
-using System.ComponentModel.Composition;
 using DemoApplication.TabItemInfrastructure;
 
 namespace DemoApplication.Features.Dialog.NonModal.ViewModels
 {
-    [Export(typeof(TabItemViewModel))]
-    [ExportMetadata("Priority", 2)]
     public class NonModalDialogTabItemViewModel : TabItemViewModel
     {
         private readonly NonModalDialogTabContentViewModel content;
 
-        [ImportingConstructor]
         public NonModalDialogTabItemViewModel(NonModalDialogTabContentViewModel content)
         {
             this.content = content;
@@ -24,6 +20,11 @@ namespace DemoApplication.Features.Dialog.NonModal.ViewModels
         public override INotifyPropertyChanged Content
         {
             get { return content; }
+        }
+
+        public override int Priority
+        {
+            get { return 2; }
         }
     }
 }

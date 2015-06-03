@@ -21,11 +21,18 @@ namespace MvvmDialogs
     /// </summary>
     public class DialogService : IDialogService
     {
+        private static readonly Func<Type, Window> DefaultDialogFactory = (dialogType => (Window)Activator.CreateInstance(dialogType));
+
+        private readonly Func<Type, Window> dialogFactory; 
         private readonly Func<INotifyPropertyChanged, Type> dialogTypeLocator;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="DialogService"/> class.
         /// </summary>
+        /// <param name="dialogFactory">
+        /// Function creating a dialog with a specified type. If no dialog factory is specified
+        /// <see cref="Activator.CreateInstance(Type)"/> is used to create the dialog.
+        /// </param>
         /// <param name="dialogTypeLocator">
         /// Function returning the dialog type based on view model instance. If no dialog type
         /// locator is specified a naming convention based approach is used where the dialog type
@@ -36,8 +43,11 @@ namespace MvvmDialogs
         /// This naming convention is used in a multitude of articles and code samples regarding
         /// the MVVM pattern and is a good default strategy.
         /// </param>
-        public DialogService(Func<INotifyPropertyChanged, Type> dialogTypeLocator = null)
+        public DialogService(
+            Func<Type, Window> dialogFactory = null,
+            Func<INotifyPropertyChanged, Type> dialogTypeLocator = null)
         {
+            this.dialogFactory = dialogFactory ?? DefaultDialogFactory;
             this.dialogTypeLocator = dialogTypeLocator ?? NamingConventionDialogTypeLocator.LocateDialogType;
         }
                 
@@ -63,7 +73,7 @@ namespace MvvmDialogs
 
         /// <summary>
         /// Displays a non-modal dialog of a type that is determined by the dialog type locator
-        /// specified in <see cref="DialogService(Func{INotifyPropertyChanged, Type})"/>.
+        /// specified in the constructor.
         /// </summary>
         /// <param name="ownerViewModel">
         /// A view model that represents the owner window of the dialog.
@@ -109,7 +119,7 @@ namespace MvvmDialogs
 
         /// <summary>
         /// Displays a modal dialog of a type that is determined by the dialog type locator
-        /// specified in <see cref="DialogService(Func{INotifyPropertyChanged, Type})"/>.
+        /// specified in constructor.
         /// </summary>
         /// <param name="ownerViewModel">
         /// A view model that represents the owner window of the dialog.
@@ -387,7 +397,7 @@ namespace MvvmDialogs
 
         #endregion
 
-        private static void Show(
+        private void Show(
             INotifyPropertyChanged ownerViewModel,
             INotifyPropertyChanged viewModel,
             Type dialogType)
@@ -396,7 +406,7 @@ namespace MvvmDialogs
             dialog.Show();
         }
 
-        private static bool? ShowDialog(
+        private bool? ShowDialog(
             INotifyPropertyChanged ownerViewModel,
             INotifyPropertyChanged viewModel,
             Type dialogType)
@@ -405,12 +415,12 @@ namespace MvvmDialogs
             return dialog.ShowDialog();
         }
 
-        private static Window CreateDialog(
+        private Window CreateDialog(
             Type dialogType,
             INotifyPropertyChanged ownerViewModel,
             INotifyPropertyChanged viewModel)
         {
-            var dialog = (Window)Activator.CreateInstance(dialogType);
+            var dialog = dialogFactory(dialogType);
             dialog.Owner = FindOwnerWindow(ownerViewModel);
             dialog.DataContext = viewModel;
 

@@ -1,11 +1,8 @@
-﻿using System.ComponentModel.Composition;
-
-namespace DemoApplication
+﻿namespace DemoApplication
 {
     /// <summary>
     /// Main window of the application.
     /// </summary>
-    [Export]
     public partial class MainWindow
     {
         /// <summary>

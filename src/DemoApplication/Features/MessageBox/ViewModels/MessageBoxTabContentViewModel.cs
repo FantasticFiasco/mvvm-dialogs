@@ -1,5 +1,4 @@
 ﻿using System;
-using System.ComponentModel.Composition;
 using System.Windows;
 using System.Windows.Input;
 using MvvmDialogs;
@@ -7,7 +6,6 @@ using ReactiveUI;
 
 namespace DemoApplication.Features.MessageBox.ViewModels
 {
-    [Export]
     public class MessageBoxTabContentViewModel : ReactiveObject
     {
         private readonly IDialogService dialogService;
@@ -17,7 +15,6 @@ namespace DemoApplication.Features.MessageBox.ViewModels
         private readonly ReactiveCommand<object> showMessageBoxWithIconCommand;
         private readonly ReactiveCommand<object> showMessageBoxWithDefaultResultCommand;
 
-        [ImportingConstructor]
         public MessageBoxTabContentViewModel(IDialogService dialogService)
         {
             this.dialogService = dialogService;

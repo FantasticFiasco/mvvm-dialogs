@@ -1,16 +1,12 @@
 ﻿using System.ComponentModel;
-using System.ComponentModel.Composition;
 using DemoApplication.TabItemInfrastructure;
 
 namespace DemoApplication.Features.SaveFileDialog.ViewModels
 {
-    [Export(typeof(TabItemViewModel))]
-    [ExportMetadata("Priority", 5)]
     public class SaveFileTabItemViewModel : TabItemViewModel
     {
         private readonly SaveFileTabContentViewModel content;
 
-        [ImportingConstructor]
         public SaveFileTabItemViewModel(SaveFileTabContentViewModel content)
         {
             this.content = content;
@@ -24,6 +20,11 @@ namespace DemoApplication.Features.SaveFileDialog.ViewModels
         public override INotifyPropertyChanged Content
         {
             get { return content; }
+        }
+
+        public override int Priority
+        {
+            get { return 5; }
         }
     }
 }

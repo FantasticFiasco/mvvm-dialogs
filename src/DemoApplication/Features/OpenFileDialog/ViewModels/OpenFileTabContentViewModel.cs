@@ -1,5 +1,4 @@
 ﻿using System;
-using System.ComponentModel.Composition;
 using System.Windows.Input;
 using MvvmDialogs;
 using MvvmDialogs.FrameworkDialogs.OpenFile;
@@ -7,7 +6,6 @@ using ReactiveUI;
 
 namespace DemoApplication.Features.OpenFileDialog.ViewModels
 {
-    [Export]
     public class OpenFileTabContentViewModel : ReactiveObject
     {
         private readonly IDialogService dialogService;
@@ -15,7 +13,6 @@ namespace DemoApplication.Features.OpenFileDialog.ViewModels
 
         private string path;
 
-        [ImportingConstructor]
         public OpenFileTabContentViewModel(IDialogService dialogService)
         {
             this.dialogService = dialogService;

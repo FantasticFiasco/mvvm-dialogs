@@ -8,5 +8,7 @@ namespace DemoApplication.TabItemInfrastructure
         public abstract string Title { get; }
 
         public abstract INotifyPropertyChanged Content { get; }
+
+        public abstract int Priority { get; }
     }
 }

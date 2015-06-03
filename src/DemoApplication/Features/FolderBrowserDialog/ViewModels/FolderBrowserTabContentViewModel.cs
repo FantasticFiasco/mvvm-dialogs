@@ -1,5 +1,4 @@
 ﻿using System;
-using System.ComponentModel.Composition;
 using System.Windows.Input;
 using MvvmDialogs;
 using MvvmDialogs.FrameworkDialogs.FolderBrowser;
@@ -7,7 +6,6 @@ using ReactiveUI;
 
 namespace DemoApplication.Features.FolderBrowserDialog.ViewModels
 {
-    [Export]
     public class FolderBrowserTabContentViewModel : ReactiveObject
     {
         private readonly IDialogService dialogService;
@@ -15,7 +13,6 @@ namespace DemoApplication.Features.FolderBrowserDialog.ViewModels
 
         private string path;
 
-        [ImportingConstructor]
         public FolderBrowserTabContentViewModel(IDialogService dialogService)
         {
             this.dialogService = dialogService;

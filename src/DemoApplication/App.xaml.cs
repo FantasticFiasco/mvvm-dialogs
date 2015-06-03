@@ -1,31 +1,26 @@
-﻿using System.ComponentModel.Composition;
-using System.ComponentModel.Composition.Hosting;
-using System.Reflection;
+﻿using System.Reflection;
 using System.Windows;
-using MefContrib.Hosting;
+using Autofac;
+using DemoApplication.TabItemInfrastructure;
 using MvvmDialogs;
 
 namespace DemoApplication
 {
     public partial class App
     {
-        private CompositionContainer container;
-
-        [Import]
-        public MainWindow View;
-
-        [Import]
-        public  MainWindowViewModel ViewModel;
+        private IContainer container;
 
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
 
             container = CreateContainer();
-            container.SatisfyImportsOnce(this);
+            
+            var window = container.Resolve<MainWindow>();
+            var viewModel = container.Resolve<MainWindowViewModel>();
 
-            View.DataContext = ViewModel;
-            View.Show();
+            window.DataContext = viewModel;
+            window.Show();
         }
 
         protected override void OnExit(ExitEventArgs e)
@@ -35,14 +30,25 @@ namespace DemoApplication
             container.Dispose();
         }
 
-        private static CompositionContainer CreateContainer()
+        private static IContainer CreateContainer()
         {
-            var executingAssemblyCatalog = new AssemblyCatalog(Assembly.GetExecutingAssembly());
-            
-            var dialogServiceProvider = new FactoryExportProvider()
-                .RegisterInstance<IDialogService>(_ => new DialogService());
+            var builder = new ContainerBuilder();
 
-            return new CompositionContainer(executingAssemblyCatalog, dialogServiceProvider);
+            builder
+                .RegisterAssemblyTypes(Assembly.GetExecutingAssembly())
+                .AsSelf();
+
+            builder
+                .RegisterAssemblyTypes(Assembly.GetExecutingAssembly())
+                .AssignableTo<TabItemViewModel>()
+                .As<TabItemViewModel>();
+
+            builder
+                .RegisterType<DialogService>()
+                .AsImplementedInterfaces()
+                .SingleInstance();
+            
+            return builder.Build();
         }
     }
 }

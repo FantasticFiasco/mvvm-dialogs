@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.ObjectModel;
-using System.ComponentModel.Composition;
 using System.Windows.Input;
 using DemoApplication.Features.Dialog.Modal.Views;
 using MvvmDialogs;
@@ -8,7 +7,6 @@ using ReactiveUI;
 
 namespace DemoApplication.Features.Dialog.Modal.ViewModels
 {
-    [Export]
     public class ModalDialogTabContentViewModel : ReactiveObject
     {
         private readonly IDialogService dialogService;
@@ -16,7 +14,6 @@ namespace DemoApplication.Features.Dialog.Modal.ViewModels
         private readonly ReactiveCommand<object> implicitShowDialogCommand;
         private readonly ReactiveCommand<object> explicitShowDialogCommand;
 
-        [ImportingConstructor]
         public ModalDialogTabContentViewModel(IDialogService dialogService)
         {
             this.dialogService = dialogService;

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.ComponentModel.Composition;
 using System.Windows.Input;
 using MvvmDialogs;
 using MvvmDialogs.FrameworkDialogs.SaveFile;
@@ -7,7 +6,6 @@ using ReactiveUI;
 
 namespace DemoApplication.Features.SaveFileDialog.ViewModels
 {
-    [Export]
     public class SaveFileTabContentViewModel : ReactiveObject
     {
         private readonly IDialogService dialogService;
@@ -15,7 +13,6 @@ namespace DemoApplication.Features.SaveFileDialog.ViewModels
 
         private string path;
 
-        [ImportingConstructor]
         public SaveFileTabContentViewModel(IDialogService dialogService)
         {
             this.dialogService = dialogService;
