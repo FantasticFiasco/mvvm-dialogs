@@ -1,7 +1,6 @@
 ﻿using System.Reflection;
 using System.Windows;
 using Autofac;
-using DemoApplication.TabItemInfrastructure;
 using MvvmDialogs;
 
 namespace DemoApplication

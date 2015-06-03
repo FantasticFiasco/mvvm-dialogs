@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using ReactiveUI;
 
-namespace DemoApplication.TabItemInfrastructure
+namespace DemoApplication
 {
     public abstract class TabItemViewModel : ReactiveObject
     {

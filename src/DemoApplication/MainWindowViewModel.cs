@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using DemoApplication.TabItemInfrastructure;
 using ReactiveUI;
 
 namespace DemoApplication

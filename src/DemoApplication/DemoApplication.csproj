@@ -134,7 +134,7 @@
     <Compile Include="Features\MessageBox\ViewModels\MessageBoxTabItemViewModel.cs" />
     <Compile Include="Features\OpenFileDialog\ViewModels\OpenFileTabItemViewModel.cs" />
     <Compile Include="Features\SaveFileDialog\ViewModels\SaveFileTabItemViewModel.cs" />
-    <Compile Include="TabItemInfrastructure\TabItemViewModel.cs" />
+    <Compile Include="TabItemViewModel.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>

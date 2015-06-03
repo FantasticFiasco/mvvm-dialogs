@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel;
-using DemoApplication.TabItemInfrastructure;
 
 namespace DemoApplication.Features.MessageBox.ViewModels
 {
