@@ -8,3 +8,4 @@
 * From article comments page 4: Bug + Solution: Showing generic dialog with Type Targeted DataTemplate Content
 * From article comments page 4: Closing a dialog
 * From article comments page 5: ViewModel Close window
+* Use optional parameters for IDialogService.ShowMessageBox?
