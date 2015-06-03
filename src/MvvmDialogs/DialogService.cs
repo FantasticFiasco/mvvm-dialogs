@@ -8,6 +8,7 @@ using MvvmDialogs.FrameworkDialogs.FolderBrowser;
 using MvvmDialogs.FrameworkDialogs.OpenFile;
 using MvvmDialogs.FrameworkDialogs.SaveFile;
 using MvvmDialogs.Properties;
+using MvvmDialogs.Reflection;
 using DialogResult = System.Windows.Forms.DialogResult;
 using FolderBrowserDialog = System.Windows.Forms.FolderBrowserDialog;
 using OpenFileDialog = System.Windows.Forms.OpenFileDialog;
@@ -22,6 +23,7 @@ namespace MvvmDialogs
     public class DialogService : IDialogService
     {
         private static readonly Func<Type, Window> DefaultDialogFactory = (dialogType => (Window)Activator.CreateInstance(dialogType));
+        private static readonly string DialogResultPropertyName = Members.GetPropertyName((IModalDialogViewModel viewModel) => viewModel.DialogResult);
 
         private readonly Func<Type, Window> dialogFactory; 
         private readonly Func<INotifyPropertyChanged, Type> dialogTypeLocator;
@@ -61,7 +63,10 @@ namespace MvvmDialogs
         /// </param>
         /// <param name="viewModel">The view model of the new dialog.</param>
         /// <typeparam name="T">The type of the dialog to show.</typeparam>
-        public void Show<T>(INotifyPropertyChanged ownerViewModel, INotifyPropertyChanged viewModel) where T : Window
+        public void Show<T>(
+            INotifyPropertyChanged ownerViewModel,
+            INotifyPropertyChanged viewModel)
+            where T : Window
         {
             if (ownerViewModel == null)
                 throw new ArgumentNullException("ownerViewModel");
@@ -79,7 +84,9 @@ namespace MvvmDialogs
         /// A view model that represents the owner window of the dialog.
         /// </param>
         /// <param name="viewModel">The view model of the new dialog.</param>
-        public void Show(INotifyPropertyChanged ownerViewModel, INotifyPropertyChanged viewModel)
+        public void Show(
+            INotifyPropertyChanged ownerViewModel,
+            INotifyPropertyChanged viewModel)
         {
             if (ownerViewModel == null)
                 throw new ArgumentNullException("ownerViewModel");
@@ -106,7 +113,7 @@ namespace MvvmDialogs
         /// </returns>
         public bool? ShowDialog<T>(
             INotifyPropertyChanged ownerViewModel,
-            INotifyPropertyChanged viewModel)
+            IModalDialogViewModel viewModel)
             where T : Window
         {
             if (ownerViewModel == null)
@@ -126,10 +133,12 @@ namespace MvvmDialogs
         /// </param>
         /// <param name="viewModel">The view model of the new dialog.</param>
         /// <returns>
-        /// A nullable value of type <see cref="bool" /> that signifies how a window was closed by
+        /// A nullable value of type <see cref="bool"/> that signifies how a window was closed by
         /// the user.
         /// </returns>
-        public bool? ShowDialog(INotifyPropertyChanged ownerViewModel, INotifyPropertyChanged viewModel)
+        public bool? ShowDialog(
+            INotifyPropertyChanged ownerViewModel,
+            IModalDialogViewModel viewModel)
         {
             if (ownerViewModel == null)
                 throw new ArgumentNullException("ownerViewModel");
@@ -408,11 +417,16 @@ namespace MvvmDialogs
 
         private bool? ShowDialog(
             INotifyPropertyChanged ownerViewModel,
-            INotifyPropertyChanged viewModel,
+            IModalDialogViewModel viewModel,
             Type dialogType)
         {
             Window dialog = CreateDialog(dialogType, ownerViewModel, viewModel);
-            return dialog.ShowDialog();
+            
+            PropertyChangedEventHandler handler = RegisterDialogResult(dialog, viewModel);
+            dialog.ShowDialog();
+            UnregisterDialogResult(viewModel, handler);
+
+            return viewModel.DialogResult;
         }
 
         private Window CreateDialog(
@@ -425,6 +439,30 @@ namespace MvvmDialogs
             dialog.DataContext = viewModel;
 
             return dialog;
+        }
+
+        private static PropertyChangedEventHandler RegisterDialogResult(
+            Window dialog,
+            IModalDialogViewModel viewModel)
+        {
+            PropertyChangedEventHandler handler = (sender, e) =>
+            {
+                if (e.PropertyName == DialogResultPropertyName)
+                {
+                    dialog.DialogResult = viewModel.DialogResult;
+                }
+            };
+
+            viewModel.PropertyChanged += handler;
+
+            return handler;
+        }
+
+        private static void UnregisterDialogResult(
+            IModalDialogViewModel viewModel,
+            PropertyChangedEventHandler handler)
+        {
+            viewModel.PropertyChanged -= handler;
         }
 
         /// <summary>

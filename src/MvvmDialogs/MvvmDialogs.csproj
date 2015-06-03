@@ -61,6 +61,7 @@
     <Compile Include="DialogService.cs" />
     <Compile Include="DialogServiceBehaviors.cs" />
     <Compile Include="DialogTypeLocators\DialogTypeLocatorCache.cs" />
+    <Compile Include="Reflection\Members.cs" />
     <Compile Include="Extensions\System\StringExtensions.cs" />
     <Compile Include="Extensions\System\Windows\FrameworkElementExtensions.cs" />
     <Compile Include="FrameworkDialogs\FileDialogSettings.cs" />
@@ -73,6 +74,7 @@
     <Compile Include="FrameworkDialogs\SaveFile\SaveFileDialogSettings.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="IDialogService.cs" />
+    <Compile Include="IModalDialogViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DialogTypeLocators\NamingConventionDialogTypeLocator.cs" />
     <Compile Include="Properties\Resources.Designer.cs">

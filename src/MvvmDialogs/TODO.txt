@@ -1,11 +1,4 @@
 ﻿* Release as NuGet for .NET4.0 and .NET4.5, and maybe also .NET3.5?
 * DialogService should hold the registered views using weak references.
 * Rename 'DialogServiceBehaviors.IsRegisteredView' to 'DialogServiceBehaviors.ViewModelHandlesDialogs'?
-* Make sure dialog view model can set a value of true or false depending on the outcome of the dialog.
-* http://www.codeproject.com/Articles/36745/Showing-Dialogs-When-Using-the-MVVM-Pattern?msg=4809428#xx4809428xx
-* From article comments page 2: How do I close a dialog window from the viewmodel
-* From article comments page 4: Being able to Edit data in a dialog and Save...
-* From article comments page 4: Bug + Solution: Showing generic dialog with Type Targeted DataTemplate Content
-* From article comments page 4: Closing a dialog
-* From article comments page 5: ViewModel Close window
 * Use optional parameters for IDialogService.ShowMessageBox?

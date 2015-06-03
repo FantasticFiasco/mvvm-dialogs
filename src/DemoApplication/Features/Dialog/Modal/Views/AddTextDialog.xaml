@@ -24,7 +24,8 @@
         <StackPanel Orientation="Horizontal">
             <Button
                 Content="OK"
-                Command="{Binding OkCommand}" />
+                Command="{Binding OkCommand}"
+                IsDefault="True" />
             <Button
                 Content="Cancel"
                 IsCancel="True" />

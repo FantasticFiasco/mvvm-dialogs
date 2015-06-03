@@ -54,7 +54,7 @@ namespace MvvmDialogs
         /// </returns>
         bool? ShowDialog<T>(
             INotifyPropertyChanged ownerViewModel,
-            INotifyPropertyChanged viewModel)
+            IModalDialogViewModel viewModel)
             where T : Window;
 
         /// <summary>
@@ -66,12 +66,12 @@ namespace MvvmDialogs
         /// </param>
         /// <param name="viewModel">The view model of the new dialog.</param>
         /// <returns>
-        /// A nullable value of type <see cref="bool" /> that signifies how a window was closed by
+        /// A nullable value of type <see cref="bool"/> that signifies how a window was closed by
         /// the user.
         /// </returns>
         bool? ShowDialog(
             INotifyPropertyChanged ownerViewModel,
-            INotifyPropertyChanged viewModel);
+            IModalDialogViewModel viewModel);
 
         /// <summary>
         /// Displays a message box that has a message and that returns a result.

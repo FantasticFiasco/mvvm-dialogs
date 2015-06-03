@@ -1,14 +1,16 @@
 ﻿using System;
 using System.Windows.Input;
+using MvvmDialogs;
 using ReactiveUI;
 
 namespace DemoApplication.Features.Dialog.Modal.ViewModels
 {
-    public class AddTextDialogViewModel : ReactiveObject
+    public class AddTextDialogViewModel : ReactiveObject, IModalDialogViewModel
     {
         private readonly ReactiveCommand<object> okCommand;
 
         private string text;
+        private bool? dialogResult;
 
         public AddTextDialogViewModel()
         {
@@ -27,9 +29,18 @@ namespace DemoApplication.Features.Dialog.Modal.ViewModels
             get { return okCommand; }
         }
 
+        public bool? DialogResult
+        {
+            get { return dialogResult; }
+            private set { this.RaiseAndSetIfChanged(ref dialogResult, value); }
+        }
+
         private void Ok()
         {
-            throw new NotImplementedException();
+            if (!string.IsNullOrEmpty(Text))
+            {
+                DialogResult = true;
+            }
         }
     }
 }
