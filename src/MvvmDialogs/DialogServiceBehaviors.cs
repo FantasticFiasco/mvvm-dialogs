@@ -4,7 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Windows;
 using MvvmDialogs.Properties;
-using MvvmDialogs.WeakReferences;
+using MvvmDialogs.ViewReferences;
 
 namespace MvvmDialogs
 {

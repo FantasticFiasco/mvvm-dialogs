@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows;
 
-namespace MvvmDialogs.WeakReferences
+namespace MvvmDialogs.ViewReferences
 {
     /// <summary>
     /// Class holding a view using a weak reference.
