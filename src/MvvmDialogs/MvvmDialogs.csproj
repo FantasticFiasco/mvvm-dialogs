@@ -82,7 +82,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="ViewReferences\ViewReference.cs" />
+    <Compile Include="Views\IView.cs" />
+    <Compile Include="Views\ViewWrapper.cs" />
   </ItemGroup>
   <ItemGroup>
     <CodeAnalysisDictionary Include="..\CustomDictionary.xml">

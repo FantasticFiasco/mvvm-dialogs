@@ -4,7 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Windows;
 using MvvmDialogs.Properties;
-using MvvmDialogs.ViewReferences;
+using MvvmDialogs.Views;
 
 namespace MvvmDialogs
 {
@@ -18,7 +18,7 @@ namespace MvvmDialogs
         /// <summary>
         /// The registered views.
         /// </summary>
-        private static readonly List<ViewReference> ViewReferences = new List<ViewReference>();
+        private static readonly List<IView> InternalViews = new List<IView>();
 
         #region Attached properties
 
@@ -31,7 +31,7 @@ namespace MvvmDialogs
                 "IsRegisteredView",
                 typeof(bool),
                 typeof(DialogServiceBehaviors),
-                new UIPropertyMetadata(IsRegisteredViewChanged));
+                new PropertyMetadata(IsRegisteredViewChanged));
 
         /// <summary>
         /// Gets value describing whether <see cref="DependencyObject"/> is acting as a view for a
@@ -71,11 +71,11 @@ namespace MvvmDialogs
             {
                 if ((bool)e.NewValue)
                 {
-                    Register(view);
+                    Register(new ViewWrapper(view));
                 }
                 else
                 {
-                    Unregister(view);
+                    Unregister(new ViewWrapper(view));
                 }
             }
         }
@@ -85,13 +85,12 @@ namespace MvvmDialogs
         /// <summary>
         /// Gets the registered views.
         /// </summary>
-        internal static IEnumerable<FrameworkElement> Views
+        internal static IEnumerable<IView> Views
         {
             get
             {
-                return ViewReferences
-                    .Select(reference => reference.View)
-                    .Where(view => view != null)
+                return InternalViews
+                    .Where(view => view.IsAlive)
                     .ToArray();
             }
         }
@@ -101,18 +100,18 @@ namespace MvvmDialogs
         /// </summary>
         internal static void Clear()
         {
-            ViewReferences.Clear();
+            InternalViews.Clear();
         }
 
         /// <summary>
         /// Registers specified view.
         /// </summary>
         /// <param name="view">The view to register.</param>
-        private static void Register(FrameworkElement view)
+        private static void Register(IView view)
         {
             if (view == null)
                 throw new ArgumentNullException("view");
-            if (ViewReferences.Any(registeredView => ReferenceEquals(view, registeredView.Target)))
+            if (InternalViews.Any(registeredView => ReferenceEquals(registeredView.Source, view.Source)))
                 throw new ArgumentException(Resources.ViewNotRegistered.CurrentFormat(view.GetType()), "view");
 
             // Get owner window
@@ -125,26 +124,26 @@ namespace MvvmDialogs
                 return;
             }
 
-            PruneViewReferences();
+            PruneInternalViews();
 
             // Register for owner window closing, since we then should unregister view reference
             owner.Closed += OwnerClosed;
 
-            ViewReferences.Add(new ViewReference(view));
+            InternalViews.Add(view);
         }
 
         /// <summary>
         /// Unregisters specified view.
         /// </summary>
         /// <param name="view">The view to unregister.</param>
-        private static void Unregister(FrameworkElement view)
+        private static void Unregister(IView view)
         {
             if (view == null)
                 throw new ArgumentNullException("view");
-            if (!ViewReferences.Any(registeredView => ReferenceEquals(view, registeredView.Target)))
+            if (!InternalViews.Any(registeredView => ReferenceEquals(registeredView.Source, view.Source)))
                 throw new ArgumentException(Resources.ViewNotRegistered.CurrentFormat(view.GetType()), "view");
 
-            ViewReferences.RemoveAll(registeredView => ReferenceEquals(view, registeredView.Target));
+            InternalViews.RemoveAll(registeredView => ReferenceEquals(registeredView.Source, view.Source));
         }
 
         /// <summary>
@@ -160,7 +159,7 @@ namespace MvvmDialogs
                 view.Loaded -= LateRegister;
 
                 // Register the view
-                Register(view);
+                Register(new ViewWrapper(view));
             }
         }
 
@@ -174,21 +173,21 @@ namespace MvvmDialogs
             if (owner != null)
             {
                 // Find views acting within closed window
-                FrameworkElement[] windowViews = Views
-                    .Where(view => Window.GetWindow(view) == owner)
+                IView[] windowViews = Views
+                    .Where(view => Window.GetWindow(view.Source) == owner)
                     .ToArray();
                 
                 // Unregister Views in window
-                foreach (FrameworkElement windowView in windowViews)
+                foreach (IView windowView in windowViews)
                 {
                     Unregister(windowView);
                 }
             }
         }
 
-        private static void PruneViewReferences()
+        private static void PruneInternalViews()
         {
-            ViewReferences.RemoveAll(reference => !reference.IsAlive);
+            InternalViews.RemoveAll(reference => !reference.IsAlive);
         }
     }
 }

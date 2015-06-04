@@ -9,6 +9,7 @@ using MvvmDialogs.FrameworkDialogs.OpenFile;
 using MvvmDialogs.FrameworkDialogs.SaveFile;
 using MvvmDialogs.Properties;
 using MvvmDialogs.Reflection;
+using MvvmDialogs.Views;
 using DialogResult = System.Windows.Forms.DialogResult;
 using FolderBrowserDialog = System.Windows.Forms.FolderBrowserDialog;
 using OpenFileDialog = System.Windows.Forms.OpenFileDialog;
@@ -342,7 +343,7 @@ namespace MvvmDialogs
         /// </summary>
         private static Window FindOwnerWindow(INotifyPropertyChanged viewModel)
         {
-            FrameworkElement view = DialogServiceBehaviors.Views.SingleOrDefault(
+            IView view = DialogServiceBehaviors.Views.SingleOrDefault(
                 registeredView => ReferenceEquals(registeredView.DataContext, viewModel));
             
             if (view == null)
