@@ -19,7 +19,7 @@
     <StackPanel>
         <TextBox
             x:Name="textTextBox"
-            Text="{Binding Text}" />
+            Text="{Binding Text, UpdateSourceTrigger=PropertyChanged}" />
         
         <StackPanel Orientation="Horizontal">
             <Button
