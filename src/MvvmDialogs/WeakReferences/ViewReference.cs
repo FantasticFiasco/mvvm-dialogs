@@ -49,5 +49,13 @@ namespace MvvmDialogs.WeakReferences
                     null;
             }
         }
+
+        /// <summary>
+        /// Gets an indication whether the view been garbage collected.
+        /// </summary>
+        public bool IsAlive
+        {
+            get { return viewReference.IsAlive; }
+        }
     }
 }

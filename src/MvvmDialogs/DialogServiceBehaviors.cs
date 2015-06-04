@@ -125,8 +125,9 @@ namespace MvvmDialogs
                 return;
             }
 
-            // Register for owner window closing, since we then should unregister view reference,
-            // preventing memory leaks
+            PruneViewReferences();
+
+            // Register for owner window closing, since we then should unregister view reference
             owner.Closed += OwnerClosed;
 
             ViewReferences.Add(new ViewReference(view));
@@ -183,6 +184,11 @@ namespace MvvmDialogs
                     Unregister(windowView);
                 }
             }
+        }
+
+        private static void PruneViewReferences()
+        {
+            ViewReferences.RemoveAll(reference => !reference.IsAlive);
         }
     }
 }
