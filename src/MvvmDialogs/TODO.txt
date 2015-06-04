@@ -1,3 +1,2 @@
 ﻿* Release as NuGet for .NET4.0 and .NET4.5, and maybe also .NET3.5?
-* DialogService should hold the registered views using weak references.
 * Rename 'DialogServiceBehaviors.IsRegisteredView' to 'DialogServiceBehaviors.ViewModelHandlesDialogs'?

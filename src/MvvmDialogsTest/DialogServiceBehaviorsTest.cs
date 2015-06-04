@@ -11,7 +11,7 @@ namespace MvvmDialogs
         [TearDown]
         public void TearDown()
         {
-            DialogServiceBehaviors.Views.Clear();
+            DialogServiceBehaviors.Clear();
         }
 
         [Test]

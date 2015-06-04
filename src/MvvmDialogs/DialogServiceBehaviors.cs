@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Windows;
 using MvvmDialogs.Properties;
+using MvvmDialogs.WeakReferences;
 
 namespace MvvmDialogs
 {
@@ -17,7 +18,7 @@ namespace MvvmDialogs
         /// <summary>
         /// The registered views.
         /// </summary>
-        internal static readonly HashSet<FrameworkElement> Views = new HashSet<FrameworkElement>();
+        private static readonly List<ViewReference> ViewReferences = new List<ViewReference>();
 
         #region Attached properties
 
@@ -82,6 +83,28 @@ namespace MvvmDialogs
         #endregion
 
         /// <summary>
+        /// Gets the registered views.
+        /// </summary>
+        internal static IEnumerable<FrameworkElement> Views
+        {
+            get
+            {
+                return ViewReferences
+                    .Select(reference => reference.View)
+                    .Where(view => view != null)
+                    .ToArray();
+            }
+        }
+
+        /// <summary>
+        /// Clears the registered views.
+        /// </summary>
+        internal static void Clear()
+        {
+            ViewReferences.Clear();
+        }
+
+        /// <summary>
         /// Registers specified view.
         /// </summary>
         /// <param name="view">The view to register.</param>
@@ -89,7 +112,7 @@ namespace MvvmDialogs
         {
             if (view == null)
                 throw new ArgumentNullException("view");
-            if (Views.Contains(view))
+            if (ViewReferences.Any(registeredView => ReferenceEquals(view, registeredView.Target)))
                 throw new ArgumentException(Resources.ViewNotRegistered.CurrentFormat(view.GetType()), "view");
 
             // Get owner window
@@ -106,7 +129,7 @@ namespace MvvmDialogs
             // preventing memory leaks
             owner.Closed += OwnerClosed;
 
-            Views.Add(view);
+            ViewReferences.Add(new ViewReference(view));
         }
 
         /// <summary>
@@ -117,10 +140,10 @@ namespace MvvmDialogs
         {
             if (view == null)
                 throw new ArgumentNullException("view");
-            if (!Views.Contains(view))
+            if (!ViewReferences.Any(registeredView => ReferenceEquals(view, registeredView.Target)))
                 throw new ArgumentException(Resources.ViewNotRegistered.CurrentFormat(view.GetType()), "view");
 
-            Views.Remove(view);
+            ViewReferences.RemoveAll(registeredView => ReferenceEquals(view, registeredView.Target));
         }
 
         /// <summary>
