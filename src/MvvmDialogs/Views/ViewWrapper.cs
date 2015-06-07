@@ -46,5 +46,19 @@ namespace MvvmDialogs.Views
         {
             return Source.GetOwner();
         }
+
+        public override int GetHashCode()
+        {
+            return Source.GetHashCode();
+        }
+
+        public override bool Equals(object obj)
+        {
+            var other = obj as ViewWrapper;
+            if (other == null)
+                return false;
+
+            return Source.Equals(other.Source);
+        }
     }
 }

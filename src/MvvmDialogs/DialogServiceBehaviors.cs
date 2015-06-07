@@ -96,18 +96,10 @@ namespace MvvmDialogs
         }
 
         /// <summary>
-        /// Clears the registered views.
-        /// </summary>
-        internal static void Clear()
-        {
-            InternalViews.Clear();
-        }
-
-        /// <summary>
         /// Registers specified view.
         /// </summary>
         /// <param name="view">The view to register.</param>
-        private static void Register(IView view)
+        internal static void Register(IView view)
         {
             if (view == null)
                 throw new ArgumentNullException("view");
@@ -147,19 +139,35 @@ namespace MvvmDialogs
         }
 
         /// <summary>
+        /// Clears the registered views.
+        /// </summary>
+        internal static void Clear()
+        {
+            InternalViews.Clear();
+        }
+        
+        /// <summary>
         /// Callback for late view register. It wasn't possible to do a instant register since the
         /// view wasn't at that point part of the logical nor visual tree.
         /// </summary>
         private static void LateRegister(object sender, RoutedEventArgs e)
         {
-            var view = sender as FrameworkElement;
-            if (view != null)
+            var frameworkElement = e.Source as FrameworkElement;
+            if (frameworkElement != null)
             {
                 // Unregister loaded event
-                view.Loaded -= LateRegister;
+                frameworkElement.Loaded -= LateRegister;
 
                 // Register the view
-                Register(new ViewWrapper(view));
+                var view = frameworkElement as IView;
+                if (view != null)
+                {
+                    Register(view);
+                }
+                else
+                {
+                    Register(new ViewWrapper(frameworkElement));    
+                }
             }
         }
 
@@ -174,7 +182,7 @@ namespace MvvmDialogs
             {
                 // Find views acting within closed window
                 IView[] windowViews = Views
-                    .Where(view => Window.GetWindow(view.Source) == owner)
+                    .Where(view => ReferenceEquals(view.GetOwner(), owner))
                     .ToArray();
                 
                 // Unregister Views in window
