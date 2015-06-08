@@ -19,7 +19,7 @@ namespace DemoApplication.Features.Dialog.NonModal.ViewModels
         }
 
         [Test]
-        public void AImplicitShowCurrentTime()
+        public void ImplicitShowCurrentTime()
         {
             // ARRANGE
             dialogService

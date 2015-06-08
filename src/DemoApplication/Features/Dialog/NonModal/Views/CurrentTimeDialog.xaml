@@ -5,6 +5,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:vm="clr-namespace:DemoApplication.Features.Dialog.NonModal.ViewModels"
+    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
     mc:Ignorable="d"
     d:DataContext="{d:DesignInstance vm:CurrentTimeDialogViewModel}"
     Title="Current Time"
@@ -12,6 +13,12 @@
     Height="200"
     Width="300"
     ResizeMode="NoResize">
+    
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding StartClockCommand}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
 
     <TextBlock
         HorizontalAlignment="Center"
