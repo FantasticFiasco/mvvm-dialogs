@@ -44,20 +44,19 @@ namespace DemoApplication.Features.Dialog.Modal.ViewModels
 
         private void ImplicitShowDialog()
         {
-            var dialogViewModel = new AddTextDialogViewModel();
-            
-            bool? success = dialogService.ShowDialog(this, dialogViewModel);
-            if (success == true)
-            {
-                Texts.Add(dialogViewModel.Text);
-            }
+            ShowDialog(viewModel => dialogService.ShowDialog(this, viewModel));
         }
 
         private void ExplicitShowDialog()
         {
+            ShowDialog(viewModel => dialogService.ShowDialog<AddTextDialog>(this, viewModel));
+        }
+
+        private void ShowDialog(Func<AddTextDialogViewModel, bool?> showDialog)
+        {
             var dialogViewModel = new AddTextDialogViewModel();
 
-            bool? success = dialogService.ShowDialog<AddTextDialog>(this, dialogViewModel);
+            bool? success = showDialog(dialogViewModel);
             if (success == true)
             {
                 Texts.Add(dialogViewModel.Text);

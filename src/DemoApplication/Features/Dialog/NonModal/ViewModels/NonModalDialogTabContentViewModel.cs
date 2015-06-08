@@ -35,14 +35,18 @@ namespace DemoApplication.Features.Dialog.NonModal.ViewModels
 
         private void ImplicitShow()
         {
-            var dialogViewModel = new CurrentTimeDialogViewModel();
-            dialogService.Show(this, dialogViewModel);
+            Show(viewModel => dialogService.Show(this, viewModel));
         }
 
         private void ExplicitShow()
         {
+            Show(viewModel => dialogService.Show<CurrentTimeDialog>(this, viewModel));
+        }
+
+        private static void Show(Action<CurrentTimeDialogViewModel> show)
+        {
             var dialogViewModel = new CurrentTimeDialogViewModel();
-            dialogService.Show<CurrentTimeDialog>(this, dialogViewModel);
+            show(dialogViewModel);
         }
     }
 }
