@@ -30,7 +30,7 @@ namespace DemoApplication.Features.Dialog.NonModal.ViewModels
             viewModel.ImplicitShowCommand.Execute(null);
 
             // ASSERT
-            dialogService.Verify();
+            dialogService.VerifyAll();
         }
 
         [Test]
@@ -45,7 +45,7 @@ namespace DemoApplication.Features.Dialog.NonModal.ViewModels
             viewModel.ExplicitShowCommand.Execute(null);
 
             // ASSERT
-            dialogService.Verify();
+            dialogService.VerifyAll();
         }
     }
 }

@@ -86,6 +86,10 @@
     <Compile Include="Features\Dialog\Modal\ViewModels\AddTextDialogViewModelTest.cs" />
     <Compile Include="Features\Dialog\Modal\ViewModels\ModalDialogTabContentViewModelTest.cs" />
     <Compile Include="Features\Dialog\NonModal\ViewModels\NonModalDialogTabContentViewModelTest.cs" />
+    <Compile Include="Features\FolderBrowserDialog\ViewModels\FolderBrowserTabContentViewModelTest.cs" />
+    <Compile Include="Features\MessageBox\ViewModels\MessageBoxTabContentViewModelTest.cs" />
+    <Compile Include="Features\OpenFileDialog\ViewModels\OpenFileTabContentViewModelTest.cs" />
+    <Compile Include="Features\SaveFileDialog\ViewModels\SaveFileTabContentViewModelTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
