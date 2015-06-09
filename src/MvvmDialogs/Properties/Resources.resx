@@ -123,9 +123,6 @@
   <data name="ImplicitUseProhibited" xml:space="preserve">
     <value>Dialog type must be explicitly specified since instance isn't configured to use a dialog type locator.</value>
   </data>
-  <data name="ViewAlreadyRegistered" xml:space="preserve">
-    <value>View of type '{0}' is already registered.</value>
-  </data>
   <data name="ViewModelNameInvalid" xml:space="preserve">
     <value>View model of type '{0}' doesn't follow naming convention since it isn't suffixed with 'ViewModel'.</value>
   </data>

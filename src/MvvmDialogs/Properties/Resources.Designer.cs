@@ -79,15 +79,6 @@ namespace MvvmDialogs.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to View of type &apos;{0}&apos; is already registered..
-        /// </summary>
-        internal static string ViewAlreadyRegistered {
-            get {
-                return ResourceManager.GetString("ViewAlreadyRegistered", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to View model of type &apos;{0}&apos; doesn&apos;t follow naming convention since it isn&apos;t suffixed with &apos;ViewModel&apos;..
         /// </summary>
         internal static string ViewModelNameInvalid {

@@ -344,7 +344,9 @@ namespace MvvmDialogs
         private static Window FindOwnerWindow(INotifyPropertyChanged viewModel)
         {
             IView view = DialogServiceBehaviors.Views.SingleOrDefault(
-                registeredView => ReferenceEquals(registeredView.DataContext, viewModel));
+                registeredView =>
+                    registeredView.Source.IsLoaded &&
+                    ReferenceEquals(registeredView.DataContext, viewModel));
             
             if (view == null)
                 throw new ArgumentException(Resources.ViewModelNotReferenced.CurrentFormat(viewModel.GetType()));

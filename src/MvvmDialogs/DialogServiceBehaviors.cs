@@ -103,9 +103,7 @@ namespace MvvmDialogs
         {
             if (view == null)
                 throw new ArgumentNullException("view");
-            if (InternalViews.Any(registeredView => ReferenceEquals(registeredView.Source, view.Source)))
-                throw new ArgumentException(Resources.ViewAlreadyRegistered.CurrentFormat(view.GetType()), "view");
-
+            
             // Get owner window
             Window owner = view.GetOwner();
             if (owner == null)
