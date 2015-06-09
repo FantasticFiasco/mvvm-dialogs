@@ -1,3 +1,2 @@
 ﻿* Release as NuGet for .NET4.0 and .NET4.5, and maybe also .NET3.5?
 * Rename 'DialogServiceBehaviors.IsRegisteredView' to 'DialogServiceBehaviors.ViewModelHandlesDialogs'?
-* Write unit tests for the demo project.
