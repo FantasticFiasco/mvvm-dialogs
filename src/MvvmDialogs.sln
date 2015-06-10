@@ -36,6 +36,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemoApplicationTest", "Demo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvvmDialogsTest", "MvvmDialogsTest\MvvmDialogsTest.csproj", "{A332ED47-E057-4969-860A-1BA6DBA86B01}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".Build", ".Build", "{134A5091-AAE0-489D-A704-F4A2456C6D35}"
+	ProjectSection(SolutionItems) = preProject
+		..\Build.bat = ..\Build.bat
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

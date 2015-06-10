@@ -1,0 +1,15 @@
+﻿<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>MvvmDialogs</id>
+    <version>$version$</version>
+    <authors>Mattias Kindborg</authors>
+    <language>en-US</language>
+    <licenseUrl>http://www.apache.org/licenses/LICENSE-2.0</licenseUrl>
+    <projectUrl>https://github.com/FantasticFiasco/mvvm-dialogs</projectUrl>
+    <!--<iconUrl>http://serilog.net/images/serilog-sink-nuget.png</iconUrl>-->
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Framework simplifying the concept of opening dialogs from a view model when using MVVM in WPF.</description>
+    <tags>wpf mvvm dialog window messagebox openfiledialog savefiledialog folderbrowserdialog</tags>
+  </metadata>
+</package>

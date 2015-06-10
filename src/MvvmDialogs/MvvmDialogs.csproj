@@ -94,6 +94,7 @@
     <None Include="..\StrongName.snk">
       <Link>StrongName.snk</Link>
     </None>
+    <None Include="MvvmDialogs.nuspec" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="TODO.txt" />
