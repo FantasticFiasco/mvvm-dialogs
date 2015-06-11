@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>MvvmDialogs</RootNamespace>
     <AssemblyName>MvvmDialogs</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion Condition="'$(TargetFrameworkVersion)' == ''">v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
   </PropertyGroup>
@@ -17,27 +17,35 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath Condition="'$(TargetFrameworkVersion)' == 'v3.5'">bin\Debug\net35\</OutputPath>
+    <OutputPath Condition="'$(TargetFrameworkVersion)' == 'v4.0'">bin\Debug\net40\</OutputPath>
+    <OutputPath Condition="'$(TargetFrameworkVersion)' == 'v4.5'">bin\Debug\net45\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <RunCodeAnalysis>true</RunCodeAnalysis>
     <CodeAnalysisRuleSet>..\MvvmDialogs.ruleset</CodeAnalysisRuleSet>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-    <DocumentationFile>bin\Debug\MvvmDialogs.xml</DocumentationFile>
+    <DocumentationFile Condition="'$(TargetFrameworkVersion)' == 'v3.5'">bin\Debug\net35\MvvmDialogs.xml</DocumentationFile>
+    <DocumentationFile Condition="'$(TargetFrameworkVersion)' == 'v4.0'">bin\Debug\net40\MvvmDialogs.xml</DocumentationFile>
+    <DocumentationFile Condition="'$(TargetFrameworkVersion)' == 'v4.5'">bin\Debug\net45\MvvmDialogs.xml</DocumentationFile>
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
+    <OutputPath Condition="'$(TargetFrameworkVersion)' == 'v3.5'">bin\Release\net35\</OutputPath>
+    <OutputPath Condition="'$(TargetFrameworkVersion)' == 'v4.0'">bin\Release\net40\</OutputPath>
+    <OutputPath Condition="'$(TargetFrameworkVersion)' == 'v4.5'">bin\Release\net45\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <RunCodeAnalysis>true</RunCodeAnalysis>
     <CodeAnalysisRuleSet>..\MvvmDialogs.ruleset</CodeAnalysisRuleSet>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-    <DocumentationFile>bin\Release\MvvmDialogs.xml</DocumentationFile>
+    <DocumentationFile Condition="'$(TargetFrameworkVersion)' == 'v3.5'">bin\Release\net35\MvvmDialogs.xml</DocumentationFile>
+    <DocumentationFile Condition="'$(TargetFrameworkVersion)' == 'v4.0'">bin\Release\net40\MvvmDialogs.xml</DocumentationFile>
+    <DocumentationFile Condition="'$(TargetFrameworkVersion)' == 'v4.5'">bin\Release\net45\MvvmDialogs.xml</DocumentationFile>
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup>
@@ -46,14 +54,46 @@
   <PropertyGroup>
     <AssemblyOriginatorKeyFile>..\StrongName.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
-  <ItemGroup>
-    <Reference Include="PresentationCore" />
-    <Reference Include="PresentationFramework" />
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Windows.Forms" />
-    <Reference Include="WindowsBase" />
-  </ItemGroup>
+  <Choose>
+    <When Condition="'$(TargetFrameworkVersion)' == 'v3.5'">
+      <ItemGroup>
+        <Reference Include="System" />
+        <Reference Include="System.Core" />
+        <Reference Include="System.Windows.Forms" />
+        <Reference Include="WindowsBase" />
+        <Reference Include="PresentationCore" />
+        <Reference Include="PresentationFramework" />
+      </ItemGroup>
+    </When>
+    <When Condition="'$(TargetFrameworkVersion)' == 'v4.0'">
+      <ItemGroup>
+        <Reference Include="System" />
+        <Reference Include="System.Core" />
+        <Reference Include="System.Windows.Forms" />
+        <Reference Include="WindowsBase" />
+        <Reference Include="PresentationCore" />
+        <Reference Include="PresentationFramework" />
+        <Reference Include="Microsoft.CSharp" />
+        <Reference Include="System.Xaml">
+          <RequiredTargetFramework>4.0</RequiredTargetFramework>
+        </Reference>
+      </ItemGroup>
+    </When>
+    <When Condition="'$(TargetFrameworkVersion)' == 'v4.5'">
+      <ItemGroup>
+        <Reference Include="System" />
+        <Reference Include="System.Core" />
+        <Reference Include="System.Windows.Forms" />
+        <Reference Include="WindowsBase" />
+        <Reference Include="PresentationCore" />
+        <Reference Include="PresentationFramework" />
+        <Reference Include="Microsoft.CSharp" />
+        <Reference Include="System.Xaml">
+          <RequiredTargetFramework>4.0</RequiredTargetFramework>
+        </Reference>
+      </ItemGroup>
+    </When>
+  </Choose>
   <ItemGroup>
     <Compile Include="..\SolutionInfo.cs">
       <Link>Properties\SolutionInfo.cs</Link>
@@ -95,9 +135,6 @@
       <Link>StrongName.snk</Link>
     </None>
     <None Include="MvvmDialogs.nuspec" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="TODO.txt" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">
