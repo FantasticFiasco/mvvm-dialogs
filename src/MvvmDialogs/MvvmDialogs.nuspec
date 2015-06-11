@@ -4,6 +4,7 @@
     <id>MvvmDialogs</id>
     <version>$version$</version>
     <authors>Mattias Kindborg</authors>
+    <title>MVVM Dialogs</title>
     <language>en-US</language>
     <licenseUrl>http://www.apache.org/licenses/LICENSE-2.0</licenseUrl>
     <projectUrl>https://github.com/FantasticFiasco/mvvm-dialogs</projectUrl>
