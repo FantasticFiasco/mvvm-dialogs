@@ -9,7 +9,7 @@
     mc:Ignorable="d"
     Title="MVVM Dialogs"
     WindowStartupLocation="CenterScreen"
-    md:DialogServiceBehaviors.IsRegisteredView="True"
+    md:DialogServiceViews.IsRegistered="True"
     Height="400"
     Width="600"
     d:DataContext="{d:DesignInstance local:MainWindowViewModel}">

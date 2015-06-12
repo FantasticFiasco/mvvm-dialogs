@@ -8,12 +8,12 @@ namespace MvvmDialogs
 // ReSharper disable UnusedVariable
     [TestFixture]
     [RequiresSTA]
-    public class DialogServiceBehaviorsTest
+    public class DialogServiceViewsTest
     {
         [TearDown]
         public void TearDown()
         {
-            DialogServiceBehaviors.Clear();
+            DialogServiceViews.Clear();
         }
 
         [Test]
@@ -28,10 +28,10 @@ namespace MvvmDialogs
             };
 
             // ACT
-            window.SetValue(DialogServiceBehaviors.IsRegisteredViewProperty, true);
+            window.SetValue(DialogServiceViews.IsRegisteredProperty, true);
             
             // ASSERT
-            Assert.That(DialogServiceBehaviors.Views, Is.EqualTo(expected));
+            Assert.That(DialogServiceViews.Views, Is.EqualTo(expected));
         }
 
         [Test]
@@ -39,13 +39,13 @@ namespace MvvmDialogs
         {
             // ARRANGE
             var window = new Window();
-            window.SetValue(DialogServiceBehaviors.IsRegisteredViewProperty, true);
+            window.SetValue(DialogServiceViews.IsRegisteredProperty, true);
             
             // ACT
-            window.SetValue(DialogServiceBehaviors.IsRegisteredViewProperty, false);
+            window.SetValue(DialogServiceViews.IsRegisteredProperty, false);
 
             // ASSERT
-            Assert.That(DialogServiceBehaviors.Views, Is.Empty);
+            Assert.That(DialogServiceViews.Views, Is.Empty);
         }
 
         [Test]
@@ -65,10 +65,10 @@ namespace MvvmDialogs
             };
 
             // ACT
-            frameworkElement.SetValue(DialogServiceBehaviors.IsRegisteredViewProperty, true);
+            frameworkElement.SetValue(DialogServiceViews.IsRegisteredProperty, true);
 
             // ASSERT
-            Assert.That(DialogServiceBehaviors.Views, Is.EqualTo(expected));
+            Assert.That(DialogServiceViews.Views, Is.EqualTo(expected));
         }
 
         [Test]
@@ -83,13 +83,13 @@ namespace MvvmDialogs
                 Content = frameworkElement
             };
 
-            frameworkElement.SetValue(DialogServiceBehaviors.IsRegisteredViewProperty, true);
+            frameworkElement.SetValue(DialogServiceViews.IsRegisteredProperty, true);
             
             // ACT
-            frameworkElement.SetValue(DialogServiceBehaviors.IsRegisteredViewProperty, false);
+            frameworkElement.SetValue(DialogServiceViews.IsRegisteredProperty, false);
 
             // ASSERT
-            Assert.That(DialogServiceBehaviors.Views, Is.Empty);
+            Assert.That(DialogServiceViews.Views, Is.Empty);
         }
 
         [Test]
@@ -110,10 +110,10 @@ namespace MvvmDialogs
             };
             
             // ACT
-            DialogServiceBehaviors.Register(view.Object);
+            DialogServiceViews.Register(view.Object);
 
             // ASSERT
-            Assert.That(DialogServiceBehaviors.Views, Is.EqualTo(expected));
+            Assert.That(DialogServiceViews.Views, Is.EqualTo(expected));
         }
 
         [Test]
@@ -128,13 +128,13 @@ namespace MvvmDialogs
                 .Setup(mock => mock.GetOwner())
                 .Returns(new Window());
 
-            DialogServiceBehaviors.SetIsRegisteredView(view.Object, true);
+            DialogServiceViews.SetIsRegistered(view.Object, true);
 
             // ACT
-            DialogServiceBehaviors.SetIsRegisteredView(view.Object, false);
+            DialogServiceViews.SetIsRegistered(view.Object, false);
 
             // ASSERT
-            Assert.That(DialogServiceBehaviors.Views, Is.Empty);
+            Assert.That(DialogServiceViews.Views, Is.Empty);
         }
 
         [Test]
@@ -147,10 +147,10 @@ namespace MvvmDialogs
                 .Returns(true);
             
             // ACT
-            DialogServiceBehaviors.Register(view.Object);
+            DialogServiceViews.Register(view.Object);
 
             // ASSERT
-            Assert.That(DialogServiceBehaviors.Views, Is.Empty);
+            Assert.That(DialogServiceViews.Views, Is.Empty);
         }
 
         [Test]
@@ -163,7 +163,7 @@ namespace MvvmDialogs
                 .Returns(true);
             
             // At time of register the view has no parent, thus is not loaded
-            DialogServiceBehaviors.Register(view.Object);
+            DialogServiceViews.Register(view.Object);
 
             // After register we can simulate that the view gets loaded
             view
@@ -179,7 +179,7 @@ namespace MvvmDialogs
             view.Raise(mock => mock.Loaded += null, new RoutedEventArgs(null, view.Object));
 
             // ASSERT
-            Assert.That(DialogServiceBehaviors.Views, Is.EqualTo(expected));
+            Assert.That(DialogServiceViews.Views, Is.EqualTo(expected));
         }
 
         [Test]
@@ -196,13 +196,13 @@ namespace MvvmDialogs
                 .Setup(mock => mock.GetOwner())
                 .Returns(window);
 
-            DialogServiceBehaviors.Register(view.Object);
+            DialogServiceViews.Register(view.Object);
 
             // ACT
             window.Close();
             
             // ASSERT
-            Assert.That(DialogServiceBehaviors.Views, Is.Empty);
+            Assert.That(DialogServiceViews.Views, Is.Empty);
         }
 
         #region Helper classes

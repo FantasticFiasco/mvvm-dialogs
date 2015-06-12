@@ -8,7 +8,7 @@
     xmlns:vm="clr-namespace:DemoApplication.Features.Dialog.NonModal.ViewModels"
     mc:Ignorable="d"
     d:DataContext="{d:DesignInstance vm:NonModalDialogTabContentViewModel}"
-    md:DialogServiceBehaviors.IsRegisteredView="True">
+    md:DialogServiceViews.IsRegistered="True">
     
     <UniformGrid Rows="2">
         <Button Command="{Binding ImplicitShowCommand}">

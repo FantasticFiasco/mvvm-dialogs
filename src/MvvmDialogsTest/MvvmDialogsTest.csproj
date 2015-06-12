@@ -62,7 +62,7 @@
     </Compile>
     <Compile Include="DialogTypeLocators\DialogTypeLocatorCacheTest.cs" />
     <Compile Include="DialogTypeLocators\NamingConventionDialogTypeLocatorTest.cs" />
-    <Compile Include="DialogServiceBehaviorsTest.cs" />
+    <Compile Include="DialogServiceViewsTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestAssemblyBuilder.cs" />
     <Compile Include="ViewModelBase.cs" />

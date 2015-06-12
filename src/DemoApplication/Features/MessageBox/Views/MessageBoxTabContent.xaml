@@ -8,7 +8,7 @@
     xmlns:vm="clr-namespace:DemoApplication.Features.MessageBox.ViewModels"
     mc:Ignorable="d"
     d:DataContext="{d:DesignInstance vm:MessageBoxTabContentViewModel}"
-    md:DialogServiceBehaviors.IsRegisteredView="True">
+    md:DialogServiceViews.IsRegistered="True">
     
     <UniformGrid Columns="2" Rows="3">
         <Button Command="{Binding ShowMessageBoxWithMessageCommand}">

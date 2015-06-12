@@ -10,10 +10,10 @@ namespace MvvmDialogs
 {
     /// <summary>
     /// Class containing means to register a <see cref="FrameworkElement"/> as a view for a view
-    /// model in the MVVM pattern. The view will then be used by <see cref="DialogService"/> when
-    /// opening dialogs.
+    /// model when using the MVVM pattern. The view will then be used by the 
+    /// <see cref="DialogService"/> when opening dialogs.
     /// </summary>
-    public static class DialogServiceBehaviors
+    public static class DialogServiceViews
     {
         /// <summary>
         /// The registered views.
@@ -24,39 +24,39 @@ namespace MvvmDialogs
 
         /// <summary>
         /// Attached property describing whether a <see cref="FrameworkElement"/> is acting as a
-        /// view for a view model in the MVVM pattern.
+        /// view for a view model when using the MVVM pattern.
         /// </summary>
-        public static readonly DependencyProperty IsRegisteredViewProperty =
+        public static readonly DependencyProperty IsRegisteredProperty =
             DependencyProperty.RegisterAttached(
-                "IsRegisteredView",
+                "IsRegistered",
                 typeof(bool),
-                typeof(DialogServiceBehaviors),
-                new PropertyMetadata(IsRegisteredViewChanged));
+                typeof(DialogServiceViews),
+                new PropertyMetadata(IsRegisteredChanged));
 
         /// <summary>
         /// Gets value describing whether <see cref="DependencyObject"/> is acting as a view for a
-        /// view model in the MVVM pattern.
+        /// view model when using the MVVM pattern
         /// </summary>
-        public static bool GetIsRegisteredView(DependencyObject target)
+        public static bool GetIsRegistered(DependencyObject target)
         {
-            return (bool)target.GetValue(IsRegisteredViewProperty);
+            return (bool)target.GetValue(IsRegisteredProperty);
         }
 
         /// <summary>
         /// Sets value describing whether <see cref="DependencyObject"/> is acting as a view for a
-        /// view model in the MVVM pattern.
+        /// view model when using the MVVM pattern
         /// </summary>
-        public static void SetIsRegisteredView(DependencyObject target, bool value)
+        public static void SetIsRegistered(DependencyObject target, bool value)
         {
-            target.SetValue(IsRegisteredViewProperty, value);
+            target.SetValue(IsRegisteredProperty, value);
         }
 
         /// <summary>
-        /// Is responsible for handling <see cref="IsRegisteredViewProperty"/> changes, i.e.
-        /// whether <see cref="FrameworkElement"/> is acting as a view for a view model in the MVVM
-        /// pattern.
+        /// Is responsible for handling <see cref="IsRegisteredProperty"/> changes, i.e.
+        /// whether <see cref="FrameworkElement"/> is acting as a view for a view model when using
+        /// the MVVM pattern.
         /// </summary>
-        private static void IsRegisteredViewChanged(
+        private static void IsRegisteredChanged(
             DependencyObject target,
             DependencyPropertyChangedEventArgs e)
         {
@@ -123,6 +123,14 @@ namespace MvvmDialogs
         }
 
         /// <summary>
+        /// Clears the registered views.
+        /// </summary>
+        internal static void Clear()
+        {
+            InternalViews.Clear();
+        }
+
+        /// <summary>
         /// Unregisters specified view.
         /// </summary>
         /// <param name="view">The view to unregister.</param>
@@ -136,14 +144,6 @@ namespace MvvmDialogs
             InternalViews.RemoveAll(registeredView => ReferenceEquals(registeredView.Source, view.Source));
         }
 
-        /// <summary>
-        /// Clears the registered views.
-        /// </summary>
-        internal static void Clear()
-        {
-            InternalViews.Clear();
-        }
-        
         /// <summary>
         /// Callback for late view register. It wasn't possible to do a instant register since the
         /// view wasn't at that point part of the logical nor visual tree.

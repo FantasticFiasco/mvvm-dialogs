@@ -8,7 +8,7 @@
     xmlns:vm="clr-namespace:DemoApplication.Features.Dialog.Modal.ViewModels"
     mc:Ignorable="d"
     d:DataContext="{d:DesignInstance vm:ModalDialogTabContentViewModel}"
-    md:DialogServiceBehaviors.IsRegisteredView="True">
+    md:DialogServiceViews.IsRegistered="True">
 
     <Grid>
         <Grid.ColumnDefinitions>

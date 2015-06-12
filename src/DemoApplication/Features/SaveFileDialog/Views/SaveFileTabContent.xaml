@@ -8,7 +8,7 @@
     xmlns:vm="clr-namespace:DemoApplication.Features.SaveFileDialog.ViewModels"
     mc:Ignorable="d"
     d:DataContext="{d:DesignInstance vm:SaveFileTabContentViewModel}"
-    md:DialogServiceBehaviors.IsRegisteredView="True">
+    md:DialogServiceViews.IsRegistered="True">
     
     <Grid VerticalAlignment="Center">
         <Grid.ColumnDefinitions>

@@ -343,7 +343,7 @@ namespace MvvmDialogs
         /// </summary>
         private static Window FindOwnerWindow(INotifyPropertyChanged viewModel)
         {
-            IView view = DialogServiceBehaviors.Views.SingleOrDefault(
+            IView view = DialogServiceViews.Views.SingleOrDefault(
                 registeredView =>
                     registeredView.Source.IsLoaded &&
                     ReferenceEquals(registeredView.DataContext, viewModel));

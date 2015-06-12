@@ -99,7 +99,7 @@
       <Link>Properties\SolutionInfo.cs</Link>
     </Compile>
     <Compile Include="DialogService.cs" />
-    <Compile Include="DialogServiceBehaviors.cs" />
+    <Compile Include="DialogServiceViews.cs" />
     <Compile Include="DialogTypeLocators\DialogTypeLocatorCache.cs" />
     <Compile Include="Reflection\Members.cs" />
     <Compile Include="Extensions\System\StringExtensions.cs" />
