@@ -4,26 +4,26 @@
 
 ### Introduction
 
-MVVM Dialogs is a framework simplifying the concept of opening dialogs from a view model when using MVVM in WPF. It enables the developer to write unit tests for the view models in the same way unit tests are written for other classes.
+MVVM Dialogs is a framework simplifying the concept of opening dialogs from a view model when using MVVM in WPF. It enables the developer to write unit tests for view models in the same way unit tests are written for other classes.
 
 ### Usage
 
-Decorate the XAML with the following attached property:
+Decorate the view with the attached property `DialogServiceViews.IsRegistered`:
 
 ```xaml
 <UserControl
-  x:Class="DemoApplication.Features.Dialog.Modal.Views.ModalDialogTabContent"
-  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-  **xmlns:md="https://github.com/fantasticfiasco/mvvm-dialogs"
-  md:DialogServiceViews.IsRegistered="True"**>
+    x:Class="DemoApplication.Features.Dialog.Modal.Views.ModalDialogTabContent"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:md="https://github.com/fantasticfiasco/mvvm-dialogs"
+    md:DialogServiceViews.IsRegistered="True">
 
   ...
   
 </UserControl>
 ```
 
-and then the view model can open dialogs using the following code:
+With the view registered the view model is now capable of opening a dialog using `IDialogService`:
 
 ```C#
 public class ModalDialogTabContentViewModel : ReactiveObject
@@ -41,7 +41,7 @@ public class ModalDialogTabContentViewModel : ReactiveObject
   {
     var dialogViewModel = new AddTextDialogViewModel();
 
-    **bool? success = dialogService.ShowDialog(this, dialogViewModel);**
+    bool? success = dialogService.ShowDialog(this, dialogViewModel);
     if (success == true)
     {
       Texts.Add(dialogViewModel.Text);
