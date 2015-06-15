@@ -52,7 +52,7 @@ public class ModalDialogTabContentViewModel : INotifyPropertyChanged
 
 ### Install MVVM Dialogs via NuGet
 
-If you want to include MVVM Dialogs in your project, you can [install it directly from NuGet](https://www.nuget.org/packages/MvvmDialogs/)
+If you want to include MVVM Dialogs in your project, you can [install it directly from NuGet](https://www.nuget.org/packages/MvvmDialogs/).
 
 To install MVVM Dialogs, run the following command in the Package Manager Console:
 
