@@ -26,7 +26,7 @@ Decorate the view with the attached property `DialogServiceViews.IsRegistered`:
 With the view registered the view model is now capable of opening a dialog using `IDialogService`:
 
 ```C#
-public class ModalDialogTabContentViewModel : ReactiveObject
+public class ModalDialogTabContentViewModel : INotifyPropertyChanged
 {
   private readonly IDialogService dialogService;
 
@@ -37,7 +37,7 @@ public class ModalDialogTabContentViewModel : ReactiveObject
 
   ...
 
-  private void ImplicitShowDialog()
+  private void ShowDialog()
   {
     var dialogViewModel = new AddTextDialogViewModel();
 
@@ -54,7 +54,7 @@ public class ModalDialogTabContentViewModel : ReactiveObject
 
 If you want to include MVVM Dialogs in your project, you can [install it directly from NuGet](https://www.nuget.org/packages/MvvmDialogs/)
 
-To install MVVM Dialogs, run the following command in the Package Manager Console
+To install MVVM Dialogs, run the following command in the Package Manager Console:
 
 ```
 PM> Install-Package MvvmDialogs
