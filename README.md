@@ -13,10 +13,13 @@ Decorate the XAML with the following attached property:
 ```xaml
 <UserControl
   x:Class="DemoApplication.Features.Dialog.Modal.Views.ModalDialogTabContent"
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  **xmlns:md="https://github.com/fantasticfiasco/mvvm-dialogs"
+  md:DialogServiceViews.IsRegistered="True"**>
+
   ...
-  xmlns:md="https://github.com/fantasticfiasco/mvvm-dialogs"
-  md:DialogServiceViews.IsRegistered="True">
-  ...
+  
 </UserControl>
 ```
 
@@ -38,7 +41,7 @@ public class ModalDialogTabContentViewModel : ReactiveObject
   {
     var dialogViewModel = new AddTextDialogViewModel();
 
-    bool? success = dialogService.ShowDialog(this, dialogViewModel);
+    **bool? success = dialogService.ShowDialog(this, dialogViewModel);**
     if (success == true)
     {
       Texts.Add(dialogViewModel.Text);
