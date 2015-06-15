@@ -1,10 +1,10 @@
 ﻿<span id="ArticleContent">
 
     <ul class="download">
-        <li><a href="MVVM_Dialogs/MVVM_Dialogs.zip">Download source - 187 KB</a></li>
+        <li><a href="MVVM_Dialogs/MVVM_Dialogs.zip">Download source - ??? KB</a></li>
     </ul>
 
-    <p><img width="402" height="302" src="MVVM_Dialogs/Application.png" complete="true" /></p>
+    <p><img width="625" height="420" src="MVVM_Dialogs/Application.png" complete="true" /></p>
 
     <h2>Contents</h2>
 
@@ -22,7 +22,8 @@
 
     <h2><a name="intro">Introduction</a></h2>
 
-    <p>This article will address one of the problems a developer might run into when using the MVVM pattern, namely opening dialogs from ViewModels. Basic knowledge of the pattern is expected. Josh Smith has written a fantastic <a href="http://msdn.microsoft.com/en-us/magazine/dd419663.aspx">article</a> in MSDN Magazine which can serve as the starting point for those that are unfamiliar with the pattern.</p>
+    <p>This article will address one of the problems a developer might run into when using the MVVM pattern, namely opening dialogs from 
+	view models. Basic knowledge of the pattern is expected. Josh Smith has written a fantastic <a href="http://msdn.microsoft.com/en-us/magazine/dd419663.aspx">article</a> in MSDN Magazine which can serve as the starting point for those that are unfamiliar with the pattern.</p>
 
     <p>There already exist some solutions exploring this area, but none of them seem to be widely accepted among the MVVM community. <a href="http://wpfonyx.codeplex.com/">Onyx</a> on CodePlex is probably the most complete solution. Sacha Barber <a href="http://sachabarber.net/?p=518">announced</a> that he is working on a new MVVM framework, but hasn't set any release date. At the same time, <a href="http://groups.google.com/group/wpf-disciples">WPF Disciples</a> are teaming up to create a <a href="http://www.codeplex.com/mvvmref">MVVM reference</a> application, again with no release date yet.</p>
 
@@ -31,19 +32,32 @@
     <p>I am possibly sticking my neck out here, but I would like to state some of my own interpretations of the MVVM pattern:</p>
 
     <ul>
-        <li>The fundamental core is the separation of UI and logic. ViewModel and View can communicate using bindings, making it possible for the View to be happily unaware of the ViewModel and vice versa. I know some of you might say: <em>&quot;well, actually the View knows about the ViewModel since the ViewModel is stored within the DataContext property, and the View is declaring its bindings to match properties on the ViewModel, surely the View must know the ViewModel?&quot;</em>. I don't think so; we have to analyze what <em>knows</em> actually means. The ViewModel is stored in the <code>DataContext</code> property, that is correct, but <code>DataContext</code> is of type <code lang="Cs">Object</code>. From the View's point, the only thing it knows is whether the property has been set or not, nothing about the actual content. Let's get to the bindings declared in the View; do they say something about the ViewModel? I would have to say no here as well. The View might declare whatever bindings it wishes, but the ViewModel isn't enforced to implement them.</li>
+        <li>The fundamental core is the separation of UI and logic. view model and 
+		view can communicate using bindings, making it possible for the view to be happily unaware of the 
+		view model and vice versa. I know some of you might say: <em>&quot;well, actually the 
+		view knows about the view model since the view model is stored within the DataContext property, and the 
+		view is declaring its bindings to match properties on the view model, surely the 
+		view must know the view model?&quot;</em>. I don't think so; we have to analyze what <em>knows</em> actually means. The 
+		view model is stored in the <code>DataContext</code> property, that is correct, but <code>DataContext</code> is of type <code lang="Cs">Object</code>. From the 
+		view's point, the only thing it knows is whether the property has been set or not, nothing about the actual content. Let's get to the bindings declared in the 
+		view; do they say something about the view model? I would have to say no here as well. The 
+		view might declare whatever bindings it wishes, but the view model isn't enforced to implement them.</li>
 
-        <li>The ViewModel should serve the View with data, but one might argue where the separation between the View and ViewModel is. If for instance the ViewModel is holding a list of items presented in a <code>ListView</code>, I would argue that sorting, grouping, and filtering could be the responsibility of the View, not the ViewModel. Attached properties can solve this for us, making the ViewModel happily unaware of the item presentation.</li>
+        <li>The view model should serve the view with data, but one might argue where the separation between the 
+		view and view model is. If for instance the view model is holding a list of items presented in a <code>ListView</code>, I would argue that sorting, grouping, and filtering could be the responsibility of the 
+		view, not the view model. Attached properties can solve this for us, making the 
+		view model happily unaware of the item presentation.</li>
 
-        <li>The ViewModel should not contain anything used purely in tests; either a class is testable or it isn't.</li>
+        <li>The view model should not contain anything used purely in tests; either a class is testable or it isn't.</li>
     </ul>
 
     <h2><a name="dialog_service">The Dialog Service</a></h2>
 
-    <p>The concept of letting services handle relations between the ViewModel and View seems to be the most accepted solution. My contribution is <code>IDialogService</code>.</p>
+    <p>The concept of letting services handle relations between the view model and 
+	view seems to be the most accepted solution. My contribution is <code>IDialogService</code>.</p>
 
 <pre lang="Cs">/// &lt;summary&gt;
-/// Interface responsible for abstracting ViewModels from Views.
+/// Interface responsible for abstracting view models from views.
 /// &lt;/summary&gt;
 public interface IDialogService
 {
@@ -52,25 +66,25 @@ public interface IDialogService
   /// &lt;/summary&gt;
   ReadOnlyCollection&lt;FrameworkElement&gt; Views { get; }
   /// &lt;summary&gt;
-  /// Registers a View.
+  /// Registers a view.
   /// &lt;/summary&gt;
-  /// &lt;param name=&quot;view&quot;&gt;The registered View.&lt;/param&gt;
+  /// &lt;param name=&quot;view&quot;&gt;The registered view.&lt;/param&gt;
   void Register(FrameworkElement view);
   /// &lt;summary&gt;
-  /// Unregisters a View.
+  /// Unregisters a view.
   /// &lt;/summary&gt;
-  /// &lt;param name=&quot;view&quot;&gt;The unregistered View.&lt;/param&gt;
+  /// &lt;param name=&quot;view&quot;&gt;The unregistered view.&lt;/param&gt;
   void Unregister(FrameworkElement view);
   /// &lt;summary&gt;
   /// Shows a dialog.
   /// &lt;/summary&gt;
   /// &lt;remarks&gt;
-  /// The dialog used to represent the ViewModel is retrieved from the registered mappings.
+  /// The dialog used to represent the view model is retrieved from the registered mappings.
   /// &lt;/remarks&gt;
   /// &lt;param name=&quot;ownerViewModel&quot;&gt;
-  /// A ViewModel that represents the owner window of the dialog.
+  /// A view model that represents the owner window of the dialog.
   /// &lt;/param&gt;
-  /// &lt;param name=&quot;viewModel&quot;&gt;The ViewModel of the new dialog.&lt;/param&gt;
+  /// &lt;param name=&quot;viewModel&quot;&gt;The view model of the new dialog.&lt;/param&gt;
   /// &lt;returns&gt;
   /// A nullable value of type bool that signifies how a window was closed by the user.
   /// &lt;/returns&gt;
@@ -79,9 +93,9 @@ public interface IDialogService
   /// Shows a dialog.
   /// &lt;/summary&gt;
   /// &lt;param name=&quot;ownerViewModel&quot;&gt;
-  /// A ViewModel that represents the owner window of the dialog.
+  /// A view model that represents the owner window of the dialog.
   /// &lt;/param&gt;
-  /// &lt;param name=&quot;viewModel&quot;&gt;The ViewModel of the new dialog.&lt;/param&gt;
+  /// &lt;param name=&quot;viewModel&quot;&gt;The view model of the new dialog.&lt;/param&gt;
   /// &lt;typeparam name=&quot;T&quot;&gt;The type of the dialog to show.&lt;/typeparam&gt;
   /// &lt;returns&gt;
   /// A nullable value of type bool that signifies how a window was closed by the user.
@@ -91,7 +105,7 @@ public interface IDialogService
   /// Shows a message box.
   /// &lt;/summary&gt;
   /// &lt;param name=&quot;ownerViewModel&quot;&gt;
-  /// A ViewModel that represents the owner window of the message box.
+  /// A view model that represents the owner window of the message box.
   /// &lt;/param&gt;
   /// &lt;param name=&quot;messageBoxText&quot;&gt;A string that specifies the text to display.&lt;/param&gt;
   /// &lt;param name=&quot;caption&quot;&gt;A string that specifies the title bar caption to display.&lt;/param&gt;
@@ -112,7 +126,7 @@ public interface IDialogService
   /// Shows the OpenFileDialog.
   /// &lt;/summary&gt;
   /// &lt;param name=&quot;ownerViewModel&quot;&gt;
-  /// A ViewModel that represents the owner window of the dialog.
+  /// A view model that represents the owner window of the dialog.
   /// &lt;/param&gt;
   /// &lt;param name=&quot;openFileDialog&quot;&gt;The interface of a open file dialog.&lt;/param&gt;
   /// &lt;returns&gt;DialogResult.OK if successful; otherwise DialogResult.Cancel.&lt;/returns&gt;
@@ -121,7 +135,7 @@ public interface IDialogService
   /// Shows the FolderBrowserDialog.
   /// &lt;/summary&gt;
   /// &lt;param name=&quot;ownerViewModel&quot;&gt;
-  /// A ViewModel that represents the owner window of the dialog.
+  /// A view model that represents the owner window of the dialog.
   /// &lt;/param&gt;
   /// &lt;param name=&quot;folderBrowserDialog&quot;&gt;The interface of a folder browser dialog.&lt;/param&gt;
   /// &lt;returns&gt;The DialogResult.OK if successful; otherwise DialogResult.Cancel.&lt;/returns&gt;
@@ -132,7 +146,7 @@ public interface IDialogService
     <p>The actual implementation of <code>IDialogServiceis</code> is <code>DialogService</code>.</p>
 
 <pre lang="Cs">/// &lt;summary&gt;
-/// Class responsible for abstracting ViewModels from Views.
+/// Class responsible for abstracting view models from views.
 /// &lt;/summary&gt;
 class DialogService : IDialogService
 {
@@ -142,7 +156,7 @@ class DialogService : IDialogService
   /// Initializes a new instance of the &lt;see cref=&quot;DialogService&quot;/&gt; class.
   /// &lt;/summary&gt;
   /// &lt;param name=&quot;windowViewModelMappings&quot;&gt;
-  /// The window ViewModel mappings. Default value is null.
+  /// The window view model mappings. Default value is null.
   /// &lt;/param&gt;
   public DialogService(IWindowViewModelMappings windowViewModelMappings = null)
   {
@@ -158,29 +172,29 @@ class DialogService : IDialogService
     get { return new ReadOnlyCollection&lt;FrameworkElement&gt;(views.ToList()); }
   }
   /// &lt;summary&gt;
-  /// Registers a View.
+  /// Registers a view.
   /// &lt;/summary&gt;
-  /// &lt;param name=&quot;view&quot;&gt;The registered View.&lt;/param&gt;
+  /// &lt;param name=&quot;view&quot;&gt;The registered view.&lt;/param&gt;
   public void Register(FrameworkElement view)
   {
     // Get owner window
     Window owner = GetOwner(view);
     if (owner == null)
     {
-      // Perform a late register when the View hasn't been loaded yet.
-      // This will happen if e.g. the View is contained in a Frame.
+      // Perform a late register when the view hasn't been loaded yet.
+      // This will happen if e.g. the view is contained in a Frame.
       view.Loaded += LateRegister;
       return;
     }
-    // Register for owner window closing, since we then should unregister View reference,
+    // Register for owner window closing, since we then should unregister view reference,
     // preventing memory leaks
     owner.Closed += OwnerClosed;
     views.Add(view);
   }
   /// &lt;summary&gt;
-  /// Unregisters a View.
+  /// Unregisters a view.
   /// &lt;/summary&gt;
-  /// &lt;param name=&quot;view&quot;&gt;The unregistered View.&lt;/param&gt;
+  /// &lt;param name=&quot;view&quot;&gt;The unregistered view.&lt;/param&gt;
   public void Unregister(FrameworkElement view)
   {
     views.Remove(view);
@@ -189,12 +203,12 @@ class DialogService : IDialogService
   /// Shows a dialog.
   /// &lt;/summary&gt;
   /// &lt;remarks&gt;
-  /// The dialog used to represent the ViewModel is retrieved from the registered mappings.
+  /// The dialog used to represent the view model is retrieved from the registered mappings.
   /// &lt;/remarks&gt;
   /// &lt;param name=&quot;ownerViewModel&quot;&gt;
-  /// A ViewModel that represents the owner window of the dialog.
+  /// A view model that represents the owner window of the dialog.
   /// &lt;/param&gt;
-  /// &lt;param name=&quot;viewModel&quot;&gt;The ViewModel of the new dialog.&lt;/param&gt;
+  /// &lt;param name=&quot;viewModel&quot;&gt;The view model of the new dialog.&lt;/param&gt;
   /// &lt;returns&gt;
   /// A nullable value of type bool that signifies how a window was closed by the user.
   /// &lt;/returns&gt;
@@ -208,9 +222,9 @@ class DialogService : IDialogService
   /// Shows a dialog.
   /// &lt;/summary&gt;
   /// &lt;param name=&quot;ownerViewModel&quot;&gt;
-  /// A ViewModel that represents the owner window of the dialog.
+  /// A view model that represents the owner window of the dialog.
   /// &lt;/param&gt;
-  /// &lt;param name=&quot;viewModel&quot;&gt;The ViewModel of the new dialog.&lt;/param&gt;
+  /// &lt;param name=&quot;viewModel&quot;&gt;The view model of the new dialog.&lt;/param&gt;
   /// &lt;typeparam name=&quot;T&quot;&gt;The type of the dialog to show.&lt;/typeparam&gt;
   /// &lt;returns&gt;
   /// A nullable value of type bool that signifies how a window was closed by the user.
@@ -223,7 +237,7 @@ class DialogService : IDialogService
   /// Shows a message box.
   /// &lt;/summary&gt;
   /// &lt;param name=&quot;ownerViewModel&quot;&gt;
-  /// A ViewModel that represents the owner window of the message box.
+  /// A view model that represents the owner window of the message box.
   /// &lt;/param&gt;
   /// &lt;param name=&quot;messageBoxText&quot;&gt;A string
   /// that specifies the text to display.&lt;/param&gt;
@@ -252,7 +266,7 @@ class DialogService : IDialogService
   /// Shows the OpenFileDialog.
   /// &lt;/summary&gt;
   /// &lt;param name=&quot;ownerViewModel&quot;&gt;
-  /// A ViewModel that represents the owner window of the dialog.
+  /// A view model that represents the owner window of the dialog.
   /// &lt;/param&gt;
   /// &lt;param name=&quot;openFileDialog&quot;&gt;The interface of a open file dialog.&lt;/param&gt;
   /// &lt;returns&gt;DialogResult.OK if successful;
@@ -260,7 +274,7 @@ class DialogService : IDialogService
   public DialogResult ShowOpenFileDialog(object ownerViewModel, 
                       IOpenFileDialog openFileDialog)
   {
-    // Create OpenFileDialog with specified ViewModel
+    // Create OpenFileDialog with specified view model
     OpenFileDialog dialog = new OpenFileDialog(openFileDialog);
     // Show dialog
     return dialog.ShowDialog(new WindowWrapper(FindOwnerWindow(ownerViewModel)));
@@ -269,7 +283,7 @@ class DialogService : IDialogService
   /// Shows the FolderBrowserDialog.
   /// &lt;/summary&gt;
   /// &lt;param name=&quot;ownerViewModel&quot;&gt;
-  /// A ViewModel that represents the owner window of the dialog.
+  /// A view model that represents the owner window of the dialog.
   /// &lt;/param&gt;
   /// &lt;param name=&quot;folderBrowserDialog&quot;&gt;The interface
   ///           of a folder browser dialog.&lt;/param&gt;
@@ -278,7 +292,7 @@ class DialogService : IDialogService
   public DialogResult ShowFolderBrowserDialog(object ownerViewModel, 
                       IFolderBrowserDialog folderBrowserDialog)
   {
-    // Create FolderBrowserDialog with specified ViewModel
+    // Create FolderBrowserDialog with specified view model
     FolderBrowserDialog dialog = new FolderBrowserDialog(folderBrowserDialog);
     // Show dialog
     return dialog.ShowDialog(new WindowWrapper(FindOwnerWindow(ownerViewModel)));
@@ -287,7 +301,7 @@ class DialogService : IDialogService
   #region Attached properties
   /// &lt;summary&gt;
   /// Attached property describing whether
-  /// a FrameworkElement is acting as a View in MVVM.
+  /// a FrameworkElement is acting as a view in MVVM.
   /// &lt;/summary&gt;
   public static readonly DependencyProperty IsRegisteredViewProperty =
     DependencyProperty.RegisterAttached(
@@ -296,14 +310,14 @@ class DialogService : IDialogService
     typeof(DialogService),
     new UIPropertyMetadata(IsRegisteredViewPropertyChanged));
   /// &lt;summary&gt;
-  /// Gets value describing whether FrameworkElement is acting as View in MVVM.
+  /// Gets value describing whether FrameworkElement is acting as view in MVVM.
   /// &lt;/summary&gt;
   public static bool GetIsRegisteredView(FrameworkElement target)
   {
     return (bool)target.GetValue(IsRegisteredViewProperty);
   }
   /// &lt;summary&gt;
-  /// Sets value describing whether FrameworkElement is acting as View in MVVM.
+  /// Sets value describing whether FrameworkElement is acting as view in MVVM.
   /// &lt;/summary&gt;
   public static void SetIsRegisteredView(FrameworkElement target, bool value)
   {
@@ -311,7 +325,7 @@ class DialogService : IDialogService
   }
   /// &lt;summary&gt;
   /// Is responsible for handling IsRegisteredViewProperty changes, i.e. whether
-  /// FrameworkElement is acting as View in MVVM or not.
+  /// FrameworkElement is acting as view in MVVM or not.
   /// &lt;/summary&gt;
   private static void IsRegisteredViewPropertyChanged(DependencyObject target,
     DependencyPropertyChangedEventArgs e)
@@ -342,9 +356,9 @@ class DialogService : IDialogService
   /// Shows a dialog.
   /// &lt;/summary&gt;
   /// &lt;param name=&quot;ownerViewModel&quot;&gt;
-  /// A ViewModel that represents the owner window of the dialog.
+  /// A view model that represents the owner window of the dialog.
   /// &lt;/param&gt;
-  /// &lt;param name=&quot;viewModel&quot;&gt;The ViewModel of the new dialog.&lt;/param&gt;
+  /// &lt;param name=&quot;viewModel&quot;&gt;The view model of the new dialog.&lt;/param&gt;
   /// &lt;param name=&quot;dialogType&quot;&gt;The type of the dialog.&lt;/param&gt;
   /// &lt;returns&gt;
   /// A nullable value of type bool that signifies how a window was closed by the user.
@@ -359,7 +373,7 @@ class DialogService : IDialogService
     return dialog.ShowDialog();
   }
   /// &lt;summary&gt;
-  /// Finds window corresponding to specified ViewModel.
+  /// Finds window corresponding to specified view model.
   /// &lt;/summary&gt;
   private Window FindOwnerWindow(object viewModel)
   {
@@ -367,7 +381,7 @@ class DialogService : IDialogService
       views.SingleOrDefault(v =&gt; ReferenceEquals(v.DataContext, viewModel));
     if (view == null)
     {
-      throw new ArgumentException(&quot;Viewmodel is not referenced by any registered View.&quot;);
+      throw new ArgumentException(&quot;View<span lang="en-us"> </span>model is not referenced by any registered view.&quot;);
     }
     // Get owner window
     Window owner = view as Window;
@@ -383,9 +397,9 @@ class DialogService : IDialogService
     return owner;
   }
   /// &lt;summary&gt;
-  /// Callback for late View register.
+  /// Callback for late view register.
   /// It wasn't possible to do a instant register since the
-  /// View wasn't at that point part of the logical nor visual tree.
+  /// view wasn't at that point part of the logical nor visual tree.
   /// &lt;/summary&gt;
   private void LateRegister(object sender, RoutedEventArgs e)
   {
@@ -399,7 +413,7 @@ class DialogService : IDialogService
     }
   }
   /// &lt;summary&gt;
-  /// Handles owner window closed, View service should then unregister all Views acting
+  /// Handles owner window closed, view service should then unregister all views acting
   /// within the closed window.
   /// &lt;/summary&gt;
   private void OwnerClosed(object sender, EventArgs e)
@@ -407,12 +421,12 @@ class DialogService : IDialogService
     Window owner = sender as Window;
     if (owner != null)
     {
-      // Find Views acting within closed window
+      // Find views acting within closed window
       IEnumerable&lt;FrameworkElement&gt; windowViews =
         from view in views
         where Window.GetWindow(view) == owner
         select view;
-      // Unregister Views in window
+      // Unregister views in window
       foreach (FrameworkElement view in windowViews.ToArray())
       {
         Unregister(view);
@@ -430,7 +444,7 @@ class DialogService : IDialogService
   }
 }</pre>
 
-    <p>The design is pretty straightforward. A View is registering itself as part of the MVVM pattern by setting the attached property <code>IsRegisteredView</code> on any element in the logical tree.</p>
+    <p>The design is pretty straightforward. A view is registering itself as part of the MVVM pattern by setting the attached property <code>IsRegisteredView</code> on any element in the logical tree.</p>
 
 <pre lang="Xml">&lt;Window
   x:Class=&quot;MVVM_Dialogs.View.MainWindow&quot;
@@ -439,9 +453,11 @@ class DialogService : IDialogService
   xmlns:service=&quot;clr-namespace:MVVM_Dialogs.Service&quot;
   service:DialogService.IsRegisteredView=&quot;True&quot;&gt;</pre>
 
-    <p>The View is now remembered by the dialog service. When a ViewModel is in need to show some kind of dialog, the correct View is found by the service, and its owning Window is used as the owner.</p>
+    <p>The view is now remembered by the dialog service. When a view model is in need to show some kind of dialog, the correct 
+	view is found by the service, and its owning Window is used as the owner.</p>
 
-    <h3><a name="dialog_service_showing_dialog">Showing a Dialog from a ViewModel</a></h3>
+    <h3><a name="dialog_service_showing_dialog">Showing a Dialog from a view 
+	model</a></h3>
 
     <p>There exist two overloads for using the <code>ShowDialog</code> method. The first one lets the developer specify the dialog type. </p>
 
@@ -450,9 +466,9 @@ class DialogService : IDialogService
   ...
   private void ShowInformation(object o)
   {
-    // Get the selected person ViewModel
+    // Get the selected person view model
     PersonViewModel selectedPerson = persons.Single(p =&gt; p.IsSelected);
-    // Create the PersonDialog ViewModel
+    // Create the PersonDialog view model
     PersonDialogViewModel personDialogViewModel = 
               new PersonDialogViewModel(selectedPerson.Person);
     // Showing the dialog, alternative 1.
@@ -462,16 +478,17 @@ class DialogService : IDialogService
   }
 }</pre>
 
-    <p>This overload specifies that a <code>PersonDialog</code> should be displayed with <code lang="Cs">this</code> as the owner and <code>personDialogViewModel</code> as <code>DataContext</code>. However, some of you might find it unsuitable that a View is specified in a ViewModel. For you, there is a second overload.</p>
+    <p>This overload specifies that a <code>PersonDialog</code> should be displayed with <code lang="Cs">this</code> as the owner and <code>personDialogViewModel</code> as <code>DataContext</code>. However, some of you might find it unsuitable that a 
+	view is specified in a view model. For you, there is a second overload.</p>
 
 <pre lang="Cs">public class MainWindowViewModel : ViewModelBase
 {
   ...
   private void ShowInformation(object o)
   {
-    // Get the selected person ViewModel
+    // Get the selected person view model
     PersonViewModel selectedPerson = persons.Single(p =&gt; p.IsSelected);
-    // Create the PersonDialog ViewModel
+    // Create the PersonDialog view model
     PersonDialogViewModel personDialogViewModel = 
                 new PersonDialogViewModel(selectedPerson.Person);
     // Showing the dialog, alternative 2.
@@ -482,7 +499,7 @@ class DialogService : IDialogService
   }
 }
 /// &lt;summary&gt;
-/// Class describing the Window-ViewModel mappings used by the dialog service.
+/// Class describing the Window-view model mappings used by the dialog service.
 /// &lt;/summary&gt;
 public class WindowViewModelMappings : IWindowViewModelMappings
 {
@@ -498,17 +515,18 @@ public class WindowViewModelMappings : IWindowViewModelMappings
     };
   }
   /// &lt;summary&gt;
-  /// Gets the window type based on registered ViewModel type.
+  /// Gets the window type based on registered view model type.
   /// &lt;/summary&gt;
-  /// &lt;param name=&quot;viewModelType&quot;&gt;The type of the ViewModel.&lt;/param&gt;
-  /// &lt;returns&gt;The window type based on registered ViewModel type.&lt;/returns&gt;
+  /// &lt;param name=&quot;viewModelType&quot;&gt;The type of the view model.&lt;/param&gt;
+  /// &lt;returns&gt;The window type based on registered view model type.&lt;/returns&gt;
   public Type GetWindowTypeFromViewModelType(Type viewModelType)
   {
     return mappings[viewModelType];
   }
 }</pre>
 
-    <p>This overload doesn't specify the dialog type; however, you are forced to register the Window-ViewModel mappings in a class implementing <code>IWindowViewModelMappings</code>.</p>
+    <p>This overload doesn't specify the dialog type; however, you are forced to register the Window-view 
+	model mappings in a class implementing <code>IWindowViewModelMappings</code>.</p>
 
     <h2><a name="what_now">What Now?</a></h2>
 
