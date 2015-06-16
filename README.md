@@ -4,11 +4,20 @@
 
 ### Introduction
 
-MVVM Dialogs is a framework simplifying the concept of opening dialogs from a view model when using MVVM in WPF. It enables the developer to write unit tests for view models in the same way unit tests are written for other classes.
+MVVM Dialogs is a framework simplifying the concept of opening dialogs from a view model when using MVVM in WPF. It enables the developer to easily write unit tests for view models in the same way unit tests are written for other classes.
+
+The framework has built in support for opening the following dialogs:
+
+- Modal window
+- Non-modal window
+- Message box
+- Open file dialog
+- Save file dialog
+- Folder browser dialog
 
 ### Usage
 
-Decorate the view with the attached property `DialogServiceViews.IsRegistered`:
+To open a modal window, decorate the view with the attached property `DialogServiceViews.IsRegistered`:
 
 ```xaml
 <UserControl
@@ -23,9 +32,9 @@ Decorate the view with the attached property `DialogServiceViews.IsRegistered`:
 </UserControl>
 ```
 
-With the view registered the view model is now capable of opening a dialog using `IDialogService`:
+With the view registered the view model is now capable of opening a dialog using the interface `IDialogService`:
 
-```C#
+```c#
 public class ModalDialogTabContentViewModel : INotifyPropertyChanged
 {
   private readonly IDialogService dialogService;
