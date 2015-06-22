@@ -30,38 +30,43 @@
 
     <h2><a name="intro">Introduction</a></h2>
 
-    <p>This article will address one of the problems a developer might run into when using the MVVM pattern, namely opening dialogs from 
+    <p>This article will address one of the problems you might run into when using the MVVM pattern, namely opening dialogs from 
 	view models. Basic knowledge of the pattern is expected. Josh Smith has written a fantastic <a href="http://msdn.microsoft.com/en-us/magazine/dd419663.aspx">article</a> in MSDN Magazine which can serve as the starting point for those that are unfamiliar with the pattern.</p>
 
-    <p>There already exists numerous MVVM frameworks, and all of them are open 
-	source. For those developers looking for a more complete solution to MVVM I 
-	would recommend you to take a look at the following frameworks:</p>
+    <p>There already exists numerous MVVM frameworks, and for those developers looking for a more complete solution to MVVM I 
+	would recommend taking a look at the following frameworks:</p>
 	
 	<ul>
 		<li><a href="http://reactiveui.net/">ReactiveUI</a></li>
-		<li><a href="http://www.mvvmlight.net/">Mvvm Light</a></li>
+		<li><a href="http://www.mvvmlight.net/">MVVM Light</a></li>
 		<li><a href="https://compositewpf.codeplex.com/">Prism</a></li>
 		<li><a href="https://cinch.codeplex.com/">Cinch</a></li>
 		<li><a href="http://caliburnmicro.com/">Caliburn.Micro</a></li>
 	</ul>
 	
-	<p>MVVM Dialogs is a framework simplifying the concept of opening dialogs from a 
-	view model when using MVVM in WPF. It enables the developer to easily write unit 
-	tests for view models in the same manner unit tests are written for other 
-	classes.</p>
+	<p>MVVM Dialogs is not a complete all included MVVM framework. It is 
+	designed to simplify the concept of opening dialogs from a 
+	view model when using MVVM in WPF. It does a pretty good job of that but nothing 
+	else. It doesn't contain any fancy view model base classes, nor any event 
+	broker or service locator. The only extra benefit you'll get is the ability to easily write unit 
+	tests for your view models in the same manner unit tests are written for other 
+	classes. That you will get.</p>
 
-	<p>The framework has built in support for opening the following dialogs:</p>
+	<p>The framework has currently built in support for opening the following dialogs:</p>
 	
 	<ul>
-		<li>Modal window</li>
-		<li>Non-modal window</li>
-		<li>Message box</li>
-		<li>Open file dialog</li>
-		<li>Save file dialog</li>
-		<li>Folder browser dialog</li>
+		<li>Modal windows</li>
+		<li>Non-modal windows</li>
+		<li>Message boxes</li>
+		<li>Open file dialogs</li>
+		<li>Save file dialogs</li>
+		<li>Folder browser dialogs</li>
 	</ul>
 
     <h2>Usage</h2>
+<p>More intresting than the implementation of the framework is the usage of it, 
+so lets start with that. 
+This chapter will demonstrate the required code needed to use the framework.</p>
 	
 	<h3>Showing a Dialog from a View Model</h3>
 <h4>Explicit Declaration Versus Implicit</h4>
@@ -180,8 +185,10 @@ public class NonModalDialogTabContentViewModel : INotifyPropertyChanged
   asdadsadad
 }</pre>
 
-	<h3>Showing a MessageBox</h3>
-	<p>???</p>
+	<h3>Showing a Message Box</h3>
+	<p>To show a message box start by registering the view by decorating the 
+	XAML with 
+	the attached property <code>DialogServiceViews.IsRegistered</code>.</p>
 	<pre lang="Xml">&lt;UserControl
   x:Class="DemoApplication.Features.MessageBox.Views.MessageBoxTabContent"
   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
@@ -190,7 +197,7 @@ public class NonModalDialogTabContentViewModel : INotifyPropertyChanged
   md:DialogServiceViews.IsRegistered="True"&gt;
 
 &lt;/UserControl&gt;</pre>
-	<p>???</p>
+	<p>In the view model, open the dialog by calling <code>IDialogService.ShowMessageBox</code>.</p>
 	<pre lang="Cs">public class MessageBoxTabContentViewModel : INotifyPropertyChanged
 {
   private readonly IDialogService dialogService;
@@ -210,10 +217,11 @@ public class NonModalDialogTabContentViewModel : INotifyPropertyChanged
       MessageBoxImage.Information);
   }
 }</pre>
-	<p>???</p>
 	
 	<h3>Showing a OpenFileDialog</h3>
-	<p>???</p>
+	<p>To show a open file dialog start by registering the view by decorating the 
+	XAML with 
+	the attached property <code>DialogServiceViews.IsRegistered</code>.</p>
 	<pre lang="Xml">&lt;UserControl
   x:Class="DemoApplication.Features.OpenFileDialog.Views.OpenFileTabContent"
   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
@@ -222,7 +230,7 @@ public class NonModalDialogTabContentViewModel : INotifyPropertyChanged
   md:DialogServiceViews.IsRegistered="True"&gt;
   
 &lt;/UserControl&gt;</pre>
-	<p>???</p>
+	<p>In the view model, open the dialog by calling <code>IDialogService.ShowOpenFileDialog</code>.</p>
 	<pre lang="Cs">public class OpenFileTabContentViewModel : INotifyPropertyChanged
 {
   private readonly IDialogService dialogService;
@@ -250,7 +258,9 @@ public class NonModalDialogTabContentViewModel : INotifyPropertyChanged
 	
 	
 	<h3>Showing a SaveFileDialog</h3>
-	<p>???</p>
+	<p>To show a save file dialog start by registering the view by decorating the 
+	XAML with 
+	the attached property <code>DialogServiceViews.IsRegistered</code>.</p>
 	<pre lang="Xml">&lt;UserControl
   x:Class="DemoApplication.Features.SaveFileDialog.Views.SaveFileTabContent"
   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
@@ -259,7 +269,7 @@ public class NonModalDialogTabContentViewModel : INotifyPropertyChanged
   md:DialogServiceViews.IsRegistered="True"&gt;
     
 &lt;/UserControl&gt;</pre>
-	<p>???</p>
+	<p>In the view model, open the dialog by calling <code>IDialogService.ShowSaveFileDialog</code>.</p>
 	<pre lang="Cs">public class SaveFileTabContentViewModel : INotifyPropertyChanged
 {
   private readonly IDialogService dialogService;
@@ -288,7 +298,9 @@ public class NonModalDialogTabContentViewModel : INotifyPropertyChanged
 }</pre>
 
 	<h3>Showing a FolderBrowserDialog</h3>
-	<p>???</p>
+	<p>To show a folder browser dialog start by registering the view by decorating the 
+	XAML with 
+	the attached property <code>DialogServiceViews.IsRegistered</code>.</p>
 	<pre lang="Xml">&lt;UserControl
   x:Class="DemoApplication.Features.FolderBrowserDialog.Views.FolderBrowserTabContent"
   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
@@ -297,7 +309,7 @@ public class NonModalDialogTabContentViewModel : INotifyPropertyChanged
   md:DialogServiceViews.IsRegistered="True"&gt;
   
 &lt;/UserControl&gt;</pre>
-	<p>???</p>
+	<p>In the view model, open the dialog by calling <code>IDialogService.ShowFolderBrowserDialog</code>.</p>
 	<pre lang="Cs">public class FolderBrowserTabContentViewModel : INotifyPropertyChanged
 {
   private readonly IDialogService dialogService;
@@ -835,10 +847,15 @@ public class DialogService : IDialogService
 	view is found by the service, and its owning Window is used as the owner.</p>
 
 <h2><a name="github">GitHub</a></h2>
-<p>???</p>
+<p>The code is also available on
+<a href="https://github.com/FantasticFiasco/mvvm-dialogs">GitHub</a>. The 
+project accepts issues and pull requests.</p>
 
 <h2><a name="nuget">NuGet</a></h2>
-<p>???</p>
+<p>If you want to include MVVM Dialogs in your project, you can
+<a href="https://www.nuget.org/packages/MvvmDialogs/">install it directly from NuGet</a>.</p>
+<p>To install MVVM Dialogs, run the following command in the Package Manager Console:</p>
+<pre>PM> Install-Package MvvmDialogs</pre>
 
 
     <h2><a name="what_now">What Now?</a></h2>
@@ -848,7 +865,7 @@ public class DialogService : IDialogService
     <h2><a name="history">History</a></h2>
 
     <ul>
-        <li>5 October 2010: Code update.</li>
+        <li>???<li>5 October 2010: Code update.</li>
 
         <ul>
             <li>Updated source according to <a href="MVVM_Dialogs.aspx?msg=3603145#xx3603145xx">comments</a> by d302241.</li>
