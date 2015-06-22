@@ -1,7 +1,8 @@
 ﻿<span id="ArticleContent">
 
     <ul class="download">
-        <li><a href="MVVM_Dialogs/MVVM_Dialogs.zip">Download source - ??? KB</a></li>
+        <li><a href="MVVM_Dialogs/MVVM_Dialogs.zip">Download source - ??? KB</a> 
+		??? do in the end</li>
     </ul>
 
     <p><img width="625" height="420" src="MVVM_Dialogs/Application.png" complete="true" /></p>
@@ -9,13 +10,20 @@
     <h2>Contents</h2>
 
     <ul>
-        <li><a href="#intro">Introduction</a></li>
+        <li>??? do in the end</li>
+		<li><a href="#intro">Introduction</a></li>
 
-        <li><a href="#my_mvvm">My Interpretation of MVVM</a></li>
+        <li><a href="#usage">Usage</a></li>
+        
+        <li><a href="#showing_dialog">Showing a Dialog from a View Model</a></li>
 
         <li><a href="#dialog_service">The Dialog Service</a></li>
 
         <li><a href="#what_now">What Now?</a></li>
+        
+        <li><a href="#github">GitHub</a></li>
+        
+        <li><a href="#nuget">NuGet</a></li>
 
         <li><a href="#history">History</a></li>
     </ul>
@@ -25,426 +33,796 @@
     <p>This article will address one of the problems a developer might run into when using the MVVM pattern, namely opening dialogs from 
 	view models. Basic knowledge of the pattern is expected. Josh Smith has written a fantastic <a href="http://msdn.microsoft.com/en-us/magazine/dd419663.aspx">article</a> in MSDN Magazine which can serve as the starting point for those that are unfamiliar with the pattern.</p>
 
-    <p>There already exist some solutions exploring this area, but none of them seem to be widely accepted among the MVVM community. <a href="http://wpfonyx.codeplex.com/">Onyx</a> on CodePlex is probably the most complete solution. Sacha Barber <a href="http://sachabarber.net/?p=518">announced</a> that he is working on a new MVVM framework, but hasn't set any release date. At the same time, <a href="http://groups.google.com/group/wpf-disciples">WPF Disciples</a> are teaming up to create a <a href="http://www.codeplex.com/mvvmref">MVVM reference</a> application, again with no release date yet.</p>
+    <p>There already exists numerous MVVM frameworks, and all of them are open 
+	source. For those developers looking for a more complete solution to MVVM I 
+	would recommend you to take a look at the following frameworks:</p>
+	
+	<ul>
+		<li><a href="http://reactiveui.net/">ReactiveUI</a></li>
+		<li><a href="http://www.mvvmlight.net/">Mvvm Light</a></li>
+		<li><a href="https://compositewpf.codeplex.com/">Prism</a></li>
+		<li><a href="https://cinch.codeplex.com/">Cinch</a></li>
+		<li><a href="http://caliburnmicro.com/">Caliburn.Micro</a></li>
+	</ul>
+	
+	<p>MVVM Dialogs is a framework simplifying the concept of opening dialogs from a 
+	view model when using MVVM in WPF. It enables the developer to easily write unit 
+	tests for view models in the same manner unit tests are written for other 
+	classes.</p>
 
-    <h2><a name="my_mvvm">My Interpretation of MVVM</a></h2>
+	<p>The framework has built in support for opening the following dialogs:</p>
+	
+	<ul>
+		<li>Modal window</li>
+		<li>Non-modal window</li>
+		<li>Message box</li>
+		<li>Open file dialog</li>
+		<li>Save file dialog</li>
+		<li>Folder browser dialog</li>
+	</ul>
 
-    <p>I am possibly sticking my neck out here, but I would like to state some of my own interpretations of the MVVM pattern:</p>
+    <h2>Usage</h2>
+	
+	<h3>Showing a Dialog from a View Model</h3>
+<h4>Explicit Declaration Versus Implicit</h4>
+<h4><a name="showing_dialog">Showing a Modal Dialog from a View Model</a></h4>
+	
+	<p>A dialog can be shown both as modal and non-modal. The following code 
+	samples will showcase opening a modal dialog using <code>IDialogService.ShowDialog</code>, 
+	but the same code can be reused to showcase non-modal dialogs by replacing 
+	<code>IDialogService.ShowDialog</code> with <code>IDialogService.Show</code>.</p>
 
-    <ul>
-        <li>The fundamental core is the separation of UI and logic. view model and 
-		view can communicate using bindings, making it possible for the view to be happily unaware of the 
-		view model and vice versa. I know some of you might say: <em>&quot;well, actually the 
-		view knows about the view model since the view model is stored within the DataContext property, and the 
-		view is declaring its bindings to match properties on the view model, surely the 
-		view must know the view model?&quot;</em>. I don't think so; we have to analyze what <em>knows</em> actually means. The 
-		view model is stored in the <code>DataContext</code> property, that is correct, but <code>DataContext</code> is of type <code lang="Cs">Object</code>. From the 
-		view's point, the only thing it knows is whether the property has been set or not, nothing about the actual content. Let's get to the bindings declared in the 
-		view; do they say something about the view model? I would have to say no here as well. The 
-		view might declare whatever bindings it wishes, but the view model isn't enforced to implement them.</li>
+    <p>The first thing to do is to decorate the view with the attached property <code>DialogServiceViews.IsRegistered</code>.</p>
 
-        <li>The view model should serve the view with data, but one might argue where the separation between the 
-		view and view model is. If for instance the view model is holding a list of items presented in a <code>ListView</code>, I would argue that sorting, grouping, and filtering could be the responsibility of the 
-		view, not the view model. Attached properties can solve this for us, making the 
-		view model happily unaware of the item presentation.</li>
+	<pre lang="Xml">&lt;UserControl
+  x:Class="DemoApplication.Features.Dialog.Modal.Views.ModalDialogTabContent"
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:md="https://github.com/fantasticfiasco/mvvm-dialogs"
+  md:DialogServiceViews.IsRegistered="True"&gt;
 
-        <li>The view model should not contain anything used purely in tests; either a class is testable or it isn't.</li>
-    </ul>
+&lt;/UserControl&gt;</pre>
 
-    <h2><a name="dialog_service">The Dialog Service</a></h2>
+	<p>Setting the attached property on a view registers the view with the dialog 
+	service, and from this point the view model of the view is capable of opening a 
+	dialog.</p>
 
-    <p>The concept of letting services handle relations between the view model and 
-	view seems to be the most accepted solution. My contribution is <code>IDialogService</code>.</p>
+	<h4>Explicit by Specifying Dialog Type</h4>
+
+	<p>The framework supports opening a dialog by explicitly declaring the dialog 
+	type. The dialog type is declared in the generic <code>IDialogService.ShowDialog&lt;T&gt;</code> 
+	method.</p>
+
+	<pre lang="Cs">public class ModalDialogTabContentViewModel : INotifyPropertyChanged
+{
+  private readonly IDialogService dialogService;
+
+  public ModalDialogTabContentViewModel(IDialogService dialogService)
+  {
+    this.dialogService = dialogService;
+  }
+
+  private void ShowDialog()
+  {
+    var dialogViewModel = new AddTextDialogViewModel();
+
+    bool? success = dialogService.ShowDialog&lt;AddTextDialog&gt;(this, viewModel));
+    if (success == true)
+    {
+      Texts.Add(dialogViewModel.Text);
+    }
+  }
+}</pre>
+
+	<p>A dialog of type <code>AddTextDialog</code> will be opened by the dialog 
+	service and the dialog result is returned as a nullable boolean.</p>
+
+	<h4>Implicit by Using Dialog Type Locator</h4>
+
+	<p>Specifying a dialog type in a view model might disgust a MVVM purist, thus 
+	the framework supports opening a dialog without specifying the dialog type. The 
+	construcor of <code>DialogService</code> takes a parameter of type 
+	<code>Func&lt;INotifyPropertyChanged, Type&gt;</code>. This is the <em>dialog 
+	type locator</em> which has the responsibility of returning a dialog type based 
+	on a view model. The default dialog type locator is a locator that uses a naming 
+	convention to find the dialog type. If the full name of the view model is 
+	<code>MyNamespace.ViewModels.MyWindowViewModel</code>, then the locator tries to find a view 
+	with the full name <code>MyNamespace.Views.MyWindow</code>. This naming 
+	convention is common among articles regarding MVVM and is a adequate default 
+	locator for the framework but can be overriden with a custom locator that suits 
+	your solution.</p>
+	
+	<p>The following code opens a dialog by using <code>IDialogService.ShowDialog.</code></p>
+
+	<pre lang="Cs">public class ModalDialogTabContentViewModel : INotifyPropertyChanged
+{
+  private readonly IDialogService dialogService;
+
+  public ModalDialogTabContentViewModel(IDialogService dialogService)
+  {
+    this.dialogService = dialogService;
+  }
+
+  private void ShowDialog()
+  {
+    var dialogViewModel = new AddTextDialogViewModel();
+
+    bool? success = dialogService.ShowDialog(this, dialogViewModel);
+    if (success == true)
+    {
+      Texts.Add(dialogViewModel.Text);
+    }
+  }
+}</pre>
+
+	<h4>Showing a Non-Modal Dialog from a View Model</h4>
+	<p>???</p>
+	<pre lang="Xml">&lt;UserControl
+  x:Class="DemoApplication.Features.Dialog.NonModal.Views.NonModalDialogTabContent"
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:md="https://github.com/fantasticfiasco/mvvm-dialogs"
+  md:DialogServiceViews.IsRegistered="True"&gt;
+
+&lt;/UserControl&gt;
+	</pre>
+	
+	<pre lang="Cs">
+public class NonModalDialogTabContentViewModel : INotifyPropertyChanged
+{
+  private readonly IDialogService dialogService;
+  
+  public NonModalDialogTabContentViewModel(IDialogService dialogService)
+  {
+    this.dialogService = dialogService;
+  }
+  
+  asdadsadad
+}</pre>
+
+	<h3>Showing a MessageBox</h3>
+	<p>???</p>
+	<pre lang="Xml">&lt;UserControl
+  x:Class="DemoApplication.Features.MessageBox.Views.MessageBoxTabContent"
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:md="https://github.com/fantasticfiasco/mvvm-dialogs"
+  md:DialogServiceViews.IsRegistered="True"&gt;
+
+&lt;/UserControl&gt;</pre>
+	<p>???</p>
+	<pre lang="Cs">public class MessageBoxTabContentViewModel : INotifyPropertyChanged
+{
+  private readonly IDialogService dialogService;
+  
+  public MessageBoxTabContentViewModel(IDialogService dialogService)
+  {
+    this.dialogService = dialogService;
+  }
+  
+  private void ShowMessageBox()
+  {
+    dialogService.ShowMessageBox(
+      this,
+      "This is the text.",
+      "This Is The Caption",
+      MessageBoxButton.OKCancel,
+      MessageBoxImage.Information);
+  }
+}</pre>
+	<p>???</p>
+	
+	<h3>Showing a OpenFileDialog</h3>
+	<p>???</p>
+	<pre lang="Xml">&lt;UserControl
+  x:Class="DemoApplication.Features.OpenFileDialog.Views.OpenFileTabContent"
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:md="https://github.com/fantasticfiasco/mvvm-dialogs"
+  md:DialogServiceViews.IsRegistered="True"&gt;
+  
+&lt;/UserControl&gt;</pre>
+	<p>???</p>
+	<pre lang="Cs">public class OpenFileTabContentViewModel : INotifyPropertyChanged
+{
+  private readonly IDialogService dialogService;
+  
+  public OpenFileTabContentViewModel(IDialogService dialogService)
+  {
+    this.dialogService = dialogService;
+  }
+  
+  private void OpenFile()
+  {
+    var settings = new OpenFileDialogSettings
+    {
+      Title = "This Is The Title",
+      InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
+      Filter = "Text Documents (*.txt)|*.txt|All Files (*.*)|*.*"
+    };
+
+    bool? success = dialogService.ShowOpenFileDialog(this, settings);
+    if (success == true)
+    {
+      Path = settings.FileName;
+    }
+  }</pre>
+	
+	
+	<h3>Showing a SaveFileDialog</h3>
+	<p>???</p>
+	<pre lang="Xml">&lt;UserControl
+  x:Class="DemoApplication.Features.SaveFileDialog.Views.SaveFileTabContent"
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:md="https://github.com/fantasticfiasco/mvvm-dialogs"
+  md:DialogServiceViews.IsRegistered="True"&gt;
+    
+&lt;/UserControl&gt;</pre>
+	<p>???</p>
+	<pre lang="Cs">public class SaveFileTabContentViewModel : INotifyPropertyChanged
+{
+  private readonly IDialogService dialogService;
+  
+  public SaveFileTabContentViewModel(IDialogService dialogService)
+  {
+    this.dialogService = dialogService;
+  }
+  
+  private void SaveFile()
+  {
+    var settings = new SaveFileDialogSettings
+    {
+      Title = "This Is The Title",
+      InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
+      Filter = "Text Documents (*.txt)|*.txt|All Files (*.*)|*.*",
+      CheckFileExists = false
+    };
+
+    bool? success = dialogService.ShowSaveFileDialog(this, settings);
+    if (success == true)
+    {
+      Path = settings.FileName;
+    }
+  }
+}</pre>
+
+	<h3>Showing a FolderBrowserDialog</h3>
+	<p>???</p>
+	<pre lang="Xml">&lt;UserControl
+  x:Class="DemoApplication.Features.FolderBrowserDialog.Views.FolderBrowserTabContent"
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:md="https://github.com/fantasticfiasco/mvvm-dialogs"
+  md:DialogServiceViews.IsRegistered="True"&gt;
+  
+&lt;/UserControl&gt;</pre>
+	<p>???</p>
+	<pre lang="Cs">public class FolderBrowserTabContentViewModel : INotifyPropertyChanged
+{
+  private readonly IDialogService dialogService;
+  
+  public FolderBrowserTabContentViewModel(IDialogService dialogService)
+  {
+    this.dialogService = dialogService;
+  }
+  
+  private void BrowseFolder()
+  {
+    var settings = new FolderBrowserDialogSettings
+    {
+      Description = "This is a description"
+    };
+
+    bool? success = dialogService.ShowFolderBrowserDialog(this, settings);
+    if (success == true)
+    {
+      Path = settings.SelectedPath;
+    }
+  }
+}</pre>
+
+	<h2><a name="dialog_service">The Dialog Service</a></h2>
+
+    <p><code>IDialogService</code> and the implementation <code>DialogService</code> 
+	are of most importance since they are the workhorses of the framework. Lets 
+	start by taking a look at <code>IDialogService</code>.</p>
 
 <pre lang="Cs">/// &lt;summary&gt;
-/// Interface responsible for abstracting view models from views.
+/// Interface abstracting the interaction between view models and views when it comes to
+/// opening dialogs using the MVVM pattern in WPF.
 /// &lt;/summary&gt;
 public interface IDialogService
 {
   /// &lt;summary&gt;
-  /// Gets the registered views.
+  /// Displays a non-modal dialog of specified type &lt;typeparamref name="T"/&gt;.
   /// &lt;/summary&gt;
-  ReadOnlyCollection&lt;FrameworkElement&gt; Views { get; }
-  /// &lt;summary&gt;
-  /// Registers a view.
-  /// &lt;/summary&gt;
-  /// &lt;param name=&quot;view&quot;&gt;The registered view.&lt;/param&gt;
-  void Register(FrameworkElement view);
-  /// &lt;summary&gt;
-  /// Unregisters a view.
-  /// &lt;/summary&gt;
-  /// &lt;param name=&quot;view&quot;&gt;The unregistered view.&lt;/param&gt;
-  void Unregister(FrameworkElement view);
-  /// &lt;summary&gt;
-  /// Shows a dialog.
-  /// &lt;/summary&gt;
-  /// &lt;remarks&gt;
-  /// The dialog used to represent the view model is retrieved from the registered mappings.
-  /// &lt;/remarks&gt;
-  /// &lt;param name=&quot;ownerViewModel&quot;&gt;
+  /// &lt;param name="ownerViewModel"&gt;
   /// A view model that represents the owner window of the dialog.
   /// &lt;/param&gt;
-  /// &lt;param name=&quot;viewModel&quot;&gt;The view model of the new dialog.&lt;/param&gt;
-  /// &lt;returns&gt;
-  /// A nullable value of type bool that signifies how a window was closed by the user.
-  /// &lt;/returns&gt;
-  bool? ShowDialog(object ownerViewModel, object viewModel);
+  /// &lt;param name="viewModel"&gt;The view model of the new dialog.&lt;/param&gt;
+  /// &lt;typeparam name="T"&gt;The type of the dialog to show.&lt;/typeparam&gt;
+  void Show&lt;T&gt;(
+    INotifyPropertyChanged ownerViewModel,
+    INotifyPropertyChanged viewModel)
+    where T : Window;
+
   /// &lt;summary&gt;
-  /// Shows a dialog.
+  /// Displays a non-modal dialog of a type that is determined by the dialog type locator
+  /// specified in the constructor.
   /// &lt;/summary&gt;
-  /// &lt;param name=&quot;ownerViewModel&quot;&gt;
+  /// &lt;param name="ownerViewModel"&gt;
   /// A view model that represents the owner window of the dialog.
   /// &lt;/param&gt;
-  /// &lt;param name=&quot;viewModel&quot;&gt;The view model of the new dialog.&lt;/param&gt;
-  /// &lt;typeparam name=&quot;T&quot;&gt;The type of the dialog to show.&lt;/typeparam&gt;
-  /// &lt;returns&gt;
-  /// A nullable value of type bool that signifies how a window was closed by the user.
-  /// &lt;/returns&gt;
-  bool? ShowDialog&lt;T&gt;(object ownerViewModel, object viewModel) where T : Window;
+  /// &lt;param name="viewModel"&gt;The view model of the new dialog.&lt;/param&gt;
+  void Show(
+    INotifyPropertyChanged ownerViewModel,
+    INotifyPropertyChanged viewModel);
+
   /// &lt;summary&gt;
-  /// Shows a message box.
+  /// Displays a modal dialog of specified type &lt;typeparamref name="T"/&gt;.
   /// &lt;/summary&gt;
-  /// &lt;param name=&quot;ownerViewModel&quot;&gt;
-  /// A view model that represents the owner window of the message box.
+  /// &lt;param name="ownerViewModel"&gt;
+  /// A view model that represents the owner window of the dialog.
   /// &lt;/param&gt;
-  /// &lt;param name=&quot;messageBoxText&quot;&gt;A string that specifies the text to display.&lt;/param&gt;
-  /// &lt;param name=&quot;caption&quot;&gt;A string that specifies the title bar caption to display.&lt;/param&gt;
-  /// &lt;param name=&quot;button&quot;&gt;
-  /// A MessageBoxButton value that specifies which button or buttons to display.
-  /// &lt;/param&gt;
-  /// &lt;param name=&quot;icon&quot;&gt;A MessageBoxImage value that specifies the icon to display.&lt;/param&gt;
+  /// &lt;param name="viewModel"&gt;The view model of the new dialog.&lt;/param&gt;
+  /// &lt;typeparam name="T"&gt;The type of the dialog to show.&lt;/typeparam&gt;
   /// &lt;returns&gt;
-  /// A MessageBoxResult value that specifies which message box button is clicked by the user.
+  /// A nullable value of type &lt;see cref="bool"/&gt; that signifies how a window was closed by
+  /// the user.
+  /// &lt;/returns&gt;
+  bool? ShowDialog&lt;T&gt;(
+    INotifyPropertyChanged ownerViewModel,
+    IModalDialogViewModel viewModel)
+    where T : Window;
+
+  /// &lt;summary&gt;
+  /// Displays a modal dialog of a type that is determined by the dialog type locator
+  /// specified in constructor.
+  /// &lt;/summary&gt;
+  /// &lt;param name="ownerViewModel"&gt;
+  /// A view model that represents the owner window of the dialog.
+  /// &lt;/param&gt;
+  /// &lt;param name="viewModel"&gt;The view model of the new dialog.&lt;/param&gt;
+  /// &lt;returns&gt;
+  /// A nullable value of type &lt;see cref="bool"/&gt; that signifies how a window was closed by
+  /// the user.
+  /// &lt;/returns&gt;
+  bool? ShowDialog(
+    INotifyPropertyChanged ownerViewModel,
+    IModalDialogViewModel viewModel);
+
+  /// &lt;summary&gt;
+  /// Displays a message box that has a message, title bar caption, button, and icon; and
+  /// that accepts a default message box result and returns a result.
+  /// &lt;/summary&gt;
+  /// &lt;param name="ownerViewModel"&gt;
+  /// A view model that represents the owner window of the dialog.
+  /// &lt;/param&gt;
+  /// &lt;param name="messageBoxText"&gt;
+  /// A &lt;see cref="string"/&gt; that specifies the text to display.
+  /// &lt;/param&gt;
+  /// &lt;param name="caption"&gt;
+  /// A &lt;see cref="string"/&gt; that specifies the title bar caption to display. Default value
+  /// is an empty string.
+  /// &lt;/param&gt;
+  /// &lt;param name="button"&gt;
+  /// A &lt;see cref="MessageBoxButton"/&gt; value that specifies which button or buttons to
+  /// display. Default value is &lt;see cref="MessageBoxButton.OK"/&gt;.
+  /// &lt;/param&gt;
+  /// &lt;param name="icon"&gt;
+  /// A &lt;see cref="MessageBoxImage"/&gt; value that specifies the icon to display. Default value
+  /// is &lt;see cref="MessageBoxImage.None"/&gt;.
+  /// &lt;/param&gt;
+  /// &lt;param name="defaultResult"&gt;
+  /// A &lt;see cref="MessageBoxResult"/&gt; value that specifies the default result of the
+  /// message box. Default value is &lt;see cref="MessageBoxResult.None"/&gt;.
+  /// &lt;/param&gt;
+  /// &lt;returns&gt;
+  /// A &lt;see cref="MessageBoxResult"/&gt; value that specifies which message box button is
+  /// clicked by the user.
   /// &lt;/returns&gt;
   MessageBoxResult ShowMessageBox(
-    object ownerViewModel,
+    INotifyPropertyChanged ownerViewModel,
     string messageBoxText,
-    string caption,
-    MessageBoxButton button,
-    MessageBoxImage icon);
+    string caption = "",
+    MessageBoxButton button = MessageBoxButton.OK,
+    MessageBoxImage icon = MessageBoxImage.None,
+    MessageBoxResult defaultResult = MessageBoxResult.None);
+
   /// &lt;summary&gt;
-  /// Shows the OpenFileDialog.
+  /// Displays the &lt;see cref="OpenFileDialog"/&gt;.
   /// &lt;/summary&gt;
-  /// &lt;param name=&quot;ownerViewModel&quot;&gt;
+  /// &lt;param name="ownerViewModel"&gt;
   /// A view model that represents the owner window of the dialog.
   /// &lt;/param&gt;
-  /// &lt;param name=&quot;openFileDialog&quot;&gt;The interface of a open file dialog.&lt;/param&gt;
-  /// &lt;returns&gt;DialogResult.OK if successful; otherwise DialogResult.Cancel.&lt;/returns&gt;
-  DialogResult ShowOpenFileDialog(object ownerViewModel, IOpenFileDialog openFileDialog);
+  /// &lt;param name="settings"&gt;The settings for the open file dialog.&lt;/param&gt;
+  /// &lt;returns&gt;
+  /// If the user clicks the OK button of the dialog that is displayed, true is returned;
+  /// otherwise false.
+  /// &lt;/returns&gt;
+  bool? ShowOpenFileDialog(
+    INotifyPropertyChanged ownerViewModel,
+    OpenFileDialogSettings settings);
+
   /// &lt;summary&gt;
-  /// Shows the FolderBrowserDialog.
+  /// Displays the &lt;see cref="SaveFileDialog"/&gt;.
   /// &lt;/summary&gt;
-  /// &lt;param name=&quot;ownerViewModel&quot;&gt;
+  /// &lt;param name="ownerViewModel"&gt;
   /// A view model that represents the owner window of the dialog.
   /// &lt;/param&gt;
-  /// &lt;param name=&quot;folderBrowserDialog&quot;&gt;The interface of a folder browser dialog.&lt;/param&gt;
-  /// &lt;returns&gt;The DialogResult.OK if successful; otherwise DialogResult.Cancel.&lt;/returns&gt;
-  DialogResult ShowFolderBrowserDialog(object ownerViewModel, 
-               IFolderBrowserDialog folderBrowserDialog);
+  /// &lt;param name="settings"&gt;The settings for the save file dialog.&lt;/param&gt;
+  /// &lt;returns&gt;
+  /// If the user clicks the OK button of the dialog that is displayed, true is returned;
+  /// otherwise false.
+  /// &lt;/returns&gt;
+  bool? ShowSaveFileDialog(
+    INotifyPropertyChanged ownerViewModel,
+    SaveFileDialogSettings settings);
+
+  /// &lt;summary&gt;
+  /// Displays the &lt;see cref="FolderBrowserDialog"/&gt;.
+  /// &lt;/summary&gt;
+  /// &lt;param name="ownerViewModel"&gt;
+  /// A view model that represents the owner window of the dialog.
+  /// &lt;/param&gt;
+  /// &lt;param name="settings"&gt;The settings for the folder browser dialog.&lt;/param&gt;
+  /// &lt;returns&gt;
+  /// If the user clicks the OK button of the dialog that is displayed, true is returned;
+  /// otherwise false.
+  /// &lt;/returns&gt;
+  bool? ShowFolderBrowserDialog(
+    INotifyPropertyChanged ownerViewModel,
+    FolderBrowserDialogSettings settings);
 }</pre>
 
     <p>The actual implementation of <code>IDialogServiceis</code> is <code>DialogService</code>.</p>
 
 <pre lang="Cs">/// &lt;summary&gt;
-/// Class responsible for abstracting view models from views.
+/// Class abstracting the interaction between view models and views when it comes to
+/// opening dialogs using the MVVM pattern in WPF.
 /// &lt;/summary&gt;
-class DialogService : IDialogService
+public class DialogService : IDialogService
 {
-  private readonly HashSet&lt;FrameworkElement&gt; views;
-  private readonly IWindowViewModelMappings windowViewModelMappings;
-  /// &lt;summary&gt;
-  /// Initializes a new instance of the &lt;see cref=&quot;DialogService&quot;/&gt; class.
-  /// &lt;/summary&gt;
-  /// &lt;param name=&quot;windowViewModelMappings&quot;&gt;
-  /// The window view model mappings. Default value is null.
-  /// &lt;/param&gt;
-  public DialogService(IWindowViewModelMappings windowViewModelMappings = null)
-  {
-    this.windowViewModelMappings = windowViewModelMappings;
-    views = new HashSet&lt;FrameworkElement&gt;();
-  }
-  #region IDialogService Members
-  /// &lt;summary&gt;
-  /// Gets the registered views.
-  /// &lt;/summary&gt;
-  public ReadOnlyCollection&lt;FrameworkElement&gt; Views
-  {
-    get { return new ReadOnlyCollection&lt;FrameworkElement&gt;(views.ToList()); }
-  }
-  /// &lt;summary&gt;
-  /// Registers a view.
-  /// &lt;/summary&gt;
-  /// &lt;param name=&quot;view&quot;&gt;The registered view.&lt;/param&gt;
-  public void Register(FrameworkElement view)
-  {
-    // Get owner window
-    Window owner = GetOwner(view);
-    if (owner == null)
-    {
-      // Perform a late register when the view hasn't been loaded yet.
-      // This will happen if e.g. the view is contained in a Frame.
-      view.Loaded += LateRegister;
-      return;
-    }
-    // Register for owner window closing, since we then should unregister view reference,
-    // preventing memory leaks
-    owner.Closed += OwnerClosed;
-    views.Add(view);
-  }
-  /// &lt;summary&gt;
-  /// Unregisters a view.
-  /// &lt;/summary&gt;
-  /// &lt;param name=&quot;view&quot;&gt;The unregistered view.&lt;/param&gt;
-  public void Unregister(FrameworkElement view)
-  {
-    views.Remove(view);
-  }
-  /// &lt;summary&gt;
-  /// Shows a dialog.
-  /// &lt;/summary&gt;
-  /// &lt;remarks&gt;
-  /// The dialog used to represent the view model is retrieved from the registered mappings.
-  /// &lt;/remarks&gt;
-  /// &lt;param name=&quot;ownerViewModel&quot;&gt;
-  /// A view model that represents the owner window of the dialog.
-  /// &lt;/param&gt;
-  /// &lt;param name=&quot;viewModel&quot;&gt;The view model of the new dialog.&lt;/param&gt;
-  /// &lt;returns&gt;
-  /// A nullable value of type bool that signifies how a window was closed by the user.
-  /// &lt;/returns&gt;
-  public bool? ShowDialog(object ownerViewModel, object viewModel)
-  {
-    Type dialogType = 
-      windowViewModelMappings.GetWindowTypeFromViewModelType(viewModel.GetType());
-    return ShowDialog(ownerViewModel, viewModel, dialogType);
-  }
-  /// &lt;summary&gt;
-  /// Shows a dialog.
-  /// &lt;/summary&gt;
-  /// &lt;param name=&quot;ownerViewModel&quot;&gt;
-  /// A view model that represents the owner window of the dialog.
-  /// &lt;/param&gt;
-  /// &lt;param name=&quot;viewModel&quot;&gt;The view model of the new dialog.&lt;/param&gt;
-  /// &lt;typeparam name=&quot;T&quot;&gt;The type of the dialog to show.&lt;/typeparam&gt;
-  /// &lt;returns&gt;
-  /// A nullable value of type bool that signifies how a window was closed by the user.
-  /// &lt;/returns&gt;
-  public bool? ShowDialog&lt;T&gt;(object ownerViewModel, object viewModel) where T : Window
-  {
-    return ShowDialog(ownerViewModel, viewModel, typeof(T));
-  }
-  /// &lt;summary&gt;
-  /// Shows a message box.
-  /// &lt;/summary&gt;
-  /// &lt;param name=&quot;ownerViewModel&quot;&gt;
-  /// A view model that represents the owner window of the message box.
-  /// &lt;/param&gt;
-  /// &lt;param name=&quot;messageBoxText&quot;&gt;A string
-  /// that specifies the text to display.&lt;/param&gt;
-  /// &lt;param name=&quot;caption&quot;&gt;A string that specifies
-  /// the title bar caption to display.&lt;/param&gt;
-  /// &lt;param name=&quot;button&quot;&gt;
-  /// A MessageBoxButton value that specifies which button or buttons to display.
-  /// &lt;/param&gt;
-  /// &lt;param name=&quot;icon&quot;&gt;A MessageBoxImage value
-  /// that specifies the icon to display.&lt;/param&gt;
-  /// &lt;returns&gt;
-  /// A MessageBoxResult value that specifies which
-  /// message box button is clicked by the user.
-  /// &lt;/returns&gt;
-  public MessageBoxResult ShowMessageBox(
-    object ownerViewModel,
-    string messageBoxText,
-    string caption,
-    MessageBoxButton button,
-    MessageBoxImage icon)
-  {
-    return MessageBox.Show(FindOwnerWindow(ownerViewModel), 
-                           messageBoxText, caption, button, icon);
-  }
-  /// &lt;summary&gt;
-  /// Shows the OpenFileDialog.
-  /// &lt;/summary&gt;
-  /// &lt;param name=&quot;ownerViewModel&quot;&gt;
-  /// A view model that represents the owner window of the dialog.
-  /// &lt;/param&gt;
-  /// &lt;param name=&quot;openFileDialog&quot;&gt;The interface of a open file dialog.&lt;/param&gt;
-  /// &lt;returns&gt;DialogResult.OK if successful;
-  /// otherwise DialogResult.Cancel.&lt;/returns&gt;
-  public DialogResult ShowOpenFileDialog(object ownerViewModel, 
-                      IOpenFileDialog openFileDialog)
-  {
-    // Create OpenFileDialog with specified view model
-    OpenFileDialog dialog = new OpenFileDialog(openFileDialog);
-    // Show dialog
-    return dialog.ShowDialog(new WindowWrapper(FindOwnerWindow(ownerViewModel)));
-  }
-  /// &lt;summary&gt;
-  /// Shows the FolderBrowserDialog.
-  /// &lt;/summary&gt;
-  /// &lt;param name=&quot;ownerViewModel&quot;&gt;
-  /// A view model that represents the owner window of the dialog.
-  /// &lt;/param&gt;
-  /// &lt;param name=&quot;folderBrowserDialog&quot;&gt;The interface
-  ///           of a folder browser dialog.&lt;/param&gt;
-  /// &lt;returns&gt;The DialogResult.OK if successful;
-  ///       otherwise DialogResult.Cancel.&lt;/returns&gt;
-  public DialogResult ShowFolderBrowserDialog(object ownerViewModel, 
-                      IFolderBrowserDialog folderBrowserDialog)
-  {
-    // Create FolderBrowserDialog with specified view model
-    FolderBrowserDialog dialog = new FolderBrowserDialog(folderBrowserDialog);
-    // Show dialog
-    return dialog.ShowDialog(new WindowWrapper(FindOwnerWindow(ownerViewModel)));
-  }
-  #endregion
-  #region Attached properties
-  /// &lt;summary&gt;
-  /// Attached property describing whether
-  /// a FrameworkElement is acting as a view in MVVM.
-  /// &lt;/summary&gt;
-  public static readonly DependencyProperty IsRegisteredViewProperty =
-    DependencyProperty.RegisterAttached(
-    &quot;IsRegisteredView&quot;,
-    typeof(bool),
-    typeof(DialogService),
-    new UIPropertyMetadata(IsRegisteredViewPropertyChanged));
-  /// &lt;summary&gt;
-  /// Gets value describing whether FrameworkElement is acting as view in MVVM.
-  /// &lt;/summary&gt;
-  public static bool GetIsRegisteredView(FrameworkElement target)
-  {
-    return (bool)target.GetValue(IsRegisteredViewProperty);
-  }
-  /// &lt;summary&gt;
-  /// Sets value describing whether FrameworkElement is acting as view in MVVM.
-  /// &lt;/summary&gt;
-  public static void SetIsRegisteredView(FrameworkElement target, bool value)
-  {
-    target.SetValue(IsRegisteredViewProperty, value);
-  }
-  /// &lt;summary&gt;
-  /// Is responsible for handling IsRegisteredViewProperty changes, i.e. whether
-  /// FrameworkElement is acting as view in MVVM or not.
-  /// &lt;/summary&gt;
-  private static void IsRegisteredViewPropertyChanged(DependencyObject target,
-    DependencyPropertyChangedEventArgs e)
-  {
-    // The Visual Studio Designer or Blend will run this code when setting the attached
-    // property, however at that point there is no IDialogService registered
-    // in the ServiceLocator which will cause
-    /// the Resolve method to throw a ArgumentException.
-    if (DesignerProperties.GetIsInDesignMode(target)) return;
-    FrameworkElement view = target as FrameworkElement;
-    if (view != null)
-    {
-      // Cast values
-      bool newValue = (bool)e.NewValue;
-      bool oldValue = (bool)e.OldValue;
-      if (newValue)
-      {
-        ServiceLocator.Resolve&lt;IDialogService&gt;().Register(view);
-      }
-      else
-      {
-        ServiceLocator.Resolve&lt;IDialogService&gt;().Unregister(view);
-      }
-    }
-  }
-  #endregion
-  /// &lt;summary&gt;
-  /// Shows a dialog.
-  /// &lt;/summary&gt;
-  /// &lt;param name=&quot;ownerViewModel&quot;&gt;
-  /// A view model that represents the owner window of the dialog.
-  /// &lt;/param&gt;
-  /// &lt;param name=&quot;viewModel&quot;&gt;The view model of the new dialog.&lt;/param&gt;
-  /// &lt;param name=&quot;dialogType&quot;&gt;The type of the dialog.&lt;/param&gt;
-  /// &lt;returns&gt;
-  /// A nullable value of type bool that signifies how a window was closed by the user.
-  /// &lt;/returns&gt;
-  private bool? ShowDialog(object ownerViewModel, object viewModel, Type dialogType)
-  {
-    // Create dialog and set properties
-    Window dialog = (Window)Activator.CreateInstance(dialogType);
-    dialog.Owner = FindOwnerWindow(ownerViewModel);
-    dialog.DataContext = viewModel;
-    // Show dialog
-    return dialog.ShowDialog();
-  }
-  /// &lt;summary&gt;
-  /// Finds window corresponding to specified view model.
-  /// &lt;/summary&gt;
-  private Window FindOwnerWindow(object viewModel)
-  {
-    FrameworkElement view = 
-      views.SingleOrDefault(v =&gt; ReferenceEquals(v.DataContext, viewModel));
-    if (view == null)
-    {
-      throw new ArgumentException(&quot;View<span lang="en-us"> </span>model is not referenced by any registered view.&quot;);
-    }
-    // Get owner window
-    Window owner = view as Window;
-    if (owner == null)
-    {
-      owner = Window.GetWindow(view);
-    }
-    // Make sure owner window was found
-    if (owner == null)
-    {
-      throw new InvalidOperationException(&quot;View is not contained within a Window.&quot;);
-    }
-    return owner;
-  }
-  /// &lt;summary&gt;
-  /// Callback for late view register.
-  /// It wasn't possible to do a instant register since the
-  /// view wasn't at that point part of the logical nor visual tree.
-  /// &lt;/summary&gt;
-  private void LateRegister(object sender, RoutedEventArgs e)
-  {
-    FrameworkElement view = sender as FrameworkElement;
-    if (view != null)
-    {
-      // Unregister loaded event
-      view.Loaded -= LateRegister;
-      // Register the view
-      Register(view);
-    }
-  }
-  /// &lt;summary&gt;
-  /// Handles owner window closed, view service should then unregister all views acting
-  /// within the closed window.
-  /// &lt;/summary&gt;
-  private void OwnerClosed(object sender, EventArgs e)
-  {
-    Window owner = sender as Window;
-    if (owner != null)
-    {
-      // Find views acting within closed window
-      IEnumerable&lt;FrameworkElement&gt; windowViews =
-        from view in views
-        where Window.GetWindow(view) == owner
-        select view;
-      // Unregister views in window
-      foreach (FrameworkElement view in windowViews.ToArray())
-      {
-        Unregister(view);
-      }
-    }
-  }
-  /// &lt;summary&gt;
-  /// Gets the owning Window of a view.
-  /// &lt;/summary&gt;
-  /// &lt;param name=&quot;view&quot;&gt;The view.&lt;/param&gt;
-  /// &lt;returns&gt;The owning Window if found; otherwise null.&lt;/returns&gt;
-  private Window GetOwner(FrameworkElement view)
-  {
-    return view as Window ?? Window.GetWindow(view);
-  }
+<span lang="en-us">  </span>private static readonly Func&lt;Type, Window&gt; DefaultDialogFactory = (dialogType =&gt; (Window)Activator.CreateInstance(dialogType));
+<span lang="en-us">  </span>private static readonly string DialogResultPropertyName = Members.GetPropertyName((IModalDialogViewModel viewModel) =&gt; viewModel.DialogResult);
+
+<span lang="en-us">  </span>private readonly Func&lt;Type, Window&gt; dialogFactory; 
+<span lang="en-us">  </span>private readonly Func&lt;INotifyPropertyChanged, Type&gt; dialogTypeLocator;
+
+<span lang="en-us">  </span>/// &lt;summary&gt;
+<span lang="en-us">  </span>/// Initializes a new instance of the &lt;see cref="DialogService"/&gt; class.
+<span lang="en-us">  </span>/// &lt;/summary&gt;
+<span lang="en-us">  </span>/// &lt;param name="dialogFactory"&gt;
+<span lang="en-us">  </span>/// Function creating a dialog with a specified type. If no dialog factory is specified
+<span lang="en-us">  </span>/// &lt;see cref="Activator.CreateInstance(Type)"/&gt; is used to create the dialog.
+<span lang="en-us">  </span>/// &lt;/param&gt;
+<span lang="en-us">  </span>/// &lt;param name="dialogTypeLocator"&gt;
+<span lang="en-us">  </span>/// Function returning the dialog type based on view model instance. If no dialog type
+<span lang="en-us">  </span>/// locator is specified a naming convention based approach is used where the dialog type
+<span lang="en-us">  </span>/// is based on the name of the view model. The convention states that if the name of the
+<span lang="en-us">  </span>/// view model is 'MyNamespace.ViewModels.MyDialogViewModel' then the name of the dialog is
+<span lang="en-us">  </span>/// 'MyNamespace.Views.MyDialog'.
+<span lang="en-us">  </span>/// 
+<span lang="en-us">  </span>/// This naming convention is used in a multitude of articles and code samples regarding
+<span lang="en-us">  </span>/// the MVVM pattern and is a good default strategy.
+<span lang="en-us">  </span>/// &lt;/param&gt;
+<span lang="en-us">  </span>public DialogService(
+<span lang="en-us">    </span>Func&lt;Type, Window&gt; dialogFactory = null,
+<span lang="en-us">    </span>Func&lt;INotifyPropertyChanged, Type&gt; dialogTypeLocator = null)
+<span lang="en-us">  </span>{
+<span lang="en-us">    </span>this.dialogFactory = dialogFactory ?? DefaultDialogFactory;
+<span lang="en-us">    </span>this.dialogTypeLocator = dialogTypeLocator ?? NamingConventionDialogTypeLocator.LocateDialogType;
+<span lang="en-us">  </span>}
+
+<span lang="en-us">  </span>#region IDialogService Members
+
+<span lang="en-us">  </span>/// &lt;summary&gt;
+<span lang="en-us">  </span>/// Displays a non-modal dialog of specified type &lt;typeparamref name="T"/&gt;.
+<span lang="en-us">  </span>/// &lt;/summary&gt;
+<span lang="en-us">  </span>/// &lt;param name="ownerViewModel"&gt;
+<span lang="en-us">  </span>/// A view model that represents the owner window of the dialog.
+<span lang="en-us">  </span>/// &lt;/param&gt;
+<span lang="en-us">  </span>/// &lt;param name="viewModel"&gt;The view model of the new dialog.&lt;/param&gt;
+<span lang="en-us">  </span>/// &lt;typeparam name="T"&gt;The type of the dialog to show.&lt;/typeparam&gt;
+<span lang="en-us">  </span>public void Show&lt;T&gt;(
+<span lang="en-us">    </span>INotifyPropertyChanged ownerViewModel,
+<span lang="en-us">    </span>INotifyPropertyChanged viewModel)
+<span lang="en-us">    </span>where T : Window
+<span lang="en-us">  </span>{
+<span lang="en-us">    </span>if (ownerViewModel == null)
+<span lang="en-us">      </span>throw new ArgumentNullException("ownerViewModel");
+<span lang="en-us">    </span>if (viewModel == null)
+<span lang="en-us">      </span>throw new ArgumentNullException("viewModel");
+
+<span lang="en-us">    </span>Show(ownerViewModel, viewModel, typeof(T));
+<span lang="en-us">  </span>}
+
+<span lang="en-us">  </span>/// &lt;summary&gt;
+<span lang="en-us">  </span>/// Displays a non-modal dialog of a type that is determined by the dialog type locator
+<span lang="en-us">  </span>/// specified in the constructor.
+<span lang="en-us">  </span>/// &lt;/summary&gt;
+<span lang="en-us">  </span>/// &lt;param name="ownerViewModel"&gt;
+<span lang="en-us">  </span>/// A view model that represents the owner window of the dialog.
+<span lang="en-us">  </span>/// &lt;/param&gt;
+<span lang="en-us">  </span>/// &lt;param name="viewModel"&gt;The view model of the new dialog.&lt;/param&gt;
+<span lang="en-us">  </span>public void Show(
+<span lang="en-us">    </span>INotifyPropertyChanged ownerViewModel,
+<span lang="en-us">    </span>INotifyPropertyChanged viewModel)
+<span lang="en-us">  </span>{
+<span lang="en-us">    </span>if (ownerViewModel == null)
+<span lang="en-us">      </span>throw new ArgumentNullException("ownerViewModel");
+<span lang="en-us">    </span>if (viewModel == null)
+<span lang="en-us">      </span>throw new ArgumentNullException("viewModel");
+<span lang="en-us">    </span>if (dialogTypeLocator == null)
+<span lang="en-us">      </span>throw new InvalidOperationException(Resources.ImplicitUseProhibited);
+
+<span lang="en-us">    </span>Type dialogType = dialogTypeLocator(viewModel);
+<span lang="en-us">    </span>Show(ownerViewModel, viewModel, dialogType);
+<span lang="en-us">  </span>}
+
+<span lang="en-us">  </span>/// &lt;summary&gt;
+<span lang="en-us">  </span>/// Displays a modal dialog of specified type &lt;typeparamref name="T"/&gt;.
+<span lang="en-us">  </span>/// &lt;/summary&gt;
+<span lang="en-us">  </span>/// &lt;param name="ownerViewModel"&gt;
+<span lang="en-us">  </span>/// A view model that represents the owner window of the dialog.
+<span lang="en-us">  </span>/// &lt;/param&gt;
+<span lang="en-us">  </span>/// &lt;param name="viewModel"&gt;The view model of the new dialog.&lt;/param&gt;
+<span lang="en-us">  </span>/// &lt;typeparam name="T"&gt;The type of the dialog to show.&lt;/typeparam&gt;
+<span lang="en-us">  </span>/// &lt;returns&gt;
+<span lang="en-us">  </span>/// A nullable value of type &lt;see cref="bool"/&gt; that signifies how a window was closed by
+<span lang="en-us">  </span>/// the user.
+<span lang="en-us">  </span>/// &lt;/returns&gt;
+<span lang="en-us">  </span>public bool? ShowDialog&lt;T&gt;(
+<span lang="en-us">    </span>INotifyPropertyChanged ownerViewModel,
+<span lang="en-us">    </span>IModalDialogViewModel viewModel)
+<span lang="en-us">    </span>where T : Window
+<span lang="en-us">  </span>{
+<span lang="en-us">    </span>if (ownerViewModel == null)
+<span lang="en-us">      </span>throw new ArgumentNullException("ownerViewModel");
+<span lang="en-us">    </span>if (viewModel == null)
+<span lang="en-us">      </span>throw new ArgumentNullException("viewModel");
+
+<span lang="en-us">    </span>return ShowDialog(ownerViewModel, viewModel, typeof(T));
+<span lang="en-us">  </span>}
+
+<span lang="en-us">  </span>/// &lt;summary&gt;
+<span lang="en-us">  </span>/// Displays a modal dialog of a type that is determined by the dialog type locator
+<span lang="en-us">  </span>/// specified in constructor.
+<span lang="en-us">  </span>/// &lt;/summary&gt;
+<span lang="en-us">  </span>/// &lt;param name="ownerViewModel"&gt;
+<span lang="en-us">  </span>/// A view model that represents the owner window of the dialog.
+<span lang="en-us">  </span>/// &lt;/param&gt;
+<span lang="en-us">  </span>/// &lt;param name="viewModel"&gt;The view model of the new dialog.&lt;/param&gt;
+<span lang="en-us">  </span>/// &lt;returns&gt;
+<span lang="en-us">  </span>/// A nullable value of type &lt;see cref="bool"/&gt; that signifies how a window was closed by
+<span lang="en-us">  </span>/// the user.
+<span lang="en-us">  </span>/// &lt;/returns&gt;
+<span lang="en-us">  </span>public bool? ShowDialog(
+<span lang="en-us">    </span>INotifyPropertyChanged ownerViewModel,
+<span lang="en-us">    </span>IModalDialogViewModel viewModel)
+<span lang="en-us">  </span>{
+<span lang="en-us">    </span>if (ownerViewModel == null)
+<span lang="en-us">      </span>throw new ArgumentNullException("ownerViewModel");
+<span lang="en-us">    </span>if (viewModel == null)
+<span lang="en-us">      </span>throw new ArgumentNullException("viewModel");
+<span lang="en-us">    </span>if (dialogTypeLocator == null)
+<span lang="en-us">      </span>throw new InvalidOperationException(Resources.ImplicitUseProhibited);
+
+<span lang="en-us">    </span>Type dialogType = dialogTypeLocator(viewModel);
+<span lang="en-us">    </span>return ShowDialog(ownerViewModel, viewModel, dialogType);
+<span lang="en-us">  </span>}
+
+<span lang="en-us">  </span>/// &lt;summary&gt;
+<span lang="en-us">  </span>/// Displays a message box that has a message, title bar caption, button, and icon; and
+<span lang="en-us">  </span>/// that accepts a default message box result and returns a result.
+<span lang="en-us">  </span>/// &lt;/summary&gt;
+<span lang="en-us">  </span>/// &lt;param name="ownerViewModel"&gt;
+<span lang="en-us">  </span>/// A view model that represents the owner window of the dialog.
+<span lang="en-us">  </span>/// &lt;/param&gt;
+<span lang="en-us">  </span>/// &lt;param name="messageBoxText"&gt;
+<span lang="en-us">  </span>/// A &lt;see cref="string"/&gt; that specifies the text to display.
+<span lang="en-us">  </span>/// &lt;/param&gt;
+<span lang="en-us">  </span>/// &lt;param name="caption"&gt;
+<span lang="en-us">  </span>/// A &lt;see cref="string"/&gt; that specifies the title bar caption to display. Default value
+<span lang="en-us">  </span>/// is an empty string.
+<span lang="en-us">  </span>/// &lt;/param&gt;
+<span lang="en-us">  </span>/// &lt;param name="button"&gt;
+<span lang="en-us">  </span>/// A &lt;see cref="MessageBoxButton"/&gt; value that specifies which button or buttons to
+<span lang="en-us">  </span>/// display. Default value is &lt;see cref="MessageBoxButton.OK"/&gt;.
+<span lang="en-us">  </span>/// &lt;/param&gt;
+<span lang="en-us">  </span>/// &lt;param name="icon"&gt;
+<span lang="en-us">  </span>/// A &lt;see cref="MessageBoxImage"/&gt; value that specifies the icon to display. Default value
+<span lang="en-us">  </span>/// is &lt;see cref="MessageBoxImage.None"/&gt;.
+<span lang="en-us">  </span>/// &lt;/param&gt;
+<span lang="en-us">  </span>/// &lt;param name="defaultResult"&gt;
+<span lang="en-us">  </span>/// A &lt;see cref="MessageBoxResult"/&gt; value that specifies the default result of the
+<span lang="en-us">  </span>/// message box. Default value is &lt;see cref="MessageBoxResult.None"/&gt;.
+<span lang="en-us">  </span>/// &lt;/param&gt;
+<span lang="en-us">  </span>/// &lt;returns&gt;
+<span lang="en-us">  </span>/// A &lt;see cref="MessageBoxResult"/&gt; value that specifies which message box button is
+<span lang="en-us">  </span>/// clicked by the user.
+<span lang="en-us">  </span>/// &lt;/returns&gt;
+<span lang="en-us">  </span>public MessageBoxResult ShowMessageBox(
+<span lang="en-us">    </span>INotifyPropertyChanged ownerViewModel,
+<span lang="en-us">    </span>string messageBoxText,
+<span lang="en-us">    </span>string caption = "",
+<span lang="en-us">    </span>MessageBoxButton button = MessageBoxButton.OK,
+<span lang="en-us">    </span>MessageBoxImage icon = MessageBoxImage.None,
+<span lang="en-us">    </span>MessageBoxResult defaultResult = MessageBoxResult.None)
+<span lang="en-us">  </span>{
+<span lang="en-us">    </span>if (ownerViewModel == null)
+<span lang="en-us">      </span>throw new ArgumentNullException("ownerViewModel");
+
+<span lang="en-us">    </span>return MessageBox.Show(
+<span lang="en-us">      </span>FindOwnerWindow(ownerViewModel),
+<span lang="en-us">      </span>messageBoxText,
+<span lang="en-us">      </span>caption,
+<span lang="en-us">      </span>button,
+<span lang="en-us">      </span>icon,
+<span lang="en-us">      </span>defaultResult);
+<span lang="en-us">  </span>}
+
+<span lang="en-us">  </span>/// &lt;summary&gt;
+<span lang="en-us">  </span>/// Shows the &lt;see cref="OpenFileDialog"/&gt;.
+<span lang="en-us">  </span>/// &lt;/summary&gt;
+<span lang="en-us">  </span>/// &lt;param name="ownerViewModel"&gt;
+<span lang="en-us">  </span>/// A view model that represents the owner window of the dialog.
+<span lang="en-us">  </span>/// &lt;/param&gt;
+<span lang="en-us">  </span>/// &lt;param name="settings"&gt;The settings for the open file dialog.&lt;/param&gt;
+<span lang="en-us">  </span>/// &lt;returns&gt;
+<span lang="en-us">  </span>/// If the user clicks the OK button of the dialog that is displayed, true is returned;
+<span lang="en-us">  </span>/// otherwise false.
+<span lang="en-us">  </span>/// &lt;/returns&gt;
+<span lang="en-us">  </span>public bool? ShowOpenFileDialog(
+<span lang="en-us">    </span>INotifyPropertyChanged ownerViewModel,
+<span lang="en-us">    </span>OpenFileDialogSettings settings)
+<span lang="en-us">  </span>{
+<span lang="en-us">    </span>if (ownerViewModel == null)
+<span lang="en-us">      </span>throw new ArgumentNullException("ownerViewModel");
+<span lang="en-us">    </span>if (settings == null)
+<span lang="en-us">      </span>throw new ArgumentNullException("settings");
+
+<span lang="en-us">    </span>var dialog = new OpenFileDialogWrapper(settings);
+<span lang="en-us">    </span>return dialog.ShowDialog(FindOwnerWindow(ownerViewModel));
+<span lang="en-us">  </span>}
+
+<span lang="en-us">  </span>/// &lt;summary&gt;
+<span lang="en-us">  </span>/// Shows the &lt;see cref="SaveFileDialog"/&gt;.
+<span lang="en-us">  </span>/// &lt;/summary&gt;
+<span lang="en-us">  </span>/// &lt;param name="ownerViewModel"&gt;
+<span lang="en-us">  </span>/// A view model that represents the owner window of the dialog.
+<span lang="en-us">  </span>/// &lt;/param&gt;
+<span lang="en-us">  </span>/// &lt;param name="settings"&gt;The settings for the save file dialog.&lt;/param&gt;
+<span lang="en-us">  </span>/// &lt;returns&gt;
+<span lang="en-us">  </span>/// If the user clicks the OK button of the dialog that is displayed, true is returned;
+<span lang="en-us">  </span>/// otherwise false.
+<span lang="en-us">  </span>/// &lt;/returns&gt;
+<span lang="en-us">  </span>public bool? ShowSaveFileDialog(
+<span lang="en-us">    </span>INotifyPropertyChanged ownerViewModel,
+<span lang="en-us">    </span>SaveFileDialogSettings settings)
+<span lang="en-us">  </span>{
+<span lang="en-us">    </span>if (ownerViewModel == null)
+<span lang="en-us">      </span>throw new ArgumentNullException("ownerViewModel");
+<span lang="en-us">    </span>if (settings == null)
+<span lang="en-us">      </span>throw new ArgumentNullException("settings");
+
+<span lang="en-us">    </span>var dialog = new SaveFileDialogWrapper(settings);
+<span lang="en-us">    </span>return dialog.ShowDialog(FindOwnerWindow(ownerViewModel));
+<span lang="en-us">  </span>}
+
+<span lang="en-us">  </span>/// &lt;summary&gt;
+<span lang="en-us">  </span>/// Shows the &lt;see cref="FolderBrowserDialog"/&gt;.
+<span lang="en-us">  </span>/// &lt;/summary&gt;
+<span lang="en-us">  </span>/// &lt;param name="ownerViewModel"&gt;
+<span lang="en-us">  </span>/// A view model that represents the owner window of the dialog.
+<span lang="en-us">  </span>/// &lt;/param&gt;
+<span lang="en-us">  </span>/// &lt;param name="settings"&gt;The settings for the folder browser dialog.&lt;/param&gt;
+<span lang="en-us">  </span>/// &lt;returns&gt;
+<span lang="en-us">  </span>/// If the user clicks the OK button of the dialog that is displayed, true is returned;
+<span lang="en-us">  </span>/// otherwise false.
+<span lang="en-us">  </span>/// &lt;/returns&gt;
+<span lang="en-us">  </span>public bool? ShowFolderBrowserDialog(
+<span lang="en-us">    </span>INotifyPropertyChanged ownerViewModel,
+<span lang="en-us">    </span>FolderBrowserDialogSettings settings)
+<span lang="en-us">  </span>{
+<span lang="en-us">    </span>if (ownerViewModel == null)
+<span lang="en-us">      </span>throw new ArgumentNullException("ownerViewModel");
+<span lang="en-us">    </span>if (settings == null)
+<span lang="en-us">      </span>throw new ArgumentNullException("settings");
+
+<span lang="en-us">    </span>using (var dialog = new FolderBrowserDialogWrapper(settings))
+<span lang="en-us">    </span>{
+<span lang="en-us">      </span>DialogResult result = dialog.ShowDialog(new WindowWrapper(FindOwnerWindow(ownerViewModel)));
+<span lang="en-us">      </span>return result == DialogResult.OK;
+<span lang="en-us">    </span>}
+<span lang="en-us">  </span>}
+
+<span lang="en-us">  </span>#endregion
+
+<span lang="en-us">  </span>private void Show(
+<span lang="en-us">    </span>INotifyPropertyChanged ownerViewModel,
+<span lang="en-us">    </span>INotifyPropertyChanged viewModel,
+<span lang="en-us">    </span>Type dialogType)
+<span lang="en-us">  </span>{
+<span lang="en-us">    </span>Window dialog = CreateDialog(dialogType, ownerViewModel, viewModel);
+<span lang="en-us">    </span>dialog.Show();
+<span lang="en-us">  </span>}
+
+<span lang="en-us">  </span>private bool? ShowDialog(
+<span lang="en-us">    </span>INotifyPropertyChanged ownerViewModel,
+<span lang="en-us">    </span>IModalDialogViewModel viewModel,
+<span lang="en-us">    </span>Type dialogType)
+<span lang="en-us">  </span>{
+<span lang="en-us">    </span>Window dialog = CreateDialog(dialogType, ownerViewModel, viewModel);
+
+<span lang="en-us">    </span>PropertyChangedEventHandler handler = RegisterDialogResult(dialog, viewModel);
+<span lang="en-us">    </span>dialog.ShowDialog();
+<span lang="en-us">    </span>UnregisterDialogResult(viewModel, handler);
+
+<span lang="en-us">    </span>return viewModel.DialogResult;
+<span lang="en-us">  </span>}
+
+<span lang="en-us">  </span>private Window CreateDialog(
+<span lang="en-us">    </span>Type dialogType,
+<span lang="en-us">    </span>INotifyPropertyChanged ownerViewModel,
+<span lang="en-us">    </span>INotifyPropertyChanged viewModel)
+<span lang="en-us">  </span>{
+<span lang="en-us">    </span>var dialog = dialogFactory(dialogType);
+<span lang="en-us">    </span>dialog.Owner = FindOwnerWindow(ownerViewModel);
+<span lang="en-us">    </span>dialog.DataContext = viewModel;
+
+<span lang="en-us">    </span>return dialog;
+<span lang="en-us">  </span>}
+
+<span lang="en-us">  </span>private static PropertyChangedEventHandler RegisterDialogResult(
+<span lang="en-us">    </span>Window dialog,
+<span lang="en-us">    </span>IModalDialogViewModel viewModel)
+<span lang="en-us">  </span>{
+<span lang="en-us">    </span>PropertyChangedEventHandler handler = (sender, e) =&gt;
+<span lang="en-us">    </span>{
+<span lang="en-us">      </span>if (e.PropertyName == DialogResultPropertyName)
+<span lang="en-us">      </span>{
+<span lang="en-us">        </span>dialog.DialogResult = viewModel.DialogResult;
+<span lang="en-us">      </span>}
+<span lang="en-us">    </span>};
+
+<span lang="en-us">    </span>viewModel.PropertyChanged += handler;
+
+<span lang="en-us">    </span>return handler;
+<span lang="en-us">  </span>}
+
+<span lang="en-us">  </span>private static void UnregisterDialogResult(
+<span lang="en-us">    </span>IModalDialogViewModel viewModel,
+<span lang="en-us">    </span>PropertyChangedEventHandler handler)
+<span lang="en-us">  </span>{
+<span lang="en-us">    </span>viewModel.PropertyChanged -= handler;
+<span lang="en-us">  </span>}
+
+<span lang="en-us">  </span>/// &lt;summary&gt;
+<span lang="en-us">  </span>/// Finds window corresponding to specified view model.
+<span lang="en-us">  </span>/// &lt;/summary&gt;
+<span lang="en-us">  </span>private static Window FindOwnerWindow(INotifyPropertyChanged viewModel)
+<span lang="en-us">  </span>{
+<span lang="en-us">    </span>IView view = DialogServiceViews.Views.SingleOrDefault(
+<span lang="en-us">      </span>registeredView =&gt;
+<span lang="en-us">        </span>registeredView.Source.IsLoaded &amp;&amp;
+<span lang="en-us">        </span>ReferenceEquals(registeredView.DataContext, viewModel));
+
+<span lang="en-us">    </span>if (view == null)
+<span lang="en-us">      </span>throw new ArgumentException(Resources.ViewModelNotReferenced.CurrentFormat(viewModel.GetType()));
+
+<span lang="en-us">    </span>// Get owner window
+<span lang="en-us">    </span>Window owner = view.GetOwner();
+<span lang="en-us">    </span>if (owner == null)
+<span lang="en-us">      </span>throw new InvalidOperationException(Resources.ViewNotRegistered.CurrentFormat(view.GetType()));
+
+<span lang="en-us">    </span>return owner;
+<span lang="en-us">  </span>}
 }</pre>
 
-    <p>The design is pretty straightforward. A view is registering itself as part of the MVVM pattern by setting the attached property <code>IsRegisteredView</code> on any element in the logical tree.</p>
+    <p>???Describe the constructor arguments.</p>
+<p>The design is pretty straightforward. A view is registering itself as part of the MVVM pattern by setting the attached property <code>IsRegisteredView</code> on any element in the logical tree.</p>
 
 <pre lang="Xml">&lt;Window
   x:Class=&quot;MVVM_Dialogs.View.MainWindow&quot;
@@ -456,77 +834,12 @@ class DialogService : IDialogService
     <p>The view is now remembered by the dialog service. When a view model is in need to show some kind of dialog, the correct 
 	view is found by the service, and its owning Window is used as the owner.</p>
 
-    <h3><a name="dialog_service_showing_dialog">Showing a Dialog from a view 
-	model</a></h3>
+<h2><a name="github">GitHub</a></h2>
+<p>???</p>
 
-    <p>There exist two overloads for using the <code>ShowDialog</code> method. The first one lets the developer specify the dialog type. </p>
+<h2><a name="nuget">NuGet</a></h2>
+<p>???</p>
 
-<pre lang="Cs">public class MainWindowViewModel : ViewModelBase
-{
-  ...
-  private void ShowInformation(object o)
-  {
-    // Get the selected person view model
-    PersonViewModel selectedPerson = persons.Single(p =&gt; p.IsSelected);
-    // Create the PersonDialog view model
-    PersonDialogViewModel personDialogViewModel = 
-              new PersonDialogViewModel(selectedPerson.Person);
-    // Showing the dialog, alternative 1.
-    // Showing a specified dialog. This doesn't require any form of mapping using 
-    // IWindowViewModelMappings.
-    dialogService.ShowDialog&lt;PersonDialog&gt;(this, personDialogViewModel);
-  }
-}</pre>
-
-    <p>This overload specifies that a <code>PersonDialog</code> should be displayed with <code lang="Cs">this</code> as the owner and <code>personDialogViewModel</code> as <code>DataContext</code>. However, some of you might find it unsuitable that a 
-	view is specified in a view model. For you, there is a second overload.</p>
-
-<pre lang="Cs">public class MainWindowViewModel : ViewModelBase
-{
-  ...
-  private void ShowInformation(object o)
-  {
-    // Get the selected person view model
-    PersonViewModel selectedPerson = persons.Single(p =&gt; p.IsSelected);
-    // Create the PersonDialog view model
-    PersonDialogViewModel personDialogViewModel = 
-                new PersonDialogViewModel(selectedPerson.Person);
-    // Showing the dialog, alternative 2.
-    // Showing a dialog without specifying the type.
-    // This require some form of mapping using 
-    // IWindowViewModelMappings.
-    dialogService.ShowDialog(this, personDialogViewModel);
-  }
-}
-/// &lt;summary&gt;
-/// Class describing the Window-view model mappings used by the dialog service.
-/// &lt;/summary&gt;
-public class WindowViewModelMappings : IWindowViewModelMappings
-{
-  private IDictionary&lt;Type, Type&gt; mappings;
-  /// &lt;summary&gt;
-  /// Initializes a new instance of the &lt;see cref=&quot;WindowViewModelMappings&quot;/&gt; class.
-  /// &lt;/summary&gt;
-  public WindowViewModelMappings()
-  {
-    mappings = new Dictionary&lt;Type, Type&gt;
-    {
-      { typeof(PersonDialogViewModel), typeof(PersonDialog) }
-    };
-  }
-  /// &lt;summary&gt;
-  /// Gets the window type based on registered view model type.
-  /// &lt;/summary&gt;
-  /// &lt;param name=&quot;viewModelType&quot;&gt;The type of the view model.&lt;/param&gt;
-  /// &lt;returns&gt;The window type based on registered view model type.&lt;/returns&gt;
-  public Type GetWindowTypeFromViewModelType(Type viewModelType)
-  {
-    return mappings[viewModelType];
-  }
-}</pre>
-
-    <p>This overload doesn't specify the dialog type; however, you are forced to register the Window-view 
-	model mappings in a class implementing <code>IWindowViewModelMappings</code>.</p>
 
     <h2><a name="what_now">What Now?</a></h2>
 
