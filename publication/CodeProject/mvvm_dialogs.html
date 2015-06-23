@@ -69,8 +69,110 @@ so lets start with that.
 This chapter will demonstrate the required code needed to use the framework.</p>
 	
 	<h3>Showing a Dialog from a View Model</h3>
-<h4>Explicit Declaration Versus Implicit</h4>
-<h4><a name="showing_dialog">Showing a Modal Dialog from a View Model</a></h4>
+<p>A dialog can be shown either as modal or non-modal. A modal dialog halts code 
+execution and awaits the dialog result while a non-modal dialog continues code 
+execution without waiting for any dialog result. Showing a dialog can be 
+performed in either of two ways using MVVM Dialogs, either by explicitly 
+specifying the type of the dialog or by implicitly using a dialog type locator. 
+Both concepts and the difference in usage are shown in the chapter.</p>
+<h4>Explicit Versus <span id="ArticleContent1">
+
+    Implicit
+
+</span>Dialog Type Declaration</h4>
+<p>The consumer of the framework can descide whether to explicitly specify the 
+type of the dialog to open by using <code>IDialogService.ShowDialog&lt;T&gt;()</code> to show modal 
+dialog or <code>IDialogService.Show&lt;T&gt;</code> to show a non-modal dialog. The generic T is 
+stating the dialog type opened by <code>IDialogService</code>. This syntax is 
+easy to understand and use, but the MVVM purists are most certainly appalled by 
+the fact that the view type has to be defined in the view model. For them <code>IDialogService.ShowDialog()</code> and
+<code>IDialogService.Show</code> are the non-generic alternative where the 
+dialog type isn't mentioned at all. But the fact still remains that 
+IDialogService needs to know the type of the dialog to open, but by using the 
+non-generic syntax you are falling back to the dialog type locator specified in 
+the constructor of DialogService to resolve the dialog type. If no dialog type 
+locator has been specified the framework's built in locator is used. It uses the 
+common naming convention of view models and views stating that if the full name 
+of the view model is <code>MyNamespace.ViewModels.MyDialogViewModel</code> then 
+the full name of the view must be <code>MyNamespace.Views.MyDialog</code>. If 
+this convention doesn't fit your solution the dialog type locator can be 
+overriden by specifying your own implementation.</p>
+
+<h4><a name="showing_dialog">Explicitly Showing a Modal Dialog from a View Model</a></h4>
+<p>To show a modal dialog explicitly start by registering the view by decorating the XAML with 
+the attached property <code>DialogServiceViews.IsRegistered</code>.</p>
+<pre lang="Xml">&lt;UserControl
+  x:Class="DemoApplication.Features.Dialog.Modal.Views.ModalDialogTabContent"
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:md="https://github.com/fantasticfiasco/mvvm-dialogs"
+  md:DialogServiceViews.IsRegistered="True"&gt;
+  
+&lt;/UserControl&gt;</pre>
+
+<p>In the view model, open the dialog by calling <code>IDialogService.ShowDialog&lt;T&gt;</code>.</p>
+<pre lang="Cs">public class ModalDialogTabContentViewModel : INotifyPropertyChanged
+{
+  private readonly IDialogService dialogService;
+  
+  public ModalDialogTabContentViewModel(IDialogService dialogService)
+  {
+    this.dialogService = dialogService;
+  }
+  
+  private void ShowDialog()
+  {
+    var dialogViewModel = new AddTextDialogViewModel();
+
+    bool? success = dialogService.ShowDialog&lt;AddTextDialog&gt;(this, dialogViewModel));
+    if (success == true)
+    {
+      Texts.Add(dialogViewModel.Text);
+    }
+  }
+}</pre>
+
+<h4><a name="showing_dialog0">Implicitly Showing a Modal Dialog from a View Model</a></h4>
+<p>To show a modal dialog implicitly start by registering the view by decorating the XAML with 
+the attached property <code>DialogServiceViews.IsRegistered</code>.</p>
+<pre lang="Xml">&lt;UserControl
+  x:Class="DemoApplication.Features.Dialog.Modal.Views.ModalDialogTabContent"
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:md="https://github.com/fantasticfiasco/mvvm-dialogs"
+  md:DialogServiceViews.IsRegistered="True"&gt;
+  
+&lt;/UserControl&gt;</pre>
+
+<p>In the view model, open the dialog by calling <code>IDialogService.ShowDialog</code>.</p>
+
+<pre lang="Cs">public class ModalDialogTabContentViewModel : INotifyPropertyChanged
+{
+  private readonly IDialogService dialogService;
+  
+  public ModalDialogTabContentViewModel(IDialogService dialogService)
+  {
+    this.dialogService = dialogService;
+  }
+  
+  private void ShowDialog()
+  {
+    var dialogViewModel = new AddTextDialogViewModel();
+
+    bool? success = dialogService.ShowDialog(this, dialogViewModel));
+    if (success == true)
+    {
+      Texts.Add(dialogViewModel.Text);
+    }
+  }
+}</pre>
+
+
+<h4>Explicitly <a name="showing_dialog1">Showing a Non-Modal Dialog from a View Model</a></h4>
+<p>???</p>
+
+<h4><a name="showing_dialog2">Implicitly Showing a Non-Modal Dialog from a View Model</a></h4>
+<h4>&nbsp;</h4>
 	
 	<p>A dialog can be shown both as modal and non-modal. The following code 
 	samples will showcase opening a modal dialog using <code>IDialogService.ShowDialog</code>, 
@@ -488,7 +590,7 @@ public interface IDialogService
     FolderBrowserDialogSettings settings);
 }</pre>
 
-    <p>The actual implementation of <code>IDialogServiceis</code> is <code>DialogService</code>.</p>
+    <p>The actual implementation of <code>IDialogService</code> is <code>DialogService</code>.</p>
 
 <pre lang="Cs">/// &lt;summary&gt;
 /// Class abstracting the interaction between view models and views when it comes to
@@ -834,38 +936,23 @@ public class DialogService : IDialogService
 }</pre>
 
     <p>???Describe the constructor arguments.</p>
-<p>The design is pretty straightforward. A view is registering itself as part of the MVVM pattern by setting the attached property <code>IsRegisteredView</code> on any element in the logical tree.</p>
-
-<pre lang="Xml">&lt;Window
-  x:Class=&quot;MVVM_Dialogs.View.MainWindow&quot;
-  xmlns=&quot;http://schemas.microsoft.com/winfx/2006/xaml/presentation&quot;
-  xmlns:x=&quot;http://schemas.microsoft.com/winfx/2006/xaml&quot;
-  xmlns:service=&quot;clr-namespace:MVVM_Dialogs.Service&quot;
-  service:DialogService.IsRegisteredView=&quot;True&quot;&gt;</pre>
-
-    <p>The view is now remembered by the dialog service. When a view model is in need to show some kind of dialog, the correct 
-	view is found by the service, and its owning Window is used as the owner.</p>
 
 <h2><a name="github">GitHub</a></h2>
-<p>The code is also available on
-<a href="https://github.com/FantasticFiasco/mvvm-dialogs">GitHub</a>. The 
-project accepts issues and pull requests.</p>
+<p>The code is also available on <a href="https://github.com/FantasticFiasco/mvvm-dialogs">GitHub</a>. You are 
+welcome to create issues and pull requests.</p>
 
 <h2><a name="nuget">NuGet</a></h2>
-<p>If you want to include MVVM Dialogs in your project, you can
-<a href="https://www.nuget.org/packages/MvvmDialogs/">install it directly from NuGet</a>.</p>
+<p>If you want to include MVVM Dialogs in your project, you can <a href="https://www.nuget.org/packages/MvvmDialogs/">install it directly from NuGet</a>.</p>
 <p>To install MVVM Dialogs, run the following command in the Package Manager Console:</p>
 <pre>PM> Install-Package MvvmDialogs</pre>
 
 
-    <h2><a name="what_now">What Now?</a></h2>
-
-    <p>I would like to hear your thoughts about the idea. Perhaps you have a better solution? Don't be afraid, leave a comment...</p>
-
     <h2><a name="history">History</a></h2>
 
     <ul>
-        <li>???<li>5 October 2010: Code update.</li>
+        <li>??? June 2015: Major code refactoring.<ul>
+			<li>Source available on GitHub.<li>Package available as NuGet.</ul>
+		<li>5 October 2010: Code update.</li>
 
         <ul>
             <li>Updated source according to <a href="MVVM_Dialogs.aspx?msg=3603145#xx3603145xx">comments</a> by d302241.</li>
