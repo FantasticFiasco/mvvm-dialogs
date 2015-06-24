@@ -9,17 +9,24 @@
     <h2>Contents</h2>
 
     <ul>
-        <li>??? do in the end</li>
 		<li><a href="#intro">Introduction</a></li>
 
         <li><a href="#usage">Usage</a></li>
         
-        <li><a href="#showing_dialog">Showing a Dialog from a View Model</a></li>
-
+        <ul>
+        	<li><a href="#usage_showdialog">Showing a Dialog</li>
+        	
+        	<li><a href="#usage_showmessagebox">Showing a Message Box</li>
+        	
+        	<li><a href="#usage_showopenfiledialog">Showing a Open File Dialog</li>
+        	
+        	<li><a href="#usage_showsavefiledialog">Showing a Save File Dialog</li>
+        	
+        	<li><a href="#usage_showfolderbrowserdialog">Showing a Folder Browser Dialog</li>
+        </ul>
+        
         <li><a href="#dialog_service">The Dialog Service</a></li>
 
-        <li><a href="#what_now">What Now?</a></li>
-        
         <li><a href="#github">GitHub</a></li>
         
         <li><a href="#nuget">NuGet</a></li>
@@ -64,13 +71,13 @@
 		<li>Folder browser dialogs</li>
 	</ul>
 
-    <h2>Usage</h2>
+    <h2><a name="usage">Usage</a></h2>
     
 	<p>More intresting than the implementation of the framework is the usage of it, 
 	so lets start with that. This chapter will demonstrate the code required to show
 	the supported dialogs.</p>
 	
-	<h3>Showing a Dialog</h3>
+	<h3><a name="usage_showdialog">Showing a Dialog</a></h3>
 	
 	<p>A dialog can be shown either as modal or non-modal. A modal dialog halts code 
 	execution and awaits the dialog result while a non-modal dialog continues code 
@@ -80,7 +87,7 @@
 	Both concepts and the difference in usage will be described in the following 
 	chapters.</p>
 
-	<h4>Explicit Dialog Type Syntax</h4>
+	<h4><a name="usage_showdialog_explicitsyntax">Explicit Dialog Type Syntax</a></h4>
 	
 	<p>The most straight forward syntax to use is the explicit syntax where the 
 	generic methods <code>IDialogService.ShowDialog&lt;T&gt;()</code> and <code>IDialogService.Show&lt;T&gt;()</code> 
@@ -89,7 +96,7 @@
 	the fact that the view type is defined in the view model. For them there is the 
 	implicit syntax and the dialog type locator.</p>
 
-	<h4>Implicit Dialog Type Syntax and the Dialog Type Locator</h4>
+	<h4><a name="usage_showdialog_implicitsyntax">Implicit Dialog Type Syntax and the Dialog Type Locator</a></h4>
 	
 	<p>Specifying a dialog type in a view model might disgust a MVVM purist, thus 
 	the framework supports opening a dialog without specifying the dialog type.
@@ -108,7 +115,7 @@
 	structure the default dialog type locator can be overriden by specifying your own implementation 
 	in the constructor of <code>DialogService</code>.</p>
 
-	<h4>Showing a Modal Dialog Using Explicit Dialog Type Syntax</h4>
+	<h4><a name="usage_showdialog_showdialogexplicitsyntax">Showing a Modal Dialog Using Explicit Dialog Type Syntax</a></h4>
 	
 	<p>To show a modal dialog using explicit dialog type syntax start by registering the view by decorating the XAML with 
 	the attached property <code>DialogServiceViews.IsRegistered</code>.</p>
@@ -145,7 +152,7 @@
   }
 }</pre>
 
-	<h4>Showing a Modal Dialog Using Implicit Dialog Type Syntax</h4>
+	<h4><a name="usage_showdialog_showdialogimplicitsyntax">Showing a Modal Dialog Using Implicit Dialog Type Syntax</a></h4>
 	
 	<p>To show a modal dialog using implicit dialog type syntax start by registering the view by decorating the XAML with 
 	the attached property <code>DialogServiceViews.IsRegistered</code>.</p>
@@ -184,7 +191,7 @@
 }</pre>
 
 
-	<h4>Showing a Non-Modal Dialog Using Explicit Dialog Type Syntax</h4>
+	<h4><a name="usage_showdialog_showexplicitsyntax">Showing a Non-Modal Dialog Using Explicit Dialog Type Syntax</a></h4>
 	
 	<p>To show a non-modal dialog using explicit dialog type syntax start by registering the view by decorating the XAML with 
 	the attached property <code>DialogServiceViews.IsRegistered</code>.</p>
@@ -216,7 +223,7 @@
   }
 }</pre>
 
-	<h4>Showing a Non-Modal Dialog Using Implicit Dialog Type Syntax</h4>
+	<h4><a name="usage_showdialog_showimplicitsyntax">Showing a Non-Modal Dialog Using Implicit Dialog Type Syntax</a></h4>
 	
 	<p>To show a non-modal dialog using implicit dialog type syntax start by registering the view by decorating the XAML with 
 	the attached property <code>DialogServiceViews.IsRegistered</code>.</p>
@@ -248,7 +255,7 @@
   }
 }</pre>
 	
-	<h3>Showing a Message Box</h3>
+	<h3><a name="usage_showmessagebox">Showing a Message Box</a></h3>
 	
 	<p>To show a message box start by registering the view by decorating the 
 	XAML with the attached property <code>DialogServiceViews.IsRegistered</code>.</p>
@@ -284,7 +291,7 @@
   }
 }</pre>
 	
-	<h3>Showing a OpenFileDialog</h3>
+	<h3><a name="usage_showopenfiledialog">Showing a Open File Dialog</a></h3>
 	
 	<p>To show a open file dialog start by registering the view by decorating the 
 	XAML with 
@@ -326,7 +333,7 @@
     }
   }</pre>
 		
-	<h3>Showing a SaveFileDialog</h3>
+	<h3><a name="usage_showsavefiledialog">Showing a Save File Dialog</a></h3>
 	
 	<p>To show a save file dialog start by registering the view by decorating the 
 	XAML with the attached property <code>DialogServiceViews.IsRegistered</code>.</p>
@@ -369,7 +376,7 @@
   }
 }</pre>
 
-	<h3>Showing a FolderBrowserDialog</h3>
+	<h3><a name="usage_showfolderbrowserdialog">Showing a Folder Browser Dialog</a></h3>
 	
 	<p>To show a folder browser dialog start by registering the view by decorating the 
 	XAML with the attached property <code>DialogServiceViews.IsRegistered</code>.</p>
