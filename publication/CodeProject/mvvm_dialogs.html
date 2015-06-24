@@ -1,7 +1,7 @@
 ﻿<span id="ArticleContent">
 
     <ul class="download">
-        <li><a href="MVVM_Dialogs/MVVM_Dialogs.zip">Download source - ??? KB</a> ??? do in the end</li>
+        <li><a href="MVVM_Dialogs/MVVM_Dialogs.zip">Download source - ??? KB</a></li>
     </ul>
 
     <p><img width="625" height="420" src="MVVM_Dialogs/Application.png" complete="true" /></p>
@@ -14,15 +14,15 @@
         <li><a href="#usage">Usage</a></li>
         
         <ul>
-        	<li><a href="#usage_showdialog">Showing a Dialog</li>
+        	<li><a href="#usage_showdialog">Showing a Dialog</a></li>
         	
-        	<li><a href="#usage_showmessagebox">Showing a Message Box</li>
+        	<li><a href="#usage_showmessagebox">Showing a Message Box</a></li>
         	
-        	<li><a href="#usage_showopenfiledialog">Showing a Open File Dialog</li>
+        	<li><a href="#usage_showopenfiledialog">Showing a Open File Dialog</a></li>
         	
-        	<li><a href="#usage_showsavefiledialog">Showing a Save File Dialog</li>
+        	<li><a href="#usage_showsavefiledialog">Showing a Save File Dialog</a></li>
         	
-        	<li><a href="#usage_showfolderbrowserdialog">Showing a Folder Browser Dialog</li>
+        	<li><a href="#usage_showfolderbrowserdialog">Showing a Folder Browser Dialog</a></li>
         </ul>
         
         <li><a href="#dialog_service">The Dialog Service</a></li>
@@ -41,7 +41,7 @@
 	<a href="http://msdn.microsoft.com/en-us/magazine/dd419663.aspx">article</a> in MSDN Magazine which can serve as the starting
 	point for those that are unfamiliar with the pattern.</p>
 
-    <p>There already exists numerous MVVM frameworks, and for those developers looking for a more complete solution to MVVM I 
+    <p>There already exists numerous MVVM frameworks, and for those looking for a more complete solution to MVVM I 
 	would recommend taking a look at the following frameworks:</p>
 	
 	<ul>
@@ -52,7 +52,7 @@
 		<li><a href="http://caliburnmicro.com/">Caliburn.Micro</a></li>
 	</ul>
 	
-	<p>MVVM Dialogs is not a complete all included MVVM framework. It is 
+	<p>This framework is not a complete all-inclusive MVVM framework. It is 
 	designed to simplify the concept of opening dialogs from a 
 	view model when using MVVM in WPF. It does a pretty good job of that but nothing 
 	else. It doesn't contain any fancy view model base classes, nor any event 
@@ -63,8 +63,8 @@
 	<p>The framework has currently built in support for opening the following dialogs:</p>
 	
 	<ul>
-		<li>Modal windows</li>
-		<li>Non-modal windows</li>
+		<li>Modal dialogs</li>
+		<li>Non-modal dialogs</li>
 		<li>Message boxes</li>
 		<li>Open file dialogs</li>
 		<li>Save file dialogs</li>
@@ -84,13 +84,12 @@
 	execution without waiting for any dialog result. Showing a dialog can be 
 	performed in either of two ways, either by explicit 
 	specifying the dialog type or by implicit using the dialog type locator. 
-	Both concepts and the difference in usage will be described in the following 
-	chapters.</p>
+	Both concepts and the difference in usage is described in the upcoming chapters.</p>
 
 	<h4><a name="usage_showdialog_explicitsyntax">Explicit Dialog Type Syntax</a></h4>
 	
 	<p>The most straight forward syntax to use is the explicit syntax where the 
-	generic methods <code>IDialogService.ShowDialog&lt;T&gt;()</code> and <code>IDialogService.Show&lt;T&gt;()</code> 
+	generic methods <code>IDialogService.ShowDialog&lt;T&gt;</code> and <code>IDialogService.Show&lt;T&gt;</code> 
 	shows a modal respectivly non-modal dialog of the type <code>T</code>. The MVVM purists 
 	among the readers are most certainly appalled by 
 	the fact that the view type is defined in the view model. For them there is the 
@@ -98,21 +97,25 @@
 
 	<h4><a name="usage_showdialog_implicitsyntax">Implicit Dialog Type Syntax and the Dialog Type Locator</a></h4>
 	
-	<p>Specifying a dialog type in a view model might disgust a MVVM purist, thus 
+	<p>Specifying a dialog type in a view model might either be unwanted or 
+	impossible in certains sutuations, thus 
 	the framework supports opening a dialog without specifying the dialog type.
-	<code>IDialogService.ShowDialog()</code> and
-	<code>IDialogService.Show()</code> is the non-generic syntax where the dialog 
+	<code>IDialogService.ShowDialog</code> and
+	<code>IDialogService.Show</code> are the non-generic methods where the dialog 
 	type isn't specified in the method call. However, <code>IDialogService</code> still 
 	has to know the dialog type in order to create and open the dialog. This is where the 
-	concept of a dialog type locator comes into play. A dialog type locator is a 
+	concept of a <em>dialog type locator</em> comes into play.</p>
+
+	<p>A dialog type locator is a 
 	function of type <code>Func&lt;INotifyPropertyChanged, Type&gt;</code> capable of 
-	resolving a dialog type based on a specified view model. <code>DialogService</code> comes with 
+	resolving a dialog type based on a specified view model. The implementation 
+	of <code>DialogService</code> comes with 
 	a default&nbsp;dialog type locator that uses a common naming convention used in 
 	a multitude of articles and code samples regarding the MVVM pattern. The 
 	convention states that if the name of the view model is 
 	<code>MyNamespace.ViewModels.MyDialogViewModel</code> then the name of the dialog is 
 	<code>MyNamespace.Views.MyDialog</code>. If this convention doesn't fit your code 
-	structure the default dialog type locator can be overriden by specifying your own implementation 
+	structure the default locator can be overriden by specifying your own implementation 
 	in the constructor of <code>DialogService</code>.</p>
 
 	<h4><a name="usage_showdialog_showdialogexplicitsyntax">Showing a Modal Dialog Using Explicit Dialog Type Syntax</a></h4>
@@ -442,8 +445,7 @@ public interface IDialogService
     where T : Window;
 
   /// &lt;summary&gt;
-  /// Displays a non-modal dialog of a type that is determined by the dialog type locator
-  /// specified in the constructor.
+  /// Displays a non-modal dialog of a type that is determined by the dialog type locator.
   /// &lt;/summary&gt;
   /// &lt;param name="ownerViewModel"&gt;
   /// A view model that represents the owner window of the dialog.
@@ -471,8 +473,7 @@ public interface IDialogService
     where T : Window;
 
   /// &lt;summary&gt;
-  /// Displays a modal dialog of a type that is determined by the dialog type locator
-  /// specified in constructor.
+  /// Displays a modal dialog of a type that is determined by the dialog type locator.
   /// &lt;/summary&gt;
   /// &lt;param name="ownerViewModel"&gt;
   /// A view model that represents the owner window of the dialog.
@@ -633,8 +634,7 @@ public class DialogService : IDialogService
   }
 
   /// &lt;summary&gt;
-  /// Displays a non-modal dialog of a type that is determined by the dialog type locator
-  /// specified in the constructor.
+  /// Displays a non-modal dialog of a type that is determined by the dialog type locator.
   /// &lt;/summary&gt;
   /// &lt;param name="ownerViewModel"&gt;
   /// A view model that represents the owner window of the dialog.
@@ -648,8 +648,6 @@ public class DialogService : IDialogService
       throw new ArgumentNullException("ownerViewModel");
     if (viewModel == null)
       throw new ArgumentNullException("viewModel");
-    if (dialogTypeLocator == null)
-      throw new InvalidOperationException(Resources.ImplicitUseProhibited);
 
     Type dialogType = dialogTypeLocator(viewModel);
     Show(ownerViewModel, viewModel, dialogType);
@@ -681,8 +679,7 @@ public class DialogService : IDialogService
   }
 
   /// &lt;summary&gt;
-  /// Displays a modal dialog of a type that is determined by the dialog type locator
-  /// specified in constructor.
+  /// Displays a modal dialog of a type that is determined by the dialog type locator.
   /// &lt;/summary&gt;
   /// &lt;param name="ownerViewModel"&gt;
   /// A view model that represents the owner window of the dialog.
@@ -700,8 +697,6 @@ public class DialogService : IDialogService
       throw new ArgumentNullException("ownerViewModel");
     if (viewModel == null)
       throw new ArgumentNullException("viewModel");
-    if (dialogTypeLocator == null)
-      throw new InvalidOperationException(Resources.ImplicitUseProhibited);
 
     Type dialogType = dialogTypeLocator(viewModel);
     return ShowDialog(ownerViewModel, viewModel, dialogType);
@@ -915,8 +910,6 @@ public class DialogService : IDialogService
   }
 }</pre>
 
-    <p>???Describe the constructor arguments.</p>
-
 	<h2><a name="github">GitHub</a></h2>
 	
 	<p>The code is also available on <a href="https://github.com/FantasticFiasco/mvvm-dialogs">GitHub</a>. You are 
@@ -931,7 +924,7 @@ public class DialogService : IDialogService
     <h2><a name="history">History</a></h2>
 
     <ul>
-        <li>??? June 2015: Major code refactoring.<ul>
+        <li>24 June 2015: Major code refactoring.<ul>
 			<li>Source available on GitHub.<li>Package available as NuGet.</ul>
 		<li>5 October 2010: Code update.</li>
 
