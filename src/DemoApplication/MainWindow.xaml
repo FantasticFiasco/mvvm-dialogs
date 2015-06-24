@@ -10,9 +10,10 @@
     Title="MVVM Dialogs"
     WindowStartupLocation="CenterScreen"
     md:DialogServiceViews.IsRegistered="True"
+    d:DataContext="{d:DesignInstance local:MainWindowViewModel}"
+    Icon="/App.ico"
     Height="400"
-    Width="600"
-    d:DataContext="{d:DesignInstance local:MainWindowViewModel}">
+    Width="600">
     
     <!-- Resources -->
     <Window.Resources>

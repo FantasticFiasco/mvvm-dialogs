@@ -8,6 +8,7 @@
     xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
     mc:Ignorable="d"
     d:DataContext="{d:DesignInstance vm:CurrentTimeDialogViewModel}"
+    Icon="/App.ico"
     Title="Current Time"
     WindowStartupLocation="CenterOwner"
     Height="200"
