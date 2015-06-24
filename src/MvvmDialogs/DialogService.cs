@@ -78,8 +78,7 @@ namespace MvvmDialogs
         }
 
         /// <summary>
-        /// Displays a non-modal dialog of a type that is determined by the dialog type locator
-        /// specified in the constructor.
+        /// Displays a non-modal dialog of a type that is determined by the dialog type locator.
         /// </summary>
         /// <param name="ownerViewModel">
         /// A view model that represents the owner window of the dialog.
@@ -93,9 +92,7 @@ namespace MvvmDialogs
                 throw new ArgumentNullException("ownerViewModel");
             if (viewModel == null)
                 throw new ArgumentNullException("viewModel");
-            if (dialogTypeLocator == null)
-                throw new InvalidOperationException(Resources.ImplicitUseProhibited);
-
+            
             Type dialogType = dialogTypeLocator(viewModel);
             Show(ownerViewModel, viewModel, dialogType);
         }
@@ -126,8 +123,7 @@ namespace MvvmDialogs
         }
 
         /// <summary>
-        /// Displays a modal dialog of a type that is determined by the dialog type locator
-        /// specified in constructor.
+        /// Displays a modal dialog of a type that is determined by the dialog type locator.
         /// </summary>
         /// <param name="ownerViewModel">
         /// A view model that represents the owner window of the dialog.
@@ -145,9 +141,7 @@ namespace MvvmDialogs
                 throw new ArgumentNullException("ownerViewModel");
             if (viewModel == null)
                 throw new ArgumentNullException("viewModel");
-            if (dialogTypeLocator == null)
-                throw new InvalidOperationException(Resources.ImplicitUseProhibited);
-
+            
             Type dialogType = dialogTypeLocator(viewModel);
             return ShowDialog(ownerViewModel, viewModel, dialogType);
         }

@@ -70,15 +70,6 @@ namespace MvvmDialogs.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Dialog type must be explicitly specified since instance isn&apos;t configured to use a dialog type locator..
-        /// </summary>
-        internal static string ImplicitUseProhibited {
-            get {
-                return ResourceManager.GetString("ImplicitUseProhibited", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to View model of type &apos;{0}&apos; doesn&apos;t follow naming convention since it isn&apos;t suffixed with &apos;ViewModel&apos;..
         /// </summary>
         internal static string ViewModelNameInvalid {

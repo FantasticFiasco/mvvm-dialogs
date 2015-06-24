@@ -29,8 +29,7 @@ namespace MvvmDialogs
             where T : Window;
 
         /// <summary>
-        /// Displays a non-modal dialog of a type that is determined by the dialog type locator
-        /// specified in the constructor.
+        /// Displays a non-modal dialog of a type that is determined by the dialog type locator.
         /// </summary>
         /// <param name="ownerViewModel">
         /// A view model that represents the owner window of the dialog.
@@ -58,8 +57,7 @@ namespace MvvmDialogs
             where T : Window;
 
         /// <summary>
-        /// Displays a modal dialog of a type that is determined by the dialog type locator
-        /// specified in constructor.
+        /// Displays a modal dialog of a type that is determined by the dialog type locator.
         /// </summary>
         /// <param name="ownerViewModel">
         /// A view model that represents the owner window of the dialog.
