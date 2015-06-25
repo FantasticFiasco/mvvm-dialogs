@@ -73,7 +73,7 @@
 
     <h2><a name="usage">Usage</a></h2>
     
-	<p>More intresting than the implementation of the framework is the usage of it, 
+	<p>More interesting than the implementation of the framework is the usage of it, 
 	so lets start with that. This chapter will demonstrate the code required to show
 	the supported dialogs.</p>
 	
@@ -90,7 +90,7 @@
 	
 	<p>The most straight forward syntax to use is the explicit syntax where the 
 	generic methods <code>IDialogService.ShowDialog&lt;T&gt;</code> and <code>IDialogService.Show&lt;T&gt;</code> 
-	shows a modal respectivly non-modal dialog of the type <code>T</code>. The MVVM purists 
+	shows a modal respectively non-modal dialog of the type <code>T</code>. The MVVM purists 
 	among the readers are most certainly appalled by 
 	the fact that the view type is defined in the view model. For them there is the 
 	implicit syntax and the dialog type locator.</p>
@@ -98,7 +98,7 @@
 	<h4><a name="usage_showdialog_implicitsyntax">Implicit Dialog Type Syntax and the Dialog Type Locator</a></h4>
 	
 	<p>Specifying a dialog type in a view model might either be unwanted or 
-	impossible in certains sutuations, thus 
+	impossible in certain situations, thus 
 	the framework supports opening a dialog without specifying the dialog type.
 	<code>IDialogService.ShowDialog</code> and
 	<code>IDialogService.Show</code> are the non-generic methods where the dialog 
@@ -115,7 +115,7 @@
 	convention states that if the name of the view model is 
 	<code>MyNamespace.ViewModels.MyDialogViewModel</code> then the name of the dialog is 
 	<code>MyNamespace.Views.MyDialog</code>. If this convention doesn't fit your code 
-	structure the default locator can be overriden by specifying your own implementation 
+	structure the default locator can be overridden by specifying your own implementation 
 	in the constructor of <code>DialogService</code>.</p>
 
 	<h4><a name="usage_showdialog_showdialogexplicitsyntax">Showing a Modal Dialog Using Explicit Dialog Type Syntax</a></h4>
