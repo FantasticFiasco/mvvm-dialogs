@@ -8,7 +8,7 @@
     <language>en-US</language>
     <licenseUrl>http://www.apache.org/licenses/LICENSE-2.0</licenseUrl>
     <projectUrl>https://github.com/FantasticFiasco/mvvm-dialogs</projectUrl>
-    <iconUrl>https://raw.githubusercontent.com/FantasticFiasco/mvvm-dialogs/MVVM_Dialogs/design/Icon_32x32.png</iconUrl>
+    <iconUrl>https://raw.githubusercontent.com/FantasticFiasco/mvvm-dialogs/dev/design/Icon_32x32.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Framework simplifying the concept of opening dialogs from a view model when using MVVM in WPF.</description>
     <tags>wpf mvvm dialog window messagebox openfiledialog savefiledialog folderbrowserdialog</tags>
