@@ -41,7 +41,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".Build", ".Build", "{134A50
 		..\BuildNuGet.bat = ..\BuildNuGet.bat
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GitHub publication", "GitHub publication", "{76759856-59C1-41D8-9024-B899606B1EF6}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".Documentation", ".Documentation", "{76759856-59C1-41D8-9024-B899606B1EF6}"
 	ProjectSection(SolutionItems) = preProject
 		..\CHANGELOG.md = ..\CHANGELOG.md
 		..\README.md = ..\README.md
