@@ -6,6 +6,8 @@ This project adheres to [Semantic Versioning](http://semver.org/) and is followi
 
 ## [Unreleased]
 
+## [1.1.4] - 2015-12-09
+
 ### Fixed
 
 - Fixed [Issue #3](https://github.com/FantasticFiasco/mvvm-dialogs/issues/3) where exception no longer is thrown when the property changed event for `IModalDialogViewModel.DialogResult` is sent twice
