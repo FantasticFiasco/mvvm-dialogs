@@ -314,7 +314,7 @@ namespace MvvmDialogs
         {
             PropertyChangedEventHandler handler = (sender, e) =>
             {
-                if (e.PropertyName == DialogResultPropertyName)
+                if (e.PropertyName == DialogResultPropertyName && dialog.DialogResult != viewModel.DialogResult)
                 {
                     dialog.DialogResult = viewModel.DialogResult;
                 }
