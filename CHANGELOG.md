@@ -9,6 +9,7 @@ This project adheres to [Semantic Versioning](http://semver.org/) and is followi
 ## [1.1.3] - 2015-07-07
 
 ### Fixed
+
 - NuGet icon URL
 
 ## [1.1.2] - 2015-06-12
