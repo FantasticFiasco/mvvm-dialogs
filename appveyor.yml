@@ -1,0 +1,70 @@
+#---------------------------------#
+#         version format          #
+#---------------------------------#
+version: 1.1.{build}
+
+
+#---------------------------------#
+#    environment configuration    #
+#---------------------------------#
+os: Windows Server 2012 R2
+
+
+#---------------------------------#
+#            patching             #
+#---------------------------------#
+assembly_info:
+  patch: true
+  file: src\SolutionInfo.cs
+  assembly_version: '{version}.0'
+  assembly_file_version: '{version}.0'
+  assembly_informational_version: '{version}'
+
+
+#---------------------------------#
+#       build configuration       #
+#---------------------------------#
+build_script:
+  - cmd: set SOLUTION=src\MvvmDialogs.sln
+  - cmd: set PROJECT=src\MvvmDialogs\MvvmDialogs.csproj
+  - cmd: set LOGGER=C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll
+
+  - cmd: msbuild %SOLUTION% /t:Rebuild /p:Configuration=Release;TargetFrameworkVersion=v4.5 /m /logger:"%LOGGER%"
+  - cmd: msbuild %PROJECT% /t:Rebuild /p:Configuration=Release;TargetFrameworkVersion=v3.5 /m /logger:"%LOGGER%"
+  - cmd: msbuild %PROJECT% /t:Rebuild /p:Configuration=Release;TargetFrameworkVersion=v4.0 /m /logger:"%LOGGER%"
+  
+  - cmd: nuget pack -Prop Configuration=Release %PROJECT%
+
+
+#---------------------------------#
+#       tests configuration       #
+#---------------------------------#
+
+test:
+  assemblies: '**\bin\Release\*Test.dll'
+
+
+#---------------------------------#
+#      artifacts configuration    #
+#---------------------------------#
+artifacts:
+- path: '*.nupkg'
+  name: NuGet
+
+
+#---------------------------------#
+#              nuget              #
+#---------------------------------#
+nuget:
+  project_feed: true
+
+
+#---------------------------------#
+#         notifications           #
+#---------------------------------#
+notifications:
+  # Email
+  - provider: Email
+    to:
+      - mattias.kindborg@email.com
+    on_build_status_changed: true
