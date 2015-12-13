@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows;
+using MvvmDialogs.Logging;
 using MvvmDialogs.Properties;
 using MvvmDialogs.Views;
 
@@ -119,7 +120,9 @@ namespace MvvmDialogs
             // Register for owner window closing, since we then should unregister view reference
             owner.Closed += OwnerClosed;
 
+            Logger.Write("Register view {0}".InvariantFormat(view.Id));
             InternalViews.Add(view);
+            Logger.Write("Registered view {0} ({1} registered)".InvariantFormat(view.Id, InternalViews.Count));
         }
 
         /// <summary>
@@ -127,7 +130,9 @@ namespace MvvmDialogs
         /// </summary>
         internal static void Clear()
         {
+            Logger.Write("Clearing views");
             InternalViews.Clear();
+            Logger.Write("Cleared views");
         }
 
         /// <summary>
@@ -141,7 +146,9 @@ namespace MvvmDialogs
             if (!InternalViews.Any(registeredView => ReferenceEquals(registeredView.Source, view.Source)))
                 throw new ArgumentException(Resources.ViewNotRegistered.CurrentFormat(view.GetType()), "view");
 
+            Logger.Write("Unregister view {0}".InvariantFormat(view.Id));
             InternalViews.RemoveAll(registeredView => ReferenceEquals(registeredView.Source, view.Source));
+            Logger.Write("Unregistered view {0} ({1} registered)".InvariantFormat(view.Id, InternalViews.Count));
         }
 
         /// <summary>
@@ -186,6 +193,7 @@ namespace MvvmDialogs
                 // Unregister Views in window
                 foreach (IView windowView in windowViews)
                 {
+                    Logger.Write("Window containing view {0} closed".InvariantFormat(windowView.Id));
                     Unregister(windowView);
                 }
             }
@@ -193,7 +201,10 @@ namespace MvvmDialogs
 
         private static void PruneInternalViews()
         {
+            Logger.Write("Before pruning ({0} registered)".InvariantFormat(InternalViews.Count));
             InternalViews.RemoveAll(reference => !reference.IsAlive);
+
+            Logger.Write("After pruning ({0} registered)".InvariantFormat(InternalViews.Count));
         }
     }
 }

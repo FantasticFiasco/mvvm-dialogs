@@ -101,6 +101,7 @@
     <Compile Include="DialogService.cs" />
     <Compile Include="DialogServiceViews.cs" />
     <Compile Include="DialogTypeLocators\DialogTypeLocatorCache.cs" />
+    <Compile Include="Logging\Logger.cs" />
     <Compile Include="Reflection\Members.cs" />
     <Compile Include="Extensions\System\StringExtensions.cs" />
     <Compile Include="Extensions\System\Windows\FrameworkElementExtensions.cs" />
@@ -122,6 +123,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Views\IdGenerator.cs" />
     <Compile Include="Views\IView.cs" />
     <Compile Include="Views\ViewWrapper.cs" />
   </ItemGroup>

@@ -7,6 +7,7 @@ using MvvmDialogs.FrameworkDialogs;
 using MvvmDialogs.FrameworkDialogs.FolderBrowser;
 using MvvmDialogs.FrameworkDialogs.OpenFile;
 using MvvmDialogs.FrameworkDialogs.SaveFile;
+using MvvmDialogs.Logging;
 using MvvmDialogs.Properties;
 using MvvmDialogs.Reflection;
 using MvvmDialogs.Views;
@@ -187,6 +188,8 @@ namespace MvvmDialogs
             if (ownerViewModel == null)
                 throw new ArgumentNullException("ownerViewModel");
 
+            Logger.Write("Caption: {0}; Message: {1}".InvariantFormat(caption, messageBoxText));
+
             return MessageBox.Show(
                 FindOwnerWindow(ownerViewModel),
                 messageBoxText,
@@ -216,6 +219,8 @@ namespace MvvmDialogs
             if (settings == null)
                 throw new ArgumentNullException("settings");
 
+            Logger.Write("Title: {0}".InvariantFormat(settings.Title));
+
             var dialog = new OpenFileDialogWrapper(settings);
             return dialog.ShowDialog(FindOwnerWindow(ownerViewModel));
         }
@@ -239,6 +244,8 @@ namespace MvvmDialogs
                 throw new ArgumentNullException("ownerViewModel");
             if (settings == null)
                 throw new ArgumentNullException("settings");
+
+            Logger.Write("Title: {0}".InvariantFormat(settings.Title));
 
             var dialog = new SaveFileDialogWrapper(settings);
             return dialog.ShowDialog(FindOwnerWindow(ownerViewModel));
@@ -264,6 +271,8 @@ namespace MvvmDialogs
             if (settings == null)
                 throw new ArgumentNullException("settings");
 
+            Logger.Write("Description: {0}".InvariantFormat(settings.Description));
+
             using (var dialog = new FolderBrowserDialogWrapper(settings))
             {
                 DialogResult result = dialog.ShowDialog(new WindowWrapper(FindOwnerWindow(ownerViewModel)));
@@ -278,6 +287,12 @@ namespace MvvmDialogs
             INotifyPropertyChanged viewModel,
             Type dialogType)
         {
+            Logger.Write("Dialog: {0}; View model: {1}; Owner: {2}"
+                .InvariantFormat(
+                    dialogType,
+                    viewModel.GetType(),
+                    ownerViewModel.GetType()));
+
             Window dialog = CreateDialog(dialogType, ownerViewModel, viewModel);
             dialog.Show();
         }
@@ -287,6 +302,12 @@ namespace MvvmDialogs
             IModalDialogViewModel viewModel,
             Type dialogType)
         {
+            Logger.Write("Dialog: {0}; View model: {1}; Owner: {2}"
+                .InvariantFormat(
+                    dialogType,
+                    viewModel.GetType(),
+                    ownerViewModel.GetType()));
+
             Window dialog = CreateDialog(dialogType, ownerViewModel, viewModel);
             
             PropertyChangedEventHandler handler = RegisterDialogResult(dialog, viewModel);
@@ -316,6 +337,7 @@ namespace MvvmDialogs
             {
                 if (e.PropertyName == DialogResultPropertyName && dialog.DialogResult != viewModel.DialogResult)
                 {
+                    Logger.Write("Dialog: {0}; Result: {1}".InvariantFormat(dialog.GetType(), viewModel.DialogResult));
                     dialog.DialogResult = viewModel.DialogResult;
                 }
             };
