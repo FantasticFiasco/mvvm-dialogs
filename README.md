@@ -1,6 +1,8 @@
+![MVVM Dialogs logo](design/Icon_128x128.png)
+
 # MVVM Dialogs
 
-![MVVM Dialogs logo](design/Icon_128x128.png)
+[![Build status](https://ci.appveyor.com/api/projects/status/9eyvxv5jr9bybant/branch/master?svg=true)](https://ci.appveyor.com/project/FantasticFiasco/mvvm-dialogs/branch/master)
 
 ### Introduction
 

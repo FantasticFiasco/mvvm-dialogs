@@ -38,6 +38,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvvmDialogsTest", "MvvmDial
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".Build", ".Build", "{134A5091-AAE0-489D-A704-F4A2456C6D35}"
 	ProjectSection(SolutionItems) = preProject
+		..\appveyor.yml = ..\appveyor.yml
 		..\BuildNuGet.bat = ..\BuildNuGet.bat
 	EndProjectSection
 EndProject
