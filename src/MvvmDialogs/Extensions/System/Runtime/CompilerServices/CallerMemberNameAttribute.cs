@@ -1,4 +1,4 @@
-﻿#if ENABLECALLERINFOSUPPORT
+﻿#if PRE_NET45
 namespace System.Runtime.CompilerServices
 {
     /// <summary>

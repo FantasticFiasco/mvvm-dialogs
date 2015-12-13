@@ -1,4 +1,4 @@
-﻿#if ENABLECALLERINFOSUPPORT
+﻿#if PRE_NET45
 using System;
 using System.Runtime;
 

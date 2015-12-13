@@ -1,4 +1,4 @@
-﻿#if ENABLECALLERINFOSUPPORT
+﻿#if PRE_NET40
 namespace System.Runtime
 {
     /// <summary>
