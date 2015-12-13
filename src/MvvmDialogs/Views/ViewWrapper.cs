@@ -6,6 +6,7 @@ namespace MvvmDialogs.Views
     internal class ViewWrapper : IView
     {
         private readonly WeakReference viewReference;
+        private readonly int id;
 
         internal ViewWrapper(FrameworkElement view)
         {
@@ -13,12 +14,18 @@ namespace MvvmDialogs.Views
                 throw new ArgumentNullException("view");
 
             viewReference = new WeakReference(view);
+            id = IdGenerator.Generate();
         }
 
         public event RoutedEventHandler Loaded
         {
             add { Source.Loaded += value; }
             remove { Source.Loaded -= value; }
+        }
+
+        public int Id
+        {
+            get { return id; }
         }
 
         public FrameworkElement Source
