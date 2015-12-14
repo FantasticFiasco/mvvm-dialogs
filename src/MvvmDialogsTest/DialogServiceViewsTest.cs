@@ -212,6 +212,8 @@ namespace MvvmDialogs
         {
             new public abstract event RoutedEventHandler Loaded;
 
+            public abstract int Id { get; }
+
             public abstract FrameworkElement Source { get; }
 
             new public abstract object DataContext { get; }

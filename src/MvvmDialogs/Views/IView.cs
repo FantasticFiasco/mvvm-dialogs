@@ -13,6 +13,11 @@ namespace MvvmDialogs.Views
         event RoutedEventHandler Loaded;
 
         /// <summary>
+        /// Gets the id.
+        /// </summary>
+        int Id { get; }
+
+        /// <summary>
         /// Gets the source.
         /// </summary>
         FrameworkElement Source { get; }
