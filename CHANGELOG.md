@@ -6,6 +6,8 @@ This project adheres to [Semantic Versioning](http://semver.org/) and is followi
 
 ## [Unreleased]
 
+## [1.2.0] - 2015-12-14
+
 ### Added
 
 - Support for exposing logs using class `MvvmDialogs.Logging.Logger`
