@@ -4,7 +4,6 @@ using System.ComponentModel;
 using System.Linq;
 using System.Windows;
 using MvvmDialogs.Logging;
-using MvvmDialogs.Properties;
 using MvvmDialogs.Views;
 
 namespace MvvmDialogs
@@ -143,8 +142,8 @@ namespace MvvmDialogs
         {
             if (view == null)
                 throw new ArgumentNullException("view");
-            if (!InternalViews.Any(registeredView => ReferenceEquals(registeredView.Source, view.Source)))
-                throw new ArgumentException(Resources.ViewNotRegistered.CurrentFormat(view.GetType()), "view");
+            
+            PruneInternalViews();
 
             Logger.Write("Unregister view {0}".InvariantFormat(view.Id));
             InternalViews.RemoveAll(registeredView => ReferenceEquals(registeredView.Source, view.Source));
