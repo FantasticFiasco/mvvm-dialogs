@@ -39,25 +39,25 @@ With the view registered the view model is now capable of opening a dialog using
 ```c#
 public class ModalDialogTabContentViewModel : INotifyPropertyChanged
 {
-  private readonly IDialogService dialogService;
+    private readonly IDialogService dialogService;
 
-  public ModalDialogTabContentViewModel(IDialogService dialogService)
-  {
-    this.dialogService = dialogService;
-  }
-
-  ...
-
-  private void ShowDialog()
-  {
-    var dialogViewModel = new AddTextDialogViewModel();
-
-    bool? success = dialogService.ShowDialog(this, dialogViewModel);
-    if (success == true)
+    public ModalDialogTabContentViewModel(IDialogService dialogService)
     {
-      Texts.Add(dialogViewModel.Text);
+        this.dialogService = dialogService;
     }
-  }
+
+    ...
+
+    private void ShowDialog()
+    {
+        var dialogViewModel = new AddTextDialogViewModel();
+
+        bool? success = dialogService.ShowDialog(this, dialogViewModel);
+        if (success == true)
+        {
+            Texts.Add(dialogViewModel.Text);
+        }
+    }
 }
 ```
 
