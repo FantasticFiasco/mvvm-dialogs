@@ -4,33 +4,39 @@ All notable changes to this project will be documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/) and is following the [change log format](https://github.com/olivierlacan/keep-a-changelog).
 
-## [Unreleased]
+## Unreleased
 
-## [1.2.0] - 2015-12-14
+## 1.2.16 - 2016-01-13
+
+### Fixed
+
+- Fixed [Issue 2](https://github.com/FantasticFiasco/mvvm-dialogs/issues/2) where execption was thrown when unregistering a view.
+
+## 1.2.0 - 2015-12-14
 
 ### Added
 
 - Support for exposing logs using class `MvvmDialogs.Logging.Logger`
 
-## [1.1.4] - 2015-12-09
+## 1.1.4 - 2015-12-09
 
 ### Fixed
 
 - Fixed [Issue #3](https://github.com/FantasticFiasco/mvvm-dialogs/issues/3) where exception no longer is thrown when the property changed event for `IModalDialogViewModel.DialogResult` is sent twice
 
-## [1.1.3] - 2015-07-07
+## 1.1.3 - 2015-07-07
 
 ### Fixed
 
 - NuGet icon URL
 
-## [1.1.2] - 2015-06-12
+## 1.1.2 - 2015-06-12
 
 ### Changed
 
 - Renamed `DialogServiceBehaviors` to `DialogServiceViews`
 
-## [1.1.1] - 2015-06-11
+## 1.1.1 - 2015-06-11
 
 ### Added
 
@@ -47,8 +53,8 @@ This project adheres to [Semantic Versioning](http://semver.org/) and is followi
 
 - Issue where exception was thrown when the same view was registered twice, and one hadn't been garbage collected yet
 
-## [1.1.0] - 2015-06-11 [YANKED]
+## 1.1.0 - 2015-06-11 [YANKED]
 
-## [1.0.0] - 2009-05-25
+## 1.0.0 - 2009-05-25
 
 Initial version
