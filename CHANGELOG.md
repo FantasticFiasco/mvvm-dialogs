@@ -6,11 +6,15 @@ This project adheres to [Semantic Versioning](http://semver.org/) and is followi
 
 ## Unreleased
 
+### Added
+
+- Support for Universal Windows Platform (UWP), thus fixing [Issue #8](https://github.com/FantasticFiasco/mvvm-dialogs/issues/8)
+
 ## 1.2.16 - 2016-01-13
 
 ### Fixed
 
-- Fixed [Issue 2](https://github.com/FantasticFiasco/mvvm-dialogs/issues/2) where execption was thrown when unregistering a view.
+- Fixed [Issue #2](https://github.com/FantasticFiasco/mvvm-dialogs/issues/2) where execption was thrown when unregistering a view
 
 ## 1.2.0 - 2015-12-14
 

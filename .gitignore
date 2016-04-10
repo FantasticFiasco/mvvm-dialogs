@@ -4,13 +4,34 @@
 # User-specific files
 *.suo
 *.user
+*.userosscache
+*.sln.docstates
 
 # GhostDoc
 *.GhostDoc.xml
 
 # Build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+build/
+bld/
 [Bb]in/
 [Oo]bj/
+
+# Visual Studo 2015 cache/options directory
+.vs/
+
+# MSTest test Results
+[Tt]est[Rr]esult*/
+[Bb]uild[Ll]og.*
+
+# ASP.NET 5
+project.lock.json
+artifacts/
 
 # NuGet Packages
 *.nupkg
