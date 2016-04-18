@@ -7,7 +7,7 @@ version: 1.2.{build}
 #---------------------------------#
 #    environment configuration    #
 #---------------------------------#
-os: Windows Server 2012 R2
+os: Visual Studio 2015
 
 
 #---------------------------------#
@@ -38,14 +38,21 @@ build:
 #---------------------------------#
 build_script:
   - cmd: set SOLUTION=src\MvvmDialogs.sln
-  - cmd: set PROJECT=src\MvvmDialogs\MvvmDialogs.csproj
+  - cmd: set NUSPEC=src\MvvmDialogs.nuspec
+  - cmd: set NETPROJECT=src\NET\MvvmDialogs\MvvmDialogs.csproj
+  - cmd: set UNIVERSALPROJECT=src\Universal\MvvmDialogs\MvvmDialogs.csproj
   - cmd: set LOGGER=C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll
 
-  - cmd: msbuild %SOLUTION% /t:Rebuild /p:Configuration=Release;TargetFrameworkVersion=v4.5 /m /logger:"%LOGGER%"
-  - cmd: msbuild %PROJECT% /t:Rebuild /p:Configuration=Release;TargetFrameworkVersion=v3.5 /m /logger:"%LOGGER%"
-  - cmd: msbuild %PROJECT% /t:Rebuild /p:Configuration=Release;TargetFrameworkVersion=v4.0 /m /logger:"%LOGGER%"
+  - cmd: nuget restore %SOLUTION%
   
-  - cmd: nuget pack -Prop Configuration=Release %PROJECT%
+  # Build solution in default configuration
+  - cmd: msbuild %SOLUTION% /t:Rebuild /p:Configuration=Release /m /logger:"%LOGGER%"
+
+  # Build .NET project in additional versions
+  - cmd: msbuild %NETPROJECT% /t:Rebuild /p:Configuration=Release;TargetFrameworkVersion=v4.0 /m /logger:"%LOGGER%"
+  - cmd: msbuild %NETPROJECT% /t:Rebuild /p:Configuration=Release;TargetFrameworkVersion=v3.5 /m /logger:"%LOGGER%"
+
+  - cmd: nuget pack %NUSPEC% -version %APPVEYOR_BUILD_VERSION%-beta
 
 
 #---------------------------------#
