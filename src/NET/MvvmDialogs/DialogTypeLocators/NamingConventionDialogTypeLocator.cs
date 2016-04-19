@@ -1,8 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
-#if NETFX_CORE
 using System.Reflection;
-#endif
 
 namespace MvvmDialogs.DialogTypeLocators
 {
@@ -39,13 +37,10 @@ namespace MvvmDialogs.DialogTypeLocators
             }
 
             string dialogName = GetDialogName(viewModelType);
-            string dialogAssemblyName = GetAssemblyFullName(viewModelType);
-
-            string dialogFullName = $"{dialogName}, {dialogAssemblyName}";
             
-            dialogType = Type.GetType(dialogFullName);
+            dialogType = GetAssemblyFromType(viewModelType).GetType(dialogName);
             if (dialogType == null)
-                throw new TypeLoadException($"Dialog with full name '{dialogFullName}' is missing.");
+                throw new TypeLoadException($"Dialog with name '{dialogName}' is missing.");
 
             Cache.Add(viewModelType, dialogType);
             
@@ -64,12 +59,14 @@ namespace MvvmDialogs.DialogTypeLocators
                 dialogName.Length - "ViewModel".Length);
         }
 
-        private static string GetAssemblyFullName(Type viewModelType)
+        private static Assembly GetAssemblyFromType(Type type)
         {
 #if NETFX_CORE
-            return viewModelType.GetTypeInfo().Assembly.FullName;
+            // GetTypeInfo is supported on UWP
+            return type.GetTypeInfo().Assembly;
 #else
-            return viewModelType.Assembly.FullName;
+            // Assembly is supported on all .NET versions
+            return type.Assembly;
 #endif
         }
     }

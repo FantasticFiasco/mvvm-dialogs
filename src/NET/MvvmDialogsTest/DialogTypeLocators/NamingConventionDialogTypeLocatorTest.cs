@@ -10,8 +10,8 @@ namespace MvvmDialogs.DialogTypeLocators
     {
         private Assembly testAssembly;
 
-        [TestFixtureSetUp]
-        public void TestFixtureSetUp()
+        [OneTimeSetUp]
+        public void OneTimeSetUp()
         {
             NamingConventionDialogTypeLocator.Cache.Clear();
 

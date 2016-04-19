@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.Threading;
+using System.Windows;
 using Moq;
 using MvvmDialogs.Views;
 using NUnit.Framework;
@@ -7,7 +8,7 @@ namespace MvvmDialogs
 {
     // ReSharper disable UnusedVariable
     [TestFixture]
-    [RequiresSTA]
+    [Apartment(ApartmentState.STA)]
     public class DialogServiceViewsTest
     {
         [TearDown]
