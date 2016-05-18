@@ -126,6 +126,7 @@
     <Compile Include="IModalDialogViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DialogTypeLocators\NamingConventionDialogTypeLocator.cs" />
+    <Compile Include="ViewNotRegisteredException.cs" />
     <Compile Include="Views\IdGenerator.cs" />
     <Compile Include="Views\IView.cs" />
     <Compile Include="Views\ViewWrapper.cs" />

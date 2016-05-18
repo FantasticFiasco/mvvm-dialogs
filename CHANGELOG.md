@@ -9,6 +9,7 @@ This project adheres to [Semantic Versioning](http://semver.org/) and is followi
 ### Added
 
 - Support for Universal Windows Platform (UWP), thus fixing [Issue #8](https://github.com/FantasticFiasco/mvvm-dialogs/issues/8)
+- Add `ViewNotRegisteredException` that is thrown by `IDialogService` when view is unregistered.
 
 ## 1.2.16 - 2016-01-13
 
