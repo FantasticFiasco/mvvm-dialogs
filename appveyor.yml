@@ -59,7 +59,7 @@ build_script:
   - cmd: msbuild %NETPROJECT% /t:Rebuild /p:Configuration=Release;TargetFrameworkVersion=v4.0 /m /logger:"%LOGGER%"
   - cmd: msbuild %NETPROJECT% /t:Rebuild /p:Configuration=Release;TargetFrameworkVersion=v3.5 /m /logger:"%LOGGER%"
 
-  - cmd: nuget pack %NUSPEC% -version %APPVEYOR_BUILD_VERSION%-beta
+  - cmd: nuget pack %NUSPEC% -version %APPVEYOR_BUILD_VERSION%
 
 
 #---------------------------------#
