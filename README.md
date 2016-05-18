@@ -1,16 +1,12 @@
 ![MVVM Dialogs logo](design/Icon_128x128.png)
 
-# MVVM Dialogs
-
-[![Build status](https://ci.appveyor.com/api/projects/status/9eyvxv5jr9bybant/branch/master?svg=true)](https://ci.appveyor.com/project/FantasticFiasco/mvvm-dialogs/branch/master)
-
-[![NuGet](https://img.shields.io/nuget/v/MvvmDialogs.svg)](https://www.nuget.org/packages/MvvmDialogs/)
+# MVVM Dialogs [![Build status](https://ci.appveyor.com/api/projects/status/9eyvxv5jr9bybant/branch/master?svg=true)](https://ci.appveyor.com/project/FantasticFiasco/mvvm-dialogs/branch/master) [![NuGet](https://img.shields.io/nuget/v/MvvmDialogs.svg)](https://www.nuget.org/packages/MvvmDialogs/)
 
 ### Introduction
 
-MVVM Dialogs is a framework simplifying the concept of opening dialogs from a view model when using MVVM in WPF. It enables the developer to easily write unit tests for view models in the same manner unit tests are written for other classes.
+MVVM Dialogs is a framework simplifying the concept of opening dialogs from a view model when using MVVM in WPF or UWP. It enables the developer to easily write unit tests for view models in the same manner unit tests are written for other classes.
 
-The framework has built in support for opening the following dialogs:
+The framework has built in support for the following dialogs in WPF:
 
 - Modal window
 - Non-modal window
@@ -19,7 +15,16 @@ The framework has built in support for opening the following dialogs:
 - Save file dialog
 - Folder browser dialog
 
-### Usage
+The framework has built in support for the following dialogs in UWP:
+
+- Content dialog
+- Message dialog
+- Single file picker
+- Multiple files picker
+- Save file picker
+- Single folder picker
+
+### WPF usage
 
 To open a modal window, decorate the view with the attached property `DialogServiceViews.IsRegistered`:
 
@@ -56,6 +61,35 @@ public class ModalDialogTabContentViewModel : INotifyPropertyChanged
 
         bool? success = dialogService.ShowDialog(this, dialogViewModel);
         if (success == true)
+        {
+            Texts.Add(dialogViewModel.Text);
+        }
+    }
+}
+```
+
+### UWP usage
+
+With UWP you don't need to register the view, simply open the dialog using the interface `IDialogService`:
+
+```c#
+public class MainPageViewModel : INotifyPropertyChanged
+{
+    private readonly IDialogService dialogService;
+
+    public MainPageViewModel(IDialogService dialogService)
+    {
+        this.dialogService = dialogService;
+    }
+
+    ...
+
+    private async void ShowContentDialog()
+    {
+        var dialogViewModel = new AddTextContentDialogViewModel();
+
+        ContentDialogResult result = await dialogService.ShowContentDialogAsync(dialogViewModel);
+        if (result == ContentDialogResult.Primary)
         {
             Texts.Add(dialogViewModel.Text);
         }
