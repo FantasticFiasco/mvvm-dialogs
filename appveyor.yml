@@ -22,6 +22,13 @@ assembly_info:
 
 
 #---------------------------------#
+#             install             #
+#---------------------------------#
+install:
+  - ps: iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-desktop.ps1'))
+
+
+#---------------------------------#
 #              build              #
 #---------------------------------#
 pull_requests:
@@ -58,17 +65,26 @@ build_script:
 #---------------------------------#
 #       tests configuration       #
 #---------------------------------#
-
 test:
   assemblies: '**\bin\Release\*Test.dll'
+  categories:
+    except:
+      - Manual
 
 
 #---------------------------------#
 #      artifacts configuration    #
 #---------------------------------#
 artifacts:
-- path: '*.nupkg'
-  name: NuGet
+  - path: '*.nupkg'
+    name: NuGet
+
+
+#---------------------------------#
+#            on finish            #
+#---------------------------------#
+on_finish:
+  - ps: Get-ChildItem -Path Failed_*.png -Recurse | % { Push-AppveyorArtifact $_.FullName -FileName $_.Name }
 
 
 #---------------------------------#
@@ -76,7 +92,7 @@ artifacts:
 #---------------------------------#
 nuget:
   project_feed: true
-
+ 
 
 #---------------------------------#
 #         notifications           #

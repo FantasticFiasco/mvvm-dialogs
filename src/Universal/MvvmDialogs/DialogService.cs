@@ -16,7 +16,7 @@ namespace MvvmDialogs
 {
     /// <summary>
     /// Class abstracting the interaction between view models and views when it comes to
-    /// opening dialogs using the MVVM pattern in UWP apps.
+    /// opening dialogs using the MVVM pattern in UWP applications.
     /// </summary>
     public class DialogService : IDialogService
     {

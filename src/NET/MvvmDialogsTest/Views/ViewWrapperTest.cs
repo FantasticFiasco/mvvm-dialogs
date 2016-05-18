@@ -1,10 +1,11 @@
-﻿using System.Windows;
+﻿using System.Threading;
+using System.Windows;
 using NUnit.Framework;
 
 namespace MvvmDialogs.Views
 {
     [TestFixture]
-    [RequiresSTA]
+    [Apartment(ApartmentState.STA)]
     public class ViewWrapperTest
     {
         private FrameworkElement frameworkElement;
