@@ -102,9 +102,12 @@
     <Compile Include="..\..\SolutionInfo.cs">
       <Link>Properties\SolutionInfo.cs</Link>
     </Compile>
+    <Compile Include="DialogFactories\IDialogFactory.cs" />
+    <Compile Include="DialogFactories\ReflectionDialogFactory.cs" />
     <Compile Include="DialogService.cs" />
     <Compile Include="DialogServiceViews.cs" />
     <Compile Include="DialogTypeLocators\DialogTypeLocatorCache.cs" />
+    <Compile Include="DialogTypeLocators\IDialogTypeLocator.cs" />
     <Compile Include="Extensions\System\Runtime\CompilerServices\CallerFilePathAttribute.cs" />
     <Compile Include="Extensions\System\Runtime\CompilerServices\CallerLineNumberAttribute.cs" />
     <Compile Include="Extensions\System\Runtime\CompilerServices\CallerMemberNameAttribute.cs" />

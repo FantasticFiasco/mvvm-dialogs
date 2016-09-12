@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Linq;
 using System.Windows;
+using MvvmDialogs.DialogFactories;
 using MvvmDialogs.DialogTypeLocators;
 using MvvmDialogs.FrameworkDialogs;
 using MvvmDialogs.FrameworkDialogs.FolderBrowser;
@@ -23,37 +24,73 @@ namespace MvvmDialogs
 	/// </summary>
 	public class DialogService : IDialogService
 	{
-		private static readonly Func<Type, Window> DefaultDialogFactory =
-			dialogType => (Window)Activator.CreateInstance(dialogType);
 		private static readonly string DialogResultPropertyName =
 			Members.GetPropertyName((IModalDialogViewModel viewModel) => viewModel.DialogResult);
 
-		private readonly Func<Type, Window> dialogFactory; 
-		private readonly Func<INotifyPropertyChanged, Type> dialogTypeLocator;
+		private readonly IDialogFactory dialogFactory; 
+		private readonly IDialogTypeLocator dialogTypeLocator;
+
+		/// <summary>
+		/// Initializes a new instance of the <see cref="DialogService"/> class.
+		/// </summary>
+		/// <remarks>
+		/// By default <see cref="ReflectionDialogFactory"/> is used as dialog factory and
+		/// <see cref="NamingConventionDialogTypeLocator"/> is used as dialog type locator.
+		/// </remarks>
+		public DialogService()
+			: this(new ReflectionDialogFactory(), new NamingConventionDialogTypeLocator())
+		{
+		}
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="DialogService"/> class.
 		/// </summary>
 		/// <param name="dialogFactory">
-		/// Function creating a dialog with a specified type. If no dialog factory is specified
-		/// <see cref="Activator.CreateInstance(Type)"/> is used to create the dialog.
+		/// Factory responsible for creating dialogs.
+		/// </param>
+		/// <remarks>
+		/// By default <see cref="NamingConventionDialogTypeLocator"/> is used as dialog type
+		/// locator.
+		/// </remarks>
+		public DialogService(IDialogFactory dialogFactory)
+			: this(dialogFactory, new NamingConventionDialogTypeLocator())
+		{
+		}
+
+		/// <summary>
+		/// Initializes a new instance of the <see cref="DialogService"/> class.
+		/// </summary>
+		/// <param name="dialogTypeLocator">
+		/// Interface responsible for finding a dialog type matching a view model.
+		/// </param>
+		/// <remarks>
+		/// By default <see cref="ReflectionDialogFactory"/> is used as dialog factory.
+		/// </remarks>
+		public DialogService(IDialogTypeLocator dialogTypeLocator)
+			: this(new ReflectionDialogFactory(), dialogTypeLocator)
+		{
+		}
+
+		/// <summary>
+		/// Initializes a new instance of the <see cref="DialogService"/> class.
+		/// </summary>
+		/// <param name="dialogFactory">
+		/// Factory responsible for creating dialogs.
 		/// </param>
 		/// <param name="dialogTypeLocator">
-		/// Function returning the dialog type based on view model instance. If no dialog type
-		/// locator is specified a naming convention based approach is used where the dialog type
-		/// is based on the name of the view model. The convention states that if the name of the
-		/// view model is 'MyNamespace.ViewModels.MyDialogViewModel' then the name of the dialog is
-		/// 'MyNamespace.Views.MyDialog'.
-		/// <para/>
-		/// This naming convention is used in a multitude of articles and code samples regarding
-		/// the MVVM pattern and is a good default strategy.
+		/// Interface responsible for finding a dialog type matching a view model.
 		/// </param>
 		public DialogService(
-			Func<Type, Window> dialogFactory = null,
-			Func<INotifyPropertyChanged, Type> dialogTypeLocator = null)
+			IDialogFactory dialogFactory,
+			IDialogTypeLocator dialogTypeLocator)
 		{
-			this.dialogFactory = dialogFactory ?? DefaultDialogFactory;
-			this.dialogTypeLocator = dialogTypeLocator ?? NamingConventionDialogTypeLocator.LocateDialogType;
+			if (dialogFactory == null)
+				throw new ArgumentNullException(nameof(dialogFactory));
+			if (dialogTypeLocator == null)
+				throw new ArgumentNullException(nameof(dialogTypeLocator));
+			
+			this.dialogFactory = dialogFactory;
+			this.dialogTypeLocator = dialogTypeLocator;
 		}
 
 		#region IDialogService Members
@@ -101,7 +138,7 @@ namespace MvvmDialogs
 			if (viewModel == null)
 				throw new ArgumentNullException(nameof(viewModel));
 			
-			Type dialogType = dialogTypeLocator(viewModel);
+			Type dialogType = dialogTypeLocator.Locate(viewModel);
 			Show(ownerViewModel, viewModel, dialogType);
 		}
 
@@ -156,7 +193,7 @@ namespace MvvmDialogs
 			if (viewModel == null)
 				throw new ArgumentNullException(nameof(viewModel));
 			
-			Type dialogType = dialogTypeLocator(viewModel);
+			Type dialogType = dialogTypeLocator.Locate(viewModel);
 			return ShowDialog(ownerViewModel, viewModel, dialogType);
 		}
 
@@ -339,7 +376,7 @@ namespace MvvmDialogs
 			INotifyPropertyChanged ownerViewModel,
 			INotifyPropertyChanged viewModel)
 		{
-			var dialog = dialogFactory(dialogType);
+			var dialog = dialogFactory.Create(dialogType);
 			dialog.Owner = FindOwnerWindow(ownerViewModel);
 			dialog.DataContext = viewModel;
 

@@ -4,16 +4,17 @@ using System.Reflection;
 
 namespace MvvmDialogs.DialogTypeLocators
 {
-    /// <summary>
-    /// Class responsible for locating dialog types for specified view models based on a naming
-    /// convention used in a multitude of articles and code samples regarding the MVVM pattern.
-    /// 
-    /// The convention states that if the name of the view model is
-    /// 'MyNamespace.ViewModels.MyDialogViewModel' then the name of the dialog is
-    /// 'MyNamespace.Views.MyDialog'.
-    /// </summary>
-    internal static class NamingConventionDialogTypeLocator
-    {
+	/// <summary>
+	/// Dialog type locator responsible for locating dialog types for specified view models based
+	/// on a naming convention used in a multitude of articles and code samples regarding the MVVM
+	/// pattern.
+	/// <para/>
+	/// The convention states that if the name of the view model is
+	/// 'MyNamespace.ViewModels.MyDialogViewModel' then the name of the dialog is
+	/// 'MyNamespace.Views.MyDialog'.
+	/// </summary>
+	public class NamingConventionDialogTypeLocator : IDialogTypeLocator
+	{
         internal static readonly DialogTypeLocatorCache Cache = new DialogTypeLocatorCache();
 
         /// <summary>
@@ -23,7 +24,7 @@ namespace MvvmDialogs.DialogTypeLocators
         /// <returns>
         /// The dialog type representing the specified view model in a user interface.
         /// </returns>
-        internal static Type LocateDialogType(INotifyPropertyChanged viewModel)
+        public Type Locate(INotifyPropertyChanged viewModel)
         {
             if (viewModel == null)
                 throw new ArgumentNullException(nameof(viewModel));
