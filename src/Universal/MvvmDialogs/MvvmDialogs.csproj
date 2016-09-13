@@ -121,6 +121,9 @@
     <Compile Include="..\..\NET\MvvmDialogs\DialogTypeLocators\DialogTypeLocatorCache.cs">
       <Link>DialogTypeLocators\DialogTypeLocatorCache.cs</Link>
     </Compile>
+    <Compile Include="..\..\NET\MvvmDialogs\DialogTypeLocators\IDialogTypeLocator.cs">
+      <Link>DialogTypeLocators\IDialogTypeLocator.cs</Link>
+    </Compile>
     <Compile Include="..\..\NET\MvvmDialogs\DialogTypeLocators\NamingConventionDialogTypeLocator.cs">
       <Link>DialogTypeLocators\NamingConventionDialogTypeLocator.cs</Link>
     </Compile>
@@ -130,6 +133,8 @@
     <Compile Include="..\..\SolutionInfo.cs">
       <Link>Properties\SolutionInfo.cs</Link>
     </Compile>
+    <Compile Include="ContentDialogFactories\IContentDialogFactory.cs" />
+    <Compile Include="ContentDialogFactories\ReflectionContentDialogFactory.cs" />
     <Compile Include="DialogService.cs" />
     <Compile Include="FrameworkPickers\FileOpen\FileOpenPickerSettings.cs" />
     <Compile Include="FrameworkPickers\FileOpen\FileOpenPickerWrapper.cs" />

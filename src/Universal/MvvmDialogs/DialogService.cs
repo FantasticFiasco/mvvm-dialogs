@@ -9,6 +9,7 @@ using Windows.Foundation;
 using Windows.Storage;
 using Windows.UI.Popups;
 using Windows.UI.Xaml.Controls;
+using MvvmDialogs.ContentDialogFactories;
 using MvvmDialogs.DialogTypeLocators;
 using MvvmDialogs.Logging;
 
@@ -20,36 +21,70 @@ namespace MvvmDialogs
     /// </summary>
     public class DialogService : IDialogService
     {
-        private static readonly Func<Type, ContentDialog> DefaultContentDialogFactory =
-            dialogType => (ContentDialog)Activator.CreateInstance(dialogType);
+        private readonly IContentDialogFactory contentDialogFactory;
+        private readonly IDialogTypeLocator contentDialogTypeLocator;
 
-        private readonly Func<Type, ContentDialog> contentDialogFactory;
-        private readonly Func<INotifyPropertyChanged, Type> contentDialogTypeLocator;
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DialogService"/> class.
+        /// </summary>
+        /// <remarks>
+        /// By default <see cref="ReflectionContentDialogFactory"/> is used as dialog factory and
+        /// <see cref="NamingConventionDialogTypeLocator"/> is used as dialog type locator.
+        /// </remarks>
+        public DialogService()
+            : this(new ReflectionContentDialogFactory(), new NamingConventionDialogTypeLocator())
+        {
+        }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="DialogService"/> class.
         /// </summary>
         /// <param name="contentDialogFactory">
-        /// Function creating a content dialog with a specified type. If no content dialog factory
-        /// is specified <see cref="Activator.CreateInstance(Type)"/> is used to create the content
-        /// dialog.
+        /// Factory responsible for creating content dialogs.
+        /// </param>
+        /// <remarks>
+        /// By default <see cref="NamingConventionDialogTypeLocator"/> is used as dialog type
+        /// locator.
+        /// </remarks>
+        public DialogService(IContentDialogFactory contentDialogFactory)
+            : this(contentDialogFactory, new NamingConventionDialogTypeLocator())
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DialogService"/> class.
+        /// </summary>
+        /// <param name="contentDialogTypeLocator">
+        /// Interface responsible for finding a content dialog type matching a view model.
+        /// </param>
+        /// <remarks>
+        /// By default <see cref="ReflectionContentDialogFactory"/> is used as dialog factory.
+        /// </remarks>
+        public DialogService(IDialogTypeLocator contentDialogTypeLocator)
+            : this(new ReflectionContentDialogFactory(), contentDialogTypeLocator)
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DialogService"/> class.
+        /// </summary>
+        /// <param name="contentDialogFactory">
+        /// Factory responsible for creating content dialogs.
         /// </param>
         /// <param name="contentDialogTypeLocator">
-        /// Function returning the content dialog type based on view model instance. If no content dialog type
-        /// locator is specified a naming convention based approach is used where the content dialog type
-        /// is based on the name of the view model. The convention states that if the name of the
-        /// view model is 'MyNamespace.ViewModels.MyDialogViewModel' then the name of the dialog is
-        /// 'MyNamespace.Views.MyDialog'.
-        /// <para/>
-        /// This naming convention is used in a multitude of articles and code samples regarding
-        /// the MVVM pattern and is a good default strategy.
+        /// Interface responsible for finding a dialog type matching a view model.
         /// </param>
         public DialogService(
-            Func<Type, ContentDialog> contentDialogFactory = null,
-            Func<INotifyPropertyChanged, Type> contentDialogTypeLocator = null)
+            IContentDialogFactory contentDialogFactory,
+            IDialogTypeLocator contentDialogTypeLocator = null)
         {
-            this.contentDialogFactory = contentDialogFactory ?? DefaultContentDialogFactory;
-            this.contentDialogTypeLocator = contentDialogTypeLocator ?? NamingConventionDialogTypeLocator.LocateDialogType;
+            if (contentDialogFactory == null)
+                throw new ArgumentNullException(nameof(contentDialogFactory));
+            if (contentDialogTypeLocator == null)
+                throw new ArgumentNullException(nameof(contentDialogTypeLocator));
+
+            this.contentDialogFactory = contentDialogFactory;
+            this.contentDialogTypeLocator = contentDialogTypeLocator;
         }
 
         #region IDialogService Members
@@ -87,7 +122,7 @@ namespace MvvmDialogs
             if (viewModel == null)
                 throw new ArgumentNullException(nameof(viewModel));
 
-            Type contentDialogType = contentDialogTypeLocator(viewModel);
+            Type contentDialogType = contentDialogTypeLocator.Locate(viewModel);
             return ShowContentDialogAsync(viewModel, contentDialogType);
         }
 
@@ -238,7 +273,7 @@ namespace MvvmDialogs
             Type dialogType,
             INotifyPropertyChanged viewModel)
         {
-            var dialog = contentDialogFactory(dialogType);
+            var dialog = contentDialogFactory.Create(dialogType);
             dialog.DataContext = viewModel;
 
             return dialog;

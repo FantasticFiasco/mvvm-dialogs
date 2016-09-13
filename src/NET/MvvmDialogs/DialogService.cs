@@ -27,7 +27,7 @@ namespace MvvmDialogs
 		private static readonly string DialogResultPropertyName =
 			Members.GetPropertyName((IModalDialogViewModel viewModel) => viewModel.DialogResult);
 
-		private readonly IDialogFactory dialogFactory; 
+		private readonly IDialogFactory dialogFactory;
 		private readonly IDialogTypeLocator dialogTypeLocator;
 
 		/// <summary>
