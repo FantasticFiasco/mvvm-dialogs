@@ -4,7 +4,7 @@
 
 ### Introduction
 
-MVVM Dialogs is a framework simplifying the concept of opening dialogs from a view model when using MVVM in WPF or UWP. It enables the developer to easily write unit tests for view models in the same manner unit tests are written for other classes.
+MVVM Dialogs is a framework simplifying the concept of opening dialogs from a view model when using MVVM in WPF (Windows Presentation Framework) or UWP (Universal Windows Platform). It enables the developer to easily write unit tests for view models in the same manner unit tests are written for other classes.
 
 The framework has built in support for the following dialogs in WPF:
 
