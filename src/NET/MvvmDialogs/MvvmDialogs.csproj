@@ -113,6 +113,7 @@
     <Compile Include="Extensions\System\Runtime\CompilerServices\CallerMemberNameAttribute.cs" />
     <Compile Include="Extensions\System\Runtime\CompilerServices\DynamicallyInvokableAttribute.cs" />
     <Compile Include="Extensions\System\Runtime\TargetedPatchingOptOutAttribute.cs" />
+    <Compile Include="IWindow.cs" />
     <Compile Include="Logging\Logger.cs" />
     <Compile Include="Reflection\Members.cs" />
     <Compile Include="Extensions\System\Windows\FrameworkElementExtensions.cs" />
