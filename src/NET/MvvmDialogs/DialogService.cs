@@ -120,6 +120,25 @@ namespace MvvmDialogs
 		}
 
 		/// <summary>
+		/// Displays a non-modal custom dialog of specified type <typeparamref name="T"/>.
+		/// </summary>
+		/// <param name="ownerViewModel">
+		/// A view model that represents the owner window of the custom dialog.
+		/// </param>
+		/// <param name="viewModel">The view model of the new custom dialog.</param>
+		/// <typeparam name="T">The type of the custom dialog to show.</typeparam>
+		/// <exception cref="ViewNotRegisteredException">
+		/// No view is registered with specified owner view model as data context.
+		/// </exception>
+		public void ShowCustom<T>(
+			INotifyPropertyChanged ownerViewModel,
+			INotifyPropertyChanged viewModel)
+			where T : ICustomWindow
+		{
+			throw new NotImplementedException();
+		}
+
+		/// <summary>
 		/// Displays a non-modal dialog of a type that is determined by the dialog type locator.
 		/// </summary>
 		/// <param name="ownerViewModel">
@@ -168,6 +187,29 @@ namespace MvvmDialogs
 				throw new ArgumentNullException(nameof(viewModel));
 
 			return ShowDialog(ownerViewModel, viewModel, typeof(T));
+		}
+
+		/// <summary>
+		/// Displays a custom modal dialog of specified type <typeparamref name="T"/>.
+		/// </summary>
+		/// <param name="ownerViewModel">
+		/// A view model that represents the owner window of the custom dialog.
+		/// </param>
+		/// <param name="viewModel">The view model of the new custom dialog.</param>
+		/// <typeparam name="T">The type of the custom dialog to show.</typeparam>
+		/// <returns>
+		/// A nullable value of type <see cref="bool"/> that signifies how a window was closed by
+		/// the user.
+		/// </returns>
+		/// <exception cref="ViewNotRegisteredException">
+		/// No view is registered with specified owner view model as data context.
+		/// </exception>
+		public bool? ShowCustomDialog<T>(
+			INotifyPropertyChanged ownerViewModel,
+			IModalDialogViewModel viewModel)
+			where T : ICustomWindow
+		{
+			throw new NotImplementedException();
 		}
 
 		/// <summary>

@@ -4,9 +4,13 @@ using System.Windows;
 namespace MvvmDialogs
 {
     /// <summary>
-    /// Interface describing a window.
+    /// Interface describing a custom window.
     /// </summary>
-    public interface IWindow
+    /// <remarks>
+    /// This interface is intended for use when custom windows, i.e. windows not inheriting from
+    /// <see cref="Window"/>, should be shown.
+    /// </remarks>
+    public interface ICustomWindow
     {
         /// <summary>
         /// Gets or sets the data context for an element when it participates in data binding.
