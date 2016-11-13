@@ -45,7 +45,7 @@ namespace MvvmDialogs
 		void ShowCustom<T>(
 			INotifyPropertyChanged ownerViewModel,
 			INotifyPropertyChanged viewModel)
-			where T : ICustomWindow;
+			where T : IWindow;
 
 		/// <summary>
 		/// Displays a non-modal dialog of a type that is determined by the dialog type locator.
@@ -99,7 +99,7 @@ namespace MvvmDialogs
 		bool? ShowCustomDialog<T>(
 			INotifyPropertyChanged ownerViewModel,
 			IModalDialogViewModel viewModel)
-			where T : ICustomWindow;
+			where T : IWindow;
 
 		/// <summary>
 		/// Displays a modal dialog of a type that is determined by the dialog type locator.

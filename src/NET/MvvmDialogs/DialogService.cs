@@ -133,7 +133,7 @@ namespace MvvmDialogs
 		public void ShowCustom<T>(
 			INotifyPropertyChanged ownerViewModel,
 			INotifyPropertyChanged viewModel)
-			where T : ICustomWindow
+			where T : IWindow
 		{
 			throw new NotImplementedException();
 		}
@@ -207,7 +207,7 @@ namespace MvvmDialogs
 		public bool? ShowCustomDialog<T>(
 			INotifyPropertyChanged ownerViewModel,
 			IModalDialogViewModel viewModel)
-			where T : ICustomWindow
+			where T : IWindow
 		{
 			throw new NotImplementedException();
 		}
