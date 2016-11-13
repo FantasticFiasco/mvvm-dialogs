@@ -14,11 +14,11 @@ namespace Demo.ModalCustomDialog
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
 
             SimpleIoc.Default.Register<MainWindowViewModel>();
-            SimpleIoc.Default.Register<AddTextDialogViewModel>();
+            SimpleIoc.Default.Register<AddTextCustomDialogViewModel>();
         }
 
         public MainWindowViewModel MainWindow => ServiceLocator.Current.GetInstance<MainWindowViewModel>();
 
-        public AddTextDialogViewModel AddTextDialog => ServiceLocator.Current.GetInstance<AddTextDialogViewModel>();
+        public AddTextCustomDialogViewModel AddTextCustomDialog => ServiceLocator.Current.GetInstance<AddTextCustomDialogViewModel>();
     }
 }

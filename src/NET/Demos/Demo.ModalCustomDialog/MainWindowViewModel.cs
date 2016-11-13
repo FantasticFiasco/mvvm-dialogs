@@ -32,12 +32,12 @@ namespace Demo.ModalCustomDialog
 
         private void ExplicitShowDialog()
         {
-            ShowDialog(viewModel => dialogService.ShowDialog<Demo.ModalCustomDialog.AddTextDialog>(this, viewModel));
+            ShowDialog(viewModel => dialogService.ShowDialog<AddTextCustomDialog>(this, viewModel));
         }
 
-        private void ShowDialog(Func<AddTextDialogViewModel, bool?> showDialog)
+        private void ShowDialog(Func<AddTextCustomDialogViewModel, bool?> showDialog)
         {
-            var dialogViewModel = new AddTextDialogViewModel();
+            var dialogViewModel = new AddTextCustomDialogViewModel();
 
             bool? success = showDialog(dialogViewModel);
             if (success == true)

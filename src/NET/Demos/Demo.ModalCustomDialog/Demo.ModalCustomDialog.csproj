@@ -78,13 +78,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="AddTextDialog.xaml.cs">
-      <DependentUpon>AddTextDialog.xaml</DependentUpon>
+    <Compile Include="AddTextCustomDialog.xaml.cs">
+      <DependentUpon>AddTextCustomDialog.xaml</DependentUpon>
     </Compile>
-    <Compile Include="AddTextDialogViewModel.cs" />
+    <Compile Include="AddTextCustomDialogViewModel.cs" />
     <Compile Include="MainWindowViewModel.cs" />
     <Compile Include="ViewModelLocator.cs" />
-    <Page Include="AddTextDialog.xaml">
+    <Page Include="AddTextCustomDialog.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

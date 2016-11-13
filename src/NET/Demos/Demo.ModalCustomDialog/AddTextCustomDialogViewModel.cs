@@ -5,12 +5,12 @@ using MvvmDialogs;
 
 namespace Demo.ModalCustomDialog
 {
-    public class AddTextDialogViewModel : ViewModelBase, IModalDialogViewModel
+    public class AddTextCustomDialogViewModel : ViewModelBase, IModalDialogViewModel
     {
         private string text;
         private bool? dialogResult;
 
-        public AddTextDialogViewModel()
+        public AddTextCustomDialogViewModel()
         {
             OkCommand = new RelayCommand(Ok);
         }
