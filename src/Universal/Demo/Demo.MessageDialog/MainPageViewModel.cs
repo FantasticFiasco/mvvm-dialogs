@@ -7,82 +7,82 @@ using MvvmDialogs;
 
 namespace Demo.MessageDialog
 {
-	public class MainPageViewModel : ViewModelBase
-	{
-		private readonly IDialogService dialogService;
+    public class MainPageViewModel : ViewModelBase
+    {
+        private readonly IDialogService dialogService;
 
-		private string confirmation;
+        private string confirmation;
 
-		public MainPageViewModel(IDialogService dialogService)
-		{
-			this.dialogService = dialogService;
+        public MainPageViewModel(IDialogService dialogService)
+        {
+            this.dialogService = dialogService;
 
-			ShowMessageDialogWithContentCommand = new RelayCommand(ShowMessageDialogWithContent);
-			ShowMessageDialogWithTitleCommand = new RelayCommand(ShowMessageDialogWithTitle);
-			ShowMessageDialogWithCommandsCommand = new RelayCommand(ShowMessageDialogWithCommands);
-			ShowMessageDialogWithDefaultCommandCommand = new RelayCommand(ShowMessageDialogWithDefaultCommand);
-		}
+            ShowMessageDialogWithContentCommand = new RelayCommand(ShowMessageDialogWithContent);
+            ShowMessageDialogWithTitleCommand = new RelayCommand(ShowMessageDialogWithTitle);
+            ShowMessageDialogWithCommandsCommand = new RelayCommand(ShowMessageDialogWithCommands);
+            ShowMessageDialogWithDefaultCommandCommand = new RelayCommand(ShowMessageDialogWithDefaultCommand);
+        }
 
-		public ICommand ShowMessageDialogWithContentCommand { get; }
+        public ICommand ShowMessageDialogWithContentCommand { get; }
 
-		public ICommand ShowMessageDialogWithTitleCommand { get; }
+        public ICommand ShowMessageDialogWithTitleCommand { get; }
 
-		public ICommand ShowMessageDialogWithCommandsCommand { get; }
+        public ICommand ShowMessageDialogWithCommandsCommand { get; }
 
-		public ICommand ShowMessageDialogWithDefaultCommandCommand { get; }
+        public ICommand ShowMessageDialogWithDefaultCommandCommand { get; }
 
-		public string Confirmation
-		{
-			get { return confirmation; }
-			private set { Set(() => Confirmation, ref confirmation, value); }
-		}
+        public string Confirmation
+        {
+            get { return confirmation; }
+            private set { Set(() => Confirmation, ref confirmation, value); }
+        }
 
-		private async void ShowMessageDialogWithContent()
-		{
-			await dialogService.ShowMessageDialogAsync("This is the text.");
-			Confirmation = string.Empty;
-		}
+        private async void ShowMessageDialogWithContent()
+        {
+            await dialogService.ShowMessageDialogAsync("This is the text.");
+            Confirmation = string.Empty;
+        }
 
-		private async void ShowMessageDialogWithTitle()
-		{
-			await dialogService.ShowMessageDialogAsync(
-				"This is the text.",
-				"This Is The Title");
+        private async void ShowMessageDialogWithTitle()
+        {
+            await dialogService.ShowMessageDialogAsync(
+                "This is the text.",
+                "This Is The Title");
 
-			Confirmation = string.Empty;
-		}
+            Confirmation = string.Empty;
+        }
 
-		private async void ShowMessageDialogWithCommands()
-		{
-			IUICommand command = await dialogService.ShowMessageDialogAsync(
-				"This is the text.",
-				"This Is The Title",
-				new[]
-				{
-					new UICommand { Id = 0, Label = "OK" },
-					new UICommand { Id = 1, Label = "Close" }
-				});
+        private async void ShowMessageDialogWithCommands()
+        {
+            IUICommand command = await dialogService.ShowMessageDialogAsync(
+                "This is the text.",
+                "This Is The Title",
+                new[]
+                {
+                    new UICommand { Id = 0, Label = "OK" },
+                    new UICommand { Id = 1, Label = "Close" }
+                });
 
-			Confirmation = (int)command.Id == 0 ?
-				"We got confirmation to continue!" :
-				string.Empty;
-		}
+            Confirmation = (int)command.Id == 0 ?
+                "We got confirmation to continue!" :
+                string.Empty;
+        }
 
-		private async void ShowMessageDialogWithDefaultCommand()
-		{
-			IUICommand command = await dialogService.ShowMessageDialogAsync(
-				"This is the text.",
-				"This Is The Title",
-				new[]
-				{
-					new UICommand { Id = 0, Label = "OK" },
-					new UICommand { Id = 1, Label = "Close" }
-				},
-				1);
+        private async void ShowMessageDialogWithDefaultCommand()
+        {
+            IUICommand command = await dialogService.ShowMessageDialogAsync(
+                "This is the text.",
+                "This Is The Title",
+                new[]
+                {
+                    new UICommand { Id = 0, Label = "OK" },
+                    new UICommand { Id = 1, Label = "Close" }
+                },
+                1);
 
-			Confirmation = (int)command.Id == 0 ?
-				"We got confirmation to continue!" :
-				string.Empty;
-		}
-	}
+            Confirmation = (int)command.Id == 0 ?
+                "We got confirmation to continue!" :
+                string.Empty;
+        }
+    }
 }

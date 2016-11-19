@@ -10,40 +10,40 @@ using MvvmDialogs.FrameworkPickers.Folder;
 
 namespace Demo.PickSingleFolder
 {
-	public class MainPageViewModel : ViewModelBase
-	{
-		private readonly IDialogService dialogService;
+    public class MainPageViewModel : ViewModelBase
+    {
+        private readonly IDialogService dialogService;
 
-		private string path;
+        private string path;
 
-		public MainPageViewModel(IDialogService dialogService)
-		{
-			this.dialogService = dialogService;
+        public MainPageViewModel(IDialogService dialogService)
+        {
+            this.dialogService = dialogService;
 
-			BrowseFolderCommand = new RelayCommand(BrowseFolder);
-		}
+            BrowseFolderCommand = new RelayCommand(BrowseFolder);
+        }
 
-		public string Path
-		{
-			get { return path; }
-			private set { Set(() => Path, ref path, value); }
-		}
+        public string Path
+        {
+            get { return path; }
+            private set { Set(() => Path, ref path, value); }
+        }
 
-		public ICommand BrowseFolderCommand { get; }
+        public ICommand BrowseFolderCommand { get; }
 
-		private async void BrowseFolder()
-		{
-			var settings = new FolderPickerSettings
-			{
-				SuggestedStartLocation = PickerLocationId.DocumentsLibrary,
-				FileTypeFilter = new List<string> { ".txt" }
-			};
+        private async void BrowseFolder()
+        {
+            var settings = new FolderPickerSettings
+            {
+                SuggestedStartLocation = PickerLocationId.DocumentsLibrary,
+                FileTypeFilter = new List<string> { ".txt" }
+            };
 
-			StorageFolder storageFolder = await dialogService.PickSingleFolderAsync(settings);
-			if (storageFolder != null)
-			{
-				Path = storageFolder.Path;
-			}
-		}
-	}
+            StorageFolder storageFolder = await dialogService.PickSingleFolderAsync(settings);
+            if (storageFolder != null)
+            {
+                Path = storageFolder.Path;
+            }
+        }
+    }
 }

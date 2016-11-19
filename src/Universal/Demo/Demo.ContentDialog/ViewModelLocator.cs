@@ -3,22 +3,22 @@ using Microsoft.Practices.ServiceLocation;
 
 namespace Demo.ContentDialog
 {
-	/// <summary>
-	/// This class contains static references to all the view models in the
-	/// application and provides an entry point for the bindings.
-	/// </summary>
-	public class ViewModelLocator
-	{
-		public ViewModelLocator()
-		{
-			ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
+    /// <summary>
+    /// This class contains static references to all the view models in the
+    /// application and provides an entry point for the bindings.
+    /// </summary>
+    public class ViewModelLocator
+    {
+        public ViewModelLocator()
+        {
+            ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
 
-			SimpleIoc.Default.Register<MainPageViewModel>();
-			SimpleIoc.Default.Register<AddTextContentDialogViewModel>();
-		}
+            SimpleIoc.Default.Register<MainPageViewModel>();
+            SimpleIoc.Default.Register<AddTextContentDialogViewModel>();
+        }
 
-		public MainPageViewModel MainPage => ServiceLocator.Current.GetInstance<MainPageViewModel>();
+        public MainPageViewModel MainPage => ServiceLocator.Current.GetInstance<MainPageViewModel>();
 
-		public AddTextContentDialogViewModel AddTextContentDialog => ServiceLocator.Current.GetInstance<AddTextContentDialogViewModel>();
-	}
+        public AddTextContentDialogViewModel AddTextContentDialog => ServiceLocator.Current.GetInstance<AddTextContentDialogViewModel>();
+    }
 }
