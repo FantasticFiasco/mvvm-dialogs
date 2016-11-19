@@ -30,6 +30,19 @@ namespace MvvmDialogs
             where T : ContentDialog;
 
         /// <summary>
+        /// Begins an asynchronous operation to show the custom <see cref="IContentDialog"/> of
+        /// type <typeparamref name="T"/>.
+        /// </summary>
+        /// <typeparam name="T">The type of the custom content dialog to show.</typeparam>
+        /// <param name="viewModel">The view model of the new custom content dialog.</param>
+        /// <returns>
+        /// An asynchronous operation showing the custom dialog. When complete, returns a
+        /// <see cref="ContentDialogResult"/>.
+        /// </returns>
+        IAsyncOperation<ContentDialogResult> ShowCustomContentDialogAsync<T>(INotifyPropertyChanged viewModel)
+            where T : IContentDialog;
+
+        /// <summary>
         /// Begins an asynchronous operation to show the <see cref="ContentDialog"/> of a type that
         /// is determined by the dialog type locator.
         /// </summary>

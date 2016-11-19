@@ -18,7 +18,5 @@ namespace Demo.NonModalDialog
         }
 
         public MainWindowViewModel MainWindow => ServiceLocator.Current.GetInstance<MainWindowViewModel>();
-
-        public CurrentTimeDialogViewModel CurrentTimeDialog => ServiceLocator.Current.GetInstance<CurrentTimeDialogViewModel>();
     }
 }

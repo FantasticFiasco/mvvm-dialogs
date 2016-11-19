@@ -97,6 +97,10 @@ public class MainPageViewModel : INotifyPropertyChanged
 }
 ```
 
+### Custom dialogs
+
+Dialogs in WPF that don't inherit from `Window`, or content dialogs in UWP that don't inherit from `ContentDialog` are called custom dialogs. These custom dialogs are supported, but in order for `DialogService` to know how to interact with them, you will have to implement the `IWindow` interface in WPF or `IContentDialog` in UWP.
+
 ### Install MVVM Dialogs via NuGet
 
 If you want to include MVVM Dialogs in your project, you can [install it directly from NuGet](https://www.nuget.org/packages/MvvmDialogs/).

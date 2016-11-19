@@ -1,43 +1,44 @@
-﻿using System;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 using MvvmDialogs;
-using MessageBox = Xceed.Wpf.Toolkit.MessageBox;
 
 namespace Demo.ModalCustomDialog
 {
-    public class AddTextCustomDialog : MessageBox, IWindow
+    public class AddTextCustomDialog : IWindow
     {
-        object IWindow.DataContext 
+        private readonly AddTextDialog dialog;
+
+        public AddTextCustomDialog()
         {
-            get { return DataContext; }
-            set { DataContext = value; }
+            dialog = new AddTextDialog();
         }
 
-        bool? IWindow.DialogResult { get; set; }
+        object IWindow.DataContext
+        {
+            get { return dialog.DataContext; }
+            set { dialog.DataContext = value; }
+        }
 
-        ContentControl IWindow.Owner { get; set; }
+        bool? IWindow.DialogResult
+        {
+            get { return dialog.DialogResult; }
+            set { dialog.DialogResult = value; }
+        }
+
+        ContentControl IWindow.Owner
+        {
+            get { return dialog.Owner; }
+            set { dialog.Owner = (Window)value; }
+        }
 
         bool? IWindow.ShowDialog()
         {
-            var self = (IWindow)this;
-
-            InitializeMessageBox(
-                (Window)self.Owner,
-                "Add current time?",
-                "Add Text",
-                MessageBoxButton.OKCancel, 
-                MessageBoxImage.Question, 
-                MessageBoxResult.OK);
-
-            self.DialogResult = ShowDialog();
-
-            return self.DialogResult;
+            return dialog.ShowDialog();
         }
 
         void IWindow.Show()
         {
-            throw new NotSupportedException();
+            dialog.Show();
         }
     }
 }

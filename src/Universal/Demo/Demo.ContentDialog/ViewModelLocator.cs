@@ -18,7 +18,5 @@ namespace Demo.ContentDialog
         }
 
         public MainPageViewModel MainPage => ServiceLocator.Current.GetInstance<MainPageViewModel>();
-
-        public AddTextContentDialogViewModel AddTextContentDialog => ServiceLocator.Current.GetInstance<AddTextContentDialogViewModel>();
     }
 }

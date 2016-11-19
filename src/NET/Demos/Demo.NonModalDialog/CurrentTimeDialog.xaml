@@ -5,13 +5,14 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+    xmlns:local="clr-namespace:Demo.NonModalDialog"
     mc:Ignorable="d"
     Title="Current Time"
     WindowStartupLocation="CenterOwner"
     Width="200"
     Height="100"
     ResizeMode="NoResize"
-    DataContext="{Binding Source={StaticResource Locator}, Path=CurrentTimeDialog}">
+    d:DataContext="{d:DesignInstance {x:Type local:CurrentTimeDialogViewModel}}">
     
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">

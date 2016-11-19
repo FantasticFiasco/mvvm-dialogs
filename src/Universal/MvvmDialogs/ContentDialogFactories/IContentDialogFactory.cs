@@ -1,5 +1,4 @@
 ﻿using System;
-using Windows.UI.Xaml.Controls;
 
 namespace MvvmDialogs.ContentDialogFactories
 {
@@ -9,8 +8,8 @@ namespace MvvmDialogs.ContentDialogFactories
     public interface IContentDialogFactory
     {
         /// <summary>
-        /// Creates a <see cref="ContentDialog"/> of specified type.
+        /// Creates a <see cref="IContentDialog"/> of specified type.
         /// </summary>
-        ContentDialog Create(Type dialogType);
+        IContentDialog Create(Type dialogType);
     }
 }

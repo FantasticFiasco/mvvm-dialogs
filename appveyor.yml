@@ -44,23 +44,7 @@ build:
 #       build configuration       #
 #---------------------------------#
 build_script:
-  - cmd: set SOLUTION=src\MvvmDialogs.sln
-  - cmd: set NUSPEC=src\MvvmDialogs.nuspec
-  - cmd: set NETPROJECT=src\NET\MvvmDialogs\MvvmDialogs.csproj
-  - cmd: set UNIVERSALPROJECT=src\Universal\MvvmDialogs\MvvmDialogs.csproj
-  - cmd: set LOGGER=C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll
-
-  - cmd: nuget restore %SOLUTION%
-  
-  # Build solution in default configuration
-  - cmd: msbuild %SOLUTION% /t:Rebuild /p:Configuration=Release /m /logger:"%LOGGER%"
-
-  # Build .NET project in additional versions
-  - cmd: msbuild %NETPROJECT% /t:Rebuild /p:Configuration=Release;TargetFrameworkVersion=v4.0 /m /logger:"%LOGGER%"
-  - cmd: msbuild %NETPROJECT% /t:Rebuild /p:Configuration=Release;TargetFrameworkVersion=v3.5 /m /logger:"%LOGGER%"
-
-  - cmd: if not %APPVEYOR_REPO_BRANCH%==master set VERSION_SUFFIX=-beta
-  - cmd: nuget pack %NUSPEC% -version %APPVEYOR_BUILD_VERSION%%VERSION_SUFFIX%
+  - cmd: ./Build.bat
 
 
 #---------------------------------#
@@ -104,3 +88,12 @@ notifications:
     to:
       - mattias.kindborg@email.com
     on_build_status_changed: true
+
+
+#---------------------------------#
+#              cache              #
+#---------------------------------#
+cache:
+    # preserve "packages" directory in the root of build folder
+    # but will reset it if packages.config is modified
+  - src\packages -> **\packages.config
