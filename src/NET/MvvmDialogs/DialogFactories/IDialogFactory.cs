@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Windows;
 
 namespace MvvmDialogs.DialogFactories
 {
@@ -9,8 +8,8 @@ namespace MvvmDialogs.DialogFactories
 	public interface IDialogFactory
 	{
 		/// <summary>
-		/// Creates a <see cref="Window"/> of specified type.
+		/// Creates a <see cref="IWindow"/> of specified type.
 		/// </summary>
-		Window Create(Type dialogType);
+		IWindow Create(Type dialogType);
 	}
 }

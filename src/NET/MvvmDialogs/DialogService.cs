@@ -209,7 +209,12 @@ namespace MvvmDialogs
 			IModalDialogViewModel viewModel)
 			where T : IWindow
 		{
-			throw new NotImplementedException();
+			if (ownerViewModel == null)
+				throw new ArgumentNullException(nameof(ownerViewModel));
+			if (viewModel == null)
+				throw new ArgumentNullException(nameof(viewModel));
+
+			return ShowDialog(ownerViewModel, viewModel, typeof(T));
 		}
 
 		/// <summary>
@@ -379,7 +384,7 @@ namespace MvvmDialogs
 
 			using (var dialog = new FolderBrowserDialogWrapper(settings))
 			{
-				DialogResult result = dialog.ShowDialog(new WindowWrapper(FindOwnerWindow(ownerViewModel)));
+				DialogResult result = dialog.ShowDialog(new Win32Window(FindOwnerWindow(ownerViewModel)));
 				return result == DialogResult.OK;
 			}
 		}
@@ -393,7 +398,7 @@ namespace MvvmDialogs
 		{
 			Logger.Write($"Dialog: {dialogType}; View model: {viewModel.GetType()}; Owner: {ownerViewModel.GetType()}");
 
-			Window dialog = CreateDialog(dialogType, ownerViewModel, viewModel);
+			IWindow dialog = CreateDialog(dialogType, ownerViewModel, viewModel);
 			dialog.Show();
 		}
 
@@ -404,7 +409,7 @@ namespace MvvmDialogs
 		{
 			Logger.Write($"Dialog: {dialogType}; View model: {viewModel.GetType()}; Owner: {ownerViewModel.GetType()}");
 
-			Window dialog = CreateDialog(dialogType, ownerViewModel, viewModel);
+			IWindow dialog = CreateDialog(dialogType, ownerViewModel, viewModel);
 			
 			PropertyChangedEventHandler handler = RegisterDialogResult(dialog, viewModel);
 			dialog.ShowDialog();
@@ -413,7 +418,7 @@ namespace MvvmDialogs
 			return viewModel.DialogResult;
 		}
 
-		private Window CreateDialog(
+		private IWindow CreateDialog(
 			Type dialogType,
 			INotifyPropertyChanged ownerViewModel,
 			INotifyPropertyChanged viewModel)
@@ -426,7 +431,7 @@ namespace MvvmDialogs
 		}
 
 		private static PropertyChangedEventHandler RegisterDialogResult(
-			Window dialog,
+			IWindow dialog,
 			IModalDialogViewModel viewModel)
 		{
 			PropertyChangedEventHandler handler = (sender, e) =>

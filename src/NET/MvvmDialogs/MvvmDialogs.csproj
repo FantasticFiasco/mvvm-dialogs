@@ -104,6 +104,7 @@
     </Compile>
     <Compile Include="DialogFactories\IDialogFactory.cs" />
     <Compile Include="DialogFactories\ReflectionDialogFactory.cs" />
+    <Compile Include="DialogFactories\WindowWrapper.cs" />
     <Compile Include="DialogService.cs" />
     <Compile Include="DialogServiceViews.cs" />
     <Compile Include="DialogTypeLocators\DialogTypeLocatorCache.cs" />
@@ -122,7 +123,7 @@
     <Compile Include="FrameworkDialogs\FolderBrowser\FolderBrowserDialogSettings.cs" />
     <Compile Include="FrameworkDialogs\OpenFile\OpenFileDialogWrapper.cs" />
     <Compile Include="FrameworkDialogs\OpenFile\OpenFileDialogSettings.cs" />
-    <Compile Include="FrameworkDialogs\WindowWrapper.cs" />
+    <Compile Include="FrameworkDialogs\Win32Window.cs" />
     <Compile Include="FrameworkDialogs\SaveFile\SaveFileDialogWrapper.cs" />
     <Compile Include="FrameworkDialogs\SaveFile\SaveFileDialogSettings.cs" />
     <Compile Include="GlobalSuppressions.cs" />
