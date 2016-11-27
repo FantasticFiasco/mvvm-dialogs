@@ -6,6 +6,11 @@ This project adheres to [Semantic Versioning](http://semver.org/) and is followi
 
 ## Unreleased
 
+### Added
+
+- [#14](https://github.com/FantasticFiasco/mvvm-dialogs/issues/14) - Support for showing custom WPF dialogs by implementing `IWindow`
+- Support for showing custom UWP content dialogs by implementing `IContentDialog`
+
 ## 3.0.0 - 2016-09-21
 
 ### Updated
@@ -16,14 +21,14 @@ This project adheres to [Semantic Versioning](http://semver.org/) and is followi
 
 ### Added
 
-- Support for Universal Windows Platform (UWP), thus fixing [Issue #8](https://github.com/FantasticFiasco/mvvm-dialogs/issues/8)
+- [#8](https://github.com/FantasticFiasco/mvvm-dialogs/issues/8) - Support for Universal Windows Platform (UWP)
 - Add `ViewNotRegisteredException` that is thrown by `IDialogService` when view is unregistered
 
 ## 1.2.16 - 2016-01-13
 
 ### Fixed
 
-- Fixed [Issue #2](https://github.com/FantasticFiasco/mvvm-dialogs/issues/2) where execption was thrown when unregistering a view
+- [#2](https://github.com/FantasticFiasco/mvvm-dialogs/issues/2) - Fixed issue where exception was thrown when unregistering a view
 
 ## 1.2.0 - 2015-12-14
 
@@ -35,7 +40,7 @@ This project adheres to [Semantic Versioning](http://semver.org/) and is followi
 
 ### Fixed
 
-- Fixed [Issue #3](https://github.com/FantasticFiasco/mvvm-dialogs/issues/3) where exception no longer is thrown when the property changed event for `IModalDialogViewModel.DialogResult` is sent twice
+- [#3](https://github.com/FantasticFiasco/mvvm-dialogs/issues/3) - Fixed issue where exception no longer is thrown when the property changed event for `IModalDialogViewModel.DialogResult` is sent twice
 
 ## 1.1.3 - 2015-07-07
 

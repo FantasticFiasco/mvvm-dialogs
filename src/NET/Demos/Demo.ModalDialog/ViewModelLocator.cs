@@ -18,7 +18,5 @@ namespace Demo.ModalDialog
         }
 
         public MainWindowViewModel MainWindow => ServiceLocator.Current.GetInstance<MainWindowViewModel>();
-
-        public AddTextDialogViewModel AddTextDialog => ServiceLocator.Current.GetInstance<AddTextDialogViewModel>();
     }
 }

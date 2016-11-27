@@ -12,12 +12,28 @@ namespace MvvmDialogs.ContentDialogFactories
         /// Creates a <see cref="ContentDialog" /> of specified type using
         /// <see cref="Activator.CreateInstance(Type)"/>.
         /// </summary>
-        public ContentDialog Create(Type dialogType)
+        public IContentDialog Create(Type dialogType)
         {
             if (dialogType == null)
                 throw new ArgumentNullException(nameof(dialogType));
 
-            return (ContentDialog)Activator.CreateInstance(dialogType);
+            var instance = Activator.CreateInstance(dialogType);
+
+            // Is instance of type IContentDialog?
+            IContentDialog customContentDialog = instance as IContentDialog;
+            if (customContentDialog != null)
+            {
+                return customContentDialog;
+            }
+
+            // Is instance of type ContentDialog?
+            var contentDialog = instance as ContentDialog;
+            if (contentDialog != null)
+            {
+                return new ContentDialogWrapper(contentDialog);
+            }
+
+            throw new ArgumentException($"Only dialogs of type {typeof(ContentDialog)} or {typeof(IContentDialog)} are supported.");
         }
     }
 }

@@ -133,6 +133,7 @@
     <Compile Include="..\..\SolutionInfo.cs">
       <Link>Properties\SolutionInfo.cs</Link>
     </Compile>
+    <Compile Include="ContentDialogFactories\ContentDialogWrapper.cs" />
     <Compile Include="ContentDialogFactories\IContentDialogFactory.cs" />
     <Compile Include="ContentDialogFactories\ReflectionContentDialogFactory.cs" />
     <Compile Include="DialogService.cs" />
@@ -143,6 +144,7 @@
     <Compile Include="FrameworkPickers\Folder\FolderPickerSettings.cs" />
     <Compile Include="FrameworkPickers\Folder\FolderPickerWrapper.cs" />
     <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="IContentDialog.cs" />
     <Compile Include="IDialogService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Properties\MvvmDialogs.rd.xml" />

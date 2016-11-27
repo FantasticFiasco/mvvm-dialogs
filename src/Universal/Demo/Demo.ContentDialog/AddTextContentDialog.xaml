@@ -5,8 +5,7 @@
     Title="Add Text"
     PrimaryButtonText="OK"
     IsPrimaryButtonEnabled="{Binding IsOkButtonEnabled}"
-    SecondaryButtonText="Cancel"
-    DataContext="{Binding Source={StaticResource Locator}, Path=AddTextContentDialog}">
+    SecondaryButtonText="Cancel">
 
     <TextBox
         AutomationProperties.AutomationId="GK6kxoak7keBNC0Ej_UOlA"

@@ -8,13 +8,13 @@ namespace MvvmDialogs.FrameworkDialogs
     /// <summary>
     /// Class describing a <see cref="IWin32Window"/> wrapper around a WPF window.
     /// </summary>
-    internal class WindowWrapper : IWin32Window
+    internal class Win32Window : IWin32Window
     {
         /// <summary>
-        /// Construct a new wrapper taking a WPF window.
+        /// Initializes a new instance of the <see cref="Win32Window"/> class.
         /// </summary>
         /// <param name="window">The WPF window to wrap.</param>
-        public WindowWrapper(Window window)
+        public Win32Window(Window window)
         {
             Handle = new WindowInteropHelper(window).Handle;
         }

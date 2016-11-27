@@ -120,6 +120,30 @@ namespace MvvmDialogs
         }
 
         /// <summary>
+        /// Displays a non-modal custom dialog of specified type <typeparamref name="T"/>.
+        /// </summary>
+        /// <param name="ownerViewModel">
+        /// A view model that represents the owner window of the custom dialog.
+        /// </param>
+        /// <param name="viewModel">The view model of the new custom dialog.</param>
+        /// <typeparam name="T">The type of the custom dialog to show.</typeparam>
+        /// <exception cref="ViewNotRegisteredException">
+        /// No view is registered with specified owner view model as data context.
+        /// </exception>
+        public void ShowCustom<T>(
+            INotifyPropertyChanged ownerViewModel,
+            INotifyPropertyChanged viewModel)
+            where T : IWindow
+        {
+            if (ownerViewModel == null)
+                throw new ArgumentNullException(nameof(ownerViewModel));
+            if (viewModel == null)
+                throw new ArgumentNullException(nameof(viewModel));
+
+            Show(ownerViewModel, viewModel, typeof(T));
+        }
+
+        /// <summary>
         /// Displays a non-modal dialog of a type that is determined by the dialog type locator.
         /// </summary>
         /// <param name="ownerViewModel">
@@ -161,6 +185,34 @@ namespace MvvmDialogs
         INotifyPropertyChanged ownerViewModel,
             IModalDialogViewModel viewModel)
             where T : Window
+        {
+            if (ownerViewModel == null)
+                throw new ArgumentNullException(nameof(ownerViewModel));
+            if (viewModel == null)
+                throw new ArgumentNullException(nameof(viewModel));
+
+            return ShowDialog(ownerViewModel, viewModel, typeof(T));
+        }
+
+        /// <summary>
+        /// Displays a custom modal dialog of specified type <typeparamref name="T"/>.
+        /// </summary>
+        /// <param name="ownerViewModel">
+        /// A view model that represents the owner window of the custom dialog.
+        /// </param>
+        /// <param name="viewModel">The view model of the new custom dialog.</param>
+        /// <typeparam name="T">The type of the custom dialog to show.</typeparam>
+        /// <returns>
+        /// A nullable value of type <see cref="bool"/> that signifies how a window was closed by
+        /// the user.
+        /// </returns>
+        /// <exception cref="ViewNotRegisteredException">
+        /// No view is registered with specified owner view model as data context.
+        /// </exception>
+        public bool? ShowCustomDialog<T>(
+            INotifyPropertyChanged ownerViewModel,
+            IModalDialogViewModel viewModel)
+            where T : IWindow
         {
             if (ownerViewModel == null)
                 throw new ArgumentNullException(nameof(ownerViewModel));
@@ -337,7 +389,7 @@ namespace MvvmDialogs
 
             using (var dialog = new FolderBrowserDialogWrapper(settings))
             {
-                DialogResult result = dialog.ShowDialog(new WindowWrapper(FindOwnerWindow(ownerViewModel)));
+                DialogResult result = dialog.ShowDialog(new Win32Window(FindOwnerWindow(ownerViewModel)));
                 return result == DialogResult.OK;
             }
         }
@@ -351,7 +403,7 @@ namespace MvvmDialogs
         {
             Logger.Write($"Dialog: {dialogType}; View model: {viewModel.GetType()}; Owner: {ownerViewModel.GetType()}");
 
-            Window dialog = CreateDialog(dialogType, ownerViewModel, viewModel);
+            IWindow dialog = CreateDialog(dialogType, ownerViewModel, viewModel);
             dialog.Show();
         }
 
@@ -362,7 +414,7 @@ namespace MvvmDialogs
         {
             Logger.Write($"Dialog: {dialogType}; View model: {viewModel.GetType()}; Owner: {ownerViewModel.GetType()}");
 
-            Window dialog = CreateDialog(dialogType, ownerViewModel, viewModel);
+            IWindow dialog = CreateDialog(dialogType, ownerViewModel, viewModel);
             
             PropertyChangedEventHandler handler = RegisterDialogResult(dialog, viewModel);
             dialog.ShowDialog();
@@ -371,7 +423,7 @@ namespace MvvmDialogs
             return viewModel.DialogResult;
         }
 
-        private Window CreateDialog(
+        private IWindow CreateDialog(
             Type dialogType,
             INotifyPropertyChanged ownerViewModel,
             INotifyPropertyChanged viewModel)
@@ -384,7 +436,7 @@ namespace MvvmDialogs
         }
 
         private static PropertyChangedEventHandler RegisterDialogResult(
-            Window dialog,
+            IWindow dialog,
             IModalDialogViewModel viewModel)
         {
             PropertyChangedEventHandler handler = (sender, e) =>

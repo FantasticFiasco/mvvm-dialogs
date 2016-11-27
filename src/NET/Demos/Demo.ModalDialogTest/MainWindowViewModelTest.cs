@@ -35,7 +35,7 @@ namespace Demo.ModalDialogTest
             };
 
             // ACT
-            viewModel.ExplicitShowDialogCommand.Execute(null);
+            viewModel.ImplicitShowDialogCommand.Execute(null);
 
             // ASSERT
             Assert.That(viewModel.Texts, Is.EqualTo(expected));
@@ -50,7 +50,7 @@ namespace Demo.ModalDialogTest
                 .Returns(false);
 
             // ACT
-            viewModel.ExplicitShowDialogCommand.Execute(null);
+            viewModel.ImplicitShowDialogCommand.Execute(null);
 
             // ASSERT
             Assert.That(viewModel.Texts, Is.Empty);
