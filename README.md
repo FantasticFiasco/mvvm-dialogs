@@ -110,3 +110,7 @@ To install MVVM Dialogs, run the following command in the Package Manager Consol
 ```
 PM> Install-Package MvvmDialogs
 ```
+
+### Credit
+
+Thank you [JetBrains](https://www.jetbrains.com/) for your important initiative to support the open source community with free licenses to your products.
