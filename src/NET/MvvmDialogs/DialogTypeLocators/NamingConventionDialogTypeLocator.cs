@@ -50,7 +50,12 @@ namespace MvvmDialogs.DialogTypeLocators
 
         private static string GetDialogName(Type viewModelType)
         {
-            string dialogName = viewModelType.FullName.Replace(".ViewModels.", ".Views.");
+            string dialogName;
+
+            if(viewModelType.FullName.Contains("ViewModel"))
+                dialogName = viewModelType.FullName.Replace(".ViewModel.", ".View.");
+            else
+                dialogName = viewModelType.FullName.Replace(".ViewModels.", ".Views.");
 
             if (!dialogName.EndsWith("ViewModel", StringComparison.Ordinal))
                 throw new TypeLoadException($"View model of type '{viewModelType}' doesn't follow naming convention since it isn't suffixed with 'ViewModel'.");
