@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Reflection;
+using System.Windows;
 
 namespace MvvmDialogs.DialogTypeLocators
 {
@@ -32,14 +33,20 @@ namespace MvvmDialogs.DialogTypeLocators
             Type viewModelType = viewModel.GetType();
 
             Type dialogType = Cache.Get(viewModelType);
+
             if (dialogType != null)
             {
                 return dialogType;
             }
 
             string dialogName = GetDialogName(viewModelType);
-            
+
             dialogType = GetAssemblyFromType(viewModelType).GetType(dialogName);
+
+            // if view name ends with "View"
+            if(dialogType == null)
+                dialogType = GetAssemblyFromType(viewModelType).GetType(dialogName + "View");
+
             if (dialogType == null)
                 throw new TypeLoadException($"Dialog with name '{dialogName}' is missing.");
 
