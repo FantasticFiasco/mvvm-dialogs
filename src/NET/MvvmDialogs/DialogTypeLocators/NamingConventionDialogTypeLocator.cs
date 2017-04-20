@@ -41,7 +41,7 @@ namespace MvvmDialogs.DialogTypeLocators
             
             dialogType = GetAssemblyFromType(viewModelType).GetType(dialogName);
             if (dialogType == null)
-                throw new TypeLoadException($"Dialog with name '{dialogName}' is missing.");
+                throw new TypeLoadException(AppendInfoAboutDialogTypeLocators($"Dialog with name '{dialogName}' is missing."));
 
             Cache.Add(viewModelType, dialogType);
             
@@ -53,7 +53,7 @@ namespace MvvmDialogs.DialogTypeLocators
             string dialogName = viewModelType.FullName.Replace(".ViewModels.", ".Views.");
 
             if (!dialogName.EndsWith("ViewModel", StringComparison.Ordinal))
-                throw new TypeLoadException($"View model of type '{viewModelType}' doesn't follow naming convention since it isn't suffixed with 'ViewModel'.");
+                throw new TypeLoadException(AppendInfoAboutDialogTypeLocators($"View model of type '{viewModelType}' doesn't follow naming convention since it isn't suffixed with 'ViewModel'."));
 
             return dialogName.Substring(
                 0,
@@ -69,6 +69,16 @@ namespace MvvmDialogs.DialogTypeLocators
             // Assembly is supported on all .NET versions
             return type.Assembly;
 #endif
+        }
+
+        private static string AppendInfoAboutDialogTypeLocators(string errorMessage)
+        {
+            return
+                errorMessage + Environment.NewLine +
+                "If your project structure doesn't conform to the default convention of MVVM " +
+                "Dialogs you can always define a new convention by implementing your own dialog " +
+                "type locator. For more information on how to do that, please read the GitHub " +
+                "wiki or ask the author.";
         }
     }
 }
