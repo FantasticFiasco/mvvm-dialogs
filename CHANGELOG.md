@@ -6,11 +6,13 @@ This project adheres to [Semantic Versioning](http://semver.org/) and is followi
 
 ## Unreleased
 
+## 4.0.10 - 2017-04-20
+
 ### Changed
 
 - Improve exception message when dialog type locator fails
 
-### 4.0.0 - 2016-11-27
+## 4.0.0 - 2016-11-27
 
 ### Added
 
