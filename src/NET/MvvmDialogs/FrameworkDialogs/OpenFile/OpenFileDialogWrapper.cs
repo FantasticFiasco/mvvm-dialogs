@@ -31,6 +31,7 @@ namespace MvvmDialogs.FrameworkDialogs.OpenFile
                 DefaultExt = settings.DefaultExt,
                 FileName = settings.FileName,
                 Filter = settings.Filter,
+                FilterIndex = settings.FilterIndex,
                 InitialDirectory = settings.InitialDirectory,
                 Multiselect = settings.Multiselect,
                 Title = settings.Title

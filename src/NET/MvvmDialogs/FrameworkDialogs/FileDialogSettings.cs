@@ -47,6 +47,14 @@ namespace MvvmDialogs.FrameworkDialogs
         public string Filter { get; set; } = string.Empty;
 
         /// <summary>
+        /// Gets or sets the index of the filter currently selected in a file dialog.
+        /// </summary>
+        /// <returns>
+        /// The <see cref="int" /> that is the index of the selected filter. The default is 1.
+        /// </returns>
+        public int FilterIndex { get; set; } = 1;
+
+        /// <summary>
         /// Gets or sets the initial directory displayed by the file dialog box.
         /// </summary>
         public string InitialDirectory { get; set; } = string.Empty;

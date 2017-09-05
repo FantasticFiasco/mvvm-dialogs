@@ -36,3 +36,6 @@ artifacts/
 # NuGet Packages
 *.nupkg
 **/packages/*
+
+# ReSharper
+src/_ReSharper.Caches/
