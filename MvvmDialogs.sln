@@ -3,90 +3,90 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvvmDialogs", "NET\MvvmDialogs\MvvmDialogs.csproj", "{29051B6F-74C5-4EF6-A792-4E382CE233FA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvvmDialogs", "src\NET\MvvmDialogs\MvvmDialogs.csproj", "{29051B6F-74C5-4EF6-A792-4E382CE233FA}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".CodeAnalysis", ".CodeAnalysis", "{21AAA7B6-6176-4748-BBE6-3DBBCAEAB9EC}"
 	ProjectSection(SolutionItems) = preProject
-		MvvmDialogs.ruleset = MvvmDialogs.ruleset
+		src\MvvmDialogs.ruleset = src\MvvmDialogs.ruleset
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvvmDialogsTest", "NET\MvvmDialogsTest\MvvmDialogsTest.csproj", "{A332ED47-E057-4969-860A-1BA6DBA86B01}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvvmDialogsTest", "src\NET\MvvmDialogsTest\MvvmDialogsTest.csproj", "{A332ED47-E057-4969-860A-1BA6DBA86B01}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".Build", ".Build", "{134A5091-AAE0-489D-A704-F4A2456C6D35}"
 	ProjectSection(SolutionItems) = preProject
-		..\appveyor.yml = ..\appveyor.yml
-		..\Build.bat = ..\Build.bat
-		MvvmDialogs.nuspec = MvvmDialogs.nuspec
+		appveyor.yml = appveyor.yml
+		Build.bat = Build.bat
+		src\MvvmDialogs.nuspec = src\MvvmDialogs.nuspec
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".Documentation", ".Documentation", "{76759856-59C1-41D8-9024-B899606B1EF6}"
 	ProjectSection(SolutionItems) = preProject
-		..\CHANGELOG.md = ..\CHANGELOG.md
-		..\CONTRIBUTING.md = ..\CONTRIBUTING.md
-		..\LICENSE = ..\LICENSE
-		..\README.md = ..\README.md
+		CHANGELOG.md = CHANGELOG.md
+		CONTRIBUTING.md = CONTRIBUTING.md
+		LICENSE = LICENSE
+		README.md = README.md
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MVVM Dialogs (NET)", "MVVM Dialogs (NET)", "{9B8B1EA1-23B5-49D7-AC42-40C9B317405A}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MVVM Dialogs (Universal)", "MVVM Dialogs (Universal)", "{F903FDDC-2417-48E4-8F4F-004E5FA7F0B2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvvmDialogs", "Universal\MvvmDialogs\MvvmDialogs.csproj", "{27565340-6841-4CC7-9E41-B92F1DA23CBC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvvmDialogs", "src\Universal\MvvmDialogs\MvvmDialogs.csproj", "{27565340-6841-4CC7-9E41-B92F1DA23CBC}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".SourceControl", ".SourceControl", "{2EC01C50-556F-40EF-92D1-B5B782B76B88}"
 	ProjectSection(SolutionItems) = preProject
-		..\.gitignore = ..\.gitignore
+		.gitignore = .gitignore
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Demos", "Demos", "{E86832E0-64C9-498F-AA09-51D334FE0370}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.ModalDialog", "NET\Demos\Demo.ModalDialog\Demo.ModalDialog.csproj", "{E125DA09-788C-49CF-A8EF-059759F90FFA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.ModalDialog", "src\NET\Demos\Demo.ModalDialog\Demo.ModalDialog.csproj", "{E125DA09-788C-49CF-A8EF-059759F90FFA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.NonModalDialog", "NET\Demos\Demo.NonModalDialog\Demo.NonModalDialog.csproj", "{05141BD6-8AB8-446F-AB7D-B4F4A1AF3453}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.NonModalDialog", "src\NET\Demos\Demo.NonModalDialog\Demo.NonModalDialog.csproj", "{05141BD6-8AB8-446F-AB7D-B4F4A1AF3453}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.MessageBox", "NET\Demos\Demo.MessageBox\Demo.MessageBox.csproj", "{024341AD-3E60-45A6-961A-9D994CA65EA9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.MessageBox", "src\NET\Demos\Demo.MessageBox\Demo.MessageBox.csproj", "{024341AD-3E60-45A6-961A-9D994CA65EA9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.FolderBrowserDialog", "NET\Demos\Demo.FolderBrowserDialog\Demo.FolderBrowserDialog.csproj", "{C3954CE7-7715-4B9B-81FC-079F58F1819F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.FolderBrowserDialog", "src\NET\Demos\Demo.FolderBrowserDialog\Demo.FolderBrowserDialog.csproj", "{C3954CE7-7715-4B9B-81FC-079F58F1819F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.OpenFileDialog", "NET\Demos\Demo.OpenFileDialog\Demo.OpenFileDialog.csproj", "{81CC82EA-84DB-4D12-9BFE-B12437451AE2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.OpenFileDialog", "src\NET\Demos\Demo.OpenFileDialog\Demo.OpenFileDialog.csproj", "{81CC82EA-84DB-4D12-9BFE-B12437451AE2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.SaveFileDialog", "NET\Demos\Demo.SaveFileDialog\Demo.SaveFileDialog.csproj", "{52A53605-85C0-4ADE-8D79-1FD7C4774AFD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.SaveFileDialog", "src\NET\Demos\Demo.SaveFileDialog\Demo.SaveFileDialog.csproj", "{52A53605-85C0-4ADE-8D79-1FD7C4774AFD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.FolderBrowserDialogTest", "NET\Demos\Demo.FolderBrowserDialogTest\Demo.FolderBrowserDialogTest.csproj", "{7A7BEC3C-2352-48E7-9D07-A7C6089CA83F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.FolderBrowserDialogTest", "src\NET\Demos\Demo.FolderBrowserDialogTest\Demo.FolderBrowserDialogTest.csproj", "{7A7BEC3C-2352-48E7-9D07-A7C6089CA83F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.MessageBoxTest", "NET\Demos\Demo.MessageBoxTest\Demo.MessageBoxTest.csproj", "{6B512CF2-8AB6-4080-8D16-F3DA866A6053}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.MessageBoxTest", "src\NET\Demos\Demo.MessageBoxTest\Demo.MessageBoxTest.csproj", "{6B512CF2-8AB6-4080-8D16-F3DA866A6053}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.ModalDialogTest", "NET\Demos\Demo.ModalDialogTest\Demo.ModalDialogTest.csproj", "{806A9ACE-BF4F-41D8-8E1A-CF04B7952CB5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.ModalDialogTest", "src\NET\Demos\Demo.ModalDialogTest\Demo.ModalDialogTest.csproj", "{806A9ACE-BF4F-41D8-8E1A-CF04B7952CB5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.NonModalDialogTest", "NET\Demos\Demo.NonModalDialogTest\Demo.NonModalDialogTest.csproj", "{7FFB04D2-9B1C-4474-AA28-8D3570F97651}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.NonModalDialogTest", "src\NET\Demos\Demo.NonModalDialogTest\Demo.NonModalDialogTest.csproj", "{7FFB04D2-9B1C-4474-AA28-8D3570F97651}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.OpenFileDialogTest", "NET\Demos\Demo.OpenFileDialogTest\Demo.OpenFileDialogTest.csproj", "{2076CE15-4A2E-4BFF-9F56-62D33420BA04}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.OpenFileDialogTest", "src\NET\Demos\Demo.OpenFileDialogTest\Demo.OpenFileDialogTest.csproj", "{2076CE15-4A2E-4BFF-9F56-62D33420BA04}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.SaveFileDialogTest", "NET\Demos\Demo.SaveFileDialogTest\Demo.SaveFileDialogTest.csproj", "{89D24FD8-21E0-4305-A56D-F78502F853F9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.SaveFileDialogTest", "src\NET\Demos\Demo.SaveFileDialogTest\Demo.SaveFileDialogTest.csproj", "{89D24FD8-21E0-4305-A56D-F78502F853F9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestBaseClasses", "NET\Demos\TestBaseClasses\TestBaseClasses.csproj", "{12389BC0-E512-4FAC-9713-21819B7A5A49}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestBaseClasses", "src\NET\Demos\TestBaseClasses\TestBaseClasses.csproj", "{12389BC0-E512-4FAC-9713-21819B7A5A49}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Demos", "Demos", "{0E097C8B-82AA-463A-9EAA-F8EBC7E825DF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.ContentDialog", "Universal\Demo\Demo.ContentDialog\Demo.ContentDialog.csproj", "{72DEFA6C-F541-40D2-A17E-438CCC029555}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.ContentDialog", "src\Universal\Demo\Demo.ContentDialog\Demo.ContentDialog.csproj", "{72DEFA6C-F541-40D2-A17E-438CCC029555}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.MessageDialog", "Universal\Demo\Demo.MessageDialog\Demo.MessageDialog.csproj", "{B689198B-BB12-4B80-A564-09DF28B24FE4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.MessageDialog", "src\Universal\Demo\Demo.MessageDialog\Demo.MessageDialog.csproj", "{B689198B-BB12-4B80-A564-09DF28B24FE4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.PickFiles", "Universal\Demo\Demo.PickFiles\Demo.PickFiles.csproj", "{F52410BA-035E-4FE5-B2BB-5B1C9E5D6700}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.PickFiles", "src\Universal\Demo\Demo.PickFiles\Demo.PickFiles.csproj", "{F52410BA-035E-4FE5-B2BB-5B1C9E5D6700}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.PickSaveFile", "Universal\Demo\Demo.PickSaveFile\Demo.PickSaveFile.csproj", "{17E88150-428A-47FD-BB1D-9F54CC087C94}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.PickSaveFile", "src\Universal\Demo\Demo.PickSaveFile\Demo.PickSaveFile.csproj", "{17E88150-428A-47FD-BB1D-9F54CC087C94}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.PickSingleFolder", "Universal\Demo\Demo.PickSingleFolder\Demo.PickSingleFolder.csproj", "{128BF79B-E614-4289-9D07-1BF166BB6C40}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.PickSingleFolder", "src\Universal\Demo\Demo.PickSingleFolder\Demo.PickSingleFolder.csproj", "{128BF79B-E614-4289-9D07-1BF166BB6C40}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.ModalCustomDialog", "NET\Demos\Demo.ModalCustomDialog\Demo.ModalCustomDialog.csproj", "{7AB4F4B6-71A7-41A1-8DEE-F848A7B358E3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.ModalCustomDialog", "src\NET\Demos\Demo.ModalCustomDialog\Demo.ModalCustomDialog.csproj", "{7AB4F4B6-71A7-41A1-8DEE-F848A7B358E3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.ModalCustomDialogTest", "NET\Demos\Demo.ModalCustomDialogTest\Demo.ModalCustomDialogTest.csproj", "{853B523D-AE78-467A-BDCE-66150C3867A0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.ModalCustomDialogTest", "src\NET\Demos\Demo.ModalCustomDialogTest\Demo.ModalCustomDialogTest.csproj", "{853B523D-AE78-467A-BDCE-66150C3867A0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.NonModalCustomDialog", "NET\Demos\Demo.NonModalCustomDialog\Demo.NonModalCustomDialog.csproj", "{7A1E9AE6-68F8-48EF-AA8F-0AE2AE77B9D0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.NonModalCustomDialog", "src\NET\Demos\Demo.NonModalCustomDialog\Demo.NonModalCustomDialog.csproj", "{7A1E9AE6-68F8-48EF-AA8F-0AE2AE77B9D0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.NonModalCustomDialogTest", "NET\Demos\Demo.NonModalCustomDialogTest\Demo.NonModalCustomDialogTest.csproj", "{00198124-A858-4645-B8BB-27B9191193DC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.NonModalCustomDialogTest", "src\NET\Demos\Demo.NonModalCustomDialogTest\Demo.NonModalCustomDialogTest.csproj", "{00198124-A858-4645-B8BB-27B9191193DC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.CustomContentDialog", "Universal\Demo\Demo.CustomContentDialog\Demo.CustomContentDialog.csproj", "{FF4074EA-6174-42F8-8636-74CFA644F69A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.CustomContentDialog", "src\Universal\Demo\Demo.CustomContentDialog\Demo.CustomContentDialog.csproj", "{FF4074EA-6174-42F8-8636-74CFA644F69A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

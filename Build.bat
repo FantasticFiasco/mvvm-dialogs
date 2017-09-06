@@ -1,4 +1,4 @@
-set SOLUTION=src\MvvmDialogs.sln
+set SOLUTION=MvvmDialogs.sln
 set NUSPEC=src\MvvmDialogs.nuspec
 set NETPROJECT=src\NET\MvvmDialogs\MvvmDialogs.csproj
 set UNIVERSALPROJECT=src\Universal\MvvmDialogs\MvvmDialogs.csproj
