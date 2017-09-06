@@ -32,6 +32,7 @@ namespace MvvmDialogs.FrameworkDialogs.SaveFile
                 DefaultExt = settings.DefaultExt,
                 FileName = settings.FileName,
                 Filter = settings.Filter,
+                FilterIndex = settings.FilterIndex,
                 InitialDirectory = settings.InitialDirectory,
                 OverwritePrompt = settings.OverwritePrompt,
                 Title = settings.Title
