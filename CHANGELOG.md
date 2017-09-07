@@ -6,6 +6,8 @@ This project adheres to [Semantic Versioning](http://semver.org/) and is followi
 
 ## Unreleased
 
+## 4.1.1 - 2017-09-07
+
 ### Added
 
 - Option to set filter index when opening or saving a file (contribution by [@gigios](https://github.com/gigios))
