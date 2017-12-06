@@ -23,7 +23,7 @@ namespace Demo.OpenFileDialog
 
         public string Path
         {
-            get { return path; }
+            get => path;
             private set { Set(() => Path, ref path, value); }
         }
 

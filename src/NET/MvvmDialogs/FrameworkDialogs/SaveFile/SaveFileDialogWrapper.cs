@@ -7,7 +7,7 @@ namespace MvvmDialogs.FrameworkDialogs.SaveFile
     /// <summary>
     /// Class wrapping <see cref="SaveFileDialog"/>.
     /// </summary>
-    internal sealed class SaveFileDialogWrapper
+    internal sealed class SaveFileDialogWrapper : IFrameworkDialog
     {
         private readonly SaveFileDialogSettings settings;
         private readonly SaveFileDialog saveFileDialog;
@@ -18,10 +18,7 @@ namespace MvvmDialogs.FrameworkDialogs.SaveFile
         /// <param name="settings">The settings for the save file dialog.</param>
         public SaveFileDialogWrapper(SaveFileDialogSettings settings)
         {
-            if (settings == null)
-                throw new ArgumentNullException(nameof(settings));
-
-            this.settings = settings;
+            this.settings = settings ?? throw new ArgumentNullException(nameof(settings));
 
             saveFileDialog = new SaveFileDialog
             {
@@ -40,14 +37,13 @@ namespace MvvmDialogs.FrameworkDialogs.SaveFile
         }
 
         /// <summary>
-        /// Runs a common dialog box with the specified owner.
+        /// Opens a save file dialog with specified owner.
         /// </summary>
         /// <param name="owner">
         /// Handle to the window that owns the dialog.
         /// </param>
         /// <returns>
-        /// If the user clicks the OK button of the dialog that is displayed, true is returned;
-        /// otherwise false.
+        /// true if user clicks the OK button; otherwise false.
         /// </returns>
         public bool? ShowDialog(Window owner)
         {

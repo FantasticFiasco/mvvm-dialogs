@@ -18,10 +18,7 @@ namespace MvvmDialogs.DialogFactories
         /// <param name="window">The window.</param>
         public WindowWrapper(Window window)
         {
-            if (window == null)
-                throw new ArgumentNullException(nameof(window));
-
-            this.window = window;
+            this.window = window ?? throw new ArgumentNullException(nameof(window));
         }
 
         /// <summary>
@@ -29,8 +26,8 @@ namespace MvvmDialogs.DialogFactories
         /// </summary>
         public object DataContext
         {
-            get { return window.DataContext; }
-            set { window.DataContext = value; }
+            get => window.DataContext;
+            set => window.DataContext = value;
         }
 
         /// <summary>
@@ -42,8 +39,8 @@ namespace MvvmDialogs.DialogFactories
         /// </value>
         public bool? DialogResult
         {
-            get { return window.DialogResult; }
-            set { window.DialogResult = value; }
+            get => window.DialogResult;
+            set => window.DialogResult = value;
         }
 
         /// <summary>
@@ -51,8 +48,8 @@ namespace MvvmDialogs.DialogFactories
         /// </summary>
         public ContentControl Owner
         {
-            get { return window.Owner; }
-            set { window.Owner = (Window)value; }
+            get => window.Owner;
+            set => window.Owner = (Window)value;
         }
 
         /// <summary>

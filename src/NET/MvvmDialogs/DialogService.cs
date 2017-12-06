@@ -6,15 +6,12 @@ using MvvmDialogs.DialogFactories;
 using MvvmDialogs.DialogTypeLocators;
 using MvvmDialogs.FrameworkDialogs;
 using MvvmDialogs.FrameworkDialogs.FolderBrowser;
+using MvvmDialogs.FrameworkDialogs.MessageBox;
 using MvvmDialogs.FrameworkDialogs.OpenFile;
 using MvvmDialogs.FrameworkDialogs.SaveFile;
 using MvvmDialogs.Logging;
 using MvvmDialogs.Reflection;
 using MvvmDialogs.Views;
-using DialogResult = System.Windows.Forms.DialogResult;
-using FolderBrowserDialog = System.Windows.Forms.FolderBrowserDialog;
-using OpenFileDialog = System.Windows.Forms.OpenFileDialog;
-using SaveFileDialog = System.Windows.Forms.SaveFileDialog;
 
 namespace MvvmDialogs
 {
@@ -29,16 +26,18 @@ namespace MvvmDialogs
 
         private readonly IDialogFactory dialogFactory;
         private readonly IDialogTypeLocator dialogTypeLocator;
+        private readonly IFrameworkDialogFactory frameworkDialogFactory;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="DialogService"/> class.
         /// </summary>
         /// <remarks>
-        /// By default <see cref="ReflectionDialogFactory"/> is used as dialog factory and
-        /// <see cref="NamingConventionDialogTypeLocator"/> is used as dialog type locator.
+        /// By default <see cref="ReflectionDialogFactory"/> is used as dialog factory,
+        /// <see cref="NamingConventionDialogTypeLocator"/> is used as dialog type locator
+        /// and <see cref="DefaultFrameworkDialogFactory"/> is used as framework dialog factory.
         /// </remarks>
         public DialogService()
-            : this(new ReflectionDialogFactory(), new NamingConventionDialogTypeLocator())
+            : this(null)
         {
         }
 
@@ -46,51 +45,25 @@ namespace MvvmDialogs
         /// Initializes a new instance of the <see cref="DialogService"/> class.
         /// </summary>
         /// <param name="dialogFactory">
-        /// Factory responsible for creating dialogs.
-        /// </param>
-        /// <remarks>
-        /// By default <see cref="NamingConventionDialogTypeLocator"/> is used as dialog type
-        /// locator.
-        /// </remarks>
-        public DialogService(IDialogFactory dialogFactory)
-            : this(dialogFactory, new NamingConventionDialogTypeLocator())
-        {
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="DialogService"/> class.
-        /// </summary>
-        /// <param name="dialogTypeLocator">
-        /// Interface responsible for finding a dialog type matching a view model.
-        /// </param>
-        /// <remarks>
-        /// By default <see cref="ReflectionDialogFactory"/> is used as dialog factory.
-        /// </remarks>
-        public DialogService(IDialogTypeLocator dialogTypeLocator)
-            : this(new ReflectionDialogFactory(), dialogTypeLocator)
-        {
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="DialogService"/> class.
-        /// </summary>
-        /// <param name="dialogFactory">
-        /// Factory responsible for creating dialogs.
+        /// Factory responsible for creating dialogs. Default value is an instance of
+        /// <see cref="ReflectionDialogFactory"/>.
         /// </param>
         /// <param name="dialogTypeLocator">
-        /// Interface responsible for finding a dialog type matching a view model.
+        /// Locator responsible for finding a dialog type matching a view model. Default value is
+        /// an instance of <see cref="NamingConventionDialogTypeLocator"/>.
+        /// </param>
+        /// <param name="frameworkDialogFactory">
+        /// Factory responsible for creating framework dialogs. Default value is an instance of
+        /// <see cref="DefaultFrameworkDialogFactory"/>.
         /// </param>
         public DialogService(
-            IDialogFactory dialogFactory,
-            IDialogTypeLocator dialogTypeLocator)
+            IDialogFactory dialogFactory = null,
+            IDialogTypeLocator dialogTypeLocator = null,
+            IFrameworkDialogFactory frameworkDialogFactory = null)
         {
-            if (dialogFactory == null)
-                throw new ArgumentNullException(nameof(dialogFactory));
-            if (dialogTypeLocator == null)
-                throw new ArgumentNullException(nameof(dialogTypeLocator));
-            
-            this.dialogFactory = dialogFactory;
-            this.dialogTypeLocator = dialogTypeLocator;
+            this.dialogFactory = dialogFactory ?? new ReflectionDialogFactory();
+            this.dialogTypeLocator = dialogTypeLocator ?? new NamingConventionDialogTypeLocator();
+            this.frameworkDialogFactory = frameworkDialogFactory ?? new DefaultFrameworkDialogFactory();
         }
 
         #region IDialogService Members
@@ -290,22 +263,50 @@ namespace MvvmDialogs
             MessageBoxImage icon = MessageBoxImage.None,
             MessageBoxResult defaultResult = MessageBoxResult.None)
         {
-            if (ownerViewModel == null)
-                throw new ArgumentNullException(nameof(ownerViewModel));
+            var settings = new MessageBoxSettings
+            {
+                MessageBoxText = messageBoxText,
+                Caption = caption,
+                Button = button,
+                Icon = icon,
+                DefaultResult = defaultResult
+            };
 
-            Logger.Write($"Caption: {caption}; Message: {messageBoxText}");
-
-            return MessageBox.Show(
-                FindOwnerWindow(ownerViewModel),
-                messageBoxText,
-                caption,
-                button,
-                icon,
-                defaultResult);
+            return ShowMessageBox(ownerViewModel, settings);
         }
 
         /// <summary>
-        /// Shows the <see cref="OpenFileDialog"/>.
+        /// Displays a message box that has a message, title bar caption, button, and icon; and
+        /// that accepts a default message box result and returns a result.
+        /// </summary>
+        /// <param name="ownerViewModel">
+        /// A view model that represents the owner window of the dialog.
+        /// </param>
+        /// <param name="settings">The settings for the message box dialog.</param>
+        /// <returns>
+        /// A <see cref="MessageBoxResult"/> value that specifies which message box button is
+        /// clicked by the user.
+        /// </returns>
+        /// <exception cref="ViewNotRegisteredException">
+        /// No view is registered with specified owner view model as data context.
+        /// </exception>
+        public MessageBoxResult ShowMessageBox(
+            INotifyPropertyChanged ownerViewModel,
+            MessageBoxSettings settings)
+        {
+            if (ownerViewModel == null)
+                throw new ArgumentNullException(nameof(ownerViewModel));
+            if (settings == null)
+                throw new ArgumentNullException(nameof(settings));
+
+            Logger.Write($"Caption: {settings.Caption}; Message: {settings.MessageBoxText}");
+
+            var messageBox = frameworkDialogFactory.CreateMessageBox(settings);
+            return messageBox.Show(FindOwnerWindow(ownerViewModel));
+        }
+
+        /// <summary>
+        /// Shows the open file dialog.
         /// </summary>
         /// <param name="ownerViewModel">
         /// A view model that represents the owner window of the dialog.
@@ -329,12 +330,13 @@ namespace MvvmDialogs
 
             Logger.Write($"Title: {settings.Title}");
 
-            var dialog = new OpenFileDialogWrapper(settings);
-            return dialog.ShowDialog(FindOwnerWindow(ownerViewModel));
+            return frameworkDialogFactory
+                .CreateOpenFileDialog(settings)
+                .ShowDialog(FindOwnerWindow(ownerViewModel));
         }
 
         /// <summary>
-        /// Shows the <see cref="SaveFileDialog"/>.
+        /// Shows the save file dialog.
         /// </summary>
         /// <param name="ownerViewModel">
         /// A view model that represents the owner window of the dialog.
@@ -358,12 +360,13 @@ namespace MvvmDialogs
 
             Logger.Write($"Title: {settings.Title}");
 
-            var dialog = new SaveFileDialogWrapper(settings);
-            return dialog.ShowDialog(FindOwnerWindow(ownerViewModel));
+            return frameworkDialogFactory
+                .CreateSaveFileDialog(settings)
+                .ShowDialog(FindOwnerWindow(ownerViewModel));
         }
 
         /// <summary>
-        /// Shows the <see cref="FolderBrowserDialog"/>.
+        /// Shows the folder browser dialog.
         /// </summary>
         /// <param name="ownerViewModel">
         /// A view model that represents the owner window of the dialog.
@@ -387,11 +390,9 @@ namespace MvvmDialogs
 
             Logger.Write($"Description: {settings.Description}");
 
-            using (var dialog = new FolderBrowserDialogWrapper(settings))
-            {
-                DialogResult result = dialog.ShowDialog(new Win32Window(FindOwnerWindow(ownerViewModel)));
-                return result == DialogResult.OK;
-            }
+            return frameworkDialogFactory
+                .CreateFolderBrowserDialog(settings)
+                .ShowDialog(FindOwnerWindow(ownerViewModel));
         }
 
         #endregion

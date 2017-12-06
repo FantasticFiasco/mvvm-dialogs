@@ -29,13 +29,13 @@ namespace Demo.PickFiles
 
         public string SingleFilePath
         {
-            get { return singleFilePath; }
+            get => singleFilePath;
             private set { Set(() => SingleFilePath, ref singleFilePath, value); }
         }
 
         public string MultipleFilesPath
         {
-            get { return multipleFilesPath; }
+            get => multipleFilesPath;
             private set { Set(() => MultipleFilesPath, ref multipleFilesPath, value); }
         }
 

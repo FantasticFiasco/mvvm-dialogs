@@ -23,7 +23,7 @@ namespace Demo.ModalCustomDialogTest.ScreenObjects
 
         public virtual string Text
         {
-            set { text.Text = value; }
+            set => text.Text = value;
         }
 
         public virtual void ClickOK() => okButton.Click();

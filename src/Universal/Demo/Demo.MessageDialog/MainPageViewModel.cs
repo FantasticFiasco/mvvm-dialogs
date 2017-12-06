@@ -33,7 +33,7 @@ namespace Demo.MessageDialog
 
         public string Confirmation
         {
-            get { return confirmation; }
+            get => confirmation;
             private set { Set(() => Confirmation, ref confirmation, value); }
         }
 

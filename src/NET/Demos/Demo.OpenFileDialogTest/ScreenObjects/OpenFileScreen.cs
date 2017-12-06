@@ -17,7 +17,7 @@ namespace Demo.OpenFileDialogTest.ScreenObjects
 
         public virtual string FileName
         {
-            set { Window.Get<ComboBox>(SearchCriteria.ByAutomationId("1148")).EditableText = value; }
+            set => Window.Get<ComboBox>(SearchCriteria.ByAutomationId("1148")).EditableText = value;
         }
 
         public virtual void ClickOpen()

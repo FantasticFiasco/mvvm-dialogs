@@ -17,16 +17,16 @@ namespace Demo.ModalCustomDialog
 
         public string Text
         {
-            get { return text; }
-            set { Set(nameof(Text), ref text, value); }
+            get => text;
+            set => Set(nameof(Text), ref text, value);
         }
 
         public ICommand OkCommand { get; }
 
         public bool? DialogResult
         {
-            get { return dialogResult; }
-            private set { Set(nameof(DialogResult), ref dialogResult, value); }
+            get => dialogResult;
+            private set => Set(nameof(DialogResult), ref dialogResult, value);
         }
 
         private void Ok()

@@ -7,7 +7,7 @@ namespace MvvmDialogs.FrameworkDialogs.OpenFile
     /// <summary>
     /// Class wrapping <see cref="OpenFileDialog"/>.
     /// </summary>
-    internal sealed class OpenFileDialogWrapper
+    internal sealed class OpenFileDialogWrapper : IFrameworkDialog
     {
         private readonly OpenFileDialogSettings settings;
         private readonly OpenFileDialog openFileDialog;
@@ -18,10 +18,7 @@ namespace MvvmDialogs.FrameworkDialogs.OpenFile
         /// <param name="settings">The settings for the open file dialog.</param>
         public OpenFileDialogWrapper(OpenFileDialogSettings settings)
         {
-            if (settings == null)
-                throw new ArgumentNullException(nameof(settings));
-
-            this.settings = settings;
+            this.settings = settings ?? throw new ArgumentNullException(nameof(settings));
 
             openFileDialog = new OpenFileDialog
             {
@@ -39,14 +36,13 @@ namespace MvvmDialogs.FrameworkDialogs.OpenFile
         }
 
         /// <summary>
-        /// Runs a common dialog box with the specified owner.
+        /// Opens a open file dialog with specified owner.
         /// </summary>
         /// <param name="owner">
         /// Handle to the window that owns the dialog.
         /// </param>
         /// <returns>
-        /// If the user clicks the OK button of the dialog that is displayed, true is returned;
-        /// otherwise false.
+        /// true if user clicks the OK button; otherwise false.
         /// </returns>
         public bool? ShowDialog(Window owner)
         {

@@ -2,7 +2,20 @@
 
 # MVVM Dialogs [![Build status](https://ci.appveyor.com/api/projects/status/9eyvxv5jr9bybant/branch/master?svg=true)](https://ci.appveyor.com/project/FantasticFiasco/mvvm-dialogs/branch/master) [![NuGet](https://img.shields.io/nuget/v/MvvmDialogs.svg)](https://www.nuget.org/packages/MvvmDialogs/) [![NuGet](https://img.shields.io/nuget/dt/MvvmDialogs.svg)](https://www.nuget.org/packages/MvvmDialogs/)
 
-### Introduction
+## Table of contents
+
+- [Introduction](#introduction)
+- [WPF usage](#wpf-usage)
+- [UWP usage](#uwp-usage)
+- [Custom windows](#custom-windows)
+- [Custom framework dialogs](#custom-framework-dialogs)
+- [More in the wiki](#more-in-the-wiki)
+- [Install MVVM Dialogs via NuGet](#install-mvvm-dialogs-via-nuget)
+- [Credit](#credit)
+
+---
+
+## Introduction
 
 MVVM Dialogs is a framework simplifying the concept of opening dialogs from a view model when using MVVM in WPF (Windows Presentation Framework) or UWP (Universal Windows Platform). It enables the developer to easily write unit tests for view models in the same manner unit tests are written for other classes.
 
@@ -24,7 +37,7 @@ The framework has built in support for the following dialogs in UWP:
 - Save file picker
 - Single folder picker
 
-### WPF usage
+## WPF usage
 
 To open a modal window, decorate the view with the attached property `DialogServiceViews.IsRegistered`:
 
@@ -68,7 +81,7 @@ public class ModalDialogTabContentViewModel : INotifyPropertyChanged
 }
 ```
 
-### UWP usage
+## UWP usage
 
 With UWP you don't need to register the view, simply open the dialog using the interface `IDialogService`:
 
@@ -97,11 +110,19 @@ public class MainPageViewModel : INotifyPropertyChanged
 }
 ```
 
-### Custom dialogs
+## Custom windows
 
 Dialogs in WPF that don't inherit from `Window`, or content dialogs in UWP that don't inherit from `ContentDialog` are called custom dialogs. These custom dialogs are supported, but in order for `DialogService` to know how to interact with them, you will have to implement the `IWindow` interface in WPF or `IContentDialog` in UWP.
 
-### Install MVVM Dialogs via NuGet
+## Custom framework dialogs
+
+MVVM Dialogs is by default opening the standard Windows message box or the open file dialog when asked to. This can however be changed by providing your own implementation of `IFrameworkDialogFactory` to `DialogService`.
+
+## More in the wiki
+
+For more information regarding the concepts of MVVM Dialogs and extended samples on the subjects, please read the [wiki](https://github.com/FantasticFiasco/mvvm-dialogs/wiki).
+
+## Install MVVM Dialogs via NuGet
 
 If you want to include MVVM Dialogs in your project, you can [install it directly from NuGet](https://www.nuget.org/packages/MvvmDialogs/).
 
@@ -111,7 +132,7 @@ To install MVVM Dialogs, run the following command in the Package Manager Consol
 PM> Install-Package MvvmDialogs
 ```
 
-### Credit
+## Credit
 
 Thank you [JetBrains](https://www.jetbrains.com/) for your important initiative to support the open source community with free licenses to your products.
 

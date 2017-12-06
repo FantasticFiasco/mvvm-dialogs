@@ -14,7 +14,7 @@ namespace Demo.SaveFileDialogTest.ScreenObjects
 
         public virtual string FileName
         {
-            set { Window.Get<TextBox>(SearchCriteria.ByAutomationId("1001")).Text = value; }
+            set => Window.Get<TextBox>(SearchCriteria.ByAutomationId("1001")).Text = value;
         }
 
         public virtual void ClickSave()
