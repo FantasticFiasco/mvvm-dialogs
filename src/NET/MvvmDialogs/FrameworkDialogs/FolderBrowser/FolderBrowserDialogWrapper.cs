@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows;
 using System.Windows.Forms;
 
 namespace MvvmDialogs.FrameworkDialogs.FolderBrowser
@@ -6,10 +7,9 @@ namespace MvvmDialogs.FrameworkDialogs.FolderBrowser
     /// <summary>
     /// Class wrapping <see cref="FolderBrowserDialog"/>.
     /// </summary>
-    internal sealed class FolderBrowserDialogWrapper : IDisposable
+    internal sealed class FolderBrowserDialogWrapper : IFrameworkDialog
     {
         private readonly FolderBrowserDialogSettings settings;
-        private readonly FolderBrowserDialog folderBrowserDialog;
         
         /// <summary>
         /// Initializes a new instance of the <see cref="FolderBrowserDialogWrapper"/> class.
@@ -17,54 +17,48 @@ namespace MvvmDialogs.FrameworkDialogs.FolderBrowser
         /// <param name="settings">The settings for the folder browser dialog.</param>
         public FolderBrowserDialogWrapper(FolderBrowserDialogSettings settings)
         {
-            if (settings == null)
-                throw new ArgumentNullException(nameof(settings));
-
-            this.settings = settings;
-
-            folderBrowserDialog = new FolderBrowserDialog
-            {
-                Description = settings.Description,
-                SelectedPath = settings.SelectedPath,
-                ShowNewFolderButton = settings.ShowNewFolderButton
-            };
+            this.settings = settings ?? throw new ArgumentNullException(nameof(settings));
         }
 
         /// <summary>
-        /// Runs a common dialog box with the specified owner.
+        /// Opens a folder browser dialog with specified owner.
         /// </summary>
         /// <param name="owner">
-        /// Any object that implements <see cref="IWin32Window"/> that represents the top-level
-        /// window that will own the modal dialog box.
+        /// Handle to the window that owns the dialog.
         /// </param>
         /// <returns>
-        /// <see cref="DialogResult.OK"/> if the user clicks OK in the dialog box; otherwise,
-        /// <see cref="DialogResult.Cancel"/>.
+        /// true if user clicks the OK or YES button; otherwise false.
         /// </returns>
-        public DialogResult ShowDialog(IWin32Window owner)
+        public bool? ShowDialog(Window owner)
         {
             if (owner == null)
                 throw new ArgumentNullException(nameof(owner));
 
-            DialogResult result = folderBrowserDialog.ShowDialog(owner);
+            using (var folderBrowserDialog = new FolderBrowserDialog())
+            {
+                folderBrowserDialog.Description = settings.Description;
+                folderBrowserDialog.SelectedPath = settings.SelectedPath;
+                folderBrowserDialog.ShowNewFolderButton = settings.ShowNewFolderButton;
 
-            // Update settings
-            settings.SelectedPath = folderBrowserDialog.SelectedPath;
+                DialogResult result = folderBrowserDialog.ShowDialog(new Win32Window(owner));
 
-            return result;
+                // Update settings
+                settings.SelectedPath = folderBrowserDialog.SelectedPath;
+
+                switch (result)
+                {
+                    case DialogResult.OK:
+                    case DialogResult.Yes:
+                        return true;
+
+                    case DialogResult.No:
+                    case DialogResult.Abort:
+                        return false;
+                    
+                    default:
+                        return null;
+                }
+            }
         }
-        
-        #region IDisposable Members
-
-        /// <summary>
-        /// Performs application-defined tasks associated with freeing, releasing, or resetting
-        /// unmanaged resources.
-        /// </summary>
-        public void Dispose()
-        {
-            folderBrowserDialog?.Dispose();
-        }
-
-        #endregion
     }
 }

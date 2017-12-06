@@ -26,7 +26,7 @@ namespace MvvmDialogs.Logging
         /// </exception>
         public static Action<string> Writer
         {
-            get { return writer; }
+            get => writer;
             set
             {
                 if (writer == null)

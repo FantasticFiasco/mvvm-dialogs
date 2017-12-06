@@ -19,10 +19,7 @@ namespace MvvmDialogs.ContentDialogFactories
         /// <param name="contentDialog">The content dialog.</param>
         public ContentDialogWrapper(ContentDialog contentDialog)
         {
-            if (contentDialog == null)
-                throw new ArgumentNullException(nameof(contentDialog));
-
-            this.contentDialog = contentDialog;
+            this.contentDialog = contentDialog ?? throw new ArgumentNullException(nameof(contentDialog));
         }
 
         /// <summary>
@@ -31,8 +28,8 @@ namespace MvvmDialogs.ContentDialogFactories
         /// </summary>
         public object DataContext
         {
-            get { return contentDialog.DataContext; }
-            set { contentDialog.DataContext = value; }
+            get => contentDialog.DataContext;
+            set => contentDialog.DataContext = value;
         }
 
         /// <summary>

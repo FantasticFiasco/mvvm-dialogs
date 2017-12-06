@@ -6,6 +6,14 @@ This project adheres to [Semantic Versioning](http://semver.org/) and is followi
 
 ## Unreleased
 
+### Added
+
+- Support for customizing the following Windows dialogs (contribution by [@pdinnissen](https://github.com/pdinnissen)):
+    - Message box
+    - Open file dialog
+    - Save file dialog
+    - Folder browser dialog
+
 ## 4.1.1 - 2017-09-07
 
 ### Added

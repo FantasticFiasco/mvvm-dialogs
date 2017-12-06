@@ -15,8 +15,8 @@ namespace Demo.CustomContentDialog
 
         object IContentDialog.DataContext
         {
-            get { return dialog.DataContext; }
-            set { dialog.DataContext = value; }
+            get => dialog.DataContext;
+            set => dialog.DataContext = value;
         }
 
         IAsyncOperation<ContentDialogResult> IContentDialog.ShowAsync()

@@ -78,13 +78,8 @@ namespace MvvmDialogs
             IContentDialogFactory contentDialogFactory,
             IDialogTypeLocator contentDialogTypeLocator = null)
         {
-            if (contentDialogFactory == null)
-                throw new ArgumentNullException(nameof(contentDialogFactory));
-            if (contentDialogTypeLocator == null)
-                throw new ArgumentNullException(nameof(contentDialogTypeLocator));
-
-            this.contentDialogFactory = contentDialogFactory;
-            this.contentDialogTypeLocator = contentDialogTypeLocator;
+            this.contentDialogFactory = contentDialogFactory ?? throw new ArgumentNullException(nameof(contentDialogFactory));
+            this.contentDialogTypeLocator = contentDialogTypeLocator ?? throw new ArgumentNullException(nameof(contentDialogTypeLocator));
         }
 
         #region IDialogService Members

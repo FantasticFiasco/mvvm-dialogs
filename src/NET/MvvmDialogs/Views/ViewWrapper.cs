@@ -17,8 +17,8 @@ namespace MvvmDialogs.Views
 
         public event RoutedEventHandler Loaded
         {
-            add { Source.Loaded += value; }
-            remove { Source.Loaded -= value; }
+            add => Source.Loaded += value;
+            remove => Source.Loaded -= value;
         }
 
         public int Id { get; } = IdGenerator.Generate();

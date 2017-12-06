@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.27004.2006
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvvmDialogs", "src\NET\MvvmDialogs\MvvmDialogs.csproj", "{29051B6F-74C5-4EF6-A792-4E382CE233FA}"
 EndProject
@@ -87,6 +87,22 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.NonModalCustomDialogTest", "src\NET\Demos\Demo.NonModalCustomDialogTest\Demo.NonModalCustomDialogTest.csproj", "{00198124-A858-4645-B8BB-27B9191193DC}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.CustomContentDialog", "src\Universal\Demo\Demo.CustomContentDialog\Demo.CustomContentDialog.csproj", "{FF4074EA-6174-42F8-8636-74CFA644F69A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.CustomFolderBrowserDialog", "src\NET\Demos\Demo.CustomFolderBrowserDialog\Demo.CustomFolderBrowserDialog.csproj", "{9ECD6C53-BCD0-4004-861E-463B5EF2AD51}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.CustomFolderBrowserDialogTest", "src\NET\Demos\Demo.CustomFolderBrowserDialogTest\Demo.CustomFolderBrowserDialogTest.csproj", "{F616C3F9-D841-4258-A655-7941CCA4920F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.CustomOpenFileDialog", "src\NET\Demos\Demo.CustomOpenFileDialog\Demo.CustomOpenFileDialog.csproj", "{C299EF4C-2433-413A-97FE-0861946DD614}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.CustomOpenFileDialogTest", "src\NET\Demos\Demo.CustomOpenFileDialogTest\Demo.CustomOpenFileDialogTest.csproj", "{CBDD2CA8-BC90-413C-97F3-543ABC31A460}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.CustomSaveFileDialog", "src\NET\Demos\Demo.CustomSaveFileDialog\Demo.CustomSaveFileDialog.csproj", "{1355BC5A-0A50-4CED-87C0-DA550E0C1B0C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.CustomSaveFileDialogTest", "src\NET\Demos\Demo.CustomSaveFileDialogTest\Demo.CustomSaveFileDialogTest.csproj", "{3110DDC1-7FDB-4303-98B4-39195C9597EE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.CustomMessageBox", "src\NET\Demos\Demo.CustomMessageBox\Demo.CustomMessageBox.csproj", "{76698E07-264A-4072-BCCF-9E564A9E1D84}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.CustomMessageBoxTest", "src\NET\Demos\Demo.CustomMessageBoxTest\Demo.CustomMessageBoxTest.csproj", "{B047D110-4D92-4323-B7D3-5C566D162665}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -198,6 +214,38 @@ Global
 		{FF4074EA-6174-42F8-8636-74CFA644F69A}.Debug|Any CPU.Build.0 = Debug|x86
 		{FF4074EA-6174-42F8-8636-74CFA644F69A}.Release|Any CPU.ActiveCfg = Release|x86
 		{FF4074EA-6174-42F8-8636-74CFA644F69A}.Release|Any CPU.Build.0 = Release|x86
+		{9ECD6C53-BCD0-4004-861E-463B5EF2AD51}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9ECD6C53-BCD0-4004-861E-463B5EF2AD51}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9ECD6C53-BCD0-4004-861E-463B5EF2AD51}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9ECD6C53-BCD0-4004-861E-463B5EF2AD51}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F616C3F9-D841-4258-A655-7941CCA4920F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F616C3F9-D841-4258-A655-7941CCA4920F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F616C3F9-D841-4258-A655-7941CCA4920F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F616C3F9-D841-4258-A655-7941CCA4920F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C299EF4C-2433-413A-97FE-0861946DD614}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C299EF4C-2433-413A-97FE-0861946DD614}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C299EF4C-2433-413A-97FE-0861946DD614}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C299EF4C-2433-413A-97FE-0861946DD614}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CBDD2CA8-BC90-413C-97F3-543ABC31A460}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CBDD2CA8-BC90-413C-97F3-543ABC31A460}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CBDD2CA8-BC90-413C-97F3-543ABC31A460}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CBDD2CA8-BC90-413C-97F3-543ABC31A460}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1355BC5A-0A50-4CED-87C0-DA550E0C1B0C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1355BC5A-0A50-4CED-87C0-DA550E0C1B0C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1355BC5A-0A50-4CED-87C0-DA550E0C1B0C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1355BC5A-0A50-4CED-87C0-DA550E0C1B0C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3110DDC1-7FDB-4303-98B4-39195C9597EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3110DDC1-7FDB-4303-98B4-39195C9597EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3110DDC1-7FDB-4303-98B4-39195C9597EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3110DDC1-7FDB-4303-98B4-39195C9597EE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{76698E07-264A-4072-BCCF-9E564A9E1D84}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{76698E07-264A-4072-BCCF-9E564A9E1D84}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{76698E07-264A-4072-BCCF-9E564A9E1D84}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{76698E07-264A-4072-BCCF-9E564A9E1D84}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B047D110-4D92-4323-B7D3-5C566D162665}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B047D110-4D92-4323-B7D3-5C566D162665}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B047D110-4D92-4323-B7D3-5C566D162665}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B047D110-4D92-4323-B7D3-5C566D162665}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -231,5 +279,16 @@ Global
 		{7A1E9AE6-68F8-48EF-AA8F-0AE2AE77B9D0} = {E86832E0-64C9-498F-AA09-51D334FE0370}
 		{00198124-A858-4645-B8BB-27B9191193DC} = {E86832E0-64C9-498F-AA09-51D334FE0370}
 		{FF4074EA-6174-42F8-8636-74CFA644F69A} = {0E097C8B-82AA-463A-9EAA-F8EBC7E825DF}
+		{9ECD6C53-BCD0-4004-861E-463B5EF2AD51} = {E86832E0-64C9-498F-AA09-51D334FE0370}
+		{F616C3F9-D841-4258-A655-7941CCA4920F} = {E86832E0-64C9-498F-AA09-51D334FE0370}
+		{C299EF4C-2433-413A-97FE-0861946DD614} = {E86832E0-64C9-498F-AA09-51D334FE0370}
+		{CBDD2CA8-BC90-413C-97F3-543ABC31A460} = {E86832E0-64C9-498F-AA09-51D334FE0370}
+		{1355BC5A-0A50-4CED-87C0-DA550E0C1B0C} = {E86832E0-64C9-498F-AA09-51D334FE0370}
+		{3110DDC1-7FDB-4303-98B4-39195C9597EE} = {E86832E0-64C9-498F-AA09-51D334FE0370}
+		{76698E07-264A-4072-BCCF-9E564A9E1D84} = {E86832E0-64C9-498F-AA09-51D334FE0370}
+		{B047D110-4D92-4323-B7D3-5C566D162665} = {E86832E0-64C9-498F-AA09-51D334FE0370}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {983A22B3-AE5B-4B67-A798-F6A6697B82A8}
 	EndGlobalSection
 EndGlobal

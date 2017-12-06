@@ -102,7 +102,9 @@
     <Compile Include="..\..\SolutionInfo.cs">
       <Link>Properties\SolutionInfo.cs</Link>
     </Compile>
+    <Compile Include="FrameworkDialogs\DefaultFrameworkDialogFactory.cs" />
     <Compile Include="DialogFactories\IDialogFactory.cs" />
+    <Compile Include="FrameworkDialogs\IFrameworkDialogFactory.cs" />
     <Compile Include="DialogFactories\ReflectionDialogFactory.cs" />
     <Compile Include="DialogFactories\WindowWrapper.cs" />
     <Compile Include="DialogService.cs" />
@@ -114,6 +116,10 @@
     <Compile Include="Extensions\System\Runtime\CompilerServices\CallerMemberNameAttribute.cs" />
     <Compile Include="Extensions\System\Runtime\CompilerServices\DynamicallyInvokableAttribute.cs" />
     <Compile Include="Extensions\System\Runtime\TargetedPatchingOptOutAttribute.cs" />
+    <Compile Include="FrameworkDialogs\IFrameworkDialog.cs" />
+    <Compile Include="FrameworkDialogs\MessageBox\IMessageBox.cs" />
+    <Compile Include="FrameworkDialogs\MessageBox\MessageBoxSettings.cs" />
+    <Compile Include="FrameworkDialogs\MessageBox\MessageBoxWrapper.cs" />
     <Compile Include="IWindow.cs" />
     <Compile Include="Logging\Logger.cs" />
     <Compile Include="Reflection\Members.cs" />

@@ -9,7 +9,7 @@ namespace Demo.CustomContentDialog
 
         public string Text
         {
-            get { return text; }
+            get => text;
             set
             {
                 if (Set(nameof(Text), ref text, value))
@@ -21,8 +21,8 @@ namespace Demo.CustomContentDialog
 
         public bool IsOkButtonEnabled
         {
-            get { return isOkButtonEnabled; }
-            private set { Set(nameof(IsOkButtonEnabled), ref isOkButtonEnabled, value); }
+            get => isOkButtonEnabled;
+            private set => Set(nameof(IsOkButtonEnabled), ref isOkButtonEnabled, value);
         }
     }
 }
