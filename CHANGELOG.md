@@ -14,6 +14,12 @@ This project adheres to [Semantic Versioning](http://semver.org/) and is followi
     - Save file dialog
     - Folder browser dialog
 
+### Removed
+
+- Reduce the constructors overloads in `DialogService` into:
+    - `ctor()` - Default constructor that takes no arguments
+    - `ctor(IDialogFactory?, IDialogTypeLocator?, IFrameworkDialogFactory?)` - Constructor that allows full customization
+
 ## 4.1.1 - 2017-09-07
 
 ### Added
