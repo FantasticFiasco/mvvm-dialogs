@@ -6,6 +6,8 @@ This project adheres to [Semantic Versioning](http://semver.org/) and is followi
 
 ## Unreleased
 
+## 5.0.0 - 2017-12-12
+
 ### Added
 
 - Support for customizing the following Windows dialogs (contribution by [@pdinnissen](https://github.com/pdinnissen)):
