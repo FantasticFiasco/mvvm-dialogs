@@ -1,4 +1,4 @@
-![MVVM Dialogs logo](design/Icon_128x128.png)
+![MVVM Dialogs logo](doc/resources/Icon_128x128.png)
 
 # MVVM Dialogs [![Build status](https://ci.appveyor.com/api/projects/status/9eyvxv5jr9bybant/branch/master?svg=true)](https://ci.appveyor.com/project/FantasticFiasco/mvvm-dialogs/branch/master) [![NuGet](https://img.shields.io/nuget/v/MvvmDialogs.svg)](https://www.nuget.org/packages/MvvmDialogs/) [![NuGet](https://img.shields.io/nuget/dt/MvvmDialogs.svg)](https://www.nuget.org/packages/MvvmDialogs/)
 
@@ -136,4 +136,4 @@ PM> Install-Package MvvmDialogs
 
 Thank you [JetBrains](https://www.jetbrains.com/) for your important initiative to support the open source community with free licenses to your products.
 
-![JetBrains](./design/jetbrains.png)
+![JetBrains](./doc/resources/jetbrains.png)
