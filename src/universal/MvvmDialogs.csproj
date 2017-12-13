@@ -111,16 +111,16 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\..\NET\MvvmDialogs\DialogTypeLocators\DialogTypeLocatorCache.cs">
+    <Compile Include="..\net\DialogTypeLocators\DialogTypeLocatorCache.cs">
       <Link>DialogTypeLocators\DialogTypeLocatorCache.cs</Link>
     </Compile>
-    <Compile Include="..\..\NET\MvvmDialogs\DialogTypeLocators\IDialogTypeLocator.cs">
+    <Compile Include="..\net\DialogTypeLocators\IDialogTypeLocator.cs">
       <Link>DialogTypeLocators\IDialogTypeLocator.cs</Link>
     </Compile>
-    <Compile Include="..\..\NET\MvvmDialogs\DialogTypeLocators\NamingConventionDialogTypeLocator.cs">
+    <Compile Include="..\net\DialogTypeLocators\NamingConventionDialogTypeLocator.cs">
       <Link>DialogTypeLocators\NamingConventionDialogTypeLocator.cs</Link>
     </Compile>
-    <Compile Include="..\..\NET\MvvmDialogs\Logging\Logger.cs">
+    <Compile Include="..\net\Logging\Logger.cs">
       <Link>Logging\Logger.cs</Link>
     </Compile>
     <Compile Include="..\..\SolutionInfo.cs">
