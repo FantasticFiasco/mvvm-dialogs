@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{B047D110-4D92-4323-B7D3-5C566D162665}</ProjectGuid>
+    <ProjectGuid>{E3D258A5-A817-4FAF-87AF-BA1A5A0B6415}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Demo.CustomMessageBoxTest</RootNamespace>
@@ -114,14 +114,6 @@
     <ProjectReference Include="..\..\MvvmDialogs\MvvmDialogs.csproj">
       <Project>{29051b6f-74c5-4ef6-a792-4e382ce233fa}</Project>
       <Name>MvvmDialogs</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Demo.CustomMessageBox\Demo.CustomMessageBox.csproj">
-      <Project>{76698e07-264a-4072-bccf-9e564a9e1d84}</Project>
-      <Name>Demo.CustomMessageBox</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\TestBaseClasses\TestBaseClasses.csproj">
-      <Project>{12389bc0-e512-4fac-9713-21819b7a5a49}</Project>
-      <Name>TestBaseClasses</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

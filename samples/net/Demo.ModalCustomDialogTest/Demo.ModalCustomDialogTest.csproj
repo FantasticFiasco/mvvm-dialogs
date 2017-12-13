@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{853B523D-AE78-467A-BDCE-66150C3867A0}</ProjectGuid>
+    <ProjectGuid>{D521B33F-F5FB-4DB8-8447-280FCA4C481D}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Demo.ModalCustomDialogTest</RootNamespace>
@@ -118,14 +118,6 @@
     <ProjectReference Include="..\..\MvvmDialogs\MvvmDialogs.csproj">
       <Project>{29051b6f-74c5-4ef6-a792-4e382ce233fa}</Project>
       <Name>MvvmDialogs</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Demo.ModalCustomDialog\Demo.ModalCustomDialog.csproj">
-      <Project>{7ab4f4b6-71a7-41a1-8dee-f848a7b358e3}</Project>
-      <Name>Demo.ModalCustomDialog</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\TestBaseClasses\TestBaseClasses.csproj">
-      <Project>{12389bc0-e512-4fac-9713-21819b7a5a49}</Project>
-      <Name>TestBaseClasses</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

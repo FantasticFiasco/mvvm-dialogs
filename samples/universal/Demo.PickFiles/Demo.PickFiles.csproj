@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
-    <ProjectGuid>{F52410BA-035E-4FE5-B2BB-5B1C9E5D6700}</ProjectGuid>
+    <ProjectGuid>{F07B4EF4-55A5-45B0-8A3D-BF8C9C632607}</ProjectGuid>
     <OutputType>AppContainerExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Demo.PickFiles</RootNamespace>

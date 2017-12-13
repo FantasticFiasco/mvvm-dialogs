@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{89D24FD8-21E0-4305-A56D-F78502F853F9}</ProjectGuid>
+    <ProjectGuid>{692779F2-AF25-460A-9D50-7D39C4A210F1}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Demo.SaveFileDialogTest</RootNamespace>
@@ -113,14 +113,6 @@
     <ProjectReference Include="..\..\MvvmDialogs\MvvmDialogs.csproj">
       <Project>{29051b6f-74c5-4ef6-a792-4e382ce233fa}</Project>
       <Name>MvvmDialogs</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Demo.SaveFileDialog\Demo.SaveFileDialog.csproj">
-      <Project>{52a53605-85c0-4ade-8d79-1fd7c4774afd}</Project>
-      <Name>Demo.SaveFileDialog</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\TestBaseClasses\TestBaseClasses.csproj">
-      <Project>{12389BC0-E512-4FAC-9713-21819B7A5A49}</Project>
-      <Name>TestBaseClasses</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

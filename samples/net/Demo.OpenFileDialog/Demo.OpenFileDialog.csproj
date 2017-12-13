@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{81CC82EA-84DB-4D12-9BFE-B12437451AE2}</ProjectGuid>
+    <ProjectGuid>{11CB9352-4691-422D-AF42-F4C2E08D21B4}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Demo.OpenFileDialog</RootNamespace>

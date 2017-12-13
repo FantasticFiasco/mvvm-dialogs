@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{CBDD2CA8-BC90-413C-97F3-543ABC31A460}</ProjectGuid>
+    <ProjectGuid>{296AD79D-8809-4FF7-9A7A-92858E43B0C7}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Demo.CustomOpenFileDialogTest</RootNamespace>
@@ -113,14 +113,6 @@
     <ProjectReference Include="..\..\MvvmDialogs\MvvmDialogs.csproj">
       <Project>{29051b6f-74c5-4ef6-a792-4e382ce233fa}</Project>
       <Name>MvvmDialogs</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Demo.CustomOpenFileDialog\Demo.CustomOpenFileDialog.csproj">
-      <Project>{c299ef4c-2433-413a-97fe-0861946dd614}</Project>
-      <Name>Demo.CustomOpenFileDialog</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\TestBaseClasses\TestBaseClasses.csproj">
-      <Project>{12389BC0-E512-4FAC-9713-21819B7A5A49}</Project>
-      <Name>TestBaseClasses</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

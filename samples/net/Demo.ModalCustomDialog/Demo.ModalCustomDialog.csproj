@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{7AB4F4B6-71A7-41A1-8DEE-F848A7B358E3}</ProjectGuid>
+    <ProjectGuid>{0C1C3758-AD6B-47FD-99F4-AC3AA49D1EDF}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Demo.ModalCustomDialog</RootNamespace>

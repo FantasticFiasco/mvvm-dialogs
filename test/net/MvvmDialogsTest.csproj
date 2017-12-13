@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{A332ED47-E057-4969-860A-1BA6DBA86B01}</ProjectGuid>
+    <ProjectGuid>{7ECC186E-0E28-4A74-B7AC-F3C56C2457C9}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>MvvmDialogs</RootNamespace>
@@ -72,12 +72,6 @@
     <Compile Include="TestAssemblyBuilder.cs" />
     <Compile Include="ViewModelBase.cs" />
     <Compile Include="Views\ViewWrapperTest.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\MvvmDialogs\MvvmDialogs.csproj">
-      <Project>{29051b6f-74c5-4ef6-a792-4e382ce233fa}</Project>
-      <Name>MvvmDialogs</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\StrongName.snk">

@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{F616C3F9-D841-4258-A655-7941CCA4920F}</ProjectGuid>
+    <ProjectGuid>{D59984F6-A61B-4C2E-B7ED-5B4A328396F8}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Demo.CustomFolderBrowserDialogTest</RootNamespace>
@@ -113,14 +113,6 @@
     <ProjectReference Include="..\..\MvvmDialogs\MvvmDialogs.csproj">
       <Project>{29051b6f-74c5-4ef6-a792-4e382ce233fa}</Project>
       <Name>MvvmDialogs</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Demo.CustomFolderBrowserDialog\Demo.CustomFolderBrowserDialog.csproj">
-      <Project>{9ecd6c53-bcd0-4004-861e-463b5ef2ad51}</Project>
-      <Name>Demo.CustomFolderBrowserDialog</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\TestBaseClasses\TestBaseClasses.csproj">
-      <Project>{12389bc0-e512-4fac-9713-21819b7a5a49}</Project>
-      <Name>TestBaseClasses</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />
