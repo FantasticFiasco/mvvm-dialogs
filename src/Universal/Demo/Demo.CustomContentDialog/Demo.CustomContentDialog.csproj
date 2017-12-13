@@ -92,11 +92,6 @@
     <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
   </PropertyGroup>
   <ItemGroup>
-    <Content Include="ApplicationInsights.config">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="AddTextContentDialog.xaml.cs">
       <DependentUpon>AddTextContentDialog.xaml</DependentUpon>
     </Compile>
@@ -155,6 +150,9 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
       <Version>6.0.4</Version>
+    </PackageReference>
+    <PackageReference Include="MvvmLight">
+      <Version>5.3.0</Version>
     </PackageReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
