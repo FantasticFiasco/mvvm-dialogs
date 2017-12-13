@@ -17,15 +17,15 @@
   </metadata>
   <files>
     <!-- .NET -->
-    <file src="NET\MvvmDialogs\bin\Release\net35\MvvmDialogs.dll" target="lib\net35\MvvmDialogs.dll" />
-    <file src="NET\MvvmDialogs\bin\Release\net35\MvvmDialogs.xml" target="lib\net35\MvvmDialogs.xml" />
-    <file src="NET\MvvmDialogs\bin\Release\net40\MvvmDialogs.dll" target="lib\net40\MvvmDialogs.dll" />
-    <file src="NET\MvvmDialogs\bin\Release\net40\MvvmDialogs.xml" target="lib\net40\MvvmDialogs.xml" />
-    <file src="NET\MvvmDialogs\bin\Release\net45\MvvmDialogs.dll" target="lib\net45\MvvmDialogs.dll" />
-    <file src="NET\MvvmDialogs\bin\Release\net45\MvvmDialogs.xml" target="lib\net45\MvvmDialogs.xml" />
+    <file src="src\net\bin\Release\net35\MvvmDialogs.dll" target="lib\net35\MvvmDialogs.dll" />
+    <file src="src\net\bin\Release\net35\MvvmDialogs.xml" target="lib\net35\MvvmDialogs.xml" />
+    <file src="src\net\bin\Release\net40\MvvmDialogs.dll" target="lib\net40\MvvmDialogs.dll" />
+    <file src="src\net\bin\Release\net40\MvvmDialogs.xml" target="lib\net40\MvvmDialogs.xml" />
+    <file src="src\net\bin\Release\net45\MvvmDialogs.dll" target="lib\net45\MvvmDialogs.dll" />
+    <file src="src\net\bin\Release\net45\MvvmDialogs.xml" target="lib\net45\MvvmDialogs.xml" />
     
     <!-- UWP -->
-    <file src="Universal\MvvmDialogs\bin\Release\MvvmDialogs.dll" target="lib\uap10.0\MvvmDialogs.dll" />
-    <file src="Universal\MvvmDialogs\bin\Release\MvvmDialogs.xml" target="lib\uap10.0\MvvmDialogs.xml" />
+    <file src="src\universal\bin\Release\MvvmDialogs.dll" target="lib\uap10.0\MvvmDialogs.dll" />
+    <file src="src\universal\bin\Release\MvvmDialogs.xml" target="lib\uap10.0\MvvmDialogs.xml" />
   </files>
 </package>
