@@ -22,9 +22,6 @@ namespace Demo.PickFiles
         /// </summary>
         public App()
         {
-            Microsoft.ApplicationInsights.WindowsAppInitializer.InitializeAsync(
-                Microsoft.ApplicationInsights.WindowsCollectors.Metadata |
-                Microsoft.ApplicationInsights.WindowsCollectors.Session);
             InitializeComponent();
             Suspending += OnSuspending;
         }
