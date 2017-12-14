@@ -10,7 +10,7 @@ This project adheres to [Semantic Versioning](http://semver.org/) and is followi
 
 ### Added
 
-- Support for customizing the following Windows dialogs (contribution by [@pdinnissen](https://github.com/pdinnissen)):
+- [#30](https://github.com/FantasticFiasco/mvvm-dialogs/issues/30) Support for customizing the following Windows dialogs (contribution by [@pdinnissen](https://github.com/pdinnissen)):
     - Message box
     - Open file dialog
     - Save file dialog
