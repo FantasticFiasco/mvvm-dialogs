@@ -15,7 +15,7 @@ os: Visual Studio 2017
 #---------------------------------#
 assembly_info:
   patch: true
-  file: src\SolutionInfo.cs
+  file: SolutionInfo.cs
   assembly_version: '{version}.0'
   assembly_file_version: '{version}.0'
   assembly_informational_version: '{version}'
@@ -44,7 +44,7 @@ build:
 #       build configuration       #
 #---------------------------------#
 build_script:
-  - cmd: ./Build.bat
+  - cmd: .\build\build.bat
 
 
 #---------------------------------#
@@ -96,4 +96,4 @@ notifications:
 cache:
     # preserve "packages" directory in the root of build folder
     # but will reset it if packages.config is modified
-  - src\packages -> **\packages.config
+  - packages -> **\packages.config
