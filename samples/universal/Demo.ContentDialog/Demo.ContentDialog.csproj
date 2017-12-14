@@ -142,18 +142,18 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\MvvmDialogs\MvvmDialogs.csproj">
-      <Project>{27565340-6841-4cc7-9e41-b92f1da23cbc}</Project>
-      <Name>MvvmDialogs</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
       <Version>6.0.4</Version>
     </PackageReference>
     <PackageReference Include="MvvmLight">
       <Version>5.3.0</Version>
     </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\src\universal\MvvmDialogs.csproj">
+      <Project>{18462094-a6ed-461b-8fca-1e38a95ebb09}</Project>
+      <Name>MvvmDialogs</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
