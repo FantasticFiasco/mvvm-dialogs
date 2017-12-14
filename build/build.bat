@@ -1,7 +1,7 @@
-set SOLUTION=..\MvvmDialogs.sln
-set NUSPEC=..\MvvmDialogs.nuspec
-set NETPROJECT=..\src\net\MvvmDialogs.csproj
-set UNIVERSALPROJECT=..\src\universal\MvvmDialogs.csproj
+set SOLUTION=MvvmDialogs.sln
+set NUSPEC=MvvmDialogs.nuspec
+set NETPROJECT=src\net\MvvmDialogs.csproj
+set UNIVERSALPROJECT=src\universal\MvvmDialogs.csproj
 set LOGGER=C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll
 
 nuget restore %SOLUTION%
