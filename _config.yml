@@ -1,0 +1,8 @@
+title: MVVM Dialogs
+description: Framework simplifying the concept of opening dialogs from a view model when using MVVM in WPF
+google_analytics: 
+show_downloads: true
+theme: jekyll-theme-slate
+
+gems:
+  - jekyll-mentions
