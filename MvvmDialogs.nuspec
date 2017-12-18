@@ -8,7 +8,7 @@
     <language>en-US</language>
     <licenseUrl>http://www.apache.org/licenses/LICENSE-2.0</licenseUrl>
     <projectUrl>https://github.com/FantasticFiasco/mvvm-dialogs</projectUrl>
-    <iconUrl>https://raw.githubusercontent.com/FantasticFiasco/mvvm-dialogs/master/build/Icon_32x32.png</iconUrl>
+    <iconUrl>https://raw.githubusercontent.com/FantasticFiasco/mvvm-dialogs/master/build/icon_32x32.png</iconUrl>
     <copyright>Copyright © 2009-2017 MVVM Dialogs contributors</copyright>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Framework simplifying the concept of opening dialogs from a view model when using MVVM in WPF or UWP.</description>
@@ -23,7 +23,7 @@
     <file src="src\net\bin\Release\net40\MvvmDialogs.xml" target="lib\net40\MvvmDialogs.xml" />
     <file src="src\net\bin\Release\net45\MvvmDialogs.dll" target="lib\net45\MvvmDialogs.dll" />
     <file src="src\net\bin\Release\net45\MvvmDialogs.xml" target="lib\net45\MvvmDialogs.xml" />
-    
+
     <!-- UWP -->
     <file src="src\universal\bin\Release\MvvmDialogs.dll" target="lib\uap10.0\MvvmDialogs.dll" />
     <file src="src\universal\bin\Release\MvvmDialogs.xml" target="lib\uap10.0\MvvmDialogs.xml" />
