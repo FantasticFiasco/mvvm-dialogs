@@ -38,3 +38,14 @@ artifacts:
 on_finish:
   - ps: Get-ChildItem -Path Failed_*.png -Recurse | % { Push-AppveyorArtifact $_.FullName -FileName $_.Name }
 
+#---------------------------------#
+#              deploy             #
+#---------------------------------#
+deploy:
+  provider: NuGet
+  api_key:
+    secure: KYoij6c7heYA02+kxssWFS2f0QDISth37e+aK8M/k+jsN7mZNTKfka7VNBFz52ch
+  skip_symbols: false
+  artifact: /.*\.nupkg/
+  on:
+    appveyor_repo_tag: true
