@@ -6,6 +6,10 @@ This project adheres to [Semantic Versioning](http://semver.org/) and is followi
 
 ## Unreleased
 
+### Added
+
+- Extended support for [MVVM Dialogs Contrib](https://github.com/FantasticFiasco/mvvm-dialogs-contrib)
+
 ## 5.0.0 - 2017-12-12
 
 ### Added
