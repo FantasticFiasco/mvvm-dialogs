@@ -9,7 +9,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("Demo.ContentDialog")]
-[assembly: AssemblyCopyright("Copyright © 2009-2017 MVVM Dialogs contributors")]
+[assembly: AssemblyCopyright("Copyright © 2009-2018 MVVM Dialogs contributors")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
