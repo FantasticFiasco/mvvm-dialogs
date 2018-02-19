@@ -8,13 +8,13 @@ This project adheres to [Semantic Versioning](http://semver.org/) and is followi
 
 ## 5.1.0 - 2017-12-18
 
-### Added
+ ### :zap: Added
 
 - Extended support for [MVVM Dialogs Contrib](https://github.com/FantasticFiasco/mvvm-dialogs-contrib)
 
 ## 5.0.0 - 2017-12-12
 
-### Added
+ ### :zap: Added
 
 - [#30](https://github.com/FantasticFiasco/mvvm-dialogs/issues/30) Support for customizing the following Windows dialogs (contribution by [@pdinnissen](https://github.com/pdinnissen)):
     - Message box
@@ -22,7 +22,7 @@ This project adheres to [Semantic Versioning](http://semver.org/) and is followi
     - Save file dialog
     - Folder browser dialog
 
-### Removed
+### :skull: Removed
 
 - Reduce the constructors overloads in `DialogService` into:
     - `ctor()` - Default constructor that takes no arguments
@@ -30,19 +30,19 @@ This project adheres to [Semantic Versioning](http://semver.org/) and is followi
 
 ## 4.1.1 - 2017-09-07
 
-### Added
+ ### :zap: Added
 
 - Option to set filter index when opening or saving a file (contribution by [@gigios](https://github.com/gigios))
 
 ## 4.0.10 - 2017-04-20
 
-### Changed
+### :dizzy: Changed
 
 - Improve exception message when dialog type locator fails
 
 ## 4.0.0 - 2016-11-27
 
-### Added
+ ### :zap: Added
 
 - [#14](https://github.com/FantasticFiasco/mvvm-dialogs/issues/14) - Support for showing custom WPF dialogs by implementing `IWindow`
 - Support for showing custom UWP content dialogs by implementing `IContentDialog`
@@ -55,44 +55,44 @@ This project adheres to [Semantic Versioning](http://semver.org/) and is followi
 
 ## 2.0.1 - 2016-05-18
 
-### Added
+ ### :zap: Added
 
 - [#8](https://github.com/FantasticFiasco/mvvm-dialogs/issues/8) - Support for Universal Windows Platform (UWP)
 - Add `ViewNotRegisteredException` that is thrown by `IDialogService` when view is unregistered
 
 ## 1.2.16 - 2016-01-13
 
-### Fixed
+### :syringe: Fixed
 
 - [#2](https://github.com/FantasticFiasco/mvvm-dialogs/issues/2) - Fixed issue where exception was thrown when unregistering a view
 
 ## 1.2.0 - 2015-12-14
 
-### Added
+ ### :zap: Added
 
 - Support for exposing logs using class `MvvmDialogs.Logging.Logger`
 
 ## 1.1.4 - 2015-12-09
 
-### Fixed
+### :syringe: Fixed
 
 - [#3](https://github.com/FantasticFiasco/mvvm-dialogs/issues/3) - Fixed issue where exception no longer is thrown when the property changed event for `IModalDialogViewModel.DialogResult` is sent twice
 
 ## 1.1.3 - 2015-07-07
 
-### Fixed
+### :syringe: Fixed
 
 - NuGet icon URL
 
 ## 1.1.2 - 2015-06-12
 
-### Changed
+### :dizzy: Changed
 
 - Renamed `DialogServiceBehaviors` to `DialogServiceViews`
 
 ## 1.1.1 - 2015-06-11
 
-### Added
+ ### :zap: Added
 
 - Apache license
 - NuGet package supporting .NET3.5, .NET4.0 and .NET4.5
@@ -103,7 +103,7 @@ This project adheres to [Semantic Versioning](http://semver.org/) and is followi
 - XML namespace prefix
 - Strong name
 
-### Fixed
+### :syringe: Fixed
 
 - Issue where exception was thrown when the same view was registered twice, and one hadn't been garbage collected yet
 
