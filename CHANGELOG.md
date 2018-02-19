@@ -49,7 +49,7 @@ This project adheres to [Semantic Versioning](http://semver.org/) and is followi
 
 ## 3.0.0 - 2016-09-21
 
-### Updated
+### :dizzy: Changed
 
 - Updated the constructors of `DialogService`, making the class more friendly to IoC containers
 
