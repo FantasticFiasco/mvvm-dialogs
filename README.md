@@ -11,6 +11,7 @@
 - [Custom framework dialogs](#custom-framework-dialogs)
 - [More in the wiki](#more-in-the-wiki)
 - [Install MVVM Dialogs via NuGet](#install-mvvm-dialogs-via-nuget)
+- [Reputation](#reputation)
 - [Credit](#credit)
 
 ---
@@ -50,7 +51,7 @@ To open a modal window, decorate the view with the attached property `DialogServ
     md:DialogServiceViews.IsRegistered="True">
 
   ...
-  
+
 </UserControl>
 ```
 
@@ -131,6 +132,10 @@ To install MVVM Dialogs, run the following command in the Package Manager Consol
 ```
 PM> Install-Package MvvmDialogs
 ```
+
+## Reputation
+
+MVVM Dialogs has earned enough reputation to be listed on [Awesome .NET!](https://github.com/quozd/awesome-dotnet), in company with other awesome MVVM libraries.
 
 ## Credit
 
