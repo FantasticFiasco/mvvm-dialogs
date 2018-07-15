@@ -10,6 +10,7 @@
 - [Custom windows](#custom-windows)
 - [Custom framework dialogs](#custom-framework-dialogs)
 - [More in the wiki](#more-in-the-wiki)
+- [MVVM Dialogs Contrib](#mvvm-dialogs-contrib)
 - [Install MVVM Dialogs via NuGet](#install-mvvm-dialogs-via-nuget)
 - [Reputation](#reputation)
 - [Credit](#credit)
@@ -122,6 +123,12 @@ MVVM Dialogs is by default opening the standard Windows message box or the open 
 ## More in the wiki
 
 For more information regarding the concepts of MVVM Dialogs and extended samples on the subjects, please read the [wiki](https://github.com/FantasticFiasco/mvvm-dialogs/wiki).
+
+## MVVM Dialogs Contrib
+
+The world is full of snowflakes and all applications are unique in some way. MVVM Dialogs takes no claim to solve all issues regarding dialogs, but is a fantastic solution for most applications. The rest, the applications deviating from the common path, may require specific changes to the behavior of MVVM Dialog. For those there is [MVVM Dialogs Contrib](https://github.com/FantasticFiasco/mvvm-dialogs-contrib). A repository with features and functionality developed by the open source community, solving very specific needs.
+
+If MVVM Dialogs for some reason doesn't fit your application, raise an issue in [MVVM Dialogs Contrib](https://github.com/FantasticFiasco/mvvm-dialogs-contrib) and we'll see what we can do. These features are always implemented by the community, but shepherd by the maintainers of MVVM Dialogs.
 
 ## Install MVVM Dialogs via NuGet
 
