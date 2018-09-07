@@ -12,6 +12,7 @@
 - [More in the wiki](#more-in-the-wiki)
 - [MVVM Dialogs Contrib](#mvvm-dialogs-contrib)
 - [Install MVVM Dialogs via NuGet](#install-mvvm-dialogs-via-nuget)
+- [History](#history)
 - [Reputation](#reputation)
 - [Credit](#credit)
 
@@ -139,6 +140,12 @@ To install MVVM Dialogs, run the following command in the Package Manager Consol
 ```
 PM> Install-Package MvvmDialogs
 ```
+
+## History
+
+MVVM Dialogs started out as an [article on CodeProject](https://www.codeproject.com/Articles/36745/Showing-Dialogs-When-Using-the-MVVM-Pattern-in-WPF) with its first revision published in May 2009. At that time MVVM was still new and fresh, and the now hugely popular [MVVM Light](http://www.mvvmlight.net/) had yet not been published. In fact, none of the MVVM libraries commonly used today existed back then. MVVM Dialogs came about out of necessity to work with dialogs from the view model, a reaction to the fact that although MVVM was a popular pattern, the support to implement it was rather limited.
+
+Now many years later, MVVM Dialogs is still maintained and new features are implemented on demand. The framework has grown up, and found its place in the world...
 
 ## Reputation
 
