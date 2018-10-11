@@ -6,6 +6,8 @@ This project adheres to [Semantic Versioning](http://semver.org/) and is followi
 
 ## Unreleased
 
+## 5.2.0 - 2018-10-11
+
 ### :zap: Added
 
 - Overload `ShowMessageBox(INotifyPropertyChanged, MessageBoxSettings)` to `IDialogService`
