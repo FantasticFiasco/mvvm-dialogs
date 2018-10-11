@@ -51,16 +51,16 @@ namespace MvvmDialogs.DialogTypeLocators
         [TestCase("TestAssembly.Module.ViewModels.DialogViewModel", "TestAssembly.Module.Views.Dialog")]
         public void LocateDialogTypeSuccessful(string viewModelFullName, string viewFullName)
         {
-            // ARRANGE
+            // Arrange
             Type viewModelType = testAssembly.GetType(viewModelFullName);
             Assert.IsNotNull(viewModelType);
 
             var viewModel = (INotifyPropertyChanged)Activator.CreateInstance(viewModelType);
             
-            // ACT
+            // Act
             Type dialogType = dialogTypeLocator.Locate(viewModel);
 
-            // ASSERT
+            // Assert
             Assert.That(dialogType.FullName, Is.EqualTo(viewFullName));
         }
 
@@ -68,13 +68,13 @@ namespace MvvmDialogs.DialogTypeLocators
         [TestCase("TestAssembly.UnconventionalNamespace.DialogViewModel")]
         public void LocateDialogTypeUnsuccessful(string viewModelFullName)
         {
-            // ARRANGE
+            // Arrange
             Type viewModelType = testAssembly.GetType(viewModelFullName);
             Assert.IsNotNull(viewModelType);
 
             var viewModel = (INotifyPropertyChanged)Activator.CreateInstance(viewModelType);
 
-            // ASSERT
+            // Assert
             Assert.Throws<TypeLoadException>(() => dialogTypeLocator.Locate(viewModel));
         }
     }

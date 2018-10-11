@@ -68,19 +68,9 @@ namespace MvvmDialogs
 
         #region IDialogService Members
 
-        /// <summary>
-        /// Displays a non-modal dialog of specified type <typeparamref name="T"/>.
-        /// </summary>
-        /// <param name="ownerViewModel">
-        /// A view model that represents the owner window of the dialog.
-        /// </param>
-        /// <param name="viewModel">The view model of the new dialog.</param>
-        /// <typeparam name="T">The type of the dialog to show.</typeparam>
-        /// <exception cref="ViewNotRegisteredException">
-        /// No view is registered with specified owner view model as data context.
-        /// </exception>
+        /// <inheritdoc />
         public void Show<T>(
-        INotifyPropertyChanged ownerViewModel,
+            INotifyPropertyChanged ownerViewModel,
             INotifyPropertyChanged viewModel)
             where T : Window
         {
@@ -92,17 +82,7 @@ namespace MvvmDialogs
             Show(ownerViewModel, viewModel, typeof(T));
         }
 
-        /// <summary>
-        /// Displays a non-modal custom dialog of specified type <typeparamref name="T"/>.
-        /// </summary>
-        /// <param name="ownerViewModel">
-        /// A view model that represents the owner window of the custom dialog.
-        /// </param>
-        /// <param name="viewModel">The view model of the new custom dialog.</param>
-        /// <typeparam name="T">The type of the custom dialog to show.</typeparam>
-        /// <exception cref="ViewNotRegisteredException">
-        /// No view is registered with specified owner view model as data context.
-        /// </exception>
+        /// <inheritdoc />
         public void ShowCustom<T>(
             INotifyPropertyChanged ownerViewModel,
             INotifyPropertyChanged viewModel)
@@ -116,16 +96,7 @@ namespace MvvmDialogs
             Show(ownerViewModel, viewModel, typeof(T));
         }
 
-        /// <summary>
-        /// Displays a non-modal dialog of a type that is determined by the dialog type locator.
-        /// </summary>
-        /// <param name="ownerViewModel">
-        /// A view model that represents the owner window of the dialog.
-        /// </param>
-        /// <param name="viewModel">The view model of the new dialog.</param>
-        /// <exception cref="ViewNotRegisteredException">
-        /// No view is registered with specified owner view model as data context.
-        /// </exception>
+        /// <inheritdoc />
         public void Show(
             INotifyPropertyChanged ownerViewModel,
             INotifyPropertyChanged viewModel)
@@ -139,21 +110,7 @@ namespace MvvmDialogs
             Show(ownerViewModel, viewModel, dialogType);
         }
 
-        /// <summary>
-        /// Displays a modal dialog of specified type <typeparamref name="T"/>.
-        /// </summary>
-        /// <param name="ownerViewModel">
-        /// A view model that represents the owner window of the dialog.
-        /// </param>
-        /// <param name="viewModel">The view model of the new dialog.</param>
-        /// <typeparam name="T">The type of the dialog to show.</typeparam>
-        /// <returns>
-        /// A nullable value of type <see cref="bool"/> that signifies how a window was closed by
-        /// the user.
-        /// </returns>
-        /// <exception cref="ViewNotRegisteredException">
-        /// No view is registered with specified owner view model as data context.
-        /// </exception>
+        /// <inheritdoc />
         public bool? ShowDialog<T>(
         INotifyPropertyChanged ownerViewModel,
             IModalDialogViewModel viewModel)
@@ -167,21 +124,7 @@ namespace MvvmDialogs
             return ShowDialog(ownerViewModel, viewModel, typeof(T));
         }
 
-        /// <summary>
-        /// Displays a custom modal dialog of specified type <typeparamref name="T"/>.
-        /// </summary>
-        /// <param name="ownerViewModel">
-        /// A view model that represents the owner window of the custom dialog.
-        /// </param>
-        /// <param name="viewModel">The view model of the new custom dialog.</param>
-        /// <typeparam name="T">The type of the custom dialog to show.</typeparam>
-        /// <returns>
-        /// A nullable value of type <see cref="bool"/> that signifies how a window was closed by
-        /// the user.
-        /// </returns>
-        /// <exception cref="ViewNotRegisteredException">
-        /// No view is registered with specified owner view model as data context.
-        /// </exception>
+        /// <inheritdoc />
         public bool? ShowCustomDialog<T>(
             INotifyPropertyChanged ownerViewModel,
             IModalDialogViewModel viewModel)
@@ -195,20 +138,7 @@ namespace MvvmDialogs
             return ShowDialog(ownerViewModel, viewModel, typeof(T));
         }
 
-        /// <summary>
-        /// Displays a modal dialog of a type that is determined by the dialog type locator.
-        /// </summary>
-        /// <param name="ownerViewModel">
-        /// A view model that represents the owner window of the dialog.
-        /// </param>
-        /// <param name="viewModel">The view model of the new dialog.</param>
-        /// <returns>
-        /// A nullable value of type <see cref="bool"/> that signifies how a window was closed by
-        /// the user.
-        /// </returns>
-        /// <exception cref="ViewNotRegisteredException">
-        /// No view is registered with specified owner view model as data context.
-        /// </exception>
+        /// <inheritdoc />
         public bool? ShowDialog(
             INotifyPropertyChanged ownerViewModel,
             IModalDialogViewModel viewModel)
@@ -222,39 +152,7 @@ namespace MvvmDialogs
             return ShowDialog(ownerViewModel, viewModel, dialogType);
         }
 
-        /// <summary>
-        /// Displays a message box that has a message, title bar caption, button, and icon; and
-        /// that accepts a default message box result and returns a result.
-        /// </summary>
-        /// <param name="ownerViewModel">
-        /// A view model that represents the owner window of the dialog.
-        /// </param>
-        /// <param name="messageBoxText">
-        /// A <see cref="string"/> that specifies the text to display.
-        /// </param>
-        /// <param name="caption">
-        /// A <see cref="string"/> that specifies the title bar caption to display. Default value
-        /// is an empty string.
-        /// </param>
-        /// <param name="button">
-        /// A <see cref="MessageBoxButton"/> value that specifies which button or buttons to
-        /// display. Default value is <see cref="MessageBoxButton.OK"/>.
-        /// </param>
-        /// <param name="icon">
-        /// A <see cref="MessageBoxImage"/> value that specifies the icon to display. Default value
-        /// is <see cref="MessageBoxImage.None"/>.
-        /// </param>
-        /// <param name="defaultResult">
-        /// A <see cref="MessageBoxResult"/> value that specifies the default result of the
-        /// message box. Default value is <see cref="MessageBoxResult.None"/>.
-        /// </param>
-        /// <returns>
-        /// A <see cref="MessageBoxResult"/> value that specifies which message box button is
-        /// clicked by the user.
-        /// </returns>
-        /// <exception cref="ViewNotRegisteredException">
-        /// No view is registered with specified owner view model as data context.
-        /// </exception>
+        /// <inheritdoc />
         public MessageBoxResult ShowMessageBox(
             INotifyPropertyChanged ownerViewModel,
             string messageBoxText,
@@ -275,21 +173,7 @@ namespace MvvmDialogs
             return ShowMessageBox(ownerViewModel, settings);
         }
 
-        /// <summary>
-        /// Displays a message box that has a message, title bar caption, button, and icon; and
-        /// that accepts a default message box result and returns a result.
-        /// </summary>
-        /// <param name="ownerViewModel">
-        /// A view model that represents the owner window of the dialog.
-        /// </param>
-        /// <param name="settings">The settings for the message box dialog.</param>
-        /// <returns>
-        /// A <see cref="MessageBoxResult"/> value that specifies which message box button is
-        /// clicked by the user.
-        /// </returns>
-        /// <exception cref="ViewNotRegisteredException">
-        /// No view is registered with specified owner view model as data context.
-        /// </exception>
+        /// <inheritdoc />
         public MessageBoxResult ShowMessageBox(
             INotifyPropertyChanged ownerViewModel,
             MessageBoxSettings settings)
@@ -305,20 +189,7 @@ namespace MvvmDialogs
             return messageBox.Show(FindOwnerWindow(ownerViewModel));
         }
 
-        /// <summary>
-        /// Shows the open file dialog.
-        /// </summary>
-        /// <param name="ownerViewModel">
-        /// A view model that represents the owner window of the dialog.
-        /// </param>
-        /// <param name="settings">The settings for the open file dialog.</param>
-        /// <returns>
-        /// If the user clicks the OK button of the dialog that is displayed, true is returned;
-        /// otherwise false.
-        /// </returns>
-        /// <exception cref="ViewNotRegisteredException">
-        /// No view is registered with specified owner view model as data context.
-        /// </exception>
+        /// <inheritdoc />
         public bool? ShowOpenFileDialog(
             INotifyPropertyChanged ownerViewModel,
             OpenFileDialogSettings settings)
@@ -335,20 +206,7 @@ namespace MvvmDialogs
                 .ShowDialog(FindOwnerWindow(ownerViewModel));
         }
 
-        /// <summary>
-        /// Shows the save file dialog.
-        /// </summary>
-        /// <param name="ownerViewModel">
-        /// A view model that represents the owner window of the dialog.
-        /// </param>
-        /// <param name="settings">The settings for the save file dialog.</param>
-        /// <returns>
-        /// If the user clicks the OK button of the dialog that is displayed, true is returned;
-        /// otherwise false.
-        /// </returns>
-        /// <exception cref="ViewNotRegisteredException">
-        /// No view is registered with specified owner view model as data context.
-        /// </exception>
+        /// <inheritdoc />
         public bool? ShowSaveFileDialog(
             INotifyPropertyChanged ownerViewModel,
             SaveFileDialogSettings settings)
@@ -365,20 +223,7 @@ namespace MvvmDialogs
                 .ShowDialog(FindOwnerWindow(ownerViewModel));
         }
 
-        /// <summary>
-        /// Shows the folder browser dialog.
-        /// </summary>
-        /// <param name="ownerViewModel">
-        /// A view model that represents the owner window of the dialog.
-        /// </param>
-        /// <param name="settings">The settings for the folder browser dialog.</param>
-        /// <returns>
-        /// If the user clicks the OK button of the dialog that is displayed, true is returned;
-        /// otherwise false.
-        /// </returns>
-        /// <exception cref="ViewNotRegisteredException">
-        /// No view is registered with specified owner view model as data context.
-        /// </exception>
+        /// <inheritdoc />
         public bool? ShowFolderBrowserDialog(
             INotifyPropertyChanged ownerViewModel,
             FolderBrowserDialogSettings settings)
@@ -440,18 +285,18 @@ namespace MvvmDialogs
             IWindow dialog,
             IModalDialogViewModel viewModel)
         {
-            PropertyChangedEventHandler handler = (sender, e) =>
+            void Handler(object sender, PropertyChangedEventArgs e)
             {
                 if (e.PropertyName == DialogResultPropertyName && dialog.DialogResult != viewModel.DialogResult)
                 {
                     Logger.Write($"Dialog: {dialog.GetType()}; Result: {viewModel.DialogResult}");
                     dialog.DialogResult = viewModel.DialogResult;
                 }
-            };
+            }
 
-            viewModel.PropertyChanged += handler;
+            viewModel.PropertyChanged += Handler;
 
-            return handler;
+            return Handler;
         }
 
         private static void UnregisterDialogResult(

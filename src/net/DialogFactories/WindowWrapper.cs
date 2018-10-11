@@ -21,53 +21,34 @@ namespace MvvmDialogs.DialogFactories
             this.window = window ?? throw new ArgumentNullException(nameof(window));
         }
 
-        /// <summary>
-        /// Gets or sets the data context for an element when it participates in data binding.
-        /// </summary>
+        /// <inheritdoc />
         public object DataContext
         {
             get => window.DataContext;
             set => window.DataContext = value;
         }
 
-        /// <summary>
-        /// Gets or sets the dialog result value, which is the value that is returned from the
-        /// <see cref="ShowDialog" /> method.
-        /// </summary>
-        /// <value>
-        /// The default is false.
-        /// </value>
+        /// <inheritdoc />
         public bool? DialogResult
         {
             get => window.DialogResult;
             set => window.DialogResult = value;
         }
 
-        /// <summary>
-        /// Gets or sets the <see cref="ContentControl"/> that owns this <see cref="IWindow"/>.
-        /// </summary>
+        /// <inheritdoc />
         public ContentControl Owner
         {
             get => window.Owner;
             set => window.Owner = (Window)value;
         }
 
-        /// <summary>
-        /// Opens a window and returns only when the newly opened window is closed.
-        /// </summary>
-        /// <returns>
-        /// A <see cref="Nullable{Boolean}"/> value that specifies whether the activity was
-        /// accepted (true) or canceled (false). The return value is the value of the
-        /// <see cref="DialogResult"/> property before a window closes.
-        /// </returns>
+        /// <inheritdoc />
         public bool? ShowDialog()
         {
             return window.ShowDialog();
         }
 
-        /// <summary>
-        /// Opens a window and returns without waiting for the newly opened window to close.
-        /// </summary>
+        /// <inheritdoc />
         public void Show()
         {
             window.Show();

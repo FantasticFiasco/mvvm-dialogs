@@ -1,6 +1,5 @@
 ﻿using System;
 using Windows.Foundation;
-using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
 namespace MvvmDialogs.ContentDialogFactories
@@ -22,23 +21,14 @@ namespace MvvmDialogs.ContentDialogFactories
             this.contentDialog = contentDialog ?? throw new ArgumentNullException(nameof(contentDialog));
         }
 
-        /// <summary>
-        /// Gets or sets the data context for a <see cref="FrameworkElement"/> when it participates
-        /// in data binding.
-        /// </summary>
+        /// <inheritdoc />
         public object DataContext
         {
             get => contentDialog.DataContext;
             set => contentDialog.DataContext = value;
         }
 
-        /// <summary>
-        /// Begins an asynchronous operation to show the dialog.
-        /// </summary>
-        /// <returns>
-        /// An asynchronous operation showing the dialog. When complete, returns a
-        /// <see cref="ContentDialogResult"/>.
-        /// </returns>
+        /// <inheritdoc />
         public IAsyncOperation<ContentDialogResult> ShowAsync()
         {
             return contentDialog.ShowAsync();

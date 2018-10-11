@@ -21,30 +21,30 @@ namespace Demo.NonModalDialogTest
         [Test]
         public void ImplicitShowCurrentTime()
         {
-            // ARRANGE
+            // Arrange
             dialogService
                 .Setup(mock => mock.Show(viewModel, It.IsAny<CurrentTimeDialogViewModel>()))
                 .Verifiable();
 
-            // ACT
+            // Act
             viewModel.ImplicitShowCommand.Execute(null);
 
-            // ASSERT
+            // Assert
             dialogService.VerifyAll();
         }
 
         [Test]
         public void ExplicitShowCurrentTime()
         {
-            // ARRANGE
+            // Arrange
             dialogService
                 .Setup(mock => mock.Show<CurrentTimeDialog>(It.IsAny<MainWindowViewModel>(), It.IsAny<CurrentTimeDialogViewModel>()))
                 .Verifiable();
 
-            // ACT
+            // Act
             viewModel.ExplicitShowCommand.Execute(null);
 
-            // ASSERT
+            // Assert
             dialogService.VerifyAll();
         }
     }

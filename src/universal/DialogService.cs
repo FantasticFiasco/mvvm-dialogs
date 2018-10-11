@@ -84,16 +84,7 @@ namespace MvvmDialogs
 
         #region IDialogService Members
 
-        /// <summary>
-        /// Begins an asynchronous operation to show the <see cref="ContentDialog" /> of type
-        /// <typeparamref name="T" />.
-        /// </summary>
-        /// <typeparam name="T">The type of the content dialog to show.</typeparam>
-        /// <param name="viewModel">The view model of the new content dialog.</param>
-        /// <returns>
-        /// An asynchronous operation showing the dialog. When complete, returns a
-        /// <see cref="ContentDialogResult" />.
-        /// </returns>
+        /// <inheritdoc />
         public IAsyncOperation<ContentDialogResult> ShowContentDialogAsync<T>(INotifyPropertyChanged viewModel)
             where T : ContentDialog
         {
@@ -103,16 +94,7 @@ namespace MvvmDialogs
             return ShowContentDialogAsync(viewModel, typeof(T));
         }
 
-        /// <summary>
-        /// Begins an asynchronous operation to show the custom <see cref="IContentDialog" /> of
-        /// type <typeparamref name="T" />.
-        /// </summary>
-        /// <typeparam name="T">The type of the custom content dialog to show.</typeparam>
-        /// <param name="viewModel">The view model of the new custom content dialog.</param>
-        /// <returns>
-        /// An asynchronous operation showing the custom dialog. When complete, returns a
-        /// <see cref="ContentDialogResult" />.
-        /// </returns>
+        /// <inheritdoc />
         public IAsyncOperation<ContentDialogResult> ShowCustomContentDialogAsync<T>(INotifyPropertyChanged viewModel)
             where T : IContentDialog
         {
@@ -122,15 +104,7 @@ namespace MvvmDialogs
             return ShowContentDialogAsync(viewModel, typeof(T));
         }
 
-        /// <summary>
-        /// Begins an asynchronous operation to show the <see cref="ContentDialog" /> of a type that
-        /// is determined by the dialog type locator.
-        /// </summary>
-        /// <param name="viewModel">The view model of the new content dialog.</param>
-        /// <returns>
-        /// An asynchronous operation showing the dialog. When complete, returns a
-        /// <see cref="ContentDialogResult" />.
-        /// </returns>
+        /// <inheritdoc />
         public IAsyncOperation<ContentDialogResult> ShowContentDialogAsync(INotifyPropertyChanged viewModel)
         {
             if (viewModel == null)
@@ -140,28 +114,7 @@ namespace MvvmDialogs
             return ShowContentDialogAsync(viewModel, contentDialogType);
         }
 
-        /// <summary>
-        /// Begins an asynchronous operation showing a <see cref="MessageDialog" />.
-        /// </summary>
-        /// <param name="content">The message displayed to the user.</param>
-        /// <param name="title">The title you want displayed on the dialog.</param>
-        /// <param name="commands">
-        /// The array of commands that appear in the command bar of the message dialog. These
-        /// commands makes the dialog actionable.
-        /// </param>
-        /// <param name="defaultCommandIndex">
-        /// The index of the command you want to use as the default. This is the command that fires
-        /// by default when users press the ENTER key.
-        /// </param>
-        /// <param name="cancelCommandIndex">
-        /// The index of the command you want to use as the cancel command. This is the command
-        /// that fires when users press the ESC key.
-        /// </param>
-        /// <param name="options">The options for the dialog.</param>
-        /// <returns>
-        /// An object that represents the asynchronous operation. For more on the async pattern, see
-        /// <see href="https://msdn.microsoft.com/en-us/windows/uwp/threading-async/asynchronous-programming-universal-windows-platform-apps">Asynchronous programming</see>.
-        /// </returns>
+        /// <inheritdoc />
         public IAsyncOperation<IUICommand> ShowMessageDialogAsync(
             string content,
             string title = null,
@@ -192,14 +145,7 @@ namespace MvvmDialogs
             return messageDialog.ShowAsync();
         }
 
-        /// <summary>
-        /// Shows the file picker so that the user can pick one file.
-        /// </summary>
-        /// <param name="settings">The settings for the file open picker.</param>
-        /// <returns>
-        /// When the call to this method completes successfully, it returns a
-        /// <see cref="StorageFile" /> object that represents the file that the user picked.
-        /// </returns>
+        /// <inheritdoc />
         public IAsyncOperation<StorageFile> PickSingleFileAsync(FileOpenPickerSettings settings)
         {
             if (settings == null)
@@ -211,16 +157,7 @@ namespace MvvmDialogs
             return dialog.PickSingleFileAsync();
         }
 
-        /// <summary>
-        /// Shows the file picker so that the user can pick multiple files.
-        /// </summary>
-        /// <param name="settings">The settings for the file open picker.</param>
-        /// <returns>
-        /// When the call to this method completes successfully, it returns a
-        /// <see cref="IReadOnlyList{StorageFile}" /> object that contains all the files that were
-        /// picked by the user. Picked files in this array are represented by
-        /// <see cref="StorageFile" /> objects.
-        /// </returns>
+        /// <inheritdoc />
         public IAsyncOperation<IReadOnlyList<StorageFile>> PickMultipleFilesAsync(FileOpenPickerSettings settings)
         {
             if (settings == null)
@@ -232,17 +169,7 @@ namespace MvvmDialogs
             return dialog.PickMultipleFilesAsync();
         }
 
-        /// <summary>
-        /// Shows the file picker so that the user can save a file and set the file name,
-        /// extension, and location of the file to be saved.
-        /// </summary>
-        /// <param name="settings">The settings for the file save picker.</param>
-        /// <returns>
-        /// When the call to this method completes successfully, it returns a
-        /// <see cref="StorageFile" /> object that was created to represent the saved file. The file
-        /// name, extension, and location of this <see cref="StorageFile" /> match those specified
-        /// by the user, but the file has no content.
-        /// </returns>
+        /// <inheritdoc />
         public IAsyncOperation<StorageFile> PickSaveFileAsync(FileSavePickerSettings settings)
         {
             if (settings == null)
@@ -254,14 +181,7 @@ namespace MvvmDialogs
             return dialog.PickSaveFileAsync();
         }
 
-        /// <summary>
-        /// Shows the folder picker so that the user can pick a folder.
-        /// </summary>
-        /// <param name="settings">The settings for the folder picker.</param>
-        /// <returns>
-        /// When the call to this method completes successfully, it returns a
-        /// <see cref="StorageFolder" /> object that represents the folder that the user picked.
-        /// </returns>
+        /// <inheritdoc />
         public IAsyncOperation<StorageFolder> PickSingleFolderAsync(FolderPickerSettings settings)
         {
             if (settings == null)

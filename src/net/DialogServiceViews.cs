@@ -66,8 +66,7 @@ namespace MvvmDialogs
             if (DesignerProperties.GetIsInDesignMode(target))
                 return;
 
-            var view = target as FrameworkElement;
-            if (view != null)
+            if (target is FrameworkElement view)
             {
                 if ((bool)e.NewValue)
                 {
@@ -87,7 +86,7 @@ namespace MvvmDialogs
         /// </summary>
         internal static IEnumerable<IView> Views =>
             InternalViews
-            .Where(view => view.IsAlive)
+                .Where(view => view.IsAlive)
                 .ToArray();
 
         /// <summary>
@@ -151,15 +150,13 @@ namespace MvvmDialogs
         /// </summary>
         private static void LateRegister(object sender, RoutedEventArgs e)
         {
-            var frameworkElement = e.Source as FrameworkElement;
-            if (frameworkElement != null)
+            if (e.Source is FrameworkElement frameworkElement)
             {
                 // Unregister loaded event
                 frameworkElement.Loaded -= LateRegister;
 
                 // Register the view
-                var view = frameworkElement as IView;
-                if (view != null)
+                if (frameworkElement is IView view)
                 {
                     Register(view);
                 }
@@ -176,8 +173,7 @@ namespace MvvmDialogs
         /// </summary>
         private static void OwnerClosed(object sender, EventArgs e)
         {
-            var owner = sender as Window;
-            if (owner != null)
+            if (sender is Window owner)
             {
                 // Find views acting within closed window
                 IView[] windowViews = Views
@@ -197,7 +193,6 @@ namespace MvvmDialogs
         {
             Logger.Write($"Before pruning ({InternalViews.Count} registered)");
             InternalViews.RemoveAll(reference => !reference.IsAlive);
-
             Logger.Write($"After pruning ({InternalViews.Count} registered)");
         }
     }

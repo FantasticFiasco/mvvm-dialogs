@@ -8,10 +8,7 @@ namespace MvvmDialogs.ContentDialogFactories
     /// </summary>
     public class ReflectionContentDialogFactory : IContentDialogFactory
     {
-        /// <summary>
-        /// Creates a <see cref="ContentDialog" /> of specified type using
-        /// <see cref="Activator.CreateInstance(Type)"/>.
-        /// </summary>
+        /// <inheritdoc />
         public IContentDialog Create(Type dialogType)
         {
             if (dialogType == null)
@@ -20,15 +17,13 @@ namespace MvvmDialogs.ContentDialogFactories
             var instance = Activator.CreateInstance(dialogType);
 
             // Is instance of type IContentDialog?
-            IContentDialog customContentDialog = instance as IContentDialog;
-            if (customContentDialog != null)
+            if (instance is IContentDialog customContentDialog)
             {
                 return customContentDialog;
             }
 
             // Is instance of type ContentDialog?
-            var contentDialog = instance as ContentDialog;
-            if (contentDialog != null)
+            if (instance is ContentDialog contentDialog)
             {
                 return new ContentDialogWrapper(contentDialog);
             }

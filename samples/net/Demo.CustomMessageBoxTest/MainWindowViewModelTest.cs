@@ -22,7 +22,7 @@ namespace Demo.CustomMessageBoxTest
         [Test]
         public void ShowMessageBoxWithMessage()
         {
-            // ARRANGE
+            // Arrange
             dialogService
                 .Setup(mock =>
                     mock.ShowMessageBox(
@@ -34,17 +34,17 @@ namespace Demo.CustomMessageBoxTest
                         MessageBoxResult.None))
                 .Returns(MessageBoxResult.OK);
 
-            // ACT
+            // Act
             viewModel.ShowMessageBoxWithMessageCommand.Execute(null);
 
-            // ASSERT
+            // Assert
             dialogService.VerifyAll();
         }
 
         [Test]
         public void ShowMessageBoxWithCaption()
         {
-            // ARRANGE
+            // Arrange
             dialogService
                 .Setup(mock =>
                     mock.ShowMessageBox(
@@ -56,17 +56,17 @@ namespace Demo.CustomMessageBoxTest
                         MessageBoxResult.None))
                 .Returns(MessageBoxResult.OK);
 
-            // ACT
+            // Act
             viewModel.ShowMessageBoxWithCaptionCommand.Execute(null);
 
-            // ASSERT
+            // Assert
             dialogService.VerifyAll();
         }
 
         [Test]
         public void ShowMessageBoxWithButton()
         {
-            // ARRANGE
+            // Arrange
             dialogService
                 .Setup(mock =>
                     mock.ShowMessageBox(
@@ -78,17 +78,17 @@ namespace Demo.CustomMessageBoxTest
                         MessageBoxResult.None))
                 .Returns(MessageBoxResult.OK); ;
 
-            // ACT
+            // Act
             viewModel.ShowMessageBoxWithButtonCommand.Execute(null);
 
-            // ASSERT
+            // Assert
             dialogService.VerifyAll();
         }
 
         [Test]
         public void ShowMessageBoxWithIcon()
         {
-            // ARRANGE
+            // Arrange
             dialogService
                 .Setup(mock =>
                     mock.ShowMessageBox(
@@ -100,17 +100,17 @@ namespace Demo.CustomMessageBoxTest
                         MessageBoxResult.None))
                 .Returns(MessageBoxResult.OK); ;
 
-            // ACT
+            // Act
             viewModel.ShowMessageBoxWithIconCommand.Execute(null);
 
-            // ASSERT
+            // Assert
             dialogService.VerifyAll();
         }
 
         [Test]
         public void ShowMessageBoxWithDefaultResult()
         {
-            // ARRANGE
+            // Arrange
             dialogService
                 .Setup(mock =>
                     mock.ShowMessageBox(
@@ -122,10 +122,10 @@ namespace Demo.CustomMessageBoxTest
                         MessageBoxResult.Cancel))
                 .Returns(MessageBoxResult.OK); ;
 
-            // ACT
+            // Act
             viewModel.ShowMessageBoxWithDefaultResultCommand.Execute(null);
 
-            // ASSERT
+            // Assert
             dialogService.VerifyAll();
         }
     }

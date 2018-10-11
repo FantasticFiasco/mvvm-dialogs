@@ -17,46 +17,46 @@ namespace MvvmDialogs.DialogTypeLocators
         [Test]
         public void Add()
         {
-            // ACT
+            // Act
             cache.Add(typeof(TestDialogViewModel), typeof(TestDialog));
 
-            // ASSERT
+            // Assert
             Assert.That(cache.Count, Is.EqualTo(1));
         }
 
         [Test]
         public void AddSameTwice()
         {
-            // ARRANGE
+            // Arrange
             cache.Add(typeof(TestDialogViewModel), typeof(TestDialog));
 
-            // ASSERT
+            // Assert
             Assert.Throws<ArgumentException>(() => cache.Add(typeof(TestDialogViewModel), typeof(TestDialog)));
         }
 
         [Test]
         public void Get()
         {
-            // ARRANGE
+            // Arrange
             cache.Add(typeof(TestDialogViewModel), typeof(TestDialog));
 
-            // ACT
+            // Act
             Type dialogType = cache.Get(typeof(TestDialogViewModel));
 
-            // ASSERT
+            // Assert
             Assert.That(dialogType, Is.EqualTo(typeof(TestDialog)));
         }
 
         [Test]
         public void Clear()
         {
-            // ARRANGE
+            // Arrange
             cache.Add(typeof(TestDialogViewModel), typeof(TestDialog));
 
-            // ACT
+            // Act
             cache.Clear();
 
-            // ASSERT
+            // Assert
             Assert.That(cache.Count, Is.EqualTo(0));
         }
 

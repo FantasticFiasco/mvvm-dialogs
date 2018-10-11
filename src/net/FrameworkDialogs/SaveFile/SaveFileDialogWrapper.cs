@@ -36,15 +36,7 @@ namespace MvvmDialogs.FrameworkDialogs.SaveFile
             };
         }
 
-        /// <summary>
-        /// Opens a save file dialog with specified owner.
-        /// </summary>
-        /// <param name="owner">
-        /// Handle to the window that owns the dialog.
-        /// </param>
-        /// <returns>
-        /// true if user clicks the OK button; otherwise false.
-        /// </returns>
+        /// <inheritdoc />
         public bool? ShowDialog(Window owner)
         {
             if (owner == null)

@@ -20,15 +20,7 @@ namespace MvvmDialogs.FrameworkDialogs.FolderBrowser
             this.settings = settings ?? throw new ArgumentNullException(nameof(settings));
         }
 
-        /// <summary>
-        /// Opens a folder browser dialog with specified owner.
-        /// </summary>
-        /// <param name="owner">
-        /// Handle to the window that owns the dialog.
-        /// </param>
-        /// <returns>
-        /// true if user clicks the OK or YES button; otherwise false.
-        /// </returns>
+        /// <inheritdoc />
         public bool? ShowDialog(Window owner)
         {
             if (owner == null)

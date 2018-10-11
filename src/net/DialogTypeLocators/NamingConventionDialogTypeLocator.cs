@@ -17,13 +17,7 @@ namespace MvvmDialogs.DialogTypeLocators
     {
         internal static readonly DialogTypeLocatorCache Cache = new DialogTypeLocatorCache();
 
-        /// <summary>
-        /// Locates the dialog type representing the specified view model in a user interface.
-        /// </summary>
-        /// <param name="viewModel">The view model to find the dialog type for.</param>
-        /// <returns>
-        /// The dialog type representing the specified view model in a user interface.
-        /// </returns>
+        /// <inheritdoc />
         public Type Locate(INotifyPropertyChanged viewModel)
         {
             if (viewModel == null)
@@ -50,14 +44,19 @@ namespace MvvmDialogs.DialogTypeLocators
 
         private static string GetDialogName(Type viewModelType)
         {
-            string dialogName = viewModelType.FullName.Replace(".ViewModels.", ".Views.");
+            if (viewModelType.FullName != null)
+            {
+                string dialogName = viewModelType.FullName.Replace(".ViewModels.", ".Views.");
 
-            if (!dialogName.EndsWith("ViewModel", StringComparison.Ordinal))
-                throw new TypeLoadException(AppendInfoAboutDialogTypeLocators($"View model of type '{viewModelType}' doesn't follow naming convention since it isn't suffixed with 'ViewModel'."));
+                if (dialogName.EndsWith("ViewModel", StringComparison.Ordinal))
+                {
+                    return dialogName.Substring(
+                        0,
+                        dialogName.Length - "ViewModel".Length);
+                }
+            }
 
-            return dialogName.Substring(
-                0,
-                dialogName.Length - "ViewModel".Length);
+            throw new TypeLoadException(AppendInfoAboutDialogTypeLocators($"View model of type '{viewModelType}' doesn't follow naming convention since it isn't suffixed with 'ViewModel'."));
         }
 
         private static Assembly GetAssemblyFromType(Type type)

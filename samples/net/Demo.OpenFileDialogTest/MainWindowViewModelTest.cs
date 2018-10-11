@@ -23,32 +23,32 @@ namespace Demo.OpenFileDialogTest
         [Test]
         public void OpenFileSuccessful()
         {
-            // ARRANGE
+            // Arrange
             dialogService
                 .Setup(mock => mock.ShowOpenFileDialog(viewModel, It.IsAny<OpenFileDialogSettings>()))
                 .Returns(true)
                 .Callback((INotifyPropertyChanged ownerViewModel, OpenFileDialogSettings settings) =>
                     settings.FileName = @"C:\SomeFile.txt");
 
-            // ACT
+            // Act
             viewModel.OpenFileCommand.Execute(null);
 
-            // ASSERT
+            // Assert
             Assert.That(viewModel.Path, Is.EqualTo(@"C:\SomeFile.txt"));
         }
 
         [Test]
         public void OpenFileUnsuccessful()
         {
-            // ARRANGE
+            // Arrange
             dialogService
                 .Setup(mock => mock.ShowOpenFileDialog(viewModel, It.IsAny<OpenFileDialogSettings>()))
                 .Returns(false);
 
-            // ACT
+            // Act
             viewModel.OpenFileCommand.Execute(null);
 
-            // ASSERT
+            // Assert
             Assert.That(viewModel.Path, Is.Null);
         }
     }

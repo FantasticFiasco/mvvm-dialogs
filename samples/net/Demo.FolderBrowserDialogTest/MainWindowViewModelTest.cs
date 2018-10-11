@@ -23,32 +23,32 @@ namespace Demo.FolderBrowserDialogTest
         [Test]
         public void BrowseFolderSuccessful()
         {
-            // ARRANGE
+            // Arrange
             dialogService
                 .Setup(mock => mock.ShowFolderBrowserDialog(viewModel, It.IsAny<FolderBrowserDialogSettings>()))
                 .Returns(true)
                 .Callback((INotifyPropertyChanged ownerViewModel, FolderBrowserDialogSettings settings) =>
                     settings.SelectedPath = @"C:\SomeFolder");
 
-            // ACT
+            // Act
             viewModel.BrowseFolderCommand.Execute(null);
 
-            // ASSERT
+            // Assert
             Assert.That(viewModel.Path, Is.EqualTo(@"C:\SomeFolder"));
         }
 
         [Test]
         public void BrowseFolderUnsuccessful()
         {
-            // ARRANGE
+            // Arrange
             dialogService
                 .Setup(mock => mock.ShowFolderBrowserDialog(viewModel, It.IsAny<FolderBrowserDialogSettings>()))
                 .Returns(false);
 
-            // ACT
+            // Act
             viewModel.BrowseFolderCommand.Execute(null);
 
-            // ASSERT
+            // Assert
             Assert.That(viewModel.Path, Is.Null);
         }
     }

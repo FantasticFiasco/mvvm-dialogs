@@ -23,32 +23,32 @@ namespace Demo.SaveFileDialogTest
         [Test]
         public void SaveFileSuccessful()
         {
-            // ARRANGE
+            // Arrange
             dialogService
                 .Setup(mock => mock.ShowSaveFileDialog(viewModel, It.IsAny<SaveFileDialogSettings>()))
                 .Returns(true)
                 .Callback((INotifyPropertyChanged ownerViewModel, SaveFileDialogSettings settings) =>
                     settings.FileName = @"C:\SomeFile.txt");
 
-            // ACT
+            // Act
             viewModel.SaveFileCommand.Execute(null);
 
-            // ASSERT
+            // Assert
             Assert.That(viewModel.Path, Is.EqualTo(@"C:\SomeFile.txt"));
         }
 
         [Test]
         public void OpenFileUnsuccessful()
         {
-            // ARRANGE
+            // Arrange
             dialogService
                 .Setup(mock => mock.ShowSaveFileDialog(viewModel, It.IsAny<SaveFileDialogSettings>()))
                 .Returns(false);
 
-            // ACT
+            // Act
             viewModel.SaveFileCommand.Execute(null);
 
-            // ASSERT
+            // Assert
             Assert.That(viewModel.Path, Is.Null);
         }
     }

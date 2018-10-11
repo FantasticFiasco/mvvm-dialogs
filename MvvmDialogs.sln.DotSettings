@@ -227,4 +227,8 @@
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=A9A0CC3540FBAA41A26223D5BE7478F6/Shortcut/@EntryValue">mock</s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=A9A0CC3540FBAA41A26223D5BE7478F6/ShortenQualifiedReferences/@EntryValue">True</s:Boolean>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=A9A0CC3540FBAA41A26223D5BE7478F6/Text/@EntryValue">$FIELD$ = MockRepository.GenerateMock&lt;$INTERFACE$&gt;();</s:String>
+	<s:Boolean x:Key="/Default/UserDictionary/Words/=Multiselect/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/UserDictionary/Words/=Mvvm/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/UserDictionary/Words/=Unregister/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/UserDictionary/Words/=Unregisters/@EntryIndexedValue">True</s:Boolean>
 	</wpf:ResourceDictionary>

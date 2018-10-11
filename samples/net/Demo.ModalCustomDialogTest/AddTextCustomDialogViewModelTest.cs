@@ -19,13 +19,13 @@ namespace Demo.ModalCustomDialogTest
         [TestCase(null, null)]
         public void Ok(string text, bool? expectedDialogResult)
         {
-            // ARRANGE
+            // Arrange
             viewModel.Text = text;
 
-            // ACT
+            // Act
             viewModel.OkCommand.Execute(null);
 
-            // ASSERT
+            // Assert
             Assert.That(viewModel.DialogResult, Is.EqualTo(expectedDialogResult));
         }
     }

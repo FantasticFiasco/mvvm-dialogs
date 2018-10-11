@@ -45,8 +45,8 @@ namespace MvvmDialogs.DialogTypeLocators
             if (viewModelType == null)
                 throw new ArgumentNullException(nameof(viewModelType));
 
-            Type dialogType;
-            cache.TryGetValue(viewModelType, out dialogType);
+            cache.TryGetValue(viewModelType, out var dialogType);
+
             return dialogType;
         }
 

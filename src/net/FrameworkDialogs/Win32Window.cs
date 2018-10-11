@@ -19,10 +19,7 @@ namespace MvvmDialogs.FrameworkDialogs
             Handle = new WindowInteropHelper(window).Handle;
         }
 
-        /// <summary>
-        /// Gets the handle to the window represented by the implementer.
-        /// </summary>
-        /// <returns>A handle to the window represented by the implementer.</returns>
-        public IntPtr Handle { get; private set; }
+        /// <inheritdoc />
+        public IntPtr Handle { get; }
     }
 }

@@ -19,39 +19,39 @@ namespace MvvmDialogs.Views
         [Test]
         public void Source()
         {
-            // ARRANGE
+            // Arrange
             var viewWrapper = new ViewWrapper(frameworkElement);
 
-            // ASSERT
+            // Assert
             Assert.That(viewWrapper.Source, Is.EqualTo(frameworkElement));
         }
 
         [Test]
         public void GetHashCodeOverride()
         {
-            // ARRANGE
+            // Arrange
             var viewWrapperA = new ViewWrapper(frameworkElement);
             var viewWrapperB = new ViewWrapper(frameworkElement);
 
-            // ACT
+            // Act
             int hashCodeA = viewWrapperA.GetHashCode();
             int hashCodeB = viewWrapperB.GetHashCode();
 
-            // ASSERT
+            // Assert
             Assert.That(hashCodeA, Is.EqualTo(hashCodeB));
         }
 
         [Test]
         public void EqualsOverride()
         {
-            // ARRANGE
+            // Arrange
             var viewWrapperA = new ViewWrapper(frameworkElement);
             var viewWrapperB = new ViewWrapper(frameworkElement);
 
-            // ACT
+            // Act
             bool equals = viewWrapperA.Equals(viewWrapperB);
 
-            // ASSERT
+            // Assert
             Assert.That(equals, Is.True);
         }
     }

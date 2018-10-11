@@ -8,10 +8,7 @@ namespace MvvmDialogs.DialogFactories
     /// </summary>
     public class ReflectionDialogFactory : IDialogFactory
     {
-        /// <summary>
-        /// Creates a <see cref="Window" /> of specified type using
-        /// <see cref="Activator.CreateInstance(Type)"/>.
-        /// </summary>
+        /// <inheritdoc />
         public IWindow Create(Type dialogType)
         {
             if (dialogType == null)
@@ -19,21 +16,17 @@ namespace MvvmDialogs.DialogFactories
 
             var instance = Activator.CreateInstance(dialogType);
 
-            // Is instance of type IWindow?
-            IWindow customDialog = instance as IWindow;
-            if (customDialog != null)
+            switch (instance)
             {
-                return customDialog;
-            }
+                case IWindow customDialog:
+                    return customDialog;
 
-            // Is instance of type Window?
-            var dialog = instance as Window;
-            if (dialog != null)
-            {
-                return new WindowWrapper(dialog);
-            }
+                case Window dialog:
+                    return new WindowWrapper(dialog);
 
-            throw new ArgumentException($"Only dialogs of type {typeof(Window)} or {typeof(IWindow)} are supported.");
+                default:
+                    throw new ArgumentException($"Only dialogs of type {typeof(Window)} or {typeof(IWindow)} are supported.");
+            }
         }
     }
 }

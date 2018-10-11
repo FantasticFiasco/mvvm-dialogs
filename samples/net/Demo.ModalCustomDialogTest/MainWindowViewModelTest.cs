@@ -22,7 +22,7 @@ namespace Demo.ModalCustomDialogTest
         [Test]
         public void ImplicitAddTextSuccessful()
         {
-            // ARRANGE
+            // Arrange
             dialogService
                 .Setup(mock => mock.ShowDialog(viewModel, It.IsAny<AddTextCustomDialogViewModel>()))
                 .Returns(true)
@@ -34,32 +34,32 @@ namespace Demo.ModalCustomDialogTest
                 "Some text"
             };
 
-            // ACT
+            // Act
             viewModel.ImplicitShowDialogCommand.Execute(null);
 
-            // ASSERT
+            // Assert
             Assert.That(viewModel.Texts, Is.EqualTo(expected));
         }
 
         [Test]
         public void ImplicitAddTextUnsuccessful()
         {
-            // ARRANGE
+            // Arrange
             dialogService
                 .Setup(mock => mock.ShowDialog(viewModel, It.IsAny<AddTextCustomDialogViewModel>()))
                 .Returns(false);
 
-            // ACT
+            // Act
             viewModel.ImplicitShowDialogCommand.Execute(null);
 
-            // ASSERT
+            // Assert
             Assert.That(viewModel.Texts, Is.Empty);
         }
 
         [Test]
         public void ExplicitAddTextSuccessful()
         {
-            // ARRANGE
+            // Arrange
             dialogService
                 .Setup(mock => mock.ShowCustomDialog<AddTextCustomDialog>(viewModel, It.IsAny<AddTextCustomDialogViewModel>()))
                 .Returns(true)
@@ -71,25 +71,25 @@ namespace Demo.ModalCustomDialogTest
                 "Some text"
             };
 
-            // ACT
+            // Act
             viewModel.ExplicitShowDialogCommand.Execute(null);
 
-            // ASSERT
+            // Assert
             Assert.That(viewModel.Texts, Is.EqualTo(expected));
         }
 
         [Test]
         public void ExplicitAddTextUnsuccessful()
         {
-            // ARRANGE
+            // Arrange
             dialogService
                 .Setup(mock => mock.ShowCustomDialog<AddTextCustomDialog>(viewModel, It.IsAny<AddTextCustomDialogViewModel>()))
                 .Returns(false);
 
-            // ACT
+            // Act
             viewModel.ExplicitShowDialogCommand.Execute(null);
 
-            // ASSERT
+            // Assert
             Assert.That(viewModel.Texts, Is.Empty);
         }
     }

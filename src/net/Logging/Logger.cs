@@ -16,7 +16,7 @@ namespace MvvmDialogs.Logging
         /// Set this property to expose logs for diagnostics purposes.
         /// </summary>
         /// <example>
-        /// This sample shows how messages are logged using <see cref="Debug.WriteLine(String)"/>.
+        /// This sample shows how messages are logged using <see cref="Debug.WriteLine(string)"/>.
         /// <code>
         /// Logger.Writer = message => Debug.WriteLine(message);
         /// </code>
