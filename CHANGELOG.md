@@ -6,15 +6,19 @@ This project adheres to [Semantic Versioning](http://semver.org/) and is followi
 
 ## Unreleased
 
+### :zap: Added
+
+- Overload `ShowMessageBox(INotifyPropertyChanged, MessageBoxSettings)` to `IDialogService`
+
 ## 5.1.0 - 2017-12-18
 
- ### :zap: Added
+### :zap: Added
 
 - Extended support for [MVVM Dialogs Contrib](https://github.com/FantasticFiasco/mvvm-dialogs-contrib)
 
 ## 5.0.0 - 2017-12-12
 
- ### :zap: Added
+### :zap: Added
 
 - [#30](https://github.com/FantasticFiasco/mvvm-dialogs/issues/30) Support for customizing the following Windows dialogs (contribution by [@pdinnissen](https://github.com/pdinnissen)):
     - Message box
@@ -30,7 +34,7 @@ This project adheres to [Semantic Versioning](http://semver.org/) and is followi
 
 ## 4.1.1 - 2017-09-07
 
- ### :zap: Added
+### :zap: Added
 
 - Option to set filter index when opening or saving a file (contribution by [@gigios](https://github.com/gigios))
 
@@ -42,7 +46,7 @@ This project adheres to [Semantic Versioning](http://semver.org/) and is followi
 
 ## 4.0.0 - 2016-11-27
 
- ### :zap: Added
+### :zap: Added
 
 - [#14](https://github.com/FantasticFiasco/mvvm-dialogs/issues/14) - Support for showing custom WPF dialogs by implementing `IWindow`
 - Support for showing custom UWP content dialogs by implementing `IContentDialog`
@@ -55,7 +59,7 @@ This project adheres to [Semantic Versioning](http://semver.org/) and is followi
 
 ## 2.0.1 - 2016-05-18
 
- ### :zap: Added
+### :zap: Added
 
 - [#8](https://github.com/FantasticFiasco/mvvm-dialogs/issues/8) - Support for Universal Windows Platform (UWP)
 - Add `ViewNotRegisteredException` that is thrown by `IDialogService` when view is unregistered
@@ -68,7 +72,7 @@ This project adheres to [Semantic Versioning](http://semver.org/) and is followi
 
 ## 1.2.0 - 2015-12-14
 
- ### :zap: Added
+### :zap: Added
 
 - Support for exposing logs using class `MvvmDialogs.Logging.Logger`
 
@@ -92,7 +96,7 @@ This project adheres to [Semantic Versioning](http://semver.org/) and is followi
 
 ## 1.1.1 - 2015-06-11
 
- ### :zap: Added
+### :zap: Added
 
 - Apache license
 - NuGet package supporting .NET3.5, .NET4.0 and .NET4.5

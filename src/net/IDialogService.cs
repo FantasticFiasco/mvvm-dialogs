@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Windows;
 using MvvmDialogs.FrameworkDialogs.FolderBrowser;
+using MvvmDialogs.FrameworkDialogs.MessageBox;
 using MvvmDialogs.FrameworkDialogs.OpenFile;
 using MvvmDialogs.FrameworkDialogs.SaveFile;
 using FolderBrowserDialog = System.Windows.Forms.FolderBrowserDialog;
@@ -159,6 +160,25 @@ namespace MvvmDialogs
             MessageBoxButton button = MessageBoxButton.OK,
             MessageBoxImage icon = MessageBoxImage.None,
             MessageBoxResult defaultResult = MessageBoxResult.None);
+
+        /// <summary>
+        /// Displays a message box that has a message, title bar caption, button, and icon; and
+        /// that accepts a default message box result and returns a result.
+        /// </summary>
+        /// <param name="ownerViewModel">
+        /// A view model that represents the owner window of the dialog.
+        /// </param>
+        /// <param name="settings">The settings for the message box dialog.</param>
+        /// <returns>
+        /// A <see cref="MessageBoxResult"/> value that specifies which message box button is
+        /// clicked by the user.
+        /// </returns>
+        /// <exception cref="ViewNotRegisteredException">
+        /// No view is registered with specified owner view model as data context.
+        /// </exception>
+        MessageBoxResult ShowMessageBox(
+            INotifyPropertyChanged ownerViewModel,
+            MessageBoxSettings settings);
 
         /// <summary>
         /// Displays the <see cref="OpenFileDialog"/>.
