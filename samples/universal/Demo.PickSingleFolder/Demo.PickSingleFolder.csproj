@@ -135,7 +135,7 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
-      <Version>6.0.4</Version>
+      <Version>6.1.9</Version>
     </PackageReference>
     <PackageReference Include="MvvmLight">
       <Version>5.3.0</Version>
