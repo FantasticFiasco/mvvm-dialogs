@@ -1,69 +1,146 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project Sdk="Microsoft.NET.Sdk">
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{BC306EC6-B992-4E54-B251-4CA06A67073F}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <TargetFrameworks>net35;net40;net45</TargetFrameworks>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MvvmDialogs</RootNamespace>
+    <AssemblyName>MvvmDialogs</AssemblyName>
+    <TargetFrameworkVersion Condition="'$(TargetFrameworkVersion)' == ''">v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DefineConstants Condition="'$(TargetFramework)' == 'net35'">DEBUG;TRACE;PRE_NET40;PRE_NET45</DefineConstants>
-    <DefineConstants Condition="'$(TargetFramework)' == 'net40'">DEBUG;TRACE;PRE_NET45</DefineConstants>
-    <DefineConstants Condition="'$(TargetFramework)' == 'net45'">DEBUG;TRACE</DefineConstants>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath Condition="'$(TargetFrameworkVersion)' == 'v3.5'">bin\Debug\net35\</OutputPath>
+    <OutputPath Condition="'$(TargetFrameworkVersion)' == 'v4.0'">bin\Debug\net40\</OutputPath>
+    <OutputPath Condition="'$(TargetFrameworkVersion)' == 'v4.5'">bin\Debug\net45\</OutputPath>
+    <DefineConstants Condition="'$(TargetFrameworkVersion)' == 'v3.5'">DEBUG;TRACE;PRE_NET40;PRE_NET45</DefineConstants>
+    <DefineConstants Condition="'$(TargetFrameworkVersion)' == 'v4.0'">DEBUG;TRACE;PRE_NET45</DefineConstants>
+    <DefineConstants Condition="'$(TargetFrameworkVersion)' == 'v4.5'">DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
+    <CodeAnalysisRuleSet>..\..\MvvmDialogs.ruleset</CodeAnalysisRuleSet>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <DocumentationFile Condition="'$(TargetFrameworkVersion)' == 'v3.5'">bin\Debug\net35\MvvmDialogs.xml</DocumentationFile>
+    <DocumentationFile Condition="'$(TargetFrameworkVersion)' == 'v4.0'">bin\Debug\net40\MvvmDialogs.xml</DocumentationFile>
+    <DocumentationFile Condition="'$(TargetFrameworkVersion)' == 'v4.5'">bin\Debug\net45\MvvmDialogs.xml</DocumentationFile>
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
-    <DefineConstants Condition="'$(TargetFramework)' == 'net35'">TRACE;PRE_NET40;PRE_NET45</DefineConstants>
-    <DefineConstants Condition="'$(TargetFramework)' == 'net40'">TRACE;PRE_NET45</DefineConstants>
-    <DefineConstants Condition="'$(TargetFramework)' == 'net45'">TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <OutputPath Condition="'$(TargetFrameworkVersion)' == 'v3.5'">bin\Release\net35\</OutputPath>
+    <OutputPath Condition="'$(TargetFrameworkVersion)' == 'v4.0'">bin\Release\net40\</OutputPath>
+    <OutputPath Condition="'$(TargetFrameworkVersion)' == 'v4.5'">bin\Release\net45\</OutputPath>
+    <DefineConstants Condition="'$(TargetFrameworkVersion)' == 'v3.5'">TRACE;PRE_NET40;PRE_NET45</DefineConstants>
+    <DefineConstants Condition="'$(TargetFrameworkVersion)' == 'v4.0'">TRACE;PRE_NET45</DefineConstants>
+    <DefineConstants Condition="'$(TargetFrameworkVersion)' == 'v4.5'">TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
+    <CodeAnalysisRuleSet>..\..\MvvmDialogs.ruleset</CodeAnalysisRuleSet>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <DocumentationFile Condition="'$(TargetFrameworkVersion)' == 'v3.5'">bin\Release\net35\MvvmDialogs.xml</DocumentationFile>
+    <DocumentationFile Condition="'$(TargetFrameworkVersion)' == 'v4.0'">bin\Release\net40\MvvmDialogs.xml</DocumentationFile>
+    <DocumentationFile Condition="'$(TargetFrameworkVersion)' == 'v4.5'">bin\Release\net45\MvvmDialogs.xml</DocumentationFile>
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup>
-    <CodeAnalysisRuleSet>..\..\MvvmDialogs.ruleset</CodeAnalysisRuleSet>
-    <RunCodeAnalysis>true</RunCodeAnalysis>
-    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-    <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(AssemblyName).xml</DocumentationFile>
     <SignAssembly>true</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
     <AssemblyOriginatorKeyFile>..\..\StrongName.snk</AssemblyOriginatorKeyFile>
-    <AssemblyTitle>MVVM Dialogs</AssemblyTitle>
-    <Company>FantasticFiasco</Company>
-    <Product>MVVM Dialogs</Product>
-    <Copyright>Copyright © 2009-2018 MVVM Dialogs contributors</Copyright>
-    <Version>5.2.0</Version>
-    <NeutralLanguage>en-US</NeutralLanguage>
   </PropertyGroup>
-  <ItemGroup Condition=" '$(TargetFramework)' == 'net35' ">
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Windows.Forms" />
-    <Reference Include="WindowsBase" />
-    <Reference Include="PresentationCore" />
-    <Reference Include="PresentationFramework" />
-  </ItemGroup>
-  <ItemGroup Condition=" '$(TargetFramework)' == 'net40' ">
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Windows.Forms" />
-    <Reference Include="WindowsBase" />
-    <Reference Include="PresentationCore" />
-    <Reference Include="PresentationFramework" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Xaml">
-      <RequiredTargetFramework>4.0</RequiredTargetFramework>
-    </Reference>
-  </ItemGroup>
-  <ItemGroup Condition=" '$(TargetFramework)' == 'net45' ">
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Windows.Forms" />
-    <Reference Include="WindowsBase" />
-    <Reference Include="PresentationCore" />
-    <Reference Include="PresentationFramework" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Xaml">
-      <RequiredTargetFramework>4.0</RequiredTargetFramework>
-    </Reference>
+  <Choose>
+    <When Condition="'$(TargetFrameworkVersion)' == 'v3.5'">
+      <ItemGroup>
+        <Reference Include="System" />
+        <Reference Include="System.Core" />
+        <Reference Include="System.Windows.Forms" />
+        <Reference Include="WindowsBase" />
+        <Reference Include="PresentationCore" />
+        <Reference Include="PresentationFramework" />
+      </ItemGroup>
+    </When>
+    <When Condition="'$(TargetFrameworkVersion)' == 'v4.0'">
+      <ItemGroup>
+        <Reference Include="System" />
+        <Reference Include="System.Core" />
+        <Reference Include="System.Windows.Forms" />
+        <Reference Include="WindowsBase" />
+        <Reference Include="PresentationCore" />
+        <Reference Include="PresentationFramework" />
+        <Reference Include="Microsoft.CSharp" />
+        <Reference Include="System.Xaml">
+          <RequiredTargetFramework>4.0</RequiredTargetFramework>
+        </Reference>
+      </ItemGroup>
+    </When>
+    <When Condition="'$(TargetFrameworkVersion)' == 'v4.5'">
+      <ItemGroup>
+        <Reference Include="System" />
+        <Reference Include="System.Core" />
+        <Reference Include="System.Windows.Forms" />
+        <Reference Include="WindowsBase" />
+        <Reference Include="PresentationCore" />
+        <Reference Include="PresentationFramework" />
+        <Reference Include="Microsoft.CSharp" />
+        <Reference Include="System.Xaml">
+          <RequiredTargetFramework>4.0</RequiredTargetFramework>
+        </Reference>
+      </ItemGroup>
+    </When>
+  </Choose>
+  <ItemGroup>
+    <Compile Include="..\..\SolutionInfo.cs">
+      <Link>Properties\SolutionInfo.cs</Link>
+    </Compile>
+    <Compile Include="FrameworkDialogs\DefaultFrameworkDialogFactory.cs" />
+    <Compile Include="DialogFactories\IDialogFactory.cs" />
+    <Compile Include="FrameworkDialogs\IFrameworkDialogFactory.cs" />
+    <Compile Include="DialogFactories\ReflectionDialogFactory.cs" />
+    <Compile Include="DialogFactories\WindowWrapper.cs" />
+    <Compile Include="DialogService.cs" />
+    <Compile Include="DialogServiceViews.cs" />
+    <Compile Include="DialogTypeLocators\DialogTypeLocatorCache.cs" />
+    <Compile Include="DialogTypeLocators\IDialogTypeLocator.cs" />
+    <Compile Include="Extensions\System\Runtime\CompilerServices\CallerFilePathAttribute.cs" />
+    <Compile Include="Extensions\System\Runtime\CompilerServices\CallerLineNumberAttribute.cs" />
+    <Compile Include="Extensions\System\Runtime\CompilerServices\CallerMemberNameAttribute.cs" />
+    <Compile Include="Extensions\System\Runtime\CompilerServices\DynamicallyInvokableAttribute.cs" />
+    <Compile Include="Extensions\System\Runtime\TargetedPatchingOptOutAttribute.cs" />
+    <Compile Include="FrameworkDialogs\IFrameworkDialog.cs" />
+    <Compile Include="FrameworkDialogs\MessageBox\IMessageBox.cs" />
+    <Compile Include="FrameworkDialogs\MessageBox\MessageBoxSettings.cs" />
+    <Compile Include="FrameworkDialogs\MessageBox\MessageBoxWrapper.cs" />
+    <Compile Include="IWindow.cs" />
+    <Compile Include="Logging\Logger.cs" />
+    <Compile Include="Reflection\Members.cs" />
+    <Compile Include="Extensions\System\Windows\FrameworkElementExtensions.cs" />
+    <Compile Include="FrameworkDialogs\FileDialogSettings.cs" />
+    <Compile Include="FrameworkDialogs\FolderBrowser\FolderBrowserDialogWrapper.cs" />
+    <Compile Include="FrameworkDialogs\FolderBrowser\FolderBrowserDialogSettings.cs" />
+    <Compile Include="FrameworkDialogs\OpenFile\OpenFileDialogWrapper.cs" />
+    <Compile Include="FrameworkDialogs\OpenFile\OpenFileDialogSettings.cs" />
+    <Compile Include="FrameworkDialogs\Win32Window.cs" />
+    <Compile Include="FrameworkDialogs\SaveFile\SaveFileDialogWrapper.cs" />
+    <Compile Include="FrameworkDialogs\SaveFile\SaveFileDialogSettings.cs" />
+    <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="IDialogService.cs" />
+    <Compile Include="IModalDialogViewModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="DialogTypeLocators\NamingConventionDialogTypeLocator.cs" />
+    <Compile Include="ViewNotRegisteredException.cs" />
+    <Compile Include="Views\IdGenerator.cs" />
+    <Compile Include="Views\IView.cs" />
+    <Compile Include="Views\ViewWrapper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\StrongName.snk">
@@ -73,4 +150,12 @@
   <ItemGroup>
     <CodeAnalysisDictionary Include="CustomDictionary.xml" />
   </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
 </Project>
