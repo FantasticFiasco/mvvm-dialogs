@@ -138,7 +138,7 @@
       <Version>6.1.9</Version>
     </PackageReference>
     <PackageReference Include="MvvmLight">
-      <Version>5.3.0</Version>
+      <Version>5.4.1.1</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
