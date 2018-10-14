@@ -9,7 +9,6 @@
   </PropertyGroup>
   <PropertyGroup>
     <AssemblyOriginatorKeyFile>..\..\StrongName.snk</AssemblyOriginatorKeyFile>
-    <Company>FantasticFiasco</Company>
     <Product>MVVM Dialogs</Product>
     <Copyright>Copyright © 2009-2018 MVVM Dialogs contributors</Copyright>
     <Version>5.2.0</Version>
