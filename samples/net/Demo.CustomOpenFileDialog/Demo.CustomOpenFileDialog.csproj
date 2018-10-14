@@ -8,7 +8,7 @@
     <OutputTypeEx>winexe</OutputTypeEx>
     <StartupObject />
     <Company />
-    <Copyright>Copyright © 2009-2017 MVVM Dialogs contributors</Copyright>
+    <Copyright>Copyright © 2009-2018 MVVM Dialogs contributors</Copyright>
   </PropertyGroup>
 
   <ItemGroup>
