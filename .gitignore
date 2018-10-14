@@ -7,9 +7,6 @@
 *.userosscache
 *.sln.docstates
 
-# GhostDoc
-*.GhostDoc.xml
-
 # Build results
 [Dd]ebug/
 [Dd]ebugPublic/
@@ -38,3 +35,9 @@ artifacts/
 
 # ReSharper
 src/_ReSharper.Caches/
+
+# Cake
+tools/
+
+# GhostDoc
+*.GhostDoc.xml
