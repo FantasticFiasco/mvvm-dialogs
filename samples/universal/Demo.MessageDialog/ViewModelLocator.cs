@@ -1,5 +1,5 @@
-﻿using GalaSoft.MvvmLight.Ioc;
-using Microsoft.Practices.ServiceLocation;
+﻿using CommonServiceLocator;
+using GalaSoft.MvvmLight.Ioc;
 
 namespace Demo.MessageDialog
 {
