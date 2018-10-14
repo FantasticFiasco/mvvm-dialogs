@@ -8,7 +8,10 @@ namespace MvvmDialogs
 	/// <seealso cref="System.Exception" />
 	public class ViewModelNotFoundException : Exception
 	{
-		public ViewModelNotFoundException(Type viewModelType)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ViewModelNotFoundException"/> class.
+        /// </summary>
+        public ViewModelNotFoundException(Type viewModelType)
 			: base(BuildMessage(viewModelType))
 		{
 		}
