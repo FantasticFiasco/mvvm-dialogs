@@ -29,6 +29,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\src\net\MvvmDialogs.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
@@ -44,12 +48,8 @@
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
   </ItemGroup>
+
   <ItemGroup>
-    <ProjectReference Include="..\..\..\src\net\MvvmDialogs.csproj" />
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="MvvmLight">
-      <Version>5.4.1.1</Version>
-    </PackageReference>
+    <PackageReference Include="MvvmLight" Version="5.4.1.1" />
   </ItemGroup>
 </Project>

@@ -150,7 +150,7 @@
     <AssemblyOriginatorKeyFile>..\..\StrongName.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
+    <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform" Version="6.1.9" />
       <Version>6.1.9</Version>
     </PackageReference>
   </ItemGroup>

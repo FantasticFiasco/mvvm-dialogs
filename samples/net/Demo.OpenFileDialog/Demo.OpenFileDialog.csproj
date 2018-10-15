@@ -27,7 +27,17 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
   </ItemGroup>
-  
+
+  <ItemGroup>
+    <None Include="OpenMe.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\src\net\MvvmDialogs.csproj" />
+  </ItemGroup>
+
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -44,17 +54,8 @@
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
   </ItemGroup>
+
   <ItemGroup>
-    <None Include="OpenMe.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\src\net\MvvmDialogs.csproj" />
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="MvvmLight">
-      <Version>5.4.1.1</Version>
-    </PackageReference>
+    <PackageReference Include="MvvmLight" Version="5.4.1.1" />
   </ItemGroup>
 </Project>
