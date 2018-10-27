@@ -127,11 +127,14 @@
     <Compile Include="FrameworkDialogs\FileDialogSettings.cs" />
     <Compile Include="FrameworkDialogs\FolderBrowser\FolderBrowserDialogWrapper.cs" />
     <Compile Include="FrameworkDialogs\FolderBrowser\FolderBrowserDialogSettings.cs" />
+    <Compile Include="FrameworkDialogs\FolderBrowser\FolderBrowserDialogSettingsSync.cs" />
     <Compile Include="FrameworkDialogs\OpenFile\OpenFileDialogWrapper.cs" />
     <Compile Include="FrameworkDialogs\OpenFile\OpenFileDialogSettings.cs" />
+    <Compile Include="FrameworkDialogs\OpenFile\OpenFileDialogSettingsSync.cs" />
     <Compile Include="FrameworkDialogs\Win32Window.cs" />
     <Compile Include="FrameworkDialogs\SaveFile\SaveFileDialogWrapper.cs" />
     <Compile Include="FrameworkDialogs\SaveFile\SaveFileDialogSettings.cs" />
+    <Compile Include="FrameworkDialogs\SaveFile\SaveFileDialogSettingsSync.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="IDialogService.cs" />
     <Compile Include="IModalDialogViewModel.cs" />
@@ -151,7 +154,7 @@
     <CodeAnalysisDictionary Include="CustomDictionary.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
   </Target>

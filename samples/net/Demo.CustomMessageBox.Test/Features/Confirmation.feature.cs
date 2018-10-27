@@ -9,12 +9,12 @@
 //  </auto-generated>
 // ------------------------------------------------------------------------------
 #region Designer generated code
-
-using TechTalk.SpecFlow;
-
 #pragma warning disable
 namespace Demo.CustomMessageBox.Features
 {
+    using TechTalk.SpecFlow;
+    
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "2.4.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]

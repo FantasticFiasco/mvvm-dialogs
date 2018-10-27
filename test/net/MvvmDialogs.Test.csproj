@@ -23,11 +23,17 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Moq" Version="4.10.0" />
+    <PackageReference Include="NUnit" Version="3.11.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -35,10 +41,5 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <Reference Include="WindowsBase" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="Moq" Version="4.10.0" />
-    <PackageReference Include="NUnit" Version="3.11.0" />
   </ItemGroup>
 </Project>

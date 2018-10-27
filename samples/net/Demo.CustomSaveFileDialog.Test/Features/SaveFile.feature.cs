@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace Demo.CustomSaveFileDialogTest.Features
+namespace Demo.CustomSaveFileDialog.Features
 {
     using TechTalk.SpecFlow;
     
