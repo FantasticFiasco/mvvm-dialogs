@@ -17,7 +17,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{B5460912-B
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "net", "net", "{91C7B2D6-878B-45C8-B74C-E4170E88466F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvvmDialogsTest", "test\net\MvvmDialogsTest.csproj", "{7ECC186E-0E28-4A74-B7AC-F3C56C2457C9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvvmDialogs.Test", "test\net\MvvmDialogs.Test.csproj", "{7ECC186E-0E28-4A74-B7AC-F3C56C2457C9}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{62592C78-61AA-44B4-A7C3-EAC678A568A2}"
 EndProject
@@ -27,51 +27,51 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "universal", "universal", "{
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.CustomFolderBrowserDialog", "samples\net\Demo.CustomFolderBrowserDialog\Demo.CustomFolderBrowserDialog.csproj", "{796E7668-5E6B-4F76-B0FC-052EACCFF932}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.CustomFolderBrowserDialogTest", "samples\net\Demo.CustomFolderBrowserDialogTest\Demo.CustomFolderBrowserDialogTest.csproj", "{D59984F6-A61B-4C2E-B7ED-5B4A328396F8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.CustomFolderBrowserDialog.Test", "samples\net\Demo.CustomFolderBrowserDialog.Test\Demo.CustomFolderBrowserDialog.Test.csproj", "{D59984F6-A61B-4C2E-B7ED-5B4A328396F8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.CustomMessageBox", "samples\net\Demo.CustomMessageBox\Demo.CustomMessageBox.csproj", "{E70F71AA-2411-41A2-8A67-13FE764B4B5F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.CustomMessageBoxTest", "samples\net\Demo.CustomMessageBoxTest\Demo.CustomMessageBoxTest.csproj", "{E3D258A5-A817-4FAF-87AF-BA1A5A0B6415}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.CustomMessageBox.Test", "samples\net\Demo.CustomMessageBox.Test\Demo.CustomMessageBox.Test.csproj", "{E3D258A5-A817-4FAF-87AF-BA1A5A0B6415}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.CustomOpenFileDialog", "samples\net\Demo.CustomOpenFileDialog\Demo.CustomOpenFileDialog.csproj", "{05720C6D-3348-44E6-A4FC-D386166CC38D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.CustomOpenFileDialogTest", "samples\net\Demo.CustomOpenFileDialogTest\Demo.CustomOpenFileDialogTest.csproj", "{296AD79D-8809-4FF7-9A7A-92858E43B0C7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.CustomOpenFileDialog.Test", "samples\net\Demo.CustomOpenFileDialog.Test\Demo.CustomOpenFileDialog.Test.csproj", "{296AD79D-8809-4FF7-9A7A-92858E43B0C7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.CustomSaveFileDialog", "samples\net\Demo.CustomSaveFileDialog\Demo.CustomSaveFileDialog.csproj", "{BF90AB81-1B18-44B8-9600-32455C15D7FC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.CustomSaveFileDialogTest", "samples\net\Demo.CustomSaveFileDialogTest\Demo.CustomSaveFileDialogTest.csproj", "{25BABCAA-2260-49F6-B847-D1126D91F0DF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.CustomSaveFileDialog.Test", "samples\net\Demo.CustomSaveFileDialog.Test\Demo.CustomSaveFileDialog.Test.csproj", "{25BABCAA-2260-49F6-B847-D1126D91F0DF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.FolderBrowserDialog", "samples\net\Demo.FolderBrowserDialog\Demo.FolderBrowserDialog.csproj", "{7CB09D88-96A0-4E03-8C96-796D9EC6F095}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.FolderBrowserDialogTest", "samples\net\Demo.FolderBrowserDialogTest\Demo.FolderBrowserDialogTest.csproj", "{7C63398E-8ABC-4F20-9787-C14AFB6414CD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.FolderBrowserDialog.Test", "samples\net\Demo.FolderBrowserDialog.Test\Demo.FolderBrowserDialog.Test.csproj", "{7C63398E-8ABC-4F20-9787-C14AFB6414CD}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.MessageBox", "samples\net\Demo.MessageBox\Demo.MessageBox.csproj", "{4228AF68-6EDE-4883-9466-0BC1E637CF35}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.MessageBoxTest", "samples\net\Demo.MessageBoxTest\Demo.MessageBoxTest.csproj", "{AB55D5AC-1430-4D76-82C9-F0AE4BA93DB2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.MessageBox.Test", "samples\net\Demo.MessageBox.Test\Demo.MessageBox.Test.csproj", "{AB55D5AC-1430-4D76-82C9-F0AE4BA93DB2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.ModalCustomDialog", "samples\net\Demo.ModalCustomDialog\Demo.ModalCustomDialog.csproj", "{0C1C3758-AD6B-47FD-99F4-AC3AA49D1EDF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.ModalCustomDialogTest", "samples\net\Demo.ModalCustomDialogTest\Demo.ModalCustomDialogTest.csproj", "{D521B33F-F5FB-4DB8-8447-280FCA4C481D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.ModalCustomDialog.Test", "samples\net\Demo.ModalCustomDialog.Test\Demo.ModalCustomDialog.Test.csproj", "{D521B33F-F5FB-4DB8-8447-280FCA4C481D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.ModalDialog", "samples\net\Demo.ModalDialog\Demo.ModalDialog.csproj", "{4C1AB563-E5DC-462F-BBA1-CBD37E948674}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.ModalDialogTest", "samples\net\Demo.ModalDialogTest\Demo.ModalDialogTest.csproj", "{7A986F1F-46FA-45E6-A321-9352076B2DF9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.ModalDialog.Test", "samples\net\Demo.ModalDialog.Test\Demo.ModalDialog.Test.csproj", "{7A986F1F-46FA-45E6-A321-9352076B2DF9}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.NonModalCustomDialog", "samples\net\Demo.NonModalCustomDialog\Demo.NonModalCustomDialog.csproj", "{94CDD02A-20D9-4342-A015-766313997387}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.NonModalCustomDialogTest", "samples\net\Demo.NonModalCustomDialogTest\Demo.NonModalCustomDialogTest.csproj", "{B1159436-2CE1-4951-ACE0-76844EC6957C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.NonModalCustomDialog.Test", "samples\net\Demo.NonModalCustomDialog.Test\Demo.NonModalCustomDialog.Test.csproj", "{B1159436-2CE1-4951-ACE0-76844EC6957C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.NonModalDialog", "samples\net\Demo.NonModalDialog\Demo.NonModalDialog.csproj", "{46E01AA9-053A-41F8-B190-CA2B878B0545}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.NonModalDialogTest", "samples\net\Demo.NonModalDialogTest\Demo.NonModalDialogTest.csproj", "{23BDC545-458D-4162-9C4E-D81D28FBA246}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.NonModalDialog.Test", "samples\net\Demo.NonModalDialog.Test\Demo.NonModalDialog.Test.csproj", "{23BDC545-458D-4162-9C4E-D81D28FBA246}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.OpenFileDialog", "samples\net\Demo.OpenFileDialog\Demo.OpenFileDialog.csproj", "{11CB9352-4691-422D-AF42-F4C2E08D21B4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.OpenFileDialogTest", "samples\net\Demo.OpenFileDialogTest\Demo.OpenFileDialogTest.csproj", "{A8277334-AA9F-40F9-95B3-CAC235C1D358}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.OpenFileDialog.Test", "samples\net\Demo.OpenFileDialog.Test\Demo.OpenFileDialog.Test.csproj", "{A8277334-AA9F-40F9-95B3-CAC235C1D358}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.SaveFileDialog", "samples\net\Demo.SaveFileDialog\Demo.SaveFileDialog.csproj", "{F0852C32-B8E2-48CD-9E8C-94D6CA86B65E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.SaveFileDialogTest", "samples\net\Demo.SaveFileDialogTest\Demo.SaveFileDialogTest.csproj", "{692779F2-AF25-460A-9D50-7D39C4A210F1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.SaveFileDialog.Test", "samples\net\Demo.SaveFileDialog.Test\Demo.SaveFileDialog.Test.csproj", "{692779F2-AF25-460A-9D50-7D39C4A210F1}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestBaseClasses", "samples\net\TestBaseClasses\TestBaseClasses.csproj", "{42F272FA-E7BE-4C4C-8B77-33F3DE602E9A}"
 EndProject

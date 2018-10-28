@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <TargetFramework>net45</TargetFramework>
+    <RootNamespace>Demo.SaveFileDialog</RootNamespace>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <GenerateBindingRedirectsOutputType>true</GenerateBindingRedirectsOutputType>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\src\net\MvvmDialogs.csproj" />
+    <ProjectReference Include="..\Demo.SaveFileDialog\Demo.SaveFileDialog.csproj" />
+    <ProjectReference Include="..\TestBaseClasses\TestBaseClasses.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Moq" Version="4.10.0" />
+    <PackageReference Include="NUnit" Version="3.11.0" />
+    <PackageReference Include="SpecFlow.NUnit" Version="2.4.0" />
+    <PackageReference Include="SpecFlow.Tools.MsBuild.Generation" Version="2.4.0" />
+    <PackageReference Include="TestStack.White.ScreenObjects" Version="0.13.3" />
+  </ItemGroup>
+
+  <Target Name="AfterUpdateFeatureFilesInProject">
+    <!-- include any files that specflow generated into the compilation of the project -->
+    <ItemGroup>
+      <Compile Include="**\*.feature.cs" />
+    </ItemGroup>
+  </Target>
+</Project>
