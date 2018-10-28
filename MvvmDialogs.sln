@@ -17,7 +17,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{B5460912-B
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "net", "net", "{91C7B2D6-878B-45C8-B74C-E4170E88466F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvvmDialogsTest", "test\net\MvvmDialogsTest.csproj", "{7ECC186E-0E28-4A74-B7AC-F3C56C2457C9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvvmDialogs.Test", "test\net\MvvmDialogs.Test.csproj", "{7ECC186E-0E28-4A74-B7AC-F3C56C2457C9}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{62592C78-61AA-44B4-A7C3-EAC678A568A2}"
 EndProject
