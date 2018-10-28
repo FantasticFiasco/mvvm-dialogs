@@ -18,7 +18,7 @@ build_script:
 #              tests              #
 #---------------------------------#
 test:
-  assemblies: '**\bin\Release\*Test.dll'
+  assemblies: '.\test\**\*Test.dll'
   categories:
     except:
       - Manual
