@@ -3,7 +3,7 @@ using TestStack.White.UIItems;
 using TestStack.White.UIItems.Finders;
 using TestStack.White.UIItems.WindowItems;
 
-namespace Demo.MessageBoxTest.ScreenObjects
+namespace Demo.MessageBox.ScreenObjects
 {
     public class MessageBoxScreen : AppScreen
     {

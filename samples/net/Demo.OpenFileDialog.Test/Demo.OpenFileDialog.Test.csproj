@@ -3,9 +3,7 @@
   <PropertyGroup>
     <OutputType>Library</OutputType>
     <TargetFramework>net45</TargetFramework>
-  </PropertyGroup>
-
-  <PropertyGroup>
+    <RootNamespace>Demo.OpenFileDialog</RootNamespace>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <GenerateBindingRedirectsOutputType>true</GenerateBindingRedirectsOutputType>
   </PropertyGroup>

@@ -1,6 +1,6 @@
 ﻿using System.IO;
 using System.Reflection;
-using Demo.NonModalDialogTest.ScreenObjects;
+using Demo.NonModalDialog.ScreenObjects;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
 using TestBaseClasses.Features;
@@ -8,7 +8,7 @@ using TestStack.White;
 using TestStack.White.Factory;
 using TestStack.White.ScreenObjects;
 
-namespace Demo.NonModalDialogTest.Features
+namespace Demo.NonModalDialog.Features
 {
     [Binding]
     public class ShowCurrentTimeSteps : FeatureSteps<MainScreen>

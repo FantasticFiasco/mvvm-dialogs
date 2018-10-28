@@ -1,7 +1,6 @@
-﻿using Demo.ModalCustomDialog;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 
-namespace Demo.ModalCustomDialogTest
+namespace Demo.ModalCustomDialog
 {
     [TestFixture]
     public class AddTextCustomDialogViewModelTest

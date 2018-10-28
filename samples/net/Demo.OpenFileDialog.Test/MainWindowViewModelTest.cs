@@ -1,11 +1,10 @@
 ﻿using System.ComponentModel;
-using Demo.OpenFileDialog;
 using Moq;
 using MvvmDialogs;
 using MvvmDialogs.FrameworkDialogs.OpenFile;
 using NUnit.Framework;
 
-namespace Demo.OpenFileDialogTest
+namespace Demo.OpenFileDialog
 {
     [TestFixture]
     public class MainWindowViewModelTest

@@ -4,7 +4,7 @@ using TestStack.White.ScreenObjects.ScreenAttributes;
 using TestStack.White.UIItems;
 using TestStack.White.UIItems.WindowItems;
 
-namespace Demo.FolderBrowserDialogTest.ScreenObjects
+namespace Demo.FolderBrowserDialog.ScreenObjects
 {
     public class MainScreen : AppScreen
     {

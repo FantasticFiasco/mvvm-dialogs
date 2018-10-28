@@ -3,7 +3,7 @@ using TestStack.White.ScreenObjects.ScreenAttributes;
 using TestStack.White.UIItems;
 using TestStack.White.UIItems.WindowItems;
 
-namespace Demo.MessageBoxTest.ScreenObjects
+namespace Demo.MessageBox.ScreenObjects
 {
     public class MainScreen : AppScreen
     {

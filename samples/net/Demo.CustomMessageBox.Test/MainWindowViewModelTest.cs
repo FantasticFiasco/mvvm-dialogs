@@ -1,10 +1,9 @@
 ﻿using System.Windows;
-using Demo.CustomMessageBox;
 using Moq;
 using MvvmDialogs;
 using NUnit.Framework;
 
-namespace Demo.CustomMessageBoxTest
+namespace Demo.CustomMessageBox
 {
     [TestFixture]
     public class MainWindowViewModelTest

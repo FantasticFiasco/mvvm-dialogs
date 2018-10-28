@@ -1,10 +1,9 @@
 ﻿using System.ComponentModel;
-using Demo.ModalCustomDialog;
 using Moq;
 using MvvmDialogs;
 using NUnit.Framework;
 
-namespace Demo.ModalCustomDialogTest
+namespace Demo.ModalCustomDialog
 {
     [TestFixture]
     public class MainWindowViewModelTest

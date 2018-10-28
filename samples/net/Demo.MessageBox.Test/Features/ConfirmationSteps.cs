@@ -1,6 +1,6 @@
 ﻿using System.IO;
 using System.Reflection;
-using Demo.MessageBoxTest.ScreenObjects;
+using Demo.MessageBox.ScreenObjects;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
 using TestBaseClasses.Features;
@@ -8,7 +8,7 @@ using TestStack.White;
 using TestStack.White.Factory;
 using TestStack.White.ScreenObjects;
 
-namespace Demo.MessageBoxTest.Features
+namespace Demo.MessageBox.Features
 {
     [Binding]
     public class ConfirmationSteps : FeatureSteps<MainScreen>

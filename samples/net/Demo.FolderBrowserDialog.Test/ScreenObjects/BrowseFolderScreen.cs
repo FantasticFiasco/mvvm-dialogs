@@ -3,7 +3,7 @@ using TestStack.White.UIItems;
 using TestStack.White.UIItems.Finders;
 using TestStack.White.UIItems.WindowItems;
 
-namespace Demo.FolderBrowserDialogTest.ScreenObjects
+namespace Demo.FolderBrowserDialog.ScreenObjects
 {
     public class BrowseFolderScreen : AppScreen
     {

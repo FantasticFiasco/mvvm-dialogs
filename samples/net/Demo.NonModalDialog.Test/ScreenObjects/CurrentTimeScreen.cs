@@ -3,7 +3,7 @@ using TestStack.White.ScreenObjects.ScreenAttributes;
 using TestStack.White.UIItems;
 using TestStack.White.UIItems.WindowItems;
 
-namespace Demo.NonModalDialogTest.ScreenObjects
+namespace Demo.NonModalDialog.ScreenObjects
 {
     public class CurrentTimeScreen : AppScreen
     {

@@ -1,6 +1,6 @@
 ﻿using System.IO;
 using System.Reflection;
-using Demo.CustomFolderBrowserDialogTest.ScreenObjects;
+using Demo.CustomFolderBrowserDialog.ScreenObjects;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
 using TestBaseClasses.Features;
@@ -8,7 +8,7 @@ using TestStack.White;
 using TestStack.White.Factory;
 using TestStack.White.ScreenObjects;
 
-namespace Demo.CustomFolderBrowserDialogTest.Features
+namespace Demo.CustomFolderBrowserDialog.Features
 {
     [Binding]
     public class BrowseFolderSteps : FeatureSteps<MainScreen>

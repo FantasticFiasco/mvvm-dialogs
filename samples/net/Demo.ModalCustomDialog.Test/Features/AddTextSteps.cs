@@ -1,6 +1,6 @@
 ﻿using System.IO;
 using System.Reflection;
-using Demo.ModalCustomDialogTest.ScreenObjects;
+using Demo.ModalCustomDialog.ScreenObjects;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
 using TestBaseClasses.Features;
@@ -8,7 +8,7 @@ using TestStack.White;
 using TestStack.White.Factory;
 using TestStack.White.ScreenObjects;
 
-namespace Demo.ModalCustomDialogTest.Features
+namespace Demo.ModalCustomDialog.Features
 {
     [Binding]
     public class AddTextSteps : FeatureSteps<MainScreen>

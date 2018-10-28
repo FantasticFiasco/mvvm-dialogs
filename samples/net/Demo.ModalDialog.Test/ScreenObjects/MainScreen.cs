@@ -7,7 +7,7 @@ using TestStack.White.UIItems;
 using TestStack.White.UIItems.ListBoxItems;
 using TestStack.White.UIItems.WindowItems;
 
-namespace Demo.ModalDialogTest.ScreenObjects
+namespace Demo.ModalDialog.ScreenObjects
 {
     public class MainScreen : AppScreen
     {

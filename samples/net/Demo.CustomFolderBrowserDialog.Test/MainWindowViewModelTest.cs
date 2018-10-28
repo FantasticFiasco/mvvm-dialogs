@@ -1,11 +1,10 @@
 ﻿using System.ComponentModel;
-using Demo.CustomFolderBrowserDialog;
 using Moq;
 using MvvmDialogs;
 using MvvmDialogs.FrameworkDialogs.FolderBrowser;
 using NUnit.Framework;
 
-namespace Demo.CustomFolderBrowserDialogTest
+namespace Demo.CustomFolderBrowserDialog
 {
     [TestFixture]
     public class MainWindowViewModelTest

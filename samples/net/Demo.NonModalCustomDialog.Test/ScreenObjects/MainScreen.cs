@@ -4,7 +4,7 @@ using TestStack.White.ScreenObjects.ScreenAttributes;
 using TestStack.White.UIItems;
 using TestStack.White.UIItems.WindowItems;
 
-namespace Demo.NonModalCustomDialogTest.ScreenObjects
+namespace Demo.NonModalCustomDialog.ScreenObjects
 {
     public class MainScreen : AppScreen
     {

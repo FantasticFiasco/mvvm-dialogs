@@ -1,9 +1,8 @@
-﻿using Demo.NonModalCustomDialog;
-using Moq;
+﻿using Moq;
 using MvvmDialogs;
 using NUnit.Framework;
 
-namespace Demo.NonModalCustomDialogTest
+namespace Demo.NonModalCustomDialog
 {
     [TestFixture]
     public class MainWindowViewModelTest

@@ -1,6 +1,6 @@
 ﻿using System.IO;
 using System.Reflection;
-using Demo.OpenFileDialogTest.ScreenObjects;
+using Demo.OpenFileDialog.ScreenObjects;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
 using TestBaseClasses.Features;
@@ -8,7 +8,7 @@ using TestStack.White;
 using TestStack.White.Factory;
 using TestStack.White.ScreenObjects;
 
-namespace Demo.OpenFileDialogTest.Features
+namespace Demo.OpenFileDialog.Features
 {
     [Binding]
     public class OpenFileSteps : FeatureSteps<MainScreen>

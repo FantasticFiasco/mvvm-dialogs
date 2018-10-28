@@ -6,7 +6,7 @@ using TestStack.White.UIItems.ListBoxItems;
 using TestStack.White.UIItems.WindowItems;
 using TestStack.White.WindowsAPI;
 
-namespace Demo.OpenFileDialogTest.ScreenObjects
+namespace Demo.OpenFileDialog.ScreenObjects
 {
     public class OpenFileScreen : AppScreen
     {
