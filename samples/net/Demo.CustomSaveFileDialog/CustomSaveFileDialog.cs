@@ -46,8 +46,7 @@ namespace Demo.CustomSaveFileDialog
         /// </returns>
         public bool? ShowDialog(Window owner)
         {
-            if (owner == null)
-                throw new ArgumentNullException(nameof(owner));
+            if (owner == null) throw new ArgumentNullException(nameof(owner));
 
             var result = saveFileDialog.ShowDialog(owner);
 

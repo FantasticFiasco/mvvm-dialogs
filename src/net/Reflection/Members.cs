@@ -17,8 +17,7 @@ namespace MvvmDialogs.Reflection
         /// <returns>The name of the property.</returns>
         internal static string GetPropertyName<T, TProperty>(Expression<Func<T, TProperty>> propertyExpression)
         {
-            if (propertyExpression == null)
-                throw new ArgumentNullException(nameof(propertyExpression));
+            if (propertyExpression == null) throw new ArgumentNullException(nameof(propertyExpression));
 
             var member = (MemberExpression)propertyExpression.Body;
             return member.Member.Name;

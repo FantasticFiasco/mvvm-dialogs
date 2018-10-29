@@ -11,8 +11,7 @@ namespace MvvmDialogs.DialogFactories
         /// <inheritdoc />
         public IWindow Create(Type dialogType)
         {
-            if (dialogType == null)
-                throw new ArgumentNullException(nameof(dialogType));
+            if (dialogType == null) throw new ArgumentNullException(nameof(dialogType));
 
             var instance = Activator.CreateInstance(dialogType);
 

@@ -20,8 +20,7 @@ namespace MvvmDialogs.DialogTypeLocators
         /// <inheritdoc />
         public Type Locate(INotifyPropertyChanged viewModel)
         {
-            if (viewModel == null)
-                throw new ArgumentNullException(nameof(viewModel));
+            if (viewModel == null) throw new ArgumentNullException(nameof(viewModel));
 
             Type viewModelType = viewModel.GetType();
 
@@ -32,13 +31,12 @@ namespace MvvmDialogs.DialogTypeLocators
             }
 
             string dialogName = GetDialogName(viewModelType);
-            
+
             dialogType = GetAssemblyFromType(viewModelType).GetType(dialogName);
-            if (dialogType == null)
-                throw new TypeLoadException(AppendInfoAboutDialogTypeLocators($"Dialog with name '{dialogName}' is missing."));
+            if (dialogType == null) throw new TypeLoadException(AppendInfoAboutDialogTypeLocators($"Dialog with name '{dialogName}' is missing."));
 
             Cache.Add(viewModelType, dialogType);
-            
+
             return dialogType;
         }
 

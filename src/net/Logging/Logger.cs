@@ -29,8 +29,7 @@ namespace MvvmDialogs.Logging
             get => writer;
             set
             {
-                if (writer == null)
-                    throw new ArgumentNullException(nameof(value));
+                if (writer == null) throw new ArgumentNullException(nameof(value));
 
                 writer = value;
             }
@@ -41,8 +40,7 @@ namespace MvvmDialogs.Logging
             [CallerFilePath] string callerFilePath = "",
             [CallerMemberName] string callerMemberName = "")
         {
-            if (message == null)
-                throw new ArgumentNullException(nameof(message));
+            if (message == null) throw new ArgumentNullException(nameof(message));
 
             Writer($"[{Path.GetFileNameWithoutExtension(callerFilePath)}.{callerMemberName}] {message}");
         }

@@ -11,8 +11,7 @@ namespace MvvmDialogs.ContentDialogFactories
         /// <inheritdoc />
         public IContentDialog Create(Type dialogType)
         {
-            if (dialogType == null)
-                throw new ArgumentNullException(nameof(dialogType));
+            if (dialogType == null) throw new ArgumentNullException(nameof(dialogType));
 
             var instance = Activator.CreateInstance(dialogType);
 
