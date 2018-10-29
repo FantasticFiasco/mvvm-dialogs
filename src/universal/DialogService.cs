@@ -88,8 +88,7 @@ namespace MvvmDialogs
         public IAsyncOperation<ContentDialogResult> ShowContentDialogAsync<T>(INotifyPropertyChanged viewModel)
             where T : ContentDialog
         {
-            if (viewModel == null)
-                throw new ArgumentNullException(nameof(viewModel));
+            if (viewModel == null) throw new ArgumentNullException(nameof(viewModel));
 
             return ShowContentDialogAsync(viewModel, typeof(T));
         }
@@ -98,8 +97,7 @@ namespace MvvmDialogs
         public IAsyncOperation<ContentDialogResult> ShowCustomContentDialogAsync<T>(INotifyPropertyChanged viewModel)
             where T : IContentDialog
         {
-            if (viewModel == null)
-                throw new ArgumentNullException(nameof(viewModel));
+            if (viewModel == null) throw new ArgumentNullException(nameof(viewModel));
 
             return ShowContentDialogAsync(viewModel, typeof(T));
         }
@@ -107,8 +105,7 @@ namespace MvvmDialogs
         /// <inheritdoc />
         public IAsyncOperation<ContentDialogResult> ShowContentDialogAsync(INotifyPropertyChanged viewModel)
         {
-            if (viewModel == null)
-                throw new ArgumentNullException(nameof(viewModel));
+            if (viewModel == null) throw new ArgumentNullException(nameof(viewModel));
 
             Type contentDialogType = contentDialogTypeLocator.Locate(viewModel);
             return ShowContentDialogAsync(viewModel, contentDialogType);
@@ -123,8 +120,7 @@ namespace MvvmDialogs
             uint? cancelCommandIndex = default(uint?),
             MessageDialogOptions options = MessageDialogOptions.None)
         {
-            if (content == null)
-                throw new ArgumentNullException(nameof(content));
+            if (content == null) throw new ArgumentNullException(nameof(content));
 
             Logger.Write($"Title: {title}; Content: {content}");
 
@@ -148,8 +144,7 @@ namespace MvvmDialogs
         /// <inheritdoc />
         public IAsyncOperation<StorageFile> PickSingleFileAsync(FileOpenPickerSettings settings)
         {
-            if (settings == null)
-                throw new ArgumentNullException(nameof(settings));
+            if (settings == null) throw new ArgumentNullException(nameof(settings));
 
             Logger.Write($"Commit button text: {settings.CommitButtonText}");
 
@@ -160,8 +155,7 @@ namespace MvvmDialogs
         /// <inheritdoc />
         public IAsyncOperation<IReadOnlyList<StorageFile>> PickMultipleFilesAsync(FileOpenPickerSettings settings)
         {
-            if (settings == null)
-                throw new ArgumentNullException(nameof(settings));
+            if (settings == null) throw new ArgumentNullException(nameof(settings));
 
             Logger.Write($"Commit button text: {settings.CommitButtonText}");
 
@@ -172,8 +166,7 @@ namespace MvvmDialogs
         /// <inheritdoc />
         public IAsyncOperation<StorageFile> PickSaveFileAsync(FileSavePickerSettings settings)
         {
-            if (settings == null)
-                throw new ArgumentNullException(nameof(settings));
+            if (settings == null) throw new ArgumentNullException(nameof(settings));
 
             Logger.Write($"Commit button text: {settings.CommitButtonText}");
 
@@ -184,8 +177,7 @@ namespace MvvmDialogs
         /// <inheritdoc />
         public IAsyncOperation<StorageFolder> PickSingleFolderAsync(FolderPickerSettings settings)
         {
-            if (settings == null)
-                throw new ArgumentNullException(nameof(settings));
+            if (settings == null) throw new ArgumentNullException(nameof(settings));
 
             var dialog = new FolderPickerWrapper(settings);
             return dialog.PickSingleFolderAsync();

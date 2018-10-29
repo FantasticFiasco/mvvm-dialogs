@@ -10,7 +10,7 @@ namespace MvvmDialogs.FrameworkDialogs.FolderBrowser
     internal sealed class FolderBrowserDialogWrapper : IFrameworkDialog
     {
         private readonly FolderBrowserDialogSettings settings;
-        
+
         /// <summary>
         /// Initializes a new instance of the <see cref="FolderBrowserDialogWrapper"/> class.
         /// </summary>
@@ -23,8 +23,7 @@ namespace MvvmDialogs.FrameworkDialogs.FolderBrowser
         /// <inheritdoc />
         public bool? ShowDialog(Window owner)
         {
-            if (owner == null)
-                throw new ArgumentNullException(nameof(owner));
+            if (owner == null) throw new ArgumentNullException(nameof(owner));
 
             using (var folderBrowserDialog = new FolderBrowserDialog())
             {
@@ -46,7 +45,7 @@ namespace MvvmDialogs.FrameworkDialogs.FolderBrowser
                     case DialogResult.No:
                     case DialogResult.Abort:
                         return false;
-                    
+
                     default:
                         return null;
                 }

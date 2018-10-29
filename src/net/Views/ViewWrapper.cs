@@ -9,8 +9,7 @@ namespace MvvmDialogs.Views
 
         internal ViewWrapper(FrameworkElement view)
         {
-            if (view == null)
-                throw new ArgumentNullException(nameof(view));
+            if (view == null) throw new ArgumentNullException(nameof(view));
 
             viewReference = new WeakReference(view);
         }
@@ -27,8 +26,7 @@ namespace MvvmDialogs.Views
         {
             get
             {
-                if (!IsAlive)
-                    throw new InvalidOperationException("View has been garbage collected.");
+                if (!IsAlive) throw new InvalidOperationException("View has been garbage collected.");
 
                 return (FrameworkElement)viewReference.Target;
             }

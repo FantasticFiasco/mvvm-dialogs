@@ -18,8 +18,7 @@ namespace MvvmDialogs.FrameworkPickers.Folder
         /// <param name="settings">The settings for the folder picker.</param>
         internal FolderPickerWrapper(FolderPickerSettings settings)
         {
-            if (settings == null)
-                throw new ArgumentNullException(nameof(settings));
+            if (settings == null) throw new ArgumentNullException(nameof(settings));
 
             picker = new FolderPicker
             {
@@ -36,7 +35,7 @@ namespace MvvmDialogs.FrameworkPickers.Folder
         }
 
         /// <summary>
-        /// Shows the folder picker so that the user can pick a folder. 
+        /// Shows the folder picker so that the user can pick a folder.
         /// </summary>
         /// <returns>
         /// When the call to this method completes successfully, it returns a

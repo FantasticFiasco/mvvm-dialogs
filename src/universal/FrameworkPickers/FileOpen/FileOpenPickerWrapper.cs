@@ -19,8 +19,7 @@ namespace MvvmDialogs.FrameworkPickers.FileOpen
         /// <param name="settings">The settings for the file open picker.</param>
         internal FileOpenPickerWrapper(FileOpenPickerSettings settings)
         {
-            if (settings == null)
-                throw new ArgumentNullException(nameof(settings));
+            if (settings == null) throw new ArgumentNullException(nameof(settings));
 
             picker = new FileOpenPicker
             {

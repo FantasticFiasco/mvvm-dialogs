@@ -23,8 +23,7 @@ namespace MvvmDialogs.FrameworkDialogs.MessageBox
         /// <inheritdoc />
         public MessageBoxResult Show(Window owner)
         {
-            if (owner == null)
-                throw new ArgumentNullException(nameof(owner));
+            if (owner == null) throw new ArgumentNullException(nameof(owner));
 
             return WinMessageBox.Show(
                 owner,

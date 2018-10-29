@@ -39,8 +39,7 @@ namespace MvvmDialogs.FrameworkDialogs.SaveFile
         /// <inheritdoc />
         public bool? ShowDialog(Window owner)
         {
-            if (owner == null)
-                throw new ArgumentNullException(nameof(owner));
+            if (owner == null) throw new ArgumentNullException(nameof(owner));
 
             bool? result = saveFileDialog.ShowDialog(owner);
 

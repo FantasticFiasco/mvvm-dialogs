@@ -11,7 +11,7 @@ namespace MvvmDialogs.FrameworkDialogs.OpenFile
     {
         private readonly OpenFileDialogSettings settings;
         private readonly OpenFileDialog openFileDialog;
-        
+
         /// <summary>
         /// Initializes a new instance of the <see cref="OpenFileDialogWrapper"/> class.
         /// </summary>
@@ -38,8 +38,7 @@ namespace MvvmDialogs.FrameworkDialogs.OpenFile
         /// <inheritdoc />
         public bool? ShowDialog(Window owner)
         {
-            if (owner == null)
-                throw new ArgumentNullException(nameof(owner));
+            if (owner == null) throw new ArgumentNullException(nameof(owner));
 
             bool? result = openFileDialog.ShowDialog(owner);
 

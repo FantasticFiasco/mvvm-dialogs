@@ -19,8 +19,7 @@ namespace MvvmDialogs.FrameworkPickers.FileSave
         /// <param name="settings">The settings for the file save picker.</param>
         internal FileSavePickerWrapper(FileSavePickerSettings settings)
         {
-            if (settings == null)
-                throw new ArgumentNullException(nameof(settings));
+            if (settings == null) throw new ArgumentNullException(nameof(settings));
 
             picker = new FileSavePicker
             {

@@ -74,10 +74,8 @@ namespace MvvmDialogs
             INotifyPropertyChanged viewModel)
             where T : Window
         {
-            if (ownerViewModel == null)
-                throw new ArgumentNullException(nameof(ownerViewModel));
-            if (viewModel == null)
-                throw new ArgumentNullException(nameof(viewModel));
+            if (ownerViewModel == null) throw new ArgumentNullException(nameof(ownerViewModel));
+            if (viewModel == null) throw new ArgumentNullException(nameof(viewModel));
 
             Show(ownerViewModel, viewModel, typeof(T));
         }
@@ -88,10 +86,8 @@ namespace MvvmDialogs
             INotifyPropertyChanged viewModel)
             where T : IWindow
         {
-            if (ownerViewModel == null)
-                throw new ArgumentNullException(nameof(ownerViewModel));
-            if (viewModel == null)
-                throw new ArgumentNullException(nameof(viewModel));
+            if (ownerViewModel == null) throw new ArgumentNullException(nameof(ownerViewModel));
+            if (viewModel == null) throw new ArgumentNullException(nameof(viewModel));
 
             Show(ownerViewModel, viewModel, typeof(T));
         }
@@ -101,11 +97,9 @@ namespace MvvmDialogs
             INotifyPropertyChanged ownerViewModel,
             INotifyPropertyChanged viewModel)
         {
-            if (ownerViewModel == null)
-                throw new ArgumentNullException(nameof(ownerViewModel));
-            if (viewModel == null)
-                throw new ArgumentNullException(nameof(viewModel));
-            
+            if (ownerViewModel == null) throw new ArgumentNullException(nameof(ownerViewModel));
+            if (viewModel == null) throw new ArgumentNullException(nameof(viewModel));
+
             Type dialogType = dialogTypeLocator.Locate(viewModel);
             Show(ownerViewModel, viewModel, dialogType);
         }
@@ -116,10 +110,8 @@ namespace MvvmDialogs
             IModalDialogViewModel viewModel)
             where T : Window
         {
-            if (ownerViewModel == null)
-                throw new ArgumentNullException(nameof(ownerViewModel));
-            if (viewModel == null)
-                throw new ArgumentNullException(nameof(viewModel));
+            if (ownerViewModel == null) throw new ArgumentNullException(nameof(ownerViewModel));
+            if (viewModel == null) throw new ArgumentNullException(nameof(viewModel));
 
             return ShowDialog(ownerViewModel, viewModel, typeof(T));
         }
@@ -130,10 +122,8 @@ namespace MvvmDialogs
             IModalDialogViewModel viewModel)
             where T : IWindow
         {
-            if (ownerViewModel == null)
-                throw new ArgumentNullException(nameof(ownerViewModel));
-            if (viewModel == null)
-                throw new ArgumentNullException(nameof(viewModel));
+            if (ownerViewModel == null) throw new ArgumentNullException(nameof(ownerViewModel));
+            if (viewModel == null) throw new ArgumentNullException(nameof(viewModel));
 
             return ShowDialog(ownerViewModel, viewModel, typeof(T));
         }
@@ -143,11 +133,9 @@ namespace MvvmDialogs
             INotifyPropertyChanged ownerViewModel,
             IModalDialogViewModel viewModel)
         {
-            if (ownerViewModel == null)
-                throw new ArgumentNullException(nameof(ownerViewModel));
-            if (viewModel == null)
-                throw new ArgumentNullException(nameof(viewModel));
-            
+            if (ownerViewModel == null) throw new ArgumentNullException(nameof(ownerViewModel));
+            if (viewModel == null) throw new ArgumentNullException(nameof(viewModel));
+
             Type dialogType = dialogTypeLocator.Locate(viewModel);
             return ShowDialog(ownerViewModel, viewModel, dialogType);
         }
@@ -178,10 +166,8 @@ namespace MvvmDialogs
             INotifyPropertyChanged ownerViewModel,
             MessageBoxSettings settings)
         {
-            if (ownerViewModel == null)
-                throw new ArgumentNullException(nameof(ownerViewModel));
-            if (settings == null)
-                throw new ArgumentNullException(nameof(settings));
+            if (ownerViewModel == null) throw new ArgumentNullException(nameof(ownerViewModel));
+            if (settings == null) throw new ArgumentNullException(nameof(settings));
 
             Logger.Write($"Caption: {settings.Caption}; Message: {settings.MessageBoxText}");
 
@@ -194,10 +180,8 @@ namespace MvvmDialogs
             INotifyPropertyChanged ownerViewModel,
             OpenFileDialogSettings settings)
         {
-            if (ownerViewModel == null)
-                throw new ArgumentNullException(nameof(ownerViewModel));
-            if (settings == null)
-                throw new ArgumentNullException(nameof(settings));
+            if (ownerViewModel == null) throw new ArgumentNullException(nameof(ownerViewModel));
+            if (settings == null) throw new ArgumentNullException(nameof(settings));
 
             Logger.Write($"Title: {settings.Title}");
 
@@ -211,10 +195,8 @@ namespace MvvmDialogs
             INotifyPropertyChanged ownerViewModel,
             SaveFileDialogSettings settings)
         {
-            if (ownerViewModel == null)
-                throw new ArgumentNullException(nameof(ownerViewModel));
-            if (settings == null)
-                throw new ArgumentNullException(nameof(settings));
+            if (ownerViewModel == null) throw new ArgumentNullException(nameof(ownerViewModel));
+            if (settings == null) throw new ArgumentNullException(nameof(settings));
 
             Logger.Write($"Title: {settings.Title}");
 
@@ -228,10 +210,8 @@ namespace MvvmDialogs
             INotifyPropertyChanged ownerViewModel,
             FolderBrowserDialogSettings settings)
         {
-            if (ownerViewModel == null)
-                throw new ArgumentNullException(nameof(ownerViewModel));
-            if (settings == null)
-                throw new ArgumentNullException(nameof(settings));
+            if (ownerViewModel == null) throw new ArgumentNullException(nameof(ownerViewModel));
+            if (settings == null) throw new ArgumentNullException(nameof(settings));
 
             Logger.Write($"Description: {settings.Description}");
 
@@ -261,7 +241,7 @@ namespace MvvmDialogs
             Logger.Write($"Dialog: {dialogType}; View model: {viewModel.GetType()}; Owner: {ownerViewModel.GetType()}");
 
             IWindow dialog = CreateDialog(dialogType, ownerViewModel, viewModel);
-            
+
             PropertyChangedEventHandler handler = RegisterDialogResult(dialog, viewModel);
             dialog.ShowDialog();
             UnregisterDialogResult(viewModel, handler);
@@ -326,8 +306,7 @@ namespace MvvmDialogs
 
             // Get owner window
             Window owner = view.GetOwner();
-            if (owner == null)
-                throw new InvalidOperationException($"View of type '{view.GetType()}' is not registered.");
+            if (owner == null) throw new InvalidOperationException($"View of type '{view.GetType()}' is not registered.");
 
             return owner;
         }

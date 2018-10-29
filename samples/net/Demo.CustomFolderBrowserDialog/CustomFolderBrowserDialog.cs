@@ -38,8 +38,7 @@ namespace Demo.CustomFolderBrowserDialog
         /// </returns>
         public bool? ShowDialog(Window owner)
         {
-            if (owner == null)
-                throw new ArgumentNullException(nameof(owner));
+            if (owner == null) throw new ArgumentNullException(nameof(owner));
 
             var result = folderBrowserDialog.ShowDialog(owner);
 

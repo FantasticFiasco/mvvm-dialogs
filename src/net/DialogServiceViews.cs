@@ -10,7 +10,7 @@ namespace MvvmDialogs
 {
     /// <summary>
     /// Class containing means to register a <see cref="FrameworkElement"/> as a view for a view
-    /// model when using the MVVM pattern. The view will then be used by the 
+    /// model when using the MVVM pattern. The view will then be used by the
     /// <see cref="DialogService"/> when opening dialogs.
     /// </summary>
     public static class DialogServiceViews
@@ -95,9 +95,8 @@ namespace MvvmDialogs
         /// <param name="view">The view to register.</param>
         internal static void Register(IView view)
         {
-            if (view == null)
-                throw new ArgumentNullException(nameof(view));
-            
+            if (view == null) throw new ArgumentNullException(nameof(view));
+
             // Get owner window
             Window owner = view.GetOwner();
             if (owner == null)
@@ -134,9 +133,8 @@ namespace MvvmDialogs
         /// <param name="view">The view to unregister.</param>
         private static void Unregister(IView view)
         {
-            if (view == null)
-                throw new ArgumentNullException(nameof(view));
-            
+            if (view == null) throw new ArgumentNullException(nameof(view));
+
             PruneInternalViews();
 
             Logger.Write($"Unregister view {view.Id}");
@@ -162,7 +160,7 @@ namespace MvvmDialogs
                 }
                 else
                 {
-                    Register(new ViewWrapper(frameworkElement));    
+                    Register(new ViewWrapper(frameworkElement));
                 }
             }
         }
@@ -179,7 +177,7 @@ namespace MvvmDialogs
                 IView[] windowViews = Views
                     .Where(view => ReferenceEquals(view.GetOwner(), owner))
                     .ToArray();
-                
+
                 // Unregister Views in window
                 foreach (IView windowView in windowViews)
                 {
