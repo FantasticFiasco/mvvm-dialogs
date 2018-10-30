@@ -52,6 +52,7 @@ namespace Demo.CustomOpenFileDialog
             // Update settings
             settings.FileName = openFileDialog.FileName;
             settings.FileNames = openFileDialog.FileNames;
+            settings.FilterIndex = openFileDialog.FilterIndex;
 
             return result;
         }

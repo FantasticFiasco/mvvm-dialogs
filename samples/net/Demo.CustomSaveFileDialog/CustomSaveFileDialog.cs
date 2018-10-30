@@ -53,6 +53,7 @@ namespace Demo.CustomSaveFileDialog
             // Update settings
             settings.FileName = saveFileDialog.FileName;
             settings.FileNames = saveFileDialog.FileNames;
+            settings.FilterIndex = saveFileDialog.FilterIndex;
 
             return result;
         }

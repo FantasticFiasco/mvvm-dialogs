@@ -25,16 +25,17 @@ namespace MvvmDialogs.FrameworkDialogs.FolderBrowser
         {
             if (owner == null) throw new ArgumentNullException(nameof(owner));
 
-            using (var folderBrowserDialog = new FolderBrowserDialog())
+            using (var dialog = new FolderBrowserDialog())
             {
-                folderBrowserDialog.Description = settings.Description;
-                folderBrowserDialog.SelectedPath = settings.SelectedPath;
-                folderBrowserDialog.ShowNewFolderButton = settings.ShowNewFolderButton;
+                var sync = new FolderBrowserDialogSettingsSync(dialog, settings);
 
-                DialogResult result = folderBrowserDialog.ShowDialog(new Win32Window(owner));
+                // Update dialog
+                sync.ToDialog();
+
+                DialogResult result = dialog.ShowDialog(new Win32Window(owner));
 
                 // Update settings
-                settings.SelectedPath = folderBrowserDialog.SelectedPath;
+                sync.ToSettings();
 
                 switch (result)
                 {

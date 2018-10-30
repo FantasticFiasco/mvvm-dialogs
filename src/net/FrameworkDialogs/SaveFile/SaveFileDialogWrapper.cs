@@ -9,8 +9,8 @@ namespace MvvmDialogs.FrameworkDialogs.SaveFile
     /// </summary>
     internal sealed class SaveFileDialogWrapper : IFrameworkDialog
     {
-        private readonly SaveFileDialogSettings settings;
-        private readonly SaveFileDialog saveFileDialog;
+        private readonly SaveFileDialog dialog;
+        private readonly SaveFileDialogSettingsSync sync;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SaveFileDialogWrapper"/> class.
@@ -18,22 +18,11 @@ namespace MvvmDialogs.FrameworkDialogs.SaveFile
         /// <param name="settings">The settings for the save file dialog.</param>
         public SaveFileDialogWrapper(SaveFileDialogSettings settings)
         {
-            this.settings = settings ?? throw new ArgumentNullException(nameof(settings));
+            dialog = new SaveFileDialog();
+            sync = new SaveFileDialogSettingsSync(dialog, settings);
 
-            saveFileDialog = new SaveFileDialog
-            {
-                AddExtension = settings.AddExtension,
-                CheckFileExists = settings.CheckFileExists,
-                CheckPathExists = settings.CheckPathExists,
-                CreatePrompt = settings.CreatePrompt,
-                DefaultExt = settings.DefaultExt,
-                FileName = settings.FileName,
-                Filter = settings.Filter,
-                FilterIndex = settings.FilterIndex,
-                InitialDirectory = settings.InitialDirectory,
-                OverwritePrompt = settings.OverwritePrompt,
-                Title = settings.Title
-            };
+            // Update dialog
+            sync.ToDialog();
         }
 
         /// <inheritdoc />
@@ -41,11 +30,10 @@ namespace MvvmDialogs.FrameworkDialogs.SaveFile
         {
             if (owner == null) throw new ArgumentNullException(nameof(owner));
 
-            bool? result = saveFileDialog.ShowDialog(owner);
+            bool? result = dialog.ShowDialog(owner);
 
             // Update settings
-            settings.FileName = saveFileDialog.FileName;
-            settings.FileNames = saveFileDialog.FileNames;
+            sync.ToSettings();
 
             return result;
         }
