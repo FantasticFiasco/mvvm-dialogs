@@ -12,7 +12,6 @@ var configuration = Argument("configuration", "Release");
 //////////////////////////////////////////////////////////////////////
 
 var solution = new FilePath("./MvvmDialogs.sln");
-var netProject = new FilePath("./src/net/MvvmDialogs.csproj");
 
 //////////////////////////////////////////////////////////////////////
 // TASKS
@@ -39,21 +38,8 @@ Task("Build")
     .IsDependentOn("Restore")
     .Does(() =>
     {
-        // Build for default .NET version
         MSBuild(solution, settings => settings
             .SetConfiguration(configuration)
-            .SetMaxCpuCount(0));    // Enable parallel build
-
-        // Build for .NET version 4.0
-        MSBuild(netProject, settings => settings
-            .SetConfiguration(configuration)
-            .WithProperty("TargetFrameworkVersion", "v4.0")
-            .SetMaxCpuCount(0));    // Enable parallel build
-
-        // Build for .NET version 3.5
-        MSBuild(netProject, settings => settings
-            .SetConfiguration(configuration)
-            .WithProperty("TargetFrameworkVersion", "v3.5")
             .SetMaxCpuCount(0));    // Enable parallel build
     });
 
