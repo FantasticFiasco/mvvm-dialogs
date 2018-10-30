@@ -20,7 +20,7 @@ var netProject = new FilePath("./src/net/MvvmDialogs.csproj");
 
 Task("Clean")
     .Description("Clean all files")
-    .Does (() =>
+    .Does(() =>
     {
 	    CleanDirectories("./**/bin");
 	    CleanDirectories("./**/obj");
