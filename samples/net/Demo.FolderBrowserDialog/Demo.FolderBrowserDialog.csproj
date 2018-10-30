@@ -7,7 +7,6 @@
     <ApplicationIcon />
     <OutputTypeEx>winexe</OutputTypeEx>
     <StartupObject />
-    <Copyright>Copyright © 2009-2018 MVVM Dialogs contributors</Copyright>
   </PropertyGroup>
 
   <ItemGroup>

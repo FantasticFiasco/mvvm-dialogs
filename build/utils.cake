@@ -6,7 +6,7 @@ public string GetAssemblyVersion(string filePath)
 {
     var versionNumbers = FindRegexMatchesGroupsInFile(
         new FilePath(filePath),
-        "AssemblyVersion\\(\"(\\d+).(\\d+).(\\d+)\"\\)",
+        "<Version>(\\d+).(\\d+).(\\d+)</Version>",
         RegexOptions.Multiline);
 
     var major = versionNumbers[0][1];

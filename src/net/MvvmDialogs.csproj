@@ -4,13 +4,8 @@
   <PropertyGroup>
     <OutputType>Library</OutputType>
     <TargetFrameworks>net45;net40;net35</TargetFrameworks>
-    <Version>5.2.1</Version>
     <AssemblyTitle>MVVM Dialogs</AssemblyTitle>
-    <Company>FantasticFiasco</Company>
-    <Product>MVVM Dialogs</Product>
-    <Copyright>Copyright © 2009-2018 MVVM Dialogs contributors</Copyright>
     <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(AssemblyName).xml</DocumentationFile>
-    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <RunCodeAnalysis>true</RunCodeAnalysis>
     <CodeAnalysisRuleSet>..\..\MvvmDialogs.ruleset</CodeAnalysisRuleSet>
     <SignAssembly>true</SignAssembly>

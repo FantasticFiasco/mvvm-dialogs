@@ -1,0 +1,12 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <PropertyGroup>
+    <Version>5.2.1</Version>
+    <Authors>Mattias Kindborg</Authors>
+    <Company>FantasticFiasco</Company>
+    <Product>MVVM Dialogs</Product>
+    <Copyright>Copyright © 2009-2018 MVVM Dialogs contributors</Copyright>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+  </PropertyGroup>
+
+</Project>

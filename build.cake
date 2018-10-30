@@ -48,7 +48,7 @@ Task("Pack")
     .IsDependentOn("Build")
     .Does(() =>
     {
-        var version = GetAssemblyVersion("./SolutionInfo.cs");
+        var version = GetAssemblyVersion("./Directory.Build.props");
         var branch = EnvironmentVariable("APPVEYOR_REPO_BRANCH");
 
         // Unless on master, this is a pre-release
