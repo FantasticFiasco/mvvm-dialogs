@@ -10,52 +10,53 @@ install:
       $client = new-object System.Net.WebClient
       $client.DownloadFile($file, $destination)
   - cmd: 7z e dotnet-sdk-latest-win-x64.zip -y
-  - cmd: dir
-  - ps: |
-      $logo = (Invoke-WebRequest "https://raw.githubusercontent.com/FantasticFiasco/logo/master/logo.raw").toString()
-      Write-Host "$logo" -ForegroundColor Green
-  - ps: iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-desktop.ps1'))
+#  - cmd: dir
+#  - ps: |
+#      $logo = (Invoke-WebRequest "https://raw.githubusercontent.com/FantasticFiasco/logo/master/logo.raw").toString()
+#      Write-Host "$logo" -ForegroundColor Green
+#  - ps: iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-desktop.ps1'))
 
 
 #---------------------------------#
 #              build              #
 #---------------------------------#
 build_script:
-  - cmd: PowerShell -Version 2.0 .\build.ps1
+#  - cmd: PowerShell -Version 2.0 .\build.ps1
+  - cmd: dotnet --version
 
 
 #---------------------------------#
 #              tests              #
 #---------------------------------#
-test:
-  assemblies: '**\*.Test.dll'
-  categories:
-    except:
-      - Manual
+#test:
+#  assemblies: '**\*.Test.dll'
+#  categories:
+#    except:
+#      - Manual
 
 
 #---------------------------------#
 #      artifacts configuration    #
 #---------------------------------#
-artifacts:
-  - path: '*.nupkg'
-    name: NuGet
+#artifacts:
+#  - path: '*.nupkg'
+#    name: NuGet
 
 
 #---------------------------------#
 #            on finish            #
 #---------------------------------#
-on_finish:
-  - ps: Get-ChildItem -Path Failed_*.png -Recurse | % { Push-AppveyorArtifact $_.FullName -FileName $_.Name }
+#on_finish:
+#  - ps: Get-ChildItem -Path Failed_*.png -Recurse | % { Push-AppveyorArtifact $_.FullName -FileName $_.Name }
 
 #---------------------------------#
 #              deploy             #
 #---------------------------------#
-deploy:
-  provider: NuGet
-  api_key:
-    secure: KYoij6c7heYA02+kxssWFS2f0QDISth37e+aK8M/k+jsN7mZNTKfka7VNBFz52ch
-  skip_symbols: false
-  artifact: /.*\.nupkg/
-  on:
-    appveyor_repo_tag: true
+#deploy:
+#  provider: NuGet
+#  api_key:
+#    secure: KYoij6c7heYA02+kxssWFS2f0QDISth37e+aK8M/k+jsN7mZNTKfka7VNBFz52ch
+#  skip_symbols: false
+#  artifact: /.*\.nupkg/
+#  on:
+#    appveyor_repo_tag: true
