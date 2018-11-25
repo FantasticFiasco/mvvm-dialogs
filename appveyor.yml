@@ -10,9 +10,6 @@ install:
       $client = new-object System.Net.WebClient
       $client.DownloadFile($file, $destination)
   - cmd: 7z x dotnet-sdk-latest-win-x64.zip -y
-  - cmd: dir C:\projects\mvvm-dialogs
-  - cmd: dir C:\projects\mvvm-dialogs\host
-  - cmd: dir C:\projects\mvvm-dialogs\host\fxr
 #  - cmd: dir
 #  - ps: |
 #      $logo = (Invoke-WebRequest "https://raw.githubusercontent.com/FantasticFiasco/logo/master/logo.raw").toString()
@@ -26,7 +23,7 @@ install:
 build_script:
 #  - cmd: PowerShell -Version 2.0 .\build.ps1
   - cmd: dotnet --version
-  - cmd: dotnet build
+  - cmd: dotnet build ./src/net/MvvmDialogs.csproj
 
 
 #---------------------------------#
