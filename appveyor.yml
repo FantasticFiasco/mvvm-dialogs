@@ -9,6 +9,8 @@ install:
       $destination = "C:\projects\mvvm-dialogs\dotnet-sdk-latest-win-x64.zip"
       $client = new-object System.Net.WebClient
       $client.DownloadFile($file, $destination)
+  - cmd: 7z e dotnet-sdk-latest-win-x64.zip
+  - cmd: dir
   - ps: |
       $logo = (Invoke-WebRequest "https://raw.githubusercontent.com/FantasticFiasco/logo/master/logo.raw").toString()
       Write-Host "$logo" -ForegroundColor Green
