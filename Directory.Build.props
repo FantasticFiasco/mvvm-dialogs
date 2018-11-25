@@ -1,8 +1,7 @@
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 
   <PropertyGroup>
-    <Version>5.3.0</Version>
-    <VersionSuffix>dotnet-core-3-preview</VersionSuffix>
+    <Version>5.3.0-dotnet-core-3-preview</Version>
     <Authors>Mattias Kindborg</Authors>
     <Company>FantasticFiasco</Company>
     <Product>MVVM Dialogs</Product>
