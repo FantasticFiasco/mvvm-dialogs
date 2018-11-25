@@ -5,8 +5,10 @@ image: Visual Studio 2017
 
 install:
   - ps: |
+      $file = "https://dotnetcli.blob.core.windows.net/dotnet/Sdk/master/dotnet-sdk-latest-win-x64.zip"
+      $destination = "C:\projects\mvvm-dialogs\dotnet-sdk-latest-win-x64.zip"
       $client = new-object System.Net.WebClient
-      $client.DownloadFile('https://dotnetcli.blob.core.windows.net/dotnet/Sdk/master/dotnet-sdk-latest-win-x64.zip', 'build\dotnet-sdk-latest-win-x64.zip')
+      $client.DownloadFile($file, $destination)
   - ps: |
       $logo = (Invoke-WebRequest "https://raw.githubusercontent.com/FantasticFiasco/logo/master/logo.raw").toString()
       Write-Host "$logo" -ForegroundColor Green
