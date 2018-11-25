@@ -9,7 +9,8 @@ install:
       $destination = "C:\projects\mvvm-dialogs\dotnet-sdk-latest-win-x64.zip"
       $client = new-object System.Net.WebClient
       $client.DownloadFile($file, $destination)
-  - cmd: 7z e dotnet-sdk-latest-win-x64.zip -y
+  - cmd: 7z x dotnet-sdk-latest-win-x64.zip -y
+  - cmd: dir C:\projects\mvvm-dialogs
   - cmd: dir C:\projects\mvvm-dialogs\host
   - cmd: dir C:\projects\mvvm-dialogs\host\fxr
 #  - cmd: dir
