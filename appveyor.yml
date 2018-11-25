@@ -24,7 +24,7 @@ build_script:
 #  - cmd: PowerShell -Version 2.0 .\build.ps1
   - cmd: dotnet --version
   - cmd: dotnet build ./src/net/MvvmDialogs.csproj -c Release
-  - cmd: dotnet pack ./src/net/MvvmDialogs.csproj -c Release --include-symbols -o ./ --no-build
+  - cmd: dotnet pack ./src/net/MvvmDialogs.csproj -c Release --include-symbols -o ./ --no-build --version-suffix=dotnet-core-3-preview
 
 
 #---------------------------------#
