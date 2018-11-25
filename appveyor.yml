@@ -8,7 +8,7 @@ install:
       $logo = (Invoke-WebRequest "https://raw.githubusercontent.com/FantasticFiasco/logo/master/logo.raw").toString()
       Write-Host "$logo" -ForegroundColor Green
   - ps: iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-desktop.ps1'))
-  - ps: iex ((new-object net.webclient).DownloadFile(new uri('https://dotnetcli.blob.core.windows.net/dotnet/Sdk/master/dotnet-sdk-latest-win-x64.zip'), 'C:\projects\mvvm-dialogs\build\dotnet-sdk-latest-win-x64.zip'))
+  - ps: iex ((new-object net.webclient).DownloadFile('https://dotnetcli.blob.core.windows.net/dotnet/Sdk/master/dotnet-sdk-latest-win-x64.zip', 'C:\projects\mvvm-dialogs\build\dotnet-sdk-latest-win-x64.zip'))
 
 
 #---------------------------------#
