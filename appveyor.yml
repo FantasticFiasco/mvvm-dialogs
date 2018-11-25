@@ -26,6 +26,7 @@ install:
 build_script:
 #  - cmd: PowerShell -Version 2.0 .\build.ps1
   - cmd: dotnet --version
+  - cmd: dotnet build
 
 
 #---------------------------------#
