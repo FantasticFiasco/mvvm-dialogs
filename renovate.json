@@ -1,5 +1,11 @@
 {
   "extends": [
     "github>FantasticFiasco/renovate-config"
+  ],
+  "packageRules": [
+    {
+      "packagePatterns": ["^SpecFlow."],
+      "groupName": "SpecFlow packages"
+    }
   ]
 }
