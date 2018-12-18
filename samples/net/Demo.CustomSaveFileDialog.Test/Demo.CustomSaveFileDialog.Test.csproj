@@ -30,7 +30,7 @@
     <PackageReference Include="Moq" Version="4.10.1" />
     <PackageReference Include="NUnit" Version="3.11.0" />
     <PackageReference Include="SpecFlow.NUnit" Version="2.4.0" />
-    <PackageReference Include="SpecFlow.Tools.MsBuild.Generation" Version="2.4.0" />
+    <PackageReference Include="SpecFlow.Tools.MsBuild.Generation" Version="2.4.1" />
     <PackageReference Include="TestStack.White.ScreenObjects" Version="0.13.3" />
   </ItemGroup>
 
