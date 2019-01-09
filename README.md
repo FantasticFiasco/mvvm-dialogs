@@ -115,7 +115,7 @@ public class MainPageViewModel : INotifyPropertyChanged
 
 ## Custom windows
 
-Dialogs in WPF that don't inherit from `Window`, or content dialogs in UWP that don't inherit from `ContentDialog` are called custom dialogs. These custom dialogs are supported, but in order for `DialogService` to know how to interact with them, you will have to implement the `IWindow` interface in WPF or `IContentDialog` in UWP.
+Dialogs in WPF that doesn't inherit from `Window`, or content dialogs in UWP that doesn't inherit from `ContentDialog`, are called custom dialogs. These custom dialogs are supported, but in order for `DialogService` to know how to interact with them, you will have to implement the `IWindow` interface in WPF or `IContentDialog` in UWP.
 
 ## Custom framework dialogs
 
