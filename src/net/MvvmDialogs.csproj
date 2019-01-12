@@ -25,6 +25,10 @@
     <DefineConstants Condition="'$(TargetFramework)' == 'net35'">TRACE;PRE_NET40;PRE_NET45</DefineConstants>
   </PropertyGroup>
 
+  <PropertyGroup>
+    <FrameworkPathOverride Condition="'$(TargetFramework)' == 'net35'">$(MSBuildProgramFiles32)\Reference Assemblies\Microsoft\Framework\.NETFramework\v3.5\Profile\Client</FrameworkPathOverride>
+  </PropertyGroup>
+
   <ItemGroup Condition="'$(TargetFramework)' == 'net45'">
     <Reference Include="System" />
     <Reference Include="System.Core" />
