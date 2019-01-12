@@ -1,4 +1,3 @@
-using CommonServiceLocator;
 using GalaSoft.MvvmLight.Ioc;
 
 namespace Demo.SaveFileDialog
@@ -11,11 +10,9 @@ namespace Demo.SaveFileDialog
     {
         public ViewModelLocator()
         {
-            ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
-
             SimpleIoc.Default.Register<MainWindowViewModel>();
         }
 
-        public MainWindowViewModel MainWindow => ServiceLocator.Current.GetInstance<MainWindowViewModel>();
+        public MainWindowViewModel MainWindow => SimpleIoc.Default.GetInstance<MainWindowViewModel>();
     }
 }

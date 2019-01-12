@@ -1,7 +1,7 @@
 using System.Reflection;
 using System.Windows.Input;
 using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.CommandWpf;
+using GalaSoft.MvvmLight.Command;
 using MvvmDialogs;
 using MvvmDialogs.FrameworkDialogs.SaveFile;
 using IOPath = System.IO.Path;
