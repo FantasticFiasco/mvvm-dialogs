@@ -15,3 +15,8 @@ caf0516c13bf master
 2b3472437f73 fix/issue-49
 472612f6e2fe master
 da710a9f9503 master
+055c5092ecec chore/directory-build-props
+35623c9976ea chore/migrate-mvvmdialogs-csproj
+3c34b3eb0ad4 feat/dotnet-core-30
+0ba5d9609150 master
+f5f0b058fbbf renovate/specflow.nunit-2.x
