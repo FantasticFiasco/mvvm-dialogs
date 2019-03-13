@@ -49,10 +49,10 @@ Task("Pack")
     .Does(() =>
     {
         var version = GetAssemblyVersion("./Directory.Build.props");
-        var branch = EnvironmentVariable("APPVEYOR_REPO_BRANCH");
+        var isTag = EnvironmentVariable("APPVEYOR_REPO_TAG");
 
-        // Unless on master, this is a pre-release
-        if (branch != "master")
+        // Unless this is a tag, this is a pre-release
+        if (isTag != "true")
         {
             var sha = EnvironmentVariable("APPVEYOR_REPO_COMMIT");
             version += $"-sha-{sha}";
