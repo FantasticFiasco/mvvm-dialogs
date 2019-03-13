@@ -29,7 +29,7 @@ namespace MvvmDialogs.Logging
             get => writer;
             set
             {
-                if (writer == null) throw new ArgumentNullException(nameof(value));
+                if (value == null) throw new ArgumentNullException(nameof(value));
 
                 writer = value;
             }
