@@ -6,6 +6,8 @@ This project adheres to [Semantic Versioning](http://semver.org/) and is followi
 
 ## Unreleased
 
+## 5.2.2 - 2019-03-13
+
 ### :syringe: Fixed
 
 - `Logger.Writer` does not throw exception when being set to `null` (contribution by [@MathewSachin](https://github.com/MathewSachin))
