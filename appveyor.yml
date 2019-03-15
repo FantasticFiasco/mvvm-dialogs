@@ -39,7 +39,7 @@ artifacts:
 #---------------------------------#
 deploy:
   - provider: GitHub
-    release: Release v${APPVEYOR_REPO_TAG_NAME}
+    release: Release ${APPVEYOR_REPO_TAG_NAME}
     description: TODO
     auth_token:
       secure: de2wnJZf6k7NY0XriDpf9BkrQ4MR5ZfDDWMM+H/K4OK3w0GpuJAMRj5PrO6tKu0K
