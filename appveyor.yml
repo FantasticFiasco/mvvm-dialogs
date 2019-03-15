@@ -7,7 +7,6 @@ install:
   - ps: |
       $logo = (Invoke-WebRequest "https://raw.githubusercontent.com/FantasticFiasco/logo/master/logo.raw").toString()
       Write-Host "$logo" -ForegroundColor Green
-  - ps: iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-desktop.ps1'))
 
 
 #---------------------------------#
@@ -34,12 +33,6 @@ artifacts:
   - path: '*.nupkg'
     name: NuGet
 
-
-#---------------------------------#
-#            on finish            #
-#---------------------------------#
-on_finish:
-  - ps: Get-ChildItem -Path Failed_*.png -Recurse | % { Push-AppveyorArtifact $_.FullName -FileName $_.Name }
 
 #---------------------------------#
 #              deploy             #
