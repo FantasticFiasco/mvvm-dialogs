@@ -6,6 +6,10 @@ This project adheres to [Semantic Versioning](http://semver.org/) and is followi
 
 ## Unreleased
 
+### :zap: Added
+
+- Support for activating non-modal dialogs using `IDialogService.Activate`
+
 ## 5.2.2 - 2019-03-13
 
 ### :syringe: Fixed
