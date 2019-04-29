@@ -141,6 +141,22 @@ namespace MvvmDialogs
         }
 
         /// <inheritdoc />
+        public bool Activate(INotifyPropertyChanged viewModel)
+        {
+            if (viewModel == null) throw new ArgumentNullException(nameof(viewModel));
+
+            foreach (Window window in Application.Current.Windows)
+            {
+                if (viewModel.Equals(window.DataContext))
+                {
+                    return window.Activate();
+                }
+            }
+
+            return false;
+        }
+
+        /// <inheritdoc />
         public MessageBoxResult ShowMessageBox(
             INotifyPropertyChanged ownerViewModel,
             string messageBoxText,

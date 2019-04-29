@@ -121,6 +121,15 @@ namespace MvvmDialogs
             IModalDialogViewModel viewModel);
 
         /// <summary>
+        /// Attempts to bring the window to the foreground and activates it.
+        /// </summary>
+        /// <param name="viewModel">The view model of the window.</param>
+        /// <returns>
+        /// true if the <see cref="Window"/> was successfully activated; otherwise, false.
+        /// </returns>
+        bool Activate(INotifyPropertyChanged viewModel);
+
+        /// <summary>
         /// Displays a message box that has a message, title bar caption, button, and icon; and
         /// that accepts a default message box result and returns a result.
         /// </summary>
