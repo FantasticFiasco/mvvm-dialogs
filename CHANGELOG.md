@@ -6,6 +6,8 @@ This project adheres to [Semantic Versioning](http://semver.org/) and is followi
 
 ## Unreleased
 
+## 5.3.0 - 2019-04-29
+
 ### :zap: Added
 
 - Support for activating non-modal dialogs using `IDialogService.Activate`
