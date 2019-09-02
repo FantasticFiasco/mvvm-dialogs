@@ -25,8 +25,8 @@ namespace Demo.ModalCustomDialog
             dialogService
                 .Setup(mock => mock.ShowDialog(viewModel, It.IsAny<AddTextCustomDialogViewModel>()))
                 .Returns(true)
-                .Callback((INotifyPropertyChanged ownerViewModel, AddTextCustomDialogViewModel addTextDialogViewModel) =>
-                    addTextDialogViewModel.Text = "Some text");
+                .Callback((INotifyPropertyChanged ownerViewModel, IModalDialogViewModel addTextDialogViewModel) =>
+                    ((AddTextCustomDialogViewModel)addTextDialogViewModel).Text = "Some text");
 
             var expected = new[]
             {
@@ -62,8 +62,8 @@ namespace Demo.ModalCustomDialog
             dialogService
                 .Setup(mock => mock.ShowCustomDialog<AddTextCustomDialog>(viewModel, It.IsAny<AddTextCustomDialogViewModel>()))
                 .Returns(true)
-                .Callback((INotifyPropertyChanged ownerViewModel, AddTextCustomDialogViewModel addTextDialogViewModel) =>
-                    addTextDialogViewModel.Text = "Some text");
+                .Callback((INotifyPropertyChanged ownerViewModel, IModalDialogViewModel addTextDialogViewModel) =>
+                    ((AddTextCustomDialogViewModel)addTextDialogViewModel).Text = "Some text");
 
             var expected = new[]
             {
