@@ -1,6 +1,19 @@
-![MVVM Dialogs logo](doc/resources/Icon_128x128.png)
+<h1 align="center">
+    <br>
+    <img src="https://raw.githubusercontent.com/FantasticFiasco/mvvm-dialogs/master/doc/resources/Icon_200x200.png" alt="MVVM Dialogs" width="200">
+    <br>
+    MVVM Dialogs
+    <br>
+</h1>
 
-# MVVM Dialogs [![Build status](https://ci.appveyor.com/api/projects/status/9eyvxv5jr9bybant/branch/master?svg=true)](https://ci.appveyor.com/project/FantasticFiasco/mvvm-dialogs/branch/master) [![NuGet](https://img.shields.io/nuget/v/MvvmDialogs.svg)](https://www.nuget.org/packages/MvvmDialogs/) [![SemVer compatible](https://img.shields.io/badge/%E2%9C%85-SemVer%20compatible-blue)](https://semver.org/) [![NuGet](https://img.shields.io/nuget/dt/MvvmDialogs.svg)](https://www.nuget.org/packages/MvvmDialogs/)
+<h4 align="center">Framework simplifying the concept of opening dialogs from a view model when using MVVM in WPF or UWP.</h4>
+
+<p align="center">
+    <a href="https://ci.appveyor.com/project/FantasticFiasco/mvvm-dialogs/branch/master"><img src="https://ci.appveyor.com/api/projects/status/9eyvxv5jr9bybant/branch/master?svg=true"></a>
+    <a href="https://www.nuget.org/packages/MvvmDialogs/"><img src="https://img.shields.io/nuget/v/MvvmDialogs.svg"></a>
+    <a href="https://semver.org/"><img src="https://img.shields.io/badge/%E2%9C%85-SemVer%20compatible-blue"></a>
+    <a href="https://www.nuget.org/packages/MvvmDialogs/"><img src="https://img.shields.io/nuget/dt/MvvmDialogs.svg"></a>
+</p>
 
 ## Table of contents
 
