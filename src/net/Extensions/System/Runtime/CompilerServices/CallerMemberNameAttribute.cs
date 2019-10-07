@@ -1,4 +1,5 @@
-﻿#if PRE_NET45
+﻿#nullable disable
+#if PRE_NET45
 namespace System.Runtime.CompilerServices
 {
     /// <summary>

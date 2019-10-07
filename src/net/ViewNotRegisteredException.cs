@@ -21,7 +21,7 @@ namespace MvvmDialogs
         /// The exception that is the cause of the current exception, or a null reference if no
         /// inner exception is specified.
         /// </param>
-        public ViewNotRegisteredException(string message = null, Exception innerException = null)
+        public ViewNotRegisteredException(string? message = null, Exception? innerException = null)
             : base(message, innerException)
         {
         }

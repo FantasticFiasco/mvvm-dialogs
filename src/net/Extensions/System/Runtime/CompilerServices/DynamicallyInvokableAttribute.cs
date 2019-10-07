@@ -1,4 +1,5 @@
-﻿#if PRE_NET45
+﻿#nullable disable
+#if PRE_NET45
 using System;
 using System.Runtime;
 

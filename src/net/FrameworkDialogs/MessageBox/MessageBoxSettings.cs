@@ -11,7 +11,7 @@ namespace MvvmDialogs.FrameworkDialogs.MessageBox
         /// <summary>
         /// Gets or sets the <see cref="string"/> that specifies the text to display.
         /// </summary>
-        public string MessageBoxText { get; set; }
+        public string? MessageBoxText { get; set; }
 
         /// <summary>
         /// Gets or sets the <see cref="string"/> that specifies the title bar caption to display.
