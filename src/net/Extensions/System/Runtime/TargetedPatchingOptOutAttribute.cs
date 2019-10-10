@@ -1,4 +1,5 @@
-﻿#if PRE_NET40
+﻿#nullable disable
+#if PRE_NET40
 namespace System.Runtime
 {
     /// <summary>

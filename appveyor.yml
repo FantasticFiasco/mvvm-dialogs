@@ -1,7 +1,7 @@
 #---------------------------------#
 #           environment           #
 #---------------------------------#
-image: Visual Studio 2017
+image: Visual Studio 2019
 
 install:
   - ps: |
@@ -13,7 +13,7 @@ install:
 #              build              #
 #---------------------------------#
 build_script:
-  - cmd: PowerShell -Version 2.0 .\build.ps1
+  - cmd: PowerShell -Version 2.0 .\build\build.ps1 -Script .\build\build.cake
 
 
 #---------------------------------#
@@ -30,7 +30,7 @@ test:
 #      artifacts configuration    #
 #---------------------------------#
 artifacts:
-  - path: '*.nupkg'
+  - path: 'build\*.nupkg'
     name: NuGet
 
 

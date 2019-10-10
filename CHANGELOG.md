@@ -6,6 +6,10 @@ This project adheres to [Semantic Versioning](http://semver.org/) and is followi
 
 ## Unreleased
 
+### :dizzy: Changed
+
+- Adaptation to [nullable references in C# 8.0](https://docs.microsoft.com/en-us/dotnet/csharp/nullable-references) introduced breaking changes to the API
+
 ## 5.3.0 - 2019-04-29
 
 ### :zap: Added

@@ -1,4 +1,4 @@
-#load "build/utils.cake"
+#load "utils.cake"
 
 //////////////////////////////////////////////////////////////////////
 // ARGUMENTS
@@ -11,7 +11,7 @@ var configuration = Argument("configuration", "Release");
 // VARIABLES
 //////////////////////////////////////////////////////////////////////
 
-var solution = new FilePath("./MvvmDialogs.sln");
+var solution = new FilePath("./../MvvmDialogs.sln");
 
 //////////////////////////////////////////////////////////////////////
 // TASKS
@@ -21,8 +21,8 @@ Task("Clean")
     .Description("Clean all files")
     .Does(() =>
     {
-	    CleanDirectories("./**/bin");
-	    CleanDirectories("./**/obj");
+	    CleanDirectories("./../**/bin");
+	    CleanDirectories("./../**/obj");
     });
 
 Task("Restore")
@@ -48,7 +48,7 @@ Task("Pack")
     .IsDependentOn("Build")
     .Does(() =>
     {
-        var version = GetAssemblyVersion("./Directory.Build.props");
+        var version = GetAssemblyVersion("./../Directory.Build.props");
         var isTag = EnvironmentVariable("APPVEYOR_REPO_TAG");
 
         // Unless this is a tag, this is a pre-release
@@ -59,7 +59,7 @@ Task("Pack")
         }
 
         NuGetPack(
-            "./MvvmDialogs.nuspec",
+            "./../MvvmDialogs.nuspec",
             new NuGetPackSettings
             {
                 Version = version,

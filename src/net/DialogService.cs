@@ -57,9 +57,9 @@ namespace MvvmDialogs
         /// <see cref="DefaultFrameworkDialogFactory"/>.
         /// </param>
         public DialogService(
-            IDialogFactory dialogFactory = null,
-            IDialogTypeLocator dialogTypeLocator = null,
-            IFrameworkDialogFactory frameworkDialogFactory = null)
+            IDialogFactory? dialogFactory = null,
+            IDialogTypeLocator? dialogTypeLocator = null,
+            IFrameworkDialogFactory? frameworkDialogFactory = null)
         {
             this.dialogFactory = dialogFactory ?? new ReflectionDialogFactory();
             this.dialogTypeLocator = dialogTypeLocator ?? new NamingConventionDialogTypeLocator();

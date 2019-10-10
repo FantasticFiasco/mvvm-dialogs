@@ -37,7 +37,8 @@ artifacts/
 src/_ReSharper.Caches/
 
 # Cake
-tools/
+build/tools/*
+!build/tools/packages.config
 
 # GhostDoc
 *.GhostDoc.xml
