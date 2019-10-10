@@ -6,7 +6,7 @@
     <authors>Mattias Kindborg</authors>
     <title>MVVM Dialogs</title>
     <language>en-US</language>
-    <licenseUrl>http://www.apache.org/licenses/LICENSE-2.0</licenseUrl>
+    <license type="expression">Apache-2.0</license>
     <projectUrl>https://github.com/FantasticFiasco/mvvm-dialogs</projectUrl>
     <iconUrl>https://raw.githubusercontent.com/FantasticFiasco/mvvm-dialogs/master/build/icon_32x32.png</iconUrl>
     <copyright>Copyright © 2009-2019 MVVM Dialogs contributors</copyright>
