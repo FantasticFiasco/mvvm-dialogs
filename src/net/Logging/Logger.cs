@@ -27,12 +27,7 @@ namespace MvvmDialogs.Logging
         public static Action<string> Writer
         {
             get => writer;
-            set
-            {
-                if (value == null) throw new ArgumentNullException(nameof(value));
-
-                writer = value;
-            }
+            set => writer = value ?? throw new ArgumentNullException(nameof(value));
         }
 
         internal static void Write(

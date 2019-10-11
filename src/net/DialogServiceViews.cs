@@ -169,7 +169,7 @@ namespace MvvmDialogs
         /// Handles owner window closed. All views acting within the closed window should be
         /// unregistered.
         /// </summary>
-        private static void OwnerClosed(object sender, EventArgs e)
+        private static void OwnerClosed(object? sender, EventArgs e)
         {
             if (sender is Window owner)
             {

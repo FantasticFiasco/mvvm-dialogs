@@ -106,7 +106,7 @@ namespace MvvmDialogs
 
         /// <inheritdoc />
         public bool? ShowDialog<T>(
-        INotifyPropertyChanged ownerViewModel,
+            INotifyPropertyChanged ownerViewModel,
             IModalDialogViewModel viewModel)
             where T : Window
         {
@@ -145,8 +145,13 @@ namespace MvvmDialogs
         {
             if (viewModel == null) throw new ArgumentNullException(nameof(viewModel));
 
-            foreach (Window window in Application.Current.Windows)
+            foreach (Window? window in Application.Current.Windows)
             {
+                if (window == null)
+                {
+                    continue;
+                }
+
                 if (viewModel.Equals(window.DataContext))
                 {
                     return window.Activate();
@@ -159,7 +164,7 @@ namespace MvvmDialogs
         /// <inheritdoc />
         public MessageBoxResult ShowMessageBox(
             INotifyPropertyChanged ownerViewModel,
-            string messageBoxText,
+            string? messageBoxText,
             string caption = "",
             MessageBoxButton button = MessageBoxButton.OK,
             MessageBoxImage icon = MessageBoxImage.None,

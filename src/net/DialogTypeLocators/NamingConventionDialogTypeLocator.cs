@@ -23,8 +23,11 @@ namespace MvvmDialogs.DialogTypeLocators
             if (viewModel == null) throw new ArgumentNullException(nameof(viewModel));
 
             Type viewModelType = viewModel.GetType();
-
+#if NETFX_CORE
             Type dialogType = Cache.Get(viewModelType);
+#else
+            Type? dialogType = Cache.Get(viewModelType);
+#endif
             if (dialogType != null)
             {
                 return dialogType;
