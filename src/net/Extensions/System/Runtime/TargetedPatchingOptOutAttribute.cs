@@ -1,5 +1,6 @@
 ﻿#nullable disable
 #if PRE_NET40
+// ReSharper disable once CheckNamespace
 namespace System.Runtime
 {
     /// <summary>

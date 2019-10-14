@@ -27,6 +27,7 @@ namespace MvvmDialogs.Views
             get
             {
                 if (!IsAlive) throw new InvalidOperationException("View has been garbage collected.");
+                if (viewReference.Target == null) throw new InvalidOperationException("View has been set to null.");
 
                 return (FrameworkElement)viewReference.Target;
             }
@@ -40,7 +41,7 @@ namespace MvvmDialogs.Views
 
         public override int GetHashCode() => Source.GetHashCode();
 
-        public override bool Equals(object obj)
+        public override bool Equals(object? obj)
         {
             var other = obj as ViewWrapper;
             if (other == null)

@@ -1,5 +1,6 @@
 ﻿#nullable disable
 #if PRE_NET45
+// ReSharper disable once CheckNamespace
 namespace System.Runtime.CompilerServices
 {
     /// <summary>
