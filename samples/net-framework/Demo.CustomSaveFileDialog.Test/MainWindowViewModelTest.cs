@@ -1,11 +1,10 @@
 ﻿using System.ComponentModel;
-using Demo.CustomSaveFileDialog;
 using Moq;
 using MvvmDialogs;
 using MvvmDialogs.FrameworkDialogs.SaveFile;
 using NUnit.Framework;
 
-namespace Demo.CustomSaveFileDialogTest
+namespace Demo.CustomSaveFileDialog
 {
     [TestFixture]
     public class MainWindowViewModelTest

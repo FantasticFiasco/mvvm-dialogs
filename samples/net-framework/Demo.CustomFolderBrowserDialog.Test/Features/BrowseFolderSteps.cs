@@ -8,7 +8,7 @@ using TestStack.White;
 using TestStack.White.Factory;
 using TestStack.White.ScreenObjects;
 
-namespace Demo.CustomFolderBrowserDialog.Test.Features
+namespace Demo.CustomFolderBrowserDialog.Features
 {
     [Binding]
     public class BrowseFolderSteps : FeatureSteps<MainScreen>

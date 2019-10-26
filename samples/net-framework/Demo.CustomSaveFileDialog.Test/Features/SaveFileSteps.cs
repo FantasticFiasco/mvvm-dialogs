@@ -1,6 +1,6 @@
 ﻿using System.IO;
 using System.Reflection;
-using Demo.CustomSaveFileDialogTest.ScreenObjects;
+using Demo.CustomSaveFileDialog.ScreenObjects;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
 using TestBaseClasses.Features;
@@ -8,7 +8,7 @@ using TestStack.White;
 using TestStack.White.Factory;
 using TestStack.White.ScreenObjects;
 
-namespace Demo.CustomSaveFileDialogTest.Features
+namespace Demo.CustomSaveFileDialog.Features
 {
     [Binding]
     public class SaveFileSteps : FeatureSteps<MainScreen>
