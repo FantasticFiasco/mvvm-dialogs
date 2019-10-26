@@ -49,7 +49,6 @@ namespace Demo.CustomOpenFileDialog
                 Multiselect = settings.Multiselect,
                 Title = settings.Title
             };
-            
 
             var result = dialog.ShowDialog(owner);
 
