@@ -15,6 +15,8 @@
     <a href="https://www.nuget.org/packages/MvvmDialogs/"><img src="https://img.shields.io/nuget/dt/MvvmDialogs.svg"></a>
 </p>
 
+> NOTE: This project is currently migrating towards supporting .NET Core 3. Mismatch between documentation and code should be expected.
+
 ## Table of contents
 
 - [Introduction](#introduction)

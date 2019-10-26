@@ -1,0 +1,38 @@
+﻿<Window
+    x:Class="Demo.ModalDialog.AddTextDialog"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:Demo.ModalDialog"
+    mc:Ignorable="d"
+    Title="Add Text"
+    WindowStartupLocation="CenterOwner"
+    SizeToContent="WidthAndHeight"
+    ResizeMode="NoResize"
+    d:DataContext="{d:DesignInstance {x:Type local:AddTextDialogViewModel}}">
+
+    <Window.Resources>
+        <ResourceDictionary Source="ApplicationResources.xaml" />
+    </Window.Resources>
+
+    <StackPanel>
+        <TextBox
+            AutomationProperties.AutomationId="Csl8dP93gUGQLj7rVZxDAg"
+            Text="{Binding Text, UpdateSourceTrigger=PropertyChanged}" />
+        
+        <StackPanel
+            Orientation="Horizontal"
+            HorizontalAlignment="Right">
+            <Button
+                AutomationProperties.AutomationId="eyRW_87u20qR7QTCypm2RQ"
+                Content="OK"
+                Command="{Binding OkCommand}"
+                IsDefault="True" />
+            <Button
+                AutomationProperties.AutomationId="I91auHr_EECzhSZyIfvvzQ"
+                Content="Cancel"
+                IsCancel="True" />
+        </StackPanel>
+    </StackPanel>
+</Window>
