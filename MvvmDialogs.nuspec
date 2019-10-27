@@ -8,7 +8,7 @@
     <language>en-US</language>
     <license type="expression">Apache-2.0</license>
     <projectUrl>https://github.com/FantasticFiasco/mvvm-dialogs</projectUrl>
-    <iconUrl>https://raw.githubusercontent.com/FantasticFiasco/mvvm-dialogs/master/build/icon_32x32.png</iconUrl>
+    <icon>images\icon_64x64.png</icon>
     <copyright>Copyright © 2009-2019 MVVM Dialogs contributors</copyright>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Framework simplifying the concept of opening dialogs from a view model when using MVVM in WPF or UWP.</description>
@@ -27,5 +27,8 @@
     <!-- UWP -->
     <file src="src\universal\bin\Release\MvvmDialogs.dll" target="lib\uap10.0\MvvmDialogs.dll" />
     <file src="src\universal\bin\Release\MvvmDialogs.xml" target="lib\uap10.0\MvvmDialogs.xml" />
+
+    <!-- Icon -->
+    <file src="build\icon_64x64.png" target="images\" />
   </files>
 </package>
