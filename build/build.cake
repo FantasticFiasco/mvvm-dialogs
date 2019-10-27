@@ -21,6 +21,7 @@ Task("Clean")
     .Description("Clean all files")
     .Does(() =>
     {
+        DeleteFiles("./../**/*.nupkg");
 	    CleanDirectories("./../**/bin");
 	    CleanDirectories("./../**/obj");
     });
