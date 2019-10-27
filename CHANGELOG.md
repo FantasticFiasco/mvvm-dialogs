@@ -6,6 +6,10 @@ This project adheres to [Semantic Versioning](http://semver.org/) and is followi
 
 ## Unreleased
 
+### :zap: Added
+
+- NuGet package supporting .NET 4.5.2, .NET 4.6.2 and .NET 4.7.2
+
 ### :dizzy: Changed
 
 - Adaptation to [nullable references in C# 8.0](https://docs.microsoft.com/en-us/dotnet/csharp/nullable-references) introduced breaking changes to the API
@@ -123,7 +127,7 @@ This project adheres to [Semantic Versioning](http://semver.org/) and is followi
 ### :zap: Added
 
 - Apache license
-- NuGet package supporting .NET3.5, .NET4.0 and .NET4.5
+- NuGet package supporting .NET 3.5, .NET 4.0 and .NET 4.5
 - Support for specifying a dialog factory used by `DialogService`, enabling inversion of control integration
 - Support for specifying a dialog type locator used by `DialogService`, enabling implementation of custom dialogs type locators
 - `DialogService` is referencing registered views using weak references, thus never preventing a view from being garbage collected
