@@ -4,7 +4,11 @@
   <PropertyGroup>
     <OutputType>Library</OutputType>
     <LangVersion>8.0</LangVersion>
-    <TargetFrameworks>netcoreapp3.0;net45;net40;net35</TargetFrameworks>
+    <!--
+      Lets have the .NET Framework version listed first, otherwise we will get build warnings in Visual Studio.
+      See https://github.com/dotnet/project-system/issues/1162 for more information.
+     -->
+    <TargetFrameworks>net472;net462;net452;net45;net40;net35;netcoreapp3.0</TargetFrameworks>
     <AssemblyTitle>MVVM Dialogs</AssemblyTitle>
     <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(AssemblyName).xml</DocumentationFile>
     <SignAssembly>true</SignAssembly>
