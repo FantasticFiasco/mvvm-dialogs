@@ -23,6 +23,12 @@
     <file src="src\net\bin\Release\net40\MvvmDialogs.xml" target="lib\net40\MvvmDialogs.xml" />
     <file src="src\net\bin\Release\net45\MvvmDialogs.dll" target="lib\net45\MvvmDialogs.dll" />
     <file src="src\net\bin\Release\net45\MvvmDialogs.xml" target="lib\net45\MvvmDialogs.xml" />
+    <file src="src\net\bin\Release\net452\MvvmDialogs.dll" target="lib\net452\MvvmDialogs.dll" />
+    <file src="src\net\bin\Release\net452\MvvmDialogs.xml" target="lib\net452\MvvmDialogs.xml" />
+    <file src="src\net\bin\Release\net462\MvvmDialogs.dll" target="lib\net462\MvvmDialogs.dll" />
+    <file src="src\net\bin\Release\net462\MvvmDialogs.xml" target="lib\net462\MvvmDialogs.xml" />
+    <file src="src\net\bin\Release\net472\MvvmDialogs.dll" target="lib\net472\MvvmDialogs.dll" />
+    <file src="src\net\bin\Release\net472\MvvmDialogs.xml" target="lib\net472\MvvmDialogs.xml" />
 
     <!-- UWP -->
     <file src="src\universal\bin\Release\MvvmDialogs.dll" target="lib\uap10.0\MvvmDialogs.dll" />
