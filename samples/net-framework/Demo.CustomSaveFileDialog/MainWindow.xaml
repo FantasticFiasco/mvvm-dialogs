@@ -26,7 +26,7 @@
         <TextBox
             AutomationProperties.AutomationId="-u3vcUdRMUaG4Af_kzSeZQ"
             IsReadOnly="True"
-            Text="{Binding Path}" />
+            Text="{Binding Path, Mode=OneWay}" />
         <Button
             Grid.Column="1"
             AutomationProperties.AutomationId="HstqC8HI9EOGiTfPA4_xag"
