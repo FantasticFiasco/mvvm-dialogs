@@ -20,7 +20,9 @@ build_script:
 #              tests              #
 #---------------------------------#
 test:
-  assemblies: '**\*.Test.dll'
+  assemblies:
+    only:
+      - '**\*.Test.dll'
 #  categories:
 #    except:
 #      - Manual
