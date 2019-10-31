@@ -67,7 +67,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Moq" Version="4.13.1" />
+    <PackageReference Include="Moq">
+      <Version>4.5.30</Version>
+    </PackageReference>
     <PackageReference Include="SpecFlow">
       <Version>3.0.225</Version>
     </PackageReference>
