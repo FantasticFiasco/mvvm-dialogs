@@ -34,6 +34,8 @@ test:
 artifacts:
   - path: 'build\*.nupkg'
     name: NuGet
+  - path: '**\FailedTestScreenshots\*.png'
+    name: FailedTestScreenshots
 
 
 #---------------------------------#
