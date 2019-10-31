@@ -22,10 +22,10 @@ build_script:
 test:
   assemblies:
     only:
-      - '**\*.Test.dll'
-#  categories:
-#    except:
-#      - Manual
+      -  '**\*.Test.dll'
+  categories:
+    except:
+      - Manual
 
 
 #---------------------------------#
@@ -34,8 +34,6 @@ test:
 artifacts:
   - path: 'build\*.nupkg'
     name: NuGet
-  - path: '**\FailedTestScreenshots\*.png'
-    name: FailedTestScreenshots
 
 
 #---------------------------------#
