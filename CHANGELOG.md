@@ -6,9 +6,12 @@ This project adheres to [Semantic Versioning](http://semver.org/) and is followi
 
 ## Unreleased
 
+## 6.0.0 - 2019-11-02
+
 ### :zap: Added
 
-- NuGet package supporting .NET 4.5.2, .NET 4.6.2 and .NET 4.7.2
+- [#55](https://github.com/FantasticFiasco/mvvm-dialogs/issues/55) - Support for .NET Core 3.0
+- [#55](https://github.com/FantasticFiasco/mvvm-dialogs/issues/55) - NuGet package supporting .NET 4.5.2, .NET 4.6.2 and .NET 4.7.2
 
 ### :dizzy: Changed
 
