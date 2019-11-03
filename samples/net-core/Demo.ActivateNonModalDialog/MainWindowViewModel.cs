@@ -1,5 +1,4 @@
 using System.ComponentModel;
-using System.Windows.Input;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using MvvmDialogs;
@@ -20,14 +19,17 @@ namespace Demo.ActivateNonModalDialog
             ActivateCommand = new RelayCommand(Activate, CanActivate);
         }
 
-        public ICommand ShowCommand { get; }
+        public RelayCommand ShowCommand { get; }
 
-        public ICommand ActivateCommand { get; }
+        public RelayCommand ActivateCommand { get; }
 
         private void Show()
         {
             dialogViewModel = new CurrentTimeDialogViewModel();
             dialogService.Show(this, dialogViewModel);
+
+            ShowCommand.RaiseCanExecuteChanged();
+            ActivateCommand.RaiseCanExecuteChanged();
         }
 
         private bool CanShow()
