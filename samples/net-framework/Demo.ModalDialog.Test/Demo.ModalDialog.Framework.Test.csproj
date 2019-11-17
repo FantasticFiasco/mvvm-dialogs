@@ -68,21 +68,11 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Moq">
-      <Version>4.5.30</Version>
-    </PackageReference>
-    <PackageReference Include="SpecFlow">
-      <Version>3.0.225</Version>
-    </PackageReference>
-    <PackageReference Include="SpecFlow.NUnit">
-      <Version>3.0.225</Version>
-    </PackageReference>
-    <PackageReference Include="SpecFlow.Tools.MsBuild.Generation">
-      <Version>3.0.225</Version>
-    </PackageReference>
-    <PackageReference Include="TestStack.White.ScreenObjects">
-      <Version>0.13.3</Version>
-    </PackageReference>
+    <PackageReference Include="Moq" Version="4.5.30" />
+    <PackageReference Include="SpecFlow" Version="3.0.225" />
+    <PackageReference Include="SpecFlow.NUnit" Version="3.0.225" />
+    <PackageReference Include="SpecFlow.Tools.MsBuild.Generation" Version="3.0.225" />
+    <PackageReference Include="TestStack.White.ScreenObjects" Version="0.13.3" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
