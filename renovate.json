@@ -5,7 +5,7 @@
   "ignoreDeps": ["Moq"],
   "packageRules": [
     {
-      "packagePatterns": ["^SpecFlow."],
+      "packagePatterns": ["^SpecFlow"],
       "groupName": "SpecFlow packages"
     }
   ]
