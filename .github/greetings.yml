@@ -1,0 +1,21 @@
+name: Greetings
+
+on: [pull_request, issues]
+
+jobs:
+  greeting:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/first-interaction@v1
+      with:
+        repo-token: ${{ secrets.GITHUB_TOKEN }}
+        issue-message: |
+          Hi there and welcome to this repository!
+
+          A maintainer will be with you shortly, but first and foremost I would like to thank you for taking the time to report this issue. Quality is of the highest priority for us, and we would never release anything with known defects. We aim to do our best but unfortunately you are here because you encountered something we didn't expect. Lets see if we can figure out what went wrong and provide a remedy for it.
+        pr-message: |
+          Hi there and welcome to this repository!
+
+          A maintainer will be with you shortly, but first and foremost I would like to thank you for taking the time to contribute to this codebase. Open source is built on the idea of collaboration and I applaud you for your contribution.
+
+          Thank you so much and keep being awesome!
