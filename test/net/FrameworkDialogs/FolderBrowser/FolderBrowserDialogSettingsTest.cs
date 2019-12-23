@@ -13,6 +13,7 @@ namespace MvvmDialogs.FrameworkDialogs.FolderBrowser
         {
             var nativePropertyNames = typeof(FolderBrowserDialog)
                 .GetProperties(BindingFlags.Public | BindingFlags.Instance)
+                .Cast<PropertyInfo>()
                 .ToHashSet(p => p.Name);
 
             foreach (var x in nativePropertyNames)
