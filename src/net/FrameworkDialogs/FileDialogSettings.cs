@@ -11,93 +11,186 @@ namespace MvvmDialogs.FrameworkDialogs
         /// Gets or sets a value indicating whether a file dialog automatically adds an extension
         /// to a file name if the user omits an extension.
         /// </summary>
-        /// <remarks>
+        /// <value>
         /// <c>true</c> if extensions are added; otherwise, <c>false</c>. The default is
         /// <c>true</c>.
-        /// </remarks>
+        /// </value>
         public bool AddExtension { get; set; } = true;
 
         /// <summary>
         /// Gets or sets a value indicating whether a file dialog displays a warning if the user
         /// specifies a file name that does not exist.
         /// </summary>
-        /// <remarks>
+        /// <value>
         /// <c>true</c> if warnings are displayed; otherwise, <c>false</c>. The default in this
         /// base class is <c>false</c>.
-        /// </remarks>
+        /// </value>
         public bool CheckFileExists { get; set; } = true;
 
         /// <summary>
         /// Gets or sets a value that specifies whether warnings are displayed if the user types
         /// invalid paths and file names.
         /// </summary>
-        /// <remarks>
+        /// <value>
         /// <c>true</c> if warnings are displayed; otherwise, <c>false</c>. The default is
         /// <c>true</c>.
-        /// </remarks>
+        /// </value>
         public bool CheckPathExists { get; set; } = true;
 
         /// <summary>
         /// Gets or sets a value that specifies the default extension string to use to filter the
         /// list of files that are displayed.
         /// </summary>
-        /// <remarks>
+        /// <value>
         /// The default extension string. The default is <see cref="string.Empty"/>.
+        /// </value>
+        /// <remarks>
+        /// The extension string must contain the leading period. For example, set the
+        /// <see cref="DefaultExt"/> property to ".txt" to select all text files.
+        /// <para/>
+        /// By default, the <see cref="AddExtension"/> property attempts to determine the extension
+        /// to filter the displayed file list from the <see cref="Filter"/> property. If the
+        /// extension cannot be determined from the <see cref="Filter"/> property,
+        /// <see cref="DefaultExt"/> will be used instead.
         /// </remarks>
         public string DefaultExt { get; set; } = string.Empty;
 
         /// <summary>
         /// Gets or sets a string containing the full path of the file selected in a file dialog.
         /// </summary>
-        /// <remarks>
+        /// <value>
         /// A <see cref="string"/> that is the full path of the file selected in the file dialog.
         /// The default is <see cref="string.Empty"/>.
+        /// </value>
+        /// <remarks>
+        /// If more than one file name is selected (length of <see cref="FileNames"/> is greater
+        /// than one) then <see cref="FileName"/> contains the first selected file name. If no file
+        /// name is selected, this property contains <see cref="string.Empty"/> rather than
+        /// <c>null</c>.
         /// </remarks>
         public string FileName { get; set; } = string.Empty;
 
         /// <summary>
         /// Gets an array that contains one file name for each selected file.
         /// </summary>
-        /// <remarks>
+        /// <value>
         /// An array of <see cref="string"/> that contains one file name for each selected file.
         /// The default is an array with a single item whose value is <see cref="string.Empty"/>.
-        /// </remarks>
+        /// </value>
         public string[] FileNames { get; set; } = { string.Empty };
 
         /// <summary>
         /// Gets or sets the filter string that determines what types of files are displayed from
         /// either the open file dialog or the save file dialog.
         /// </summary>
-        /// <remarks>
+        /// <value>
         /// A <see cref="string"/> that contains the filter. The default is
         /// <see cref="string.Empty"/>, which means that no filter is applied and all file types
         /// are displayed.
+        /// </value>
+        /// <remarks>
+        /// If <see cref="Filter"/> is either <c>null</c> or <see cref="string.Empty"/>, all files
+        /// are displayed, and folders are always displayed.
+        /// <para/>
+        /// You can specify a subset of file types to be displayed by setting the
+        /// <see cref="Filter"/> property. Each file type can represent a specific type of file,
+        /// such as the following:
+        /// <list type="bullet">
+        /// <item><description>Word Documents (*.doc)</description></item>
+        /// <item><description>Excel Worksheets (*.xls)</description></item>
+        /// <item><description>PowerPoint Presentations (*.ppt)</description></item>
+        /// </list>
+        /// Alternatively, a file type can represent a group of related file types, such as the
+        /// following:
+        /// <list type="bullet">
+        /// <item><description>Office Files (*.doc, *.xls, *.ppt)</description></item>
+        /// <item><description>All Files (*.*)</description></item>
+        /// </list>
+        /// To specify a subset of the types of files that are displayed, you set the
+        /// <see cref="Filter"/> property with a string value (the <i>filter string</i>) that
+        /// specifies one or more types of files to filter by. The following shows the expected
+        /// format of the filter string:
+        /// <code>
+        /// FileType1[[|FileType2]...[|FileTypeN]]
+        /// </code>
+        /// You use the following format to describe each file type:
+        /// <code>
+        /// Label|Extension1[[;Extension2]...[;ExtensionN]]
+        /// </code>
+        /// The <i>Label</i> part is a human-readable string value that describes the file type,
+        /// such as the following:
+        /// <list type="bullet">
+        /// <item><description>"Word Documents"</description></item>
+        /// <item><description>"Excel Worksheets"</description></item>
+        /// <item><description>"PowerPoint Presentations"</description></item>
+        /// <item><description>"Office Files"</description></item>
+        /// <item><description>"All Files"</description></item>
+        /// </list>
+        /// Each file type must be described by at least one <i>Extension</i>. If more than one
+        /// <i>Extension</i> is used, each <i>Extension</i> must be separated by a semicolon (";").
+        /// For example:
+        /// <list type="bullet">
+        /// <item><description>"*.doc"</description></item>
+        /// <item><description>"*.xls;"</description></item>
+        /// <item><description>"*.ppt"</description></item>
+        /// <item><description>"*.doc;*.xls;*.ppt"</description></item>
+        /// <item><description>"*.*"</description></item>
+        /// </list>
+        /// The following are complete examples of valid <see cref="Filter"/> string values:
+        /// <list type="bullet">
+        /// <item><description>Word Documents|*.doc</description></item>
+        /// <item><description>Excel Worksheets|*.xls</description></item>
+        /// <item><description>PowerPoint Presentations|*.ppt</description></item>
+        /// <item><description>Office Files|*.doc;*.xls;*.ppt</description></item>
+        /// <item><description>All Files|*.*</description></item>
+        /// <item><description>Word Documents|*.doc|Excel Worksheets|*.xls|PowerPoint Presentations|*.ppt|Office Files|*.doc;*.xls;*.ppt|All Files|*.*</description></item>
+        /// </list>
+        /// Each file type that is included in the filter is added as a separate item to the
+        /// <b>Files of type</b>: drop-down list in the open file dialog or the save file dialog.
+        /// <para/>
+        /// The user can choose a file type from this list to filter by. By default, the first item
+        /// in the list (for example, the first file type) is selected when the open file dialog or
+        /// save file dialog is displayed. To specify that another file type to be selected, you
+        /// set the <see cref="FilterIndex"/> property before showing the open file dialog or the
+        /// save file dialog.
         /// </remarks>
         public string Filter { get; set; } = string.Empty;
 
         /// <summary>
         /// Gets or sets the index of the filter currently selected in a file dialog.
         /// </summary>
-        /// <returns>
+        /// <value>
         /// The <see cref="int" /> that is the index of the selected filter. The default is 1.
-        /// </returns>
+        /// </value>
+        /// <remarks>
+        /// This index is 1-based, not 0-based, due to compatibility requirements with the
+        /// underlying Win32 API.
+        /// </remarks>
         public int FilterIndex { get; set; } = 1;
 
         /// <summary>
         /// Gets or sets the initial directory that is displayed by a file dialog.
         /// </summary>
-        /// <remarks>
+        /// <value>
         /// A <see cref="string"/> that contains the initial directory. The default is
         /// <see cref="string.Empty"/>.
+        /// </value>
+        /// <remarks>
+        /// If there is no initial directory set, this property will contain
+        /// <see cref="string.Empty"/> rather than a <c>null</c> string.
         /// </remarks>
         public string InitialDirectory { get; set; } = string.Empty;
 
         /// <summary>
         /// Gets or sets the text that appears in the title bar of a file dialog.
         /// </summary>
-        /// <remarks>
+        /// <value>
         /// A <see cref="string"/> that is the text that appears in the title bar of a file dialog.
         /// The default is <see cref="string.Empty"/>.
+        /// </value>
+        /// <remarks>
+        /// If <see cref="Title"/> is <c>null</c> or <see cref="string.Empty"/>, a default,
+        /// localized value is used, such as "Save As" or "Open".
         /// </remarks>
         public string Title { get; set; } = string.Empty;
     }
