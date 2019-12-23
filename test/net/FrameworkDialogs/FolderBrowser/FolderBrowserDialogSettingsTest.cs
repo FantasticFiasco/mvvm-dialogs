@@ -6,14 +6,14 @@ using NUnit.Framework;
 
 namespace MvvmDialogs.FrameworkDialogs.FolderBrowser
 {
-    private static readonly string[] ExcludedPropertyNames = new string[]
-    {
-        "Container"
-    };
-
     [TestFixture]
     public class FolderBrowserDialogSettingsTest
     {
+        private static readonly string[] ExcludedPropertyNames = new[]
+        {
+            "Container"
+        };
+
         [Test]
         public void NativeDialogSettingsParity()
         {
