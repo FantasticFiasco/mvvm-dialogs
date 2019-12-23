@@ -31,6 +31,5 @@ namespace MvvmDialogs.FrameworkDialogs.FolderBrowser
                 .GetProperties(BindingFlags.Public | BindingFlags.Instance)
                 .OrderBy(p => p.Name)
                 .Select(p => p.Name);
-        }
     }
 }
