@@ -19,8 +19,8 @@ namespace MvvmDialogs.FrameworkDialogs.FolderBrowser
         public void NativeDialogSettingsParity()
         {
             // Arrange
-            var folderBrowserDialogPropertyNames = GetPropertyNames(FolderBrowserDialog).Except(ExcludedPropertyNames);
-            var folderBrowserDialogSettingsPropertyNames = GetPropertyNames(FolderBrowserDialogSettings);
+            var folderBrowserDialogPropertyNames = GetPropertyNames(typeof(FolderBrowserDialog)).Except(ExcludedPropertyNames);
+            var folderBrowserDialogSettingsPropertyNames = GetPropertyNames(typeof(FolderBrowserDialogSettings));
 
             // Assert
             Assert.That(folderBrowserDialogPropertyNames, Is.EqualTo(folderBrowserDialogSettingsPropertyNames));
