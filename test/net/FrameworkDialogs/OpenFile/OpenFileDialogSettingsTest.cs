@@ -1,4 +1,6 @@
-using System;
+using System.Linq;
+using Microsoft.Win32;
+using MvvmDialogs.FrameworkDialogs.Utils;
 using NUnit.Framework;
 
 namespace MvvmDialogs.FrameworkDialogs.OpenFile
@@ -9,7 +11,17 @@ namespace MvvmDialogs.FrameworkDialogs.OpenFile
         [Test]
         public void NativeDialogSettingsParity()
         {
-            throw new NotImplementedException();
+            // Arrange
+            var folderBrowserDialogPropertyNames = string.Join(
+                ", ",
+                DialogSettings.GetPropertyNames(typeof(OpenFileDialog)).Except(DialogSettings.ExcludedPropertyNames));
+
+            var folderBrowserDialogSettingsPropertyNames = string.Join(
+                ", ",
+                DialogSettings.GetPropertyNames(typeof(OpenFileDialogSettings)));
+
+            // Assert
+            Assert.That(folderBrowserDialogPropertyNames, Is.EqualTo(folderBrowserDialogSettingsPropertyNames));
         }
     }
 }

@@ -8,9 +8,13 @@ namespace MvvmDialogs.FrameworkDialogs.OpenFile
     public class OpenFileDialogSettings : FileDialogSettings
     {
         /// <summary>
-        /// Gets or sets a value indicating whether the dialog box allows multiple files to be
-        /// selected.
+        /// Gets or sets an option indicating whether the dialog box allows users to select
+        /// multiple files.
         /// </summary>
+        /// <remarks>
+        /// <c>true</c> if multiple selections are allowed; otherwise, <c>false</c>. The default is
+        /// <c>false</c>.
+        /// </remarks>
         public bool Multiselect { get; set; }
     }
 }
