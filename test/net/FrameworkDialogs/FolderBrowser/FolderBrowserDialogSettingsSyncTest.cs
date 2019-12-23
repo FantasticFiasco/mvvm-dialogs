@@ -23,6 +23,7 @@ namespace MvvmDialogs.FrameworkDialogs.FolderBrowser
         {
             // Arrange
             settings.Description = "Some description";
+            settings.RootFolder = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles);
             settings.SelectedPath = @"C:\temp";
             settings.ShowNewFolderButton = true;
 
@@ -31,6 +32,7 @@ namespace MvvmDialogs.FrameworkDialogs.FolderBrowser
 
             // Assert
             Assert.That(dialog.Description, Is.EqualTo(settings.Description));
+            Assert.That(dialog.RootFolder, Is.EqualTo(settings.RootFolder));
             Assert.That(dialog.SelectedPath, Is.EqualTo(settings.SelectedPath));
             Assert.That(dialog.ShowNewFolderButton, Is.EqualTo(settings.ShowNewFolderButton));
         }

@@ -21,6 +21,7 @@ namespace MvvmDialogs.FrameworkDialogs.FolderBrowser
         public void ToDialog()
         {
             dialog.Description = settings.Description;
+            dialog.RootFolder = settings.RootFolder;
             dialog.SelectedPath = settings.SelectedPath;
             dialog.ShowNewFolderButton = settings.ShowNewFolderButton;
         }
