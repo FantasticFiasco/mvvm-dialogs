@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Reflection;
 using System.Windows.Forms;
 using NUnit.Framework;
@@ -11,7 +12,11 @@ namespace MvvmDialogs.FrameworkDialogs.FolderBrowser
         [Test]
         public void NativeDialogSettingsParity()
         {
-            var nativeProperties = typeof(FolderBrowserDialog).GetProperties(BindingFlags.Public | BindingFlags.Instance);
+            var nativePropertyNames = typeof(FolderBrowserDialog)
+                .GetProperties(BindingFlags.Public | BindingFlags.Instance)
+                .OrderBy(p => p.Name)
+                .Select(p => p.Name)
+                .ToArray();
 
             foreach (var x in nativeProperties)
             {
