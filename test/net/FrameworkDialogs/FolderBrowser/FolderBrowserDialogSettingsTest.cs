@@ -18,9 +18,9 @@ namespace MvvmDialogs.FrameworkDialogs.FolderBrowser
                 .Select(p => p.Name)
                 .ToArray();
 
-            foreach (var x in nativeProperties)
+            foreach (var x in nativePropertyNames)
             {
-                Console.WriteLine(x.Name);
+                Console.WriteLine(x);
             }
 
             throw new NotImplementedException();
