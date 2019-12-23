@@ -10,6 +10,15 @@ namespace MvvmDialogs.FrameworkDialogs.FolderBrowser
         [Test]
         public void NativeDialogSettingsParity()
         {
+            var nativePropertyNames = typeof(FolderBrowserDialog)
+                .GetProperties(BindingFlags.Public | BindingFlags.Instance)
+                .ToHashSet(p => p.Name);
+
+            foreach (var x in nativePropertyNames)
+            {
+                Console.WriteLine(x);
+            }
+
             throw new NotImplementedException();
         }
     }
