@@ -10,17 +10,24 @@ namespace MvvmDialogs.FrameworkDialogs.FolderBrowser
     [TestFixture]
     public class FolderBrowserDialogSettingsTest
     {
-        private static readonly string[] ExcludedPropertyNames = new[]
+        private static readonly string[] ExcludedPropertyNames =
         {
-            "Container"
+            "Container",
+            "Site",
+            "Tag"
         };
 
         [Test]
         public void NativeDialogSettingsParity()
         {
             // Arrange
-            var folderBrowserDialogPropertyNames = GetPropertyNames(typeof(FolderBrowserDialog)).Except(ExcludedPropertyNames);
-            var folderBrowserDialogSettingsPropertyNames = GetPropertyNames(typeof(FolderBrowserDialogSettings));
+            var folderBrowserDialogPropertyNames = string.Join(
+                ", ",
+                GetPropertyNames(typeof(FolderBrowserDialog)).Except(ExcludedPropertyNames));
+
+            var folderBrowserDialogSettingsPropertyNames = string.Join(
+                ", ",
+                GetPropertyNames(typeof(FolderBrowserDialogSettings)));
 
             // Assert
             Assert.That(folderBrowserDialogPropertyNames, Is.EqualTo(folderBrowserDialogSettingsPropertyNames));
