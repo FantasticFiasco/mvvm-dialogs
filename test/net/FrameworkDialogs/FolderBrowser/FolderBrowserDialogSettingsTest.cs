@@ -12,18 +12,19 @@ namespace MvvmDialogs.FrameworkDialogs.FolderBrowser
         [Test]
         public void NativeDialogSettingsParity()
         {
-            var nativePropertyNames = typeof(FolderBrowserDialog)
+            var folderBrowserDialogPropertyNames = typeof(FolderBrowserDialog)
                 .GetProperties(BindingFlags.Public | BindingFlags.Instance)
                 .OrderBy(p => p.Name)
                 .Select(p => p.Name)
                 .ToArray();
 
-            foreach (var x in nativePropertyNames)
-            {
-                Console.WriteLine(x);
-            }
+            var folderBrowserDialogSettingsPropertyNames = typeof(FolderBrowserDialogSettings)
+                .GetProperties(BindingFlags.Public | BindingFlags.Instance)
+                .OrderBy(p => p.Name)
+                .Select(p => p.Name)
+                .ToArray();
 
-            throw new NotImplementedException();
+            Assert.That(folderBrowserDialogPropertyNames, Is.EqualTo(folderBrowserDialogSettingsPropertyNames));
         }
     }
 }
