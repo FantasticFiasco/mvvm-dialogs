@@ -6,6 +6,11 @@ using NUnit.Framework;
 
 namespace MvvmDialogs.FrameworkDialogs.FolderBrowser
 {
+    private static readonly string[] ExcludedPropertyNames = new string[]
+    {
+        "Container"
+    };
+
     [TestFixture]
     public class FolderBrowserDialogSettingsTest
     {
@@ -16,6 +21,7 @@ namespace MvvmDialogs.FrameworkDialogs.FolderBrowser
                 .GetProperties(BindingFlags.Public | BindingFlags.Instance)
                 .OrderBy(p => p.Name)
                 .Select(p => p.Name)
+                .Except(ExcludedPropertyNames)
                 .ToArray();
 
             var folderBrowserDialogSettingsPropertyNames = typeof(FolderBrowserDialogSettings)
