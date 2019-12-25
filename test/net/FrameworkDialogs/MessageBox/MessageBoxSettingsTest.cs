@@ -9,7 +9,17 @@ namespace MvvmDialogs.FrameworkDialogs.MessageBox
         [Test]
         public void NativeDialogSettingsParity()
         {
-            throw new NotImplementedException();
+            // Arrange
+            var messageBoxSettingsPropertyNames = string.Join(
+                ", ",
+                DialogSettings.GetPropertyNames(typeof(MessageBoxSettings)));
+
+            var messageBoxPropertyNames = string.Join(
+                ", ",
+                DialogSettings.GetMessageBoxParameters());
+
+            // Assert
+            Assert.That(messageBoxSettingsPropertyNames, Is.EqualTo(messageBoxPropertyNames));
         }
     }
 }

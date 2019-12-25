@@ -12,13 +12,13 @@ namespace MvvmDialogs.FrameworkDialogs.SaveFile
         public void NativeDialogSettingsParity()
         {
             // Arrange
-            var saveFileDialogPropertyNames = string.Join(
-                ", ",
-                DialogSettings.GetPropertyNames(typeof(SaveFileDialog)).Except(DialogSettings.ExcludedPropertyNames));
-
             var saveFileDialogSettingsPropertyNames = string.Join(
                 ", ",
                 DialogSettings.GetPropertyNames(typeof(SaveFileDialogSettings)));
+
+            var saveFileDialogPropertyNames = string.Join(
+                ", ",
+                DialogSettings.GetPropertyNames(typeof(SaveFileDialog)).Except(DialogSettings.ExcludedPropertyNames));
 
             // Assert
             Assert.That(saveFileDialogSettingsPropertyNames, Is.EqualTo(saveFileDialogPropertyNames));

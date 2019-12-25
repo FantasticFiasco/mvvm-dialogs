@@ -12,13 +12,13 @@ namespace MvvmDialogs.FrameworkDialogs.FolderBrowser
         public void NativeDialogSettingsParity()
         {
             // Arrange
-            var folderBrowserDialogPropertyNames = string.Join(
-                ", ",
-                DialogSettings.GetPropertyNames(typeof(FolderBrowserDialog)).Except(DialogSettings.ExcludedPropertyNames));
-
             var folderBrowserDialogSettingsPropertyNames = string.Join(
                 ", ",
                 DialogSettings.GetPropertyNames(typeof(FolderBrowserDialogSettings)));
+
+            var folderBrowserDialogPropertyNames = string.Join(
+                ", ",
+                DialogSettings.GetPropertyNames(typeof(FolderBrowserDialog)).Except(DialogSettings.ExcludedPropertyNames));
 
             // Assert
             Assert.That(folderBrowserDialogSettingsPropertyNames, Is.EqualTo(folderBrowserDialogPropertyNames));
