@@ -20,5 +20,14 @@ namespace MvvmDialogs.FrameworkDialogs.Utils
                 .GetProperties(BindingFlags.Public | BindingFlags.Instance)
                 .OrderBy(p => p.Name)
                 .Select(p => p.Name);
+
+        public static IEnumerable<string> GetMessageBoxParameters() =>
+            typeof(System.Windows.MessageBox)
+                .GetMethods()
+                .Where(m => m.Name == "Show")
+                .OrderBy(m => m.GetParameters().Length)
+                .Last()
+                .GetParameters()
+                .Select(p => p.Name);
     }
 }
