@@ -1,4 +1,5 @@
 using System;
+using MvvmDialogs.FrameworkDialogs.Utils;
 using NUnit.Framework;
 
 namespace MvvmDialogs.FrameworkDialogs.MessageBox
