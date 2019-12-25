@@ -17,7 +17,7 @@ namespace MvvmDialogs.FrameworkDialogs.MessageBox
         /// Gets or sets the <see cref="string"/> that specifies the title bar caption to display.
         /// Default value is an empty string.
         /// </summary>
-        public string Caption { get; set; } = "";
+        public string Caption { get; set; } = string.Empty;
 
         /// <summary>
         /// Gets or sets the <see cref="MessageBoxButton"/> value that specifies which button or
