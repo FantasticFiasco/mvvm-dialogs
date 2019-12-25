@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using MvvmDialogs.FrameworkDialogs.Utils;
 using NUnit.Framework;
 
@@ -17,7 +18,7 @@ namespace MvvmDialogs.FrameworkDialogs.MessageBox
 
             var messageBoxPropertyNames = string.Join(
                 ", ",
-                DialogSettings.GetMessageBoxParameters());
+                DialogSettings.GetMessageBoxParameters().Except(DialogSettings.ExcludedPropertyNames));
 
             // Assert
             Assert.That(messageBoxSettingsPropertyNames, Is.EqualTo(messageBoxPropertyNames));

@@ -18,7 +18,7 @@ namespace MvvmDialogs.FrameworkDialogs.FolderBrowser
 
             var folderBrowserDialogPropertyNames = string.Join(
                 ", ",
-                DialogSettings.GetPropertyNames(typeof(FolderBrowserDialog)).Except(DialogSettings.ExcludedPropertyNames));
+                DialogSettings.GetPropertyNames(typeof(FolderBrowserDialog)).Except(DialogSettings.ExcludedMessageBoxPropertyNames));
 
             // Assert
             Assert.That(folderBrowserDialogSettingsPropertyNames, Is.EqualTo(folderBrowserDialogPropertyNames));

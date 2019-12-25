@@ -15,6 +15,11 @@ namespace MvvmDialogs.FrameworkDialogs.Utils
             "Tag"
         };
 
+        public static readonly string[] ExcludedMessageBoxPropertyNames =
+        {
+            "Owner"
+        };
+
         public static IEnumerable<string> GetPropertyNames(Type type) =>
             type
                 .GetProperties(BindingFlags.Public | BindingFlags.Instance)
