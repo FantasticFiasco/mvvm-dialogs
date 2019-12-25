@@ -1,4 +1,5 @@
-﻿using System.Windows.Forms;
+﻿using System.Collections.Generic;
+using System.Windows.Forms;
 
 namespace MvvmDialogs.FrameworkDialogs
 {
@@ -23,7 +24,7 @@ namespace MvvmDialogs.FrameworkDialogs
         /// </summary>
         /// <value>
         /// <c>true</c> if warnings are displayed; otherwise, <c>false</c>. The default in this
-        /// base class is <c>false</c>.
+        /// class is <c>false</c>.
         /// </value>
         public bool CheckFileExists { get; set; } = true;
 
@@ -36,6 +37,20 @@ namespace MvvmDialogs.FrameworkDialogs
         /// <c>true</c>.
         /// </value>
         public bool CheckPathExists { get; set; } = true;
+
+        /// <summary>
+        /// Gets or sets the list of custom places for file dialog boxes.
+        /// </summary>
+        /// <value>
+        /// The list of custom places.
+        /// </value>
+        /// <remarks>
+        /// Starting in Windows Vista, open and save file dialog boxes have a <b>Favorite Links</b>
+        /// panel on the left side of the dialog box that allows the user to quickly navigate to a
+        /// different location. These links are called custom places. This property allows you to
+        /// modify the list that appears when your application uses a file dialog box.
+        /// </remarks>
+        public IList<Microsoft.Win32.FileDialogCustomPlace> CustomPlaces { get; set; } = new List<Microsoft.Win32.FileDialogCustomPlace>();
 
         /// <summary>
         /// Gets or sets a value that specifies the default extension string to use to filter the
@@ -182,6 +197,39 @@ namespace MvvmDialogs.FrameworkDialogs
         public string InitialDirectory { get; set; } = string.Empty;
 
         /// <summary>
+        /// Gets a string that only contains the file name for the selected file.
+        /// </summary>
+        /// <value>
+        /// A <see cref="string"/> that only contains the file name for the selected file. The
+        /// default is <see cref="string.Empty"/>, which is also the value when either no file is
+        /// selected or a directory is selected.
+        /// </value>
+        /// <remarks>
+        /// This value is the <see cref="FileName"/> with all path information removed. Removing
+        /// the paths makes the value appropriate for use in partial trust applications, since it
+        /// prevents applications from discovering information about the local file system.
+        /// <para/>
+        /// If more than one file name is selected (length of <see cref="SafeFileNames"/> is
+        /// greater than one) then this property contains only the first selected file name.
+        /// </remarks>
+        public string SafeFileName { internal set; get; } = string.Empty;
+
+        /// <summary>
+        /// Gets an array that contains one safe file name for each selected file.
+        /// </summary>
+        /// <value>
+        /// An array of <see cref="string"/> that contains one safe file name for each selected
+        /// file. The default is an array with a single item whose value is
+        /// <see cref="string.Empty"/>.
+        /// </value>
+        /// <remarks>
+        /// This value is the <see cref="FileNames"/> with all path information removed. Removing
+        /// the paths makes the value appropriate for use in partial trust applications, since it
+        /// prevents applications from discovering information about the local file system.
+        /// </remarks>
+        public string[] SafeFileNames { internal set; get; } = new string[0];
+
+        /// <summary>
         /// Gets or sets the text that appears in the title bar of a file dialog.
         /// </summary>
         /// <value>
@@ -193,5 +241,14 @@ namespace MvvmDialogs.FrameworkDialogs
         /// localized value is used, such as "Save As" or "Open".
         /// </remarks>
         public string Title { get; set; } = string.Empty;
+
+        /// <summary>
+        /// Gets or sets a value indicating whether the dialog accepts only valid Win32 file names.
+        /// </summary>
+        /// <value>
+        /// <c>true</c> if warnings will be shown when an invalid file name is provided; otherwise,
+        /// <c>false</c>. The default is <c>true</c>.
+        /// </value>
+        public bool ValidateNames { get; set; } = true;
     }
 }

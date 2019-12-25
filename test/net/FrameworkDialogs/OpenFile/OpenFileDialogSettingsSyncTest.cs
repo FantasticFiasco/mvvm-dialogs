@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using Microsoft.Win32;
 using NUnit.Framework;
 
@@ -25,14 +27,21 @@ namespace MvvmDialogs.FrameworkDialogs.OpenFile
             settings.AddExtension = false;
             settings.CheckFileExists = false;
             settings.CheckPathExists = false;
+            settings.CustomPlaces = new List<FileDialogCustomPlace>(new[] { new FileDialogCustomPlace(Guid.NewGuid()) });
             settings.DefaultExt = "txt";
+            settings.DereferenceLinks = true;
             settings.FileName = "SomeFile.txt";
             settings.FileNames = new[] { "SomeFile.txt" };
             settings.Filter = "Text Documents (*.txt)|*.txt|All Files (*.*)|*.*";
             settings.FilterIndex = 2;
             settings.InitialDirectory = @"C:\temp";
             settings.Multiselect = true;
+            settings.ReadOnlyChecked = true;
+            settings.SafeFileName = "SomeFile.txt";
+            settings.SafeFileNames = new []{ "SomeFile.txt" };
+            settings.ShowReadOnly = true;
             settings.Title = "Some Title";
+            settings.ValidateNames = false;
 
             // Act
             sync.ToDialog();
@@ -41,14 +50,21 @@ namespace MvvmDialogs.FrameworkDialogs.OpenFile
             Assert.That(dialog.AddExtension, Is.EqualTo(settings.AddExtension));
             Assert.That(dialog.CheckFileExists, Is.EqualTo(settings.CheckFileExists));
             Assert.That(dialog.CheckPathExists, Is.EqualTo(settings.CheckPathExists));
+            Assert.That(dialog.CustomPlaces, Is.EqualTo(settings.CustomPlaces));
             Assert.That(dialog.DefaultExt, Is.EqualTo(settings.DefaultExt));
+            Assert.That(dialog.DereferenceLinks, Is.EqualTo(settings.DereferenceLinks));
             Assert.That(dialog.FileName, Is.EqualTo(settings.FileName));
             Assert.That(dialog.FileNames, Is.EqualTo(settings.FileNames));
             Assert.That(dialog.Filter, Is.EqualTo(settings.Filter));
             Assert.That(dialog.FilterIndex, Is.EqualTo(settings.FilterIndex));
             Assert.That(dialog.InitialDirectory, Is.EqualTo(settings.InitialDirectory));
             Assert.That(dialog.Multiselect, Is.EqualTo(settings.Multiselect));
+            Assert.That(dialog.ReadOnlyChecked, Is.EqualTo(settings.ReadOnlyChecked));
+            Assert.That(dialog.SafeFileName, Is.EqualTo(settings.SafeFileName));
+            Assert.That(dialog.SafeFileNames, Is.EqualTo(settings.SafeFileNames));
+            Assert.That(dialog.ShowReadOnly, Is.EqualTo(settings.ShowReadOnly));
             Assert.That(dialog.Title, Is.EqualTo(settings.Title));
+            Assert.That(dialog.ValidateNames, Is.EqualTo(settings.ValidateNames));
         }
 
         [Test]
@@ -56,7 +72,10 @@ namespace MvvmDialogs.FrameworkDialogs.OpenFile
         {
             // Arrange
             dialog.FileName = "SomeFile.txt";
+            settings.FileNames = new[] { "SomeFile.txt" };
             dialog.FilterIndex = 2;
+            settings.SafeFileName = "SomeFile.txt";
+            settings.SafeFileNames = new[] { "SomeFile.txt" };
 
             // Act
             sync.ToSettings();
@@ -65,6 +84,8 @@ namespace MvvmDialogs.FrameworkDialogs.OpenFile
             Assert.That(settings.FileName, Is.EqualTo(dialog.FileName));
             Assert.That(settings.FileNames, Is.EqualTo(dialog.FileNames));
             Assert.That(settings.FilterIndex, Is.EqualTo(dialog.FilterIndex));
+            Assert.That(dialog.SafeFileName, Is.EqualTo(settings.SafeFileName));
+            Assert.That(dialog.SafeFileNames, Is.EqualTo(settings.SafeFileNames));
         }
     }
 }

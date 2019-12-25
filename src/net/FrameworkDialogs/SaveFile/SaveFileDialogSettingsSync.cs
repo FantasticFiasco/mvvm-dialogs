@@ -24,6 +24,7 @@ namespace MvvmDialogs.FrameworkDialogs.SaveFile
             dialog.CheckFileExists = settings.CheckFileExists;
             dialog.CheckPathExists = settings.CheckPathExists;
             dialog.CreatePrompt = settings.CreatePrompt;
+            dialog.CustomPlaces = settings.CustomPlaces;
             dialog.DefaultExt = settings.DefaultExt;
             dialog.FileName = settings.FileName;
             dialog.Filter = settings.Filter;
@@ -31,6 +32,7 @@ namespace MvvmDialogs.FrameworkDialogs.SaveFile
             dialog.InitialDirectory = settings.InitialDirectory;
             dialog.OverwritePrompt = settings.OverwritePrompt;
             dialog.Title = settings.Title;
+            dialog.ValidateNames = settings.ValidateNames;
         }
 
         public void ToSettings()
@@ -38,6 +40,8 @@ namespace MvvmDialogs.FrameworkDialogs.SaveFile
             settings.FileName = dialog.FileName;
             settings.FileNames = dialog.FileNames;
             settings.FilterIndex = dialog.FilterIndex;
+            settings.SafeFileName = dialog.SafeFileName;
+            settings.SafeFileNames = dialog.SafeFileNames;
         }
     }
 }

@@ -21,7 +21,7 @@ namespace MvvmDialogs.FrameworkDialogs.FolderBrowser
                 DialogSettings.GetPropertyNames(typeof(FolderBrowserDialogSettings)));
 
             // Assert
-            Assert.That(folderBrowserDialogPropertyNames, Is.EqualTo(folderBrowserDialogSettingsPropertyNames));
+            Assert.That(folderBrowserDialogSettingsPropertyNames, Is.EqualTo(folderBrowserDialogPropertyNames));
         }
     }
 }

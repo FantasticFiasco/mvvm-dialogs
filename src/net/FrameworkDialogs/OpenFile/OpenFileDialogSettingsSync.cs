@@ -23,13 +23,18 @@ namespace MvvmDialogs.FrameworkDialogs.OpenFile
             dialog.AddExtension = settings.AddExtension;
             dialog.CheckFileExists = settings.CheckFileExists;
             dialog.CheckPathExists = settings.CheckPathExists;
+            dialog.CustomPlaces = settings.CustomPlaces;
             dialog.DefaultExt = settings.DefaultExt;
+            dialog.DereferenceLinks = settings.DereferenceLinks;
             dialog.FileName = settings.FileName;
             dialog.Filter = settings.Filter;
             dialog.FilterIndex = settings.FilterIndex;
             dialog.InitialDirectory = settings.InitialDirectory;
             dialog.Multiselect = settings.Multiselect;
+            dialog.ReadOnlyChecked = settings.ReadOnlyChecked;
+            dialog.ShowReadOnly = settings.ShowReadOnly;
             dialog.Title = settings.Title;
+            dialog.ValidateNames = settings.ValidateNames;
         }
 
         public void ToSettings()
@@ -37,6 +42,8 @@ namespace MvvmDialogs.FrameworkDialogs.OpenFile
             settings.FileName = dialog.FileName;
             settings.FileNames = dialog.FileNames;
             settings.FilterIndex = dialog.FilterIndex;
+            settings.SafeFileName = dialog.SafeFileName;
+            settings.SafeFileNames = dialog.SafeFileNames;
         }
     }
 }

@@ -10,6 +10,7 @@ namespace MvvmDialogs.FrameworkDialogs.Utils
         public static readonly string[] ExcludedPropertyNames =
         {
             "Container",
+            "RestoreDirectory",
             "Site",
             "Tag"
         };

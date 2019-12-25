@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using Microsoft.Win32;
 using NUnit.Framework;
 
@@ -26,6 +28,7 @@ namespace MvvmDialogs.FrameworkDialogs.SaveFile
             settings.CheckFileExists = false;
             settings.CheckPathExists = false;
             settings.CreatePrompt = true;
+            settings.CustomPlaces = new List<FileDialogCustomPlace>(new[] { new FileDialogCustomPlace(Guid.NewGuid()) });
             settings.DefaultExt = "txt";
             settings.FileName = "SomeFile.txt";
             settings.FileNames = new[] { "SomeFile.txt" };
@@ -43,6 +46,7 @@ namespace MvvmDialogs.FrameworkDialogs.SaveFile
             Assert.That(dialog.CheckFileExists, Is.EqualTo(settings.CheckFileExists));
             Assert.That(dialog.CheckPathExists, Is.EqualTo(settings.CheckPathExists));
             Assert.That(dialog.CreatePrompt, Is.EqualTo(settings.CreatePrompt));
+            Assert.That(dialog.CustomPlaces, Is.EqualTo(settings.CustomPlaces));
             Assert.That(dialog.DefaultExt, Is.EqualTo(settings.DefaultExt));
             Assert.That(dialog.FileName, Is.EqualTo(settings.FileName));
             Assert.That(dialog.FileNames, Is.EqualTo(settings.FileNames));
