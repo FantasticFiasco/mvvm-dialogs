@@ -25,8 +25,8 @@ namespace MvvmDialogs.FrameworkDialogs.Utils
             typeof(System.Windows.MessageBox)
                 .GetMethods()
                 .Where(m => m.Name == "Show")
-                .SelectMany(m => m.GetParameters())
-                .OrderBy(p => p.Length)
+                .OrderBy(m => m.GetParameters().Length)
+                .Select(m => m.GetParameters())
                 .Last()
                 .Select(p => p.Name);
     }
