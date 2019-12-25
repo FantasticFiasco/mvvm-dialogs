@@ -18,7 +18,7 @@ namespace MvvmDialogs.FrameworkDialogs.MessageBox
 
             var messageBoxPropertyNames = string.Join(
                 ", ",
-                DialogSettings.GetMessageBoxParameters().Except(DialogSettings.ExcludedPropertyNames));
+                DialogSettings.GetMessageBoxParameters().Except(DialogSettings.ExcludedMessageBoxPropertyNames));
 
             // Assert
             Assert.That(messageBoxSettingsPropertyNames, Is.EqualTo(messageBoxPropertyNames));
