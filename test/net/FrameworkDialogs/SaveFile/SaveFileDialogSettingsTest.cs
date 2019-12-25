@@ -1,4 +1,6 @@
-using System;
+using System.Linq;
+using Microsoft.Win32;
+using MvvmDialogs.FrameworkDialogs.Utils;
 using NUnit.Framework;
 
 namespace MvvmDialogs.FrameworkDialogs.SaveFile
@@ -9,7 +11,17 @@ namespace MvvmDialogs.FrameworkDialogs.SaveFile
         [Test]
         public void NativeDialogSettingsParity()
         {
-            throw new NotImplementedException();
+            // Arrange
+            var saveFileDialogPropertyNames = string.Join(
+                ", ",
+                DialogSettings.GetPropertyNames(typeof(SaveFileDialog)).Except(DialogSettings.ExcludedPropertyNames));
+
+            var saveFileDialogSettingsPropertyNames = string.Join(
+                ", ",
+                DialogSettings.GetPropertyNames(typeof(SaveFileDialogSettings)));
+
+            // Assert
+            Assert.That(saveFileDialogSettingsPropertyNames, Is.EqualTo(saveFileDialogPropertyNames));
         }
     }
 }

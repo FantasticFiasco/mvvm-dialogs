@@ -71,6 +71,16 @@ namespace MvvmDialogs.FrameworkDialogs
         public string DefaultExt { get; set; } = string.Empty;
 
         /// <summary>
+        /// Gets or sets a value indicating whether a file dialog returns either the location of
+        /// the file referenced by a shortcut or the location of the shortcut file (.lnk).
+        /// </summary>
+        /// <value>
+        /// <c>true</c> to return the location referenced; <c>false</c> to return the shortcut
+        /// location. The default is <c>false</c>.
+        /// </value>
+        public bool DereferenceLinks { get; set; }
+
+        /// <summary>
         /// Gets or sets a string containing the full path of the file selected in a file dialog.
         /// </summary>
         /// <value>
