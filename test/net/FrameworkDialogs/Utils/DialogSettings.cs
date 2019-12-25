@@ -23,8 +23,8 @@ namespace MvvmDialogs.FrameworkDialogs.Utils
         public static IEnumerable<string> GetPropertyNames(Type type) =>
             type
                 .GetProperties(BindingFlags.Public | BindingFlags.Instance)
-                .OrderBy(p => p.Name)
-                .Select(p => p.Name);
+                .Select(p => p.Name)
+                .OrderBy(name => name);
 
         public static IEnumerable<string> GetMessageBoxParameters() =>
             typeof(System.Windows.MessageBox)
@@ -33,6 +33,7 @@ namespace MvvmDialogs.FrameworkDialogs.Utils
                 .OrderBy(m => m.GetParameters().Length)
                 .Select(m => m.GetParameters())
                 .Last()
-                .Select(p => Char.ToUpperInvariant(p.Name[0]) + p.Name.Substring(1));   // To camel case
+                .Select(p => Char.ToUpperInvariant(p.Name[0]) + p.Name.Substring(1))    // To camel case
+                .OrderBy(name => name);
     }
 }
