@@ -31,7 +31,8 @@ namespace MvvmDialogs.FrameworkDialogs.MessageBox
                 settings.Caption,
                 settings.Button,
                 settings.Icon,
-                settings.DefaultResult);
+                settings.DefaultResult,
+                settings.Options);
         }
     }
 }

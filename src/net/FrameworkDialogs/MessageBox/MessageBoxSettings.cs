@@ -9,9 +9,10 @@ namespace MvvmDialogs.FrameworkDialogs.MessageBox
     public class MessageBoxSettings
     {
         /// <summary>
-        /// Gets or sets the <see cref="string"/> that specifies the text to display.
+        /// Gets or sets the <see cref="MessageBoxButton"/> value that specifies which button or
+        /// buttons to display. Default value is <see cref="MessageBoxButton.OK"/>.
         /// </summary>
-        public string? MessageBoxText { get; set; }
+        public MessageBoxButton Button { get; set; } = MessageBoxButton.OK;
 
         /// <summary>
         /// Gets or sets the <see cref="string"/> that specifies the title bar caption to display.
@@ -20,10 +21,10 @@ namespace MvvmDialogs.FrameworkDialogs.MessageBox
         public string Caption { get; set; } = string.Empty;
 
         /// <summary>
-        /// Gets or sets the <see cref="MessageBoxButton"/> value that specifies which button or
-        /// buttons to display. Default value is <see cref="MessageBoxButton.OK"/>.
+        /// Gets or sets the <see cref="MessageBoxResult"/> value that specifies the default result
+        /// of the message box. Default value is <see cref="MessageBoxResult.None"/>.
         /// </summary>
-        public MessageBoxButton Button { get; set; } = MessageBoxButton.OK;
+        public MessageBoxResult DefaultResult { get; set; } = MessageBoxResult.None;
 
         /// <summary>
         /// Gets or sets the <see cref="MessageBoxImage"/> value that specifies the icon to
@@ -32,9 +33,14 @@ namespace MvvmDialogs.FrameworkDialogs.MessageBox
         public MessageBoxImage Icon { get; set; } = MessageBoxImage.None;
 
         /// <summary>
-        /// Gets or sets the <see cref="MessageBoxResult"/> value that specifies the default result
-        /// of the message box. Default value is <see cref="MessageBoxResult.None"/>.
+        /// Gets or sets the <see cref="string"/> that specifies the text to display.
         /// </summary>
-        public MessageBoxResult DefaultResult { get; set; } = MessageBoxResult.None;
+        public string? MessageBoxText { get; set; }
+
+        /// <summary>
+        /// Gets or sets a <see cref="MessageBoxOptions"/> value object that specifies the options.
+        /// </summary>
+        // TODO: What is the default value?
+        public MessageBoxOptions Options { get; set; }
     }
 }
