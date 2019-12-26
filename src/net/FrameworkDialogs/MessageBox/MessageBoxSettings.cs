@@ -39,8 +39,8 @@ namespace MvvmDialogs.FrameworkDialogs.MessageBox
 
         /// <summary>
         /// Gets or sets a <see cref="MessageBoxOptions"/> value object that specifies the options.
+        /// Default value is <see cref="MessageBoxOptions.None"/>.
         /// </summary>
-        // TODO: What is the default value?
-        public MessageBoxOptions Options { get; set; }
+        public MessageBoxOptions Options { get; set; } = MessageBoxOptions.None;
     }
 }
