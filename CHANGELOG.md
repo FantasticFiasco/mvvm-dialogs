@@ -6,11 +6,15 @@ This project adheres to [Semantic Versioning](http://semver.org/) and is followi
 
 ## Unreleased
 
+### :zap: Added
+
+- [#91](https://github.com/FantasticFiasco/mvvm-dialogs/issues/91) - TODO (endorsed by [@Kimmerest](https://github.com/Kimmerest))
+
 ## 6.0.0 - 2019-11-02
 
 ### :zap: Added
 
-- [#55](https://github.com/FantasticFiasco/mvvm-dialogs/issues/55) - Support for .NET Core 3.0
+- [#55](https://github.com/FantasticFiasco/mvvm-dialogs/issues/55) - Support for .NET Core 3.0 (endorsed by [@virzak](https://github.com/virzak))
 - [#55](https://github.com/FantasticFiasco/mvvm-dialogs/issues/55) - NuGet package supporting .NET 4.5.2, .NET 4.6.2 and .NET 4.7.2
 
 ### :dizzy: Changed
@@ -33,7 +37,7 @@ This project adheres to [Semantic Versioning](http://semver.org/) and is followi
 
 ### :syringe: Fixed
 
-- [#49](https://github.com/FantasticFiasco/mvvm-dialogs/issues/49) - `FilterIndex` wasn't updated on closed Open/Save File dialog
+- [#49](https://github.com/FantasticFiasco/mvvm-dialogs/issues/49) - `FilterIndex` wasn't updated on closed Open/Save File dialog (found by [@ericdc66](https://github.com/ericdc66))
 
 ## 5.2.0 - 2018-10-11
 
@@ -79,7 +83,7 @@ This project adheres to [Semantic Versioning](http://semver.org/) and is followi
 
 ### :zap: Added
 
-- [#14](https://github.com/FantasticFiasco/mvvm-dialogs/issues/14) - Support for showing custom WPF dialogs by implementing `IWindow`
+- [#14](https://github.com/FantasticFiasco/mvvm-dialogs/issues/14) - Support for showing custom WPF dialogs by implementing `IWindow` (endorsed by [@wakuflair](https://github.com/wakuflair))
 - Support for showing custom UWP content dialogs by implementing `IContentDialog`
 
 ## 3.0.0 - 2016-09-21
@@ -92,14 +96,14 @@ This project adheres to [Semantic Versioning](http://semver.org/) and is followi
 
 ### :zap: Added
 
-- [#8](https://github.com/FantasticFiasco/mvvm-dialogs/issues/8) - Support for Universal Windows Platform (UWP)
+- [#8](https://github.com/FantasticFiasco/mvvm-dialogs/issues/8) - Support for Universal Windows Platform (UWP) (endorsed by [@MrWolfPST](https://github.com/MrWolfPST))
 - Add `ViewNotRegisteredException` that is thrown by `IDialogService` when view is unregistered
 
 ## 1.2.16 - 2016-01-13
 
 ### :syringe: Fixed
 
-- [#2](https://github.com/FantasticFiasco/mvvm-dialogs/issues/2) - Fixed issue where exception was thrown when unregistering a view
+- [#2](https://github.com/FantasticFiasco/mvvm-dialogs/issues/2) - Fixed issue where exception was thrown when unregistering a view (found by [@Andy360](https://github.com/Andy360))
 
 ## 1.2.0 - 2015-12-14
 
@@ -111,7 +115,7 @@ This project adheres to [Semantic Versioning](http://semver.org/) and is followi
 
 ### :syringe: Fixed
 
-- [#3](https://github.com/FantasticFiasco/mvvm-dialogs/issues/3) - Fixed issue where exception no longer is thrown when the property changed event for `IModalDialogViewModel.DialogResult` is sent twice
+- [#3](https://github.com/FantasticFiasco/mvvm-dialogs/issues/3) - Fixed issue where exception no longer is thrown when the property changed event for `IModalDialogViewModel.DialogResult` is sent twice (found by [@igitur](https://github.com/igitur))
 
 ## 1.1.3 - 2015-07-07
 
