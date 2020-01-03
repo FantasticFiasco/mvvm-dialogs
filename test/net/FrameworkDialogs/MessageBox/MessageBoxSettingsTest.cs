@@ -1,4 +1,3 @@
-using System;
 using System.Linq;
 using MvvmDialogs.FrameworkDialogs.Utils;
 using NUnit.Framework;

@@ -1,10 +1,9 @@
 ﻿using System.Windows;
-using WinMessageBox = System.Windows.MessageBox;
 
 namespace MvvmDialogs.FrameworkDialogs.MessageBox
 {
     /// <summary>
-    /// Settings for <see cref="WinMessageBox"/>.
+    /// Settings for <see cref="System.Windows.MessageBox"/>.
     /// </summary>
     public class MessageBoxSettings
     {
