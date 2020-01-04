@@ -25,7 +25,7 @@ namespace MvvmDialogs.FrameworkDialogs.SaveFile
         {
             // Arrange
             settings.AddExtension = false;
-            settings.CheckFileExists = false;
+            settings.CheckFileExists = true;
             settings.CheckPathExists = false;
             settings.CreatePrompt = true;
 #if !PRE_NET40

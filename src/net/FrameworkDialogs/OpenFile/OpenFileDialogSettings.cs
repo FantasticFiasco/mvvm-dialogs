@@ -8,6 +8,16 @@ namespace MvvmDialogs.FrameworkDialogs.OpenFile
     public class OpenFileDialogSettings : FileDialogSettings
     {
         /// <summary>
+        /// Gets or sets a value indicating whether a file dialog displays a warning if the user
+        /// specifies a file name that does not exist.
+        /// </summary>
+        /// <value>
+        /// <c>true</c> if warnings are displayed; otherwise, <c>false</c>. The default in this
+        /// class is <c>true</c>.
+        /// </value>
+        public bool CheckFileExists { get; set; } = true;
+
+        /// <summary>
         /// Gets or sets an option indicating whether the dialog box allows users to select
         /// multiple files.
         /// </summary>
