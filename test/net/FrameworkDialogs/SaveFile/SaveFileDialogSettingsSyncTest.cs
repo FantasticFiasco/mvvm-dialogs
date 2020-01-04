@@ -83,6 +83,8 @@ namespace MvvmDialogs.FrameworkDialogs.SaveFile
             Assert.That(settings.FileName, Is.EqualTo(dialog.FileName));
             Assert.That(settings.FileNames, Is.EqualTo(dialog.FileNames));
             Assert.That(settings.FilterIndex, Is.EqualTo(dialog.FilterIndex));
+            Assert.That(settings.SafeFileName, Is.EqualTo(dialog.SafeFileName));
+            Assert.That(settings.SafeFileNames, Is.EqualTo(dialog.SafeFileNames));
         }
     }
 }

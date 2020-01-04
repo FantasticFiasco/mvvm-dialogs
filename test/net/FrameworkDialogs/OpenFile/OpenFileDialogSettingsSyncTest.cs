@@ -76,10 +76,7 @@ namespace MvvmDialogs.FrameworkDialogs.OpenFile
         {
             // Arrange
             dialog.FileName = "SomeFile.txt";
-            settings.FileNames = new[] { "SomeFile.txt" };
             dialog.FilterIndex = 2;
-            settings.SafeFileName = "SomeFile.txt";
-            settings.SafeFileNames = new[] { "SomeFile.txt" };
 
             // Act
             sync.ToSettings();
@@ -88,8 +85,8 @@ namespace MvvmDialogs.FrameworkDialogs.OpenFile
             Assert.That(settings.FileName, Is.EqualTo(dialog.FileName));
             Assert.That(settings.FileNames, Is.EqualTo(dialog.FileNames));
             Assert.That(settings.FilterIndex, Is.EqualTo(dialog.FilterIndex));
-            Assert.That(dialog.SafeFileName, Is.EqualTo(settings.SafeFileName));
-            Assert.That(dialog.SafeFileNames, Is.EqualTo(settings.SafeFileNames));
+            Assert.That(settings.SafeFileName, Is.EqualTo(dialog.SafeFileName));
+            Assert.That(settings.SafeFileNames, Is.EqualTo(dialog.SafeFileNames));
         }
     }
 }
