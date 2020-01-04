@@ -28,6 +28,7 @@ namespace MvvmDialogs.FrameworkDialogs.SaveFile
             dialog.CustomPlaces = settings.CustomPlaces;
 #endif
             dialog.DefaultExt = settings.DefaultExt;
+            dialog.DereferenceLinks = settings.DereferenceLinks;
             dialog.FileName = settings.FileName;
             dialog.Filter = settings.Filter;
             dialog.FilterIndex = settings.FilterIndex;

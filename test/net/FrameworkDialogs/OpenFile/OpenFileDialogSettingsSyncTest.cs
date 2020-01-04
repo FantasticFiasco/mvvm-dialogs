@@ -24,26 +24,26 @@ namespace MvvmDialogs.FrameworkDialogs.OpenFile
         public void ToDialog()
         {
             // Arrange
-            settings.AddExtension = false;
-            settings.CheckFileExists = false;
-            settings.CheckPathExists = false;
+            settings.AddExtension = !settings.AddExtension;
+            settings.CheckFileExists = !settings.CheckFileExists;
+            settings.CheckPathExists = !settings.CheckPathExists;
 #if !PRE_NET40
             settings.CustomPlaces = new List<FileDialogCustomPlace>(new[] { new FileDialogCustomPlace(Guid.NewGuid()) });
 #endif
             settings.DefaultExt = "txt";
-            settings.DereferenceLinks = true;
+            settings.DereferenceLinks = !settings.DereferenceLinks;
             settings.FileName = "SomeFile.txt";
             settings.FileNames = new[] { "SomeFile.txt" };
             settings.Filter = "Text Documents (*.txt)|*.txt|All Files (*.*)|*.*";
             settings.FilterIndex = 2;
             settings.InitialDirectory = @"C:\temp";
-            settings.Multiselect = true;
-            settings.ReadOnlyChecked = true;
+            settings.Multiselect = !settings.Multiselect;
+            settings.ReadOnlyChecked = !settings.ReadOnlyChecked;
             settings.SafeFileName = "SomeFile.txt";
             settings.SafeFileNames = new []{ "SomeFile.txt" };
-            settings.ShowReadOnly = true;
+            settings.ShowReadOnly = !settings.ShowReadOnly;
             settings.Title = "Some Title";
-            settings.ValidateNames = false;
+            settings.ValidateNames = !settings.ValidateNames;
 
             // Act
             sync.ToDialog();

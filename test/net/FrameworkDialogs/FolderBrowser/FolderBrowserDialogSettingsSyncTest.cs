@@ -26,7 +26,7 @@ namespace MvvmDialogs.FrameworkDialogs.FolderBrowser
             settings.Description = "Some description";
             settings.RootFolder = Environment.SpecialFolder.ProgramFiles;
             settings.SelectedPath = @"C:\temp";
-            settings.ShowNewFolderButton = true;
+            settings.ShowNewFolderButton = !settings.ShowNewFolderButton;
 
             // Act
             sync.ToDialog();

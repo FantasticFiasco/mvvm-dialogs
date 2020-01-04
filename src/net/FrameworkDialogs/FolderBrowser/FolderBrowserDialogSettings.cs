@@ -78,6 +78,6 @@ namespace MvvmDialogs.FrameworkDialogs.FolderBrowser
         /// NOTE: Setting <see cref="ShowNewFolderButton"/> to <c>false</c> does not work on
         /// Windows 2000.
         /// </remarks>
-        public bool ShowNewFolderButton { get; set; }
+        public bool ShowNewFolderButton { get; set; } = true;
     }
 }

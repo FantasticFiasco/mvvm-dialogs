@@ -24,21 +24,25 @@ namespace MvvmDialogs.FrameworkDialogs.SaveFile
         public void ToDialog()
         {
             // Arrange
-            settings.AddExtension = false;
-            settings.CheckFileExists = true;
-            settings.CheckPathExists = false;
-            settings.CreatePrompt = true;
+            settings.AddExtension = !settings.AddExtension;
+            settings.CheckFileExists = !settings.CheckFileExists;
+            settings.CheckPathExists = !settings.CheckPathExists;
+            settings.CreatePrompt = !settings.CreatePrompt;
 #if !PRE_NET40
             settings.CustomPlaces = new List<FileDialogCustomPlace>(new[] { new FileDialogCustomPlace(Guid.NewGuid()) });
 #endif
             settings.DefaultExt = "txt";
+            settings.DereferenceLinks = !settings.DereferenceLinks;
             settings.FileName = "SomeFile.txt";
             settings.FileNames = new[] { "SomeFile.txt" };
             settings.Filter = "Text Documents (*.txt)|*.txt|All Files (*.*)|*.*";
             settings.FilterIndex = 2;
             settings.InitialDirectory = @"C:\temp";
-            settings.OverwritePrompt = true;
+            settings.OverwritePrompt = !settings.OverwritePrompt;
+            settings.SafeFileName = "SomeFile.txt";
+            settings.SafeFileNames = new[] { "SomeFile.txt" };
             settings.Title = "Some Title";
+            settings.ValidateNames = !settings.ValidateNames;
 
             // Act
             sync.ToDialog();
@@ -52,13 +56,17 @@ namespace MvvmDialogs.FrameworkDialogs.SaveFile
             Assert.That(dialog.CustomPlaces, Is.EqualTo(settings.CustomPlaces));
 #endif
             Assert.That(dialog.DefaultExt, Is.EqualTo(settings.DefaultExt));
+            Assert.That(dialog.DereferenceLinks, Is.EqualTo(settings.DereferenceLinks));
             Assert.That(dialog.FileName, Is.EqualTo(settings.FileName));
             Assert.That(dialog.FileNames, Is.EqualTo(settings.FileNames));
             Assert.That(dialog.Filter, Is.EqualTo(settings.Filter));
             Assert.That(dialog.FilterIndex, Is.EqualTo(settings.FilterIndex));
             Assert.That(dialog.InitialDirectory, Is.EqualTo(settings.InitialDirectory));
             Assert.That(dialog.OverwritePrompt, Is.EqualTo(settings.OverwritePrompt));
+            Assert.That(dialog.SafeFileName, Is.EqualTo(settings.SafeFileName));
+            Assert.That(dialog.SafeFileNames, Is.EqualTo(settings.SafeFileNames));
             Assert.That(dialog.Title, Is.EqualTo(settings.Title));
+            Assert.That(dialog.ValidateNames, Is.EqualTo(settings.ValidateNames));
         }
 
         [Test]

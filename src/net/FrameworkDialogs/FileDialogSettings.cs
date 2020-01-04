@@ -68,9 +68,9 @@ namespace MvvmDialogs.FrameworkDialogs
         /// </summary>
         /// <value>
         /// <c>true</c> to return the location referenced; <c>false</c> to return the shortcut
-        /// location. The default is <c>false</c>.
+        /// location. The default is <c>true</c>.
         /// </value>
-        public bool DereferenceLinks { get; set; }
+        public bool DereferenceLinks { get; set; } = true;
 
         /// <summary>
         /// Gets or sets a string containing the full path of the file selected in a file dialog.
