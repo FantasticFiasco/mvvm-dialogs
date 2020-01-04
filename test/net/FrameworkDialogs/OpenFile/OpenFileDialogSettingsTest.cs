@@ -12,16 +12,16 @@ namespace MvvmDialogs.FrameworkDialogs.OpenFile
         public void NativeDialogSettingsParity()
         {
             // Arrange
-            var openFileDialogSettingsPropertyNames = string.Join(
+            var settingsPropertyNames = string.Join(
                 ", ",
                 DialogSettings.GetPropertyNames(typeof(OpenFileDialogSettings)));
 
-            var openFileDialogPropertyNames = string.Join(
+            var dialogPropertyNames = string.Join(
                 ", ",
                 DialogSettings.GetPropertyNames(typeof(OpenFileDialog)).Except(DialogSettings.ExcludedPropertyNames));
 
             // Assert
-            Assert.That(openFileDialogSettingsPropertyNames, Is.EqualTo(openFileDialogPropertyNames));
+            Assert.That(settingsPropertyNames, Is.EqualTo(dialogPropertyNames));
         }
     }
 }
