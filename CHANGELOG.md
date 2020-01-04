@@ -8,22 +8,22 @@ This project adheres to [Semantic Versioning](http://semver.org/) and is followi
 
 ### :zap: Added
 
-- [#91](https://github.com/FantasticFiasco/mvvm-dialogs/issues/91) - TODO (proposed by [@Kimmerest](https://github.com/Kimmerest))
+- [#91](https://github.com/FantasticFiasco/mvvm-dialogs/issues/91) TODO (proposed by [@Kimmerest](https://github.com/Kimmerest))
 
-### :syringe: Fixed
+### :syringe: Changed
 
-- `` default value is changed from `` to `` to conform with the default value of ``
+- [BREAKING CHANGE] The default value of `SaveFileDialogSettings.CheckFileExists` has changed from `true` to `false`, aligning it with the default value of `SaveFileDialog`
 
 ## 6.0.0 - 2019-11-02
 
 ### :zap: Added
 
-- [#55](https://github.com/FantasticFiasco/mvvm-dialogs/issues/55) - Support for .NET Core 3.0 (proposed by [@virzak](https://github.com/virzak))
-- [#55](https://github.com/FantasticFiasco/mvvm-dialogs/issues/55) - NuGet package supporting .NET 4.5.2, .NET 4.6.2 and .NET 4.7.2
+- [#55](https://github.com/FantasticFiasco/mvvm-dialogs/issues/55) Support for .NET Core 3.0 (proposed by [@virzak](https://github.com/virzak))
+- [#55](https://github.com/FantasticFiasco/mvvm-dialogs/issues/55) NuGet package supporting .NET 4.5.2, .NET 4.6.2 and .NET 4.7.2
 
 ### :dizzy: Changed
 
-- Adaptation to [nullable references in C# 8.0](https://docs.microsoft.com/en-us/dotnet/csharp/nullable-references) introduced breaking changes to the API
+- [BREAKING CHANGE] Adaptation to [nullable references in C# 8.0](https://docs.microsoft.com/en-us/dotnet/csharp/nullable-references) introduced breaking changes to the API
 
 ## 5.3.0 - 2019-04-29
 
@@ -41,7 +41,7 @@ This project adheres to [Semantic Versioning](http://semver.org/) and is followi
 
 ### :syringe: Fixed
 
-- [#49](https://github.com/FantasticFiasco/mvvm-dialogs/issues/49) - `FilterIndex` wasn't updated on closed Open/Save File dialog (discovered by [@ericdc66](https://github.com/ericdc66))
+- [#49](https://github.com/FantasticFiasco/mvvm-dialogs/issues/49) `FilterIndex` wasn't updated on closed Open/Save File dialog (discovered by [@ericdc66](https://github.com/ericdc66))
 
 ## 5.2.0 - 2018-10-11
 
@@ -67,7 +67,7 @@ This project adheres to [Semantic Versioning](http://semver.org/) and is followi
 
 ### :skull: Removed
 
-- Reduce the constructors overloads in `DialogService` into:
+- [BREAKING CHANGE] Reduce the constructors overloads in `DialogService` into:
     - `ctor()` - Default constructor that takes no arguments
     - `ctor(IDialogFactory?, IDialogTypeLocator?, IFrameworkDialogFactory?)` - Constructor that allows full customization
 
@@ -87,27 +87,27 @@ This project adheres to [Semantic Versioning](http://semver.org/) and is followi
 
 ### :zap: Added
 
-- [#14](https://github.com/FantasticFiasco/mvvm-dialogs/issues/14) - Support for showing custom WPF dialogs by implementing `IWindow` (proposed by [@wakuflair](https://github.com/wakuflair))
+- [#14](https://github.com/FantasticFiasco/mvvm-dialogs/issues/14) [BREAKING CHANGE] Support for showing custom WPF dialogs by implementing `IWindow` (proposed by [@wakuflair](https://github.com/wakuflair))
 - Support for showing custom UWP content dialogs by implementing `IContentDialog`
 
 ## 3.0.0 - 2016-09-21
 
 ### :dizzy: Changed
 
-- Updated the constructors of `DialogService`, making the class more friendly to IoC containers
+- [BREAKING CHANGE] Updated the constructors of `DialogService`, making the class more friendly to IoC containers
 
 ## 2.0.1 - 2016-05-18
 
 ### :zap: Added
 
-- [#8](https://github.com/FantasticFiasco/mvvm-dialogs/issues/8) - Support for Universal Windows Platform (UWP) (proposed by [@MrWolfPST](https://github.com/MrWolfPST))
+- [#8](https://github.com/FantasticFiasco/mvvm-dialogs/issues/8) Support for Universal Windows Platform (UWP) (proposed by [@MrWolfPST](https://github.com/MrWolfPST))
 - Add `ViewNotRegisteredException` that is thrown by `IDialogService` when view is unregistered
 
 ## 1.2.16 - 2016-01-13
 
 ### :syringe: Fixed
 
-- [#2](https://github.com/FantasticFiasco/mvvm-dialogs/issues/2) - Fixed issue where exception was thrown when unregistering a view (discovered by [@Andy360](https://github.com/Andy360))
+- [#2](https://github.com/FantasticFiasco/mvvm-dialogs/issues/2) Fixed issue where exception was thrown when unregistering a view (discovered by [@Andy360](https://github.com/Andy360))
 
 ## 1.2.0 - 2015-12-14
 
@@ -119,7 +119,7 @@ This project adheres to [Semantic Versioning](http://semver.org/) and is followi
 
 ### :syringe: Fixed
 
-- [#3](https://github.com/FantasticFiasco/mvvm-dialogs/issues/3) - Fixed issue where exception no longer is thrown when the property changed event for `IModalDialogViewModel.DialogResult` is sent twice (discovered by [@igitur](https://github.com/igitur))
+- [#3](https://github.com/FantasticFiasco/mvvm-dialogs/issues/3) Fixed issue where exception no longer is thrown when the property changed event for `IModalDialogViewModel.DialogResult` is sent twice (discovered by [@igitur](https://github.com/igitur))
 
 ## 1.1.3 - 2015-07-07
 
