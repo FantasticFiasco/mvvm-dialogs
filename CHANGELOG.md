@@ -10,6 +10,10 @@ This project adheres to [Semantic Versioning](http://semver.org/) and is followi
 
 - [#91](https://github.com/FantasticFiasco/mvvm-dialogs/issues/91) - TODO (proposed by [@Kimmerest](https://github.com/Kimmerest))
 
+### :syringe: Fixed
+
+- `` default value is changed from `` to `` to conform with the default value of ``
+
 ## 6.0.0 - 2019-11-02
 
 ### :zap: Added
