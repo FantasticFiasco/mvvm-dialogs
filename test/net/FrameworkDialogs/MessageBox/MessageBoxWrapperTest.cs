@@ -33,7 +33,6 @@ namespace MvvmDialogs.FrameworkDialogs.MessageBox
             settings.Options = MessageBoxOptions.RightAlign;
 
             var owner = new Window();
-            var expected = MessageBoxResult.Cancel;
 
             messageBoxShow
                 .Setup(mock =>
@@ -45,13 +44,12 @@ namespace MvvmDialogs.FrameworkDialogs.MessageBox
                         settings.Icon,
                         settings.DefaultResult,
                         settings.Options))
-                .Returns(expected);
+                .Returns(MessageBoxResult.Cancel);
 
             // Act
-            var actual = dialog.Show(owner);
+            dialog.Show(owner);
 
             // Assert
-            Assert.That(actual, Is.EqualTo(expected));
             messageBoxShow.VerifyAll();
         }
     }
