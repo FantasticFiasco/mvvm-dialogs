@@ -8,11 +8,28 @@ This project adheres to [Semantic Versioning](http://semver.org/) and is followi
 
 ### :zap: Added
 
-- [#91](https://github.com/FantasticFiasco/mvvm-dialogs/issues/91) TODO (proposed by [@Kimmerest](https://github.com/Kimmerest))
+- [#91](https://github.com/FantasticFiasco/mvvm-dialogs/issues/91) Added the following settings for parity with the native Windows dialogs (proposed by [@Kimmerest](https://github.com/Kimmerest))
+- `OpenFileDialogSettings`
+    - `CustomPlaces` - The list of custom places for file dialog boxes
+    - `DereferenceLinks` - A value indicating whether a file dialog returns either the location of the file referenced by a shortcut or the location of the shortcut file (.lnk)
+    - `ReadOnlyChecked` - A value indicating whether the read-only check box displayed by the open file dialog is selected
+    - `SafeFileName` - A string that only contains the file name for the selected file
+    - `SafeFileNames` - An array that contains one safe file name for each selected file
+    - `ShowReadOnly` - A value indicating whether the open file dialog contains a read-only check box
+    - `ValidateNames` - A value indicating whether the dialog accepts only valid Win32 file names
+- `SaveFileDialogSettings`
+    - `CustomPlaces` - The list of custom places for file dialog boxes
+    - `SafeFileName` - A string that only contains the file name for the selected file
+    - `SafeFileNames` - An array that contains one safe file name for each selected file
+    - `ValidateNames` - A value indicating whether the dialog accepts only valid Win32 file names
+- `MessageBoxSettings`
+    - `Options` - A value object that specifies the options
+- `RootFolder`
+    - `RootFolder` - The root folder where the browsing starts from
 
 ### :syringe: Changed
 
-- [BREAKING CHANGE] The default value of `SaveFileDialogSettings.CheckFileExists` has changed from `true` to `false`, aligning it with the default value of `SaveFileDialog`
+- [BREAKING CHANGE] The default value of `SaveFileDialogSettings.CheckFileExists` has changed from `true` to `false`, aligning it with the default value of the native Windows `SaveFileDialog`
 
 ## 6.0.0 - 2019-11-02
 
