@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Windows;
 using MvvmDialogs.FrameworkDialogs.MessageBox;
-using WinMessageBox = System.Windows.MessageBox;
 
 namespace Demo.CustomMessageBox
 {
@@ -36,7 +35,7 @@ namespace Demo.CustomMessageBox
         {
             if (owner == null) throw new ArgumentNullException(nameof(owner));
 
-            return WinMessageBox.Show(
+            return MessageBox.Show(
                 owner,
                 settings.MessageBoxText,
                 settings.Caption,

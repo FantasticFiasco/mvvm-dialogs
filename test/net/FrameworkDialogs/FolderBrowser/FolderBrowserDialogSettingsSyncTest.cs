@@ -1,3 +1,4 @@
+using System;
 using System.Windows.Forms;
 using NUnit.Framework;
 
@@ -23,14 +24,16 @@ namespace MvvmDialogs.FrameworkDialogs.FolderBrowser
         {
             // Arrange
             settings.Description = "Some description";
+            settings.RootFolder = Environment.SpecialFolder.ProgramFiles;
             settings.SelectedPath = @"C:\temp";
-            settings.ShowNewFolderButton = true;
+            settings.ShowNewFolderButton = !settings.ShowNewFolderButton;
 
             // Act
             sync.ToDialog();
 
             // Assert
             Assert.That(dialog.Description, Is.EqualTo(settings.Description));
+            Assert.That(dialog.RootFolder, Is.EqualTo(settings.RootFolder));
             Assert.That(dialog.SelectedPath, Is.EqualTo(settings.SelectedPath));
             Assert.That(dialog.ShowNewFolderButton, Is.EqualTo(settings.ShowNewFolderButton));
         }
