@@ -6,6 +6,8 @@ This project adheres to [Semantic Versioning](http://semver.org/) and is followi
 
 ## Unreleased
 
+## 7.0.0 - 2020-01-28
+
 ### :zap: Added
 
 - [#91](https://github.com/FantasticFiasco/mvvm-dialogs/issues/91) Added the following settings for parity with the native Windows dialogs (proposed by [@Kimmerest](https://github.com/Kimmerest))
