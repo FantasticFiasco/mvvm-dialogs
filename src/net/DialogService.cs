@@ -319,7 +319,7 @@ namespace MvvmDialogs
 
             if (view == null)
             {
-                string message = $"View model of type '{viewModel.GetType()}' is not present as data context on any registered view." +
+                string message = $"View model of type '{viewModel.GetType()}' is not present as data context on any registered view. " +
                     "Please register the view by setting DialogServiceViews.IsRegistered=\"True\" in your XAML.";
 
                 throw new ViewNotRegisteredException(message);

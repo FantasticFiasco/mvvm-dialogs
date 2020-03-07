@@ -6,6 +6,10 @@ This project adheres to [Semantic Versioning](http://semver.org/) and is followi
 
 ## Unreleased
 
+### :syringe: Fixed
+
+- Typo in exception message thrown when view isn't registered
+
 ## 7.0.0 - 2020-01-28
 
 ### :zap: Added
