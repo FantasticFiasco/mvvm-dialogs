@@ -146,6 +146,7 @@ For the benefit of all we aim to play nice with existing MVVM frameworks. Creati
 
 Currently the sample application is implemented using the following frameworks.
 
+- [Caliburn.Micro](https://github.com/FantasticFiasco/mvvm-dialogs-integrated-into-caliburn-micro)
 - [MVVM Light Toolkit](https://github.com/FantasticFiasco/mvvm-dialogs-integrated-into-mvvm-light-toolkit)
 
 If your specific framework isn't among the listed, please create a new pull request and let us know.
