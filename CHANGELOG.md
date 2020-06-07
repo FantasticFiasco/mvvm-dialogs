@@ -6,6 +6,10 @@ This project adheres to [Semantic Versioning](http://semver.org/) and is followi
 
 ## Unreleased
 
+### :zap: Added
+
+- [#107](https://github.com/FantasticFiasco/mvvm-dialogs/issues/107) Support for closing a non-modal dialog using `IDialogService.Close` (proposed by [@metal450](https://github.com/metal450))
+
 ### :syringe: Fixed
 
 - Typo in exception message thrown when view isn't registered
