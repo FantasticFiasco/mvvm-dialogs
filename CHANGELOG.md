@@ -6,6 +6,8 @@ This project adheres to [Semantic Versioning](http://semver.org/) and is followi
 
 ## Unreleased
 
+## 7.1.0 - 2020-06-07
+
 ### :zap: Added
 
 - [#107](https://github.com/FantasticFiasco/mvvm-dialogs/issues/107) Support for closing a non-modal dialog using `IDialogService.Close` (proposed by [@metal450](https://github.com/metal450))
