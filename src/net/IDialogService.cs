@@ -130,6 +130,16 @@ namespace MvvmDialogs
         bool Activate(INotifyPropertyChanged viewModel);
 
         /// <summary>
+        /// Closes a non-modal dialog that previously was opened using <see cref="Show"/>,
+        /// <see cref="Show{T}"/> or <see cref="ShowCustom{T}"/>.
+        /// </summary>
+        /// <param name="viewModel">The view model of the dialog to close.</param>
+        /// <exception cref="DialogNotFoundException">
+        /// No dialog is found with specified view model as data context.
+        /// </exception>
+        void Close(INotifyPropertyChanged viewModel);
+
+        /// <summary>
         /// Displays a message box that has a message, title bar caption, button, and icon; and
         /// that accepts a default message box result and returns a result.
         /// </summary>
