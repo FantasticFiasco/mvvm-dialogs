@@ -119,6 +119,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.OpenFileDialog.Framewo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.SaveFileDialog.Framework.Test", "samples\net-framework\Demo.SaveFileDialog.Test\Demo.SaveFileDialog.Framework.Test.csproj", "{109FEE60-1C5E-422E-B420-A4B97151A16D}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Demo.CloseNonModalDialog.Core", "samples\net-core\Demo.CloseNonModalDialog\Demo.CloseNonModalDialog.Core.csproj", "{CABB5675-02EF-42A7-A2C9-E4F37D66D12B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -1125,6 +1127,26 @@ Global
 		{109FEE60-1C5E-422E-B420-A4B97151A16D}.Release|x64.Build.0 = Release|Any CPU
 		{109FEE60-1C5E-422E-B420-A4B97151A16D}.Release|x86.ActiveCfg = Release|Any CPU
 		{109FEE60-1C5E-422E-B420-A4B97151A16D}.Release|x86.Build.0 = Release|Any CPU
+		{CABB5675-02EF-42A7-A2C9-E4F37D66D12B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CABB5675-02EF-42A7-A2C9-E4F37D66D12B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CABB5675-02EF-42A7-A2C9-E4F37D66D12B}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{CABB5675-02EF-42A7-A2C9-E4F37D66D12B}.Debug|ARM.Build.0 = Debug|Any CPU
+		{CABB5675-02EF-42A7-A2C9-E4F37D66D12B}.Debug|ARM64.ActiveCfg = Debug|Any CPU
+		{CABB5675-02EF-42A7-A2C9-E4F37D66D12B}.Debug|ARM64.Build.0 = Debug|Any CPU
+		{CABB5675-02EF-42A7-A2C9-E4F37D66D12B}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{CABB5675-02EF-42A7-A2C9-E4F37D66D12B}.Debug|x64.Build.0 = Debug|Any CPU
+		{CABB5675-02EF-42A7-A2C9-E4F37D66D12B}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{CABB5675-02EF-42A7-A2C9-E4F37D66D12B}.Debug|x86.Build.0 = Debug|Any CPU
+		{CABB5675-02EF-42A7-A2C9-E4F37D66D12B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CABB5675-02EF-42A7-A2C9-E4F37D66D12B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CABB5675-02EF-42A7-A2C9-E4F37D66D12B}.Release|ARM.ActiveCfg = Release|Any CPU
+		{CABB5675-02EF-42A7-A2C9-E4F37D66D12B}.Release|ARM.Build.0 = Release|Any CPU
+		{CABB5675-02EF-42A7-A2C9-E4F37D66D12B}.Release|ARM64.ActiveCfg = Release|Any CPU
+		{CABB5675-02EF-42A7-A2C9-E4F37D66D12B}.Release|ARM64.Build.0 = Release|Any CPU
+		{CABB5675-02EF-42A7-A2C9-E4F37D66D12B}.Release|x64.ActiveCfg = Release|Any CPU
+		{CABB5675-02EF-42A7-A2C9-E4F37D66D12B}.Release|x64.Build.0 = Release|Any CPU
+		{CABB5675-02EF-42A7-A2C9-E4F37D66D12B}.Release|x86.ActiveCfg = Release|Any CPU
+		{CABB5675-02EF-42A7-A2C9-E4F37D66D12B}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -1185,6 +1207,7 @@ Global
 		{DDC4747A-54AD-4DF9-BD98-D4377C693247} = {FA937DD6-E3A8-4A9A-9C64-F4091B8F363B}
 		{A1B53145-EAAC-464B-BFD1-D55835981962} = {FA937DD6-E3A8-4A9A-9C64-F4091B8F363B}
 		{109FEE60-1C5E-422E-B420-A4B97151A16D} = {FA937DD6-E3A8-4A9A-9C64-F4091B8F363B}
+		{CABB5675-02EF-42A7-A2C9-E4F37D66D12B} = {0A8EF671-0277-4F7A-B03D-C6E227020E86}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {983A22B3-AE5B-4B67-A798-F6A6697B82A8}
