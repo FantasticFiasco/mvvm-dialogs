@@ -9,7 +9,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("TestBaseClasses")]
-[assembly: AssemblyCopyright("Copyright © 2009-2019 MVVM Dialogs contributors")]
+[assembly: AssemblyCopyright("Copyright © 2009-2020 MVVM Dialogs contributors")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

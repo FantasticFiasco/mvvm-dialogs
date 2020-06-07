@@ -10,7 +10,7 @@ using System.Windows;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("Demo.CustomOpenFileDialog")]
-[assembly: AssemblyCopyright("Copyright © 2009-2019 MVVM Dialogs contributors")]
+[assembly: AssemblyCopyright("Copyright © 2009-2020 MVVM Dialogs contributors")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
