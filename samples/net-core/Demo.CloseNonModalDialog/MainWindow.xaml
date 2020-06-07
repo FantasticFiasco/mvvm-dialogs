@@ -8,7 +8,7 @@
     mc:Ignorable="d"
     md:DialogServiceViews.IsRegistered="True"
     WindowStartupLocation="CenterScreen"
-    Title="Demo - Activate Non-Modal Dialog"
+    Title="Demo - Close Non-Modal Dialog"
     Width="300"
     Height="200"
     DataContext="{Binding Source={StaticResource Locator}, Path=MainWindow}">
@@ -25,8 +25,8 @@
         </Button>
         <Button
             AutomationProperties.AutomationId="yp7kt1tOeEqE5y2KmylhGQ"
-            Command="{Binding ActivateCommand}">
-            <TextBlock Text="Activate dialog showing current time" />
+            Command="{Binding CloseCommand}">
+            <TextBlock Text="Close dialog showing current time" />
         </Button>
     </UniformGrid>
 </Window>

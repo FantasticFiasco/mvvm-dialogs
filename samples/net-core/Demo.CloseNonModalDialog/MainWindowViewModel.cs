@@ -16,12 +16,12 @@ namespace Demo.CloseNonModalDialog
             this.dialogService = dialogService;
 
             ShowCommand = new RelayCommand(Show, CanShow);
-            ActivateCommand = new RelayCommand(Activate, CanActivate);
+            CloseCommand = new RelayCommand(Close, CanClose);
         }
 
         public RelayCommand ShowCommand { get; }
 
-        public RelayCommand ActivateCommand { get; }
+        public RelayCommand CloseCommand { get; }
 
         private void Show()
         {
@@ -29,7 +29,7 @@ namespace Demo.CloseNonModalDialog
             dialogService.Show(this, dialogViewModel);
 
             ShowCommand.RaiseCanExecuteChanged();
-            ActivateCommand.RaiseCanExecuteChanged();
+            CloseCommand.RaiseCanExecuteChanged();
         }
 
         private bool CanShow()
@@ -37,12 +37,16 @@ namespace Demo.CloseNonModalDialog
             return dialogViewModel == null;
         }
 
-        private void Activate()
+        private void Close()
         {
-            dialogService.Activate(dialogViewModel);
+            dialogService.Close(dialogViewModel);
+            dialogViewModel = null;
+
+            ShowCommand.RaiseCanExecuteChanged();
+            CloseCommand.RaiseCanExecuteChanged();
         }
 
-        private bool CanActivate()
+        private bool CanClose()
         {
             return dialogViewModel != null;
         }
