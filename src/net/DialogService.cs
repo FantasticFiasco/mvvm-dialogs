@@ -162,6 +162,28 @@ namespace MvvmDialogs
         }
 
         /// <inheritdoc />
+        public void Close(INotifyPropertyChanged viewModel)
+        {
+            if (viewModel == null) throw new ArgumentNullException(nameof(viewModel));
+
+            foreach (Window? window in Application.Current.Windows)
+            {
+                if (window == null)
+                {
+                    continue;
+                }
+
+                if (viewModel.Equals(window.DataContext))
+                {
+                    window.Close();
+                    return;
+                }
+            }
+
+            throw new DialogNotFoundException();
+        }
+
+        /// <inheritdoc />
         public MessageBoxResult ShowMessageBox(
             INotifyPropertyChanged ownerViewModel,
             string? messageBoxText,
