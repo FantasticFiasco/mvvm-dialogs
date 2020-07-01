@@ -64,6 +64,7 @@ Task("Pack")
             new NuGetPackSettings
             {
                 Version = version,
+                Symbols = true,
                 ArgumentCustomization = args => args.Append("-Symbols -SymbolPackageFormat snupkg")
             });
     });
