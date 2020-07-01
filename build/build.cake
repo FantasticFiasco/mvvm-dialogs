@@ -65,7 +65,7 @@ Task("Pack")
             {
                 Version = version,
                 Symbols = true,
-                ArgumentCustomization = args => args.Append("-Symbols -SymbolPackageFormat snupkg")
+                ArgumentCustomization = args => args.Append("-SymbolPackageFormat snupkg")
             });
     });
 
