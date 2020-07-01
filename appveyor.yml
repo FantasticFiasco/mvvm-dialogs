@@ -13,7 +13,7 @@ install:
 #              build              #
 #---------------------------------#
 build_script:
-  - cmd: PowerShell -Version 2.0 .\build\build.ps1 -Script .\build\build.cake -Verbosity Verbose
+  - cmd: PowerShell -Version 2.0 .\build\build.ps1 -Script .\build\build.cake -Verbosity Diagnostic
 
 
 #---------------------------------#
