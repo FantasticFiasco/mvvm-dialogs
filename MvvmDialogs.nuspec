@@ -19,32 +19,32 @@
     <!-- .NET Framework -->
     <file src="src\net\bin\Release\net35\MvvmDialogs.dll" target="lib\net35\MvvmDialogs.dll" />
     <file src="src\net\bin\Release\net35\MvvmDialogs.xml" target="lib\net35\MvvmDialogs.xml" />
-    <file src="src\net\bin\Release\net35\MvvmDialogs.xml" target="lib\net35\MvvmDialogs.pdb" />
+    <file src="src\net\bin\Release\net35\MvvmDialogs.pdb" target="lib\net35\MvvmDialogs.pdb" />
     <file src="src\net\bin\Release\net40\MvvmDialogs.dll" target="lib\net40\MvvmDialogs.dll" />
     <file src="src\net\bin\Release\net40\MvvmDialogs.xml" target="lib\net40\MvvmDialogs.xml" />
-    <file src="src\net\bin\Release\net40\MvvmDialogs.xml" target="lib\net40\MvvmDialogs.pdb" />
+    <file src="src\net\bin\Release\net40\MvvmDialogs.pdb" target="lib\net40\MvvmDialogs.pdb" />
     <file src="src\net\bin\Release\net45\MvvmDialogs.dll" target="lib\net45\MvvmDialogs.dll" />
     <file src="src\net\bin\Release\net45\MvvmDialogs.xml" target="lib\net45\MvvmDialogs.xml" />
-    <file src="src\net\bin\Release\net45\MvvmDialogs.xml" target="lib\net45\MvvmDialogs.pdb" />
+    <file src="src\net\bin\Release\net45\MvvmDialogs.pdb" target="lib\net45\MvvmDialogs.pdb" />
     <file src="src\net\bin\Release\net452\MvvmDialogs.dll" target="lib\net452\MvvmDialogs.dll" />
     <file src="src\net\bin\Release\net452\MvvmDialogs.xml" target="lib\net452\MvvmDialogs.xml" />
-    <file src="src\net\bin\Release\net452\MvvmDialogs.xml" target="lib\net452\MvvmDialogs.pdb" />
+    <file src="src\net\bin\Release\net452\MvvmDialogs.pdb" target="lib\net452\MvvmDialogs.pdb" />
     <file src="src\net\bin\Release\net462\MvvmDialogs.dll" target="lib\net462\MvvmDialogs.dll" />
     <file src="src\net\bin\Release\net462\MvvmDialogs.xml" target="lib\net462\MvvmDialogs.xml" />
-    <file src="src\net\bin\Release\net462\MvvmDialogs.xml" target="lib\net462\MvvmDialogs.pdb" />
+    <file src="src\net\bin\Release\net462\MvvmDialogs.pdb" target="lib\net462\MvvmDialogs.pdb" />
     <file src="src\net\bin\Release\net472\MvvmDialogs.dll" target="lib\net472\MvvmDialogs.dll" />
     <file src="src\net\bin\Release\net472\MvvmDialogs.xml" target="lib\net472\MvvmDialogs.xml" />
-    <file src="src\net\bin\Release\net472\MvvmDialogs.xml" target="lib\net472\MvvmDialogs.pdb" />
+    <file src="src\net\bin\Release\net472\MvvmDialogs.pdb" target="lib\net472\MvvmDialogs.pdb" />
 
     <!-- .NET Core -->
     <file src="src\net\bin\Release\netcoreapp3.0\MvvmDialogs.dll" target="lib\netcoreapp3.0\MvvmDialogs.dll" />
     <file src="src\net\bin\Release\netcoreapp3.0\MvvmDialogs.xml" target="lib\netcoreapp3.0\MvvmDialogs.xml" />
-    <file src="src\net\bin\Release\netcoreapp3.0\MvvmDialogs.xml" target="lib\netcoreapp3.0\MvvmDialogs.pdb" />
+    <file src="src\net\bin\Release\netcoreapp3.0\MvvmDialogs.pdb" target="lib\netcoreapp3.0\MvvmDialogs.pdb" />
 
     <!-- UWP -->
     <file src="src\universal\bin\Release\MvvmDialogs.dll" target="lib\uap10.0\MvvmDialogs.dll" />
     <file src="src\universal\bin\Release\MvvmDialogs.xml" target="lib\uap10.0\MvvmDialogs.xml" />
-    <file src="src\universal\bin\Release\MvvmDialogs.xml" target="lib\uap10.0\MvvmDialogs.pdb" />
+    <file src="src\universal\bin\Release\MvvmDialogs.pdb" target="lib\uap10.0\MvvmDialogs.pdb" />
 
     <!-- Icon -->
     <file src="build\icon_64x64.png" target="images\" />
