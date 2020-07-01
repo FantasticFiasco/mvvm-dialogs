@@ -44,7 +44,7 @@ Task("Build")
             {
                 Configuration = "Release",
                 MaxCpuCount = 0,            // Enable parallel build
-            }
+            });
     });
 
 Task("Pack")
