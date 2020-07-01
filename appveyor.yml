@@ -32,8 +32,9 @@ test:
 #      artifacts configuration    #
 #---------------------------------#
 artifacts:
-  - path: 'build\*.nupkg'
+  - path: build\*.*nupkg
     name: NuGet
+    type: NuGetPackage
 
 
 #---------------------------------#
@@ -41,18 +42,19 @@ artifacts:
 #---------------------------------#
 deploy:
   - provider: GitHub
+    tag: ${APPVEYOR_REPO_TAG_NAME}
     release: Release ${APPVEYOR_REPO_TAG_NAME}
     description: TODO
     auth_token:
       secure: de2wnJZf6k7NY0XriDpf9BkrQ4MR5ZfDDWMM+H/K4OK3w0GpuJAMRj5PrO6tKu0K
-    artifact: /.*\.nupkg/
+    artifact: NuGet
     draft: true
     on:
       APPVEYOR_REPO_TAG: true
   - provider: NuGet
     api_key:
       secure: NyNCMSmwb3Ksqj9+NgQun2Iyknq8gDeMKAniM6IcOwh1snMY5E/LgrVZmJamtvqk
+    symbol_server: https://www.nuget.org
     skip_symbols: false
-    artifact: /.*\.nupkg/
     on:
       APPVEYOR_REPO_TAG: true

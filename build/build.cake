@@ -5,7 +5,6 @@
 //////////////////////////////////////////////////////////////////////
 
 var target = Argument("target", "Default");
-var configuration = Argument("configuration", "Release");
 
 //////////////////////////////////////////////////////////////////////
 // VARIABLES
@@ -39,9 +38,13 @@ Task("Build")
     .IsDependentOn("Restore")
     .Does(() =>
     {
-        MSBuild(solution, settings => settings
-            .SetConfiguration(configuration)
-            .SetMaxCpuCount(0));    // Enable parallel build
+        MSBuild(
+            solution,
+            new MSBuildSettings
+            {
+                Configuration = "Release",
+                MaxCpuCount = 0,            // Enable parallel build
+            });
     });
 
 Task("Pack")
@@ -64,7 +67,8 @@ Task("Pack")
             new NuGetPackSettings
             {
                 Version = version,
-                Symbols = true
+                Symbols = true,
+                ArgumentCustomization = args => args.Append("-SymbolPackageFormat snupkg")
             });
     });
 
