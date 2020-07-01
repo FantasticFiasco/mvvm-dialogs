@@ -105,8 +105,6 @@
     <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>..\..\StrongName.snk</AssemblyOriginatorKeyFile>
-    <IncludeSymbols>true</IncludeSymbols>
-    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
   </PropertyGroup>
   <ItemGroup>
     <None Include="..\..\StrongName.snk">

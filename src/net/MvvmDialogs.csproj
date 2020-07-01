@@ -16,8 +16,6 @@
     <UseWpf>true</UseWpf>
     <UseWindowsForms>true</UseWindowsForms>
     <Nullable>enable</Nullable>
-    <IncludeSymbols>true</IncludeSymbols>
-    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
