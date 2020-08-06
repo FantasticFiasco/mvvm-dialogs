@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.Windows;
 using MvvmDialogs.FrameworkDialogs.FolderBrowser;
 using MvvmDialogs.FrameworkDialogs.MessageBox;
@@ -134,10 +135,10 @@ namespace MvvmDialogs
         /// <see cref="Show{T}"/> or <see cref="ShowCustom{T}"/>.
         /// </summary>
         /// <param name="viewModel">The view model of the dialog to close.</param>
-        /// <exception cref="DialogNotFoundException">
-        /// No dialog is found with specified view model as data context.
-        /// </exception>
-        void Close(INotifyPropertyChanged viewModel);
+        /// <returns>
+        /// true if the <see cref="Window"/> was successfully found; otherwise, false./>
+        /// </returns>
+        bool Close(INotifyPropertyChanged viewModel);
 
         /// <summary>
         /// Displays a message box that has a message, title bar caption, button, and icon; and

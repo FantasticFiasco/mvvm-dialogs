@@ -162,7 +162,7 @@ namespace MvvmDialogs
         }
 
         /// <inheritdoc />
-        public void Close(INotifyPropertyChanged viewModel)
+        public bool Close(INotifyPropertyChanged viewModel)
         {
             if (viewModel == null) throw new ArgumentNullException(nameof(viewModel));
 
@@ -176,11 +176,11 @@ namespace MvvmDialogs
                 if (viewModel.Equals(window.DataContext))
                 {
                     window.Close();
-                    return;
+                    return true;
                 }
             }
 
-            throw new DialogNotFoundException();
+            return false;
         }
 
         /// <inheritdoc />
