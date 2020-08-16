@@ -154,25 +154,30 @@ namespace MvvmDialogs
         }
 
         /// <inheritdoc />
-        public void Close(INotifyPropertyChanged viewModel)
+        public bool Close(INotifyPropertyChanged viewModel)
         {
             if (viewModel == null) throw new ArgumentNullException(nameof(viewModel));
 
             foreach (Window? window in Application.Current.Windows)
             {
-                if (window == null)
+                if (window == null || !viewModel.Equals(window.DataContext))
                 {
                     continue;
                 }
 
-                if (viewModel.Equals(window.DataContext))
+                try
                 {
                     window.Close();
-                    return;
+                    return true;
+                }
+                catch (Exception e)
+                {
+                    Logger.Write($"Failed to close dialog: {e}");
+                    break;
                 }
             }
 
-            throw new DialogNotFoundException();
+            return false;
         }
 
         /// <inheritdoc />
