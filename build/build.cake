@@ -52,21 +52,23 @@ Task("Pack")
     .IsDependentOn("Build")
     .Does(() =>
     {
-        var version = GetAssemblyVersion("./../Directory.Build.props");
+        var versionPrefix = GetVersionPrefix("./../Directory.Build.props");
+        var versionSuffix = GetVersionSuffix("./../Directory.Build.props");
         var isTag = EnvironmentVariable("APPVEYOR_REPO_TAG");
 
         // Unless this is a tag, this is a pre-release
         if (isTag != "true")
         {
             var sha = EnvironmentVariable("APPVEYOR_REPO_COMMIT");
-            version += $"-sha-{sha}";
+            versionSuffix = $"sha-{sha}";
         }
 
         NuGetPack(
             "./../MvvmDialogs.nuspec",
             new NuGetPackSettings
             {
-                Version = version,
+                Version = versionPrefix,
+                Suffix = versionSuffix,
                 Symbols = true,
                 ArgumentCustomization = args => args.Append("-SymbolPackageFormat snupkg")
             });

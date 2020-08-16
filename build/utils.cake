@@ -2,16 +2,26 @@
 
 using System.Text.RegularExpressions;
 
-public string GetAssemblyVersion(string filePath)
+public string GetVersionPrefix(string filePath)
 {
-    var versionNumbers = FindRegexMatchesGroupsInFile(
+    var matches = FindRegexMatchesGroupsInFile(
         new FilePath(filePath),
-        "<Version>(\\d+).(\\d+).(\\d+)</Version>",
+        "<VersionPrefix>(\\d+).(\\d+).(\\d+)</VersionPrefix>",
         RegexOptions.Multiline);
 
-    var major = versionNumbers[0][1];
-    var minor = versionNumbers[0][2];
-    var patch = versionNumbers[0][3];
+    var major = matches[0][1];
+    var minor = matches[0][2];
+    var patch = matches[0][3];
 
     return $"{major}.{minor}.{patch}";
+}
+
+public string GetVersionSuffix(string filePath)
+{
+    var matches = FindRegexMatchesGroupsInFile(
+        new FilePath(filePath),
+        "<VersionSuffix>(.+)</VersionSuffix>",
+        RegexOptions.Multiline);
+
+    return $"{matches[0][1]}";
 }
