@@ -1,5 +1,4 @@
-﻿using System;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Windows;
 using MvvmDialogs.FrameworkDialogs.FolderBrowser;
 using MvvmDialogs.FrameworkDialogs.MessageBox;
@@ -136,7 +135,7 @@ namespace MvvmDialogs
         /// </summary>
         /// <param name="viewModel">The view model of the dialog to close.</param>
         /// <returns>
-        /// true if the <see cref="Window"/> was successfully found; otherwise, false./>
+        /// true if the <see cref="Window"/> was successfully closed; otherwise, false.
         /// </returns>
         bool Close(INotifyPropertyChanged viewModel);
 

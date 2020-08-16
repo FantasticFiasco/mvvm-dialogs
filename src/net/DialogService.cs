@@ -168,15 +168,20 @@ namespace MvvmDialogs
 
             foreach (Window? window in Application.Current.Windows)
             {
-                if (window == null)
+                if (window == null || !viewModel.Equals(window.DataContext))
                 {
                     continue;
                 }
 
-                if (viewModel.Equals(window.DataContext))
+                try
                 {
                     window.Close();
                     return true;
+                }
+                catch (Exception e)
+                {
+                    Logger.Write($"Failed to close dialog: {e}");
+                    break;
                 }
             }
 
