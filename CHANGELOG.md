@@ -8,7 +8,7 @@ This project adheres to [Semantic Versioning](http://semver.org/) and is followi
 
 ### :syringe: Changed
 
-- [#116](https://github.com/FantasticFiasco/mvvm-dialogs/issues/116) [BREAKING CHANGE] `IDialogService.Close` returns `false` instead of throwing an exception when failing to close a dialog. This behavior mimics the behavior of `IDialogService.Activate`.
+- [#116](https://github.com/FantasticFiasco/mvvm-dialogs/issues/116) [BREAKING CHANGE] `IDialogService.Close` returns `false` instead of throwing an exception when failing to close a dialog. This behavior aligns with the behavior of `IDialogService.Activate`.
 
 ## 7.1.0 - 2020-06-07
 
