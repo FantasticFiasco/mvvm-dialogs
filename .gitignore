@@ -39,7 +39,6 @@ src/_ReSharper.Caches/
 
 # Cake
 build/tools/*
-!build/tools/packages.config
 
 # GhostDoc
 *.GhostDoc.xml
