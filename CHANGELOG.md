@@ -8,6 +8,10 @@ This project adheres to [Semantic Versioning](http://semver.org/) and is followi
 
 NOTE: Features with breaking changes are found on branch [releases/v8](https://github.com/FantasticFiasco/mvvm-dialogs/tree/releases/v8) and will stay there until a new major version is released. Until then the features have been published to [www.nuget.org](https://www.nuget.org/packages/MvvmDialogs/) as pre-releases to v8.
 
+### :syringe: Fixed
+
+- Specify dependency groups in nuspec for each supported framework version
+
 ## 7.1.0 - 2020-06-07
 
 ### :zap: Added

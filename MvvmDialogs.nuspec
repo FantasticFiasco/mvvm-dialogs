@@ -14,6 +14,16 @@
     <description>Framework simplifying the concept of opening dialogs from a view model when using MVVM in WPF or UWP.</description>
     <releaseNotes>For release notes, please see the change log on GitHub.</releaseNotes>
     <tags>wpf uwp mvvm dialog window messagebox openfiledialog savefiledialog folderbrowserdialog messagedialog contentdialog fileopenpicker filesavepicker folderpicker</tags>
+    <dependencies>
+      <group targetFramework=".NETFramework3.5" />
+      <group targetFramework=".NETFramework4.0" />
+      <group targetFramework=".NETFramework4.5" />
+      <group targetFramework=".NETFramework4.5.2" />
+      <group targetFramework=".NETFramework4.6.2" />
+      <group targetFramework=".NETFramework4.7.2" />
+      <group targetFramework=".NETCoreApp3.0" />
+      <group targetFramework="UAP10.0" />
+    </dependencies>
   </metadata>
   <files>
     <!-- .NET Framework -->
