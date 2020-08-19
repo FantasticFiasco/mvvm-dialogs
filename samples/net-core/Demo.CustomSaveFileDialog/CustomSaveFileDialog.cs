@@ -50,7 +50,7 @@ namespace Demo.CustomSaveFileDialog
                 OverwritePrompt = settings.OverwritePrompt,
                 Title = settings.Title
             };
-            
+
             var result = dialog.ShowDialog(owner);
 
             // Update settings
