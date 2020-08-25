@@ -20,7 +20,7 @@ public string GetVersionSuffix(string filePath)
 {
     var matches = FindRegexMatchesGroupsInFile(
         new FilePath(filePath),
-        "<VersionSuffix>(.+)</VersionSuffix>",
+        "<VersionSuffix>(.*)</VersionSuffix>",
         RegexOptions.Multiline);
 
     return $"{matches[0][1]}";
