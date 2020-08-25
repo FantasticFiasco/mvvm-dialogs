@@ -109,7 +109,8 @@ namespace MvvmDialogs
 
             PruneInternalViews();
 
-            // Register for owner window closing, since we then should unregister view reference
+            // Register for owner window closing, since we then should unregister view reference.
+            owner.Closed -= OwnerClosed;
             owner.Closed += OwnerClosed;
 
             Logger.Write($"Register view {view.Id}");
