@@ -1,7 +1,8 @@
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 
   <PropertyGroup>
-    <Version>7.1.0</Version>
+    <VersionPrefix>7.1.0</VersionPrefix>
+    <VersionSuffix></VersionSuffix>
     <Authors>Mattias Kindborg</Authors>
     <Company>FantasticFiasco</Company>
     <Product>MVVM Dialogs</Product>
