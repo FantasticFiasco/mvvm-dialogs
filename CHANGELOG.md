@@ -11,6 +11,7 @@ NOTE: Features with breaking changes are found on branch [releases/v8](https://g
 ### :syringe: Fixed
 
 - Specify dependency groups in nuspec for each supported framework version
+- [#122](https://github.com/FantasticFiasco/mvvm-dialogs/issues/122) Fix memory leak where `Window.Closed` events never where un-registered (discovered by [@peter-durrant](https://github.com/peter-durrant))
 
 ## 7.1.0 - 2020-06-07
 
