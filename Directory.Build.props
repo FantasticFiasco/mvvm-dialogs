@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <VersionPrefix>8.0.0</VersionPrefix>
-    <VersionSuffix>beta.3</VersionSuffix>
+    <VersionSuffix>beta.4</VersionSuffix>
     <Authors>Mattias Kindborg</Authors>
     <Company>FantasticFiasco</Company>
     <Product>MVVM Dialogs</Product>
