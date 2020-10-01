@@ -14,10 +14,7 @@ namespace MvvmDialogs.FrameworkDialogs
         /// Initializes a new instance of the <see cref="Win32Window"/> class.
         /// </summary>
         /// <param name="window">The WPF window to wrap.</param>
-        public Win32Window(Window window)
-        {
-            Handle = new WindowInteropHelper(window).Handle;
-        }
+        public Win32Window(Window window) => Handle = new WindowInteropHelper(window).Handle;
 
         /// <inheritdoc />
         public IntPtr Handle { get; }

@@ -145,20 +145,7 @@ namespace MvvmDialogs
         {
             if (viewModel == null) throw new ArgumentNullException(nameof(viewModel));
 
-            foreach (Window? window in Application.Current.Windows)
-            {
-                if (window == null)
-                {
-                    continue;
-                }
-
-                if (viewModel.Equals(window.DataContext))
-                {
-                    return window.Activate();
-                }
-            }
-
-            return false;
+            return (from Window? window in Application.Current.Windows where window != null where viewModel.Equals(window.DataContext) select window.Activate()).FirstOrDefault();
         }
 
         /// <inheritdoc />
@@ -310,11 +297,10 @@ namespace MvvmDialogs
         {
             void Handler(object sender, PropertyChangedEventArgs e)
             {
-                if (e.PropertyName == DialogResultPropertyName && dialog.DialogResult != viewModel.DialogResult)
-                {
-                    Logger.Write($"Dialog: {dialog.GetType()}; Result: {viewModel.DialogResult}");
-                    dialog.DialogResult = viewModel.DialogResult;
-                }
+                if (e.PropertyName != DialogResultPropertyName || dialog.DialogResult == viewModel.DialogResult)
+                    return;
+                Logger.Write($"Dialog: {dialog.GetType()}; Result: {viewModel.DialogResult}");
+                dialog.DialogResult = viewModel.DialogResult;
             }
 
             viewModel.PropertyChanged += Handler;
@@ -324,10 +310,8 @@ namespace MvvmDialogs
 
         private static void UnregisterDialogResult(
             IModalDialogViewModel viewModel,
-            PropertyChangedEventHandler handler)
-        {
+            PropertyChangedEventHandler handler) =>
             viewModel.PropertyChanged -= handler;
-        }
 
         /// <summary>
         /// Finds window corresponding to specified view model.
@@ -341,8 +325,8 @@ namespace MvvmDialogs
 
             if (view == null)
             {
-                string message = $"View model of type '{viewModel.GetType()}' is not present as data context on any registered view. " +
-                    "Please register the view by setting DialogServiceViews.IsRegistered=\"True\" in your XAML.";
+                string message =
+                    $"View model of type '{viewModel.GetType()}' is not present as data context on any registered view. Please register the view by setting DialogServiceViews.IsRegistered=\"True\" in your XAML.";
 
                 throw new ViewNotRegisteredException(message);
             }

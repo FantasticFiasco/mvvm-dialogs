@@ -16,10 +16,7 @@ namespace MvvmDialogs.DialogFactories
         /// Initializes a new instance of the <see cref="WindowWrapper"/> class.
         /// </summary>
         /// <param name="window">The window.</param>
-        public WindowWrapper(Window window)
-        {
-            this.window = window ?? throw new ArgumentNullException(nameof(window));
-        }
+        public WindowWrapper(Window window) => this.window = window ?? throw new ArgumentNullException(nameof(window));
 
         /// <inheritdoc />
         public object DataContext
@@ -43,15 +40,9 @@ namespace MvvmDialogs.DialogFactories
         }
 
         /// <inheritdoc />
-        public bool? ShowDialog()
-        {
-            return window.ShowDialog();
-        }
+        public bool? ShowDialog() => window.ShowDialog();
 
         /// <inheritdoc />
-        public void Show()
-        {
-            window.Show();
-        }
+        public void Show() => window.Show();
     }
 }

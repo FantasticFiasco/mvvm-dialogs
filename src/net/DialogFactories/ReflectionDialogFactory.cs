@@ -15,17 +15,12 @@ namespace MvvmDialogs.DialogFactories
 
             var instance = Activator.CreateInstance(dialogType);
 
-            switch (instance)
+            return instance switch
             {
-                case IWindow customDialog:
-                    return customDialog;
-
-                case Window dialog:
-                    return new WindowWrapper(dialog);
-
-                default:
-                    throw new ArgumentException($"Only dialogs of type {typeof(Window)} or {typeof(IWindow)} are supported.");
-            }
+                IWindow customDialog => customDialog,
+                Window dialog => new WindowWrapper(dialog),
+                _ => throw new ArgumentException($"Only dialogs of type {typeof(Window)} or {typeof(IWindow)} are supported.")
+            };
         }
     }
 }

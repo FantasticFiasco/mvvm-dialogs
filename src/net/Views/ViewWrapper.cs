@@ -43,8 +43,7 @@ namespace MvvmDialogs.Views
 
         public override bool Equals(object? obj)
         {
-            var other = obj as ViewWrapper;
-            if (other == null)
+            if (!(obj is ViewWrapper other))
                 return false;
 
             return Source.Equals(other.Source);
