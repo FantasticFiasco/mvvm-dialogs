@@ -11,9 +11,8 @@ namespace MvvmDialogs.FrameworkDialogs.MessageBox
             MessageBoxButton button,
             MessageBoxImage icon,
             MessageBoxResult defaultResult,
-            MessageBoxOptions options)
-        {
-            return System.Windows.MessageBox.Show(
+            MessageBoxOptions options) =>
+            System.Windows.MessageBox.Show(
                 owner,
                 messageBoxText,
                 caption,
@@ -21,6 +20,5 @@ namespace MvvmDialogs.FrameworkDialogs.MessageBox
                 icon,
                 defaultResult,
                 options);
-        }
     }
 }

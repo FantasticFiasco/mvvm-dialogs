@@ -13,10 +13,7 @@ namespace MvvmDialogs.DialogTypeLocators
         /// <summary>
         /// Initializes a new instance of the <see cref="DialogTypeLocatorCache"/> class.
         /// </summary>
-        internal DialogTypeLocatorCache()
-        {
-            cache = new Dictionary<Type, Type>();
-        }
+        internal DialogTypeLocatorCache() => cache = new Dictionary<Type, Type>();
 
         /// <summary>
         /// Adds the specified view model type with its corresponding dialog type.
