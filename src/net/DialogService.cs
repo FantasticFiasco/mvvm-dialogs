@@ -145,7 +145,12 @@ namespace MvvmDialogs
         {
             if (viewModel == null) throw new ArgumentNullException(nameof(viewModel));
 
-            return (from Window? window in Application.Current.Windows where window != null where viewModel.Equals(window.DataContext) select window.Activate()).FirstOrDefault();
+            return (
+                from Window? window in Application.Current.Windows
+                where window != null
+                where viewModel.Equals(window.DataContext)
+                select window.Activate()
+            ).FirstOrDefault();
         }
 
         /// <inheritdoc />
@@ -299,6 +304,7 @@ namespace MvvmDialogs
             {
                 if (e.PropertyName != DialogResultPropertyName || dialog.DialogResult == viewModel.DialogResult)
                     return;
+
                 Logger.Write($"Dialog: {dialog.GetType()}; Result: {viewModel.DialogResult}");
                 dialog.DialogResult = viewModel.DialogResult;
             }
@@ -332,7 +338,7 @@ namespace MvvmDialogs
             }
 
             // Get owner window
-            Window owner = view.GetOwner();
+            Window? owner = view.GetOwner();
             if (owner == null) throw new InvalidOperationException($"View of type '{view.GetType()}' is not registered.");
 
             return owner;
