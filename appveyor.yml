@@ -13,7 +13,6 @@ install:
 #              build              #
 #---------------------------------#
 build_script:
-  - ps: Get-ChildItem .\ -include bin,obj -Recurse | foreach ($_) { remove-item $_.fullname -Force -Recurse }
   - cmd: PowerShell .\build\build.ps1 -Script .\build\build.cake
 
 
