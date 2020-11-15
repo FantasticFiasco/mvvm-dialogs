@@ -14,7 +14,6 @@ namespace Demo.ModalCustomDialog
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
 
             SimpleIoc.Default.Register<MainWindowViewModel>();
-            //SimpleIoc.Default.Register<AddTextCustomDialogViewModel>();
         }
 
         public MainWindowViewModel MainWindow => ServiceLocator.Current.GetInstance<MainWindowViewModel>();
