@@ -14,7 +14,7 @@ NOTE: Features with breaking changes are found on branch [releases/v8](https://g
 
 ### :skull: Removed
 
-- Support for .NET Core 3.0 due to [deprecation as of March 3, 2020](https://dotnet.microsoft.com/platform/support/policy/dotnet-core)
+- [BREAKING CHANGE] Support for .NET Core 3.0 due to [deprecation as of March 3, 2020](https://dotnet.microsoft.com/platform/support/policy/dotnet-core)
 
 ## 7.1.1 - 2020-08-27
 
