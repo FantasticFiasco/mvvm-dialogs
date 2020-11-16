@@ -7,6 +7,7 @@ root = true
 indent_style = space
 trim_trailing_whitespace = true
 end_of_line = crlf
+insert_final_newline = true
 
 [*.cake]
 indent_style = space
