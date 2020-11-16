@@ -11,7 +11,6 @@ namespace Demo.NonModalCustomDialog
         public ViewModelLocator()
         {
             SimpleIoc.Default.Register<MainWindowViewModel>();
-            SimpleIoc.Default.Register<CurrentTimeCustomDialogViewModel>();
         }
 
         public MainWindowViewModel MainWindow => SimpleIoc.Default.GetInstance<MainWindowViewModel>();

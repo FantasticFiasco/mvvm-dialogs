@@ -11,7 +11,6 @@ namespace Demo.ModalDialog
         public ViewModelLocator()
         {
             SimpleIoc.Default.Register<MainWindowViewModel>();
-            SimpleIoc.Default.Register<AddTextDialogViewModel>();
         }
 
         public MainWindowViewModel MainWindow => SimpleIoc.Default.GetInstance<MainWindowViewModel>();
