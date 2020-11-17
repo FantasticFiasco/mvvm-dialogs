@@ -22,6 +22,7 @@
       <group targetFramework=".NETFramework4.6.2" />
       <group targetFramework=".NETFramework4.7.2" />
       <group targetFramework=".NETCoreApp3.1" />
+      <group targetFramework="net5.0-windows7.0" />
       <group targetFramework="UAP10.0" />
     </dependencies>
   </metadata>
