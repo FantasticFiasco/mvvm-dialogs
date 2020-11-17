@@ -1,18 +1,15 @@
 ﻿using System;
 using System.Windows;
-using Microsoft.Win32;
 using MvvmDialogs.FrameworkDialogs;
 using MvvmDialogs.FrameworkDialogs.OpenFile;
+using Ookii.Dialogs.Wpf;
 
 namespace Demo.CustomOpenFileDialog
 {
-    /// <remarks>
-    /// This sample differs from the .NET Framework equivalent. The reason for that is that the
-    /// dependency Ookii.Dialogs.Wpf currently doesn't support .NET Core 3.
-    /// </remarks>
     public class CustomOpenFileDialog : IFrameworkDialog
     {
         private readonly OpenFileDialogSettings settings;
+        private readonly VistaOpenFileDialog openFileDialog;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CustomOpenFileDialog"/> class.
@@ -21,6 +18,20 @@ namespace Demo.CustomOpenFileDialog
         public CustomOpenFileDialog(OpenFileDialogSettings settings)
         {
             this.settings = settings ?? throw new ArgumentNullException(nameof(settings));
+
+            openFileDialog = new VistaOpenFileDialog
+            {
+                AddExtension = settings.AddExtension,
+                CheckFileExists = settings.CheckFileExists,
+                CheckPathExists = settings.CheckPathExists,
+                DefaultExt = settings.DefaultExt,
+                FileName = settings.FileName,
+                Filter = settings.Filter,
+                FilterIndex = settings.FilterIndex,
+                InitialDirectory = settings.InitialDirectory,
+                Multiselect = settings.Multiselect,
+                Title = settings.Title
+            };
         }
 
         /// <summary>
@@ -36,26 +47,12 @@ namespace Demo.CustomOpenFileDialog
         {
             if (owner == null) throw new ArgumentNullException(nameof(owner));
 
-            var dialog = new OpenFileDialog
-            {
-                AddExtension = settings.AddExtension,
-                CheckFileExists = settings.CheckFileExists,
-                CheckPathExists = settings.CheckPathExists,
-                DefaultExt = settings.DefaultExt,
-                FileName = settings.FileName,
-                Filter = settings.Filter,
-                FilterIndex = settings.FilterIndex,
-                InitialDirectory = settings.InitialDirectory,
-                Multiselect = settings.Multiselect,
-                Title = settings.Title
-            };
-
-            var result = dialog.ShowDialog(owner);
+            var result = openFileDialog.ShowDialog(owner);
 
             // Update settings
-            settings.FileName = dialog.FileName;
-            settings.FileNames = dialog.FileNames;
-            settings.FilterIndex = dialog.FilterIndex;
+            settings.FileName = openFileDialog.FileName;
+            settings.FileNames = openFileDialog.FileNames;
+            settings.FilterIndex = openFileDialog.FilterIndex;
 
             return result;
         }
