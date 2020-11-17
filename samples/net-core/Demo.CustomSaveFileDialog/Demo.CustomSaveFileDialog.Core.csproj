@@ -6,10 +6,12 @@
     <UseWPF>true</UseWPF>
     <RootNamespace>Demo.CustomSaveFileDialog</RootNamespace>
     <AssemblyName>Demo.CustomSaveFileDialog</AssemblyName>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\src\net\MvvmDialogs.csproj" />
+    <PackageReference Include="Ookii.Dialogs.Wpf" Version="3.0.0" />
   </ItemGroup>
 
   <ItemGroup>

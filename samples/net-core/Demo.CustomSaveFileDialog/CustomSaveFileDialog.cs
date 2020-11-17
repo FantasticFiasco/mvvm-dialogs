@@ -1,18 +1,15 @@
 ﻿using System;
 using System.Windows;
-using Microsoft.Win32;
 using MvvmDialogs.FrameworkDialogs;
 using MvvmDialogs.FrameworkDialogs.SaveFile;
+using Ookii.Dialogs.Wpf;
 
 namespace Demo.CustomSaveFileDialog
 {
-    /// <remarks>
-    /// This sample differs from the .NET Framework equivalent. The reason for that is that the
-    /// dependency Ookii.Dialogs.Wpf currently doesn't support .NET Core 3.
-    /// </remarks>
     public class CustomSaveFileDialog : IFrameworkDialog
     {
         private readonly SaveFileDialogSettings settings;
+        private readonly VistaSaveFileDialog saveFileDialog;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CustomSaveFileDialog"/> class.
@@ -21,6 +18,21 @@ namespace Demo.CustomSaveFileDialog
         public CustomSaveFileDialog(SaveFileDialogSettings settings)
         {
             this.settings = settings ?? throw new ArgumentNullException(nameof(settings));
+
+            saveFileDialog = new VistaSaveFileDialog
+            {
+                AddExtension = settings.AddExtension,
+                CheckFileExists = settings.CheckFileExists,
+                CheckPathExists = settings.CheckPathExists,
+                CreatePrompt = settings.CreatePrompt,
+                DefaultExt = settings.DefaultExt,
+                FileName = settings.FileName,
+                Filter = settings.Filter,
+                FilterIndex = settings.FilterIndex,
+                InitialDirectory = settings.InitialDirectory,
+                OverwritePrompt = settings.OverwritePrompt,
+                Title = settings.Title
+            };
         }
 
         /// <summary>
@@ -36,27 +48,12 @@ namespace Demo.CustomSaveFileDialog
         {
             if (owner == null) throw new ArgumentNullException(nameof(owner));
 
-            var dialog = new SaveFileDialog
-            {
-                AddExtension = settings.AddExtension,
-                CheckFileExists = settings.CheckFileExists,
-                CheckPathExists = settings.CheckPathExists,
-                CreatePrompt = settings.CreatePrompt,
-                DefaultExt = settings.DefaultExt,
-                FileName = settings.FileName,
-                Filter = settings.Filter,
-                FilterIndex = settings.FilterIndex,
-                InitialDirectory = settings.InitialDirectory,
-                OverwritePrompt = settings.OverwritePrompt,
-                Title = settings.Title
-            };
-
-            var result = dialog.ShowDialog(owner);
+            var result = saveFileDialog.ShowDialog(owner);
 
             // Update settings
-            settings.FileName = dialog.FileName;
-            settings.FileNames = dialog.FileNames;
-            settings.FilterIndex = dialog.FilterIndex;
+            settings.FileName = saveFileDialog.FileName;
+            settings.FileNames = saveFileDialog.FileNames;
+            settings.FilterIndex = saveFileDialog.FilterIndex;
 
             return result;
         }
