@@ -1,18 +1,15 @@
 ﻿using System;
 using System.Windows;
-using System.Windows.Forms;
 using MvvmDialogs.FrameworkDialogs;
 using MvvmDialogs.FrameworkDialogs.FolderBrowser;
+using Ookii.Dialogs.Wpf;
 
 namespace Demo.CustomFolderBrowserDialog
 {
-    /// <remarks>
-    /// This sample differs from the .NET Framework equivalent. The reason for that is that the
-    /// dependency Ookii.Dialogs.Wpf currently doesn't support .NET Core 3.
-    /// </remarks>
     public class CustomFolderBrowserDialog : IFrameworkDialog
     {
         private readonly FolderBrowserDialogSettings settings;
+        private readonly VistaFolderBrowserDialog folderBrowserDialog;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="FolderBrowserDialogWrapper"/> class.
@@ -21,6 +18,13 @@ namespace Demo.CustomFolderBrowserDialog
         public CustomFolderBrowserDialog(FolderBrowserDialogSettings settings)
         {
             this.settings = settings ?? throw new ArgumentNullException(nameof(settings));
+
+            folderBrowserDialog = new VistaFolderBrowserDialog
+            {
+                Description = settings.Description,
+                SelectedPath = settings.SelectedPath,
+                ShowNewFolderButton = settings.ShowNewFolderButton
+            };
         }
 
         /// <summary>
@@ -36,33 +40,12 @@ namespace Demo.CustomFolderBrowserDialog
         {
             if (owner == null) throw new ArgumentNullException(nameof(owner));
 
-            using (var dialog = new FolderBrowserDialog())
-            {
-                // Update dialog
-                dialog.Description = settings.Description;
-                dialog.SelectedPath = settings.SelectedPath;
-                dialog.ShowNewFolderButton = settings.ShowNewFolderButton;
+            var result = folderBrowserDialog.ShowDialog(owner);
 
-                // Show dialog
-                var result = dialog.ShowDialog(new Win32Window(owner));
+            // Update settings
+            settings.SelectedPath = folderBrowserDialog.SelectedPath;
 
-                // Update settings
-                settings.SelectedPath = dialog.SelectedPath;
-
-                switch (result)
-                {
-                    case DialogResult.OK:
-                    case DialogResult.Yes:
-                        return true;
-
-                    case DialogResult.No:
-                    case DialogResult.Abort:
-                        return false;
-
-                    default:
-                        return null;
-                }
-            }
+            return result;
         }
     }
 }
