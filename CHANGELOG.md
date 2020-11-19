@@ -6,6 +6,8 @@ This project adheres to [Semantic Versioning](http://semver.org/) and is followi
 
 ## Unreleased
 
+## 8.0.0 - 2020-11-19
+
 ### :zap: Added
 
 - Support for .NET Core 3.1
