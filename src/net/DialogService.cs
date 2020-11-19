@@ -145,12 +145,16 @@ namespace MvvmDialogs
         {
             if (viewModel == null) throw new ArgumentNullException(nameof(viewModel));
 
-            return (
-                from Window? window in Application.Current.Windows
-                where window != null
-                where viewModel.Equals(window.DataContext)
-                select window.Activate()
-            ).FirstOrDefault();
+            Window? windowToActivate =
+                (
+                    from Window? window in Application.Current.Windows
+                    where window != null
+                    where viewModel.Equals(window.DataContext)
+                    select window
+                )
+                .FirstOrDefault();
+
+            return windowToActivate?.Activate() ?? false;
         }
 
         /// <inheritdoc />
@@ -305,7 +309,7 @@ namespace MvvmDialogs
             IWindow dialog,
             IModalDialogViewModel viewModel)
         {
-            void Handler(object sender, PropertyChangedEventArgs e)
+            void Handler(object? sender, PropertyChangedEventArgs e)
             {
                 if (e.PropertyName != DialogResultPropertyName || dialog.DialogResult == viewModel.DialogResult)
                     return;
@@ -329,7 +333,7 @@ namespace MvvmDialogs
         /// </summary>
         private static Window FindOwnerWindow(INotifyPropertyChanged viewModel)
         {
-            IView view = DialogServiceViews.Views.SingleOrDefault(
+            IView? view = DialogServiceViews.Views.SingleOrDefault(
                 registeredView =>
                     registeredView.Source.IsLoaded &&
                     ReferenceEquals(registeredView.DataContext, viewModel));

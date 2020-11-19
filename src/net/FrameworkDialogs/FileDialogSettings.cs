@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿#if !PRE_NET40
+using System.Collections.Generic;
+#endif
 using System.Windows.Forms;
 
 namespace MvvmDialogs.FrameworkDialogs

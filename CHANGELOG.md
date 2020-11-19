@@ -9,6 +9,7 @@ This project adheres to [Semantic Versioning](http://semver.org/) and is followi
 ### :zap: Added
 
 - Support for .NET Core 3.1
+- Support for .NET Core 5.0
 
 ### :syringe: Changed
 
