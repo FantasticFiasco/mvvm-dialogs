@@ -96,7 +96,7 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="MvvmLight" Version="5.4.1.1" />
-    <PackageReference Include="Ookii.Dialogs.Wpf" Version="3.0.0" />
+    <PackageReference Include="Ookii.Dialogs.Wpf" Version="3.0.1" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
