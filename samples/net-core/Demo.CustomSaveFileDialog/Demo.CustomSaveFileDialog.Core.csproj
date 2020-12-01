@@ -11,7 +11,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\src\net\MvvmDialogs.csproj" />
-    <PackageReference Include="Ookii.Dialogs.Wpf" Version="3.0.1" />
+    <PackageReference Include="Ookii.Dialogs.Wpf" Version="3.1.0" />
   </ItemGroup>
 
   <ItemGroup>
