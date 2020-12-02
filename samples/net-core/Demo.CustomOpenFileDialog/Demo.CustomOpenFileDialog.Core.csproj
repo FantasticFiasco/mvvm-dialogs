@@ -6,7 +6,6 @@
     <UseWPF>true</UseWPF>
     <RootNamespace>Demo.CustomOpenFileDialog</RootNamespace>
     <AssemblyName>Demo.CustomOpenFileDialog</AssemblyName>
-    <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
 
   <ItemGroup>

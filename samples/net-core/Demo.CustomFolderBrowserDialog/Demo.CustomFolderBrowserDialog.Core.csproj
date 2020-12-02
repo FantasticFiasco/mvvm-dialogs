@@ -6,7 +6,6 @@
     <UseWPF>true</UseWPF>
     <RootNamespace>Demo.CustomFolderBrowserDialog</RootNamespace>
     <AssemblyName>Demo.CustomFolderBrowserDialog</AssemblyName>
-    <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
 
   <ItemGroup>
