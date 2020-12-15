@@ -28,7 +28,6 @@
 - [Install MVVM Dialogs via NuGet](#install-mvvm-dialogs-via-nuget)
 - [History](#history)
 - [Reputation](#reputation)
-- [Donations](#donations)
 - [Credit](#credit)
 
 ---
@@ -180,12 +179,6 @@ Hip hip hooray!
 ## Reputation
 
 MVVM Dialogs has earned enough reputation to be listed on [Awesome .NET!](https://github.com/quozd/awesome-dotnet), in company with other awesome MVVM libraries.
-
-## Donations
-
-If this project has helped you to stay productive and save money, you can buy me a cup of coffee :)
-
-[![PayPal Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.me/FantasticFiasco)
 
 ## Credit
 
