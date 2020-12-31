@@ -8,6 +8,6 @@ jobs:
   run:
     runs-on: ubuntu-latest
     steps:
-      - uses: FantasticFiasco/action-update-license-year@v1
+      - uses: FantasticFiasco/action-update-license-year@v2
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
