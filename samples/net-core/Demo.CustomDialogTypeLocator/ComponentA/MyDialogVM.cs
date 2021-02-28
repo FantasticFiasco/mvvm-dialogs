@@ -1,6 +1,8 @@
-﻿namespace Demo.CustomDialogTypeLocator.Core.ComponentA
+﻿using GalaSoft.MvmLight
+
+namespace Demo.CustomDialogTypeLocator.Core.ComponentA
 {
-    public class MyDialogVM
+    public class MyDialogVM : ViewModelBase
     {
     }
 }
