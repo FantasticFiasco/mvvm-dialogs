@@ -34,6 +34,9 @@ artifacts/
 *.snupkg
 **/packages/*
 
+# Rider IDE
+.idea
+
 # ReSharper
 src/_ReSharper.Caches/
 
@@ -42,6 +45,3 @@ build/tools/*
 
 # GhostDoc
 *.GhostDoc.xml
-
-# Rider IDE
-.idea
