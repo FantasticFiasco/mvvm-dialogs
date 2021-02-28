@@ -1,4 +1,4 @@
-﻿using GalaSoft.MvmLight
+﻿using GalaSoft.MvvmLight
 
 namespace Demo.CustomDialogTypeLocator.Core.ComponentA
 {
