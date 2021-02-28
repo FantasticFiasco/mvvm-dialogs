@@ -2,7 +2,7 @@
 using System.ComponentModel;
 using MvvmDialogs.DialogTypeLocators;
 
-namespace Demo.CustomDialogTypeLocator.Core
+namespace Demo.CustomDialogTypeLocator
 {
     public class MyCustomDialogTypeLocator : IDialogTypeLocator
     {

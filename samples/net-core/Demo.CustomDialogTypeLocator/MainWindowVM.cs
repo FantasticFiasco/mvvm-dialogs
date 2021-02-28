@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
-using Demo.CustomDialogTypeLocator.Core.ComponentA;
+using Demo.CustomDialogTypeLocator.ComponentA;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using MvvmDialogs;
 
-namespace Demo.CustomDialogTypeLocator.Core
+namespace Demo.CustomDialogTypeLocator
 {
     public class MainWindowVM : ViewModelBase
     {

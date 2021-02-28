@@ -1,7 +1,7 @@
 ﻿using GalaSoft.MvvmLight;
 using MvvmDialogs;
 
-namespace Demo.CustomDialogTypeLocator.Core.ComponentA
+namespace Demo.CustomDialogTypeLocator.ComponentA
 {
     public class MyDialogVM : ViewModelBase, IModalDialogViewModel
     {
