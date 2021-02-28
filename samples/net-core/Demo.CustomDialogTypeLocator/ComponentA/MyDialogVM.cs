@@ -3,7 +3,7 @@ using MvvmDialogs;
 
 namespace Demo.CustomDialogTypeLocator.Core.ComponentA
 {
-    public class MyDialogVM : IModalDialogViewModel, ViewModelBase
+    public class MyDialogVM : ViewModelBase, IModalDialogViewModel
     {
         private bool? dialogResult;
 
