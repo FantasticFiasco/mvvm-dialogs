@@ -6,11 +6,9 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:local="clr-namespace:Demo.CustomDialogTypeLocator.ComponentA"
     mc:Ignorable="d"
-    WindowStartupLocation="CenterScreen"
-    Height="450"
-    Width="800">
+    WindowStartupLocation="CenterOwner"
+    Width="200"
+    Height="100">
 
-    <Grid>
-        <TextBlock>This is a dialog</TextBlock>
-    </Grid>
+    <TextBlock>This is a dialog</TextBlock>
 </Window>
