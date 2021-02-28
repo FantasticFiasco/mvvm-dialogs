@@ -14,7 +14,7 @@ namespace Demo.CustomDialogTypeLocator.Core
 
         public MainWindowVM()
         {
-            dialogService = new DialogService();
+            dialogService = new DialogService(dialogTypeLocator: new MyCustomDialogTypeLocator());
 
             ShowDialogCommand = new RelayCommand(ShowDialog);
         }
