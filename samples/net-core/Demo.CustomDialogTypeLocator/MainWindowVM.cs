@@ -8,7 +8,7 @@ using MvvmDialogs;
 
 namespace Demo.CustomDialogTypeLocator.Core
 {
-    public class MainWindowVM
+    public class MainWindowVM : ViewModelBase
     {
         private readonly IDialogService dialogService;
 
