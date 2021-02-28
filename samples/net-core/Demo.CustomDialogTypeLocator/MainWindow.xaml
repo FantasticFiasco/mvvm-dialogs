@@ -15,6 +15,10 @@
         <ResourceDictionary Source="ApplicationResources.xaml" />
     </Window.Resources>
 
+    <Window.DataContext>
+        <local:MainWindowVM />
+    </Window.DataContext>
+
     <Grid>
         <Button Command="{Binding ShowDialogCommand}" Content="Open dialog" />
     </Grid>
