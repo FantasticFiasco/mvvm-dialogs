@@ -6,7 +6,7 @@
     <br>
 </h1>
 
-<h4 align="center">Framework simplifying the concept of opening dialogs from a view model when using MVVM in WPF or UWP.</h4>
+<h4 align="center">Library simplifying the concept of opening dialogs from a view model when using MVVM in WPF or UWP.</h4>
 
 <p align="center">
     <a href="https://ci.appveyor.com/project/FantasticFiasco/mvvm-dialogs/branch/master"><img src="https://ci.appveyor.com/api/projects/status/9eyvxv5jr9bybant/branch/master?svg=true"></a>
@@ -34,9 +34,9 @@
 
 ## Introduction
 
-MVVM Dialogs is a framework simplifying the concept of opening dialogs from a view model when using MVVM in WPF (Windows Presentation Framework) or UWP (Universal Windows Platform). It enables the developer to easily write unit tests for view models in the same manner unit tests are written for other classes.
+MVVM Dialogs is a library simplifying the concept of opening dialogs from a view model when using MVVM in WPF (Windows Presentation Framework) or UWP (Universal Windows Platform). It enables the developer to easily write unit tests for view models in the same manner unit tests are written for other classes.
 
-The framework has built in support for the following dialogs in WPF:
+The library has built in support for the following dialogs in WPF:
 
 - Modal window
 - Non-modal window
@@ -45,7 +45,7 @@ The framework has built in support for the following dialogs in WPF:
 - Save file dialog
 - Folder browser dialog
 
-The framework has built in support for the following dialogs in UWP:
+The library has built in support for the following dialogs in UWP:
 
 - Content dialog
 - Message dialog
