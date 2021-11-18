@@ -68,8 +68,8 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Moq" Version="4.5.30" />
-    <PackageReference Include="SpecFlow.NUnit" Version="3.9.22" />
-    <PackageReference Include="SpecFlow.Tools.MsBuild.Generation" Version="3.9.22" />
+    <PackageReference Include="SpecFlow.NUnit" Version="3.9.40" />
+    <PackageReference Include="SpecFlow.Tools.MsBuild.Generation" Version="3.9.40" />
     <PackageReference Include="TestStack.White.ScreenObjects" Version="0.13.3" />
   </ItemGroup>
   <ItemGroup />
