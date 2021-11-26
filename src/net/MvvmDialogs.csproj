@@ -18,4 +18,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\core\MvvmDialogs.Core.csproj" />
+  </ItemGroup>
+
 </Project>
