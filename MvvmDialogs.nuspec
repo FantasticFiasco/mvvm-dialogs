@@ -15,12 +15,7 @@
     <releaseNotes>For release notes, please see the change log on GitHub.</releaseNotes>
     <tags>wpf uwp mvvm dialog window messagebox openfiledialog savefiledialog folderbrowserdialog messagedialog contentdialog fileopenpicker filesavepicker folderpicker</tags>
     <dependencies>
-      <group targetFramework=".NETFramework3.5" />
-      <group targetFramework=".NETFramework4.0" />
-      <group targetFramework=".NETFramework4.5" />
-      <group targetFramework=".NETFramework4.5.2" />
-      <group targetFramework=".NETFramework4.6.2" />
-      <group targetFramework=".NETFramework4.7.2" />
+      <group targetFramework=".NETFramework4.6.1" />
       <group targetFramework=".NETCoreApp3.1" />
       <group targetFramework="net5.0-windows7.0" />
       <group targetFramework="UAP10.0" />
@@ -28,32 +23,14 @@
   </metadata>
   <files>
     <!-- .NET Framework -->
-    <file src="src\net\bin\Release\net35\MvvmDialogs.dll" target="lib\net35\MvvmDialogs.dll" />
-    <file src="src\net\bin\Release\net35\MvvmDialogs.xml" target="lib\net35\MvvmDialogs.xml" />
-    <file src="src\net\bin\Release\net35\MvvmDialogs.pdb" target="lib\net35\MvvmDialogs.pdb" />
-    <file src="src\net\bin\Release\net40\MvvmDialogs.dll" target="lib\net40\MvvmDialogs.dll" />
-    <file src="src\net\bin\Release\net40\MvvmDialogs.xml" target="lib\net40\MvvmDialogs.xml" />
-    <file src="src\net\bin\Release\net40\MvvmDialogs.pdb" target="lib\net40\MvvmDialogs.pdb" />
-    <file src="src\net\bin\Release\net45\MvvmDialogs.dll" target="lib\net45\MvvmDialogs.dll" />
-    <file src="src\net\bin\Release\net45\MvvmDialogs.xml" target="lib\net45\MvvmDialogs.xml" />
-    <file src="src\net\bin\Release\net45\MvvmDialogs.pdb" target="lib\net45\MvvmDialogs.pdb" />
-    <file src="src\net\bin\Release\net452\MvvmDialogs.dll" target="lib\net452\MvvmDialogs.dll" />
-    <file src="src\net\bin\Release\net452\MvvmDialogs.xml" target="lib\net452\MvvmDialogs.xml" />
-    <file src="src\net\bin\Release\net452\MvvmDialogs.pdb" target="lib\net452\MvvmDialogs.pdb" />
-    <file src="src\net\bin\Release\net462\MvvmDialogs.dll" target="lib\net462\MvvmDialogs.dll" />
-    <file src="src\net\bin\Release\net462\MvvmDialogs.xml" target="lib\net462\MvvmDialogs.xml" />
-    <file src="src\net\bin\Release\net462\MvvmDialogs.pdb" target="lib\net462\MvvmDialogs.pdb" />
-    <file src="src\net\bin\Release\net472\MvvmDialogs.dll" target="lib\net472\MvvmDialogs.dll" />
-    <file src="src\net\bin\Release\net472\MvvmDialogs.xml" target="lib\net472\MvvmDialogs.xml" />
-    <file src="src\net\bin\Release\net472\MvvmDialogs.pdb" target="lib\net472\MvvmDialogs.pdb" />
+    <file src="src\net\bin\Release\net461\MvvmDialogs.dll" target="lib\net461\MvvmDialogs.dll" />
+    <file src="src\net\bin\Release\net461\MvvmDialogs.xml" target="lib\net461\MvvmDialogs.xml" />
+    <file src="src\net\bin\Release\net461\MvvmDialogs.pdb" target="lib\net461\MvvmDialogs.pdb" />
 
     <!-- .NET Core -->
     <file src="src\net\bin\Release\netcoreapp3.1\MvvmDialogs.dll" target="lib\netcoreapp3.1\MvvmDialogs.dll" />
     <file src="src\net\bin\Release\netcoreapp3.1\MvvmDialogs.xml" target="lib\netcoreapp3.1\MvvmDialogs.xml" />
     <file src="src\net\bin\Release\netcoreapp3.1\MvvmDialogs.pdb" target="lib\netcoreapp3.1\MvvmDialogs.pdb" />
-    <file src="src\net\bin\Release\net5.0-windows\MvvmDialogs.dll" target="lib\net5.0-windows7.0\MvvmDialogs.dll" />
-    <file src="src\net\bin\Release\net5.0-windows\MvvmDialogs.xml" target="lib\net5.0-windows7.0\MvvmDialogs.xml" />
-    <file src="src\net\bin\Release\net5.0-windows\MvvmDialogs.pdb" target="lib\net5.0-windows7.0\MvvmDialogs.pdb" />
 
     <!-- UWP -->
     <file src="src\universal\bin\Release\MvvmDialogs.dll" target="lib\uap10.0\MvvmDialogs.dll" />

@@ -39,7 +39,11 @@ namespace Demo.MessageDialog
                 DebugSettings.EnableFrameRateCounter = true;
             }
 #endif
-            SimpleIoc.Default.Register<IDialogService>(() => new DialogService());
+            Ioc.Default.ConfigureServices(
+                new ServiceCollection()
+                .AddSingleton<IDialogService, DialogService>()
+                .AddSingleton<MainWindowViewModel>()
+                .BuildServiceProvider());
 
             Frame rootFrame = Window.Current.Content as Frame;
 

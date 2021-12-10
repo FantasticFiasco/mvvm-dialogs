@@ -28,9 +28,7 @@ namespace MvvmDialogs.FrameworkDialogs.SaveFile
             settings.CheckFileExists = !settings.CheckFileExists;
             settings.CheckPathExists = !settings.CheckPathExists;
             settings.CreatePrompt = !settings.CreatePrompt;
-#if !PRE_NET40
             settings.CustomPlaces = new List<FileDialogCustomPlace>(new[] { new FileDialogCustomPlace(Guid.NewGuid()) });
-#endif
             settings.DefaultExt = "txt";
             settings.DereferenceLinks = !settings.DereferenceLinks;
             settings.FileName = "SomeFile.txt";
@@ -52,9 +50,7 @@ namespace MvvmDialogs.FrameworkDialogs.SaveFile
             Assert.That(dialog.CheckFileExists, Is.EqualTo(settings.CheckFileExists));
             Assert.That(dialog.CheckPathExists, Is.EqualTo(settings.CheckPathExists));
             Assert.That(dialog.CreatePrompt, Is.EqualTo(settings.CreatePrompt));
-#if !PRE_NET40
             Assert.That(dialog.CustomPlaces, Is.EqualTo(settings.CustomPlaces));
-#endif
             Assert.That(dialog.DefaultExt, Is.EqualTo(settings.DefaultExt));
             Assert.That(dialog.DereferenceLinks, Is.EqualTo(settings.DereferenceLinks));
             Assert.That(dialog.FileName, Is.EqualTo(settings.FileName));
