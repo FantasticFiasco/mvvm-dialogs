@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFrameworks>netcoreapp3.1;net5.0-windows;net462</TargetFrameworks>
+    <TargetFrameworks>net462;netcoreapp3.1;net5.0-windows</TargetFrameworks>
     <UseWPF>true</UseWPF>
     <RootNamespace>Demo.OpenFileDialog</RootNamespace>
     <AssemblyName>Demo.OpenFileDialog</AssemblyName>
