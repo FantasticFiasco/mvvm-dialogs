@@ -8,8 +8,9 @@ This project adheres to [Semantic Versioning](http://semver.org/) and is followi
 
 ### :skull: Removed
 
-- [BREAKING CHANGE] Support for .NET Framework 3.5, .NET Framework 4.6.2 and .NET Framework 4.7.2
-- [BREAKING CHANGE] Support for .NET Framework 4.0, .NET Framework 4.5 and .NET Framework 4.5.2 due to [deprecation](https://docs.microsoft.com/en-us/lifecycle/products/microsoft-net-framework)
+- [BREAKING CHANGE] Support for .NET Framework 3.5
+- [BREAKING CHANGE] Support for .NET Framework 4.0 and .NET Framework 4.5 due to [deprecation as of January 12, 2016](https://docs.microsoft.com/en-us/lifecycle/products/microsoft-net-framework)
+- [BREAKING CHANGE] Support for .NET Framework 4.5.2 due to [deprecation as of April 26, 2022](https://docs.microsoft.com/en-us/lifecycle/products/microsoft-net-framework)
 
 ## 8.0.0 - 2020-11-19
 
