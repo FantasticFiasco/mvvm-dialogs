@@ -68,7 +68,7 @@ This project adheres to [Semantic Versioning](http://semver.org/) and is followi
         - `SafeFileNames` - An array that contains one safe file name for each selected file
         - `ValidateNames` - A value indicating whether the dialog accepts only valid Win32 file names
 
-### :syringe: Changed
+### :dizzy: Changed
 
 - [BREAKING CHANGE] The default value of `SaveFileDialogSettings.CheckFileExists` has changed from `true` to `false`, aligning it with the default value of the native Windows `SaveFileDialog`
 
