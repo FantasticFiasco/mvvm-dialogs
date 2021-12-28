@@ -18,7 +18,8 @@
     <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WindowsXamlEnableOverview>true</WindowsXamlEnableOverview>
     <PackageCertificateKeyFile>Demo.PickSingleFolder_TemporaryKey.pfx</PackageCertificateKeyFile>
-    <PackageCertificateThumbprint>A00F8AD8BBCFC81FF41EBD7253192C9EE2777FFB</PackageCertificateThumbprint>
+    <PackageCertificateThumbprint>C32E218C46D3857492A48DA795A39B6AC20BE0E2</PackageCertificateThumbprint>
+    <AppxPackageSigningEnabled>True</AppxPackageSigningEnabled>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <DebugSymbols>true</DebugSymbols>
