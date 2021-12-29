@@ -12,7 +12,7 @@ namespace Demo.CustomSaveFileDialog
             Ioc.Default.ConfigureServices(
                 new ServiceCollection()
                     .AddSingleton<IDialogService>(_ => new DialogService(frameworkDialogFactory: new CustomFrameworkDialogFactory()))
-                    .AddSingleton<MainWindowViewModel>()
+                    .AddTransient<MainWindowViewModel>()
                     .BuildServiceProvider());
         }
     }

@@ -43,8 +43,8 @@ namespace Demo.CustomContentDialog
             Ioc.Default.ConfigureServices(
                 new ServiceCollection()
                     .AddSingleton<IDialogService, DialogService>()
-                    .AddSingleton<MainPageViewModel>()
-                    .AddSingleton<AddTextCustomContentDialogViewModel>()
+                    .AddTransient<MainPageViewModel>()
+                    .AddTransient<AddTextCustomContentDialogViewModel>()
                     .BuildServiceProvider());
 
             Frame rootFrame = Window.Current.Content as Frame;

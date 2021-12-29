@@ -12,7 +12,7 @@ namespace Demo.MessageBox
             Ioc.Default.ConfigureServices(
                 new ServiceCollection()
                     .AddSingleton<IDialogService, DialogService>()
-                    .AddSingleton<MainWindowViewModel>()
+                    .AddTransient<MainWindowViewModel>()
                     .BuildServiceProvider());
         }
     }

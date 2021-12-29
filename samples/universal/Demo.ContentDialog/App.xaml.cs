@@ -43,8 +43,8 @@ namespace Demo.ContentDialog
             Ioc.Default.ConfigureServices(
                 new ServiceCollection()
                     .AddSingleton<IDialogService, DialogService>()
-                    .AddSingleton<MainPageViewModel>()
-                    .AddSingleton<AddTextContentDialogViewModel>()
+                    .AddTransient<MainPageViewModel>()
+                    .AddTransient<AddTextContentDialogViewModel>()
                     .BuildServiceProvider());
 
             Frame rootFrame = Window.Current.Content as Frame;

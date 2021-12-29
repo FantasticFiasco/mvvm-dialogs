@@ -43,7 +43,7 @@ namespace Demo.MessageDialog
             Ioc.Default.ConfigureServices(
                 new ServiceCollection()
                     .AddSingleton<IDialogService, DialogService>()
-                    .AddSingleton<MainPageViewModel>()
+                    .AddTransient<MainPageViewModel>()
                     .BuildServiceProvider());
 
             Frame rootFrame = Window.Current.Content as Frame;
