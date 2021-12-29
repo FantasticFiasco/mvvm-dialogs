@@ -23,9 +23,7 @@ namespace MvvmDialogs.FrameworkDialogs.OpenFile
             dialog.AddExtension = settings.AddExtension;
             dialog.CheckFileExists = settings.CheckFileExists;
             dialog.CheckPathExists = settings.CheckPathExists;
-#if !PRE_NET40
             dialog.CustomPlaces = settings.CustomPlaces;
-#endif
             dialog.DefaultExt = settings.DefaultExt;
             dialog.DereferenceLinks = settings.DereferenceLinks;
             dialog.FileName = settings.FileName;

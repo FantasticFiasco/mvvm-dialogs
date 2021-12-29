@@ -24,9 +24,7 @@ namespace MvvmDialogs.FrameworkDialogs.SaveFile
             dialog.CheckFileExists = settings.CheckFileExists;
             dialog.CheckPathExists = settings.CheckPathExists;
             dialog.CreatePrompt = settings.CreatePrompt;
-#if !PRE_NET40
             dialog.CustomPlaces = settings.CustomPlaces;
-#endif
             dialog.DefaultExt = settings.DefaultExt;
             dialog.DereferenceLinks = settings.DereferenceLinks;
             dialog.FileName = settings.FileName;

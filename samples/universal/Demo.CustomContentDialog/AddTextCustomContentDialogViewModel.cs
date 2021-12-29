@@ -1,8 +1,8 @@
-﻿using GalaSoft.MvvmLight;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace Demo.CustomContentDialog
 {
-    public class AddTextCustomContentDialogViewModel : ViewModelBase
+    public class AddTextCustomContentDialogViewModel : ObservableObject
     {
         private string text;
         private bool isOkButtonEnabled;
@@ -12,7 +12,7 @@ namespace Demo.CustomContentDialog
             get => text;
             set
             {
-                if (Set(nameof(Text), ref text, value))
+                if (SetProperty(ref text, value))
                 {
                     IsOkButtonEnabled = !string.IsNullOrEmpty(value);
                 }
@@ -22,7 +22,7 @@ namespace Demo.CustomContentDialog
         public bool IsOkButtonEnabled
         {
             get => isOkButtonEnabled;
-            private set => Set(nameof(IsOkButtonEnabled), ref isOkButtonEnabled, value);
+            private set => SetProperty(ref isOkButtonEnabled, value);
         }
     }
 }

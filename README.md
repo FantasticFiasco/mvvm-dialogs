@@ -141,12 +141,13 @@ For more information regarding the concepts of MVVM Dialogs and extended samples
 
 ## Integration into other MVVM frameworks
 
-For the benefit of all we aim to play nice with existing MVVM frameworks. Creating a new application can be daunting. Lots of decisions have to be made, and some are harder to correct than other. To help you on your way we've created a sample application using some of the popular MVVM frameworks existing today, to show you how you'd integrate MVVM Dialogs into that framework.
+For the benefit of all we aim to play nice with existing MVVM frameworks. Creating a new application can be daunting. Lots of decisions have to be made, and some mistakes are harder to correct than others. To help you on your way we've created a sample application using some of the popular MVVM frameworks existing today, to show you how you'd integrate MVVM Dialogs into that framework.
 
 Currently the sample application is implemented using the following frameworks.
 
 - [Caliburn.Micro](https://github.com/FantasticFiasco/mvvm-dialogs-integrated-into-caliburn-micro)
 - [MVVM Light Toolkit](https://github.com/FantasticFiasco/mvvm-dialogs-integrated-into-mvvm-light-toolkit)
+- [Windows Community Toolkit](https://github.com/FantasticFiasco/mvvm-dialogs-integrated-into-windows-community-toolkit)
 
 If your specific framework isn't among the listed, please create a new pull request and let us know.
 

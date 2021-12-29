@@ -1,5 +1,4 @@
-﻿using CommonServiceLocator;
-using GalaSoft.MvvmLight.Ioc;
+﻿using CommunityToolkit.Mvvm.DependencyInjection;
 
 namespace Demo.CustomContentDialog
 {
@@ -9,14 +8,6 @@ namespace Demo.CustomContentDialog
     /// </summary>
     public class ViewModelLocator
     {
-        public ViewModelLocator()
-        {
-            ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
-
-            SimpleIoc.Default.Register<MainPageViewModel>();
-            SimpleIoc.Default.Register<AddTextCustomContentDialogViewModel>();
-        }
-
-        public MainPageViewModel MainPage => ServiceLocator.Current.GetInstance<MainPageViewModel>();
+        public MainPageViewModel MainPage => Ioc.Default.GetRequiredService<MainPageViewModel>();
     }
 }

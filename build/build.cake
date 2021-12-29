@@ -42,6 +42,7 @@ Task("Build")
             solution,
             new MSBuildSettings
             {
+                ToolVersion = MSBuildToolVersion.VS2022,
                 Configuration = "Release",
                 MaxCpuCount = 0,            // Enable parallel build
             });

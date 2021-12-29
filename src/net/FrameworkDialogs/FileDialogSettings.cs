@@ -1,6 +1,4 @@
-﻿#if !PRE_NET40
-using System.Collections.Generic;
-#endif
+﻿using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace MvvmDialogs.FrameworkDialogs
@@ -30,7 +28,6 @@ namespace MvvmDialogs.FrameworkDialogs
         /// </value>
         public bool CheckPathExists { get; set; } = true;
 
-#if !PRE_NET40
         /// <summary>
         /// Gets or sets the list of custom places for file dialog boxes.
         /// </summary>
@@ -44,7 +41,6 @@ namespace MvvmDialogs.FrameworkDialogs
         /// modify the list that appears when your application uses a file dialog box.
         /// </remarks>
         public IList<Microsoft.Win32.FileDialogCustomPlace> CustomPlaces { get; set; } = new List<Microsoft.Win32.FileDialogCustomPlace>();
-#endif
 
         /// <summary>
         /// Gets or sets a value that specifies the default extension string to use to filter the

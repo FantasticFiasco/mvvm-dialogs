@@ -8,7 +8,7 @@
       Lets have the .NET Framework version listed first, otherwise we will get build warnings in Visual Studio.
       See https://github.com/dotnet/project-system/issues/1162 for more information.
      -->
-    <TargetFrameworks>net472;net462;net452;net45;net40;net35;netcoreapp3.1;net5.0-windows</TargetFrameworks>
+    <TargetFrameworks>net461;netcoreapp3.1;net5.0-windows</TargetFrameworks>
     <AssemblyTitle>MVVM Dialogs</AssemblyTitle>
     <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(AssemblyName).xml</DocumentationFile>
     <SignAssembly>true</SignAssembly>
@@ -17,52 +17,5 @@
     <UseWindowsForms>true</UseWindowsForms>
     <Nullable>enable</Nullable>
   </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
-    <DefineConstants Condition="'$(TargetFramework)' == 'net45'">DEBUG;TRACE</DefineConstants>
-    <DefineConstants Condition="'$(TargetFramework)' == 'net40'">DEBUG;TRACE;PRE_NET45</DefineConstants>
-    <DefineConstants Condition="'$(TargetFramework)' == 'net35'">DEBUG;TRACE;PRE_NET40;PRE_NET45</DefineConstants>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
-    <DefineConstants Condition="'$(TargetFramework)' == 'net45'">TRACE</DefineConstants>
-    <DefineConstants Condition="'$(TargetFramework)' == 'net40'">TRACE;PRE_NET45</DefineConstants>
-    <DefineConstants Condition="'$(TargetFramework)' == 'net35'">TRACE;PRE_NET40;PRE_NET45</DefineConstants>
-  </PropertyGroup>
-
-  <ItemGroup Condition="'$(TargetFramework)' == 'net45'">
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Windows.Forms" />
-    <Reference Include="WindowsBase" />
-    <Reference Include="PresentationCore" />
-    <Reference Include="PresentationFramework" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Xaml">
-      <RequiredTargetFramework>4.0</RequiredTargetFramework>
-    </Reference>
-  </ItemGroup>
-
-  <ItemGroup Condition="'$(TargetFramework)' == 'net40'">
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Windows.Forms" />
-    <Reference Include="WindowsBase" />
-    <Reference Include="PresentationCore" />
-    <Reference Include="PresentationFramework" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Xaml">
-      <RequiredTargetFramework>4.0</RequiredTargetFramework>
-    </Reference>
-  </ItemGroup>
-
-  <ItemGroup Condition="'$(TargetFramework)' == 'net35'">
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Windows.Forms" />
-    <Reference Include="WindowsBase" />
-    <Reference Include="PresentationCore" />
-    <Reference Include="PresentationFramework" />
-  </ItemGroup>
 
 </Project>
