@@ -6,7 +6,8 @@ using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
-using GalaSoft.MvvmLight.Ioc;
+using CommunityToolkit.Mvvm.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection;
 using MvvmDialogs;
 
 namespace Demo.PickFiles
@@ -39,7 +40,11 @@ namespace Demo.PickFiles
                 DebugSettings.EnableFrameRateCounter = true;
             }
 #endif
-            SimpleIoc.Default.Register<IDialogService>(() => new DialogService());
+            Ioc.Default.ConfigureServices(
+                new ServiceCollection()
+                    .AddSingleton<IDialogService, DialogService>()
+                    .AddSingleton<MainPageViewModel>()
+                    .BuildServiceProvider());
 
             Frame rootFrame = Window.Current.Content as Frame;
 

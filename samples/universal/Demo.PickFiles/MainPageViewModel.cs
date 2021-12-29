@@ -4,15 +4,15 @@ using System.Linq;
 using System.Windows.Input;
 using Windows.Storage;
 using Windows.Storage.Pickers;
-using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.Command;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using MvvmDialogs;
 using MvvmDialogs.FrameworkPickers.FileOpen;
 using IOPath = System.IO.Path;
 
 namespace Demo.PickFiles
 {
-    public class MainPageViewModel : ViewModelBase
+    public class MainPageViewModel : ObservableObject
     {
         private readonly IDialogService dialogService;
 
@@ -30,13 +30,13 @@ namespace Demo.PickFiles
         public string SingleFilePath
         {
             get => singleFilePath;
-            private set { Set(() => SingleFilePath, ref singleFilePath, value); }
+            private set => SetProperty(ref singleFilePath, value);
         }
 
         public string MultipleFilesPath
         {
             get => multipleFilesPath;
-            private set { Set(() => MultipleFilesPath, ref multipleFilesPath, value); }
+            private set => SetProperty(ref multipleFilesPath, value);
         }
 
         public ICommand PickSingleFileCommand { get; }

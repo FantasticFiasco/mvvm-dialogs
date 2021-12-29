@@ -3,13 +3,13 @@ using System.Collections.ObjectModel;
 using System.Windows.Input;
 using Windows.Foundation;
 using Windows.UI.Xaml.Controls;
-using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.Command;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using MvvmDialogs;
 
 namespace Demo.ContentDialog
 {
-    public class MainPageViewModel : ViewModelBase
+    public class MainPageViewModel : ObservableObject
     {
         private readonly IDialogService dialogService;
 

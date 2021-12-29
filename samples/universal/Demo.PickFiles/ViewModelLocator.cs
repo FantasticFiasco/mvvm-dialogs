@@ -1,5 +1,4 @@
-﻿using CommonServiceLocator;
-using GalaSoft.MvvmLight.Ioc;
+﻿using CommunityToolkit.Mvvm.DependencyInjection;
 
 namespace Demo.PickFiles
 {
@@ -9,13 +8,6 @@ namespace Demo.PickFiles
     /// </summary>
     public class ViewModelLocator
     {
-        public ViewModelLocator()
-        {
-            ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
-
-            SimpleIoc.Default.Register<MainPageViewModel>();
-        }
-
-        public MainPageViewModel MainPage => ServiceLocator.Current.GetInstance<MainPageViewModel>();
+        public MainPageViewModel MainPage => Ioc.Default.GetRequiredService<MainPageViewModel>();
     }
 }

@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using System.Windows.Input;
 using Windows.Storage;
 using Windows.Storage.Pickers;
-using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.Command;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using MvvmDialogs;
 using MvvmDialogs.FrameworkPickers.Folder;
 
 namespace Demo.PickSingleFolder
 {
-    public class MainPageViewModel : ViewModelBase
+    public class MainPageViewModel : ObservableObject
     {
         private readonly IDialogService dialogService;
 
@@ -26,7 +26,7 @@ namespace Demo.PickSingleFolder
         public string Path
         {
             get => path;
-            private set { Set(() => Path, ref path, value); }
+            private set => SetProperty(ref path, value);
         }
 
         public ICommand BrowseFolderCommand { get; }

@@ -24,7 +24,7 @@ namespace Demo.FolderBrowserDialog
         public string Path
         {
             get => path;
-            private set { SetProperty(ref path, value); }
+            private set => SetProperty(ref path, value);
         }
 
         public ICommand BrowseFolderCommand { get; }

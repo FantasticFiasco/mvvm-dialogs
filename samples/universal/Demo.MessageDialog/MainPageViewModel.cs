@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Windows.Input;
 using Windows.UI.Popups;
-using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.Command;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using MvvmDialogs;
 
 namespace Demo.MessageDialog
 {
-    public class MainPageViewModel : ViewModelBase
+    public class MainPageViewModel : ObservableObject
     {
         private readonly IDialogService dialogService;
 
@@ -34,7 +34,7 @@ namespace Demo.MessageDialog
         public string Confirmation
         {
             get => confirmation;
-            private set { Set(() => Confirmation, ref confirmation, value); }
+            private set => SetProperty(ref confirmation, value);
         }
 
         private async void ShowMessageDialogWithContent()

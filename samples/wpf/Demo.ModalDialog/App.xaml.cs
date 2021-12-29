@@ -11,9 +11,9 @@ namespace Demo.ModalDialog
         {
             Ioc.Default.ConfigureServices(
                 new ServiceCollection()
-                .AddSingleton<IDialogService, DialogService>()
-                .AddSingleton<MainWindowViewModel>()
-                .BuildServiceProvider());
+                    .AddSingleton<IDialogService, DialogService>()
+                    .AddSingleton<MainWindowViewModel>()
+                    .BuildServiceProvider());
         }
     }
 }

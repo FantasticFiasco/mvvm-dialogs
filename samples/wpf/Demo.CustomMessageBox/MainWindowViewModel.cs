@@ -37,7 +37,7 @@ namespace Demo.CustomMessageBox
         public string Confirmation
         {
             get => confirmation;
-            private set { SetProperty(ref confirmation, value); }
+            private set => SetProperty(ref confirmation, value);
         }
 
         private void ShowMessageBoxWithMessage()

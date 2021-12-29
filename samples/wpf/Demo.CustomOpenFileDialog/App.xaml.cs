@@ -11,9 +11,9 @@ namespace Demo.CustomOpenFileDialog
         {
             Ioc.Default.ConfigureServices(
                 new ServiceCollection()
-                .AddSingleton<IDialogService>(_ => new DialogService(frameworkDialogFactory: new CustomFrameworkDialogFactory()))
-                .AddSingleton<MainWindowViewModel>()
-                .BuildServiceProvider());
+                    .AddSingleton<IDialogService>(_ => new DialogService(frameworkDialogFactory: new CustomFrameworkDialogFactory()))
+                    .AddSingleton<MainWindowViewModel>()
+                    .BuildServiceProvider());
         }
     }
 }
