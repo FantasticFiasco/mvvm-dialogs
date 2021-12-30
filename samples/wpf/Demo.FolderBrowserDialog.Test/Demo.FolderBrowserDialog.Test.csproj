@@ -59,11 +59,11 @@
     </ProjectReference>
     <ProjectReference Include="..\Demo.FolderBrowserDialog\Demo.FolderBrowserDialog.csproj">
       <Project>{952849d6-df09-408f-8b14-8d4e420e133e}</Project>
-      <Name>Demo.FolderBrowserDialog.Framework</Name>
+      <Name>Demo.FolderBrowserDialog</Name>
     </ProjectReference>
     <ProjectReference Include="..\TestBaseClasses\TestBaseClasses.csproj">
       <Project>{b6ad17e0-892c-460e-97f3-58a0effc3c33}</Project>
-      <Name>TestBaseClasses.Framework</Name>
+      <Name>TestBaseClasses</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

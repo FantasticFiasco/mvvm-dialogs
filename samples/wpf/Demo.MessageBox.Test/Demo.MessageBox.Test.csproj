@@ -59,11 +59,11 @@
     </ProjectReference>
     <ProjectReference Include="..\Demo.MessageBox\Demo.MessageBox.csproj">
       <Project>{5440572c-08c8-4d6e-a4ef-dce93060ed66}</Project>
-      <Name>Demo.MessageBox.Framework</Name>
+      <Name>Demo.MessageBox</Name>
     </ProjectReference>
     <ProjectReference Include="..\TestBaseClasses\TestBaseClasses.csproj">
       <Project>{b6ad17e0-892c-460e-97f3-58a0effc3c33}</Project>
-      <Name>TestBaseClasses.Framework</Name>
+      <Name>TestBaseClasses</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

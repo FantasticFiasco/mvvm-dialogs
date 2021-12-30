@@ -59,11 +59,11 @@
     </ProjectReference>
     <ProjectReference Include="..\Demo.CustomOpenFileDialog\Demo.CustomOpenFileDialog.csproj">
       <Project>{b683c7fa-ee13-4a64-a3ca-91e0fba7affa}</Project>
-      <Name>Demo.CustomOpenFileDialog.Framework</Name>
+      <Name>Demo.CustomOpenFileDialog</Name>
     </ProjectReference>
     <ProjectReference Include="..\TestBaseClasses\TestBaseClasses.csproj">
       <Project>{b6ad17e0-892c-460e-97f3-58a0effc3c33}</Project>
-      <Name>TestBaseClasses.Framework</Name>
+      <Name>TestBaseClasses</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

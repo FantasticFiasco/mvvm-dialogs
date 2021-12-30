@@ -60,11 +60,11 @@
     </ProjectReference>
     <ProjectReference Include="..\Demo.ModalDialog\Demo.ModalDialog.csproj">
       <Project>{1f395162-8bb8-4abe-a4d2-704e61d3519b}</Project>
-      <Name>Demo.ModalDialog.Framework</Name>
+      <Name>Demo.ModalDialog</Name>
     </ProjectReference>
     <ProjectReference Include="..\TestBaseClasses\TestBaseClasses.csproj">
       <Project>{b6ad17e0-892c-460e-97f3-58a0effc3c33}</Project>
-      <Name>TestBaseClasses.Framework</Name>
+      <Name>TestBaseClasses</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

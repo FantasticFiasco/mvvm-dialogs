@@ -1,4 +1,5 @@
-﻿using System.Windows.Input;
+﻿using System;
+using System.Windows.Input;
 using Demo.CustomDialogTypeLocator.ComponentA;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
@@ -11,8 +12,13 @@ namespace Demo.CustomDialogTypeLocator
         private readonly IDialogService dialogService;
 
         public MainWindowVM()
+            : this(new DialogService(dialogTypeLocator: new MyCustomDialogTypeLocator()))
         {
-            dialogService = new DialogService(dialogTypeLocator: new MyCustomDialogTypeLocator());
+        }
+
+        public MainWindowVM(IDialogService dialogService)
+        {
+            this.dialogService = dialogService ?? throw new ArgumentNullException(nameof(dialogService));
 
             ShowDialogCommand = new RelayCommand(ShowDialog);
         }
