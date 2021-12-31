@@ -5,7 +5,7 @@ on:
     - cron: "0 3 1 1 *"
 
 jobs:
-  run:
+  license:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -14,3 +14,19 @@ jobs:
       - uses: FantasticFiasco/action-update-license-year@v2
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
+
+  source:
+    needs: license
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - uses: FantasticFiasco/action-update-license-year@v2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          path: |
+            Directory.Build.props
+            MvvmDialogs.nuspec
+            **/*.cs
+          transform: (?<=Copyright © )(?<from>\d{4})?-?(\d{4})?
