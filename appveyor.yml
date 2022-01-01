@@ -53,7 +53,7 @@ deploy:
       APPVEYOR_REPO_TAG: true
   - provider: NuGet
     api_key:
-      secure: dU4sOBUiRETsr+08JKQyBGmIt0vXTnTlIGQJUqXw7uCaYxNOIHZCLMkYtP7Pm25d
+      secure: nbuvH2iI8dhyiTUUOVOr/fQi60dBH49o7X6kA/wFEez403jyof0E43MTxArmChiK
     symbol_server: https://www.nuget.org
     skip_symbols: false
     on:
