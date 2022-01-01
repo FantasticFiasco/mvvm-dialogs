@@ -28,5 +28,6 @@ jobs:
           path: |
             Directory.Build.props
             MvvmDialogs.nuspec
-            **/*.cs
+            SolutionInfo.cs
+            **/AssemblyInfo.cs
           transform: (?<=Copyright © )(?<from>\d{4})?-?(\d{4})?
