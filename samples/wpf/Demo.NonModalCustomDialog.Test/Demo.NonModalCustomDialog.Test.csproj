@@ -48,7 +48,6 @@
   <ItemGroup>
     <Compile Include="Features\ShowCurrentTimeSteps.cs" />
     <Compile Include="MainWindowViewModelTest.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ScreenObjects\CurrentTimeScreen.cs" />
     <Compile Include="ScreenObjects\MainScreen.cs" />
   </ItemGroup>

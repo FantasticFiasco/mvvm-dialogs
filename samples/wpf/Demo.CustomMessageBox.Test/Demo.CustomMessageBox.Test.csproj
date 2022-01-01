@@ -48,7 +48,6 @@
   <ItemGroup>
     <Compile Include="Features\ConfirmationSteps.cs" />
     <Compile Include="MainWindowViewModelTest.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ScreenObjects\MainScreen.cs" />
     <Compile Include="ScreenObjects\MessageBoxScreen.cs" />
   </ItemGroup>

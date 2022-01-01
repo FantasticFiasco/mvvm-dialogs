@@ -47,7 +47,6 @@
   <ItemGroup>
     <Compile Include="Features\BrowseFolderSteps.cs" />
     <Compile Include="MainWindowViewModelTest.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ScreenObjects\BrowseFolderScreen.cs" />
     <Compile Include="ScreenObjects\MainScreen.cs" />
   </ItemGroup>

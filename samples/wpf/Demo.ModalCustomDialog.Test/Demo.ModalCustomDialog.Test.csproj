@@ -48,7 +48,6 @@
   <ItemGroup>
     <Compile Include="Features\AddTextSteps.cs" />
     <Compile Include="MainWindowViewModelTest.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ScreenObjects\AddTextScreen.cs" />
     <Compile Include="ScreenObjects\MainScreen.cs" />
   </ItemGroup>
