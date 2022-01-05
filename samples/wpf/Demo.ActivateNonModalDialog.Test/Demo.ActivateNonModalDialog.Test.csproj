@@ -54,11 +54,11 @@
     </ProjectReference>
     <ProjectReference Include="..\Demo.ActivateNonModalDialog\Demo.ActivateNonModalDialog.csproj">
       <Project>{f282fcd2-2d6c-4cbd-82ac-e726639cba9f}</Project>
-      <Name>Demo.ActivateNonModalDialog.Framework</Name>
+      <Name>Demo.ActivateNonModalDialog</Name>
     </ProjectReference>
     <ProjectReference Include="..\TestBaseClasses\TestBaseClasses.csproj">
       <Project>{b6ad17e0-892c-460e-97f3-58a0effc3c33}</Project>
-      <Name>TestBaseClasses.Framework</Name>
+      <Name>TestBaseClasses</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
