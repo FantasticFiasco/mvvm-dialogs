@@ -163,16 +163,16 @@
     <None Include="..\..\StrongName.snk">
       <Link>StrongName.snk</Link>
     </None>
-    <Compile Include="..\net\DialogTypeLocators\DialogTypeLocatorCache.cs">
+    <Compile Include="..\MvvmDialogs.Wpf\DialogTypeLocators\DialogTypeLocatorCache.cs">
       <Link>DialogTypeLocators\DialogTypeLocatorCache.cs</Link>
     </Compile>
-    <Compile Include="..\net\DialogTypeLocators\IDialogTypeLocator.cs">
+    <Compile Include="..\MvvmDialogs.Wpf\DialogTypeLocators\IDialogTypeLocator.cs">
       <Link>DialogTypeLocators\IDialogTypeLocator.cs</Link>
     </Compile>
-    <Compile Include="..\net\DialogTypeLocators\NamingConventionDialogTypeLocator.cs">
+    <Compile Include="..\MvvmDialogs.Wpf\DialogTypeLocators\NamingConventionDialogTypeLocator.cs">
       <Link>DialogTypeLocators\NamingConventionDialogTypeLocator.cs</Link>
     </Compile>
-    <Compile Include="..\net\Logging\Logger.cs">
+    <Compile Include="..\MvvmDialogs.Wpf\Logging\Logger.cs">
       <Link>Logging\Logger.cs</Link>
     </Compile>
     <Compile Include="..\..\SolutionInfo.cs">
