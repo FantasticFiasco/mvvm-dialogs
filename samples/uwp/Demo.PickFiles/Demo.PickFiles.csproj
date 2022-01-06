@@ -1,14 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
-    <ProjectGuid>{CB73E680-A844-4070-8DF6-26A501812519}</ProjectGuid>
+    <ProjectGuid>{EB5D9528-DA6E-457B-B254-D4EF3F4AF42B}</ProjectGuid>
     <OutputType>AppContainerExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Demo.PickSingleFolder</RootNamespace>
-    <AssemblyName>Demo.PickSingleFolder</AssemblyName>
+    <RootNamespace>Demo.PickFiles</RootNamespace>
+    <AssemblyName>Demo.PickFiles</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
     <TargetPlatformVersion Condition=" '$(TargetPlatformVersion)' == '' ">10.0.22000.0</TargetPlatformVersion>
@@ -131,6 +131,9 @@
     </AppxManifest>
   </ItemGroup>
   <ItemGroup>
+    <None Include="OpenMe.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
@@ -164,9 +167,9 @@
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform" Version="6.2.13" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\src\universal\MvvmDialogs.csproj">
-      <Project>{18462094-a6ed-461b-8fca-1e38a95ebb09}</Project>
-      <Name>MvvmDialogs</Name>
+    <ProjectReference Include="..\..\..\src\MvvmDialogs.Uwp\MvvmDialogs.Uwp.csproj">
+      <Project>{44d64e06-a466-4067-bf05-617f2bef6059}</Project>
+      <Name>MvvmDialogs.Uwp</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">

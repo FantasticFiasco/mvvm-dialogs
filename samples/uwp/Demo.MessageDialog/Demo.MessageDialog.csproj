@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
-    <ProjectGuid>{C97F443B-A683-4508-9451-49543B1C29B1}</ProjectGuid>
+    <ProjectGuid>{4E9F9797-ED98-4AB5-A037-F1C4D919F1A5}</ProjectGuid>
     <OutputType>AppContainerExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Demo.ContentDialog</RootNamespace>
-    <AssemblyName>Demo.ContentDialog</AssemblyName>
+    <RootNamespace>Demo.MessageDialog</RootNamespace>
+    <AssemblyName>Demo.MessageDialog</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
     <TargetPlatformVersion Condition=" '$(TargetPlatformVersion)' == '' ">10.0.22000.0</TargetPlatformVersion>
@@ -116,10 +116,6 @@
     <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="AddTextContentDialog.xaml.cs">
-      <DependentUpon>AddTextContentDialog.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="AddTextContentDialogViewModel.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
@@ -149,10 +145,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="AddTextContentDialog.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="ApplicationResources.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -172,9 +164,9 @@
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform" Version="6.2.13" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\src\universal\MvvmDialogs.csproj">
-      <Project>{18462094-a6ed-461b-8fca-1e38a95ebb09}</Project>
-      <Name>MvvmDialogs</Name>
+    <ProjectReference Include="..\..\..\src\MvvmDialogs.Uwp\MvvmDialogs.Uwp.csproj">
+      <Project>{44d64e06-a466-4067-bf05-617f2bef6059}</Project>
+      <Name>MvvmDialogs.Uwp</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">

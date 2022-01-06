@@ -1,14 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
-    <ProjectGuid>{61EE238C-CE4D-4000-AF69-F5CC8A79273E}</ProjectGuid>
+    <ProjectGuid>{B549ABF3-7CB7-4F30-8F1D-654C5710C1DA}</ProjectGuid>
     <OutputType>AppContainerExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Demo.PickSaveFile</RootNamespace>
-    <AssemblyName>Demo.PickSaveFile</AssemblyName>
+    <RootNamespace>Demo.CustomContentDialog</RootNamespace>
+    <AssemblyName>Demo.CustomContentDialog</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
     <TargetPlatformVersion Condition=" '$(TargetPlatformVersion)' == '' ">10.0.22000.0</TargetPlatformVersion>
@@ -116,6 +116,11 @@
     <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="AddTextContentDialog.xaml.cs">
+      <DependentUpon>AddTextContentDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AddTextCustomContentDialog.cs" />
+    <Compile Include="AddTextCustomContentDialogViewModel.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
@@ -145,6 +150,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="AddTextContentDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ApplicationResources.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -164,9 +173,9 @@
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform" Version="6.2.13" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\src\universal\MvvmDialogs.csproj">
-      <Project>{18462094-a6ed-461b-8fca-1e38a95ebb09}</Project>
-      <Name>MvvmDialogs</Name>
+    <ProjectReference Include="..\..\..\src\MvvmDialogs.Uwp\MvvmDialogs.Uwp.csproj">
+      <Project>{44d64e06-a466-4067-bf05-617f2bef6059}</Project>
+      <Name>MvvmDialogs.Uwp</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">

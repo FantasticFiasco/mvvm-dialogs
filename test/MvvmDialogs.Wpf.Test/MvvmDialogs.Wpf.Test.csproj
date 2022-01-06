@@ -13,12 +13,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="..\..\StrongName.snk">
-      <Link>StrongName.snk</Link>
-    </None>
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\..\src\MvvmDialogs.Wpf\MvvmDialogs.Wpf.csproj" />
   </ItemGroup>
 
@@ -42,4 +36,11 @@
     <Reference Include="System.Xml" />
     <Reference Include="WindowsBase" />
   </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\StrongName.snk">
+      <Link>StrongName.snk</Link>
+    </None>
+  </ItemGroup>
+
 </Project>
