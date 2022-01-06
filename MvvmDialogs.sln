@@ -21,77 +21,77 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvvmDialogs.Uwp", "src\Mvvm
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MvvmDialogs.Wpf.Test", "test\MvvmDialogs.Wpf.Test\MvvmDialogs.Wpf.Test.csproj", "{637CCC25-319A-4331-B08F-054826EBD673}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.ContentDialog", "samples\uwp\Demo.ContentDialog\Demo.ContentDialog.csproj", "{C97F443B-A683-4508-9451-49543B1C29B1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample.ContentDialog", "samples\uwp\Sample.ContentDialog\Sample.ContentDialog.csproj", "{C97F443B-A683-4508-9451-49543B1C29B1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.CustomContentDialog", "samples\uwp\Demo.CustomContentDialog\Demo.CustomContentDialog.csproj", "{B549ABF3-7CB7-4F30-8F1D-654C5710C1DA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample.CustomContentDialog", "samples\uwp\Sample.CustomContentDialog\Sample.CustomContentDialog.csproj", "{B549ABF3-7CB7-4F30-8F1D-654C5710C1DA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.MessageDialog", "samples\uwp\Demo.MessageDialog\Demo.MessageDialog.csproj", "{4E9F9797-ED98-4AB5-A037-F1C4D919F1A5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample.MessageDialog", "samples\uwp\Sample.MessageDialog\Sample.MessageDialog.csproj", "{4E9F9797-ED98-4AB5-A037-F1C4D919F1A5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.PickFiles", "samples\uwp\Demo.PickFiles\Demo.PickFiles.csproj", "{EB5D9528-DA6E-457B-B254-D4EF3F4AF42B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample.PickFiles", "samples\uwp\Sample.PickFiles\Sample.PickFiles.csproj", "{EB5D9528-DA6E-457B-B254-D4EF3F4AF42B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.PickSaveFile", "samples\uwp\Demo.PickSaveFile\Demo.PickSaveFile.csproj", "{61EE238C-CE4D-4000-AF69-F5CC8A79273E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample.PickSaveFile", "samples\uwp\Sample.PickSaveFile\Sample.PickSaveFile.csproj", "{61EE238C-CE4D-4000-AF69-F5CC8A79273E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.PickSingleFolder", "samples\uwp\Demo.PickSingleFolder\Demo.PickSingleFolder.csproj", "{CB73E680-A844-4070-8DF6-26A501812519}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample.PickSingleFolder", "samples\uwp\Sample.PickSingleFolder\Sample.PickSingleFolder.csproj", "{CB73E680-A844-4070-8DF6-26A501812519}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Demo.ActivateNonModalDialog", "samples\wpf\Demo.ActivateNonModalDialog\Demo.ActivateNonModalDialog.csproj", "{637F4BA1-7010-4E54-8D1C-EE76D62233AA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sample.ActivateNonModalDialog", "samples\wpf\Sample.ActivateNonModalDialog\Sample.ActivateNonModalDialog.csproj", "{637F4BA1-7010-4E54-8D1C-EE76D62233AA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.ActivateNonModalDialog.Test", "samples\wpf\Demo.ActivateNonModalDialog.Test\Demo.ActivateNonModalDialog.Test.csproj", "{C47A9F47-9FCB-4F8D-98C4-C3BAAA6AE200}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample.ActivateNonModalDialog.Test", "samples\wpf\Sample.ActivateNonModalDialog.Test\Sample.ActivateNonModalDialog.Test.csproj", "{C47A9F47-9FCB-4F8D-98C4-C3BAAA6AE200}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Demo.CloseNonModalDialog", "samples\wpf\Demo.CloseNonModalDialog\Demo.CloseNonModalDialog.csproj", "{352C07C9-5131-4134-9904-C0B7B914455F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sample.CloseNonModalDialog", "samples\wpf\Sample.CloseNonModalDialog\Sample.CloseNonModalDialog.csproj", "{352C07C9-5131-4134-9904-C0B7B914455F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.CloseNonModalDialog.Test", "samples\wpf\Demo.CloseNonModalDialog.Test\Demo.CloseNonModalDialog.Test.csproj", "{121363C7-8978-470F-91E8-C47E051D1D24}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample.CloseNonModalDialog.Test", "samples\wpf\Sample.CloseNonModalDialog.Test\Sample.CloseNonModalDialog.Test.csproj", "{121363C7-8978-470F-91E8-C47E051D1D24}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Demo.CustomDialogTypeLocator", "samples\wpf\Demo.CustomDialogTypeLocator\Demo.CustomDialogTypeLocator.csproj", "{63F1F1C7-31F0-4649-B460-06581A2732D5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sample.CustomDialogTypeLocator", "samples\wpf\Sample.CustomDialogTypeLocator\Sample.CustomDialogTypeLocator.csproj", "{63F1F1C7-31F0-4649-B460-06581A2732D5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.CustomDialogTypeLocator.Test", "samples\wpf\Demo.CustomDialogTypeLocator.Test\Demo.CustomDialogTypeLocator.Test.csproj", "{2F0419C7-BCF0-42B2-B95B-25A1BC960697}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample.CustomDialogTypeLocator.Test", "samples\wpf\Sample.CustomDialogTypeLocator.Test\Sample.CustomDialogTypeLocator.Test.csproj", "{2F0419C7-BCF0-42B2-B95B-25A1BC960697}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Demo.CustomFolderBrowserDialog", "samples\wpf\Demo.CustomFolderBrowserDialog\Demo.CustomFolderBrowserDialog.csproj", "{E082ED1C-4904-45D6-9558-E0DAA9C5D132}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sample.CustomFolderBrowserDialog", "samples\wpf\Sample.CustomFolderBrowserDialog\Sample.CustomFolderBrowserDialog.csproj", "{E082ED1C-4904-45D6-9558-E0DAA9C5D132}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.CustomFolderBrowserDialog.Test", "samples\wpf\Demo.CustomFolderBrowserDialog.Test\Demo.CustomFolderBrowserDialog.Test.csproj", "{CBFD4CAA-D4B6-4E9E-A043-3A1FC6AD30D7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample.CustomFolderBrowserDialog.Test", "samples\wpf\Sample.CustomFolderBrowserDialog.Test\Sample.CustomFolderBrowserDialog.Test.csproj", "{CBFD4CAA-D4B6-4E9E-A043-3A1FC6AD30D7}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Demo.CustomMessageBox", "samples\wpf\Demo.CustomMessageBox\Demo.CustomMessageBox.csproj", "{ED47D9C9-AAF1-4A29-98C1-ED3F4A1E0F63}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sample.CustomMessageBox", "samples\wpf\Sample.CustomMessageBox\Sample.CustomMessageBox.csproj", "{ED47D9C9-AAF1-4A29-98C1-ED3F4A1E0F63}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.CustomMessageBox.Test", "samples\wpf\Demo.CustomMessageBox.Test\Demo.CustomMessageBox.Test.csproj", "{7602E95D-6E12-42CD-B511-5AC0345F821A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample.CustomMessageBox.Test", "samples\wpf\Sample.CustomMessageBox.Test\Sample.CustomMessageBox.Test.csproj", "{7602E95D-6E12-42CD-B511-5AC0345F821A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Demo.CustomOpenFileDialog", "samples\wpf\Demo.CustomOpenFileDialog\Demo.CustomOpenFileDialog.csproj", "{24C8BC96-ED50-4BF8-933A-7FEF191D5B1A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sample.CustomOpenFileDialog", "samples\wpf\Sample.CustomOpenFileDialog\Sample.CustomOpenFileDialog.csproj", "{24C8BC96-ED50-4BF8-933A-7FEF191D5B1A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.CustomOpenFileDialog.Test", "samples\wpf\Demo.CustomOpenFileDialog.Test\Demo.CustomOpenFileDialog.Test.csproj", "{6377A578-880C-4B47-9A5C-C4DB0850E6B4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample.CustomOpenFileDialog.Test", "samples\wpf\Sample.CustomOpenFileDialog.Test\Sample.CustomOpenFileDialog.Test.csproj", "{6377A578-880C-4B47-9A5C-C4DB0850E6B4}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Demo.CustomSaveFileDialog", "samples\wpf\Demo.CustomSaveFileDialog\Demo.CustomSaveFileDialog.csproj", "{E870AC87-29DC-44B1-BEF5-5B8F5738957A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sample.CustomSaveFileDialog", "samples\wpf\Sample.CustomSaveFileDialog\Sample.CustomSaveFileDialog.csproj", "{E870AC87-29DC-44B1-BEF5-5B8F5738957A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.CustomSaveFileDialog.Test", "samples\wpf\Demo.CustomSaveFileDialog.Test\Demo.CustomSaveFileDialog.Test.csproj", "{0A28D44B-5DC4-4086-AC7A-936095C7BE5E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample.CustomSaveFileDialog.Test", "samples\wpf\Sample.CustomSaveFileDialog.Test\Sample.CustomSaveFileDialog.Test.csproj", "{0A28D44B-5DC4-4086-AC7A-936095C7BE5E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Demo.FolderBrowserDialog", "samples\wpf\Demo.FolderBrowserDialog\Demo.FolderBrowserDialog.csproj", "{3FC2F41B-B654-4D18-BB90-D35EBB6B1625}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sample.FolderBrowserDialog", "samples\wpf\Sample.FolderBrowserDialog\Sample.FolderBrowserDialog.csproj", "{3FC2F41B-B654-4D18-BB90-D35EBB6B1625}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.FolderBrowserDialog.Test", "samples\wpf\Demo.FolderBrowserDialog.Test\Demo.FolderBrowserDialog.Test.csproj", "{CF1E3D0B-15F1-4F3F-B72C-45E352CBECE4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample.FolderBrowserDialog.Test", "samples\wpf\Sample.FolderBrowserDialog.Test\Sample.FolderBrowserDialog.Test.csproj", "{CF1E3D0B-15F1-4F3F-B72C-45E352CBECE4}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Demo.MessageBox", "samples\wpf\Demo.MessageBox\Demo.MessageBox.csproj", "{D128C17B-5604-4788-B769-17D47AB1F074}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sample.MessageBox", "samples\wpf\Sample.MessageBox\Sample.MessageBox.csproj", "{D128C17B-5604-4788-B769-17D47AB1F074}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.MessageBox.Test", "samples\wpf\Demo.MessageBox.Test\Demo.MessageBox.Test.csproj", "{89E2692D-B242-4BBB-B825-DFFDB4E75076}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample.MessageBox.Test", "samples\wpf\Sample.MessageBox.Test\Sample.MessageBox.Test.csproj", "{89E2692D-B242-4BBB-B825-DFFDB4E75076}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Demo.ModalCustomDialog", "samples\wpf\Demo.ModalCustomDialog\Demo.ModalCustomDialog.csproj", "{317206FC-D2FC-4D4C-87DC-2AC751DC0FFD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sample.ModalCustomDialog", "samples\wpf\Sample.ModalCustomDialog\Sample.ModalCustomDialog.csproj", "{317206FC-D2FC-4D4C-87DC-2AC751DC0FFD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.ModalCustomDialog.Test", "samples\wpf\Demo.ModalCustomDialog.Test\Demo.ModalCustomDialog.Test.csproj", "{6760EB09-F75D-44DE-BEB3-5C3DF1D57DCE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample.ModalCustomDialog.Test", "samples\wpf\Sample.ModalCustomDialog.Test\Sample.ModalCustomDialog.Test.csproj", "{6760EB09-F75D-44DE-BEB3-5C3DF1D57DCE}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Demo.ModalDialog", "samples\wpf\Demo.ModalDialog\Demo.ModalDialog.csproj", "{61A5A851-7AB8-4790-BF73-0AC45C41F1E4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sample.ModalDialog", "samples\wpf\Sample.ModalDialog\Sample.ModalDialog.csproj", "{61A5A851-7AB8-4790-BF73-0AC45C41F1E4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.ModalDialog.Test", "samples\wpf\Demo.ModalDialog.Test\Demo.ModalDialog.Test.csproj", "{CB11B8A4-7ADB-4EB3-A729-27E3C9A09696}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample.ModalDialog.Test", "samples\wpf\Sample.ModalDialog.Test\Sample.ModalDialog.Test.csproj", "{CB11B8A4-7ADB-4EB3-A729-27E3C9A09696}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Demo.NonModalCustomDialog", "samples\wpf\Demo.NonModalCustomDialog\Demo.NonModalCustomDialog.csproj", "{989405D8-EDE4-4440-AC47-8899FA37B970}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sample.NonModalCustomDialog", "samples\wpf\Sample.NonModalCustomDialog\Sample.NonModalCustomDialog.csproj", "{989405D8-EDE4-4440-AC47-8899FA37B970}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.NonModalCustomDialog.Test", "samples\wpf\Demo.NonModalCustomDialog.Test\Demo.NonModalCustomDialog.Test.csproj", "{3C734CBA-6111-4852-A529-CEC19B97C57D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample.NonModalCustomDialog.Test", "samples\wpf\Sample.NonModalCustomDialog.Test\Sample.NonModalCustomDialog.Test.csproj", "{3C734CBA-6111-4852-A529-CEC19B97C57D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Demo.NonModalDialog", "samples\wpf\Demo.NonModalDialog\Demo.NonModalDialog.csproj", "{0729CF21-C061-4C30-802B-7B68EF24857F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sample.NonModalDialog", "samples\wpf\Sample.NonModalDialog\Sample.NonModalDialog.csproj", "{0729CF21-C061-4C30-802B-7B68EF24857F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.NonModalDialog.Test", "samples\wpf\Demo.NonModalDialog.Test\Demo.NonModalDialog.Test.csproj", "{DDC4747A-54AD-4DF9-BD98-D4377C693247}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample.NonModalDialog.Test", "samples\wpf\Sample.NonModalDialog.Test\Sample.NonModalDialog.Test.csproj", "{DDC4747A-54AD-4DF9-BD98-D4377C693247}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Demo.OpenFileDialog", "samples\wpf\Demo.OpenFileDialog\Demo.OpenFileDialog.csproj", "{16B855B4-6B21-40B3-8594-2C1B16029407}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sample.OpenFileDialog", "samples\wpf\Sample.OpenFileDialog\Sample.OpenFileDialog.csproj", "{16B855B4-6B21-40B3-8594-2C1B16029407}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.OpenFileDialog.Test", "samples\wpf\Demo.OpenFileDialog.Test\Demo.OpenFileDialog.Test.csproj", "{A1B53145-EAAC-464B-BFD1-D55835981962}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample.OpenFileDialog.Test", "samples\wpf\Sample.OpenFileDialog.Test\Sample.OpenFileDialog.Test.csproj", "{A1B53145-EAAC-464B-BFD1-D55835981962}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Demo.SaveFileDialog", "samples\wpf\Demo.SaveFileDialog\Demo.SaveFileDialog.csproj", "{5A4DB3B5-6F8C-44E5-8334-A337DDD8A36D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sample.SaveFileDialog", "samples\wpf\Sample.SaveFileDialog\Sample.SaveFileDialog.csproj", "{5A4DB3B5-6F8C-44E5-8334-A337DDD8A36D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.SaveFileDialog.Test", "samples\wpf\Demo.SaveFileDialog.Test\Demo.SaveFileDialog.Test.csproj", "{109FEE60-1C5E-422E-B420-A4B97151A16D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample.SaveFileDialog.Test", "samples\wpf\Sample.SaveFileDialog.Test\Sample.SaveFileDialog.Test.csproj", "{109FEE60-1C5E-422E-B420-A4B97151A16D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestBaseClasses", "samples\wpf\TestBaseClasses\TestBaseClasses.csproj", "{B6AD17E0-892C-460E-97F3-58A0EFFC3C33}"
 EndProject
