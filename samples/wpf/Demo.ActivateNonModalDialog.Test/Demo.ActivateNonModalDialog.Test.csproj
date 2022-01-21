@@ -1,68 +1,15 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{C47A9F47-9FCB-4F8D-98C4-C3BAAA6AE200}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Demo.ActivateNonModalDialog</RootNamespace>
-    <AssemblyName>Demo.ActivateNonModalDialog.Test</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <Deterministic>true</Deterministic>
-    <NuGetPackageImportStamp>
-    </NuGetPackageImportStamp>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
+    <TargetFrameworks>net472</TargetFrameworks>
+    <UseWPF>true</UseWPF>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="System.Configuration" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Net.Http" />
-    <Reference Include="System.Xml" />
+    <ProjectReference Include="..\..\..\src\net\MvvmDialogs.csproj" />
+    <ProjectReference Include="..\Demo.ActivateNonModalDialog\Demo.ActivateNonModalDialog.csproj" />
+    <ProjectReference Include="..\TestBaseClasses\TestBaseClasses.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MainWindowViewModelTest.cs" />
+    <PackageReference Include="Moq" Version="4.16.1" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\src\net\MvvmDialogs.csproj">
-      <Project>{bc306ec6-b992-4e54-b251-4ca06a67073f}</Project>
-      <Name>MvvmDialogs</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Demo.ActivateNonModalDialog\Demo.ActivateNonModalDialog.csproj">
-      <Project>{f282fcd2-2d6c-4cbd-82ac-e726639cba9f}</Project>
-      <Name>Demo.ActivateNonModalDialog</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\TestBaseClasses\TestBaseClasses.csproj">
-      <Project>{b6ad17e0-892c-460e-97f3-58a0effc3c33}</Project>
-      <Name>TestBaseClasses</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="Moq" Version="4.5.30" />
-  </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
