@@ -2,6 +2,7 @@
   <PropertyGroup>
     <OutputType>Library</OutputType>
     <TargetFrameworks>net472</TargetFrameworks>
+    <PackageId>Demo.MessageBox</PackageId>
     <UseWPF>true</UseWPF>
   </PropertyGroup>
   <ItemGroup>
