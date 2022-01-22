@@ -11,6 +11,6 @@
     <ProjectReference Include="..\TestBaseClasses\TestBaseClasses.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Moq" Version="4.16.1" />
+    <PackageReference Include="Moq" Version="4.5.30" />
   </ItemGroup>
 </Project>
