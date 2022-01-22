@@ -2,7 +2,7 @@
   <PropertyGroup>
     <OutputType>Library</OutputType>
     <TargetFrameworks>net472</TargetFrameworks>
-    <PackageId>Demo.CustomDialogTypeLocator</PackageId>
+    <RootNamespace>Demo.CustomDialogTypeLocator</RootNamespace>
     <UseWPF>true</UseWPF>
   </PropertyGroup>
   <ItemGroup>

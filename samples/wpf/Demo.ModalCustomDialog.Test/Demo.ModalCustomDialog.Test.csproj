@@ -2,7 +2,7 @@
   <PropertyGroup>
     <OutputType>Library</OutputType>
     <TargetFrameworks>net472</TargetFrameworks>
-    <PackageId>Demo.ModalCustomDialog</PackageId>
+    <RootNamespace>Demo.ModalCustomDialog</RootNamespace>
     <UseWPF>true</UseWPF>
   </PropertyGroup>
   <ItemGroup>
