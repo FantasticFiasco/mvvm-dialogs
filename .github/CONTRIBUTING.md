@@ -11,7 +11,7 @@ The following commands will go from nothing to a running application in developm
 ```
 git clone https://github.com/FantasticFiasco/mvvm-dialogs.git
 cd mvvm-dialogs
-msbuild
+dotnet cake .\build\build.cake --target=Build
 ```
 
 ## Pull Request Process
