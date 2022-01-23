@@ -4,15 +4,28 @@ When contributing to this repository, please first discuss the change you wish t
 
 Please note we have a [code of conduct](./CODE_OF_CONDUCT.md), please follow it in all your interactions with the project.
 
-## Build and run application
+## Getting started
 
-The following commands will go from nothing to a running application in development mode.
+### Visual Studio
 
-```
-git clone https://github.com/FantasticFiasco/mvvm-dialogs.git
-cd mvvm-dialogs
-dotnet cake .\build\build.cake --target=Build
-```
+Install [Visual Studio 2022](https://visualstudio.microsoft.com/vs/), and then install the following extensions.
+
+- [JetBrains ReSharper](https://www.jetbrains.com/resharper/)
+- [SpecFlow for Visual Studio 2022](https://marketplace.visualstudio.com/items?itemName=TechTalkSpecFlowTeam.SpecFlowForVisualStudio2022)
+
+### Visual Studio Code
+
+Install [Visual Studio Code](https://code.visualstudio.com/), and then install the recommended extensions found in `.vscode\extensions.json`.
+
+### Build
+
+1. Open the solution `MvvmDialogs.sln` in Visual Studio 2022
+1. Click menu item *Build* -> *Build Solution*
+
+### Test
+
+1. Make sure the source code has been built once
+1. Click menu item *Extensions* -> *ReSharper* -> *Unit Tests* -> *Run All Tests from Solution*
 
 ## Pull Request Process
 
