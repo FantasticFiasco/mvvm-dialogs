@@ -6,6 +6,7 @@
 //////////////////////////////////////////////////////////////////////
 
 var target = Argument("target", "Default");
+var configuration = Argument("configuration", "Release");
 
 //////////////////////////////////////////////////////////////////////
 // VARIABLES
@@ -44,7 +45,7 @@ Task("Build")
             new MSBuildSettings
             {
                 ToolVersion = MSBuildToolVersion.VS2022,
-                Configuration = "Release",
+                Configuration = configuration,
                 MaxCpuCount = 0,            // Enable parallel build
             });
     });
