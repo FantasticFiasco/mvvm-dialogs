@@ -13,6 +13,7 @@ install:
 #              build              #
 #---------------------------------#
 build_script:
+  - cmd: dotnet tool restore
   - cmd: dotnet cake .\build\build.cake
 
 
