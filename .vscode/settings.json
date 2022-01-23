@@ -1,11 +1,7 @@
 {
-    "spellright.language": [
-        "en",
-        "English (American)"
-    ],
-    "spellright.documentTypes": [
-        "markdown",
-        "latex",
-        "plaintext"
+    "cSpell.words": [
+        "Caliburn",
+        "jetbrains",
+        "MVVM"
     ]
 }

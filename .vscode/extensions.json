@@ -1,0 +1,9 @@
+{
+  "recommendations": [
+    "cake-build.cake-vscode",
+    "EditorConfig.EditorConfig",
+    "ms-dotnettools.csharp",
+    "streetsidesoftware.code-spell-checker"
+  ],
+  "unwantedRecommendations": []
+}

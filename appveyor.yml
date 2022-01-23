@@ -13,7 +13,8 @@ install:
 #              build              #
 #---------------------------------#
 build_script:
-  - cmd: PowerShell .\build\build.ps1 -Script .\build\build.cake
+  - cmd: dotnet tool restore
+  - cmd: dotnet cake .\build\build.cake
 
 
 #---------------------------------#
