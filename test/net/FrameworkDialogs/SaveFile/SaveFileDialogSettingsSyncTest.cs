@@ -8,22 +8,14 @@ namespace MvvmDialogs.FrameworkDialogs.SaveFile
     [TestFixture]
     public class SaveFileDialogSettingsSyncTest
     {
-        private SaveFileDialog dialog;
-        private SaveFileDialogSettings settings;
-        private SaveFileDialogSettingsSync sync;
-
-        [SetUp]
-        public void SetUp()
-        {
-            dialog = new SaveFileDialog();
-            settings = new SaveFileDialogSettings();
-            sync = new SaveFileDialogSettingsSync(dialog, settings);
-        }
-
         [Test]
         public void ToDialog()
         {
             // Arrange
+            var dialog = new SaveFileDialog();
+            var settings = new SaveFileDialogSettings();
+            var sync = new SaveFileDialogSettingsSync(dialog, settings);
+
             settings.AddExtension = !settings.AddExtension;
             settings.CheckFileExists = !settings.CheckFileExists;
             settings.CheckPathExists = !settings.CheckPathExists;
@@ -69,6 +61,10 @@ namespace MvvmDialogs.FrameworkDialogs.SaveFile
         public void ToSettings()
         {
             // Arrange
+            var dialog = new SaveFileDialog();
+            var settings = new SaveFileDialogSettings();
+            var sync = new SaveFileDialogSettingsSync(dialog, settings);
+
             dialog.FileName = "SomeFile.txt";
             dialog.FilterIndex = 2;
 

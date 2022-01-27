@@ -8,23 +8,15 @@ namespace MvvmDialogs.FrameworkDialogs.MessageBox
     [TestFixture]
     public class MessageBoxWrapperTest
     {
-        private MessageBoxSettings settings;
-        private Mock<IMessageBoxShow> messageBoxShow;
-        private MessageBoxWrapper dialog;
-
-        [SetUp]
-        public void SetUp()
-        {
-            settings = new MessageBoxSettings();
-            messageBoxShow = new Mock<IMessageBoxShow>();
-            dialog = new MessageBoxWrapper(messageBoxShow.Object, settings);
-        }
-
         [Test]
         [RequiresThread(ApartmentState.STA)]
         public void Show()
         {
             // Arrange
+            var settings = new MessageBoxSettings();
+            var messageBoxShow = new Mock<IMessageBoxShow>();
+            var dialog = new MessageBoxWrapper(messageBoxShow.Object, settings);
+
             settings.Button = MessageBoxButton.YesNoCancel;
             settings.Caption = "Some caption";
             settings.DefaultResult = MessageBoxResult.Yes;

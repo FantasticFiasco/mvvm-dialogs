@@ -8,22 +8,14 @@ namespace MvvmDialogs.FrameworkDialogs.OpenFile
     [TestFixture]
     public class OpenFileDialogSettingsSyncTest
     {
-        private OpenFileDialog dialog;
-        private OpenFileDialogSettings settings;
-        private OpenFileDialogSettingsSync sync;
-
-        [SetUp]
-        public void SetUp()
-        {
-            dialog = new OpenFileDialog();
-            settings = new OpenFileDialogSettings();
-            sync = new OpenFileDialogSettingsSync(dialog, settings);
-        }
-
         [Test]
         public void ToDialog()
         {
             // Arrange
+            var dialog = new OpenFileDialog();
+            var settings = new OpenFileDialogSettings();
+            var sync = new OpenFileDialogSettingsSync(dialog, settings);
+
             settings.AddExtension = !settings.AddExtension;
             settings.CheckFileExists = !settings.CheckFileExists;
             settings.CheckPathExists = !settings.CheckPathExists;
@@ -71,6 +63,10 @@ namespace MvvmDialogs.FrameworkDialogs.OpenFile
         public void ToSettings()
         {
             // Arrange
+            var dialog = new OpenFileDialog();
+            var settings = new OpenFileDialogSettings();
+            var sync = new OpenFileDialogSettingsSync(dialog, settings);
+
             dialog.FileName = "SomeFile.txt";
             dialog.FilterIndex = 2;
 

@@ -7,22 +7,14 @@ namespace MvvmDialogs.FrameworkDialogs.FolderBrowser
     [TestFixture]
     public class FolderBrowserDialogSettingsSyncTest
     {
-        private FolderBrowserDialog dialog;
-        private FolderBrowserDialogSettings settings;
-        private FolderBrowserDialogSettingsSync sync;
-
-        [SetUp]
-        public void SetUp()
-        {
-            dialog = new FolderBrowserDialog();
-            settings = new FolderBrowserDialogSettings();
-            sync = new FolderBrowserDialogSettingsSync(dialog, settings);
-        }
-
         [Test]
         public void ToDialog()
         {
             // Arrange
+            var dialog = new FolderBrowserDialog();
+            var settings = new FolderBrowserDialogSettings();
+            var sync = new FolderBrowserDialogSettingsSync(dialog, settings);
+
             settings.Description = "Some description";
             settings.RootFolder = Environment.SpecialFolder.ProgramFiles;
             settings.SelectedPath = @"C:\temp";
@@ -42,6 +34,10 @@ namespace MvvmDialogs.FrameworkDialogs.FolderBrowser
         public void ToSettings()
         {
             // Arrange
+            var dialog = new FolderBrowserDialog();
+            var settings = new FolderBrowserDialogSettings();
+            var sync = new FolderBrowserDialogSettingsSync(dialog, settings);
+
             dialog.SelectedPath = @"C:\temp";
 
             // Act

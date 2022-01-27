@@ -8,11 +8,9 @@ namespace MvvmDialogs.DialogTypeLocators
     [TestFixture]
     public class NamingConventionDialogTypeLocatorTest
     {
-        private Assembly testAssembly;
-        private NamingConventionDialogTypeLocator dialogTypeLocator;
+        private readonly Assembly testAssembly;
 
-        [OneTimeSetUp]
-        public void OneTimeSetUp()
+        public NamingConventionDialogTypeLocatorTest()
         {
             NamingConventionDialogTypeLocator.Cache.Clear();
 
@@ -39,12 +37,6 @@ namespace MvvmDialogs.DialogTypeLocators
             testAssembly = assemblyBuilder.Build();
         }
 
-        [SetUp]
-        public void SetUp()
-        {
-            dialogTypeLocator = new NamingConventionDialogTypeLocator();
-        }
-
         [TestCase("TestAssembly.DialogViewModel", "TestAssembly.Dialog")]
         [TestCase("TestAssembly.ViewModels.DialogViewModel", "TestAssembly.Views.Dialog")]
         [TestCase("TestAssembly.ViewModels.Module.DialogViewModel", "TestAssembly.Views.Module.Dialog")]
@@ -52,6 +44,7 @@ namespace MvvmDialogs.DialogTypeLocators
         public void LocateDialogTypeSuccessful(string viewModelFullName, string viewFullName)
         {
             // Arrange
+            var dialogTypeLocator = new NamingConventionDialogTypeLocator();
             Type viewModelType = testAssembly.GetType(viewModelFullName);
             Assert.IsNotNull(viewModelType);
 
@@ -69,6 +62,7 @@ namespace MvvmDialogs.DialogTypeLocators
         public void LocateDialogTypeUnsuccessful(string viewModelFullName)
         {
             // Arrange
+            var dialogTypeLocator = new NamingConventionDialogTypeLocator();
             Type viewModelType = testAssembly.GetType(viewModelFullName);
             Assert.IsNotNull(viewModelType);
 
