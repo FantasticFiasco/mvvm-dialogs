@@ -7,6 +7,7 @@
     <Company>FantasticFiasco</Company>
     <Product>MVVM Dialogs</Product>
     <Copyright>Copyright © 2009-2022 MVVM Dialogs contributors</Copyright>
+    <LangVersion>latest</LangVersion>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
 

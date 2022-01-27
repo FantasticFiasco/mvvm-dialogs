@@ -3,7 +3,6 @@
 
   <PropertyGroup>
     <OutputType>Library</OutputType>
-    <LangVersion>8.0</LangVersion>
     <!--
       Lets have the .NET Framework version listed first, otherwise we will get build warnings in Visual Studio.
       See https://github.com/dotnet/project-system/issues/1162 for more information.
