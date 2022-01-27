@@ -6,6 +6,7 @@
     <UseWPF>true</UseWPF>
     <RootNamespace>Demo.FolderBrowserDialog</RootNamespace>
     <AssemblyName>Demo.FolderBrowserDialog</AssemblyName>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>

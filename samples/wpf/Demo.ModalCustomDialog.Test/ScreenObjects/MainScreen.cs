@@ -12,13 +12,13 @@ namespace Demo.ModalCustomDialog.ScreenObjects
     public class MainScreen : AppScreen
     {
         [AutomationId("Vfkrmkr640yWmoMTKUWIbQ")]
-        private readonly ListBox texts = null;
+        private readonly ListBox? texts = null;
 
         [AutomationId("FHE_oyWqBEq_9TPaU1yPTQ")]
-        private readonly Button addTextUsingDialogTypeLocatorButton = null;
+        private readonly Button? addTextUsingDialogTypeLocatorButton = null;
 
         [AutomationId("Dq9ZjnVdFESxu8StkQ8jMw")]
-        private readonly Button addTextBySpecifyingDialogTypeButton = null;
+        private readonly Button? addTextBySpecifyingDialogTypeButton = null;
 
         public MainScreen(Window window, ScreenRepository screenRepository)
             : base(window, screenRepository)
@@ -27,18 +27,18 @@ namespace Demo.ModalCustomDialog.ScreenObjects
 
         public virtual IEnumerable<string> Texts
         {
-            get { return texts.Items.Select(item => item.Text); }
+            get { return texts!.Items.Select(item => item.Text); }
         }
 
         public virtual AddTextScreen ClickAddTextUsingDialogTypeLocator()
         {
-            addTextUsingDialogTypeLocatorButton.Click();
+            addTextUsingDialogTypeLocatorButton!.Click();
             return ScreenRepository.GetModal<AddTextScreen>("Add Text", Window, InitializeOption.NoCache);
         }
 
         public virtual AddTextScreen ClickAddTextBySpecifyingDialogType()
         {
-            addTextBySpecifyingDialogTypeButton.Click();
+            addTextBySpecifyingDialogTypeButton!.Click();
             return ScreenRepository.GetModal<AddTextScreen>("Add Text", Window, InitializeOption.NoCache);
         }
     }

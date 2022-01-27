@@ -12,7 +12,7 @@ namespace Demo.OpenFileDialog
     {
         private readonly IDialogService dialogService;
 
-        private string path;
+        private string? path;
 
         public MainWindowViewModel(IDialogService dialogService)
         {
@@ -21,7 +21,7 @@ namespace Demo.OpenFileDialog
             OpenFileCommand = new RelayCommand(OpenFile);
         }
 
-        public string Path
+        public string? Path
         {
             get => path;
             private set => SetProperty(ref path, value);
@@ -34,7 +34,7 @@ namespace Demo.OpenFileDialog
             var settings = new OpenFileDialogSettings
             {
                 Title = "This Is The Title",
-                InitialDirectory = IOPath.GetDirectoryName(Assembly.GetExecutingAssembly().Location),
+                InitialDirectory = IOPath.GetDirectoryName(Assembly.GetExecutingAssembly().Location)!,
                 Filter = "Text Documents (*.txt)|*.txt|All Files (*.*)|*.*"
             };
 

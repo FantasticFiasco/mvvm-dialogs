@@ -9,21 +9,21 @@ namespace Demo.CustomOpenFileDialog.ScreenObjects
     public class MainScreen : AppScreen
     {
         [AutomationId("cqkeItgI3UaZc-mQ6mYPAA")]
-        private readonly TextBox pathTextBox = null;
+        private readonly TextBox? pathTextBox = null;
 
         [AutomationId("MZ16xHTzYE2UP8S9vd-EGw")]
-        private readonly Button openButton = null;
+        private readonly Button? openButton = null;
 
         public MainScreen(Window window, ScreenRepository screenRepository)
             : base(window, screenRepository)
         {
         }
 
-        public virtual string FileName => pathTextBox.Text;
+        public virtual string? FileName => pathTextBox?.Text;
 
         public virtual OpenFileScreen ClickOpen()
         {
-            openButton.Click();
+            openButton!.Click();
             return ScreenRepository.GetModal<OpenFileScreen>("This Is The Title", Window, InitializeOption.NoCache);
         }
     }

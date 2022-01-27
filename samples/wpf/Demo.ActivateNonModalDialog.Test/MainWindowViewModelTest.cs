@@ -7,19 +7,13 @@ namespace Demo.ActivateNonModalDialog
     [TestFixture]
     public class MainWindowViewModelTest
     {
-        private Mock<IDialogService> dialogService;
-        private MainWindowViewModel viewModel;
-
-        [SetUp]
-        public void SetUp()
-        {
-            dialogService = new Mock<IDialogService>();
-            viewModel = new MainWindowViewModel(dialogService.Object);
-        }
-
         [Test]
         public void CanShow()
         {
+            // Arrange
+            var dialogService = new Mock<IDialogService>();
+            var viewModel = new MainWindowViewModel(dialogService.Object);
+
             // Act
             bool canShow = viewModel.ShowCommand.CanExecute(null);
 
@@ -31,6 +25,9 @@ namespace Demo.ActivateNonModalDialog
         public void CanNotShow()
         {
             // Arrange
+            var dialogService = new Mock<IDialogService>();
+            var viewModel = new MainWindowViewModel(dialogService.Object);
+
             viewModel.ShowCommand.Execute(null);
 
             // Act
@@ -44,6 +41,9 @@ namespace Demo.ActivateNonModalDialog
         public void CanActivate()
         {
             // Arrange
+            var dialogService = new Mock<IDialogService>();
+            var viewModel = new MainWindowViewModel(dialogService.Object);
+
             viewModel.ShowCommand.Execute(null);
 
             // Act
@@ -56,6 +56,10 @@ namespace Demo.ActivateNonModalDialog
         [Test]
         public void CanNotActivate()
         {
+            // Arrange
+            var dialogService = new Mock<IDialogService>();
+            var viewModel = new MainWindowViewModel(dialogService.Object);
+
             // Act
             bool canActivate = viewModel.ActivateCommand.CanExecute(null);
 

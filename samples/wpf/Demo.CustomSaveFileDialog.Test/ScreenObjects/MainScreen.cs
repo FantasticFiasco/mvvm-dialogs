@@ -9,21 +9,21 @@ namespace Demo.CustomSaveFileDialog.ScreenObjects
     public class MainScreen : AppScreen
     {
         [AutomationId("-u3vcUdRMUaG4Af_kzSeZQ")]
-        private readonly TextBox pathTextBox = null;
+        private readonly TextBox? pathTextBox = null;
 
         [AutomationId("HstqC8HI9EOGiTfPA4_xag")]
-        private readonly Button saveButton = null;
+        private readonly Button? saveButton = null;
 
         public MainScreen(Window window, ScreenRepository screenRepository)
             : base(window, screenRepository)
         {
         }
 
-        public virtual string FileName => pathTextBox.Text;
+        public virtual string? FileName => pathTextBox?.Text;
 
         public virtual SaveFileScreen ClickSave()
         {
-            saveButton.Click();
+            saveButton!.Click();
             return ScreenRepository.GetModal<SaveFileScreen>("This Is The Title", Window, InitializeOption.NoCache);
         }
     }

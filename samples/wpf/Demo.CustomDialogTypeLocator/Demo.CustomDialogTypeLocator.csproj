@@ -6,6 +6,7 @@
     <UseWPF>true</UseWPF>
     <RootNamespace>Demo.CustomDialogTypeLocator</RootNamespace>
     <AssemblyName>Demo.CustomDialogTypeLocator</AssemblyName>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>

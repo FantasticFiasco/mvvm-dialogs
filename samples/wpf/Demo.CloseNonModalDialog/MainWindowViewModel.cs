@@ -9,7 +9,7 @@ namespace Demo.CloseNonModalDialog
     {
         private readonly IDialogService dialogService;
 
-        private INotifyPropertyChanged dialogViewModel;
+        private INotifyPropertyChanged? dialogViewModel;
 
         public MainWindowViewModel(IDialogService dialogService)
         {
@@ -39,7 +39,7 @@ namespace Demo.CloseNonModalDialog
 
         private void Close()
         {
-            dialogService.Close(dialogViewModel);
+            dialogService.Close(dialogViewModel!);
             dialogViewModel = null;
 
             ShowCommand.NotifyCanExecuteChanged();

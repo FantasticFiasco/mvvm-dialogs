@@ -15,11 +15,11 @@ namespace TestBaseClasses.Features
     /// </summary>
     public abstract class FeatureSteps<T> where T : AppScreen
     {
-        protected Application Application { get; private set; }
+        protected Application? Application { get; private set; }
 
-        protected ScreenRepository ScreenRepository { get; private set; }
+        protected ScreenRepository? ScreenRepository { get; private set; }
 
-        protected T MainScreen { get; private set; }
+        protected T? MainScreen { get; private set; }
 
         [BeforeScenario]
         public void InitialBeforeScenario()

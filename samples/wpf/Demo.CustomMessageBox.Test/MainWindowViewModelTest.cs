@@ -8,20 +8,13 @@ namespace Demo.CustomMessageBox
     [TestFixture]
     public class MainWindowViewModelTest
     {
-        private Mock<IDialogService> dialogService;
-        private MainWindowViewModel viewModel;
-
-        [SetUp]
-        public void SetUp()
-        {
-            dialogService = new Mock<IDialogService>();
-            viewModel = new MainWindowViewModel(dialogService.Object);
-        }
-
         [Test]
         public void ShowMessageBoxWithMessage()
         {
             // Arrange
+            var dialogService = new Mock<IDialogService>();
+            var viewModel = new MainWindowViewModel(dialogService.Object);
+
             dialogService
                 .Setup(mock =>
                     mock.ShowMessageBox(
@@ -44,6 +37,9 @@ namespace Demo.CustomMessageBox
         public void ShowMessageBoxWithCaption()
         {
             // Arrange
+            var dialogService = new Mock<IDialogService>();
+            var viewModel = new MainWindowViewModel(dialogService.Object);
+
             dialogService
                 .Setup(mock =>
                     mock.ShowMessageBox(
@@ -66,6 +62,9 @@ namespace Demo.CustomMessageBox
         public void ShowMessageBoxWithButton()
         {
             // Arrange
+            var dialogService = new Mock<IDialogService>();
+            var viewModel = new MainWindowViewModel(dialogService.Object);
+
             dialogService
                 .Setup(mock =>
                     mock.ShowMessageBox(
@@ -88,6 +87,9 @@ namespace Demo.CustomMessageBox
         public void ShowMessageBoxWithIcon()
         {
             // Arrange
+            var dialogService = new Mock<IDialogService>();
+            var viewModel = new MainWindowViewModel(dialogService.Object);
+
             dialogService
                 .Setup(mock =>
                     mock.ShowMessageBox(
@@ -110,6 +112,9 @@ namespace Demo.CustomMessageBox
         public void ShowMessageBoxWithDefaultResult()
         {
             // Arrange
+            var dialogService = new Mock<IDialogService>();
+            var viewModel = new MainWindowViewModel(dialogService.Object);
+
             dialogService
                 .Setup(mock =>
                     mock.ShowMessageBox(

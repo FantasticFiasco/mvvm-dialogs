@@ -5,21 +5,16 @@ namespace Demo.ModalDialog
     [TestFixture]
     public class AddTextDialogViewModelTest
     {
-        private AddTextDialogViewModel viewModel;
-
-        [SetUp]
-        public void SetUp()
-        {
-            viewModel = new AddTextDialogViewModel();
-        }
-
         [TestCase("Some text", true)]
         [TestCase("", null)]
         [TestCase(null, null)]
         public void Ok(string text, bool? expectedDialogResult)
         {
             // Arrange
-            viewModel.Text = text;
+            var viewModel = new AddTextDialogViewModel
+            {
+                Text = text
+            };
 
             // Act
             viewModel.OkCommand.Execute(null);

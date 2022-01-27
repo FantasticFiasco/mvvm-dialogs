@@ -8,13 +8,13 @@ namespace Demo.ModalDialog.ScreenObjects
     public class AddTextScreen : AppScreen
     {
         [AutomationId("Csl8dP93gUGQLj7rVZxDAg")]
-        private readonly TextBox text = null;
+        private readonly TextBox? text = null;
 
         [AutomationId("eyRW_87u20qR7QTCypm2RQ")]
-        private readonly Button okButton = null;
+        private readonly Button? okButton = null;
 
         [AutomationId("I91auHr_EECzhSZyIfvvzQ")]
-        private readonly Button cancelButton = null;
+        private readonly Button? cancelButton = null;
 
         public AddTextScreen(Window window, ScreenRepository screenRepository)
             : base(window, screenRepository)
@@ -23,11 +23,11 @@ namespace Demo.ModalDialog.ScreenObjects
 
         public virtual string Text
         {
-            set => text.Text = value;
+            set => text!.Text = value;
         }
 
-        public virtual void ClickOK() => okButton.Click();
+        public virtual void ClickOK() => okButton!.Click();
 
-        public virtual void ClickCancel() => cancelButton.Click();
+        public virtual void ClickCancel() => cancelButton!.Click();
     }
 }

@@ -13,7 +13,7 @@ namespace Demo.ModalCustomDialog.Features
     [Binding]
     public class AddTextSteps : FeatureSteps<MainScreen>
     {
-        private AddTextScreen addTextScreen;
+        private AddTextScreen? addTextScreen;
 
         protected override Application LaunchApplication()
         {
@@ -27,49 +27,49 @@ namespace Demo.ModalCustomDialog.Features
 
         protected override MainScreen GetMainScreen(ScreenRepository screenRepository)
         {
-            return ScreenRepository.Get<MainScreen>("Demo - Modal Custom Dialog", InitializeOption.NoCache);
+            return ScreenRepository!.Get<MainScreen>("Demo - Modal Custom Dialog", InitializeOption.NoCache);
         }
 
         [Given("dialog is shown using the dialog type locator")]
         public void ShowDialogUsingDialogTypeLocator()
         {
-            addTextScreen = MainScreen.ClickAddTextUsingDialogTypeLocator();
+            addTextScreen = MainScreen!.ClickAddTextUsingDialogTypeLocator();
         }
 
         [Given("dialog is shown by specifying dialog type")]
         public void ShowDialogBySpecifyingType()
         {
-            addTextScreen = MainScreen.ClickAddTextBySpecifyingDialogType();
+            addTextScreen = MainScreen!.ClickAddTextBySpecifyingDialogType();
         }
 
         [When(@"I enter the text (.*)")]
         public void Enter(string text)
         {
-            addTextScreen.Text = text;
+            addTextScreen!.Text = text;
         }
 
         [When("accept")]
         public void Accept()
         {
-            addTextScreen.ClickOK();
+            addTextScreen!.ClickOK();
         }
 
         [When("abort")]
         public void Abort()
         {
-            addTextScreen.ClickCancel();
+            addTextScreen!.ClickCancel();
         }
 
         [Then("the list of texts should contain (.*)")]
         public void VerifyListContains(string text)
         {
-            CollectionAssert.AreEqual(new[] { text }, MainScreen.Texts);
+            CollectionAssert.AreEqual(new[] { text }, MainScreen!.Texts);
         }
 
         [Then("the list of texts should be empty")]
         public void VerifyListIsEmpty()
         {
-            CollectionAssert.AreEqual(new string[0], MainScreen.Texts);
+            CollectionAssert.AreEqual(new string[0], MainScreen!.Texts);
         }
     }
 }

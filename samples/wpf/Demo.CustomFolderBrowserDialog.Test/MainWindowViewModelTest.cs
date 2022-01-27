@@ -9,20 +9,13 @@ namespace Demo.CustomFolderBrowserDialog
     [TestFixture]
     public class MainWindowViewModelTest
     {
-        private Mock<IDialogService> dialogService;
-        private MainWindowViewModel viewModel;
-
-        [SetUp]
-        public void SetUp()
-        {
-            dialogService = new Mock<IDialogService>();
-            viewModel = new MainWindowViewModel(dialogService.Object);
-        }
-
         [Test]
         public void BrowseFolderSuccessful()
         {
             // Arrange
+            var dialogService = new Mock<IDialogService>();
+            var viewModel = new MainWindowViewModel(dialogService.Object);
+
             dialogService
                 .Setup(mock => mock.ShowFolderBrowserDialog(viewModel, It.IsAny<FolderBrowserDialogSettings>()))
                 .Returns(true)
@@ -40,6 +33,9 @@ namespace Demo.CustomFolderBrowserDialog
         public void BrowseFolderUnsuccessful()
         {
             // Arrange
+            var dialogService = new Mock<IDialogService>();
+            var viewModel = new MainWindowViewModel(dialogService.Object);
+
             dialogService
                 .Setup(mock => mock.ShowFolderBrowserDialog(viewModel, It.IsAny<FolderBrowserDialogSettings>()))
                 .Returns(false);

@@ -1,11 +1,15 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
     <OutputType>Library</OutputType>
     <TargetFrameworks>net472</TargetFrameworks>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
+
   <ItemGroup>
     <PackageReference Include="NUnit" Version="3.13.1" />
     <PackageReference Include="SpecFlow.NUnit" Version="3.9.40" />
     <PackageReference Include="TestStack.White.ScreenObjects" Version="0.13.3" />
   </ItemGroup>
+
 </Project>

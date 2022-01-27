@@ -7,7 +7,7 @@ namespace Demo.ModalDialog
 {
     public class AddTextDialogViewModel : ObservableObject, IModalDialogViewModel
     {
-        private string text;
+        private string? text;
         private bool? dialogResult;
 
         public AddTextDialogViewModel()
@@ -15,7 +15,7 @@ namespace Demo.ModalDialog
             OkCommand = new RelayCommand(Ok);
         }
 
-        public string Text
+        public string? Text
         {
             get => text;
             set => SetProperty(ref text, value);
