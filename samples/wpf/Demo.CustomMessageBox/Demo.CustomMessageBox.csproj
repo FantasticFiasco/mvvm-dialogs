@@ -6,6 +6,7 @@
     <UseWPF>true</UseWPF>
     <RootNamespace>Demo.CustomMessageBox</RootNamespace>
     <AssemblyName>Demo.CustomMessageBox</AssemblyName>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>

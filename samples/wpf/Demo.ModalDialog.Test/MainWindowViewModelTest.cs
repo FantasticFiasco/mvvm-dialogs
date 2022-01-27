@@ -8,20 +8,13 @@ namespace Demo.ModalDialog
     [TestFixture]
     public class MainWindowViewModelTest
     {
-        private Mock<IDialogService> dialogService; 
-        private MainWindowViewModel viewModel;
-        
-        [SetUp]
-        public void SetUp()
-        {
-            dialogService = new Mock<IDialogService>();
-            viewModel = new MainWindowViewModel(dialogService.Object);
-        }
-
         [Test]
         public void ImplicitAddTextSuccessful()
         {
             // Arrange
+            var dialogService = new Mock<IDialogService>();
+            var viewModel = new MainWindowViewModel(dialogService.Object);
+
             dialogService
                 .Setup(mock => mock.ShowDialog(viewModel, It.IsAny<AddTextDialogViewModel>()))
                 .Returns(true)
@@ -44,6 +37,9 @@ namespace Demo.ModalDialog
         public void ImplicitAddTextUnsuccessful()
         {
             // Arrange
+            var dialogService = new Mock<IDialogService>();
+            var viewModel = new MainWindowViewModel(dialogService.Object);
+
             dialogService
                 .Setup(mock => mock.ShowDialog(viewModel, It.IsAny<AddTextDialogViewModel>()))
                 .Returns(false);
@@ -59,6 +55,9 @@ namespace Demo.ModalDialog
         public void ExplicitAddTextSuccessful()
         {
             // Arrange
+            var dialogService = new Mock<IDialogService>();
+            var viewModel = new MainWindowViewModel(dialogService.Object);
+
             dialogService
                 .Setup(mock => mock.ShowDialog<AddTextDialog>(viewModel, It.IsAny<AddTextDialogViewModel>()))
                 .Returns(true)
@@ -81,6 +80,9 @@ namespace Demo.ModalDialog
         public void ExplicitAddTextUnsuccessful()
         {
             // Arrange
+            var dialogService = new Mock<IDialogService>();
+            var viewModel = new MainWindowViewModel(dialogService.Object);
+
             dialogService
                 .Setup(mock => mock.ShowDialog<AddTextDialog>(viewModel, It.IsAny<AddTextDialogViewModel>()))
                 .Returns(false);

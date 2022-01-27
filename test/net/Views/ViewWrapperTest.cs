@@ -8,18 +8,11 @@ namespace MvvmDialogs.Views
     [Apartment(ApartmentState.STA)]
     public class ViewWrapperTest
     {
-        private FrameworkElement frameworkElement;
-
-        [SetUp]
-        public void SetUp()
-        {
-            frameworkElement = new FrameworkElement();
-        }
-
         [Test]
         public void Source()
         {
             // Arrange
+            var frameworkElement = new FrameworkElement();
             var viewWrapper = new ViewWrapper(frameworkElement);
 
             // Assert
@@ -30,6 +23,8 @@ namespace MvvmDialogs.Views
         public void GetHashCodeOverride()
         {
             // Arrange
+            var frameworkElement = new FrameworkElement();
+
             var viewWrapperA = new ViewWrapper(frameworkElement);
             var viewWrapperB = new ViewWrapper(frameworkElement);
 
@@ -45,6 +40,8 @@ namespace MvvmDialogs.Views
         public void EqualsOverride()
         {
             // Arrange
+            var frameworkElement = new FrameworkElement();
+
             var viewWrapperA = new ViewWrapper(frameworkElement);
             var viewWrapperB = new ViewWrapper(frameworkElement);
 

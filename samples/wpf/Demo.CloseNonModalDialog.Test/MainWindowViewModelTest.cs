@@ -7,19 +7,14 @@ namespace Demo.CloseNonModalDialog
     [TestFixture]
     public class MainWindowViewModelTest
     {
-        private Mock<IDialogService> dialogService;
-        private MainWindowViewModel viewModel;
-
-        [SetUp]
-        public void SetUp()
-        {
-            dialogService = new Mock<IDialogService>();
-            viewModel = new MainWindowViewModel(dialogService.Object);
-        }
 
         [Test]
         public void CanShow()
         {
+            // Arrange
+            var dialogService = new Mock<IDialogService>();
+            var viewModel = new MainWindowViewModel(dialogService.Object);
+
             // Act
             bool canShow = viewModel.ShowCommand.CanExecute(null);
 
@@ -31,6 +26,9 @@ namespace Demo.CloseNonModalDialog
         public void CanNotShow()
         {
             // Arrange
+            var dialogService = new Mock<IDialogService>();
+            var viewModel = new MainWindowViewModel(dialogService.Object);
+
             viewModel.ShowCommand.Execute(null);
 
             // Act
@@ -44,6 +42,9 @@ namespace Demo.CloseNonModalDialog
         public void CanClose()
         {
             // Arrange
+            var dialogService = new Mock<IDialogService>();
+            var viewModel = new MainWindowViewModel(dialogService.Object);
+
             viewModel.ShowCommand.Execute(null);
 
             // Act
@@ -56,6 +57,10 @@ namespace Demo.CloseNonModalDialog
         [Test]
         public void CanNotClose()
         {
+            // Arrange
+            var dialogService = new Mock<IDialogService>();
+            var viewModel = new MainWindowViewModel(dialogService.Object);
+
             // Act
             bool canClose = viewModel.CloseCommand.CanExecute(null);
 

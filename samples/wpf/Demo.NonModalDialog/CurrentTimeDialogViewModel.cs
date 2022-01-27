@@ -9,7 +9,7 @@ namespace Demo.NonModalDialog
     public class CurrentTimeDialogViewModel : ObservableObject
     {
         // ReSharper disable once NotAccessedField.Local
-        private DispatcherTimer timer;
+        private DispatcherTimer? timer;
 
         public CurrentTimeDialogViewModel()
         {
@@ -29,7 +29,7 @@ namespace Demo.NonModalDialog
                 Dispatcher.CurrentDispatcher);
         }
 
-        private void OnTick(object sender, EventArgs e)
+        private void OnTick(object? sender, EventArgs e)
         {
             OnPropertyChanged(nameof(CurrentTime));
         }

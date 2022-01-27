@@ -8,13 +8,13 @@ namespace Demo.NonModalDialog.ScreenObjects
     public class CurrentTimeScreen : AppScreen
     {
         [AutomationId("n_Mu0TdFak-4VJD8RosMEQ")]
-        private readonly Label currentTime = null;
+        private readonly Label? currentTime = null;
 
         public CurrentTimeScreen(Window window, ScreenRepository screenRepository)
             : base(window, screenRepository)
         {
         }
 
-        public virtual bool CurrentTimeVisible => currentTime.Visible;
+        public virtual bool CurrentTimeVisible => currentTime!.Visible;
     }
 }

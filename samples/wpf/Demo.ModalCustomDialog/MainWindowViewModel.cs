@@ -42,7 +42,7 @@ namespace Demo.ModalCustomDialog
             bool? success = showDialog(dialogViewModel);
             if (success == true)
             {
-                Texts.Add(dialogViewModel.Text);
+                Texts.Add(dialogViewModel.Text!);
             }
         }
     }

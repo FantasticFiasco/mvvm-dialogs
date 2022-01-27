@@ -9,20 +9,13 @@ namespace Demo.OpenFileDialog
     [TestFixture]
     public class MainWindowViewModelTest
     {
-        private Mock<IDialogService> dialogService;
-        private MainWindowViewModel viewModel;
-
-        [SetUp]
-        public void SetUp()
-        {
-            dialogService = new Mock<IDialogService>();
-            viewModel = new MainWindowViewModel(dialogService.Object);
-        }
-
         [Test]
         public void OpenFileSuccessful()
         {
             // Arrange
+            var dialogService = new Mock<IDialogService>();
+            var viewModel = new MainWindowViewModel(dialogService.Object);
+
             dialogService
                 .Setup(mock => mock.ShowOpenFileDialog(viewModel, It.IsAny<OpenFileDialogSettings>()))
                 .Returns(true)
@@ -40,6 +33,9 @@ namespace Demo.OpenFileDialog
         public void OpenFileUnsuccessful()
         {
             // Arrange
+            var dialogService = new Mock<IDialogService>();
+            var viewModel = new MainWindowViewModel(dialogService.Object);
+
             dialogService
                 .Setup(mock => mock.ShowOpenFileDialog(viewModel, It.IsAny<OpenFileDialogSettings>()))
                 .Returns(false);

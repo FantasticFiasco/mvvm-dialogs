@@ -13,7 +13,7 @@ namespace Demo.CustomFolderBrowserDialog.Features
     [Binding]
     public class BrowseFolderSteps : FeatureSteps<MainScreen>
     {
-        private BrowseFolderScreen browseFolderScreen;
+        private BrowseFolderScreen? browseFolderScreen;
 
         protected override Application LaunchApplication()
         {
@@ -33,31 +33,31 @@ namespace Demo.CustomFolderBrowserDialog.Features
         [Given("I have browsed a folder")]
         public void GivenIHaveBrowsedAFolder()
         {
-            browseFolderScreen = MainScreen.ClickBrowse();
+            browseFolderScreen = MainScreen!.ClickBrowse();
         }
         
         [When("I press confirm")]
         public void WhenIPressConfirm()
         {
-            browseFolderScreen.ClickSelectFolder();
+            browseFolderScreen!.ClickSelectFolder();
         }
         
         [When("I cancel")]
         public void WhenICancel()
         {
-            browseFolderScreen.ClickCancel();
+            browseFolderScreen!.ClickCancel();
         }
         
         [Then("the folder should be opened")]
         public void ThenTheFolderShouldBeOpened()
         {
-            Assert.That(MainScreen.FileName, Is.Not.Empty);
+            Assert.That(MainScreen!.FileName, Is.Not.Empty);
         }
         
         [Then("the folder should not be opened")]
         public void ThenTheFolderShouldNotBeOpened()
         {
-            Assert.That(MainScreen.FileName, Is.Empty);
+            Assert.That(MainScreen!.FileName, Is.Empty);
         }
     }
 }

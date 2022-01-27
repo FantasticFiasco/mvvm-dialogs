@@ -6,6 +6,7 @@
     <UseWPF>true</UseWPF>
     <RootNamespace>Demo.CustomOpenFileDialog</RootNamespace>
     <AssemblyName>Demo.CustomOpenFileDialog</AssemblyName>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>

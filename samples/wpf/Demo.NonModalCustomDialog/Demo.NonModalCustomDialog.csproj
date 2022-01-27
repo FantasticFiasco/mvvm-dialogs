@@ -6,6 +6,7 @@
     <UseWPF>true</UseWPF>
     <RootNamespace>Demo.NonModalCustomDialog</RootNamespace>
     <AssemblyName>Demo.NonModalCustomDialog</AssemblyName>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>

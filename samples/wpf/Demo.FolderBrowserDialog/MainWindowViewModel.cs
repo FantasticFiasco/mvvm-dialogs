@@ -12,7 +12,7 @@ namespace Demo.FolderBrowserDialog
     {
         private readonly IDialogService dialogService;
 
-        private string path;
+        private string? path;
 
         public MainWindowViewModel(IDialogService dialogService)
         {
@@ -21,7 +21,7 @@ namespace Demo.FolderBrowserDialog
             BrowseFolderCommand = new RelayCommand(BrowseFolder);
         }
 
-        public string Path
+        public string? Path
         {
             get => path;
             private set => SetProperty(ref path, value);
@@ -34,7 +34,7 @@ namespace Demo.FolderBrowserDialog
             var settings = new FolderBrowserDialogSettings
             {
                 Description = "This is a description",
-                SelectedPath = IOPath.GetDirectoryName(Assembly.GetExecutingAssembly().Location)
+                SelectedPath = IOPath.GetDirectoryName(Assembly.GetExecutingAssembly().Location)!
             };
 
             bool? success = dialogService.ShowFolderBrowserDialog(this, settings);

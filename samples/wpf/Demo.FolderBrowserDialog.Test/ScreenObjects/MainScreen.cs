@@ -9,21 +9,21 @@ namespace Demo.FolderBrowserDialog.ScreenObjects
     public class MainScreen : AppScreen
     {
         [AutomationId("RQ_N2kIsN0C39sxTonCRtA")]
-        private readonly TextBox pathTextBox = null;
+        private readonly TextBox? pathTextBox = null;
 
         [AutomationId("TTK4W3coCE2skIHpcUe97Q")]
-        private readonly Button browseButton = null;
+        private readonly Button? browseButton = null;
 
         public MainScreen(Window window, ScreenRepository screenRepository)
             : base(window, screenRepository)
         {
         }
 
-        public virtual string FileName => pathTextBox.Text;
+        public virtual string? FileName => pathTextBox?.Text;
 
         public virtual BrowseFolderScreen ClickBrowse()
         {
-            browseButton.Click();
+            browseButton!.Click();
             return ScreenRepository.GetModal<BrowseFolderScreen>("Browse For Folder", Window, InitializeOption.NoCache);
         }
     }

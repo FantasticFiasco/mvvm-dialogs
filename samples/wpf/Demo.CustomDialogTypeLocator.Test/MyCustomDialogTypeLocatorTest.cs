@@ -7,19 +7,13 @@ namespace Demo.CustomDialogTypeLocator
     [TestFixture]
     public class MainWindowViewModelTest
     {
-        private Mock<IDialogService> dialogService;
-        private MainWindowVM viewModel;
-
-        [SetUp]
-        public void SetUp()
-        {
-            dialogService = new Mock<IDialogService>();
-            viewModel = new MainWindowVM(dialogService.Object);
-        }
-
         [Test]
         public void ShowDialog()
         {
+            // Arrange
+            var dialogService = new Mock<IDialogService>();
+            var viewModel = new MainWindowVM(dialogService.Object);
+
             // Act
             viewModel.ShowDialogCommand.Execute(null);
 

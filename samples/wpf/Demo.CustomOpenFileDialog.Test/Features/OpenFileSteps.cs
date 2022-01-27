@@ -13,7 +13,7 @@ namespace Demo.CustomOpenFileDialog.Features
     [Binding]
     public class OpenFileSteps : FeatureSteps<MainScreen>
     {
-        private OpenFileScreen openFileScreen;
+        private OpenFileScreen? openFileScreen;
 
         protected override Application LaunchApplication()
         {
@@ -27,38 +27,38 @@ namespace Demo.CustomOpenFileDialog.Features
 
         protected override MainScreen GetMainScreen(ScreenRepository screenRepository)
         {
-            return ScreenRepository.Get<MainScreen>("Demo - Custom Open File Dialog", InitializeOption.NoCache);
+            return ScreenRepository!.Get<MainScreen>("Demo - Custom Open File Dialog", InitializeOption.NoCache);
         }
 
         [Given("I have selected to open a file")]
         public void OpenFile()
         {
-            openFileScreen = MainScreen.ClickOpen();
+            openFileScreen = MainScreen!.ClickOpen();
             openFileScreen.FileName = "OpenMe.txt";
         }
 
         [When("I press confirm")]
         public void Confirm()
         {
-            openFileScreen.ClickOpen();
+            openFileScreen!.ClickOpen();
         }
 
         [When("I cancel")]
         public void Cancel()
         {
-            openFileScreen.ClickCancel();
+            openFileScreen!.ClickCancel();
         }
 
         [Then("the file should be opened")]
         public void VerifyFileWasOpened()
         {
-            StringAssert.EndsWith("OpenMe.txt", MainScreen.FileName);
+            StringAssert.EndsWith("OpenMe.txt", MainScreen!.FileName);
         }
 
         [Then("the file should not be opened")]
         public void VerifyFileWasNotOpened()
         {
-            Assert.That(MainScreen.FileName, Is.Empty);
+            Assert.That(MainScreen!.FileName, Is.Empty);
         }
     }
 }

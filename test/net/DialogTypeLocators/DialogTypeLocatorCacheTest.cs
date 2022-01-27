@@ -6,17 +6,12 @@ namespace MvvmDialogs.DialogTypeLocators
     [TestFixture]
     public class DialogTypeLocatorCacheTest
     {
-        private DialogTypeLocatorCache cache;
-
-        [SetUp]
-        public void SetUp()
-        {
-            cache = new DialogTypeLocatorCache();
-        }
-
         [Test]
         public void Add()
         {
+            // Arrange
+            var cache = new DialogTypeLocatorCache();
+
             // Act
             cache.Add(typeof(TestDialogViewModel), typeof(TestDialog));
 
@@ -28,6 +23,7 @@ namespace MvvmDialogs.DialogTypeLocators
         public void AddSameTwice()
         {
             // Arrange
+            var cache = new DialogTypeLocatorCache();
             cache.Add(typeof(TestDialogViewModel), typeof(TestDialog));
 
             // Assert
@@ -38,10 +34,11 @@ namespace MvvmDialogs.DialogTypeLocators
         public void Get()
         {
             // Arrange
+            var cache = new DialogTypeLocatorCache();
             cache.Add(typeof(TestDialogViewModel), typeof(TestDialog));
 
             // Act
-            Type dialogType = cache.Get(typeof(TestDialogViewModel));
+            Type? dialogType = cache.Get(typeof(TestDialogViewModel));
 
             // Assert
             Assert.That(dialogType, Is.EqualTo(typeof(TestDialog)));
@@ -51,6 +48,7 @@ namespace MvvmDialogs.DialogTypeLocators
         public void Clear()
         {
             // Arrange
+            var cache = new DialogTypeLocatorCache();
             cache.Add(typeof(TestDialogViewModel), typeof(TestDialog));
 
             // Act

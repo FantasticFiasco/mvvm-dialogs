@@ -9,7 +9,7 @@ namespace Demo.ActivateNonModalDialog
     {
         private readonly IDialogService dialogService;
 
-        private INotifyPropertyChanged dialogViewModel;
+        private INotifyPropertyChanged? dialogViewModel;
 
         public MainWindowViewModel(IDialogService dialogService)
         {
@@ -39,7 +39,7 @@ namespace Demo.ActivateNonModalDialog
 
         private void Activate()
         {
-            dialogService.Activate(dialogViewModel);
+            dialogService.Activate(dialogViewModel!);
         }
 
         private bool CanActivate()

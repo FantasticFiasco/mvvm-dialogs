@@ -13,7 +13,7 @@ namespace Demo.NonModalCustomDialog.Features
     [Binding]
     public class ShowCurrentTimeSteps : FeatureSteps<MainScreen>
     {
-        private CurrentTimeScreen currentTimeScreen;
+        private CurrentTimeScreen? currentTimeScreen;
 
         protected override Application LaunchApplication()
         {
@@ -27,25 +27,25 @@ namespace Demo.NonModalCustomDialog.Features
 
         protected override MainScreen GetMainScreen(ScreenRepository screenRepository)
         {
-            return ScreenRepository.Get<MainScreen>("Demo - Non-Modal Custom Dialog", InitializeOption.NoCache);
+            return ScreenRepository!.Get<MainScreen>("Demo - Non-Modal Custom Dialog", InitializeOption.NoCache);
         }
 
         [When("dialog is shown using the dialog type locator")]
         public void WhenDialogIsShownUsingTheDialogTypeLocator()
         {
-            currentTimeScreen = MainScreen.ClickShowCurrentTimeUsingDialogTypeLocator();
+            currentTimeScreen = MainScreen!.ClickShowCurrentTimeUsingDialogTypeLocator();
         }
 
         [When("dialog is shown by specifying dialog type")]
         public void WhenDialogIsShownBySpecifyingDialogType()
         {
-            currentTimeScreen = MainScreen.ClickShowCurrentTimeBySpecifyingDialogType();
+            currentTimeScreen = MainScreen!.ClickShowCurrentTimeBySpecifyingDialogType();
         }
 
         [Then("the current time should be displayed")]
         public void VerifyCurrentTimeIsDisplayed()
         {
-            Assert.That(currentTimeScreen.CurrentTimeVisible, Is.True);
+            Assert.That(currentTimeScreen!.CurrentTimeVisible, Is.True);
         }
     }
 }

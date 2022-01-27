@@ -11,7 +11,7 @@ namespace Demo.CustomMessageBox
     {
         private readonly IDialogService dialogService;
 
-        private string confirmation;
+        private string? confirmation;
         
         public MainWindowViewModel(IDialogService dialogService)
         {
@@ -34,7 +34,7 @@ namespace Demo.CustomMessageBox
 
         public ICommand ShowMessageBoxWithDefaultResultCommand { get; }
 
-        public string Confirmation
+        public string? Confirmation
         {
             get => confirmation;
             private set => SetProperty(ref confirmation, value);

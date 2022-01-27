@@ -23,7 +23,7 @@ namespace MvvmDialogs
                 FileName);
         }
 
-        public Type CreateType(string fullName, Type parenType = null)
+        public Type CreateType(string fullName, Type? parenType = null)
         {
             TypeBuilder typeBuilder = moduleBuilder.DefineType(
                 fullName,
