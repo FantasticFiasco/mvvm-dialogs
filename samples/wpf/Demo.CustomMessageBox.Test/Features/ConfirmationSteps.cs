@@ -4,9 +4,7 @@ using Demo.CustomMessageBox.ScreenObjects;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
 using TestBaseClasses.Features;
-using TestStack.White;
-using TestStack.White.Factory;
-using TestStack.White.ScreenObjects;
+using FlaUI.Core;
 
 namespace Demo.CustomMessageBox.Features
 {
@@ -19,15 +17,10 @@ namespace Demo.CustomMessageBox.Features
         {
             // ReSharper disable once AssignNullToNotNullAttribute
             string applicationFilePath = Path.Combine(
-                Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location),
+                Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)!,
                 "Demo.CustomMessageBox.exe");
 
             return Application.Launch(applicationFilePath);
-        }
-
-        protected override MainScreen GetMainScreen(ScreenRepository screenRepository)
-        {
-            return ScreenRepository!.Get<MainScreen>("Demo - Custom Message Box", InitializeOption.NoCache);
         }
 
         [Given("confirmation with text is shown")]

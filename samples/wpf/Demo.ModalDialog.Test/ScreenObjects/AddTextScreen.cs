@@ -1,24 +1,23 @@
-﻿using TestStack.White.ScreenObjects;
-using TestStack.White.ScreenObjects.ScreenAttributes;
-using TestStack.White.UIItems;
-using TestStack.White.UIItems.WindowItems;
+﻿using FlaUI.Core;
+using FlaUI.Core.AutomationElements;
+using TestBaseClasses.Features;
 
 namespace Demo.ModalDialog.ScreenObjects
 {
-    public class AddTextScreen : AppScreen
+    public class AddTextScreen : Window
     {
-        [AutomationId("Csl8dP93gUGQLj7rVZxDAg")]
         private readonly TextBox? text = null;
 
-        [AutomationId("eyRW_87u20qR7QTCypm2RQ")]
         private readonly Button? okButton = null;
 
-        [AutomationId("I91auHr_EECzhSZyIfvvzQ")]
         private readonly Button? cancelButton = null;
 
-        public AddTextScreen(Window window, ScreenRepository screenRepository)
-            : base(window, screenRepository)
+        public AddTextScreen(FrameworkAutomationElementBase frameworkAutomationElement)
+            : base(frameworkAutomationElement)
         {
+            text = FindFirstDescendant(cf => cf.ByAutomationId("Csl8dP93gUGQLj7rVZxDAg")).AsTextBox();
+            okButton = FindFirstDescendant(cf => cf.ByAutomationId("eyRW_87u20qR7QTCypm2RQ")).AsButton();
+            cancelButton = FindFirstDescendant(cf => cf.ByAutomationId("I91auHr_EECzhSZyIfvvzQ")).AsButton();
         }
 
         public virtual string Text

@@ -2,18 +2,21 @@
 
   <PropertyGroup>
     <OutputType>Library</OutputType>
-    <TargetFrameworks>net472</TargetFrameworks>
+    <TargetFrameworks>net472;netcoreapp3.1;net5.0-windows</TargetFrameworks>
+    <IsTestProject>false</IsTestProject>
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="coverlet.collector" Version="3.1.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.0.0" />
-    <PackageReference Include="NUnit" Version="3.13.1" />
+    <PackageReference Include="Moq" Version="4.16.1" />
+    <PackageReference Include="NUnit" Version="3.13.2" />
     <PackageReference Include="NUnit.Analyzers" Version="3.3.0" />
     <PackageReference Include="NUnit3TestAdapter" version="4.2.1" />
     <PackageReference Include="SpecFlow.NUnit" Version="3.9.40" />
-    <PackageReference Include="TestStack.White.ScreenObjects" Version="0.13.3" />
+    <PackageReference Include="FlaUI.UIA3" Version="3.2.0" />
+    <PackageReference Include="FlaUI.Adapter.White" Version="0.1.0" />
   </ItemGroup>
 
 </Project>

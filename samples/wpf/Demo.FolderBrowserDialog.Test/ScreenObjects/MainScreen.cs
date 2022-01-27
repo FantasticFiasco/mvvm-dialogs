@@ -1,22 +1,20 @@
-﻿using TestStack.White.Factory;
-using TestStack.White.ScreenObjects;
-using TestStack.White.ScreenObjects.ScreenAttributes;
-using TestStack.White.UIItems;
-using TestStack.White.UIItems.WindowItems;
+﻿using FlaUI.Core;
+using FlaUI.Core.AutomationElements;
+using TestBaseClasses.Features;
 
 namespace Demo.FolderBrowserDialog.ScreenObjects
 {
-    public class MainScreen : AppScreen
+    public class MainScreen : Window
     {
-        [AutomationId("RQ_N2kIsN0C39sxTonCRtA")]
         private readonly TextBox? pathTextBox = null;
 
-        [AutomationId("TTK4W3coCE2skIHpcUe97Q")]
         private readonly Button? browseButton = null;
 
-        public MainScreen(Window window, ScreenRepository screenRepository)
-            : base(window, screenRepository)
+        public MainScreen(FrameworkAutomationElementBase frameworkAutomationElement)
+            : base(frameworkAutomationElement)
         {
+            pathTextBox = FindFirstDescendant(cf => cf.ByAutomationId("RQ_N2kIsN0C39sxTonCRtA")).AsTextBox();
+            browseButton = FindFirstDescendant(cf => cf.ByAutomationId("TTK4W3coCE2skIHpcUe97Q")).AsButton();
         }
 
         public virtual string? FileName => pathTextBox?.Text;
@@ -24,7 +22,16 @@ namespace Demo.FolderBrowserDialog.ScreenObjects
         public virtual BrowseFolderScreen ClickBrowse()
         {
             browseButton!.Click();
-            return ScreenRepository.GetModal<BrowseFolderScreen>("Browse For Folder", Window, InitializeOption.NoCache);
+
+            var title =
+#if NETCOREAPP3_0_OR_GREATER
+            "Select Folder"
+#else
+            "Browse For Folder"
+#endif
+            ;
+
+            return this.GetModal<BrowseFolderScreen>(title);
         }
     }
 }

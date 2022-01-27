@@ -4,9 +4,7 @@ using Demo.ModalCustomDialog.ScreenObjects;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
 using TestBaseClasses.Features;
-using TestStack.White;
-using TestStack.White.Factory;
-using TestStack.White.ScreenObjects;
+using FlaUI.Core;
 
 namespace Demo.ModalCustomDialog.Features
 {
@@ -19,27 +17,23 @@ namespace Demo.ModalCustomDialog.Features
         {
             // ReSharper disable once AssignNullToNotNullAttribute
             string applicationFilePath = Path.Combine(
-                Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location),
+                Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)!,
                 "Demo.ModalCustomDialog.exe");
 
             return Application.Launch(applicationFilePath);
         }
 
-        protected override MainScreen GetMainScreen(ScreenRepository screenRepository)
-        {
-            return ScreenRepository!.Get<MainScreen>("Demo - Modal Custom Dialog", InitializeOption.NoCache);
-        }
 
         [Given("dialog is shown using the dialog type locator")]
         public void ShowDialogUsingDialogTypeLocator()
         {
-            addTextScreen = MainScreen!.ClickAddTextUsingDialogTypeLocator();
+            addTextScreen = MainScreen.ClickAddTextUsingDialogTypeLocator();
         }
 
         [Given("dialog is shown by specifying dialog type")]
         public void ShowDialogBySpecifyingType()
         {
-            addTextScreen = MainScreen!.ClickAddTextBySpecifyingDialogType();
+            addTextScreen = MainScreen.ClickAddTextBySpecifyingDialogType();
         }
 
         [When(@"I enter the text (.*)")]
@@ -63,13 +57,13 @@ namespace Demo.ModalCustomDialog.Features
         [Then("the list of texts should contain (.*)")]
         public void VerifyListContains(string text)
         {
-            CollectionAssert.AreEqual(new[] { text }, MainScreen!.Texts);
+            CollectionAssert.AreEqual(new[] { text }, MainScreen.Texts);
         }
 
         [Then("the list of texts should be empty")]
         public void VerifyListIsEmpty()
         {
-            CollectionAssert.AreEqual(new string[0], MainScreen!.Texts);
+            CollectionAssert.AreEqual(new string[0], MainScreen.Texts);
         }
     }
 }

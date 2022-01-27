@@ -4,9 +4,9 @@ using Demo.NonModalDialog.ScreenObjects;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
 using TestBaseClasses.Features;
-using TestStack.White;
-using TestStack.White.Factory;
-using TestStack.White.ScreenObjects;
+using FlaUI.Core;
+using System.Linq;
+using FlaUI.Core.AutomationElements;
 
 namespace Demo.NonModalDialog.Features
 {
@@ -19,27 +19,23 @@ namespace Demo.NonModalDialog.Features
         {
             // ReSharper disable once AssignNullToNotNullAttribute
             string applicationFilePath = Path.Combine(
-                Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location),
+                Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)!,
                 "Demo.NonModalDialog.exe");
 
             return Application.Launch(applicationFilePath);
         }
 
-        protected override MainScreen GetMainScreen(ScreenRepository screenRepository)
-        {
-            return ScreenRepository!.Get<MainScreen>("Demo - Non-Modal Dialog", InitializeOption.NoCache);
-        }
 
         [When("dialog is shown using the dialog type locator")]
         public void WhenDialogIsShownUsingTheDialogTypeLocator()
         {
-            currentTimeScreen = MainScreen!.ClickShowCurrentTimeUsingDialogTypeLocator();
+            currentTimeScreen = MainScreen.ClickShowCurrentTimeUsingDialogTypeLocator();
         }
 
         [When("dialog is shown by specifying dialog type")]
         public void WhenDialogIsShownBySpecifyingDialogType()
         {
-            currentTimeScreen = MainScreen!.ClickShowCurrentTimeBySpecifyingDialogType();
+            currentTimeScreen = MainScreen.ClickShowCurrentTimeBySpecifyingDialogType();
         }
 
         [Then("the current time should be displayed")]

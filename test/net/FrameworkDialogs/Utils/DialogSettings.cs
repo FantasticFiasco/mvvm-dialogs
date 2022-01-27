@@ -33,7 +33,7 @@ namespace MvvmDialogs.FrameworkDialogs.Utils
                 .OrderBy(m => m.GetParameters().Length)
                 .Select(m => m.GetParameters())
                 .Last()
-                .Select(p => Char.ToUpperInvariant(p.Name[0]) + p.Name.Substring(1))    // To camel case
+                .Select(p => Char.ToUpperInvariant(p.Name![0]) + p.Name.Substring(1))    // To camel case
                 .OrderBy(name => name);
     }
 }

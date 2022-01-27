@@ -4,9 +4,7 @@ using Demo.CustomSaveFileDialog.ScreenObjects;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
 using TestBaseClasses.Features;
-using TestStack.White;
-using TestStack.White.Factory;
-using TestStack.White.ScreenObjects;
+using FlaUI.Core;
 
 namespace Demo.CustomSaveFileDialog.Features
 {
@@ -19,21 +17,17 @@ namespace Demo.CustomSaveFileDialog.Features
         {
             // ReSharper disable once AssignNullToNotNullAttribute
             string applicationFilePath = Path.Combine(
-                Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location),
+                Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)!,
                 "Demo.CustomSaveFileDialog.exe");
 
             return Application.Launch(applicationFilePath);
         }
 
-        protected override MainScreen GetMainScreen(ScreenRepository screenRepository)
-        {
-            return ScreenRepository!.Get<MainScreen>("Demo - Custom Save File Dialog", InitializeOption.NoCache);
-        }
 
         [Given("I have selected to save a file")]
         public void SaveFile()
         {
-            saveFileScreen = MainScreen!.ClickSave();
+            saveFileScreen = MainScreen.ClickSave();
             saveFileScreen.FileName = "SaveMe.txt";
         }
 
@@ -52,13 +46,13 @@ namespace Demo.CustomSaveFileDialog.Features
         [Then("the file should be saved")]
         public void VerifyFileWasSaved()
         {
-            StringAssert.EndsWith("SaveMe.txt", MainScreen!.FileName);
+            StringAssert.EndsWith("SaveMe.txt", MainScreen.FileName);
         }
 
         [Then("the file should not be saved")]
         public void VerifyFileWasNotSaved()
         {
-            Assert.That(MainScreen!.FileName, Is.Empty);
+            Assert.That(MainScreen.FileName, Is.Empty);
         }
     }
 }

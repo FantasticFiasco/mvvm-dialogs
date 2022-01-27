@@ -1,25 +1,24 @@
-﻿using TestStack.White.ScreenObjects;
-using TestStack.White.UIItems;
-using TestStack.White.UIItems.Finders;
-using TestStack.White.UIItems.WindowItems;
+﻿using FlaUI.Core;
+using FlaUI.Core.AutomationElements;
+using TestBaseClasses.Features;
 
 namespace Demo.CustomFolderBrowserDialog.ScreenObjects
 {
-    public class BrowseFolderScreen : AppScreen
+    public class BrowseFolderScreen : Window
     {
-        public BrowseFolderScreen(Window window, ScreenRepository screenRepository)
-            : base(window, screenRepository)
+        public BrowseFolderScreen(FrameworkAutomationElementBase frameworkAutomationElement)
+            : base(frameworkAutomationElement)
         {
         }
 
         public virtual void ClickSelectFolder()
         {
-            Window.Get<Button>(SearchCriteria.ByText("Select Folder")).Click();
+            FindFirstDescendant(cf => cf.ByText("Select Folder")).AsButton().Click();
         }
 
         public virtual void ClickCancel()
         {
-            Window.Get<Button>(SearchCriteria.ByText("Cancel")).Click();
+            FindFirstDescendant(cf => cf.ByText("Cancel")).AsButton().Click();
         }
     }
 }

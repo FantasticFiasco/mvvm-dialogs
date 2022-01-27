@@ -13,7 +13,7 @@ namespace MvvmDialogs
         public TestAssemblyBuilder(string assemblyName)
         {
             this.assemblyName = assemblyName;
-
+#if !NETCOREAPP
             assemblyBuilder = AppDomain.CurrentDomain.DefineDynamicAssembly(
                 new AssemblyName(assemblyName),
                 AssemblyBuilderAccess.RunAndSave);
@@ -21,24 +21,23 @@ namespace MvvmDialogs
             moduleBuilder = assemblyBuilder.DefineDynamicModule(
                 "MainModule",
                 FileName);
+#else
+            assemblyBuilder = AssemblyBuilder.DefineDynamicAssembly(new AssemblyName(assemblyName), AssemblyBuilderAccess.Run);
+            moduleBuilder = assemblyBuilder.DefineDynamicModule("MainModule");
+#endif
         }
 
-        public Type CreateType(string fullName, Type? parenType = null)
+        public Type? CreateType(string fullName, Type? parenType = null)
         {
             TypeBuilder typeBuilder = moduleBuilder.DefineType(
                 fullName,
                 TypeAttributes.Public,
                 parenType);
-            
+
             return typeBuilder.CreateType();
         }
-
-        public Assembly Build()
-        {
-            assemblyBuilder.Save(FileName);
-            return Assembly.LoadFrom(FileName);
-        }
-
         private string FileName => assemblyName + ".dll";
+
+        public Type? GetType(string className) => moduleBuilder.GetType(className);
     }
 }

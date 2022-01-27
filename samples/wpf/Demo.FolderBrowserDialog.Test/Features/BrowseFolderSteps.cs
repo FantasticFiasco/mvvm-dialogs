@@ -4,9 +4,7 @@ using Demo.FolderBrowserDialog.ScreenObjects;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
 using TestBaseClasses.Features;
-using TestStack.White;
-using TestStack.White.Factory;
-using TestStack.White.ScreenObjects;
+using FlaUI.Core;
 
 namespace Demo.FolderBrowserDialog.Features
 {
@@ -19,16 +17,12 @@ namespace Demo.FolderBrowserDialog.Features
         {
             // ReSharper disable once AssignNullToNotNullAttribute
             string applicationFilePath = Path.Combine(
-                Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location),
+                Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)!,
                 "Demo.FolderBrowserDialog.exe");
 
             return Application.Launch(applicationFilePath);
         }
 
-        protected override MainScreen GetMainScreen(ScreenRepository screenRepository)
-        {
-            return screenRepository.Get<MainScreen>("Demo - Folder Browser Dialog", InitializeOption.NoCache);
-        }
 
         [Given("I have browsed a folder")]
         public void BrowseFolder()

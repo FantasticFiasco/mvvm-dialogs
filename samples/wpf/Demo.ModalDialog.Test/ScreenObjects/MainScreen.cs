@@ -1,28 +1,25 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using TestStack.White.Factory;
-using TestStack.White.ScreenObjects;
-using TestStack.White.ScreenObjects.ScreenAttributes;
-using TestStack.White.UIItems;
-using TestStack.White.UIItems.ListBoxItems;
-using TestStack.White.UIItems.WindowItems;
+using FlaUI.Core;
+using FlaUI.Core.AutomationElements;
+using TestBaseClasses.Features;
 
 namespace Demo.ModalDialog.ScreenObjects
 {
-    public class MainScreen : AppScreen
+    public class MainScreen : Window
     {
-        [AutomationId("Vfkrmkr640yWmoMTKUWIbQ")]
         private readonly ListBox? texts = null;
 
-        [AutomationId("FHE_oyWqBEq_9TPaU1yPTQ")]
         private readonly Button? addTextUsingDialogTypeLocatorButton = null;
 
-        [AutomationId("Dq9ZjnVdFESxu8StkQ8jMw")]
         private readonly Button? addTextBySpecifyingDialogTypeButton = null;
 
-        public MainScreen(Window window, ScreenRepository screenRepository)
-            : base(window, screenRepository)
+        public MainScreen(FrameworkAutomationElementBase frameworkAutomationElement)
+            : base(frameworkAutomationElement)
         {
+            texts = FindFirstDescendant(cf => cf.ByAutomationId("Vfkrmkr640yWmoMTKUWIbQ")).AsListBox();
+            addTextUsingDialogTypeLocatorButton = FindFirstDescendant(cf => cf.ByAutomationId("FHE_oyWqBEq_9TPaU1yPTQ")).AsButton();
+            addTextBySpecifyingDialogTypeButton = FindFirstDescendant(cf => cf.ByAutomationId("Dq9ZjnVdFESxu8StkQ8jMw")).AsButton();
         }
 
         public virtual IEnumerable<string> Texts
@@ -33,13 +30,13 @@ namespace Demo.ModalDialog.ScreenObjects
         public virtual AddTextScreen ClickAddTextUsingDialogTypeLocator()
         {
             addTextUsingDialogTypeLocatorButton!.Click();
-            return ScreenRepository.GetModal<AddTextScreen>("Add Text", Window, InitializeOption.NoCache);
+            return this.GetModal<AddTextScreen>("Add Text");
         }
 
         public virtual AddTextScreen ClickAddTextBySpecifyingDialogType()
         {
             addTextBySpecifyingDialogTypeButton!.Click();
-            return ScreenRepository.GetModal<AddTextScreen>("Add Text", Window, InitializeOption.NoCache);
+            return this.GetModal<AddTextScreen>("Add Text");
         }
     }
 }

@@ -1,34 +1,32 @@
-﻿using TestStack.White.Factory;
-using TestStack.White.ScreenObjects;
-using TestStack.White.ScreenObjects.ScreenAttributes;
-using TestStack.White.UIItems;
-using TestStack.White.UIItems.WindowItems;
+﻿using FlaUI.Core;
+using FlaUI.Core.AutomationElements;
+using TestBaseClasses.Features;
 
 namespace Demo.CustomMessageBox.ScreenObjects
 {
-    public class MainScreen : AppScreen
+    public class MainScreen : Window
     {
-        [AutomationId("1k7d1Nm8MkOYK5qGrdVX4Q")]
         private readonly Button? messageBoxWithMessageButton = null;
 
-        [AutomationId("EvNqZT9tYkuNzKDDrLJ8Yw")]
         private readonly Button? messageBoxWithCaptionButton = null;
 
-        [AutomationId("FWGzBkom5ESJz_p7KCPKqQ")]
         private readonly Button? messageBoxWithButtonsButton = null;
 
-        [AutomationId("SapYi2J7bkiJ1z1GWwOZAQ")]
         private readonly Button? messageBoxWithIconButton = null;
 
-        [AutomationId("sUjm2_m1LUGWso8S2Us5ow")]
         private readonly Button? messageBoxWithDefaultResultButton = null;
 
-        [AutomationId("kT3_ZUZfsEK1QdZ2jBfuIQ")]
         private readonly Label? confirmation = null;
 
-        public MainScreen(Window window, ScreenRepository screenRepository)
-            : base(window, screenRepository)
+        public MainScreen(FrameworkAutomationElementBase frameworkAutomationElement)
+            : base(frameworkAutomationElement)
         {
+            messageBoxWithMessageButton = FindFirstDescendant(cf => cf.ByAutomationId("1k7d1Nm8MkOYK5qGrdVX4Q")).AsButton();
+            messageBoxWithCaptionButton = FindFirstDescendant(cf => cf.ByAutomationId("EvNqZT9tYkuNzKDDrLJ8Yw")).AsButton();
+            messageBoxWithButtonsButton = FindFirstDescendant(cf => cf.ByAutomationId("FWGzBkom5ESJz_p7KCPKqQ")).AsButton();
+            messageBoxWithIconButton = FindFirstDescendant(cf => cf.ByAutomationId("SapYi2J7bkiJ1z1GWwOZAQ")).AsButton();
+            messageBoxWithDefaultResultButton = FindFirstDescendant(cf => cf.ByAutomationId("sUjm2_m1LUGWso8S2Us5ow")).AsButton();
+            confirmation = FindFirstDescendant(cf => cf.ByAutomationId("kT3_ZUZfsEK1QdZ2jBfuIQ")).AsLabel();
         }
 
         public virtual string? Confirmation => confirmation?.Text;
@@ -36,31 +34,31 @@ namespace Demo.CustomMessageBox.ScreenObjects
         public virtual MessageBoxScreen ClickMessageBoxWithMessage()
         {
             messageBoxWithMessageButton!.Click();
-            return ScreenRepository.GetModal<MessageBoxScreen>(" ", Window, InitializeOption.NoCache);
+            return this.GetModal<MessageBoxScreen>(" ");
         }
 
         public virtual MessageBoxScreen ClickMessageBoxWithCaption()
         {
             messageBoxWithCaptionButton!.Click();
-            return ScreenRepository.GetModal<MessageBoxScreen>("This Is The Caption", Window, InitializeOption.NoCache);
+            return this.GetModal<MessageBoxScreen>("This Is The Caption");
         }
 
         public virtual MessageBoxScreen ClickMessageBoxWithButtons()
         {
             messageBoxWithButtonsButton!.Click();
-            return ScreenRepository.GetModal<MessageBoxScreen>("This Is The Caption", Window, InitializeOption.NoCache);
+            return this.GetModal<MessageBoxScreen>("This Is The Caption");
         }
 
         public virtual MessageBoxScreen ClickMessageBoxWithIcon()
         {
             messageBoxWithIconButton!.Click();
-            return ScreenRepository.GetModal<MessageBoxScreen>("This Is The Caption", Window, InitializeOption.NoCache);
+            return this.GetModal<MessageBoxScreen>("This Is The Caption");
         }
 
         public virtual MessageBoxScreen ClickMessageBoxWithDefaultResult()
         {
             messageBoxWithDefaultResultButton!.Click();
-            return ScreenRepository.GetModal<MessageBoxScreen>("This Is The Caption", Window, InitializeOption.NoCache);
+            return this.GetModal<MessageBoxScreen>("This Is The Caption");
         }
     }
 }

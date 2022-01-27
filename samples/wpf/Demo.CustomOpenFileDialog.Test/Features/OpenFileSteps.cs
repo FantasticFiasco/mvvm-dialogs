@@ -4,9 +4,7 @@ using Demo.CustomOpenFileDialog.ScreenObjects;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
 using TestBaseClasses.Features;
-using TestStack.White;
-using TestStack.White.Factory;
-using TestStack.White.ScreenObjects;
+using FlaUI.Core;
 
 namespace Demo.CustomOpenFileDialog.Features
 {
@@ -19,21 +17,17 @@ namespace Demo.CustomOpenFileDialog.Features
         {
             // ReSharper disable once AssignNullToNotNullAttribute
             string applicationFilePath = Path.Combine(
-                Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location),
+                Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)!,
                 "Demo.CustomOpenFileDialog.exe");
 
             return Application.Launch(applicationFilePath);
         }
 
-        protected override MainScreen GetMainScreen(ScreenRepository screenRepository)
-        {
-            return ScreenRepository!.Get<MainScreen>("Demo - Custom Open File Dialog", InitializeOption.NoCache);
-        }
 
         [Given("I have selected to open a file")]
         public void OpenFile()
         {
-            openFileScreen = MainScreen!.ClickOpen();
+            openFileScreen = MainScreen.ClickOpen();
             openFileScreen.FileName = "OpenMe.txt";
         }
 
@@ -52,13 +46,13 @@ namespace Demo.CustomOpenFileDialog.Features
         [Then("the file should be opened")]
         public void VerifyFileWasOpened()
         {
-            StringAssert.EndsWith("OpenMe.txt", MainScreen!.FileName);
+            StringAssert.EndsWith("OpenMe.txt", MainScreen.FileName);
         }
 
         [Then("the file should not be opened")]
         public void VerifyFileWasNotOpened()
         {
-            Assert.That(MainScreen!.FileName, Is.Empty);
+            Assert.That(MainScreen.FileName, Is.Empty);
         }
     }
 }

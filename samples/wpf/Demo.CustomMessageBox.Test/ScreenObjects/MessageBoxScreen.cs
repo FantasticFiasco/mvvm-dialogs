@@ -1,31 +1,30 @@
-﻿using TestStack.White.ScreenObjects;
-using TestStack.White.UIItems;
-using TestStack.White.UIItems.Finders;
-using TestStack.White.UIItems.WindowItems;
+﻿using FlaUI.Core;
+using FlaUI.Core.AutomationElements;
+using TestBaseClasses.Features;
 
 namespace Demo.CustomMessageBox.ScreenObjects
 {
-    public class MessageBoxScreen : AppScreen
+    public class MessageBoxScreen : Window
     {
-        public MessageBoxScreen(Window window, ScreenRepository screenRepository)
-            : base(window, screenRepository)
+        public MessageBoxScreen(FrameworkAutomationElementBase frameworkAutomationElement)
+            : base(frameworkAutomationElement)
         {
         }
 
-        public virtual string Caption => Window.Title;
+        public virtual string Caption => Title;
 
-        public virtual bool IsOKButtonVisible => Window.Exists<Button>(SearchCriteria.ByText("OK"));
+        public virtual bool IsOKButtonVisible => FindFirstDescendant(cf => cf.ByText("OK"))?.AsButton() != null;
 
-        public virtual bool IsCancelButtonVisible => Window.Exists<Button>(SearchCriteria.ByText("Cancel"));
+        public virtual bool IsCancelButtonVisible => FindFirstDescendant(cf => cf.ByText("Cancel"))?.AsButton() != null;
 
         public virtual void ClickOK()
         {
-            Window.Get<Button>(SearchCriteria.ByText("OK")).Click();
+            FindFirstDescendant(cf => cf.ByText("OK")).AsButton().Click();
         }
 
         public virtual void ClickCancel()
         {
-            Window.Get<Button>(SearchCriteria.ByText("Cancel")).Click();
+            FindFirstDescendant(cf => cf.ByText("Cancel")).AsButton().Click();
         }
     }
 }

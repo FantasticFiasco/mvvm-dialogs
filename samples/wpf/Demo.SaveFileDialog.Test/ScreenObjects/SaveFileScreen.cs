@@ -1,30 +1,29 @@
-﻿using TestStack.White.ScreenObjects;
-using TestStack.White.UIItems;
-using TestStack.White.UIItems.Finders;
-using TestStack.White.UIItems.WindowItems;
+﻿using FlaUI.Core;
+using FlaUI.Core.AutomationElements;
+using TestBaseClasses.Features;
 
 namespace Demo.SaveFileDialog.ScreenObjects
 {
-    public class SaveFileScreen : AppScreen
+    public class SaveFileScreen : Window
     {
-        public SaveFileScreen(Window window, ScreenRepository screenRepository)
-            : base(window, screenRepository)
+        public SaveFileScreen(FrameworkAutomationElementBase frameworkAutomationElement)
+            : base(frameworkAutomationElement)
         {
         }
 
         public virtual string FileName
         {
-            set => Window.Get<TextBox>(SearchCriteria.ByAutomationId("1001")).Text = value;
+            set => FindFirstDescendant(cf => cf.ByAutomationId("1001")).AsTextBox().Text = value;
         }
 
         public virtual void ClickSave()
         {
-            Window.Get<Button>(SearchCriteria.ByText("Save")).Click();
+            FindFirstDescendant(cf => cf.ByText("Save")).AsButton().Click();
         }
 
         public virtual void ClickCancel()
         {
-            Window.Get<Button>(SearchCriteria.ByText("Cancel")).Click();
+            FindFirstDescendant(cf => cf.ByText("Cancel")).AsButton().Click();
         }
     }
 }
