@@ -25,7 +25,7 @@ Install [Visual Studio Code](https://code.visualstudio.com/), and then install t
 ### Test
 
 1. Make sure the source code has been built once
-1. Click menu item *Extensions* -> *ReSharper* -> *Unit Tests* -> *Run All Tests from Solution*
+1. Click menu item *Test* -> *Run All Tests*
 
 ## Pull Request Process
 
