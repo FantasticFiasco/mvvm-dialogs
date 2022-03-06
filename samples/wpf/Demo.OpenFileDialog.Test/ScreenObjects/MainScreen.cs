@@ -1,6 +1,5 @@
 ﻿using FlaUI.Core;
 using FlaUI.Core.AutomationElements;
-using TestBaseClasses.Features;
 
 namespace Demo.OpenFileDialog.ScreenObjects
 {
@@ -22,7 +21,7 @@ namespace Demo.OpenFileDialog.ScreenObjects
         public virtual OpenFileScreen ClickOpen()
         {
             openButton!.Click();
-            return this.GetModal<OpenFileScreen>("This Is The Title");
+            return this.WaitForModalWindow<OpenFileScreen>("This Is The Title");
         }
     }
 }

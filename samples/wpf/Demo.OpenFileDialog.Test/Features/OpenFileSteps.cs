@@ -23,7 +23,6 @@ namespace Demo.OpenFileDialog.Features
             return Application.Launch(applicationFilePath);
         }
 
-
         [Given("I have selected to open a file")]
         public void OpenFile()
         {

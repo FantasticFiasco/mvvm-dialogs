@@ -14,26 +14,15 @@ using TechTalk.SpecFlow;
 namespace TestBaseClasses.Features
 {
     /// <summary>
-    /// Base class for ui tests with some helper methods.
+    /// Base class for UI tests with some helper methods.
     /// This class allows recording videos, taking screen shots on failed tests and
     /// starts and stops the application under test for each test or fixture.
     /// </summary>
     public abstract class FeatureSteps<T> where T : Window
     {
-        /// <summary>
-        /// Main screen of the application
-        /// </summary>
-        protected T MainScreen { get; private set; }
-
-        /// <summary>
-        /// Member which holds the current video recorder.
-        /// </summary>
-        private VideoRecorder? _recorder;
-
-        /// <summary>
-        /// The name of the current test method. Used for the video recorder.
-        /// </summary>
-        private string? _testMethodName;
+        private string? testMethodName;
+        private VideoRecorder? recorder;
+        private T? mainScreen;
 
         /// <summary>
         /// Instance of the current used automation object.
@@ -41,31 +30,34 @@ namespace TestBaseClasses.Features
         protected AutomationBase? Automation { get; private set; }
 
         /// <summary>
+        /// Specifies the starting mode of the application to test. Defaults to OncePerFixture.
+        /// </summary>
+        protected virtual ApplicationStartMode ApplicationStartMode => ApplicationStartMode.OncePerFixture;
+
+        /// <summary>
         /// Instance of the current running application.
         /// </summary>
         protected Application? Application { get; set; }
 
         /// <summary>
-        /// Specifies the starting mode of the application to test.
-        /// Defaults to OncePerTest.
+        /// Main screen of the application.
         /// </summary>
-        protected virtual ApplicationStartMode ApplicationStartMode => ApplicationStartMode.OncePerFixture;
+        protected T MainScreen => mainScreen ?? throw new Exception("Main screen has not been set");
 
         /// <summary>
-        /// Flag to indicate if videos should be kept even if the test did not fail.
-        /// Defaults to false.
-        /// </summary>
-        protected virtual bool KeepVideoForSuccessfulTests => false;
-
-        /// <summary>
-        /// Specifies the mode of the video recorder.
-        /// Defaults to OnePerTest.
+        /// Specifies the mode of the video recorder. Defaults to OnePerTest.
         /// </summary>
         protected virtual VideoRecordingMode VideoRecordingMode => VideoRecordingMode.OnePerTest;
 
         /// <summary>
-        /// Path of the directory for the screenshots and videos for the tests.
-        /// Defaults to c:\temp\testsmedia.
+        /// Flag to indicate if videos should be kept even if the test did not fail. Defaults to
+        /// false.
+        /// </summary>
+        protected virtual bool KeepVideoForSuccessfulTests => false;
+
+        /// <summary>
+        /// Path of the directory for the screenshots and videos for the tests. Defaults to
+        /// c:\temp\testsmedia.
         /// </summary>
         protected virtual string TestsMediaPath => @"c:\temp\testsmedia";
 
@@ -86,17 +78,20 @@ namespace TestBaseClasses.Features
         public virtual async Task UITestBaseOneTimeSetUp()
         {
             //Logger.Default = new NUnitProgressLogger();
+
             Automation = GetAutomation();
+
             if (VideoRecordingMode == VideoRecordingMode.OnePerFixture)
             {
-                await StartVideoRecorder(SanitizeFileName(TestContext.CurrentContext.Test.FullName));
+                await StartVideoRecorder(TestContext.CurrentContext.Test.FullName);
             }
 
             if (ApplicationStartMode == ApplicationStartMode.OncePerFixture)
             {
                 Application = LaunchApplication();
             }
-            MainScreen = Retry.WhileNull(() => Application?.GetMainWindow(Automation), TimeSpan.FromSeconds(1)).Result.As<T>();
+
+            mainScreen = Automation.WaitForMainWindow<T>(Application);
         }
 
         /// <summary>
@@ -109,15 +104,18 @@ namespace TestBaseClasses.Features
             {
                 StopVideoRecorder();
             }
+
             if (ApplicationStartMode == ApplicationStartMode.OncePerFixture)
             {
                 CloseApplication();
             }
+
             if (Automation != null)
             {
                 Automation.Dispose();
                 Automation = null;
             }
+
             return Task.CompletedTask;
         }
 
@@ -127,19 +125,21 @@ namespace TestBaseClasses.Features
         [SetUp]
         public virtual async Task UITestBaseSetUp()
         {
-            // Due to the recorder running in an own thread, it is necessary to save the current method name for that thread
-            _testMethodName = TestContext.CurrentContext.Test.MethodName;
+            // Due to the recorder running in an own thread, it is necessary to save the current
+            // method name for that thread
+            testMethodName = TestContext.CurrentContext.Test.MethodName;
 
             if (VideoRecordingMode == VideoRecordingMode.OnePerTest)
             {
-                await StartVideoRecorder(SanitizeFileName(TestContext.CurrentContext.Test.FullName));
+                await StartVideoRecorder(TestContext.CurrentContext.Test.FullName);
             }
 
             if (ApplicationStartMode == ApplicationStartMode.OncePerTest)
             {
                 Application = LaunchApplication();
             }
-            MainScreen = Retry.WhileNull(() => Application?.GetMainWindow(Automation), TimeSpan.FromSeconds(1)).Result.As<T>();
+
+            mainScreen = Automation!.WaitForMainWindow<T>(Application);
         }
 
         /// <summary>
@@ -163,7 +163,8 @@ namespace TestBaseClasses.Features
                 StopVideoRecorder();
             }
 
-            _testMethodName = null;
+            testMethodName = null;
+
             return Task.CompletedTask;
         }
 
@@ -181,64 +182,68 @@ namespace TestBaseClasses.Features
         /// </summary>
         private void CloseApplication()
         {
-            if (Application != null)
+            if (Application == null)
             {
-                Application.Close();
-                Retry.WhileFalse(() => Application.HasExited, TimeSpan.FromSeconds(2), ignoreException: true);
-                Application.Dispose();
-                Application = null;
+                return;
             }
+            
+            Application.Close();
+            Retry.WhileFalse(() => Application.HasExited, TimeSpan.FromSeconds(2), ignoreException: true);
+            Application.Dispose();
+            Application = null;
         }
 
         /// <summary>
         /// Method which captures the image for the video and screen shots.
         /// By default captures the main screen.
         /// </summary>
-        protected virtual CaptureImage CaptureImage()
+        protected virtual CaptureImage CaptureImage() => Capture.MainScreen();
+
+        /// <summary>
+        /// Starts the video recorder.
+        /// </summary>
+        private async Task StartVideoRecorder(string testName)
         {
-            return Capture.MainScreen();
+            SystemInfo.RefreshAll();
+
+            var settings = new VideoRecorderSettings
+            {
+                VideoFormat = VideoFormat.xvid,
+                VideoQuality = 6,
+                TargetVideoPath = Path.Combine(TestsMediaPath, $"{SanitizeFileName(testName)}.avi")
+            };
+
+            await AdjustRecorderSettings(settings);
+
+            recorder = new VideoRecorder(settings, r =>
+            {
+                var image = CaptureImage();
+
+                var infoOverlay = new InfoOverlay(image)
+                {
+                    RecordTimeSpan = r.RecordTimeSpan,
+                    OverlayStringFormat = @"{rt:hh\:mm\:ss\.fff} / {name} / CPU: {cpu} / RAM: {mem.p.used}/{mem.p.tot} ({mem.p.used.perc}) / " +
+                                          TestContext.CurrentContext.Test.ClassName + "." + (testMethodName ?? "[SetUp]")
+                };
+
+                var mouseOverlay = new MouseOverlay(image);
+
+                image.ApplyOverlays(infoOverlay, mouseOverlay);
+
+                return image;
+            });
+
+            await Task.Delay(500);
         }
 
         /// <summary>
         /// Method which allows customizing the settings for the video recorder.
         /// By default downloads ffmpeg and sets the path to ffmpeg.
         /// </summary>
-        protected virtual async Task AdjustRecorderSettings(VideoRecorderSettings videoRecorderSettings)
+        private async Task AdjustRecorderSettings(VideoRecorderSettings videoRecorderSettings)
         {
-            // Download FFMpeg
             var ffmpegPath = await VideoRecorder.DownloadFFMpeg(@"C:\temp");
             videoRecorderSettings.ffmpegPath = ffmpegPath;
-        }
-
-        /// <summary>
-        /// Starts the video recorder.
-        /// </summary>
-        /// <param name="videoName">The unique name of the video file.</param>
-        private async Task StartVideoRecorder(string videoName)
-        {
-            // Refresh all the system information
-            SystemInfo.RefreshAll();
-
-            // Start the recorder
-            var videoRecorderSettings = new VideoRecorderSettings
-            {
-                VideoFormat = VideoFormat.xvid,
-                VideoQuality = 6,
-                TargetVideoPath = Path.Combine(TestsMediaPath, $"{SanitizeFileName(videoName)}.avi")
-            };
-            await AdjustRecorderSettings(videoRecorderSettings);
-            _recorder = new VideoRecorder(videoRecorderSettings, r =>
-            {
-                var testName = TestContext.CurrentContext.Test.ClassName + "." + (_testMethodName ?? "[SetUp]");
-                var img = CaptureImage();
-                img.ApplyOverlays(new InfoOverlay(img)
-                {
-                    RecordTimeSpan = r.RecordTimeSpan,
-                    OverlayStringFormat = @"{rt:hh\:mm\:ss\.fff} / {name} / CPU: {cpu} / RAM: {mem.p.used}/{mem.p.tot} ({mem.p.used.perc}) / " + testName
-                }, new MouseOverlay(img));
-                return img;
-            });
-            await Task.Delay(500);
         }
 
         /// <summary>
@@ -246,16 +251,20 @@ namespace TestBaseClasses.Features
         /// </summary>
         private void StopVideoRecorder()
         {
-            if (_recorder != null)
+            if (recorder == null)
             {
-                _recorder.Stop();
-                if (!KeepVideoForSuccessfulTests && TestContext.CurrentContext.Result.FailCount == 0)
-                {
-                    File.Delete(_recorder.TargetVideoPath);
-                }
-                _recorder.Dispose();
-                _recorder = null;
+                return;
             }
+            
+            recorder.Stop();
+
+            if (!KeepVideoForSuccessfulTests && TestContext.CurrentContext.Result.FailCount == 0)
+            {
+                File.Delete(recorder.TargetVideoPath);
+            }
+
+            recorder.Dispose();
+            recorder = null;
         }
 
         /// <summary>
@@ -263,27 +272,26 @@ namespace TestBaseClasses.Features
         /// </summary>
         private void TakeScreenShot(string testName)
         {
-            var imageName = SanitizeFileName(testName) + ".png";
-            imageName = imageName.Replace("\"", String.Empty);
-            var imagePath = Path.Combine(TestsMediaPath, imageName);
+            var name = $"{SanitizeFileName(testName)}.png"
+                .Replace("\"", string.Empty);
+
+            var path = Path.Combine(TestsMediaPath, name);
+
             try
             {
                 Directory.CreateDirectory(TestsMediaPath);
-                CaptureImage().ToFile(imagePath);
+                CaptureImage().ToFile(path);
             }
-            catch (Exception ex)
+            catch (Exception e)
             {
-                Logger.Default.Warn("Failed to save screen shot to directory: {0}, filename: {1}, Ex: {2}", TestsMediaPath, imagePath, ex);
+                Logger.Default.Warn("Failed to save screen shot to directory: {0}, filename: {1}, Ex: {2}", TestsMediaPath, path, e);
             }
         }
 
         /// <summary>
         /// Replaces all invalid characters with underlines.
         /// </summary>
-        private string SanitizeFileName(string fileName)
-        {
-            fileName = string.Join("_", fileName.Split(Path.GetInvalidFileNameChars()));
-            return fileName;
-        }
+        private static string SanitizeFileName(string fileName) =>
+            string.Join("_", fileName.Split(Path.GetInvalidFileNameChars()));
     }
 }
