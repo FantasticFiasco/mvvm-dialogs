@@ -20,13 +20,13 @@ namespace Demo.NonModalDialog.ScreenObjects
         public virtual CurrentTimeScreen ClickShowCurrentTimeUsingDialogTypeLocator()
         {
             showCurrentTimeUsingDialogTypeLocatorButton!.Click();
-            return this.GetChildWindow<CurrentTimeScreen>("Current Time")!;
+            return this.WaitForChildWindow<CurrentTimeScreen>("Current Time")!;
         }
 
         public virtual CurrentTimeScreen ClickShowCurrentTimeBySpecifyingDialogType()
         {
             showCurrentTimeBySpecifyingDialogTypeButton!.Click();
-            return this.GetChildWindow<CurrentTimeScreen>("Current Time")!;
+            return this.WaitForChildWindow<CurrentTimeScreen>("Current Time")!;
         }
     }
 }

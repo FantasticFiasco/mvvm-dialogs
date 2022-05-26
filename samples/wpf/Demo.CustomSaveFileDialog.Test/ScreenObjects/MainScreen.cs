@@ -22,7 +22,7 @@ namespace Demo.CustomSaveFileDialog.ScreenObjects
         public virtual SaveFileScreen ClickSave()
         {
             saveButton!.Click();
-            return this.GetModal<SaveFileScreen>("This Is The Title");
+            return this.WaitForModalWindow<SaveFileScreen>("This Is The Title");
         }
     }
 }

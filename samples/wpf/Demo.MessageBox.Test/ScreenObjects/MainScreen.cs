@@ -34,31 +34,31 @@ namespace Demo.MessageBox.ScreenObjects
         public virtual MessageBoxScreen ClickMessageBoxWithMessage()
         {
             messageBoxWithMessageButton!.Click();
-            return this.GetChildWindow<MessageBoxScreen>()!;
+            return this.WaitForChildWindow<MessageBoxScreen>()!;
         }
 
         public virtual MessageBoxScreen ClickMessageBoxWithCaption()
         {
             messageBoxWithCaptionButton!.Click();
-            return this.GetChildWindow<MessageBoxScreen>("This Is The Caption")!;
+            return this.WaitForChildWindow<MessageBoxScreen>("This Is The Caption")!;
         }
 
         public virtual MessageBoxScreen ClickMessageBoxWithButtons()
         {
             messageBoxWithButtonsButton!.Click();
-            return this.GetChildWindow<MessageBoxScreen>("This Is The Caption")!;
+            return this.WaitForChildWindow<MessageBoxScreen>("This Is The Caption")!;
         }
 
         public virtual MessageBoxScreen ClickMessageBoxWithIcon()
         {
             messageBoxWithIconButton!.Click();
-            return this.GetChildWindow<MessageBoxScreen>("This Is The Caption")!;
+            return this.WaitForChildWindow<MessageBoxScreen>("This Is The Caption")!;
         }
 
         public virtual MessageBoxScreen ClickMessageBoxWithDefaultResult()
         {
             messageBoxWithDefaultResultButton!.Click();
-            return this.GetChildWindow<MessageBoxScreen>("This Is The Caption")!;
+            return this.WaitForChildWindow<MessageBoxScreen>("This Is The Caption")!;
         }
     }
 }

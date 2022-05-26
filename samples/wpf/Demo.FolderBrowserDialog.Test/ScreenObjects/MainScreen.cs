@@ -31,7 +31,7 @@ namespace Demo.FolderBrowserDialog.ScreenObjects
 #endif
             ;
 
-            return this.GetModal<BrowseFolderScreen>(title);
+            return this.WaitForModalWindow<BrowseFolderScreen>(title);
         }
     }
 }

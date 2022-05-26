@@ -30,13 +30,13 @@ namespace Demo.ModalCustomDialog.ScreenObjects
         public virtual AddTextScreen ClickAddTextUsingDialogTypeLocator()
         {
             addTextUsingDialogTypeLocatorButton!.Click();
-            return this.GetModal<AddTextScreen>("Add Text");
+            return this.WaitForModalWindow<AddTextScreen>("Add Text");
         }
 
         public virtual AddTextScreen ClickAddTextBySpecifyingDialogType()
         {
             addTextBySpecifyingDialogTypeButton!.Click();
-            return this.GetModal<AddTextScreen>("Add Text");
+            return this.WaitForModalWindow<AddTextScreen>("Add Text");
         }
     }
 }

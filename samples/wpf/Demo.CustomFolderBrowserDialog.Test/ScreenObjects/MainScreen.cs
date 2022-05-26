@@ -22,7 +22,7 @@ namespace Demo.CustomFolderBrowserDialog.ScreenObjects
         public virtual BrowseFolderScreen ClickBrowse()
         {
             browseButton!.Click();
-            return this.GetModal<BrowseFolderScreen>("Select Folder"/*, Window, InitializeOption.NoCache*/);
+            return this.WaitForModalWindow<BrowseFolderScreen>("Select Folder"/*, Window, InitializeOption.NoCache*/);
         }
     }
 }

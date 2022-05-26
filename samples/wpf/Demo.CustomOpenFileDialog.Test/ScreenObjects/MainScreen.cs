@@ -22,7 +22,7 @@ namespace Demo.CustomOpenFileDialog.ScreenObjects
         public virtual OpenFileScreen ClickOpen()
         {
             openButton!.Click();
-            return this.GetModal<OpenFileScreen>("This Is The Title");
+            return this.WaitForModalWindow<OpenFileScreen>("This Is The Title");
         }
     }
 }
