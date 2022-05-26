@@ -9,12 +9,12 @@
 
   <ItemGroup>
     <PackageReference Include="coverlet.collector" Version="3.1.2" />
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.1.0" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.2.0" />
     <PackageReference Include="Moq" Version="4.16.1" />
-    <PackageReference Include="NUnit" Version="3.13.2" />
+    <PackageReference Include="NUnit" Version="3.13.3" />
     <PackageReference Include="NUnit.Analyzers" Version="3.3.0" />
     <PackageReference Include="NUnit3TestAdapter" version="4.2.1" />
-    <PackageReference Include="SpecFlow.NUnit" Version="3.9.52" />
+    <PackageReference Include="SpecFlow.NUnit" Version="3.9.74" />
     <PackageReference Include="FlaUI.UIA3" Version="3.2.0" />
     <PackageReference Include="FlaUI.Adapter.White" Version="0.1.0" />
   </ItemGroup>
