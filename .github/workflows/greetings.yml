@@ -1,6 +1,10 @@
 name: Greetings
 
-on: [issues, pull_request_target]
+permissions: read-all
+
+on:
+  - issues
+  - pull_request_target
 
 jobs:
   greeting:
