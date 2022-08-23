@@ -18,27 +18,21 @@
       <group targetFramework=".NETFramework4.6.1" />
       <group targetFramework=".NETCoreApp3.1" />
       <group targetFramework="net5.0-windows7.0" />
-      <group targetFramework="UAP10.0" />
     </dependencies>
   </metadata>
   <files>
     <!-- .NET Framework -->
-    <file src="src\net\bin\Release\net461\MvvmDialogs.dll" target="lib\net461\MvvmDialogs.dll" />
-    <file src="src\net\bin\Release\net461\MvvmDialogs.xml" target="lib\net461\MvvmDialogs.xml" />
-    <file src="src\net\bin\Release\net461\MvvmDialogs.pdb" target="lib\net461\MvvmDialogs.pdb" />
+    <file src="src\bin\Release\net461\MvvmDialogs.dll" target="lib\net461\MvvmDialogs.dll" />
+    <file src="src\bin\Release\net461\MvvmDialogs.xml" target="lib\net461\MvvmDialogs.xml" />
+    <file src="src\bin\Release\net461\MvvmDialogs.pdb" target="lib\net461\MvvmDialogs.pdb" />
 
     <!-- .NET Core -->
-    <file src="src\net\bin\Release\netcoreapp3.1\MvvmDialogs.dll" target="lib\netcoreapp3.1\MvvmDialogs.dll" />
-    <file src="src\net\bin\Release\netcoreapp3.1\MvvmDialogs.xml" target="lib\netcoreapp3.1\MvvmDialogs.xml" />
-    <file src="src\net\bin\Release\netcoreapp3.1\MvvmDialogs.pdb" target="lib\netcoreapp3.1\MvvmDialogs.pdb" />
-    <file src="src\net\bin\Release\net5.0-windows\MvvmDialogs.dll" target="lib\net5.0-windows7.0\MvvmDialogs.dll" />
-    <file src="src\net\bin\Release\net5.0-windows\MvvmDialogs.xml" target="lib\net5.0-windows7.0\MvvmDialogs.xml" />
-    <file src="src\net\bin\Release\net5.0-windows\MvvmDialogs.pdb" target="lib\net5.0-windows7.0\MvvmDialogs.pdb" />
-
-    <!-- UWP -->
-    <file src="src\universal\bin\Release\MvvmDialogs.dll" target="lib\uap10.0\MvvmDialogs.dll" />
-    <file src="src\universal\bin\Release\MvvmDialogs.xml" target="lib\uap10.0\MvvmDialogs.xml" />
-    <file src="src\universal\bin\Release\MvvmDialogs.pdb" target="lib\uap10.0\MvvmDialogs.pdb" />
+    <file src="src\bin\Release\netcoreapp3.1\MvvmDialogs.dll" target="lib\netcoreapp3.1\MvvmDialogs.dll" />
+    <file src="src\bin\Release\netcoreapp3.1\MvvmDialogs.xml" target="lib\netcoreapp3.1\MvvmDialogs.xml" />
+    <file src="src\bin\Release\netcoreapp3.1\MvvmDialogs.pdb" target="lib\netcoreapp3.1\MvvmDialogs.pdb" />
+    <file src="src\bin\Release\net5.0-windows\MvvmDialogs.dll" target="lib\net5.0-windows7.0\MvvmDialogs.dll" />
+    <file src="src\bin\Release\net5.0-windows\MvvmDialogs.xml" target="lib\net5.0-windows7.0\MvvmDialogs.xml" />
+    <file src="src\bin\Release\net5.0-windows\MvvmDialogs.pdb" target="lib\net5.0-windows7.0\MvvmDialogs.pdb" />
 
     <!-- Icon -->
     <file src="build\icon_64x64.png" target="images\" />
