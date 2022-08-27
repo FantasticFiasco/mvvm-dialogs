@@ -16,7 +16,7 @@
     <tags>wpf uwp mvvm dialog window messagebox openfiledialog savefiledialog folderbrowserdialog messagedialog contentdialog fileopenpicker filesavepicker folderpicker</tags>
     <dependencies>
       <group targetFramework=".NETFramework4.6.2" />
-      <group targetFramework="net5.0-windows7.0" />
+      <group targetFramework="net6.0-windows7.0" />
     </dependencies>
   </metadata>
   <files>
@@ -26,9 +26,9 @@
     <file src="src\bin\Release\net462\MvvmDialogs.pdb" target="lib\net462\MvvmDialogs.pdb" />
 
     <!-- .NET Core -->
-    <file src="src\bin\Release\net5.0-windows\MvvmDialogs.dll" target="lib\net5.0-windows7.0\MvvmDialogs.dll" />
-    <file src="src\bin\Release\net5.0-windows\MvvmDialogs.xml" target="lib\net5.0-windows7.0\MvvmDialogs.xml" />
-    <file src="src\bin\Release\net5.0-windows\MvvmDialogs.pdb" target="lib\net5.0-windows7.0\MvvmDialogs.pdb" />
+    <file src="src\bin\Release\net6.0-windows\MvvmDialogs.dll" target="lib\net6.0-windows7.0\MvvmDialogs.dll" />
+    <file src="src\bin\Release\net6.0-windows\MvvmDialogs.xml" target="lib\net6.0-windows7.0\MvvmDialogs.xml" />
+    <file src="src\bin\Release\net6.0-windows\MvvmDialogs.pdb" target="lib\net6.0-windows7.0\MvvmDialogs.pdb" />
 
     <!-- Icon -->
     <file src="build\icon_64x64.png" target="images\" />
