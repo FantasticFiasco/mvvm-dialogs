@@ -63,7 +63,6 @@ namespace MvvmDialogs.DialogTypeLocators
         private static Assembly GetAssemblyFromType(Type type)
         {
 #if NETFX_CORE
-            // GetTypeInfo is supported on UWP
             return type.GetTypeInfo().Assembly;
 #else
             // Assembly is supported on all .NET versions

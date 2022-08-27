@@ -11,9 +11,9 @@
     <icon>images\icon_64x64.png</icon>
     <copyright>Copyright © 2009-2022 MVVM Dialogs contributors</copyright>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>Framework simplifying the concept of opening dialogs from a view model when using MVVM in WPF or UWP.</description>
+    <description>Framework simplifying the concept of opening dialogs from a view model when using MVVM in WPF.</description>
     <releaseNotes>For release notes, please see the change log on GitHub.</releaseNotes>
-    <tags>wpf uwp mvvm dialog window messagebox openfiledialog savefiledialog folderbrowserdialog messagedialog contentdialog fileopenpicker filesavepicker folderpicker</tags>
+    <tags>wpf xaml mvvm dialog window messagebox openfiledialog savefiledialog folderbrowserdialog messagedialog contentdialog fileopenpicker filesavepicker folderpicker</tags>
     <dependencies>
       <group targetFramework=".NETFramework4.6.2" />
       <group targetFramework="net6.0-windows7.0" />

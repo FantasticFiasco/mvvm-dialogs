@@ -6,7 +6,7 @@
     <br>
 </h1>
 
-<h4 align="center">Library simplifying the concept of opening dialogs from a view model when using MVVM in WPF or UWP.</h4>
+<h4 align="center">Library simplifying the concept of opening dialogs from a view model when using MVVM in WPF.</h4>
 
 <p align="center">
     <a href="https://ci.appveyor.com/project/FantasticFiasco/mvvm-dialogs/branch/master"><img src="https://ci.appveyor.com/api/projects/status/9eyvxv5jr9bybant/branch/master?svg=true"></a>
@@ -18,8 +18,7 @@
 ## Table of contents
 
 - [Introduction](#introduction)
-- [WPF usage](#wpf-usage)
-- [UWP usage](#uwp-usage)
+- [Usage](#usage)
 - [Custom windows](#custom-windows)
 - [Custom framework dialogs](#custom-framework-dialogs)
 - [More in the wiki](#more-in-the-wiki)
@@ -34,9 +33,9 @@
 
 ## Introduction
 
-MVVM Dialogs is a library simplifying the concept of opening dialogs from a view model when using MVVM in WPF (Windows Presentation Framework) or UWP (Universal Windows Platform). It enables the developer to easily write unit tests for view models in the same manner unit tests are written for other classes.
+MVVM Dialogs is a library simplifying the concept of opening dialogs from a view model when using MVVM in WPF (Windows Presentation Framework). It enables the developer to easily write unit tests for view models in the same manner unit tests are written for other classes.
 
-The library has built in support for the following dialogs in WPF:
+The library has built in support for the following dialogs:
 
 - Modal window
 - Non-modal window
@@ -45,16 +44,7 @@ The library has built in support for the following dialogs in WPF:
 - Save file dialog
 - Folder browser dialog
 
-The library has built in support for the following dialogs in UWP:
-
-- Content dialog
-- Message dialog
-- Single file picker
-- Multiple files picker
-- Save file picker
-- Single folder picker
-
-## WPF usage
+## Usage
 
 To open a modal window, decorate the view with the attached property `DialogServiceViews.IsRegistered`:
 
@@ -98,38 +88,9 @@ public class ModalDialogTabContentViewModel : INotifyPropertyChanged
 }
 ```
 
-## UWP usage
-
-With UWP you don't need to register the view, simply open the dialog using the interface `IDialogService`:
-
-```c#
-public class MainPageViewModel : INotifyPropertyChanged
-{
-    private readonly IDialogService dialogService;
-
-    public MainPageViewModel(IDialogService dialogService)
-    {
-        this.dialogService = dialogService;
-    }
-
-    ...
-
-    private async void ShowContentDialog()
-    {
-        var dialogViewModel = new AddTextContentDialogViewModel();
-
-        ContentDialogResult result = await dialogService.ShowContentDialogAsync(dialogViewModel);
-        if (result == ContentDialogResult.Primary)
-        {
-            Texts.Add(dialogViewModel.Text);
-        }
-    }
-}
-```
-
 ## Custom windows
 
-Dialogs in WPF that doesn't inherit from `Window`, or content dialogs in UWP that doesn't inherit from `ContentDialog`, are called custom dialogs. These custom dialogs are supported, but in order for `DialogService` to know how to interact with them, you will have to implement the `IWindow` interface in WPF or `IContentDialog` in UWP.
+Dialogs in WPF that doesn't inherit from `Window` are called custom dialogs. These custom dialogs are supported, but in order for `DialogService` to know how to interact with them, you will have to implement the `IWindow` interface.
 
 ## Custom framework dialogs
 
@@ -172,10 +133,6 @@ PM> Install-Package MvvmDialogs
 MVVM Dialogs started out as an [article on CodeProject](https://www.codeproject.com/Articles/36745/Showing-Dialogs-When-Using-the-MVVM-Pattern-in-WPF) with its first revision published in May 2009. At that time MVVM was still new and fresh, and the now deprecated [MVVM Light](http://www.mvvmlight.net/) had yet not been published. In fact, none of the MVVM libraries commonly used today existed back then. MVVM Dialogs came about out of necessity to work with dialogs from the view model, a reaction to the fact that although MVVM was a popular pattern, the support to implement it was rather limited.
 
 So, the initial publication was over 10 years ago. Give that a thought. An open source project that after 10 years still is maintained and extremely relevant with the release of .NET Core 3. Take that all you out there claiming open source code is volatile!
-
-![MVVM Dialogs anniversary](doc/resources/cake.png)
-
-Hip hip hooray!
 
 ## Reputation
 
