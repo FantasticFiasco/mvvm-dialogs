@@ -6,6 +6,8 @@ This project adheres to [Semantic Versioning](http://semver.org/) and is followi
 
 ## Unreleased
 
+## 9.0.0 - 2022-08-27
+
 ### :zap: Added
 
 - Support for .NET 6
