@@ -2,7 +2,7 @@
   "extends": [
     "github>FantasticFiasco/renovate-config"
   ],
-  "ignoreDeps": ["Moq"],
+  "ignoreDeps": ["Moq", "NUnit"],
   "packageRules": [
     {
       "packagePatterns": ["^SpecFlow"],
