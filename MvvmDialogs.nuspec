@@ -16,7 +16,6 @@
     <tags>wpf uwp mvvm dialog window messagebox openfiledialog savefiledialog folderbrowserdialog messagedialog contentdialog fileopenpicker filesavepicker folderpicker</tags>
     <dependencies>
       <group targetFramework=".NETFramework4.6.2" />
-      <group targetFramework=".NETCoreApp3.1" />
       <group targetFramework="net5.0-windows7.0" />
     </dependencies>
   </metadata>
@@ -27,9 +26,6 @@
     <file src="src\bin\Release\net462\MvvmDialogs.pdb" target="lib\net462\MvvmDialogs.pdb" />
 
     <!-- .NET Core -->
-    <file src="src\bin\Release\netcoreapp3.1\MvvmDialogs.dll" target="lib\netcoreapp3.1\MvvmDialogs.dll" />
-    <file src="src\bin\Release\netcoreapp3.1\MvvmDialogs.xml" target="lib\netcoreapp3.1\MvvmDialogs.xml" />
-    <file src="src\bin\Release\netcoreapp3.1\MvvmDialogs.pdb" target="lib\netcoreapp3.1\MvvmDialogs.pdb" />
     <file src="src\bin\Release\net5.0-windows\MvvmDialogs.dll" target="lib\net5.0-windows7.0\MvvmDialogs.dll" />
     <file src="src\bin\Release\net5.0-windows\MvvmDialogs.xml" target="lib\net5.0-windows7.0\MvvmDialogs.xml" />
     <file src="src\bin\Release\net5.0-windows\MvvmDialogs.pdb" target="lib\net5.0-windows7.0\MvvmDialogs.pdb" />

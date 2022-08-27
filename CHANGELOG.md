@@ -11,6 +11,7 @@ This project adheres to [Semantic Versioning](http://semver.org/) and is followi
 - [BREAKING CHANGE] Support for .NET Framework 3.5
 - [BREAKING CHANGE] Support for .NET Framework 4.0 and .NET Framework 4.5 due to [deprecation as of January 12, 2016](https://docs.microsoft.com/en-us/lifecycle/products/microsoft-net-framework)
 - [BREAKING CHANGE] Support for .NET Framework 4.5.2 due to [deprecation as of April 26, 2022](https://docs.microsoft.com/en-us/lifecycle/products/microsoft-net-framework)
+- [BREAKING CHANGE] Support for .NET Core 3.1 in preparation for [deprecation December 13, 2022](https://dotnet.microsoft.com/en-us/platform/support/policy/dotnet-core)
 - [BREAKING CHANGE] Support for UWP due to problematic support in VS2022
 
 ## 8.0.0 - 2020-11-19
