@@ -15,8 +15,13 @@
     <a href="https://www.nuget.org/packages/MvvmDialogs/"><img src="https://img.shields.io/nuget/dt/MvvmDialogs.svg"></a>
 </p>
 
+> This codebase is actively maintained but not actively developed. Pull requests with new features will have a very slim chance of getting merged. In many aspects this codebase is "done".
+>
+> Please feel free to use the code, but refrain from having hopes that it has any aspirations of being anything more than it currently is.
+
 ## Table of contents
 
+- [Table of contents](#table-of-contents)
 - [Introduction](#introduction)
 - [Usage](#usage)
 - [Custom windows](#custom-windows)
