@@ -19,9 +19,8 @@
 >
 > Please feel free to use the code, but refrain from having hopes that it has any aspirations of being anything more than it currently is.
 
-## Table of contents
+## Table of contents <!-- omit in toc -->
 
-- [Table of contents](#table-of-contents)
 - [Introduction](#introduction)
 - [Usage](#usage)
 - [Custom windows](#custom-windows)
