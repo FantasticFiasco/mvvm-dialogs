@@ -94,7 +94,7 @@ public class ModalDialogTabContentViewModel : INotifyPropertyChanged
 
 ## Custom windows
 
-Dialogs in WPF that doesn't inherit from `Window` are called custom dialogs. These custom dialogs are supported, but in order for `DialogService` to know how to interact with them, you will have to implement the `IWindow` interface.
+Dialogs in WPF that don't inherit from `Window` are called custom dialogs. These custom dialogs are supported, but in order for `DialogService` to know how to interact with them, you will have to implement the `IWindow` interface.
 
 ## Custom framework dialogs
 
