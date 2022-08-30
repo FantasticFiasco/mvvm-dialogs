@@ -136,7 +136,7 @@ PM> Install-Package MvvmDialogs
 
 MVVM Dialogs started out as an [article on CodeProject](https://www.codeproject.com/Articles/36745/Showing-Dialogs-When-Using-the-MVVM-Pattern-in-WPF) with its first revision published in May 2009. At that time MVVM was still new and fresh, and the now deprecated [MVVM Light](http://www.mvvmlight.net/) had yet not been published. In fact, none of the MVVM libraries commonly used today existed back then. MVVM Dialogs came about out of necessity to work with dialogs from the view model, a reaction to the fact that although MVVM was a popular pattern, the support to implement it was rather limited.
 
-So, the initial publication was over 10 years ago. Give that a thought. An open source project that after 10 years still is maintained and extremely relevant with the release of .NET Core 3. Take that all you out there claiming open source code is volatile!
+So, the initial publication was over 10 years ago. Give that a thought. An open source project that after 10 years still is maintained and extremely relevant with the releases of .NET. Take that all you out there claiming open source code is volatile!
 
 ## Reputation
 
