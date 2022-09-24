@@ -305,6 +305,16 @@ namespace MvvmDialogs
             return dialog;
         }
 
+        /// <summary>
+        /// Finds window corresponding to specified view model.
+        /// </summary>
+        /// <exception cref="ViewNotRegisteredException"/>
+        /// <exception cref="InvalidOperationException"/>
+        protected virtual Window FindOwnerWindow(INotifyPropertyChanged viewModel)
+        {
+            DialogService.FindOwner(viewModel);
+        }
+
         private static PropertyChangedEventHandler RegisterDialogResult(
             IWindow dialog,
             IModalDialogViewModel viewModel)
@@ -331,7 +341,9 @@ namespace MvvmDialogs
         /// <summary>
         /// Finds window corresponding to specified view model.
         /// </summary>
-        private static Window FindOwnerWindow(INotifyPropertyChanged viewModel)
+        /// <exception cref="ViewNotRegisteredException"/>
+        /// <exception cref="InvalidOperationException"/>
+        private static Window FindOwner(INotifyPropertyChanged viewModel)
         {
             IView? view = DialogServiceViews.Views.SingleOrDefault(
                 registeredView =>
