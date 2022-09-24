@@ -312,7 +312,7 @@ namespace MvvmDialogs
         /// <exception cref="InvalidOperationException"/>
         protected virtual Window FindOwnerWindow(INotifyPropertyChanged viewModel)
         {
-            DialogService.FindOwner(viewModel);
+            return DialogService.FindOwner(viewModel);
         }
 
         private static PropertyChangedEventHandler RegisterDialogResult(
