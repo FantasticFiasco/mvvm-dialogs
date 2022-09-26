@@ -1,7 +1,7 @@
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 
   <PropertyGroup>
-    <VersionPrefix>9.0.1</VersionPrefix>
+    <VersionPrefix>9.1.0</VersionPrefix>
     <VersionSuffix></VersionSuffix>
     <Authors>Mattias Kindborg</Authors>
     <Company>FantasticFiasco</Company>
