@@ -8,7 +8,7 @@ This project adheres to [Semantic Versioning](http://semver.org/) and is followi
 
 ### :zap: Added
 
-- [#221](https://github.com/FantasticFiasco/mvvm-dialogs/pull/221) `DialogService.FindOwnerWindow`, a method that finds the window corresponding to specified a view model, has been promoted to `protected virtual` (contributed by [@RFBomb](https://github.com/RFBomb))
+- [#221](https://github.com/FantasticFiasco/mvvm-dialogs/pull/221) `DialogService.FindOwnerWindow`, a method that finds the window corresponding to specified a view model, has been added as `protected virtual`, allowing you to override its behavior (contributed by [@RFBomb](https://github.com/RFBomb))
 
 ## 9.0.1 - 2022-08-27
 
