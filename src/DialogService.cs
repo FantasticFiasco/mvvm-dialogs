@@ -266,6 +266,37 @@ namespace MvvmDialogs
 
         #endregion
 
+        /// <summary>
+        /// Finds window corresponding to specified view model.
+        /// </summary>
+        /// <exception cref="ViewNotRegisteredException">
+        /// The view of specified view model has not been registered.
+        /// </exception>
+        /// <exception cref="InvalidOperationException">
+        /// The view of specified view model has no owner.
+        /// </exception>
+        protected virtual Window FindOwnerWindow(INotifyPropertyChanged viewModel)
+        {
+            IView? view = DialogServiceViews.Views.SingleOrDefault(
+                registeredView =>
+                    registeredView.Source.IsLoaded &&
+                    ReferenceEquals(registeredView.DataContext, viewModel));
+
+            if (view == null)
+            {
+                string message =
+                    $"View model of type '{viewModel.GetType()}' is not present as data context on any registered view. Please register the view by setting DialogServiceViews.IsRegistered=\"True\" in your XAML.";
+
+                throw new ViewNotRegisteredException(message);
+            }
+
+            // Get owner window
+            Window? owner = view.GetOwner();
+            if (owner == null) throw new InvalidOperationException($"View of type '{view.GetType()}' is not registered.");
+
+            return owner;
+        }
+
         private void Show(
             INotifyPropertyChanged ownerViewModel,
             INotifyPropertyChanged viewModel,
@@ -305,16 +336,6 @@ namespace MvvmDialogs
             return dialog;
         }
 
-        /// <summary>
-        /// Finds window corresponding to specified view model.
-        /// </summary>
-        /// <exception cref="ViewNotRegisteredException"/>
-        /// <exception cref="InvalidOperationException"/>
-        protected virtual Window FindOwnerWindow(INotifyPropertyChanged viewModel)
-        {
-            return DialogService.FindOwner(viewModel);
-        }
-
         private static PropertyChangedEventHandler RegisterDialogResult(
             IWindow dialog,
             IModalDialogViewModel viewModel)
@@ -338,31 +359,6 @@ namespace MvvmDialogs
             PropertyChangedEventHandler handler) =>
             viewModel.PropertyChanged -= handler;
 
-        /// <summary>
-        /// Finds window corresponding to specified view model.
-        /// </summary>
-        /// <exception cref="ViewNotRegisteredException"/>
-        /// <exception cref="InvalidOperationException"/>
-        private static Window FindOwner(INotifyPropertyChanged viewModel)
-        {
-            IView? view = DialogServiceViews.Views.SingleOrDefault(
-                registeredView =>
-                    registeredView.Source.IsLoaded &&
-                    ReferenceEquals(registeredView.DataContext, viewModel));
 
-            if (view == null)
-            {
-                string message =
-                    $"View model of type '{viewModel.GetType()}' is not present as data context on any registered view. Please register the view by setting DialogServiceViews.IsRegistered=\"True\" in your XAML.";
-
-                throw new ViewNotRegisteredException(message);
-            }
-
-            // Get owner window
-            Window? owner = view.GetOwner();
-            if (owner == null) throw new InvalidOperationException($"View of type '{view.GetType()}' is not registered.");
-
-            return owner;
-        }
     }
 }
