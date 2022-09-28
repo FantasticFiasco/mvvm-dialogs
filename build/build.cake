@@ -1,4 +1,4 @@
-#tool nuget:?package=NuGet.CommandLine&version=6.2.1
+#tool nuget:?package=NuGet.CommandLine&version=6.3.0
 #load utils.cake
 
 //////////////////////////////////////////////////////////////////////
