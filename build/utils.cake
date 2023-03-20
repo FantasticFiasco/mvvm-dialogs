@@ -1,4 +1,4 @@
-#addin nuget:?package=Cake.FileHelpers&version=6.1.2
+#addin nuget:?package=Cake.FileHelpers&version=6.1.3
 
 using System.Text.RegularExpressions;
 
