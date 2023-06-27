@@ -75,6 +75,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestBaseClasses", "samples\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Demo.CustomDialogTypeLocator.Test", "samples\Demo.CustomDialogTypeLocator.Test\Demo.CustomDialogTypeLocator.Test.csproj", "{2F0419C7-BCF0-42B2-B95B-25A1BC960697}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestProject1", "TestProject1\TestProject1.csproj", "{D4BE75B1-6A37-456B-A772-211BC0187956}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -213,6 +215,10 @@ Global
 		{2F0419C7-BCF0-42B2-B95B-25A1BC960697}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2F0419C7-BCF0-42B2-B95B-25A1BC960697}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2F0419C7-BCF0-42B2-B95B-25A1BC960697}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D4BE75B1-6A37-456B-A772-211BC0187956}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D4BE75B1-6A37-456B-A772-211BC0187956}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D4BE75B1-6A37-456B-A772-211BC0187956}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D4BE75B1-6A37-456B-A772-211BC0187956}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -251,6 +257,7 @@ Global
 		{6760EB09-F75D-44DE-BEB3-5C3DF1D57DCE} = {62592C78-61AA-44B4-A7C3-EAC678A568A2}
 		{B6AD17E0-892C-460E-97F3-58A0EFFC3C33} = {62592C78-61AA-44B4-A7C3-EAC678A568A2}
 		{2F0419C7-BCF0-42B2-B95B-25A1BC960697} = {62592C78-61AA-44B4-A7C3-EAC678A568A2}
+		{D4BE75B1-6A37-456B-A772-211BC0187956} = {B5460912-B309-4623-8FB6-B7175D66F20F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {983A22B3-AE5B-4B67-A798-F6A6697B82A8}

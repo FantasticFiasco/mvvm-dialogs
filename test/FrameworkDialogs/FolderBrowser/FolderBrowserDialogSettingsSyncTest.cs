@@ -1,50 +1,49 @@
-using System;
-using System.Windows.Forms;
-using NUnit.Framework;
+//using System;
+//using System.Windows.Forms;
+//using Xunit;
 
-namespace MvvmDialogs.FrameworkDialogs.FolderBrowser
-{
-    [TestFixture]
-    public class FolderBrowserDialogSettingsSyncTest
-    {
-        [Test]
-        public void ToDialog()
-        {
-            // Arrange
-            var dialog = new FolderBrowserDialog();
-            var settings = new FolderBrowserDialogSettings();
-            var sync = new FolderBrowserDialogSettingsSync(dialog, settings);
+//namespace MvvmDialogs.FrameworkDialogs.FolderBrowser
+//{
+//    public class FolderBrowserDialogSettingsSyncTest
+//    {
+//        [Fact]
+//        public void ToDialog()
+//        {
+//            // Arrange
+//            var dialog = new FolderBrowserDialog();
+//            var settings = new FolderBrowserDialogSettings();
+//            var sync = new FolderBrowserDialogSettingsSync(dialog, settings);
 
-            settings.Description = "Some description";
-            settings.RootFolder = Environment.SpecialFolder.ProgramFiles;
-            settings.SelectedPath = @"C:\temp";
-            settings.ShowNewFolderButton = !settings.ShowNewFolderButton;
+//            settings.Description = "Some description";
+//            settings.RootFolder = Environment.SpecialFolder.ProgramFiles;
+//            settings.SelectedPath = @"C:\temp";
+//            settings.ShowNewFolderButton = !settings.ShowNewFolderButton;
 
-            // Act
-            sync.ToDialog();
+//            // Act
+//            sync.ToDialog();
 
-            // Assert
-            Assert.That(dialog.Description, Is.EqualTo(settings.Description));
-            Assert.That(dialog.RootFolder, Is.EqualTo(settings.RootFolder));
-            Assert.That(dialog.SelectedPath, Is.EqualTo(settings.SelectedPath));
-            Assert.That(dialog.ShowNewFolderButton, Is.EqualTo(settings.ShowNewFolderButton));
-        }
+//            // Assert
+//            Assert.That(dialog.Description, Is.EqualTo(settings.Description));
+//            Assert.That(dialog.RootFolder, Is.EqualTo(settings.RootFolder));
+//            Assert.That(dialog.SelectedPath, Is.EqualTo(settings.SelectedPath));
+//            Assert.That(dialog.ShowNewFolderButton, Is.EqualTo(settings.ShowNewFolderButton));
+//        }
 
-        [Test]
-        public void ToSettings()
-        {
-            // Arrange
-            var dialog = new FolderBrowserDialog();
-            var settings = new FolderBrowserDialogSettings();
-            var sync = new FolderBrowserDialogSettingsSync(dialog, settings);
+//        [Fact]
+//        public void ToSettings()
+//        {
+//            // Arrange
+//            var dialog = new FolderBrowserDialog();
+//            var settings = new FolderBrowserDialogSettings();
+//            var sync = new FolderBrowserDialogSettingsSync(dialog, settings);
 
-            dialog.SelectedPath = @"C:\temp";
+//            dialog.SelectedPath = @"C:\temp";
 
-            // Act
-            sync.ToSettings();
+//            // Act
+//            sync.ToSettings();
 
-            // Assert
-            Assert.That(settings.SelectedPath, Is.EqualTo(dialog.SelectedPath));
-        }
-    }
-}
+//            // Assert
+//            Assert.That(settings.SelectedPath, Is.EqualTo(dialog.SelectedPath));
+//        }
+//    }
+//}

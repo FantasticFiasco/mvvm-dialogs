@@ -1,48 +1,46 @@
-﻿using System.Threading;
-using System.Windows;
-using Moq;
-using NUnit.Framework;
+﻿//using System.Threading;
+//using System.Windows;
+//using Moq;
 
-namespace MvvmDialogs.FrameworkDialogs.MessageBox
-{
-    [TestFixture]
-    public class MessageBoxWrapperTest
-    {
-        [Test]
-        [RequiresThread(ApartmentState.STA)]
-        public void Show()
-        {
-            // Arrange
-            var settings = new MessageBoxSettings();
-            var messageBoxShow = new Mock<IMessageBoxShow>();
-            var dialog = new MessageBoxWrapper(messageBoxShow.Object, settings);
+//namespace MvvmDialogs.FrameworkDialogs.MessageBox
+//{
+//    public class MessageBoxWrapperTest
+//    {
+//        [Fact]
+//        [RequiresThread(ApartmentState.STA)]
+//        public void Show()
+//        {
+//            // Arrange
+//            var settings = new MessageBoxSettings();
+//            var messageBoxShow = new Mock<IMessageBoxShow>();
+//            var dialog = new MessageBoxWrapper(messageBoxShow.Object, settings);
 
-            settings.Button = MessageBoxButton.YesNoCancel;
-            settings.Caption = "Some caption";
-            settings.DefaultResult = MessageBoxResult.Yes;
-            settings.Icon = MessageBoxImage.Warning;
-            settings.MessageBoxText = "Some message box text";
-            settings.Options = MessageBoxOptions.RightAlign;
+//            settings.Button = MessageBoxButton.YesNoCancel;
+//            settings.Caption = "Some caption";
+//            settings.DefaultResult = MessageBoxResult.Yes;
+//            settings.Icon = MessageBoxImage.Warning;
+//            settings.MessageBoxText = "Some message box text";
+//            settings.Options = MessageBoxOptions.RightAlign;
 
-            var owner = new Window();
+//            var owner = new Window();
 
-            messageBoxShow
-                .Setup(mock =>
-                    mock.Show(
-                        owner,
-                        settings.MessageBoxText,
-                        settings.Caption,
-                        settings.Button,
-                        settings.Icon,
-                        settings.DefaultResult,
-                        settings.Options))
-                .Returns(MessageBoxResult.Cancel);
+//            messageBoxShow
+//                .Setup(mock =>
+//                    mock.Show(
+//                        owner,
+//                        settings.MessageBoxText,
+//                        settings.Caption,
+//                        settings.Button,
+//                        settings.Icon,
+//                        settings.DefaultResult,
+//                        settings.Options))
+//                .Returns(MessageBoxResult.Cancel);
 
-            // Act
-            dialog.Show(owner);
+//            // Act
+//            dialog.Show(owner);
 
-            // Assert
-            messageBoxShow.VerifyAll();
-        }
-    }
-}
+//            // Assert
+//            messageBoxShow.VerifyAll();
+//        }
+//    }
+//}

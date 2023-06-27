@@ -1,23 +1,18 @@
-﻿using System.Threading;
-using System.Windows;
+﻿using System.Windows;
 using Moq;
 using MvvmDialogs.Views;
-using NUnit.Framework;
+using Xunit;
 
 namespace MvvmDialogs
 {
-    // ReSharper disable UnusedVariable
-    [TestFixture]
-    [Apartment(ApartmentState.STA)]
-    public class DialogServiceViewsTest
+    public class DialogServiceViewsTest : IDisposable
     {
-        [TearDown]
-        public void TearDown()
+        public void Dispose()
         {
             DialogServiceViews.Clear();
         }
 
-        [Test]
+        [StaFact]
         public void RegisterWindowUsingAttachedProperty()
         {
             // Arrange
@@ -32,10 +27,10 @@ namespace MvvmDialogs
             window.SetValue(DialogServiceViews.IsRegisteredProperty, true);
             
             // Assert
-            Assert.That(DialogServiceViews.Views, Is.EqualTo(expected));
+            Assert.Equal(expected, DialogServiceViews.Views);
         }
 
-        [Test]
+        [StaFact]
         public void UnregisterWindowUsingAttachedProperty()
         {
             // Arrange
@@ -46,16 +41,16 @@ namespace MvvmDialogs
             window.SetValue(DialogServiceViews.IsRegisteredProperty, false);
 
             // Assert
-            Assert.That(DialogServiceViews.Views, Is.Empty);
+            Assert.Empty(DialogServiceViews.Views);
         }
 
-        [Test]
+        [StaFact]
         public void RegisterFrameworkElementUsingAttachedProperty()
         {
             // Arrange
             var frameworkElement = new FrameworkElement();
             
-            var window = new Window
+            var unused = new Window
             {
                 Content = frameworkElement
             };
@@ -69,17 +64,17 @@ namespace MvvmDialogs
             frameworkElement.SetValue(DialogServiceViews.IsRegisteredProperty, true);
 
             // Assert
-            Assert.That(DialogServiceViews.Views, Is.EqualTo(expected));
+            Assert.Equal(expected, DialogServiceViews.Views);
         }
 
-        [Test]
+        [StaFact]
         public void UnregisterFrameworkElementUsingAttachedProperty()
         {
             // Arrange
             var frameworkElement = new FrameworkElement();
             
 
-            var window = new Window
+            var unused = new Window
             {
                 Content = frameworkElement
             };
@@ -90,10 +85,10 @@ namespace MvvmDialogs
             frameworkElement.SetValue(DialogServiceViews.IsRegisteredProperty, false);
 
             // Assert
-            Assert.That(DialogServiceViews.Views, Is.Empty);
+            Assert.Empty(DialogServiceViews.Views);
         }
 
-        [Test]
+        [StaFact]
         public void RegisterLoadedView()
         {
             // Arrange
@@ -114,10 +109,10 @@ namespace MvvmDialogs
             DialogServiceViews.Register(view.Object);
 
             // Assert
-            Assert.That(DialogServiceViews.Views, Is.EqualTo(expected));
+            Assert.Equal(expected, DialogServiceViews.Views);
         }
 
-        [Test]
+        [StaFact]
         public void UnregisterLoadedView()
         {
             // Arrange
@@ -135,10 +130,10 @@ namespace MvvmDialogs
             DialogServiceViews.SetIsRegistered(view.Object, false);
 
             // Assert
-            Assert.That(DialogServiceViews.Views, Is.Empty);
+            Assert.Empty(DialogServiceViews.Views);
         }
 
-        [Test]
+        [StaFact]
         public void RegisterViewThatNeverGetsLoaded()
         {
             // Arrange
@@ -151,10 +146,10 @@ namespace MvvmDialogs
             DialogServiceViews.Register(view.Object);
 
             // Assert
-            Assert.That(DialogServiceViews.Views, Is.Empty);
+            Assert.Empty(DialogServiceViews.Views);
         }
 
-        [Test]
+        [StaFact]
         public void RegisterViewThatGetsLoaded()
         {
             // Arrange
@@ -180,10 +175,10 @@ namespace MvvmDialogs
             view.Raise(mock => mock.Loaded += null, new RoutedEventArgs(null, view.Object));
 
             // Assert
-            Assert.That(DialogServiceViews.Views, Is.EqualTo(expected));
+            Assert.Equal(expected, DialogServiceViews.Views);
         }
 
-        [Test]
+        [StaFact]
         public void UnregisterWhenClosingOwner()
         {
             // Arrange
@@ -203,12 +198,12 @@ namespace MvvmDialogs
             window.Close();
             
             // Assert
-            Assert.That(DialogServiceViews.Views, Is.Empty);
+            Assert.Empty(DialogServiceViews.Views);
         }
 
         #region Helper classes
 
-// ReSharper disable once MemberCanBePrivate.Global
+        // ReSharper disable once MemberCanBePrivate.Global
         public abstract class FrameworkElementMock : FrameworkElement, IView
         {
             new public abstract event RoutedEventHandler Loaded;
@@ -226,5 +221,4 @@ namespace MvvmDialogs
 
         #endregion
     }
-    // ReSharper restore UnusedVariable
 }
