@@ -2,14 +2,13 @@
 using Moq;
 using MvvmDialogs;
 using MvvmDialogs.FrameworkDialogs.OpenFile;
-using NUnit.Framework;
+using Xunit;
 
 namespace Demo.OpenFileDialog
 {
-    [TestFixture]
     public class MainWindowViewModelTest
     {
-        [Test]
+        [Fact]
         public void OpenFileSuccessful()
         {
             // Arrange
@@ -26,10 +25,10 @@ namespace Demo.OpenFileDialog
             viewModel.OpenFileCommand.Execute(null);
 
             // Assert
-            Assert.That(viewModel.Path, Is.EqualTo(@"C:\SomeFile.txt"));
+            Assert.Equal(@"C:\SomeFile.txt", viewModel.Path);
         }
 
-        [Test]
+        [Fact]
         public void OpenFileUnsuccessful()
         {
             // Arrange
@@ -44,7 +43,7 @@ namespace Demo.OpenFileDialog
             viewModel.OpenFileCommand.Execute(null);
 
             // Assert
-            Assert.That(viewModel.Path, Is.Null);
+            Assert.Null(viewModel.Path);
         }
     }
 }

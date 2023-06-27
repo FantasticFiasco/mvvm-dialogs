@@ -1,19 +1,19 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <OutputType>Library</OutputType>
-    <TargetFrameworks>net472</TargetFrameworks>
+    <TargetFramework>net472</TargetFramework>
+
+    <UseWpf>true</UseWpf>
+
+    <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+
+    <IsPackable>false</IsPackable>
+    <IsTestProject>true</IsTestProject>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="coverlet.collector" Version="6.0.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.6.2" />
-    <PackageReference Include="NUnit" Version="3.13.1" />
-    <PackageReference Include="NUnit.Analyzers" Version="3.6.1" />
-    <PackageReference Include="NUnit3TestAdapter" version="4.2.1" />
-    <PackageReference Include="SpecFlow.NUnit" Version="3.9.74" />
-    <PackageReference Include="TestStack.White.ScreenObjects" Version="0.13.3" />
   </ItemGroup>
 
 </Project>

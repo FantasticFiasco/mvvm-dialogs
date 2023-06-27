@@ -1,14 +1,13 @@
 ﻿using System.Windows;
 using Moq;
 using MvvmDialogs;
-using NUnit.Framework;
+using Xunit;
 
 namespace Demo.CustomMessageBox
 {
-    [TestFixture]
     public class MainWindowViewModelTest
     {
-        [Test]
+        [Fact]
         public void ShowMessageBoxWithMessage()
         {
             // Arrange
@@ -33,7 +32,7 @@ namespace Demo.CustomMessageBox
             dialogService.VerifyAll();
         }
 
-        [Test]
+        [Fact]
         public void ShowMessageBoxWithCaption()
         {
             // Arrange
@@ -58,7 +57,7 @@ namespace Demo.CustomMessageBox
             dialogService.VerifyAll();
         }
 
-        [Test]
+        [Fact]
         public void ShowMessageBoxWithButton()
         {
             // Arrange
@@ -83,7 +82,7 @@ namespace Demo.CustomMessageBox
             dialogService.VerifyAll();
         }
 
-        [Test]
+        [Fact]
         public void ShowMessageBoxWithIcon()
         {
             // Arrange
@@ -108,7 +107,7 @@ namespace Demo.CustomMessageBox
             dialogService.VerifyAll();
         }
 
-        [Test]
+        [Fact]
         public void ShowMessageBoxWithDefaultResult()
         {
             // Arrange

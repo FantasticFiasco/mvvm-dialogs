@@ -1,14 +1,13 @@
 ﻿using Moq;
 using MvvmDialogs;
-using NUnit.Framework;
+using Xunit;
 
 namespace Demo.CloseNonModalDialog
 {
-    [TestFixture]
     public class MainWindowViewModelTest
     {
 
-        [Test]
+        [Fact]
         public void CanShow()
         {
             // Arrange
@@ -19,10 +18,10 @@ namespace Demo.CloseNonModalDialog
             bool canShow = viewModel.ShowCommand.CanExecute(null);
 
             // Assert
-            Assert.That(canShow, Is.True);
+            Assert.True(canShow);
         }
 
-        [Test]
+        [Fact]
         public void CanNotShow()
         {
             // Arrange
@@ -35,10 +34,10 @@ namespace Demo.CloseNonModalDialog
             bool canShow = viewModel.ShowCommand.CanExecute(null);
 
             // Assert
-            Assert.That(canShow, Is.False);
+            Assert.False(canShow);
         }
 
-        [Test]
+        [Fact]
         public void CanClose()
         {
             // Arrange
@@ -51,10 +50,10 @@ namespace Demo.CloseNonModalDialog
             bool canClose = viewModel.CloseCommand.CanExecute(null);
 
             // Assert
-            Assert.That(canClose, Is.True);
+            Assert.True(canClose);
         }
 
-        [Test]
+        [Fact]
         public void CanNotClose()
         {
             // Arrange
@@ -65,7 +64,7 @@ namespace Demo.CloseNonModalDialog
             bool canClose = viewModel.CloseCommand.CanExecute(null);
 
             // Assert
-            Assert.That(canClose, Is.False);
+            Assert.False(canClose);
         }
     }
 }

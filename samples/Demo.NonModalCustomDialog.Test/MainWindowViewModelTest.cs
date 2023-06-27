@@ -1,13 +1,12 @@
 ﻿using Moq;
 using MvvmDialogs;
-using NUnit.Framework;
+using Xunit;
 
 namespace Demo.NonModalCustomDialog
 {
-    [TestFixture]
     public class MainWindowViewModelTest
     {
-        [Test]
+        [Fact]
         public void ImplicitShowCurrentTime()
         {
             // Arrange
@@ -25,7 +24,7 @@ namespace Demo.NonModalCustomDialog
             dialogService.VerifyAll();
         }
 
-        [Test]
+        [Fact]
         public void ExplicitShowCurrentTime()
         {
             // Arrange

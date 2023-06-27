@@ -2,14 +2,13 @@
 using Moq;
 using MvvmDialogs;
 using MvvmDialogs.FrameworkDialogs.SaveFile;
-using NUnit.Framework;
+using Xunit;
 
 namespace Demo.SaveFileDialog
 {
-    [TestFixture]
     public class MainWindowViewModelTest
     {
-        [Test]
+        [Fact]
         public void SaveFileSuccessful()
         {
             // Arrange
@@ -26,10 +25,10 @@ namespace Demo.SaveFileDialog
             viewModel.SaveFileCommand.Execute(null);
 
             // Assert
-            Assert.That(viewModel.Path, Is.EqualTo(@"C:\SomeFile.txt"));
+            Assert.Equal(@"C:\SomeFile.txt", viewModel.Path);
         }
 
-        [Test]
+        [Fact]
         public void OpenFileUnsuccessful()
         {
             // Arrange
@@ -44,7 +43,7 @@ namespace Demo.SaveFileDialog
             viewModel.SaveFileCommand.Execute(null);
 
             // Assert
-            Assert.That(viewModel.Path, Is.Null);
+            Assert.Null(viewModel.Path);
         }
     }
 }

@@ -2,14 +2,13 @@
 using Moq;
 using MvvmDialogs;
 using MvvmDialogs.FrameworkDialogs.FolderBrowser;
-using NUnit.Framework;
+using Xunit;
 
 namespace Demo.CustomFolderBrowserDialog
 {
-    [TestFixture]
     public class MainWindowViewModelTest
     {
-        [Test]
+        [Fact]
         public void BrowseFolderSuccessful()
         {
             // Arrange
@@ -26,10 +25,10 @@ namespace Demo.CustomFolderBrowserDialog
             viewModel.BrowseFolderCommand.Execute(null);
 
             // Assert
-            Assert.That(viewModel.Path, Is.EqualTo(@"C:\SomeFolder"));
+            Assert.Equal(@"C:\SomeFolder", viewModel.Path);
         }
 
-        [Test]
+        [Fact]
         public void BrowseFolderUnsuccessful()
         {
             // Arrange
@@ -44,7 +43,7 @@ namespace Demo.CustomFolderBrowserDialog
             viewModel.BrowseFolderCommand.Execute(null);
 
             // Assert
-            Assert.That(viewModel.Path, Is.Null);
+            Assert.Null(viewModel.Path);
         }
     }
 }
