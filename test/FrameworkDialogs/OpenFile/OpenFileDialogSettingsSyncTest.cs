@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using Microsoft.Win32;
-
 namespace MvvmDialogs.FrameworkDialogs.OpenFile
 {
     public class OpenFileDialogSettingsSyncTest
