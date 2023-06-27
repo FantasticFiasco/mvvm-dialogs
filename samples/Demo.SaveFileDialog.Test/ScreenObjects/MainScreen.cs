@@ -1,30 +1,27 @@
-﻿// using TestStack.White.Factory;
-// using TestStack.White.ScreenObjects;
-// using TestStack.White.ScreenObjects.ScreenAttributes;
-// using TestStack.White.UIItems;
-// using TestStack.White.UIItems.WindowItems;
+﻿using FlaUI.Core.AutomationElements;
+using FlaUI.Core.Input;
+using TestBaseClasses;
 
-// namespace Demo.SaveFileDialog.ScreenObjects
-// {
-//     public class MainScreen : AppScreen
-//     {
-//         [AutomationId("-u3vcUdRMUaG4Af_kzSeZQ")]
-//         private readonly TextBox? pathTextBox = null;
+namespace Demo.SaveFileDialog.ScreenObjects
+{
+    public class MainScreen : Screen
+    {
+        public MainScreen(Window window)
+            : base(window)
+        {
+        }
 
-//         [AutomationId("HstqC8HI9EOGiTfPA4_xag")]
-//         private readonly Button? saveButton = null;
+        private TextBox PathTextBox => TextBoxByAutomationId("-u3vcUdRMUaG4Af_kzSeZQ");
+        private Button? SaveButton => ButtonByAutomationId("HstqC8HI9EOGiTfPA4_xag");
 
-//         public MainScreen(Window window, ScreenRepository screenRepository)
-//             : base(window, screenRepository)
-//         {
-//         }
+        public string FileName => PathTextBox!.Text;
 
-//         public virtual string FileName => pathTextBox!.Text;
+        public SaveFileScreen ClickSave()
+        {
+            SaveButton!.Click();
+            Wait.UntilInputIsProcessed();
 
-//         public virtual SaveFileScreen ClickSave()
-//         {
-//             saveButton!.Click();
-//             return ScreenRepository.GetModal<SaveFileScreen>("This Is The Title", Window, InitializeOption.NoCache);
-//         }
-//     }
-// }
+            return new SaveFileScreen(Window.ModalWindows.Single(w => w.Title == "This Is The Title"));
+        }
+    }
+}

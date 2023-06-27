@@ -1,0 +1,15 @@
+﻿using FlaUI.Core.AutomationElements;
+
+namespace TestBaseClasses
+{
+    public abstract class Screen
+    {
+        protected readonly Window Window;
+
+        protected Screen(Window window) => Window = window;
+
+        protected Button ButtonByAutomationId(string automationId) => Window.FindFirstDescendant(cf => cf.ByAutomationId(automationId)).AsButton();
+        protected Button ButtonByText(string text) => Window.FindFirstDescendant(cf => cf.ByText(text)).AsButton();
+        protected TextBox TextBoxByAutomationId(string automationId) => Window.FindFirstDescendant(cf => cf.ByAutomationId(automationId)).AsTextBox();
+    }
+}
