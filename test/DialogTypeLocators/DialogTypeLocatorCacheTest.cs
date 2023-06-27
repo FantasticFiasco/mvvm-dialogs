@@ -1,6 +1,4 @@
-﻿using Xunit;
-
-namespace MvvmDialogs.DialogTypeLocators
+﻿namespace MvvmDialogs.DialogTypeLocators
 {
     public class DialogTypeLocatorCacheTest
     {

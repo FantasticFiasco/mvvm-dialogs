@@ -1,16 +1,12 @@
 ﻿using System.Windows;
 using Moq;
 using MvvmDialogs.Views;
-using Xunit;
 
 namespace MvvmDialogs
 {
     public class DialogServiceViewsTest : IDisposable
     {
-        public void Dispose()
-        {
-            DialogServiceViews.Clear();
-        }
+        public void Dispose() => DialogServiceViews.Clear();
 
         [StaFact]
         public void RegisterWindowUsingAttachedProperty()
@@ -206,13 +202,13 @@ namespace MvvmDialogs
         // ReSharper disable once MemberCanBePrivate.Global
         public abstract class FrameworkElementMock : FrameworkElement, IView
         {
-            new public abstract event RoutedEventHandler Loaded;
+            public new abstract event RoutedEventHandler Loaded;
 
             public abstract int Id { get; }
 
             public abstract FrameworkElement Source { get; }
 
-            new public abstract object DataContext { get; }
+            public new abstract object DataContext { get; }
 
             public abstract bool IsAlive { get; }
 

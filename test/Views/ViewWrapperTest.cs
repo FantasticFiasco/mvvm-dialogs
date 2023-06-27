@@ -1,53 +1,51 @@
-﻿//using System.Threading;
-//using System.Windows;
+﻿using System.Windows;
 
-//namespace MvvmDialogs.Views
-//{
-//    [Apartment(ApartmentState.STA)]
-//    public class ViewWrapperTest
-//    {
-//        [Fact]
-//        public void Source()
-//        {
-//            // Arrange
-//            var frameworkElement = new FrameworkElement();
-//            var viewWrapper = new ViewWrapper(frameworkElement);
+namespace MvvmDialogs.Views
+{
+    public class ViewWrapperTest
+    {
+        [StaFact]
+        public void Source()
+        {
+            // Arrange
+            var frameworkElement = new FrameworkElement();
+            var viewWrapper = new ViewWrapper(frameworkElement);
 
-//            // Assert
-//            Assert.That(viewWrapper.Source, Is.EqualTo(frameworkElement));
-//        }
+            // Assert
+            Assert.Equal(frameworkElement, viewWrapper.Source);
+        }
 
-//        [Fact]
-//        public void GetHashCodeOverride()
-//        {
-//            // Arrange
-//            var frameworkElement = new FrameworkElement();
+        [StaFact]
+        public void GetHashCodeOverride()
+        {
+            // Arrange
+            var frameworkElement = new FrameworkElement();
 
-//            var viewWrapperA = new ViewWrapper(frameworkElement);
-//            var viewWrapperB = new ViewWrapper(frameworkElement);
+            var viewWrapperA = new ViewWrapper(frameworkElement);
+            var viewWrapperB = new ViewWrapper(frameworkElement);
 
-//            // Act
-//            int hashCodeA = viewWrapperA.GetHashCode();
-//            int hashCodeB = viewWrapperB.GetHashCode();
+            // Act
+            var hashCodeA = viewWrapperA.GetHashCode();
+            var hashCodeB = viewWrapperB.GetHashCode();
 
-//            // Assert
-//            Assert.That(hashCodeA, Is.EqualTo(hashCodeB));
-//        }
+            // Assert
+            Assert.Equal(hashCodeB, hashCodeA);
+        }
 
-//        [Fact]
-//        public void EqualsOverride()
-//        {
-//            // Arrange
-//            var frameworkElement = new FrameworkElement();
+        [StaFact]
+        public void EqualsOverride()
+        {
+            // Arrange
+            var frameworkElement = new FrameworkElement();
 
-//            var viewWrapperA = new ViewWrapper(frameworkElement);
-//            var viewWrapperB = new ViewWrapper(frameworkElement);
+            var viewWrapperA = new ViewWrapper(frameworkElement);
+            var viewWrapperB = new ViewWrapper(frameworkElement);
 
-//            // Act
-//            bool equals = viewWrapperA.Equals(viewWrapperB);
+            // Act
+            var equals = viewWrapperA.Equals(viewWrapperB);
 
-//            // Assert
-//            Assert.That(equals, Is.True);
-//        }
-//    }
-//}
+            // Assert
+            Assert.True(equals);
+        }
+    }
+}

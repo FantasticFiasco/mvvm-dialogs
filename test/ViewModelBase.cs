@@ -6,9 +6,6 @@ namespace MvvmDialogs
     {
         public event PropertyChangedEventHandler? PropertyChanged;
 
-        protected void RaisePropertyChanged(PropertyChangedEventArgs e)
-        {
-            PropertyChanged?.Invoke(this, e);
-        }
+        protected void RaisePropertyChanged(PropertyChangedEventArgs e) => PropertyChanged?.Invoke(this, e);
     }
 }

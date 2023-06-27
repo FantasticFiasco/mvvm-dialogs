@@ -19,7 +19,7 @@
 //                DialogSettings.GetPropertyNames(typeof(SaveFileDialog)).Except(DialogSettings.ExcludedPropertyNames));
 
 //            // Assert
-//            Assert.That(settingsPropertyNames, Is.EqualTo(dialogPropertyNames));
+//            Assert.Equal(settingsPropertyNames, Is.EqualTo(dialogPropertyNames));
 //        }
 //    }
 //}
