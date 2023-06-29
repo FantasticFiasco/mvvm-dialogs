@@ -12,16 +12,17 @@ namespace Demo.SaveFileDialog.ScreenObjects
         }
 
         private TextBox PathTextBox => TextBoxByAutomationId("-u3vcUdRMUaG4Af_kzSeZQ");
-        private Button? SaveButton => ButtonByAutomationId("HstqC8HI9EOGiTfPA4_xag");
+        private Button SaveButton => ButtonByAutomationId("HstqC8HI9EOGiTfPA4_xag");
 
-        public string FileName => PathTextBox!.Text;
+        public string FileName => PathTextBox.Text;
 
         public SaveFileScreen ClickSave()
         {
-            SaveButton!.Click();
+            SaveButton.Click();
             Wait.UntilInputIsProcessed();
 
-            return new SaveFileScreen(Window.ModalWindows.Single(w => w.Title == "This Is The Title"));
+            var dialog = Window.ModalWindows.Single(w => w.Title == "This Is The Title");
+            return new SaveFileScreen(dialog);
         }
     }
 }

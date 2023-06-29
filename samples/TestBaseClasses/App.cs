@@ -8,32 +8,29 @@ namespace TestBaseClasses
 {
     public class Application : IDisposable
     {
-        private readonly string relativeExePath;
+        private readonly FlaUI.Core.Application app;
+        private readonly UIA3Automation automation;
 
-        private FlaUI.Core.Application? app;
-        private UIA3Automation? automation;
-
-        public Application(string relativeExePath) => this.relativeExePath = relativeExePath;
-
-        public Application Launch()
+        public Application(FlaUI.Core.Application app)
         {
-            if (app != null) throw new InvalidOperationException("Application has already been launched.");
+            this.app = app;
 
+            automation = new UIA3Automation();
+        }
+
+        public static Application Launch(string relativeExePath)
+        {
             var filePath = Path.Combine(
                 Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) ?? throw new InvalidOperationException(),
                 relativeExePath);
 
-            app = FlaUI.Core.Application.Launch(filePath);
+            var app = FlaUI.Core.Application.Launch(filePath);
 
-            return this;
+            return new Application(app);
         }
 
         public Window GetMainWindow(string title)
         {
-            if (app == null) throw new InvalidOperationException("Application has not been launched.");
-            
-            automation = new UIA3Automation();
-
             var window = app.GetMainWindow(automation, TimeSpan.FromSeconds(3));
             Assert.Equal(title, window.Title);
 
@@ -42,9 +39,9 @@ namespace TestBaseClasses
 
         public void Dispose()
         {
-            app?.Close();
-            app?.Dispose();
-            automation?.Dispose();
+            app.Close();
+            app.Dispose();
+            automation.Dispose();
         }
     }
 }

@@ -1,6 +1,4 @@
-﻿using System.IO;
-using System.Reflection;
-using Demo.SaveFileDialog.ScreenObjects;
+﻿using Demo.SaveFileDialog.ScreenObjects;
 using TestBaseClasses;
 using Xunit;
 
@@ -10,12 +8,15 @@ namespace Demo.SaveFileDialog
     {
         private readonly Application app;
 
-        public UITests() => app = new Application("Demo.SaveFileDialog.exe");
+        public UITests()
+        {
+            app = Application.Launch("Demo.SaveFileDialog.exe");
+        }
 
         [Fact]
         public void SuccessfullySavingFile()
         {
-            var mainScreen = new MainScreen(app.Launch().GetMainWindow("Demo - Save File Dialog"));
+            var mainScreen = new MainScreen(app.GetMainWindow("Demo - Save File Dialog"));
 
             var saveScreen = mainScreen.ClickSave();
             saveScreen.FileName = "SaveMe.txt";
@@ -27,7 +28,7 @@ namespace Demo.SaveFileDialog
         [Fact]
         public void CancelingWhenSavingFile()
         {
-            var mainScreen = new MainScreen(app.Launch().GetMainWindow("Demo - Save File Dialog"));
+            var mainScreen = new MainScreen(app.GetMainWindow("Demo - Save File Dialog"));
 
             var saveScreen = mainScreen.ClickSave();
             saveScreen.FileName = "SaveMe.txt";
@@ -36,6 +37,9 @@ namespace Demo.SaveFileDialog
             Assert.Equal("", mainScreen.FileName);
         }
 
-        public void Dispose() => app.Dispose();
+        public void Dispose()
+        {
+            app.Dispose();
+        }
     }
 }
