@@ -18,9 +18,15 @@ namespace Demo.SaveFileDialog.ScreenObjects
         {
             set => FileNameTextBox.Text = value;
         }
-        
-        public void ClickSave() => SaveButton.Click();
 
-        public void ClickCancel() => CancelButton.Click();
+        public void ClickSave()
+        {
+            SaveButton.Click();
+        }
+
+        public void ClickCancel()
+        {
+            CancelButton.Click();
+        }
     }
 }

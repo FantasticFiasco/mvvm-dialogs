@@ -10,6 +10,7 @@ namespace TestBaseClasses
 
         protected Button ButtonByAutomationId(string automationId) => Window.FindFirstDescendant(cf => cf.ByAutomationId(automationId)).AsButton();
         protected Button ButtonByText(string text) => Window.FindFirstDescendant(cf => cf.ByText(text)).AsButton();
+        protected ComboBox ComboBoxByAutomationId(string automationId) => Window.FindFirstDescendant(cf => cf.ByAutomationId(automationId)).AsComboBox();
         protected TextBox TextBoxByAutomationId(string automationId) => Window.FindFirstDescendant(cf => cf.ByAutomationId(automationId)).AsTextBox();
     }
 }

@@ -15,13 +15,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\MvvmDialogs.csproj" />
-    <ProjectReference Include="..\Demo.SaveFileDialog\Demo.SaveFileDialog.csproj" />
-    <ProjectReference Include="..\TestBaseClasses\TestBaseClasses.csproj" />
+    <Content Include="xunit.runner.json" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="xunit.runner.json" CopyToOutputDirectory="PreserveNewest" />
+    <ProjectReference Include="..\..\src\MvvmDialogs.csproj" />
+    <ProjectReference Include="..\Demo.SaveFileDialog\Demo.SaveFileDialog.csproj" />
+    <ProjectReference Include="..\TestBaseClasses\TestBaseClasses.csproj" />
   </ItemGroup>
 
   <ItemGroup>
