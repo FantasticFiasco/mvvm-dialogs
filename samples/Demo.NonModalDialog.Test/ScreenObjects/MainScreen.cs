@@ -1,34 +1,35 @@
-﻿// using TestStack.White.Factory;
-// using TestStack.White.ScreenObjects;
-// using TestStack.White.ScreenObjects.ScreenAttributes;
-// using TestStack.White.UIItems;
-// using TestStack.White.UIItems.WindowItems;
+﻿using FlaUI.Core.AutomationElements;
+using FlaUI.Core.Input;
+using TestBaseClasses;
 
-// namespace Demo.NonModalDialog.ScreenObjects
-// {
-//     public class MainScreen : AppScreen
-//     {
-//         [AutomationId("6U4UYFLlnUKOBx26wvyDOg")]
-//         private readonly Button? showCurrentTimeUsingDialogTypeLocatorButton = null;
+namespace Demo.NonModalDialog.ScreenObjects
+{
+    public class MainScreen : Screen
+    {
+        public MainScreen(Window window)
+            : base(window)
+        {
+        }
 
-//         [AutomationId("yp7kt1tOeEqE5y2KmylhGQ")]
-//         private readonly Button? showCurrentTimeBySpecifyingDialogTypeButton = null;
+        private Button ShowCurrentTimeUsingDialogTypeLocatorButton => ButtonByAutomationId("6U4UYFLlnUKOBx26wvyDOg");
+        private Button ShowCurrentTimeBySpecifyingDialogTypeButton => ButtonByAutomationId("yp7kt1tOeEqE5y2KmylhGQ");
+        
+        public CurrentTimeScreen ClickShowCurrentTimeUsingDialogTypeLocator()
+        {
+            ShowCurrentTimeUsingDialogTypeLocatorButton.Click();
+            Wait.UntilInputIsProcessed();
 
-//         public MainScreen(Window window, ScreenRepository screenRepository)
-//             : base(window, screenRepository)
-//         {
-//         }
+            var dialog = Window.ModalWindows.Single(w => w.Title == "Current Time");
+            return new CurrentTimeScreen(dialog);
+        }
 
-//         public virtual CurrentTimeScreen ClickShowCurrentTimeUsingDialogTypeLocator()
-//         {
-//             showCurrentTimeUsingDialogTypeLocatorButton!.Click();
-//             return ScreenRepository.GetModal<CurrentTimeScreen>("Current Time", Window, InitializeOption.NoCache);
-//         }
+        public CurrentTimeScreen ClickShowCurrentTimeBySpecifyingDialogType()
+        {
+            ShowCurrentTimeBySpecifyingDialogTypeButton.Click();
+            Wait.UntilInputIsProcessed();
 
-//         public virtual CurrentTimeScreen ClickShowCurrentTimeBySpecifyingDialogType()
-//         {
-//             showCurrentTimeBySpecifyingDialogTypeButton!.Click();
-//             return ScreenRepository.GetModal<CurrentTimeScreen>("Current Time", Window, InitializeOption.NoCache);
-//         }
-//     }
-// }
+            var dialog = Window.ModalWindows.Single(w => w.Title == "Current Time");
+            return new CurrentTimeScreen(dialog);
+        }
+    }
+}

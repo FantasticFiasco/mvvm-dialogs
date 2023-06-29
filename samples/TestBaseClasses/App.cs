@@ -14,7 +14,7 @@ namespace TestBaseClasses
         public Application(FlaUI.Core.Application app)
         {
             this.app = app;
-
+            
             automation = new UIA3Automation();
         }
 
