@@ -2,39 +2,38 @@
 using FlaUI.Core.Input;
 using TestBaseClasses;
 
-namespace Demo.ModalCustomDialog.ScreenObjects
+namespace Demo.ModalCustomDialog.ScreenObjects;
+
+public class MainScreen : Screen
 {
-    public class MainScreen : Screen
+    public MainScreen(Window window)
+        : base(window)
     {
-        public MainScreen(Window window)
-            : base(window)
-        {
-        }
+    }
 
-        private ListBox TextsListBox => ElementByAutomationId<ListBox>("Vfkrmkr640yWmoMTKUWIbQ");
-        private Button AddTextUsingDialogTypeLocatorButton => ElementByAutomationId<Button>("FHE_oyWqBEq_9TPaU1yPTQ");
-        private Button AddTextBySpecifyingDialogTypeButton => ElementByAutomationId<Button>("Dq9ZjnVdFESxu8StkQ8jMw");
+    private ListBox TextsListBox => ElementByAutomationId<ListBox>("Vfkrmkr640yWmoMTKUWIbQ");
+    private Button AddTextUsingDialogTypeLocatorButton => ElementByAutomationId<Button>("FHE_oyWqBEq_9TPaU1yPTQ");
+    private Button AddTextBySpecifyingDialogTypeButton => ElementByAutomationId<Button>("Dq9ZjnVdFESxu8StkQ8jMw");
 
 
-        public IEnumerable<string> Texts
-        {
-            get { return TextsListBox.Items.Select(item => item.Text); }
-        }
+    public IEnumerable<string> Texts
+    {
+        get { return TextsListBox.Items.Select(item => item.Text); }
+    }
 
-        public AddTextScreen ClickAddTextUsingDialogTypeLocator()
-        {
-            AddTextUsingDialogTypeLocatorButton.Click();
-            Wait.UntilInputIsProcessed();
+    public AddTextScreen ClickAddTextUsingDialogTypeLocator()
+    {
+        AddTextUsingDialogTypeLocatorButton.Click();
+        Wait.UntilInputIsProcessed();
 
-            return new AddTextScreen(GetModalWindow("Add Text"));
-        }
+        return new AddTextScreen(GetModalWindow("Add Text"));
+    }
 
-        public AddTextScreen ClickAddTextBySpecifyingDialogType()
-        {
-            AddTextBySpecifyingDialogTypeButton.Click();
-            Wait.UntilInputIsProcessed();
+    public AddTextScreen ClickAddTextBySpecifyingDialogType()
+    {
+        AddTextBySpecifyingDialogTypeButton.Click();
+        Wait.UntilInputIsProcessed();
 
-            return new AddTextScreen(GetModalWindow("Add Text"));
-        }
+        return new AddTextScreen(GetModalWindow("Add Text"));
     }
 }

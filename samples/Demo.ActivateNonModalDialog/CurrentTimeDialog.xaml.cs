@@ -1,10 +1,9 @@
-﻿namespace Demo.ActivateNonModalDialog
+﻿namespace Demo.ActivateNonModalDialog;
+
+public partial class CurrentTimeDialog
 {
-    public partial class CurrentTimeDialog
+    public CurrentTimeDialog()
     {
-        public CurrentTimeDialog()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
     }
 }

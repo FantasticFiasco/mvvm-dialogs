@@ -1,45 +1,44 @@
-namespace MvvmDialogs.FrameworkDialogs.FolderBrowser
+namespace MvvmDialogs.FrameworkDialogs.FolderBrowser;
+
+public class FolderBrowserDialogSettingsSyncTest
 {
-    public class FolderBrowserDialogSettingsSyncTest
+    [Fact]
+    public void ToDialog()
     {
-        [Fact]
-        public void ToDialog()
-        {
-            // Arrange
-            var dialog = new FolderBrowserDialog();
-            var settings = new FolderBrowserDialogSettings();
-            var sync = new FolderBrowserDialogSettingsSync(dialog, settings);
+        // Arrange
+        var dialog = new FolderBrowserDialog();
+        var settings = new FolderBrowserDialogSettings();
+        var sync = new FolderBrowserDialogSettingsSync(dialog, settings);
 
-            settings.Description = "Some description";
-            settings.RootFolder = Environment.SpecialFolder.ProgramFiles;
-            settings.SelectedPath = @"C:\temp";
-            settings.ShowNewFolderButton = !settings.ShowNewFolderButton;
+        settings.Description = "Some description";
+        settings.RootFolder = Environment.SpecialFolder.ProgramFiles;
+        settings.SelectedPath = @"C:\temp";
+        settings.ShowNewFolderButton = !settings.ShowNewFolderButton;
 
-            // Act
-            sync.ToDialog();
+        // Act
+        sync.ToDialog();
 
-            // Assert
-            Assert.Equal(settings.Description, dialog.Description);
-            Assert.Equal(settings.RootFolder, dialog.RootFolder);
-            Assert.Equal(settings.SelectedPath, dialog.SelectedPath);
-            Assert.Equal(settings.ShowNewFolderButton, dialog.ShowNewFolderButton);
-        }
+        // Assert
+        Assert.Equal(settings.Description, dialog.Description);
+        Assert.Equal(settings.RootFolder, dialog.RootFolder);
+        Assert.Equal(settings.SelectedPath, dialog.SelectedPath);
+        Assert.Equal(settings.ShowNewFolderButton, dialog.ShowNewFolderButton);
+    }
 
-        [Fact]
-        public void ToSettings()
-        {
-            // Arrange
-            var dialog = new FolderBrowserDialog();
-            var settings = new FolderBrowserDialogSettings();
-            var sync = new FolderBrowserDialogSettingsSync(dialog, settings);
+    [Fact]
+    public void ToSettings()
+    {
+        // Arrange
+        var dialog = new FolderBrowserDialog();
+        var settings = new FolderBrowserDialogSettings();
+        var sync = new FolderBrowserDialogSettingsSync(dialog, settings);
 
-            dialog.SelectedPath = @"C:\temp";
+        dialog.SelectedPath = @"C:\temp";
 
-            // Act
-            sync.ToSettings();
+        // Act
+        sync.ToSettings();
 
-            // Assert
-            Assert.Equal(dialog.SelectedPath, settings.SelectedPath);
-        }
+        // Assert
+        Assert.Equal(dialog.SelectedPath, settings.SelectedPath);
     }
 }

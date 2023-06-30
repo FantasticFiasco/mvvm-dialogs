@@ -1,52 +1,51 @@
 ﻿using System;
 using System.Windows;
 
-namespace MvvmDialogs.Views
+namespace MvvmDialogs.Views;
+
+internal class ViewWrapper : IView
 {
-    internal class ViewWrapper : IView
+    private readonly WeakReference viewReference;
+
+    internal ViewWrapper(FrameworkElement view)
     {
-        private readonly WeakReference viewReference;
+        if (view == null) throw new ArgumentNullException(nameof(view));
 
-        internal ViewWrapper(FrameworkElement view)
+        viewReference = new WeakReference(view);
+    }
+
+    public event RoutedEventHandler Loaded
+    {
+        add => Source.Loaded += value;
+        remove => Source.Loaded -= value;
+    }
+
+    public int Id { get; } = IdGenerator.Generate();
+
+    public FrameworkElement Source
+    {
+        get
         {
-            if (view == null) throw new ArgumentNullException(nameof(view));
+            if (!IsAlive) throw new InvalidOperationException("View has been garbage collected.");
+            if (viewReference.Target == null) throw new InvalidOperationException("View has been set to null.");
 
-            viewReference = new WeakReference(view);
+            return (FrameworkElement)viewReference.Target;
         }
+    }
 
-        public event RoutedEventHandler Loaded
-        {
-            add => Source.Loaded += value;
-            remove => Source.Loaded -= value;
-        }
+    public object DataContext => Source.DataContext;
 
-        public int Id { get; } = IdGenerator.Generate();
+    public bool IsAlive => viewReference.IsAlive;
 
-        public FrameworkElement Source
-        {
-            get
-            {
-                if (!IsAlive) throw new InvalidOperationException("View has been garbage collected.");
-                if (viewReference.Target == null) throw new InvalidOperationException("View has been set to null.");
+    public Window GetOwner() => Source.GetOwner();
 
-                return (FrameworkElement)viewReference.Target;
-            }
-        }
+    public override int GetHashCode() => Source.GetHashCode();
 
-        public object DataContext => Source.DataContext;
+    public override bool Equals(object? obj)
+    {
+        if (!(obj is ViewWrapper other))
+            return false;
 
-        public bool IsAlive => viewReference.IsAlive;
-
-        public Window GetOwner() => Source.GetOwner();
-
-        public override int GetHashCode() => Source.GetHashCode();
-
-        public override bool Equals(object? obj)
-        {
-            if (!(obj is ViewWrapper other))
-                return false;
-
-            return Source.Equals(other.Source);
-        }
+        return Source.Equals(other.Source);
     }
 }

@@ -2,44 +2,43 @@
 using TestBaseClasses;
 using Xunit;
 
-namespace Demo.SaveFileDialog
+namespace Demo.SaveFileDialog;
+
+public class UITests : IDisposable
 {
-    public class UITests : IDisposable
+    private readonly Application app;
+    private readonly MainScreen mainScreen;
+
+    public UITests()
     {
-        private readonly Application app;
-        private readonly MainScreen mainScreen;
+        app = Application.Launch("Demo.SaveFileDialog.exe");
+        mainScreen = new MainScreen(app.GetMainWindow("Demo - Save File Dialog"));
+    }
 
-        public UITests()
-        {
-            app = Application.Launch("Demo.SaveFileDialog.exe");
-            mainScreen = new MainScreen(app.GetMainWindow("Demo - Save File Dialog"));
-        }
+    [Fact]
+    [Trait("Category", "Manual")]
+    public void SuccessfullySavingFile()
+    {
+        var saveScreen = mainScreen.ClickSave();
+        saveScreen.FileName = "SaveMe.txt";
+        saveScreen.ClickSave();
 
-        [Fact]
-        [Trait("Category", "Manual")]
-        public void SuccessfullySavingFile()
-        {
-            var saveScreen = mainScreen.ClickSave();
-            saveScreen.FileName = "SaveMe.txt";
-            saveScreen.ClickSave();
+        Assert.EndsWith("SaveMe.txt", mainScreen.FileName);
+    }
 
-            Assert.EndsWith("SaveMe.txt", mainScreen.FileName);
-        }
+    [Fact]
+    [Trait("Category", "Manual")]
+    public void CancelingWhenSavingFile()
+    {
+        var saveScreen = mainScreen.ClickSave();
+        saveScreen.FileName = "SaveMe.txt";
+        saveScreen.ClickCancel();
 
-        [Fact]
-        [Trait("Category", "Manual")]
-        public void CancelingWhenSavingFile()
-        {
-            var saveScreen = mainScreen.ClickSave();
-            saveScreen.FileName = "SaveMe.txt";
-            saveScreen.ClickCancel();
+        Assert.Equal(string.Empty, mainScreen.FileName);
+    }
 
-            Assert.Equal(string.Empty, mainScreen.FileName);
-        }
-
-        public void Dispose()
-        {
-            app.Dispose();
-        }
+    public void Dispose()
+    {
+        app.Dispose();
     }
 }

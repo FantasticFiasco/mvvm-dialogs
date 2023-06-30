@@ -1,10 +1,9 @@
-﻿namespace Demo.CustomOpenFileDialog
+﻿namespace Demo.CustomOpenFileDialog;
+
+public partial class MainWindow
 {
-    public partial class MainWindow
+    public MainWindow()
     {
-        public MainWindow()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
     }
 }

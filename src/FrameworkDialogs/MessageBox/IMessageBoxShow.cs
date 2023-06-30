@@ -1,16 +1,15 @@
 ﻿using System.Windows;
 
-namespace MvvmDialogs.FrameworkDialogs.MessageBox
+namespace MvvmDialogs.FrameworkDialogs.MessageBox;
+
+internal interface IMessageBoxShow
 {
-    internal interface IMessageBoxShow
-    {
-        MessageBoxResult Show(
-            Window owner,
-            string? messageBoxText,
-            string caption,
-            MessageBoxButton button,
-            MessageBoxImage icon,
-            MessageBoxResult defaultResult,
-            MessageBoxOptions options);
-    }
+    MessageBoxResult Show(
+        Window owner,
+        string? messageBoxText,
+        string caption,
+        MessageBoxButton button,
+        MessageBoxImage icon,
+        MessageBoxResult defaultResult,
+        MessageBoxOptions options);
 }

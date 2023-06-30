@@ -2,43 +2,42 @@
 using System.Windows.Controls;
 using MvvmDialogs;
 
-namespace Demo.ModalCustomDialog
+namespace Demo.ModalCustomDialog;
+
+public class AddTextCustomDialog : IWindow
 {
-    public class AddTextCustomDialog : IWindow
+    private readonly AddTextDialog dialog;
+
+    public AddTextCustomDialog()
     {
-        private readonly AddTextDialog dialog;
+        dialog = new AddTextDialog();
+    }
 
-        public AddTextCustomDialog()
-        {
-            dialog = new AddTextDialog();
-        }
+    object IWindow.DataContext
+    {
+        get => dialog.DataContext;
+        set => dialog.DataContext = value;
+    }
 
-        object IWindow.DataContext
-        {
-            get => dialog.DataContext;
-            set => dialog.DataContext = value;
-        }
+    bool? IWindow.DialogResult
+    {
+        get => dialog.DialogResult;
+        set => dialog.DialogResult = value;
+    }
 
-        bool? IWindow.DialogResult
-        {
-            get => dialog.DialogResult;
-            set => dialog.DialogResult = value;
-        }
+    ContentControl IWindow.Owner
+    {
+        get => dialog.Owner;
+        set => dialog.Owner = (Window)value;
+    }
 
-        ContentControl IWindow.Owner
-        {
-            get => dialog.Owner;
-            set => dialog.Owner = (Window)value;
-        }
+    bool? IWindow.ShowDialog()
+    {
+        return dialog.ShowDialog();
+    }
 
-        bool? IWindow.ShowDialog()
-        {
-            return dialog.ShowDialog();
-        }
-
-        void IWindow.Show()
-        {
-            dialog.Show();
-        }
+    void IWindow.Show()
+    {
+        dialog.Show();
     }
 }

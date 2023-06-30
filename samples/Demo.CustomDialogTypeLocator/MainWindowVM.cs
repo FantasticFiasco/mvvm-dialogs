@@ -5,30 +5,29 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using MvvmDialogs;
 
-namespace Demo.CustomDialogTypeLocator
+namespace Demo.CustomDialogTypeLocator;
+
+public class MainWindowVM : ObservableObject
 {
-    public class MainWindowVM : ObservableObject
+    private readonly IDialogService dialogService;
+
+    public MainWindowVM()
+        : this(new DialogService(dialogTypeLocator: new MyCustomDialogTypeLocator()))
     {
-        private readonly IDialogService dialogService;
+    }
 
-        public MainWindowVM()
-            : this(new DialogService(dialogTypeLocator: new MyCustomDialogTypeLocator()))
-        {
-        }
+    public MainWindowVM(IDialogService dialogService)
+    {
+        this.dialogService = dialogService ?? throw new ArgumentNullException(nameof(dialogService));
 
-        public MainWindowVM(IDialogService dialogService)
-        {
-            this.dialogService = dialogService ?? throw new ArgumentNullException(nameof(dialogService));
+        ShowDialogCommand = new RelayCommand(ShowDialog);
+    }
 
-            ShowDialogCommand = new RelayCommand(ShowDialog);
-        }
+    public ICommand ShowDialogCommand { get; }
 
-        public ICommand ShowDialogCommand { get; }
-
-        private void ShowDialog()
-        {
-            var dialogViewModel = new MyDialogVM();
-            dialogService.ShowDialog(this, dialogViewModel);
-        }
+    private void ShowDialog()
+    {
+        var dialogViewModel = new MyDialogVM();
+        dialogService.ShowDialog(this, dialogViewModel);
     }
 }

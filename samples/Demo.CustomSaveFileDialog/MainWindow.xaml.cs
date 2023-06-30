@@ -1,10 +1,9 @@
-﻿namespace Demo.CustomSaveFileDialog
+﻿namespace Demo.CustomSaveFileDialog;
+
+public partial class MainWindow
 {
-    public partial class MainWindow
+    public MainWindow()
     {
-        public MainWindow()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
     }
 }

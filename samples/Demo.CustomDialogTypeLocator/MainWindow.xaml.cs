@@ -1,10 +1,9 @@
-﻿namespace Demo.CustomDialogTypeLocator
+﻿namespace Demo.CustomDialogTypeLocator;
+
+public partial class MainWindow
 {
-    public partial class MainWindow
+    public MainWindow()
     {
-        public MainWindow()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
     }
 }

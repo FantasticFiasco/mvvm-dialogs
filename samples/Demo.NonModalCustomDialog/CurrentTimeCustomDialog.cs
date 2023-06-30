@@ -2,43 +2,42 @@
 using System.Windows.Controls;
 using MvvmDialogs;
 
-namespace Demo.NonModalCustomDialog
+namespace Demo.NonModalCustomDialog;
+
+public class CurrentTimeCustomDialog : IWindow
 {
-    public class CurrentTimeCustomDialog : IWindow
+    private readonly CurrentTimeDialog dialog;
+
+    public CurrentTimeCustomDialog()
     {
-        private readonly CurrentTimeDialog dialog;
+        dialog = new CurrentTimeDialog();
+    }
 
-        public CurrentTimeCustomDialog()
-        {
-            dialog = new CurrentTimeDialog();
-        }
+    object IWindow.DataContext
+    {
+        get => dialog.DataContext;
+        set => dialog.DataContext = value;
+    }
 
-        object IWindow.DataContext
-        {
-            get => dialog.DataContext;
-            set => dialog.DataContext = value;
-        }
+    bool? IWindow.DialogResult
+    {
+        get => dialog.DialogResult;
+        set => dialog.DialogResult = value;
+    }
 
-        bool? IWindow.DialogResult
-        {
-            get => dialog.DialogResult;
-            set => dialog.DialogResult = value;
-        }
+    ContentControl IWindow.Owner
+    {
+        get => dialog.Owner;
+        set => dialog.Owner = (Window)value;
+    }
 
-        ContentControl IWindow.Owner
-        {
-            get => dialog.Owner;
-            set => dialog.Owner = (Window)value;
-        }
+    bool? IWindow.ShowDialog()
+    {
+        return dialog.ShowDialog();
+    }
 
-        bool? IWindow.ShowDialog()
-        {
-            return dialog.ShowDialog();
-        }
-
-        void IWindow.Show()
-        {
-            dialog.Show();
-        }
+    void IWindow.Show()
+    {
+        dialog.Show();
     }
 }

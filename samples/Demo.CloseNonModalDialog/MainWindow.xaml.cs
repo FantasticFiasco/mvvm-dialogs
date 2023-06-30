@@ -1,10 +1,9 @@
-﻿namespace Demo.CloseNonModalDialog
+﻿namespace Demo.CloseNonModalDialog;
+
+public partial class MainWindow
 {
-    public partial class MainWindow
+    public MainWindow()
     {
-        public MainWindow()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
     }
 }

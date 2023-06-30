@@ -1,13 +1,12 @@
 using CommunityToolkit.Mvvm.DependencyInjection;
 
-namespace Demo.NonModalDialog
+namespace Demo.NonModalDialog;
+
+/// <summary>
+/// This class contains static references to all the view models in the
+/// application and provides an entry point for the bindings.
+/// </summary>
+public class ViewModelLocator
 {
-    /// <summary>
-    /// This class contains static references to all the view models in the
-    /// application and provides an entry point for the bindings.
-    /// </summary>
-    public class ViewModelLocator
-    {
-        public MainWindowViewModel MainWindow => Ioc.Default.GetRequiredService<MainWindowViewModel>();
-    }
+    public MainWindowViewModel MainWindow => Ioc.Default.GetRequiredService<MainWindowViewModel>();
 }

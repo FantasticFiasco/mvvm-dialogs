@@ -6,43 +6,42 @@ using MvvmDialogs;
 using MvvmDialogs.FrameworkDialogs.OpenFile;
 using IOPath = System.IO.Path;
 
-namespace Demo.OpenFileDialog
+namespace Demo.OpenFileDialog;
+
+public class MainWindowViewModel : ObservableObject
 {
-    public class MainWindowViewModel : ObservableObject
+    private readonly IDialogService dialogService;
+
+    private string? path;
+
+    public MainWindowViewModel(IDialogService dialogService)
     {
-        private readonly IDialogService dialogService;
+        this.dialogService = dialogService;
 
-        private string? path;
+        OpenFileCommand = new RelayCommand(OpenFile);
+    }
 
-        public MainWindowViewModel(IDialogService dialogService)
+    public string? Path
+    {
+        get => path;
+        private set => SetProperty(ref path, value);
+    }
+
+    public ICommand OpenFileCommand { get; }
+
+    private void OpenFile()
+    {
+        var settings = new OpenFileDialogSettings
         {
-            this.dialogService = dialogService;
+            Title = "This Is The Title",
+            InitialDirectory = IOPath.GetDirectoryName(Assembly.GetExecutingAssembly().Location)!,
+            Filter = "Text Documents (*.txt)|*.txt|All Files (*.*)|*.*"
+        };
 
-            OpenFileCommand = new RelayCommand(OpenFile);
-        }
-
-        public string? Path
+        bool? success = dialogService.ShowOpenFileDialog(this, settings);
+        if (success == true)
         {
-            get => path;
-            private set => SetProperty(ref path, value);
-        }
-
-        public ICommand OpenFileCommand { get; }
-
-        private void OpenFile()
-        {
-            var settings = new OpenFileDialogSettings
-            {
-                Title = "This Is The Title",
-                InitialDirectory = IOPath.GetDirectoryName(Assembly.GetExecutingAssembly().Location)!,
-                Filter = "Text Documents (*.txt)|*.txt|All Files (*.*)|*.*"
-            };
-
-            bool? success = dialogService.ShowOpenFileDialog(this, settings);
-            if (success == true)
-            {
-                Path = settings.FileName;
-            }
+            Path = settings.FileName;
         }
     }
 }

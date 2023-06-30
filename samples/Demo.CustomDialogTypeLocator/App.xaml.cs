@@ -1,6 +1,5 @@
-﻿namespace Demo.CustomDialogTypeLocator
+﻿namespace Demo.CustomDialogTypeLocator;
+
+public partial class App
 {
-    public partial class App
-    {
-    }
 }
