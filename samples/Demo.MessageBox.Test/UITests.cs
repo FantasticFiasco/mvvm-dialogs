@@ -7,17 +7,17 @@ namespace Demo.MessageBox
     public class UITests : IDisposable
     {
         private readonly Application app;
+        private readonly MainScreen mainScreen;
 
         public UITests()
         {
             app = Application.Launch("Demo.MessageBox.exe");
+            mainScreen = new MainScreen(app.GetMainWindow("Demo - Message Box"));
         }
 
         [Fact]
         public void ConfirmationWithText()
         {
-            var mainScreen = new MainScreen(app.GetMainWindow("Demo - Message Box"));
-
             var messageBoxScreen = mainScreen.ClickMessageBoxWithMessage();
             Assert.Equal(string.Empty, messageBoxScreen.Caption);
             Assert.Equal("This is the text.", messageBoxScreen.Message);
@@ -33,8 +33,6 @@ namespace Demo.MessageBox
         [Fact]
         public void ConfirmationWithTextAndCaption()
         {
-            var mainScreen = new MainScreen(app.GetMainWindow("Demo - Message Box"));
-
             var messageBoxScreen = mainScreen.ClickMessageBoxWithCaption();
             Assert.Equal("This Is The Caption", messageBoxScreen.Caption);
             Assert.Equal("This is the text.", messageBoxScreen.Message);
@@ -50,8 +48,6 @@ namespace Demo.MessageBox
         [Fact]
         public void ConfirmationWithTextAndCaptionWithOptionToCancel()
         {
-            var mainScreen = new MainScreen(app.GetMainWindow("Demo - Message Box"));
-
             var messageBoxScreen = mainScreen.ClickMessageBoxWithButtons();
             Assert.Equal("This Is The Caption", messageBoxScreen.Caption);
             Assert.Equal("This is the text.", messageBoxScreen.Message);
@@ -67,8 +63,6 @@ namespace Demo.MessageBox
         [Fact]
         public void CancellationWithTextAndCaptionWithOptionToCancel()
         {
-            var mainScreen = new MainScreen(app.GetMainWindow("Demo - Message Box"));
-
             var messageBoxScreen = mainScreen.ClickMessageBoxWithButtons();
             Assert.Equal("This Is The Caption", messageBoxScreen.Caption);
             Assert.Equal("This is the text.", messageBoxScreen.Message);
@@ -84,8 +78,6 @@ namespace Demo.MessageBox
         [Fact]
         public void ConfirmationWithTextCaptionAndIconWithOptionToCancel()
         {
-            var mainScreen = new MainScreen(app.GetMainWindow("Demo - Message Box"));
-
             var messageBoxScreen = mainScreen.ClickMessageBoxWithIcon();
             Assert.Equal("This Is The Caption", messageBoxScreen.Caption);
             Assert.Equal("This is the text.", messageBoxScreen.Message);
@@ -101,8 +93,6 @@ namespace Demo.MessageBox
         [Fact]
         public void CancellationWithTextCaptionAndIconWithOptionToCancel()
         {
-            var mainScreen = new MainScreen(app.GetMainWindow("Demo - Message Box"));
-
             var messageBoxScreen = mainScreen.ClickMessageBoxWithIcon();
             Assert.Equal("This Is The Caption", messageBoxScreen.Caption);
             Assert.Equal("This is the text.", messageBoxScreen.Message);
@@ -118,8 +108,6 @@ namespace Demo.MessageBox
         [Fact]
         public void ConfirmationWithTextCaptionIconAndDefaultChoiceWithOptionToCancel()
         {
-            var mainScreen = new MainScreen(app.GetMainWindow("Demo - Message Box"));
-
             var messageBoxScreen = mainScreen.ClickMessageBoxWithDefaultResult();
             Assert.Equal("This Is The Caption", messageBoxScreen.Caption);
             Assert.Equal("This is the text.", messageBoxScreen.Message);
@@ -135,8 +123,6 @@ namespace Demo.MessageBox
         [Fact]
         public void CancellationWithTextCaptionIconAndDefaultChoiceWithOptionToCancel()
         {
-            var mainScreen = new MainScreen(app.GetMainWindow("Demo - Message Box"));
-
             var messageBoxScreen = mainScreen.ClickMessageBoxWithDefaultResult();
             Assert.Equal("This Is The Caption", messageBoxScreen.Caption);
             Assert.Equal("This is the text.", messageBoxScreen.Message);

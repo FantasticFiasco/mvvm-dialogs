@@ -7,17 +7,17 @@ namespace Demo.ModalDialog
     public class UITests : IDisposable
     {
         private readonly Application app;
+        private readonly MainScreen mainScreen;
 
         public UITests()
         {
             app = Application.Launch("Demo.ModalDialog.exe");
+            mainScreen = new MainScreen(app.GetMainWindow("Demo - Modal Dialog"));
         }
 
         [Fact]
         public void EnterTextAndAcceptUsingDialogTypeLocator()
         {
-            var mainScreen = new MainScreen(app.GetMainWindow("Demo - Modal Dialog"));
-
             var addTextScreen = mainScreen.ClickAddTextUsingDialogTypeLocator();
             addTextScreen.Text = "Added text";
             addTextScreen.ClickOK();
@@ -28,8 +28,6 @@ namespace Demo.ModalDialog
         [Fact]
         public void EnterTextAndAbortUsingDialogTypeLocator()
         {
-            var mainScreen = new MainScreen(app.GetMainWindow("Demo - Modal Dialog"));
-
             var addTextScreen = mainScreen.ClickAddTextUsingDialogTypeLocator();
             addTextScreen.Text = "Added text";
             addTextScreen.ClickCancel();
@@ -40,8 +38,6 @@ namespace Demo.ModalDialog
         [Fact]
         public void EnterTextAndAcceptWhenSpecifyingDialogType()
         {
-            var mainScreen = new MainScreen(app.GetMainWindow("Demo - Modal Dialog"));
-
             var addTextScreen = mainScreen.ClickAddTextBySpecifyingDialogType();
             addTextScreen.Text = "Added text";
             addTextScreen.ClickOK();
@@ -52,8 +48,6 @@ namespace Demo.ModalDialog
         [Fact]
         public void EnterTextAndAbortWhenSpecifyingDialogType()
         {
-            var mainScreen = new MainScreen(app.GetMainWindow("Demo - Modal Dialog"));
-
             var addTextScreen = mainScreen.ClickAddTextBySpecifyingDialogType();
             addTextScreen.Text = "Added text";
             addTextScreen.ClickCancel();

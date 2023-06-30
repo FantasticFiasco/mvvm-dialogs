@@ -7,17 +7,17 @@ namespace Demo.OpenFileDialog
     public class UITests : IDisposable
     {
         private readonly Application app;
+        private readonly MainScreen mainScreen;
 
         public UITests()
         {
             app = Application.Launch("Demo.OpenFileDialog.exe");
+            mainScreen = new MainScreen(app.GetMainWindow("Demo - Open File Dialog"));
         }
 
         [Fact]
         public void SuccessfullyOpeningFile()
         {
-            var mainScreen = new MainScreen(app.GetMainWindow("Demo - Open File Dialog"));
-
             var openScreen = mainScreen.ClickOpen();
             openScreen.FileName = "OpenMe.txt";
             openScreen.ClickOpen();
@@ -28,8 +28,6 @@ namespace Demo.OpenFileDialog
         [Fact]
         public void CancelingWhenOpeningFile()
         {
-            var mainScreen = new MainScreen(app.GetMainWindow("Demo - Open File Dialog"));
-
             var saveScreen = mainScreen.ClickOpen();
             saveScreen.FileName = "OpenMe.txt";
             saveScreen.ClickCancel();

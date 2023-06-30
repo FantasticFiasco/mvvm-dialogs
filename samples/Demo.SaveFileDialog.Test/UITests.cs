@@ -7,17 +7,17 @@ namespace Demo.SaveFileDialog
     public class UITests : IDisposable
     {
         private readonly Application app;
+        private readonly MainScreen mainScreen;
 
         public UITests()
         {
             app = Application.Launch("Demo.SaveFileDialog.exe");
+            mainScreen = new MainScreen(app.GetMainWindow("Demo - Save File Dialog"));
         }
 
         [Fact]
         public void SuccessfullySavingFile()
         {
-            var mainScreen = new MainScreen(app.GetMainWindow("Demo - Save File Dialog"));
-
             var saveScreen = mainScreen.ClickSave();
             saveScreen.FileName = "SaveMe.txt";
             saveScreen.ClickSave();
@@ -28,8 +28,6 @@ namespace Demo.SaveFileDialog
         [Fact]
         public void CancelingWhenSavingFile()
         {
-            var mainScreen = new MainScreen(app.GetMainWindow("Demo - Save File Dialog"));
-
             var saveScreen = mainScreen.ClickSave();
             saveScreen.FileName = "SaveMe.txt";
             saveScreen.ClickCancel();
