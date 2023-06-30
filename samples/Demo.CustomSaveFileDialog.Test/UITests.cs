@@ -16,6 +16,7 @@ namespace Demo.CustomSaveFileDialog
         }
 
         [Fact]
+        [Trait("Category", "Manual")]
         public void SuccessfullySavingFile()
         {
             var saveFileScreen = mainScreen.ClickSave();
@@ -27,6 +28,7 @@ namespace Demo.CustomSaveFileDialog
         }
 
         [Fact]
+        [Trait("Category", "Manual")]
         public void CancelingWhenSavingFile()
         {
             var saveFileScreen = mainScreen.ClickSave();

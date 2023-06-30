@@ -16,6 +16,7 @@ namespace Demo.NonModalDialog
         }
 
         [Fact]
+        [Trait("Category", "Manual")]
         public void ShowCurrentTimeUsingDialogTypeLocator()
         {
             var currentTimeScreen = mainScreen.ClickShowCurrentTimeUsingDialogTypeLocator();
@@ -24,6 +25,7 @@ namespace Demo.NonModalDialog
         }
 
         [Fact]
+        [Trait("Category", "Manual")]
         public void ShowCurrentTimeBySpecifyingDialogType()
         {
             var currentTimeScreen = mainScreen.ClickShowCurrentTimeBySpecifyingDialogType();

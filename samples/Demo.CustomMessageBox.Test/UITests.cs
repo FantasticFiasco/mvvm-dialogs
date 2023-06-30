@@ -16,6 +16,7 @@ namespace Demo.CustomMessageBox
         }
 
         [Fact]
+        [Trait("Category", "Manual")]
         public void ConfirmationWithText()
         {
             var messageBoxScreen = mainScreen.ClickMessageBoxWithMessage();
@@ -29,6 +30,7 @@ namespace Demo.CustomMessageBox
         }
 
         [Fact]
+        [Trait("Category", "Manual")]
         public void ConfirmationWithTextAndCaption()
         {
             var messageBoxScreen = mainScreen.ClickMessageBoxWithCaption();
@@ -42,6 +44,7 @@ namespace Demo.CustomMessageBox
         }
 
         [Fact]
+        [Trait("Category", "Manual")]
         public void ConfirmationWithTextAndCaptionWithOptionToCancel()
         {
             var messageBoxScreen = mainScreen.ClickMessageBoxWithButtons();
@@ -55,6 +58,7 @@ namespace Demo.CustomMessageBox
         }
 
         [Fact]
+        [Trait("Category", "Manual")]
         public void CancellationWithTextAndCaptionWithOptionToCancel()
         {
             var messageBoxScreen = mainScreen.ClickMessageBoxWithButtons();
@@ -68,6 +72,7 @@ namespace Demo.CustomMessageBox
         }
 
         [Fact]
+        [Trait("Category", "Manual")]
         public void ConfirmationWithTextCaptionAndIconWithOptionToCancel()
         {
             var messageBoxScreen = mainScreen.ClickMessageBoxWithIcon();
@@ -81,6 +86,7 @@ namespace Demo.CustomMessageBox
         }
 
         [Fact]
+        [Trait("Category", "Manual")]
         public void CancellationWithTextCaptionAndIconWithOptionToCancel()
         {
             var messageBoxScreen = mainScreen.ClickMessageBoxWithIcon();
@@ -94,6 +100,7 @@ namespace Demo.CustomMessageBox
         }
 
         [Fact]
+        [Trait("Category", "Manual")]
         public void ConfirmationWithTextCaptionIconAndDefaultChoiceWithOptionToCancel()
         {
             var messageBoxScreen = mainScreen.ClickMessageBoxWithDefaultResult();
@@ -107,6 +114,7 @@ namespace Demo.CustomMessageBox
         }
 
         [Fact]
+        [Trait("Category", "Manual")]
         public void CancellationWithTextCaptionIconAndDefaultChoiceWithOptionToCancel()
         {
             var messageBoxScreen = mainScreen.ClickMessageBoxWithDefaultResult();

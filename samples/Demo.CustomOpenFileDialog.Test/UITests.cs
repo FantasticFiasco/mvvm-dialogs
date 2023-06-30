@@ -16,6 +16,7 @@ namespace Demo.CustomOpenFileDialog
         }
 
         [Fact]
+        [Trait("Category", "Manual")]
         public void SuccessfullyOpeningFile()
         {
             var openScreen = mainScreen.ClickOpen();
@@ -26,6 +27,7 @@ namespace Demo.CustomOpenFileDialog
         }
 
         [Fact]
+        [Trait("Category", "Manual")]
         public void CancelingWhenOpeningFile()
         {
             var saveScreen = mainScreen.ClickOpen();

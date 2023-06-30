@@ -16,6 +16,7 @@ namespace Demo.ModalDialog
         }
 
         [Fact]
+        [Trait("Category", "Manual")]
         public void EnterTextAndAcceptUsingDialogTypeLocator()
         {
             var addTextScreen = mainScreen.ClickAddTextUsingDialogTypeLocator();
@@ -26,6 +27,7 @@ namespace Demo.ModalDialog
         }
 
         [Fact]
+        [Trait("Category", "Manual")]
         public void EnterTextAndAbortUsingDialogTypeLocator()
         {
             var addTextScreen = mainScreen.ClickAddTextUsingDialogTypeLocator();
@@ -36,6 +38,7 @@ namespace Demo.ModalDialog
         }
 
         [Fact]
+        [Trait("Category", "Manual")]
         public void EnterTextAndAcceptWhenSpecifyingDialogType()
         {
             var addTextScreen = mainScreen.ClickAddTextBySpecifyingDialogType();
@@ -46,6 +49,7 @@ namespace Demo.ModalDialog
         }
 
         [Fact]
+        [Trait("Category", "Manual")]
         public void EnterTextAndAbortWhenSpecifyingDialogType()
         {
             var addTextScreen = mainScreen.ClickAddTextBySpecifyingDialogType();

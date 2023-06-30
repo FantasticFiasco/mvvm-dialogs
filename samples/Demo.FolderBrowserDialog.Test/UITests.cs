@@ -16,6 +16,7 @@ namespace Demo.FolderBrowserDialog
         }
 
         [Fact]
+        [Trait("Category", "Manual")]
         public void SuccessfullyBrowseFolder()
         {
             var browseFolderScreen = mainScreen.ClickBrowse();
@@ -25,6 +26,7 @@ namespace Demo.FolderBrowserDialog
         }
 
         [Fact]
+        [Trait("Category", "Manual")]
         public void CancelingWhenBrowsingFolder()
         {
             var browseFolderScreen = mainScreen.ClickBrowse();
