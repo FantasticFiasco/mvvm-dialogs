@@ -11,7 +11,7 @@ namespace Demo.CustomOpenFileDialog
 
         public UITests()
         {
-            app = Application.Launch("\"Demo.CustomOpenFileDialog.exe");
+            app = Application.Launch("Demo.CustomOpenFileDialog.exe");
             mainScreen = new MainScreen(app.GetMainWindow("Demo - Custom Open File Dialog"));
         }
 
