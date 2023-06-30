@@ -11,9 +11,7 @@ namespace Demo.ModalCustomDialog.ScreenObjects
         }
 
         private TextBox TextTextBox => ElementByAutomationId<TextBox>("Csl8dP93gUGQLj7rVZxDAg");
-        private Button OKButton => ElementByAutomationId<Button>("eyRW_87u20qR7QTCypm2RQ");
-        private Button CancelButton => ElementByAutomationId<Button>("I91auHr_EECzhSZyIfvvzQ");
-
+        
         public string Text
         {
             set => TextTextBox.Text = value;

@@ -11,9 +11,7 @@ namespace Demo.MessageBox.ScreenObjects
         }
 
         private Label MessageLabel => ElementByAutomationId<Label>("65535");
-        private Button OKButton => ElementByText<Button>("OK");
-        private Button CancelButton => ElementByText<Button>("Cancel");
-
+        
 
         public string Caption => Window.Title;
 

@@ -11,6 +11,16 @@ namespace TestBaseClasses
             Window = window;
         }
 
+        protected Button OKButton
+        {
+            get => ElementByText<Button>("OK");
+        }
+
+        protected Button CancelButton
+        {
+            get => ElementByText<Button>("Cancel");
+        }
+
         protected T ElementByAutomationId<T>(string automationId) where T : AutomationElement
         {
             return Window.FindFirstDescendant(cf => cf.ByAutomationId(automationId)).As<T>();
