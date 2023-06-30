@@ -32,7 +32,7 @@ namespace Demo.SaveFileDialog
             saveScreen.FileName = "SaveMe.txt";
             saveScreen.ClickCancel();
 
-            Assert.Equal("", mainScreen.FileName);
+            Assert.Equal(string.Empty, mainScreen.FileName);
         }
 
         public void Dispose()

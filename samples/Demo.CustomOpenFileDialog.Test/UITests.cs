@@ -1,8 +1,8 @@
-﻿using Demo.OpenFileDialog.ScreenObjects;
+﻿using Demo.CustomOpenFileDialog.ScreenObjects;
 using TestBaseClasses;
 using Xunit;
 
-namespace Demo.OpenFileDialog
+namespace Demo.CustomOpenFileDialog
 {
     public class UITests : IDisposable
     {
@@ -11,8 +11,8 @@ namespace Demo.OpenFileDialog
 
         public UITests()
         {
-            app = Application.Launch("Demo.OpenFileDialog.exe");
-            mainScreen = new MainScreen(app.GetMainWindow("Demo - Open File Dialog"));
+            app = Application.Launch("\"Demo.CustomOpenFileDialog.exe");
+            mainScreen = new MainScreen(app.GetMainWindow("Demo - Custom Open File Dialog"));
         }
 
         [Fact]
