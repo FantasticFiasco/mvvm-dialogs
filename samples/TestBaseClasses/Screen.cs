@@ -11,12 +11,17 @@ namespace TestBaseClasses
             Window = window;
         }
 
-        protected Button OKButton
+        protected Button DefaultOKButton
         {
             get => ElementByText<Button>("OK");
         }
 
-        protected Button CancelButton
+        protected Button DefaultSaveButton
+        {
+            get => ElementByText<Button>("Save");
+        }
+
+        protected Button DefaultCancelButton
         {
             get => ElementByText<Button>("Cancel");
         }

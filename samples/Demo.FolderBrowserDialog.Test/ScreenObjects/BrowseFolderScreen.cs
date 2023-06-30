@@ -12,12 +12,12 @@ namespace Demo.FolderBrowserDialog.ScreenObjects
 
         public void ClickOK()
         {
-            OKButton.Click();
+            DefaultOKButton.Click();
         }
 
         public void ClickCancel()
         {
-            CancelButton.Click();
+            DefaultCancelButton.Click();
         }
     }
 }

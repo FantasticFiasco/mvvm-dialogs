@@ -1,30 +1,30 @@
-﻿// using TestStack.White.ScreenObjects;
-// using TestStack.White.UIItems;
-// using TestStack.White.UIItems.Finders;
-// using TestStack.White.UIItems.WindowItems;
+﻿using FlaUI.Core.AutomationElements;
+using TestBaseClasses;
 
-// namespace Demo.CustomSaveFileDialog.ScreenObjects
-// {
-//     public class SaveFileScreen : AppScreen
-//     {
-//         public SaveFileScreen(Window window, ScreenRepository screenRepository)
-//             : base(window, screenRepository)
-//         {
-//         }
+namespace Demo.CustomSaveFileDialog.ScreenObjects
+{
+    public class SaveFileScreen : Screen
+    {
+        public SaveFileScreen(Window window)
+            : base(window)
+        {
+        }
 
-//         public string FileName
-//         {
-//             set => Window.Get<TextBox>(SearchCriteria.ByAutomationId("1001")).Text = value;
-//         }
+        private TextBox FileNameTextBox => ElementByAutomationId<TextBox>("1001");
+        
+        public string FileName
+        {
+            set => FileNameTextBox.Text = value;
+        }
 
-//         public void ClickSave()
-//         {
-//             Window.Get<Button>(SearchCriteria.ByText("Save")).Click();
-//         }
+        public void ClickSave()
+        {
+            DefaultSaveButton.Click();
+        }
 
-//         public void ClickCancel()
-//         {
-//             Window.Get<Button>(SearchCriteria.ByText("Cancel")).Click();
-//         }
-//     }
-// }
+        public void ClickCancel()
+        {
+            DefaultCancelButton.Click();
+        }
+    }
+}

@@ -11,7 +11,6 @@ namespace Demo.SaveFileDialog.ScreenObjects
         }
 
         private TextBox FileNameTextBox => ElementByAutomationId<TextBox>("1001");
-        private Button SaveButton => ElementByText<Button>("Save");
         
         public string FileName
         {
@@ -20,12 +19,12 @@ namespace Demo.SaveFileDialog.ScreenObjects
 
         public void ClickSave()
         {
-            SaveButton.Click();
+            DefaultSaveButton.Click();
         }
 
         public void ClickCancel()
         {
-            CancelButton.Click();
+            DefaultCancelButton.Click();
         }
     }
 }

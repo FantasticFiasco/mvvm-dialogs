@@ -26,7 +26,7 @@ namespace Demo.OpenFileDialog.ScreenObjects
 
         public void ClickCancel()
         {
-            CancelButton.Click();
+            DefaultCancelButton.Click();
         }
     }
 }
