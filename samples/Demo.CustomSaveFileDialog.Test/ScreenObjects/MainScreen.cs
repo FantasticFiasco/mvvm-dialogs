@@ -19,11 +19,11 @@
 //         {
 //         }
 
-//         public virtual string? FileName => pathTextBox?.Text;
+//         public string? FileName => pathTextBox?.Text;
 
-//         public virtual SaveFileScreen ClickSave()
+//         public SaveFileScreen ClickSave()
 //         {
-//             saveButton!.Click();
+//             saveButton.Click();
 //             return ScreenRepository.GetModal<SaveFileScreen>("This Is The Title", Window, InitializeOption.NoCache);
 //         }
 //     }

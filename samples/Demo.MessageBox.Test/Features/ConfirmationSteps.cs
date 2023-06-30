@@ -27,13 +27,13 @@
 
 //         protected override MainScreen GetMainScreen(ScreenRepository screenRepository)
 //         {
-//             return ScreenRepository!.Get<MainScreen>("Demo - Message Box", InitializeOption.NoCache);
+//             return ScreenRepository.Get<MainScreen>("Demo - Message Box", InitializeOption.NoCache);
 //         }
 
 //         [Given("confirmation with text is shown")]
 //         public void ShowConfirmationWithText()
 //         {
-//             messageBoxScreen = MainScreen!.ClickMessageBoxWithMessage();
+//             messageBoxScreen = MainScreen.ClickMessageBoxWithMessage();
 
 //             Assert.That(messageBoxScreen.Caption, Is.Empty);
 //             Assert.That(messageBoxScreen.Message, Is.EqualTo("This is the text."));
@@ -45,7 +45,7 @@
 //         [Given("confirmation with text and caption is shown")]
 //         public void ShowConfirmationWithTextAndCaption()
 //         {
-//             messageBoxScreen = MainScreen!.ClickMessageBoxWithCaption();
+//             messageBoxScreen = MainScreen.ClickMessageBoxWithCaption();
 
 //             Assert.That(messageBoxScreen.Caption, Is.EqualTo("This Is The Caption"));
 //             Assert.That(messageBoxScreen.Message, Is.EqualTo("This is the text."));
@@ -57,7 +57,7 @@
 //         [Given("confirmation with text, caption and option to cancel is shown")]
 //         public void ShowConfirmationWithTextCaptionAndOptionToCancel()
 //         {
-//             messageBoxScreen = MainScreen!.ClickMessageBoxWithButtons();
+//             messageBoxScreen = MainScreen.ClickMessageBoxWithButtons();
 
 //             Assert.That(messageBoxScreen.Caption, Is.EqualTo("This Is The Caption"));
 //             Assert.That(messageBoxScreen.Message, Is.EqualTo("This is the text."));
@@ -70,7 +70,7 @@
 //         [Given("confirmation with text, caption, icon and option to cancel is shown")]
 //         public void ShowConfirmationWithTextCaptionAndIcon()
 //         {
-//             messageBoxScreen = MainScreen!.ClickMessageBoxWithIcon();
+//             messageBoxScreen = MainScreen.ClickMessageBoxWithIcon();
 
 //             Assert.That(messageBoxScreen.Caption, Is.EqualTo("This Is The Caption"));
 //             Assert.That(messageBoxScreen.Message, Is.EqualTo("This is the text."));
@@ -82,7 +82,7 @@
 //         [Given("confirmation with text, caption, icon, default choice and option to cancel is shown")]
 //         public void ShowConfirmationWithTextCaptionIconAndDefaultChoice()
 //         {
-//             messageBoxScreen = MainScreen!.ClickMessageBoxWithDefaultResult();
+//             messageBoxScreen = MainScreen.ClickMessageBoxWithDefaultResult();
 
 //             Assert.That(messageBoxScreen.Caption, Is.EqualTo("This Is The Caption"));
 //             Assert.That(messageBoxScreen.Message, Is.EqualTo("This is the text."));
@@ -94,25 +94,25 @@
 //         [When("I confirm")]
 //         public void WhenIConfirm()
 //         {
-//             messageBoxScreen!.ClickOK();
+//             messageBoxScreen.ClickOK();
 //         }
 
 //         [When("I cancel")]
 //         public void WhenICancel()
 //         {
-//             messageBoxScreen!.ClickCancel();
+//             messageBoxScreen.ClickCancel();
 //         }
 
 //         [Then("the confirmation should be acted on")]
 //         public void VerifyThatConfirmationWasActedOn()
 //         {
-//             Assert.That(MainScreen!.Confirmation, Is.EqualTo("We got confirmation to continue!"));
+//             Assert.That(MainScreen.Confirmation, Is.EqualTo("We got confirmation to continue!"));
 //         }
 
 //         [Then("the cancellation should be respected")]
 //         public void VerifyThatCancellationWasRespected()
 //         {
-//             Assert.That(MainScreen!.Confirmation, Is.Empty);
+//             Assert.That(MainScreen.Confirmation, Is.Empty);
 //         }
 //     }
 // }

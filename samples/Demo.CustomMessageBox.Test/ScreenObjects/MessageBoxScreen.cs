@@ -12,18 +12,18 @@
 //         {
 //         }
 
-//         public virtual string Caption => Window.Title;
+//         public string Caption => Window.Title;
 
-//         public virtual bool IsOKButtonVisible => Window.Exists<Button>(SearchCriteria.ByText("OK"));
+//         public bool IsOKButtonVisible => Window.Exists<Button>(SearchCriteria.ByText("OK"));
 
-//         public virtual bool IsCancelButtonVisible => Window.Exists<Button>(SearchCriteria.ByText("Cancel"));
+//         public bool IsCancelButtonVisible => Window.Exists<Button>(SearchCriteria.ByText("Cancel"));
 
-//         public virtual void ClickOK()
+//         public void ClickOK()
 //         {
 //             Window.Get<Button>(SearchCriteria.ByText("OK")).Click();
 //         }
 
-//         public virtual void ClickCancel()
+//         public void ClickCancel()
 //         {
 //             Window.Get<Button>(SearchCriteria.ByText("Cancel")).Click();
 //         }

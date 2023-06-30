@@ -31,35 +31,35 @@
 //         {
 //         }
 
-//         public virtual string? Confirmation => confirmation?.Text;
+//         public string? Confirmation => confirmation?.Text;
 
-//         public virtual MessageBoxScreen ClickMessageBoxWithMessage()
+//         public MessageBoxScreen ClickMessageBoxWithMessage()
 //         {
-//             messageBoxWithMessageButton!.Click();
+//             messageBoxWithMessageButton.Click();
 //             return ScreenRepository.GetModal<MessageBoxScreen>(" ", Window, InitializeOption.NoCache);
 //         }
 
-//         public virtual MessageBoxScreen ClickMessageBoxWithCaption()
+//         public MessageBoxScreen ClickMessageBoxWithCaption()
 //         {
-//             messageBoxWithCaptionButton!.Click();
+//             messageBoxWithCaptionButton.Click();
 //             return ScreenRepository.GetModal<MessageBoxScreen>("This Is The Caption", Window, InitializeOption.NoCache);
 //         }
 
-//         public virtual MessageBoxScreen ClickMessageBoxWithButtons()
+//         public MessageBoxScreen ClickMessageBoxWithButtons()
 //         {
-//             messageBoxWithButtonsButton!.Click();
+//             messageBoxWithButtonsButton.Click();
 //             return ScreenRepository.GetModal<MessageBoxScreen>("This Is The Caption", Window, InitializeOption.NoCache);
 //         }
 
-//         public virtual MessageBoxScreen ClickMessageBoxWithIcon()
+//         public MessageBoxScreen ClickMessageBoxWithIcon()
 //         {
-//             messageBoxWithIconButton!.Click();
+//             messageBoxWithIconButton.Click();
 //             return ScreenRepository.GetModal<MessageBoxScreen>("This Is The Caption", Window, InitializeOption.NoCache);
 //         }
 
-//         public virtual MessageBoxScreen ClickMessageBoxWithDefaultResult()
+//         public MessageBoxScreen ClickMessageBoxWithDefaultResult()
 //         {
-//             messageBoxWithDefaultResultButton!.Click();
+//             messageBoxWithDefaultResultButton.Click();
 //             return ScreenRepository.GetModal<MessageBoxScreen>("This Is The Caption", Window, InitializeOption.NoCache);
 //         }
 //     }

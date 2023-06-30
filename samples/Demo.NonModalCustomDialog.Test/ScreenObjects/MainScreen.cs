@@ -14,7 +14,7 @@ namespace Demo.NonModalCustomDialog.ScreenObjects
         private Button ShowCurrentTimeUsingDialogTypeLocatorButton => ButtonByAutomationId("6U4UYFLlnUKOBx26wvyDOg");
         private Button ShowCurrentTimeBySpecifyingDialogTypeButton => ButtonByAutomationId("yp7kt1tOeEqE5y2KmylhGQ");
 
-        public virtual CurrentTimeScreen ClickShowCurrentTimeUsingDialogTypeLocator()
+        public CurrentTimeScreen ClickShowCurrentTimeUsingDialogTypeLocator()
         {
             ShowCurrentTimeUsingDialogTypeLocatorButton.Click();
             Wait.UntilInputIsProcessed();
@@ -23,7 +23,7 @@ namespace Demo.NonModalCustomDialog.ScreenObjects
             return new CurrentTimeScreen(dialog);
         }
 
-        public virtual CurrentTimeScreen ClickShowCurrentTimeBySpecifyingDialogType()
+        public CurrentTimeScreen ClickShowCurrentTimeBySpecifyingDialogType()
         {
             ShowCurrentTimeBySpecifyingDialogTypeButton.Click();
             Wait.UntilInputIsProcessed();

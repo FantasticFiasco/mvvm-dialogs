@@ -12,12 +12,12 @@
 //        {
 //        }
 
-//        public virtual void ClickSelectFolder()
+//        public void ClickSelectFolder()
 //        {
 //            Window.Get<Button>(SearchCriteria.ByText("Select Folder")).Click();
 //        }
 
-//        public virtual void ClickCancel()
+//        public void ClickCancel()
 //        {
 //            Window.Get<Button>(SearchCriteria.ByText("Cancel")).Click();
 //        }

@@ -12,17 +12,17 @@
 //         {
 //         }
 
-//         public virtual string FileName
+//         public string FileName
 //         {
 //             set => Window.Get<TextBox>(SearchCriteria.ByAutomationId("1001")).Text = value;
 //         }
 
-//         public virtual void ClickSave()
+//         public void ClickSave()
 //         {
 //             Window.Get<Button>(SearchCriteria.ByText("Save")).Click();
 //         }
 
-//         public virtual void ClickCancel()
+//         public void ClickCancel()
 //         {
 //             Window.Get<Button>(SearchCriteria.ByText("Cancel")).Click();
 //         }

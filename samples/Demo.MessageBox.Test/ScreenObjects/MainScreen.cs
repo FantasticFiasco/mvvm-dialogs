@@ -30,35 +30,35 @@
 //         {
 //         }
 
-//         public virtual string? Confirmation => confirmation?.Text;
+//         public string? Confirmation => confirmation?.Text;
 
-//         public virtual MessageBoxScreen ClickMessageBoxWithMessage()
+//         public MessageBoxScreen ClickMessageBoxWithMessage()
 //         {
-//             messageBoxWithMessageButton!.Click();
+//             messageBoxWithMessageButton.Click();
 //             return new MessageBoxScreen(Window.MessageBox(string.Empty), ScreenRepository);
 //         }
 
-//         public virtual MessageBoxScreen ClickMessageBoxWithCaption()
+//         public MessageBoxScreen ClickMessageBoxWithCaption()
 //         {
-//             messageBoxWithCaptionButton!.Click();
+//             messageBoxWithCaptionButton.Click();
 //             return new MessageBoxScreen(Window.MessageBox("This Is The Caption"), ScreenRepository);
 //         }
 
-//         public virtual MessageBoxScreen ClickMessageBoxWithButtons()
+//         public MessageBoxScreen ClickMessageBoxWithButtons()
 //         {
-//             messageBoxWithButtonsButton!.Click();
+//             messageBoxWithButtonsButton.Click();
 //             return new MessageBoxScreen(Window.MessageBox("This Is The Caption"), ScreenRepository);
 //         }
 
-//         public virtual MessageBoxScreen ClickMessageBoxWithIcon()
+//         public MessageBoxScreen ClickMessageBoxWithIcon()
 //         {
-//             messageBoxWithIconButton!.Click();
+//             messageBoxWithIconButton.Click();
 //             return new MessageBoxScreen(Window.MessageBox("This Is The Caption"), ScreenRepository);
 //         }
 
-//         public virtual MessageBoxScreen ClickMessageBoxWithDefaultResult()
+//         public MessageBoxScreen ClickMessageBoxWithDefaultResult()
 //         {
-//             messageBoxWithDefaultResultButton!.Click();
+//             messageBoxWithDefaultResultButton.Click();
 //             return new MessageBoxScreen(Window.MessageBox("This Is The Caption"), ScreenRepository);
 //         }
 //     }

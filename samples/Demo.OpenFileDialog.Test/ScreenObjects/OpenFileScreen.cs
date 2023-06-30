@@ -20,7 +20,7 @@ namespace Demo.OpenFileDialog.ScreenObjects
             set => FileNameComboBox.EditableText = value;
         }
 
-        public virtual void ClickOpen()
+        public void ClickOpen()
         {
             Keyboard.Press(VirtualKeyShort.ENTER);
         }

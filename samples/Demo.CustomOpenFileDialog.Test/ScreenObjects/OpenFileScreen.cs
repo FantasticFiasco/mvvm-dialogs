@@ -15,17 +15,17 @@
 //         {
 //         }
 
-//         public virtual string FileName
+//         public string FileName
 //         {
 //             set => Window.Get<ComboBox>(SearchCriteria.ByAutomationId("1148")).EditableText = value;
 //         }
 
-//         public virtual void ClickOpen()
+//         public void ClickOpen()
 //         {
 //             Keyboard.Instance.PressSpecialKey(KeyboardInput.SpecialKeys.RETURN);
 //         }
 
-//         public virtual void ClickCancel()
+//         public void ClickCancel()
 //         {
 //             Window.Get<Button>(SearchCriteria.ByText("Cancel")).Click();
 //         }

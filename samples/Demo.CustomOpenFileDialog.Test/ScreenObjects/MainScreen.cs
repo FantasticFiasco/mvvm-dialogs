@@ -19,11 +19,11 @@
 //         {
 //         }
 
-//         public virtual string? FileName => pathTextBox?.Text;
+//         public string? FileName => pathTextBox?.Text;
 
-//         public virtual OpenFileScreen ClickOpen()
+//         public OpenFileScreen ClickOpen()
 //         {
-//             openButton!.Click();
+//             openButton.Click();
 //             return ScreenRepository.GetModal<OpenFileScreen>("This Is The Title", Window, InitializeOption.NoCache);
 //         }
 //     }

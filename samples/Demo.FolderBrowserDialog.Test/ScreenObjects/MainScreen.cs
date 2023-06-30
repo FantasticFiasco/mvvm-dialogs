@@ -19,11 +19,11 @@
 //         {
 //         }
 
-//         public virtual string? FileName => pathTextBox?.Text;
+//         public string? FileName => pathTextBox?.Text;
 
-//         public virtual BrowseFolderScreen ClickBrowse()
+//         public BrowseFolderScreen ClickBrowse()
 //         {
-//             browseButton!.Click();
+//             browseButton.Click();
 //             return ScreenRepository.GetModal<BrowseFolderScreen>("Browse For Folder", Window, InitializeOption.NoCache);
 //         }
 //     }

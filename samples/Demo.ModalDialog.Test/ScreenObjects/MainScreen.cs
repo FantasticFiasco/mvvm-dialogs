@@ -15,12 +15,12 @@ namespace Demo.ModalDialog.ScreenObjects
         private Button AddTextUsingDialogTypeLocatorButton => ButtonByAutomationId("FHE_oyWqBEq_9TPaU1yPTQ");
         private Button AddTextBySpecifyingDialogTypeButton => ButtonByAutomationId("Dq9ZjnVdFESxu8StkQ8jMw");
 
-        public virtual IEnumerable<string> Texts
+        public IEnumerable<string> Texts
         {
             get { return TextsListBox.Items.Select(item => item.Text); }
         }
 
-        public virtual AddTextScreen ClickAddTextUsingDialogTypeLocator()
+        public AddTextScreen ClickAddTextUsingDialogTypeLocator()
         {
             AddTextUsingDialogTypeLocatorButton.Click();
             Wait.UntilInputIsProcessed();
@@ -29,7 +29,7 @@ namespace Demo.ModalDialog.ScreenObjects
             return new AddTextScreen(dialog);
         }
 
-        public virtual AddTextScreen ClickAddTextBySpecifyingDialogType()
+        public AddTextScreen ClickAddTextBySpecifyingDialogType()
         {
             AddTextBySpecifyingDialogTypeButton.Click();
             Wait.UntilInputIsProcessed();

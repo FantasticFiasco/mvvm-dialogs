@@ -12,12 +12,12 @@
 //         {
 //         }
 
-//         public virtual void ClickOK()
+//         public void ClickOK()
 //         {
 //             Window.Get<Button>(SearchCriteria.ByText("OK")).Click();
 //         }
 
-//         public virtual void ClickCancel()
+//         public void ClickCancel()
 //         {
 //             Window.Get<Button>(SearchCriteria.ByText("Cancel")).Click();
 //         }

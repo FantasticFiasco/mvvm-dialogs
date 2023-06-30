@@ -1,45 +1,42 @@
-﻿// using System.Collections.Generic;
-// using System.Linq;
-// using TestStack.White.Factory;
-// using TestStack.White.ScreenObjects;
-// using TestStack.White.ScreenObjects.ScreenAttributes;
-// using TestStack.White.UIItems;
-// using TestStack.White.UIItems.ListBoxItems;
-// using TestStack.White.UIItems.WindowItems;
+﻿using FlaUI.Core.AutomationElements;
+using FlaUI.Core.Input;
+using TestBaseClasses;
 
-// namespace Demo.ModalCustomDialog.ScreenObjects
-// {
-//     public class MainScreen : AppScreen
-//     {
-//         [AutomationId("Vfkrmkr640yWmoMTKUWIbQ")]
-//         private readonly ListBox? texts = null;
+namespace Demo.ModalCustomDialog.ScreenObjects
+{
+    public class MainScreen : Screen
+    {
+        public MainScreen(Window window)
+            : base(window)
+        {
+        }
 
-//         [AutomationId("FHE_oyWqBEq_9TPaU1yPTQ")]
-//         private readonly Button? addTextUsingDialogTypeLocatorButton = null;
+        private ListBox TextsListBox => ListBoxByAutomationId("Vfkrmkr640yWmoMTKUWIbQ");
+        private Button AddTextUsingDialogTypeLocatorButton => ButtonByAutomationId("FHE_oyWqBEq_9TPaU1yPTQ");
+        private Button AddTextBySpecifyingDialogTypeButton => ButtonByAutomationId("Dq9ZjnVdFESxu8StkQ8jMw");
 
-//         [AutomationId("Dq9ZjnVdFESxu8StkQ8jMw")]
-//         private readonly Button? addTextBySpecifyingDialogTypeButton = null;
 
-//         public MainScreen(Window window, ScreenRepository screenRepository)
-//             : base(window, screenRepository)
-//         {
-//         }
+        public IEnumerable<string> Texts
+        {
+            get { return TextsListBox.Items.Select(item => item.Text); }
+        }
 
-//         public virtual IEnumerable<string> Texts
-//         {
-//             get { return texts!.Items.Select(item => item.Text); }
-//         }
+        public AddTextScreen ClickAddTextUsingDialogTypeLocator()
+        {
+            AddTextUsingDialogTypeLocatorButton.Click();
+            Wait.UntilInputIsProcessed();
 
-//         public virtual AddTextScreen ClickAddTextUsingDialogTypeLocator()
-//         {
-//             addTextUsingDialogTypeLocatorButton!.Click();
-//             return ScreenRepository.GetModal<AddTextScreen>("Add Text", Window, InitializeOption.NoCache);
-//         }
+            var dialog = Window.ModalWindows.Single(w => w.Title == "Add Text");
+            return new AddTextScreen(dialog);
+        }
 
-//         public virtual AddTextScreen ClickAddTextBySpecifyingDialogType()
-//         {
-//             addTextBySpecifyingDialogTypeButton!.Click();
-//             return ScreenRepository.GetModal<AddTextScreen>("Add Text", Window, InitializeOption.NoCache);
-//         }
-//     }
-// }
+        public AddTextScreen ClickAddTextBySpecifyingDialogType()
+        {
+            AddTextBySpecifyingDialogTypeButton.Click();
+            Wait.UntilInputIsProcessed();
+
+            var dialog = Window.ModalWindows.Single(w => w.Title == "Add Text");
+            return new AddTextScreen(dialog);
+        }
+    }
+}

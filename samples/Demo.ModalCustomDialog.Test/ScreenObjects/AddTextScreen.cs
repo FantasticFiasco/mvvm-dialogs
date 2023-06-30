@@ -1,33 +1,32 @@
-﻿// using TestStack.White.ScreenObjects;
-// using TestStack.White.ScreenObjects.ScreenAttributes;
-// using TestStack.White.UIItems;
-// using TestStack.White.UIItems.WindowItems;
+﻿using FlaUI.Core.AutomationElements;
+using TestBaseClasses;
 
-// namespace Demo.ModalCustomDialog.ScreenObjects
-// {
-//     public class AddTextScreen : AppScreen
-//     {
-//         [AutomationId("Csl8dP93gUGQLj7rVZxDAg")]
-//         private readonly TextBox? text = null;
+namespace Demo.ModalCustomDialog.ScreenObjects
+{
+    public class AddTextScreen : Screen
+    {
+        public AddTextScreen(Window window)
+            : base(window)
+        {
+        }
 
-//         [AutomationId("eyRW_87u20qR7QTCypm2RQ")]
-//         private readonly Button? okButton = null;
+        private TextBox TextTextBox => TextBoxByAutomationId("Csl8dP93gUGQLj7rVZxDAg");
+        private Button OKButton => ButtonByAutomationId("eyRW_87u20qR7QTCypm2RQ");
+        private Button CancelButton => ButtonByAutomationId("I91auHr_EECzhSZyIfvvzQ");
 
-//         [AutomationId("I91auHr_EECzhSZyIfvvzQ")]
-//         private readonly Button? cancelButton = null;
+        public string Text
+        {
+            set => TextTextBox.Text = value;
+        }
 
-//         public AddTextScreen(Window window, ScreenRepository screenRepository)
-//             : base(window, screenRepository)
-//         {
-//         }
+        public void ClickOK()
+        {
+            OKButton.Click();
+        }
 
-//         public virtual string Text
-//         {
-//             set => text!.Text = value;
-//         }
-
-//         public virtual void ClickOK() => okButton!.Click();
-
-//         public virtual void ClickCancel() => cancelButton!.Click();
-//     }
-// }
+        public void ClickCancel()
+        {
+            CancelButton.Click();
+        }
+    }
+}

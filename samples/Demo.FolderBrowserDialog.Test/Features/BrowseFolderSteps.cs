@@ -33,31 +33,31 @@
 //         [Given("I have browsed a folder")]
 //         public void BrowseFolder()
 //         {
-//             browseFolderScreen = MainScreen!.ClickBrowse();
+//             browseFolderScreen = MainScreen.ClickBrowse();
 //         }
 
 //         [When("I press confirm")]
 //         public void Confirm()
 //         {
-//             browseFolderScreen!.ClickOK();
+//             browseFolderScreen.ClickOK();
 //         }
 
 //         [When("I cancel")]
 //         public void Cancel()
 //         {
-//             browseFolderScreen!.ClickCancel();
+//             browseFolderScreen.ClickCancel();
 //         }
 
 //         [Then("the folder should be opened")]
 //         public void VerifyFolderWasOpened()
 //         {
-//             Assert.That(MainScreen!.FileName, Is.Not.Empty);
+//             Assert.That(MainScreen.FileName, Is.Not.Empty);
 //         }
 
 //         [Then("the folder should not be opened")]
 //         public void VerifyFolderWasNotOpened()
 //         {
-//             Assert.That(MainScreen!.FileName, Is.Empty);
+//             Assert.That(MainScreen.FileName, Is.Empty);
 //         }
 //     }
 // }

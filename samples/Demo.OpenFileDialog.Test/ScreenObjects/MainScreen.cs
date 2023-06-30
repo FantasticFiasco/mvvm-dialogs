@@ -16,7 +16,7 @@ namespace Demo.OpenFileDialog.ScreenObjects
 
         public string FileName => PathTextBox.Text;
         
-        public virtual OpenFileScreen ClickOpen()
+        public OpenFileScreen ClickOpen()
         {
             OpenButton.Click();
             Wait.UntilInputIsProcessed();

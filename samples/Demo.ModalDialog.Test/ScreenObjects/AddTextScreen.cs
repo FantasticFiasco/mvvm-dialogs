@@ -14,7 +14,7 @@ namespace Demo.ModalDialog.ScreenObjects
         private Button OKButton => ButtonByAutomationId("eyRW_87u20qR7QTCypm2RQ");
         private Button CancelButton => ButtonByAutomationId("I91auHr_EECzhSZyIfvvzQ");
 
-        public virtual string Text
+        public string Text
         {
             set => TextTextBox.Text = value;
         }
