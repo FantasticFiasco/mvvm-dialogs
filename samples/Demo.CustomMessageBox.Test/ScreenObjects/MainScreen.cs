@@ -1,66 +1,63 @@
-﻿// using TestStack.White.Factory;
-// using TestStack.White.ScreenObjects;
-// using TestStack.White.ScreenObjects.ScreenAttributes;
-// using TestStack.White.UIItems;
-// using TestStack.White.UIItems.WindowItems;
+﻿using FlaUI.Core.AutomationElements;
+using FlaUI.Core.Input;
+using TestBaseClasses;
 
-// namespace Demo.CustomMessageBox.ScreenObjects
-// {
-//     public class MainScreen : AppScreen
-//     {
-//         [AutomationId("1k7d1Nm8MkOYK5qGrdVX4Q")]
-//         private readonly Button? messageBoxWithMessageButton = null;
+namespace Demo.CustomMessageBox.ScreenObjects
+{
+    public class MainScreen : Screen
+    {
+        public MainScreen(Window window)
+            : base(window)
+        {
+        }
 
-//         [AutomationId("EvNqZT9tYkuNzKDDrLJ8Yw")]
-//         private readonly Button? messageBoxWithCaptionButton = null;
+        private Button MessageBoxWithMessageButton => ElementByAutomationId<Button>("1k7d1Nm8MkOYK5qGrdVX4Q");
+        private Button MessageBoxWithCaptionButton => ElementByAutomationId<Button>("EvNqZT9tYkuNzKDDrLJ8Yw");
+        private Button MessageBoxWithButtonsButton => ElementByAutomationId<Button>("FWGzBkom5ESJz_p7KCPKqQ");
+        private Button MessageBoxWithIconButton => ElementByAutomationId<Button>("SapYi2J7bkiJ1z1GWwOZAQ");
+        private Button MessageBoxWithDefaultResultButton => ElementByAutomationId<Button>("sUjm2_m1LUGWso8S2Us5ow");
+        private Label ConfirmationLabel => ElementByAutomationId<Label>("kT3_ZUZfsEK1QdZ2jBfuIQ");
 
-//         [AutomationId("FWGzBkom5ESJz_p7KCPKqQ")]
-//         private readonly Button? messageBoxWithButtonsButton = null;
+        public string Confirmation => ConfirmationLabel.Text;
 
-//         [AutomationId("SapYi2J7bkiJ1z1GWwOZAQ")]
-//         private readonly Button? messageBoxWithIconButton = null;
+        public MessageBoxScreen ClickMessageBoxWithMessage()
+        {
+            MessageBoxWithMessageButton.Click();
+            Wait.UntilInputIsProcessed();
 
-//         [AutomationId("sUjm2_m1LUGWso8S2Us5ow")]
-//         private readonly Button? messageBoxWithDefaultResultButton = null;
+            return new MessageBoxScreen(GetModalWindow(" "));
+        }
 
-//         [AutomationId("kT3_ZUZfsEK1QdZ2jBfuIQ")]
-//         private readonly Label? confirmation = null;
+        public MessageBoxScreen ClickMessageBoxWithCaption()
+        {
+            MessageBoxWithCaptionButton.Click();
+            Wait.UntilInputIsProcessed();
 
-//         public MainScreen(Window window, ScreenRepository screenRepository)
-//             : base(window, screenRepository)
-//         {
-//         }
+            return new MessageBoxScreen(GetModalWindow("This Is The Caption"));
+        }
 
-//         public string? Confirmation => confirmation?.Text;
+        public MessageBoxScreen ClickMessageBoxWithButtons()
+        {
+            MessageBoxWithButtonsButton.Click();
+            Wait.UntilInputIsProcessed();
 
-//         public MessageBoxScreen ClickMessageBoxWithMessage()
-//         {
-//             messageBoxWithMessageButton.Click();
-//             return ScreenRepository.GetModal<MessageBoxScreen>(" ", Window, InitializeOption.NoCache);
-//         }
+            return new MessageBoxScreen(GetModalWindow("This Is The Caption"));
+        }
 
-//         public MessageBoxScreen ClickMessageBoxWithCaption()
-//         {
-//             messageBoxWithCaptionButton.Click();
-//             return ScreenRepository.GetModal<MessageBoxScreen>("This Is The Caption", Window, InitializeOption.NoCache);
-//         }
+        public MessageBoxScreen ClickMessageBoxWithIcon()
+        {
+            MessageBoxWithIconButton.Click();
+            Wait.UntilInputIsProcessed();
 
-//         public MessageBoxScreen ClickMessageBoxWithButtons()
-//         {
-//             messageBoxWithButtonsButton.Click();
-//             return ScreenRepository.GetModal<MessageBoxScreen>("This Is The Caption", Window, InitializeOption.NoCache);
-//         }
+            return new MessageBoxScreen(GetModalWindow("This Is The Caption"));
+        }
 
-//         public MessageBoxScreen ClickMessageBoxWithIcon()
-//         {
-//             messageBoxWithIconButton.Click();
-//             return ScreenRepository.GetModal<MessageBoxScreen>("This Is The Caption", Window, InitializeOption.NoCache);
-//         }
+        public MessageBoxScreen ClickMessageBoxWithDefaultResult()
+        {
+            MessageBoxWithDefaultResultButton.Click();
+            Wait.UntilInputIsProcessed();
 
-//         public MessageBoxScreen ClickMessageBoxWithDefaultResult()
-//         {
-//             messageBoxWithDefaultResultButton.Click();
-//             return ScreenRepository.GetModal<MessageBoxScreen>("This Is The Caption", Window, InitializeOption.NoCache);
-//         }
-//     }
-// }
+            return new MessageBoxScreen(GetModalWindow("This Is The Caption"));
+        }
+    }
+}
