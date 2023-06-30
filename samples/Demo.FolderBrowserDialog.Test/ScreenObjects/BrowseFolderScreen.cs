@@ -1,25 +1,23 @@
-﻿// using TestStack.White.ScreenObjects;
-// using TestStack.White.UIItems;
-// using TestStack.White.UIItems.Finders;
-// using TestStack.White.UIItems.WindowItems;
+﻿using FlaUI.Core.AutomationElements;
+using TestBaseClasses;
 
-// namespace Demo.FolderBrowserDialog.ScreenObjects
-// {
-//     public class BrowseFolderScreen : AppScreen
-//     {
-//         public BrowseFolderScreen(Window window, ScreenRepository screenRepository)
-//             : base(window, screenRepository)
-//         {
-//         }
+namespace Demo.FolderBrowserDialog.ScreenObjects
+{
+    public class BrowseFolderScreen : Screen
+    {
+        public BrowseFolderScreen(Window window)
+            : base(window)
+        {
+        }
 
-//         public void ClickOK()
-//         {
-//             Window.Get<Button>(SearchCriteria.ByText("OK")).Click();
-//         }
+        public void ClickOK()
+        {
+            OKButton.Click();
+        }
 
-//         public void ClickCancel()
-//         {
-//             Window.Get<Button>(SearchCriteria.ByText("Cancel")).Click();
-//         }
-//     }
-// }
+        public void ClickCancel()
+        {
+            CancelButton.Click();
+        }
+    }
+}

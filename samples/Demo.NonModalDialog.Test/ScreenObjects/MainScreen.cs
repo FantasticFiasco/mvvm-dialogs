@@ -19,8 +19,7 @@ namespace Demo.NonModalDialog.ScreenObjects
             ShowCurrentTimeUsingDialogTypeLocatorButton.Click();
             Wait.UntilInputIsProcessed();
 
-            var dialog = Window.ModalWindows.Single(w => w.Title == "Current Time");
-            return new CurrentTimeScreen(dialog);
+            return new CurrentTimeScreen(GetModalWindow("Current Time"));
         }
 
         public CurrentTimeScreen ClickShowCurrentTimeBySpecifyingDialogType()
@@ -28,8 +27,7 @@ namespace Demo.NonModalDialog.ScreenObjects
             ShowCurrentTimeBySpecifyingDialogTypeButton.Click();
             Wait.UntilInputIsProcessed();
 
-            var dialog = Window.ModalWindows.Single(w => w.Title == "Current Time");
-            return new CurrentTimeScreen(dialog);
+            return new CurrentTimeScreen(GetModalWindow("Current Time"));
         }
     }
 }

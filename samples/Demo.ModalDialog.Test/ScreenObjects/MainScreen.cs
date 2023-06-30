@@ -25,8 +25,7 @@ namespace Demo.ModalDialog.ScreenObjects
             AddTextUsingDialogTypeLocatorButton.Click();
             Wait.UntilInputIsProcessed();
 
-            var dialog = Window.ModalWindows.Single(w => w.Title == "Add Text");
-            return new AddTextScreen(dialog);
+            return new AddTextScreen(GetModalWindow("Add Text"));
         }
 
         public AddTextScreen ClickAddTextBySpecifyingDialogType()
@@ -34,8 +33,7 @@ namespace Demo.ModalDialog.ScreenObjects
             AddTextBySpecifyingDialogTypeButton.Click();
             Wait.UntilInputIsProcessed();
 
-            var dialog = Window.ModalWindows.Single(w => w.Title == "Add Text");
-            return new AddTextScreen(dialog);
+            return new AddTextScreen(GetModalWindow("Add Text"));
         }
     }
 }

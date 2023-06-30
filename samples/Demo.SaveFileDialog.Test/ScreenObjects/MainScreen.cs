@@ -21,8 +21,7 @@ namespace Demo.SaveFileDialog.ScreenObjects
             SaveButton.Click();
             Wait.UntilInputIsProcessed();
 
-            var dialog = Window.ModalWindows.Single(w => w.Title == "This Is The Title");
-            return new SaveFileScreen(dialog);
+            return new SaveFileScreen(GetModalWindow("This Is The Title"));
         }
     }
 }

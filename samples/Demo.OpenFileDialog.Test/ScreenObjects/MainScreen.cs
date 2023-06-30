@@ -21,8 +21,7 @@ namespace Demo.OpenFileDialog.ScreenObjects
             OpenButton.Click();
             Wait.UntilInputIsProcessed();
 
-            var dialog = Window.ModalWindows.Single(w => w.Title == "This Is The Title");
-            return new OpenFileScreen(dialog);
+            return new OpenFileScreen(GetModalWindow("This Is The Title"));
         }
     }
 }

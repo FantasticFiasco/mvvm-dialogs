@@ -25,8 +25,7 @@ namespace Demo.MessageBox.ScreenObjects
             MessageBoxWithMessageButton.Click();
             Wait.UntilInputIsProcessed();
 
-            var dialog = Window.ModalWindows.Single(w => w.Title == string.Empty);
-            return new MessageBoxScreen(dialog);
+            return new MessageBoxScreen(GetModalWindow(string.Empty));
         }
 
         public MessageBoxScreen ClickMessageBoxWithCaption()
@@ -34,8 +33,7 @@ namespace Demo.MessageBox.ScreenObjects
             MessageBoxWithCaptionButton.Click();
             Wait.UntilInputIsProcessed();
 
-            var dialog = Window.ModalWindows.Single(w => w.Title == "This Is The Caption");
-            return new MessageBoxScreen(dialog);
+            return new MessageBoxScreen(GetModalWindow("This Is The Caption"));
         }
 
         public MessageBoxScreen ClickMessageBoxWithButtons()
@@ -43,8 +41,7 @@ namespace Demo.MessageBox.ScreenObjects
             MessageBoxWithButtonsButton.Click();
             Wait.UntilInputIsProcessed();
 
-            var dialog = Window.ModalWindows.Single(w => w.Title == "This Is The Caption");
-            return new MessageBoxScreen(dialog);
+            return new MessageBoxScreen(GetModalWindow("This Is The Caption"));
         }
 
         public MessageBoxScreen ClickMessageBoxWithIcon()
@@ -52,8 +49,7 @@ namespace Demo.MessageBox.ScreenObjects
             MessageBoxWithIconButton.Click();
             Wait.UntilInputIsProcessed();
 
-            var dialog = Window.ModalWindows.Single(w => w.Title == "This Is The Caption");
-            return new MessageBoxScreen(dialog);
+            return new MessageBoxScreen(GetModalWindow("This Is The Caption"));
         }
 
         public MessageBoxScreen ClickMessageBoxWithDefaultResult()
@@ -61,8 +57,7 @@ namespace Demo.MessageBox.ScreenObjects
             MessageBoxWithDefaultResultButton.Click();
             Wait.UntilInputIsProcessed();
 
-            var dialog = Window.ModalWindows.Single(w => w.Title == "This Is The Caption");
-            return new MessageBoxScreen(dialog);
+            return new MessageBoxScreen(GetModalWindow("This Is The Caption"));
         }
     }
 }

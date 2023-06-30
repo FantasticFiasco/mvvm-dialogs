@@ -30,5 +30,10 @@ namespace TestBaseClasses
         {
             return Window.FindFirstDescendant(cf => cf.ByText(text)).As<T>();
         }
+
+        protected Window GetModalWindow(string title)
+        {
+            return Window.ModalWindows.Single(w => w.Title == title);
+        }
     }
 }
