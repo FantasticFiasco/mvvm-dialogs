@@ -11,8 +11,8 @@ namespace Demo.OpenFileDialog.ScreenObjects
         {
         }
 
-        private TextBox PathTextBox => TextBoxByAutomationId("cqkeItgI3UaZc-mQ6mYPAA");
-        private Button OpenButton => ButtonByAutomationId("MZ16xHTzYE2UP8S9vd-EGw");
+        private TextBox PathTextBox => ElementByAutomationId<TextBox>("cqkeItgI3UaZc-mQ6mYPAA");
+        private Button OpenButton => ElementByAutomationId<Button>("MZ16xHTzYE2UP8S9vd-EGw");
 
         public string FileName => PathTextBox.Text;
         

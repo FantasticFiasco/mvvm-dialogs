@@ -10,9 +10,9 @@ namespace Demo.SaveFileDialog.ScreenObjects
         {
         }
 
-        private TextBox FileNameTextBox => TextBoxByAutomationId("1001");
-        private Button SaveButton => ButtonByText("Save");
-        private Button CancelButton => ButtonByText("Cancel");
+        private TextBox FileNameTextBox => ElementByAutomationId<TextBox>("1001");
+        private Button SaveButton => ElementByText<Button>("Save");
+        private Button CancelButton => ElementByText<Button>("Cancel");
 
         public string FileName
         {

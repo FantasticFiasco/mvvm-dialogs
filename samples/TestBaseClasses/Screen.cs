@@ -6,13 +6,19 @@ namespace TestBaseClasses
     {
         protected readonly Window Window;
 
-        protected Screen(Window window) => Window = window;
+        protected Screen(Window window)
+        {
+            Window = window;
+        }
 
-        protected Button ButtonByAutomationId(string automationId) => Window.FindFirstDescendant(cf => cf.ByAutomationId(automationId)).AsButton();
-        protected Button ButtonByText(string text) => Window.FindFirstDescendant(cf => cf.ByText(text)).AsButton();
-        protected ComboBox ComboBoxByAutomationId(string automationId) => Window.FindFirstDescendant(cf => cf.ByAutomationId(automationId)).AsComboBox();
-        protected Label LabelByAutomationId(string automationId) => Window.FindFirstDescendant(cf => cf.ByAutomationId(automationId)).AsLabel();
-        protected ListBox ListBoxByAutomationId(string automationId) => Window.FindFirstDescendant(cf => cf.ByAutomationId(automationId)).AsListBox();
-        protected TextBox TextBoxByAutomationId(string automationId) => Window.FindFirstDescendant(cf => cf.ByAutomationId(automationId)).AsTextBox();
+        protected T ElementByAutomationId<T>(string automationId) where T : AutomationElement
+        {
+            return Window.FindFirstDescendant(cf => cf.ByAutomationId(automationId)).As<T>();
+        }
+
+        protected T ElementByText<T>(string text) where T : AutomationElement
+        {
+            return Window.FindFirstDescendant(cf => cf.ByText(text)).As<T>();
+        }
     }
 }

@@ -11,12 +11,12 @@ namespace Demo.MessageBox.ScreenObjects
         {
         }
 
-        private Button MessageBoxWithMessageButton => ButtonByAutomationId("1k7d1Nm8MkOYK5qGrdVX4Q");
-        private Button MessageBoxWithCaptionButton => ButtonByAutomationId("EvNqZT9tYkuNzKDDrLJ8Yw");
-        private Button MessageBoxWithButtonsButton => ButtonByAutomationId("FWGzBkom5ESJz_p7KCPKqQ");
-        private Button MessageBoxWithIconButton => ButtonByAutomationId("SapYi2J7bkiJ1z1GWwOZAQ");
-        private Button MessageBoxWithDefaultResultButton => ButtonByAutomationId("sUjm2_m1LUGWso8S2Us5ow");
-        private Label ConfirmationLabel => LabelByAutomationId("kT3_ZUZfsEK1QdZ2jBfuIQ");
+        private Button MessageBoxWithMessageButton => ElementByAutomationId<Button>("1k7d1Nm8MkOYK5qGrdVX4Q");
+        private Button MessageBoxWithCaptionButton => ElementByAutomationId<Button>("EvNqZT9tYkuNzKDDrLJ8Yw");
+        private Button MessageBoxWithButtonsButton => ElementByAutomationId<Button>("FWGzBkom5ESJz_p7KCPKqQ");
+        private Button MessageBoxWithIconButton => ElementByAutomationId<Button>("SapYi2J7bkiJ1z1GWwOZAQ");
+        private Button MessageBoxWithDefaultResultButton => ElementByAutomationId<Button>("sUjm2_m1LUGWso8S2Us5ow");
+        private Label ConfirmationLabel => ElementByAutomationId<Label>("kT3_ZUZfsEK1QdZ2jBfuIQ");
 
         public string Confirmation => ConfirmationLabel.Text;
 

@@ -11,8 +11,8 @@ namespace Demo.SaveFileDialog.ScreenObjects
         {
         }
 
-        private TextBox PathTextBox => TextBoxByAutomationId("-u3vcUdRMUaG4Af_kzSeZQ");
-        private Button SaveButton => ButtonByAutomationId("HstqC8HI9EOGiTfPA4_xag");
+        private TextBox PathTextBox => ByAutomationId<TextBox>("-u3vcUdRMUaG4Af_kzSeZQ");
+        private Button SaveButton => ByAutomationId<Button>("HstqC8HI9EOGiTfPA4_xag");
 
         public string FileName => PathTextBox.Text;
 

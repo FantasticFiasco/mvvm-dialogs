@@ -12,8 +12,8 @@ namespace Demo.OpenFileDialog.ScreenObjects
         {
         }
 
-        private Button CancelButton => ButtonByText("Cancel");
-        private ComboBox FileNameComboBox => ComboBoxByAutomationId("1148");
+        private Button CancelButton => ElementByText<Button>("Cancel");
+        private ComboBox FileNameComboBox => ElementByAutomationId<ComboBox>("1148");
 
         public string FileName
         {

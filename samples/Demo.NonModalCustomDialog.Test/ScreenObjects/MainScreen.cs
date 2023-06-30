@@ -11,8 +11,8 @@ namespace Demo.NonModalCustomDialog.ScreenObjects
         {
         }
 
-        private Button ShowCurrentTimeUsingDialogTypeLocatorButton => ButtonByAutomationId("6U4UYFLlnUKOBx26wvyDOg");
-        private Button ShowCurrentTimeBySpecifyingDialogTypeButton => ButtonByAutomationId("yp7kt1tOeEqE5y2KmylhGQ");
+        private Button ShowCurrentTimeUsingDialogTypeLocatorButton => ElementByAutomationId<Button>("6U4UYFLlnUKOBx26wvyDOg");
+        private Button ShowCurrentTimeBySpecifyingDialogTypeButton => ElementByAutomationId<Button>("yp7kt1tOeEqE5y2KmylhGQ");
 
         public CurrentTimeScreen ClickShowCurrentTimeUsingDialogTypeLocator()
         {

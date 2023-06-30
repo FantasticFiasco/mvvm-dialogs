@@ -11,9 +11,9 @@ namespace Demo.ModalDialog.ScreenObjects
         {
         }
 
-        private ListBox TextsListBox => ListBoxByAutomationId("Vfkrmkr640yWmoMTKUWIbQ");
-        private Button AddTextUsingDialogTypeLocatorButton => ButtonByAutomationId("FHE_oyWqBEq_9TPaU1yPTQ");
-        private Button AddTextBySpecifyingDialogTypeButton => ButtonByAutomationId("Dq9ZjnVdFESxu8StkQ8jMw");
+        private ListBox TextsListBox => ElementByAutomationId<ListBox>("Vfkrmkr640yWmoMTKUWIbQ");
+        private Button AddTextUsingDialogTypeLocatorButton => ElementByAutomationId<Button>("FHE_oyWqBEq_9TPaU1yPTQ");
+        private Button AddTextBySpecifyingDialogTypeButton => ElementByAutomationId<Button>("Dq9ZjnVdFESxu8StkQ8jMw");
 
         public IEnumerable<string> Texts
         {

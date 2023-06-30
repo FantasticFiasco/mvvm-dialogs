@@ -10,7 +10,7 @@ namespace Demo.NonModalDialog.ScreenObjects
         {
         }
 
-        private Label CurrentTimeLabel => LabelByAutomationId("n_Mu0TdFak-4VJD8RosMEQ");
+        private Label CurrentTimeLabel => ElementByAutomationId<Label>("n_Mu0TdFak-4VJD8RosMEQ");
 
         public bool CurrentTimeVisible => !CurrentTimeLabel.IsOffscreen;
     }
