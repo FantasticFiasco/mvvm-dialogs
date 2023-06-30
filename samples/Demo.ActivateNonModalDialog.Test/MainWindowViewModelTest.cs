@@ -1,13 +1,12 @@
 ﻿using Moq;
 using MvvmDialogs;
-using NUnit.Framework;
+using Xunit;
 
 namespace Demo.ActivateNonModalDialog
 {
-    [TestFixture]
     public class MainWindowViewModelTest
     {
-        [Test]
+        [Fact]
         public void CanShow()
         {
             // Arrange
@@ -15,13 +14,13 @@ namespace Demo.ActivateNonModalDialog
             var viewModel = new MainWindowViewModel(dialogService.Object);
 
             // Act
-            bool canShow = viewModel.ShowCommand.CanExecute(null);
+            var canShow = viewModel.ShowCommand.CanExecute(null);
 
             // Assert
-            Assert.That(canShow, Is.True);
+            Assert.True(canShow);
         }
 
-        [Test]
+        [Fact]
         public void CanNotShow()
         {
             // Arrange
@@ -31,13 +30,13 @@ namespace Demo.ActivateNonModalDialog
             viewModel.ShowCommand.Execute(null);
 
             // Act
-            bool canShow = viewModel.ShowCommand.CanExecute(null);
+            var canShow = viewModel.ShowCommand.CanExecute(null);
 
             // Assert
-            Assert.That(canShow, Is.False);
+            Assert.False(canShow);
         }
 
-        [Test]
+        [Fact]
         public void CanActivate()
         {
             // Arrange
@@ -47,13 +46,13 @@ namespace Demo.ActivateNonModalDialog
             viewModel.ShowCommand.Execute(null);
 
             // Act
-            bool canActivate = viewModel.ActivateCommand.CanExecute(null);
+            var canActivate = viewModel.ActivateCommand.CanExecute(null);
 
             // Assert
-            Assert.That(canActivate, Is.True);
+            Assert.True(canActivate);
         }
 
-        [Test]
+        [Fact]
         public void CanNotActivate()
         {
             // Arrange
@@ -61,10 +60,10 @@ namespace Demo.ActivateNonModalDialog
             var viewModel = new MainWindowViewModel(dialogService.Object);
 
             // Act
-            bool canActivate = viewModel.ActivateCommand.CanExecute(null);
+            var canActivate = viewModel.ActivateCommand.CanExecute(null);
 
             // Assert
-            Assert.That(canActivate, Is.False);
+            Assert.False(canActivate);
         }
     }
 }

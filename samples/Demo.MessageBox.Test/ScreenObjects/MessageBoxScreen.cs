@@ -1,35 +1,36 @@
-﻿using TestStack.White.ScreenObjects;
-using TestStack.White.UIItems;
-using TestStack.White.UIItems.Finders;
-using TestStack.White.UIItems.WindowItems;
+﻿using FlaUI.Core.AutomationElements;
+using TestBaseClasses;
 
 namespace Demo.MessageBox.ScreenObjects
 {
-    public class MessageBoxScreen : AppScreen
+    public class MessageBoxScreen : Screen
     {
-        public MessageBoxScreen(Window window, ScreenRepository screenRepository)
-            : base(window, screenRepository)
+        public MessageBoxScreen(Window window)
+            : base(window)
         {
         }
 
+        private Label MessageLabel => ElementByAutomationId<Label>("65535");
+        
+
         public string Caption => Window.Title;
 
-        public string Message => Window.Get<Label>(SearchCriteria.ByAutomationId("65535")).Text;
+        public string Message => MessageLabel.Text;
 
-        public bool IsIconVisible => Window.Exists<Image>(SearchCriteria.ByAutomationId("20"));
+        public bool IsIconVisible => ElementWithAutomationIdExists("20");
+        
+        public bool IsOKButtonVisible => ElementWithTextExists(OK);
 
-        public bool IsOKButtonVisible => Window.Exists<Button>(SearchCriteria.ByText("OK"));
-
-        public bool IsCancelButtonVisible => Window.Exists<Button>(SearchCriteria.ByText("Cancel"));
+        public bool IsCancelButtonVisible => ElementWithTextExists(Cancel);
 
         public void ClickOK()
         {
-            Window.Get<Button>(SearchCriteria.ByText("OK")).Click();
+            DefaultOKButton.Click();
         }
 
         public void ClickCancel()
         {
-            Window.Get<Button>(SearchCriteria.ByText("Cancel")).Click();
+            DefaultCancelButton.Click();
         }
     }
 }

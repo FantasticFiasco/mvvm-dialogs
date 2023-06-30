@@ -1,34 +1,33 @@
-﻿using TestStack.White.Factory;
-using TestStack.White.ScreenObjects;
-using TestStack.White.ScreenObjects.ScreenAttributes;
-using TestStack.White.UIItems;
-using TestStack.White.UIItems.WindowItems;
+﻿using FlaUI.Core.AutomationElements;
+using FlaUI.Core.Input;
+using TestBaseClasses;
 
 namespace Demo.NonModalDialog.ScreenObjects
 {
-    public class MainScreen : AppScreen
+    public class MainScreen : Screen
     {
-        [AutomationId("6U4UYFLlnUKOBx26wvyDOg")]
-        private readonly Button? showCurrentTimeUsingDialogTypeLocatorButton = null;
-
-        [AutomationId("yp7kt1tOeEqE5y2KmylhGQ")]
-        private readonly Button? showCurrentTimeBySpecifyingDialogTypeButton = null;
-
-        public MainScreen(Window window, ScreenRepository screenRepository)
-            : base(window, screenRepository)
+        public MainScreen(Window window)
+            : base(window)
         {
         }
 
-        public virtual CurrentTimeScreen ClickShowCurrentTimeUsingDialogTypeLocator()
+        private Button ShowCurrentTimeUsingDialogTypeLocatorButton => ElementByAutomationId<Button>("6U4UYFLlnUKOBx26wvyDOg");
+        private Button ShowCurrentTimeBySpecifyingDialogTypeButton => ElementByAutomationId<Button>("yp7kt1tOeEqE5y2KmylhGQ");
+        
+        public CurrentTimeScreen ClickShowCurrentTimeUsingDialogTypeLocator()
         {
-            showCurrentTimeUsingDialogTypeLocatorButton!.Click();
-            return ScreenRepository.GetModal<CurrentTimeScreen>("Current Time", Window, InitializeOption.NoCache);
+            ShowCurrentTimeUsingDialogTypeLocatorButton.Click();
+            Wait.UntilInputIsProcessed();
+
+            return new CurrentTimeScreen(GetNonModalWindow("Current time"));
         }
 
-        public virtual CurrentTimeScreen ClickShowCurrentTimeBySpecifyingDialogType()
+        public CurrentTimeScreen ClickShowCurrentTimeBySpecifyingDialogType()
         {
-            showCurrentTimeBySpecifyingDialogTypeButton!.Click();
-            return ScreenRepository.GetModal<CurrentTimeScreen>("Current Time", Window, InitializeOption.NoCache);
+            ShowCurrentTimeBySpecifyingDialogTypeButton.Click();
+            Wait.UntilInputIsProcessed();
+
+            return new CurrentTimeScreen(GetNonModalWindow("Current time"));
         }
     }
 }

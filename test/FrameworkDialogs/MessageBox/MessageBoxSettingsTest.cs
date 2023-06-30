@@ -1,13 +1,10 @@
-using System.Linq;
 using MvvmDialogs.FrameworkDialogs.Utils;
-using NUnit.Framework;
 
 namespace MvvmDialogs.FrameworkDialogs.MessageBox
 {
-    [TestFixture]
     public class MessageBoxSettingsTest
     {
-        [Test]
+        [Fact]
         public void NativeDialogSettingsParity()
         {
             // Arrange
@@ -20,7 +17,7 @@ namespace MvvmDialogs.FrameworkDialogs.MessageBox
                 DialogSettings.GetMessageBoxParameters().Except(DialogSettings.ExcludedMessageBoxPropertyNames));
 
             // Assert
-            Assert.That(messageBoxSettingsPropertyNames, Is.EqualTo(messageBoxPropertyNames));
+            Assert.Equal(messageBoxPropertyNames, messageBoxSettingsPropertyNames);
         }
     }
 }

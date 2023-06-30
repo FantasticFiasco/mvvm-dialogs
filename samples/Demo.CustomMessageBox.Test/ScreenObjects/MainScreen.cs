@@ -1,66 +1,63 @@
-﻿using TestStack.White.Factory;
-using TestStack.White.ScreenObjects;
-using TestStack.White.ScreenObjects.ScreenAttributes;
-using TestStack.White.UIItems;
-using TestStack.White.UIItems.WindowItems;
+﻿using FlaUI.Core.AutomationElements;
+using FlaUI.Core.Input;
+using TestBaseClasses;
 
 namespace Demo.CustomMessageBox.ScreenObjects
 {
-    public class MainScreen : AppScreen
+    public class MainScreen : Screen
     {
-        [AutomationId("1k7d1Nm8MkOYK5qGrdVX4Q")]
-        private readonly Button? messageBoxWithMessageButton = null;
-
-        [AutomationId("EvNqZT9tYkuNzKDDrLJ8Yw")]
-        private readonly Button? messageBoxWithCaptionButton = null;
-
-        [AutomationId("FWGzBkom5ESJz_p7KCPKqQ")]
-        private readonly Button? messageBoxWithButtonsButton = null;
-
-        [AutomationId("SapYi2J7bkiJ1z1GWwOZAQ")]
-        private readonly Button? messageBoxWithIconButton = null;
-
-        [AutomationId("sUjm2_m1LUGWso8S2Us5ow")]
-        private readonly Button? messageBoxWithDefaultResultButton = null;
-
-        [AutomationId("kT3_ZUZfsEK1QdZ2jBfuIQ")]
-        private readonly Label? confirmation = null;
-
-        public MainScreen(Window window, ScreenRepository screenRepository)
-            : base(window, screenRepository)
+        public MainScreen(Window window)
+            : base(window)
         {
         }
 
-        public virtual string? Confirmation => confirmation?.Text;
+        private Button MessageBoxWithMessageButton => ElementByAutomationId<Button>("1k7d1Nm8MkOYK5qGrdVX4Q");
+        private Button MessageBoxWithCaptionButton => ElementByAutomationId<Button>("EvNqZT9tYkuNzKDDrLJ8Yw");
+        private Button MessageBoxWithButtonsButton => ElementByAutomationId<Button>("FWGzBkom5ESJz_p7KCPKqQ");
+        private Button MessageBoxWithIconButton => ElementByAutomationId<Button>("SapYi2J7bkiJ1z1GWwOZAQ");
+        private Button MessageBoxWithDefaultResultButton => ElementByAutomationId<Button>("sUjm2_m1LUGWso8S2Us5ow");
+        private Label ConfirmationLabel => ElementByAutomationId<Label>("kT3_ZUZfsEK1QdZ2jBfuIQ");
 
-        public virtual MessageBoxScreen ClickMessageBoxWithMessage()
+        public string Confirmation => ConfirmationLabel.Text;
+
+        public MessageBoxScreen ClickMessageBoxWithMessage()
         {
-            messageBoxWithMessageButton!.Click();
-            return ScreenRepository.GetModal<MessageBoxScreen>(" ", Window, InitializeOption.NoCache);
+            MessageBoxWithMessageButton.Click();
+            Wait.UntilInputIsProcessed();
+
+            return new MessageBoxScreen(GetModalWindow(" "));
         }
 
-        public virtual MessageBoxScreen ClickMessageBoxWithCaption()
+        public MessageBoxScreen ClickMessageBoxWithCaption()
         {
-            messageBoxWithCaptionButton!.Click();
-            return ScreenRepository.GetModal<MessageBoxScreen>("This Is The Caption", Window, InitializeOption.NoCache);
+            MessageBoxWithCaptionButton.Click();
+            Wait.UntilInputIsProcessed();
+
+            return new MessageBoxScreen(GetModalWindow("This Is The Caption"));
         }
 
-        public virtual MessageBoxScreen ClickMessageBoxWithButtons()
+        public MessageBoxScreen ClickMessageBoxWithButtons()
         {
-            messageBoxWithButtonsButton!.Click();
-            return ScreenRepository.GetModal<MessageBoxScreen>("This Is The Caption", Window, InitializeOption.NoCache);
+            MessageBoxWithButtonsButton.Click();
+            Wait.UntilInputIsProcessed();
+
+            return new MessageBoxScreen(GetModalWindow("This Is The Caption"));
         }
 
-        public virtual MessageBoxScreen ClickMessageBoxWithIcon()
+        public MessageBoxScreen ClickMessageBoxWithIcon()
         {
-            messageBoxWithIconButton!.Click();
-            return ScreenRepository.GetModal<MessageBoxScreen>("This Is The Caption", Window, InitializeOption.NoCache);
+            MessageBoxWithIconButton.Click();
+            Wait.UntilInputIsProcessed();
+
+            return new MessageBoxScreen(GetModalWindow("This Is The Caption"));
         }
 
-        public virtual MessageBoxScreen ClickMessageBoxWithDefaultResult()
+        public MessageBoxScreen ClickMessageBoxWithDefaultResult()
         {
-            messageBoxWithDefaultResultButton!.Click();
-            return ScreenRepository.GetModal<MessageBoxScreen>("This Is The Caption", Window, InitializeOption.NoCache);
+            MessageBoxWithDefaultResultButton.Click();
+            Wait.UntilInputIsProcessed();
+
+            return new MessageBoxScreen(GetModalWindow("This Is The Caption"));
         }
     }
 }

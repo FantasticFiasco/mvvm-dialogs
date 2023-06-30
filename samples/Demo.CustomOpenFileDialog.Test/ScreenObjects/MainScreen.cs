@@ -1,30 +1,27 @@
-﻿using TestStack.White.Factory;
-using TestStack.White.ScreenObjects;
-using TestStack.White.ScreenObjects.ScreenAttributes;
-using TestStack.White.UIItems;
-using TestStack.White.UIItems.WindowItems;
+﻿using FlaUI.Core.AutomationElements;
+using FlaUI.Core.Input;
+using TestBaseClasses;
 
 namespace Demo.CustomOpenFileDialog.ScreenObjects
 {
-    public class MainScreen : AppScreen
+    public class MainScreen : Screen
     {
-        [AutomationId("cqkeItgI3UaZc-mQ6mYPAA")]
-        private readonly TextBox? pathTextBox = null;
-
-        [AutomationId("MZ16xHTzYE2UP8S9vd-EGw")]
-        private readonly Button? openButton = null;
-
-        public MainScreen(Window window, ScreenRepository screenRepository)
-            : base(window, screenRepository)
+        public MainScreen(Window window)
+            : base(window)
         {
         }
 
-        public virtual string? FileName => pathTextBox?.Text;
+        private TextBox PathTextBox => ElementByAutomationId<TextBox>("cqkeItgI3UaZc-mQ6mYPAA");
+        private Button OpenButton => ElementByAutomationId<Button>("MZ16xHTzYE2UP8S9vd-EGw");
 
-        public virtual OpenFileScreen ClickOpen()
+        public string FileName => PathTextBox.Text;
+
+        public OpenFileScreen ClickOpen()
         {
-            openButton!.Click();
-            return ScreenRepository.GetModal<OpenFileScreen>("This Is The Title", Window, InitializeOption.NoCache);
+            OpenButton.Click();
+            Wait.UntilInputIsProcessed();
+
+            return new OpenFileScreen(GetModalWindow("This Is The Title"));
         }
     }
 }

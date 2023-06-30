@@ -1,20 +1,17 @@
-﻿using TestStack.White.ScreenObjects;
-using TestStack.White.ScreenObjects.ScreenAttributes;
-using TestStack.White.UIItems;
-using TestStack.White.UIItems.WindowItems;
+﻿using FlaUI.Core.AutomationElements;
+using TestBaseClasses;
 
 namespace Demo.NonModalDialog.ScreenObjects
 {
-    public class CurrentTimeScreen : AppScreen
+    public class CurrentTimeScreen : Screen
     {
-        [AutomationId("n_Mu0TdFak-4VJD8RosMEQ")]
-        private readonly Label? currentTime = null;
-
-        public CurrentTimeScreen(Window window, ScreenRepository screenRepository)
-            : base(window, screenRepository)
+        public CurrentTimeScreen(Window window)
+            : base(window)
         {
         }
 
-        public virtual bool CurrentTimeVisible => currentTime!.Visible;
+        private Label CurrentTimeLabel => ElementByAutomationId<Label>("n_Mu0TdFak-4VJD8RosMEQ");
+
+        public bool CurrentTimeVisible => !CurrentTimeLabel.IsOffscreen;
     }
 }

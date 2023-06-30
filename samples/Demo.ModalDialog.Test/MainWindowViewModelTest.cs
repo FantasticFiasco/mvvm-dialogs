@@ -1,14 +1,13 @@
 ﻿using System.ComponentModel;
 using Moq;
 using MvvmDialogs;
-using NUnit.Framework;
+using Xunit;
 
 namespace Demo.ModalDialog
 {
-    [TestFixture]
     public class MainWindowViewModelTest
     {
-        [Test]
+        [Fact]
         public void ImplicitAddTextSuccessful()
         {
             // Arrange
@@ -30,10 +29,10 @@ namespace Demo.ModalDialog
             viewModel.ImplicitShowDialogCommand.Execute(null);
 
             // Assert
-            Assert.That(viewModel.Texts, Is.EqualTo(expected));
+            Assert.Equal(expected, viewModel.Texts);
         }
 
-        [Test]
+        [Fact]
         public void ImplicitAddTextUnsuccessful()
         {
             // Arrange
@@ -48,10 +47,10 @@ namespace Demo.ModalDialog
             viewModel.ImplicitShowDialogCommand.Execute(null);
 
             // Assert
-            Assert.That(viewModel.Texts, Is.Empty);
+            Assert.Empty(viewModel.Texts);
         }
 
-        [Test]
+        [Fact]
         public void ExplicitAddTextSuccessful()
         {
             // Arrange
@@ -73,10 +72,10 @@ namespace Demo.ModalDialog
             viewModel.ExplicitShowDialogCommand.Execute(null);
 
             // Assert
-            Assert.That(viewModel.Texts, Is.EqualTo(expected));
+            Assert.Equal(expected, viewModel.Texts);
         }
 
-        [Test]
+        [Fact]
         public void ExplicitAddTextUnsuccessful()
         {
             // Arrange
@@ -91,7 +90,7 @@ namespace Demo.ModalDialog
             viewModel.ExplicitShowDialogCommand.Execute(null);
 
             // Assert
-            Assert.That(viewModel.Texts, Is.Empty);
+            Assert.Empty(viewModel.Texts);
         }
     }
 }

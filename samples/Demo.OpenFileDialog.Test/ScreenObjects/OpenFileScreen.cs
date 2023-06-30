@@ -1,33 +1,32 @@
-﻿using TestStack.White.InputDevices;
-using TestStack.White.ScreenObjects;
-using TestStack.White.UIItems;
-using TestStack.White.UIItems.Finders;
-using TestStack.White.UIItems.ListBoxItems;
-using TestStack.White.UIItems.WindowItems;
-using TestStack.White.WindowsAPI;
+﻿using FlaUI.Core.AutomationElements;
+using FlaUI.Core.Input;
+using FlaUI.Core.WindowsAPI;
+using TestBaseClasses;
 
 namespace Demo.OpenFileDialog.ScreenObjects
 {
-    public class OpenFileScreen : AppScreen
+    public class OpenFileScreen : Screen
     {
-        public OpenFileScreen(Window window, ScreenRepository screenRepository)
-            : base(window, screenRepository)
+        public OpenFileScreen(Window window)
+            : base(window)
         {
         }
 
-        public virtual string FileName
+        private ComboBox FileNameComboBox => ElementByAutomationId<ComboBox>("1148");
+
+        public string FileName
         {
-            set => Window.Get<ComboBox>(SearchCriteria.ByAutomationId("1148")).EditableText = value;
+            set => FileNameComboBox.EditableText = value;
         }
 
-        public virtual void ClickOpen()
+        public void ClickOpen()
         {
-            Keyboard.Instance.PressSpecialKey(KeyboardInput.SpecialKeys.RETURN);
+            Keyboard.Press(VirtualKeyShort.ENTER);
         }
 
-        public virtual void ClickCancel()
+        public void ClickCancel()
         {
-            Window.Get<Button>(SearchCriteria.ByText("Cancel")).Click();
+            DefaultCancelButton.Click();
         }
     }
 }

@@ -1,12 +1,8 @@
-﻿using System;
-using NUnit.Framework;
-
-namespace MvvmDialogs.DialogTypeLocators
+﻿namespace MvvmDialogs.DialogTypeLocators
 {
-    [TestFixture]
     public class DialogTypeLocatorCacheTest
     {
-        [Test]
+        [StaFact]
         public void Add()
         {
             // Arrange
@@ -16,10 +12,10 @@ namespace MvvmDialogs.DialogTypeLocators
             cache.Add(typeof(TestDialogViewModel), typeof(TestDialog));
 
             // Assert
-            Assert.That(cache.Count, Is.EqualTo(1));
+            Assert.Equal(1, cache.Count);
         }
 
-        [Test]
+        [StaFact]
         public void AddSameTwice()
         {
             // Arrange
@@ -30,7 +26,7 @@ namespace MvvmDialogs.DialogTypeLocators
             Assert.Throws<ArgumentException>(() => cache.Add(typeof(TestDialogViewModel), typeof(TestDialog)));
         }
 
-        [Test]
+        [StaFact]
         public void Get()
         {
             // Arrange
@@ -41,10 +37,10 @@ namespace MvvmDialogs.DialogTypeLocators
             Type? dialogType = cache.Get(typeof(TestDialogViewModel));
 
             // Assert
-            Assert.That(dialogType, Is.EqualTo(typeof(TestDialog)));
+            Assert.Equal(typeof(TestDialog), dialogType);
         }
 
-        [Test]
+        [StaFact]
         public void Clear()
         {
             // Arrange
@@ -55,7 +51,7 @@ namespace MvvmDialogs.DialogTypeLocators
             cache.Clear();
 
             // Assert
-            Assert.That(cache.Count, Is.EqualTo(0));
+            Assert.Equal(0, cache.Count);
         }
 
         #region Helper classes

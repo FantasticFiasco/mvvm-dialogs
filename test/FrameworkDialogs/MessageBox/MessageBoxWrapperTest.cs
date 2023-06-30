@@ -1,15 +1,11 @@
-﻿using System.Threading;
-using System.Windows;
+﻿using System.Windows;
 using Moq;
-using NUnit.Framework;
 
 namespace MvvmDialogs.FrameworkDialogs.MessageBox
 {
-    [TestFixture]
     public class MessageBoxWrapperTest
     {
-        [Test]
-        [RequiresThread(ApartmentState.STA)]
+        [StaFact]
         public void Show()
         {
             // Arrange
@@ -22,7 +18,7 @@ namespace MvvmDialogs.FrameworkDialogs.MessageBox
             settings.DefaultResult = MessageBoxResult.Yes;
             settings.Icon = MessageBoxImage.Warning;
             settings.MessageBoxText = "Some message box text";
-            settings.Options = MessageBoxOptions.RightAlign;
+            settings.Options = System.Windows.MessageBoxOptions.RightAlign;
 
             var owner = new Window();
 

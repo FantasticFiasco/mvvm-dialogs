@@ -1,13 +1,13 @@
-﻿using NUnit.Framework;
+﻿using Xunit;
 
 namespace Demo.ModalCustomDialog
 {
-    [TestFixture]
     public class AddTextCustomDialogViewModelTest
     {
-        [TestCase("Some text", true)]
-        [TestCase("", null)]
-        [TestCase(null, null)]
+        [Theory]
+        [InlineData("Some text", true)]
+        [InlineData("", null)]
+        [InlineData(null, null)]
         public void Ok(string text, bool? expectedDialogResult)
         {
             // Arrange
@@ -20,7 +20,7 @@ namespace Demo.ModalCustomDialog
             viewModel.OkCommand.Execute(null);
 
             // Assert
-            Assert.That(viewModel.DialogResult, Is.EqualTo(expectedDialogResult));
+            Assert.Equal(expectedDialogResult, viewModel.DialogResult);
         }
     }
 }

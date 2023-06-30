@@ -1,14 +1,10 @@
-using System.Linq;
-using System.Windows.Forms;
 using MvvmDialogs.FrameworkDialogs.Utils;
-using NUnit.Framework;
 
 namespace MvvmDialogs.FrameworkDialogs.FolderBrowser
 {
-    [TestFixture]
     public class FolderBrowserDialogSettingsTest
     {
-        [Test]
+        [Fact]
         public void NativeDialogSettingsParity()
         {
             // Arrange
@@ -21,7 +17,7 @@ namespace MvvmDialogs.FrameworkDialogs.FolderBrowser
                 DialogSettings.GetPropertyNames(typeof(FolderBrowserDialog)).Except(DialogSettings.ExcludedPropertyNames));
 
             // Assert
-            Assert.That(settingsPropertyNames, Is.EqualTo(dialogPropertyNames));
+            Assert.Equal(dialogPropertyNames, settingsPropertyNames);
         }
     }
 }

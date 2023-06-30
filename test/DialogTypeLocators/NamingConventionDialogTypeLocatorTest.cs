@@ -1,11 +1,8 @@
-﻿using System;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Reflection;
-using NUnit.Framework;
 
 namespace MvvmDialogs.DialogTypeLocators
 {
-    [TestFixture]
     public class NamingConventionDialogTypeLocatorTest
     {
         private readonly Assembly testAssembly;
@@ -37,34 +34,36 @@ namespace MvvmDialogs.DialogTypeLocators
             testAssembly = assemblyBuilder.Build();
         }
 
-        [TestCase("TestAssembly.DialogViewModel", "TestAssembly.Dialog")]
-        [TestCase("TestAssembly.ViewModels.DialogViewModel", "TestAssembly.Views.Dialog")]
-        [TestCase("TestAssembly.ViewModels.Module.DialogViewModel", "TestAssembly.Views.Module.Dialog")]
-        [TestCase("TestAssembly.Module.ViewModels.DialogViewModel", "TestAssembly.Module.Views.Dialog")]
+        [Theory]
+        [InlineData("TestAssembly.DialogViewModel", "TestAssembly.Dialog")]
+        [InlineData("TestAssembly.ViewModels.DialogViewModel", "TestAssembly.Views.Dialog")]
+        [InlineData("TestAssembly.ViewModels.Module.DialogViewModel", "TestAssembly.Views.Module.Dialog")]
+        [InlineData("TestAssembly.Module.ViewModels.DialogViewModel", "TestAssembly.Module.Views.Dialog")]
         public void LocateDialogTypeSuccessful(string viewModelFullName, string viewFullName)
         {
             // Arrange
             var dialogTypeLocator = new NamingConventionDialogTypeLocator();
-            Type viewModelType = testAssembly.GetType(viewModelFullName);
-            Assert.IsNotNull(viewModelType);
+            var viewModelType = testAssembly.GetType(viewModelFullName);
+            Assert.NotNull(viewModelType);
 
             var viewModel = (INotifyPropertyChanged)Activator.CreateInstance(viewModelType);
-            
+
             // Act
-            Type dialogType = dialogTypeLocator.Locate(viewModel);
+            var dialogType = dialogTypeLocator.Locate(viewModel);
 
             // Assert
-            Assert.That(dialogType.FullName, Is.EqualTo(viewFullName));
+            Assert.Equal(viewFullName, dialogType.FullName);
         }
 
-        [TestCase("TestAssembly.ModuleWithoutViewNamespace.ViewModel.DialogViewModel")]
-        [TestCase("TestAssembly.UnconventionalNamespace.DialogViewModel")]
+        [Theory]
+        [InlineData("TestAssembly.ModuleWithoutViewNamespace.ViewModel.DialogViewModel")]
+        [InlineData("TestAssembly.UnconventionalNamespace.DialogViewModel")]
         public void LocateDialogTypeUnsuccessful(string viewModelFullName)
         {
             // Arrange
             var dialogTypeLocator = new NamingConventionDialogTypeLocator();
-            Type viewModelType = testAssembly.GetType(viewModelFullName);
-            Assert.IsNotNull(viewModelType);
+            var viewModelType = testAssembly.GetType(viewModelFullName);
+            Assert.NotNull(viewModelType);
 
             var viewModel = (INotifyPropertyChanged)Activator.CreateInstance(viewModelType);
 

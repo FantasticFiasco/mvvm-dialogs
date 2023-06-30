@@ -1,14 +1,10 @@
-using System.Linq;
-using Microsoft.Win32;
 using MvvmDialogs.FrameworkDialogs.Utils;
-using NUnit.Framework;
 
 namespace MvvmDialogs.FrameworkDialogs.OpenFile
 {
-    [TestFixture]
     public class OpenFileDialogSettingsTest
     {
-        [Test]
+        [Fact]
         public void NativeDialogSettingsParity()
         {
             // Arrange
@@ -18,10 +14,10 @@ namespace MvvmDialogs.FrameworkDialogs.OpenFile
 
             var dialogPropertyNames = string.Join(
                 ", ",
-                DialogSettings.GetPropertyNames(typeof(OpenFileDialog)).Except(DialogSettings.ExcludedPropertyNames));
+                DialogSettings.GetPropertyNames(typeof(Microsoft.Win32.OpenFileDialog)).Except(DialogSettings.ExcludedPropertyNames));
 
             // Assert
-            Assert.That(settingsPropertyNames, Is.EqualTo(dialogPropertyNames));
+            Assert.Equal(dialogPropertyNames, settingsPropertyNames);
         }
     }
 }

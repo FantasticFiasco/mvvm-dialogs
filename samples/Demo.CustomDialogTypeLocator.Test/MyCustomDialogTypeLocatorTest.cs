@@ -1,13 +1,12 @@
 ﻿using Moq;
 using MvvmDialogs;
-using NUnit.Framework;
+using Xunit;
 
 namespace Demo.CustomDialogTypeLocator
 {
-    [TestFixture]
     public class MainWindowViewModelTest
     {
-        [Test]
+        [Fact]
         public void ShowDialog()
         {
             // Arrange

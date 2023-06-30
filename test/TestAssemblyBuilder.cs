@@ -1,5 +1,4 @@
-﻿using System;
-using System.Reflection;
+﻿using System.Reflection;
 using System.Reflection.Emit;
 
 namespace MvvmDialogs
@@ -25,11 +24,11 @@ namespace MvvmDialogs
 
         public Type CreateType(string fullName, Type? parenType = null)
         {
-            TypeBuilder typeBuilder = moduleBuilder.DefineType(
+            var typeBuilder = moduleBuilder.DefineType(
                 fullName,
                 TypeAttributes.Public,
                 parenType);
-            
+
             return typeBuilder.CreateType();
         }
 

@@ -1,30 +1,27 @@
-﻿using TestStack.White.Factory;
-using TestStack.White.ScreenObjects;
-using TestStack.White.ScreenObjects.ScreenAttributes;
-using TestStack.White.UIItems;
-using TestStack.White.UIItems.WindowItems;
+﻿using FlaUI.Core.AutomationElements;
+using FlaUI.Core.Input;
+using TestBaseClasses;
 
 namespace Demo.FolderBrowserDialog.ScreenObjects
 {
-    public class MainScreen : AppScreen
+    public class MainScreen : Screen
     {
-        [AutomationId("RQ_N2kIsN0C39sxTonCRtA")]
-        private readonly TextBox? pathTextBox = null;
-
-        [AutomationId("TTK4W3coCE2skIHpcUe97Q")]
-        private readonly Button? browseButton = null;
-
-        public MainScreen(Window window, ScreenRepository screenRepository)
-            : base(window, screenRepository)
+        public MainScreen(Window window)
+            : base(window)
         {
         }
 
-        public virtual string? FileName => pathTextBox?.Text;
+        private TextBox PathTextBox => ElementByAutomationId<TextBox>("RQ_N2kIsN0C39sxTonCRtA");
+        private Button BrowseButton => ElementByAutomationId<Button>("TTK4W3coCE2skIHpcUe97Q");
 
-        public virtual BrowseFolderScreen ClickBrowse()
+        public string FileName => PathTextBox.Text;
+
+        public BrowseFolderScreen ClickBrowse()
         {
-            browseButton!.Click();
-            return ScreenRepository.GetModal<BrowseFolderScreen>("Browse For Folder", Window, InitializeOption.NoCache);
+            BrowseButton.Click();
+            Wait.UntilInputIsProcessed();
+
+            return new BrowseFolderScreen(GetModalWindow("Browse For Folder"));
         }
     }
 }

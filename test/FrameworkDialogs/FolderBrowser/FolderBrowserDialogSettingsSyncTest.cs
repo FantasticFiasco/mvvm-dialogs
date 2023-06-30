@@ -1,13 +1,8 @@
-using System;
-using System.Windows.Forms;
-using NUnit.Framework;
-
 namespace MvvmDialogs.FrameworkDialogs.FolderBrowser
 {
-    [TestFixture]
     public class FolderBrowserDialogSettingsSyncTest
     {
-        [Test]
+        [Fact]
         public void ToDialog()
         {
             // Arrange
@@ -24,13 +19,13 @@ namespace MvvmDialogs.FrameworkDialogs.FolderBrowser
             sync.ToDialog();
 
             // Assert
-            Assert.That(dialog.Description, Is.EqualTo(settings.Description));
-            Assert.That(dialog.RootFolder, Is.EqualTo(settings.RootFolder));
-            Assert.That(dialog.SelectedPath, Is.EqualTo(settings.SelectedPath));
-            Assert.That(dialog.ShowNewFolderButton, Is.EqualTo(settings.ShowNewFolderButton));
+            Assert.Equal(settings.Description, dialog.Description);
+            Assert.Equal(settings.RootFolder, dialog.RootFolder);
+            Assert.Equal(settings.SelectedPath, dialog.SelectedPath);
+            Assert.Equal(settings.ShowNewFolderButton, dialog.ShowNewFolderButton);
         }
 
-        [Test]
+        [Fact]
         public void ToSettings()
         {
             // Arrange
@@ -44,7 +39,7 @@ namespace MvvmDialogs.FrameworkDialogs.FolderBrowser
             sync.ToSettings();
 
             // Assert
-            Assert.That(settings.SelectedPath, Is.EqualTo(dialog.SelectedPath));
+            Assert.Equal(dialog.SelectedPath, settings.SelectedPath);
         }
     }
 }
