@@ -22,7 +22,7 @@ namespace Demo.ModalDialog
             addTextScreen.Text = "Added text";
             addTextScreen.ClickOK();
 
-            Assert.Equal(mainScreen.Texts, new []{ "Added text" });
+            Assert.Equal(mainScreen.Texts, new[] { "Added text" });
         }
 
         [Fact]
