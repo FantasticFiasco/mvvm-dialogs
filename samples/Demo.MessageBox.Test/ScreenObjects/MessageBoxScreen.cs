@@ -17,12 +17,11 @@ namespace Demo.MessageBox.ScreenObjects
 
         public string Message => MessageLabel.Text;
 
-        public bool IsIconVisible => throw new NotImplementedException();
-        //public bool IsIconVisible => Window.Exists<Image>(SearchCriteria.ByAutomationId("20"));
+        public bool IsIconVisible => ElementWithAutomationIdExists("20");
+        
+        public bool IsOKButtonVisible => ElementWithTextExists(OK);
 
-        public bool IsOKButtonVisible => throw new NotImplementedException();
-
-        public bool IsCancelButtonVisible => throw new NotImplementedException();
+        public bool IsCancelButtonVisible => ElementWithTextExists(Cancel);
 
         public void ClickOK()
         {
