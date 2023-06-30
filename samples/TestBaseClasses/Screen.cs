@@ -1,4 +1,5 @@
 ﻿using FlaUI.Core.AutomationElements;
+using FlaUI.Core.Definitions;
 
 namespace TestBaseClasses
 {
@@ -60,6 +61,14 @@ namespace TestBaseClasses
         protected Window GetModalWindow(string title)
         {
             return window.ModalWindows.Single(w => w.Title == title);
+        }
+
+        protected Window GetNonModalWindow(string titleContains)
+        {
+            var elements = window.FindAllChildren(cf => cf.ByControlType(ControlType.Window));
+            var windows = elements.Select(element => new Window(element.FrameworkAutomationElement));
+
+            return windows.Single(w => w.Title.Contains(titleContains));
         }
     }
 }
