@@ -1,35 +1,39 @@
-﻿// using TestStack.White.ScreenObjects;
-// using TestStack.White.UIItems;
-// using TestStack.White.UIItems.Finders;
-// using TestStack.White.UIItems.WindowItems;
+﻿using FlaUI.Core.AutomationElements;
+using TestBaseClasses;
 
-// namespace Demo.MessageBox.ScreenObjects
-// {
-//     public class MessageBoxScreen : AppScreen
-//     {
-//         public MessageBoxScreen(Window window, ScreenRepository screenRepository)
-//             : base(window, screenRepository)
-//         {
-//         }
+namespace Demo.MessageBox.ScreenObjects
+{
+    public class MessageBoxScreen : Screen
+    {
+        public MessageBoxScreen(Window window)
+            : base(window)
+        {
+        }
 
-//         public string Caption => Window.Title;
+        private Label MessageLabel => LabelByAutomationId("65535");
+        private Button OKButton => ButtonByText("OK");
+        private Button CancelButton => ButtonByText("Cancel");
 
-//         public string Message => Window.Get<Label>(SearchCriteria.ByAutomationId("65535")).Text;
 
-//         public bool IsIconVisible => Window.Exists<Image>(SearchCriteria.ByAutomationId("20"));
+        public string Caption => Window.Title;
 
-//         public bool IsOKButtonVisible => Window.Exists<Button>(SearchCriteria.ByText("OK"));
+        public string Message => MessageLabel.Text;
 
-//         public bool IsCancelButtonVisible => Window.Exists<Button>(SearchCriteria.ByText("Cancel"));
+        public bool IsIconVisible => throw new NotImplementedException();
+        //public bool IsIconVisible => Window.Exists<Image>(SearchCriteria.ByAutomationId("20"));
 
-//         public void ClickOK()
-//         {
-//             Window.Get<Button>(SearchCriteria.ByText("OK")).Click();
-//         }
+        public bool IsOKButtonVisible => throw new NotImplementedException();
 
-//         public void ClickCancel()
-//         {
-//             Window.Get<Button>(SearchCriteria.ByText("Cancel")).Click();
-//         }
-//     }
-// }
+        public bool IsCancelButtonVisible => throw new NotImplementedException();
+
+        public void ClickOK()
+        {
+            OKButton.Click();
+        }
+
+        public void ClickCancel()
+        {
+            CancelButton.Click();
+        }
+    }
+}
