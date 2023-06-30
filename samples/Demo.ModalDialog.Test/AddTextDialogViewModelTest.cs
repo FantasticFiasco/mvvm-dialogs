@@ -1,26 +1,25 @@
 ﻿using Xunit;
 
-namespace Demo.ModalDialog
+namespace Demo.ModalDialog;
+
+public class AddTextDialogViewModelTest
 {
-    public class AddTextDialogViewModelTest
+    [Theory]
+    [InlineData("Some text", true)]
+    [InlineData("", null)]
+    [InlineData(null, null)]
+    public void Ok(string text, bool? expectedDialogResult)
     {
-        [Theory]
-        [InlineData("Some text", true)]
-        [InlineData("", null)]
-        [InlineData(null, null)]
-        public void Ok(string text, bool? expectedDialogResult)
+        // Arrange
+        var viewModel = new AddTextDialogViewModel
         {
-            // Arrange
-            var viewModel = new AddTextDialogViewModel
-            {
-                Text = text
-            };
+            Text = text
+        };
 
-            // Act
-            viewModel.OkCommand.Execute(null);
+        // Act
+        viewModel.OkCommand.Execute(null);
 
-            // Assert
-            Assert.Equal(expectedDialogResult, viewModel.DialogResult);
-        }
+        // Assert
+        Assert.Equal(expectedDialogResult, viewModel.DialogResult);
     }
 }

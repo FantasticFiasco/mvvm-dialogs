@@ -1,10 +1,9 @@
-﻿namespace Demo.NonModalCustomDialog
+﻿namespace Demo.NonModalCustomDialog;
+
+public partial class MainWindow
 {
-    public partial class MainWindow
+    public MainWindow()
     {
-        public MainWindow()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
     }
 }

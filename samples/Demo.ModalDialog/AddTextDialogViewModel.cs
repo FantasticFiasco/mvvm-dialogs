@@ -3,38 +3,37 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using MvvmDialogs;
 
-namespace Demo.ModalDialog
+namespace Demo.ModalDialog;
+
+public class AddTextDialogViewModel : ObservableObject, IModalDialogViewModel
 {
-    public class AddTextDialogViewModel : ObservableObject, IModalDialogViewModel
+    private string? text;
+    private bool? dialogResult;
+
+    public AddTextDialogViewModel()
     {
-        private string? text;
-        private bool? dialogResult;
+        OkCommand = new RelayCommand(Ok);
+    }
 
-        public AddTextDialogViewModel()
+    public string? Text
+    {
+        get => text;
+        set => SetProperty(ref text, value);
+    }
+
+    public ICommand OkCommand { get; }
+
+    public bool? DialogResult
+    {
+        get => dialogResult;
+        private set => SetProperty(ref dialogResult, value);
+    }
+
+    private void Ok()
+    {
+        if (!string.IsNullOrEmpty(Text))
         {
-            OkCommand = new RelayCommand(Ok);
-        }
-
-        public string? Text
-        {
-            get => text;
-            set => SetProperty(ref text, value);
-        }
-
-        public ICommand OkCommand { get; }
-
-        public bool? DialogResult
-        {
-            get => dialogResult;
-            private set => SetProperty(ref dialogResult, value);
-        }
-
-        private void Ok()
-        {
-            if (!string.IsNullOrEmpty(Text))
-            {
-                DialogResult = true;
-            }
+            DialogResult = true;
         }
     }
 }

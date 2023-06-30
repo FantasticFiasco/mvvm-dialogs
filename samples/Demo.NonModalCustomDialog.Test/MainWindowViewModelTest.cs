@@ -2,44 +2,43 @@
 using MvvmDialogs;
 using Xunit;
 
-namespace Demo.NonModalCustomDialog
+namespace Demo.NonModalCustomDialog;
+
+public class MainWindowViewModelTest
 {
-    public class MainWindowViewModelTest
+    [Fact]
+    public void ImplicitShowCurrentTime()
     {
-        [Fact]
-        public void ImplicitShowCurrentTime()
-        {
-            // Arrange
-            var dialogService = new Mock<IDialogService>();
-            var viewModel = new MainWindowViewModel(dialogService.Object);
+        // Arrange
+        var dialogService = new Mock<IDialogService>();
+        var viewModel = new MainWindowViewModel(dialogService.Object);
 
-            dialogService
-                .Setup(mock => mock.Show(viewModel, It.IsAny<CurrentTimeCustomDialogViewModel>()))
-                .Verifiable();
+        dialogService
+            .Setup(mock => mock.Show(viewModel, It.IsAny<CurrentTimeCustomDialogViewModel>()))
+            .Verifiable();
 
-            // Act
-            viewModel.ImplicitShowCommand.Execute(null);
+        // Act
+        viewModel.ImplicitShowCommand.Execute(null);
 
-            // Assert
-            dialogService.VerifyAll();
-        }
+        // Assert
+        dialogService.VerifyAll();
+    }
 
-        [Fact]
-        public void ExplicitShowCurrentTime()
-        {
-            // Arrange
-            var dialogService = new Mock<IDialogService>();
-            var viewModel = new MainWindowViewModel(dialogService.Object);
+    [Fact]
+    public void ExplicitShowCurrentTime()
+    {
+        // Arrange
+        var dialogService = new Mock<IDialogService>();
+        var viewModel = new MainWindowViewModel(dialogService.Object);
 
-            dialogService
-                .Setup(mock => mock.ShowCustom<CurrentTimeCustomDialog>(It.IsAny<MainWindowViewModel>(), It.IsAny<CurrentTimeCustomDialogViewModel>()))
-                .Verifiable();
+        dialogService
+            .Setup(mock => mock.ShowCustom<CurrentTimeCustomDialog>(It.IsAny<MainWindowViewModel>(), It.IsAny<CurrentTimeCustomDialogViewModel>()))
+            .Verifiable();
 
-            // Act
-            viewModel.ExplicitShowCommand.Execute(null);
+        // Act
+        viewModel.ExplicitShowCommand.Execute(null);
 
-            // Assert
-            dialogService.VerifyAll();
-        }
+        // Assert
+        dialogService.VerifyAll();
     }
 }

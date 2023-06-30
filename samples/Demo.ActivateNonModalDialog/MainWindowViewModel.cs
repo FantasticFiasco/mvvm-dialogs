@@ -3,48 +3,47 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using MvvmDialogs;
 
-namespace Demo.ActivateNonModalDialog
+namespace Demo.ActivateNonModalDialog;
+
+public class MainWindowViewModel : ObservableObject
 {
-    public class MainWindowViewModel : ObservableObject
+    private readonly IDialogService dialogService;
+
+    private INotifyPropertyChanged? dialogViewModel;
+
+    public MainWindowViewModel(IDialogService dialogService)
     {
-        private readonly IDialogService dialogService;
+        this.dialogService = dialogService;
 
-        private INotifyPropertyChanged? dialogViewModel;
+        ShowCommand = new RelayCommand(Show, CanShow);
+        ActivateCommand = new RelayCommand(Activate, CanActivate);
+    }
 
-        public MainWindowViewModel(IDialogService dialogService)
-        {
-            this.dialogService = dialogService;
+    public RelayCommand ShowCommand { get; }
 
-            ShowCommand = new RelayCommand(Show, CanShow);
-            ActivateCommand = new RelayCommand(Activate, CanActivate);
-        }
+    public RelayCommand ActivateCommand { get; }
 
-        public RelayCommand ShowCommand { get; }
+    private void Show()
+    {
+        dialogViewModel = new CurrentTimeDialogViewModel();
+        dialogService.Show(this, dialogViewModel);
 
-        public RelayCommand ActivateCommand { get; }
+        ShowCommand.NotifyCanExecuteChanged();
+        ActivateCommand.NotifyCanExecuteChanged();
+    }
 
-        private void Show()
-        {
-            dialogViewModel = new CurrentTimeDialogViewModel();
-            dialogService.Show(this, dialogViewModel);
+    private bool CanShow()
+    {
+        return dialogViewModel == null;
+    }
 
-            ShowCommand.NotifyCanExecuteChanged();
-            ActivateCommand.NotifyCanExecuteChanged();
-        }
+    private void Activate()
+    {
+        dialogService.Activate(dialogViewModel!);
+    }
 
-        private bool CanShow()
-        {
-            return dialogViewModel == null;
-        }
-
-        private void Activate()
-        {
-            dialogService.Activate(dialogViewModel!);
-        }
-
-        private bool CanActivate()
-        {
-            return dialogViewModel != null;
-        }
+    private bool CanActivate()
+    {
+        return dialogViewModel != null;
     }
 }

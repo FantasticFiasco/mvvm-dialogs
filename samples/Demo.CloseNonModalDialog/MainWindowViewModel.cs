@@ -3,52 +3,51 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using MvvmDialogs;
 
-namespace Demo.CloseNonModalDialog
+namespace Demo.CloseNonModalDialog;
+
+public class MainWindowViewModel : ObservableObject
 {
-    public class MainWindowViewModel : ObservableObject
+    private readonly IDialogService dialogService;
+
+    private INotifyPropertyChanged? dialogViewModel;
+
+    public MainWindowViewModel(IDialogService dialogService)
     {
-        private readonly IDialogService dialogService;
+        this.dialogService = dialogService;
 
-        private INotifyPropertyChanged? dialogViewModel;
+        ShowCommand = new RelayCommand(Show, CanShow);
+        CloseCommand = new RelayCommand(Close, CanClose);
+    }
 
-        public MainWindowViewModel(IDialogService dialogService)
-        {
-            this.dialogService = dialogService;
+    public RelayCommand ShowCommand { get; }
 
-            ShowCommand = new RelayCommand(Show, CanShow);
-            CloseCommand = new RelayCommand(Close, CanClose);
-        }
+    public RelayCommand CloseCommand { get; }
 
-        public RelayCommand ShowCommand { get; }
+    private void Show()
+    {
+        dialogViewModel = new CurrentTimeDialogViewModel();
+        dialogService.Show(this, dialogViewModel);
 
-        public RelayCommand CloseCommand { get; }
+        ShowCommand.NotifyCanExecuteChanged();
+        CloseCommand.NotifyCanExecuteChanged();
+    }
 
-        private void Show()
-        {
-            dialogViewModel = new CurrentTimeDialogViewModel();
-            dialogService.Show(this, dialogViewModel);
+    private bool CanShow()
+    {
+        return dialogViewModel == null;
+    }
 
-            ShowCommand.NotifyCanExecuteChanged();
-            CloseCommand.NotifyCanExecuteChanged();
-        }
+    private void Close()
+    {
+        dialogService.Close(dialogViewModel!);
+        dialogViewModel = null;
 
-        private bool CanShow()
-        {
-            return dialogViewModel == null;
-        }
+        ShowCommand.NotifyCanExecuteChanged();
+        CloseCommand.NotifyCanExecuteChanged();
+    }
 
-        private void Close()
-        {
-            dialogService.Close(dialogViewModel!);
-            dialogViewModel = null;
-
-            ShowCommand.NotifyCanExecuteChanged();
-            CloseCommand.NotifyCanExecuteChanged();
-        }
-
-        private bool CanClose()
-        {
-            return dialogViewModel != null;
-        }
+    private bool CanClose()
+    {
+        return dialogViewModel != null;
     }
 }

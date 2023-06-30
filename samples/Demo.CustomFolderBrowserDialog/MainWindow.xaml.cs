@@ -1,10 +1,9 @@
-﻿namespace Demo.CustomFolderBrowserDialog
+﻿namespace Demo.CustomFolderBrowserDialog;
+
+public partial class MainWindow
 {
-    public partial class MainWindow
+    public MainWindow()
     {
-        public MainWindow()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
     }
 }

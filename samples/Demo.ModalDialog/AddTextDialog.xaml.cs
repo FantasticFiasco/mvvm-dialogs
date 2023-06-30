@@ -1,10 +1,9 @@
-﻿namespace Demo.ModalDialog
+﻿namespace Demo.ModalDialog;
+
+public partial class AddTextDialog
 {
-    public partial class AddTextDialog
+    public AddTextDialog()
     {
-        public AddTextDialog()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
     }
 }

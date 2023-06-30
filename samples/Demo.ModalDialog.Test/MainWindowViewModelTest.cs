@@ -3,94 +3,93 @@ using Moq;
 using MvvmDialogs;
 using Xunit;
 
-namespace Demo.ModalDialog
+namespace Demo.ModalDialog;
+
+public class MainWindowViewModelTest
 {
-    public class MainWindowViewModelTest
+    [Fact]
+    public void ImplicitAddTextSuccessful()
     {
-        [Fact]
-        public void ImplicitAddTextSuccessful()
+        // Arrange
+        var dialogService = new Mock<IDialogService>();
+        var viewModel = new MainWindowViewModel(dialogService.Object);
+
+        dialogService
+            .Setup(mock => mock.ShowDialog(viewModel, It.IsAny<AddTextDialogViewModel>()))
+            .Returns(true)
+            .Callback((INotifyPropertyChanged ownerViewModel, IModalDialogViewModel addTextDialogViewModel) =>
+                ((AddTextDialogViewModel)addTextDialogViewModel).Text = "Some text");
+
+        var expected = new[]
         {
-            // Arrange
-            var dialogService = new Mock<IDialogService>();
-            var viewModel = new MainWindowViewModel(dialogService.Object);
+            "Some text"
+        };
 
-            dialogService
-                .Setup(mock => mock.ShowDialog(viewModel, It.IsAny<AddTextDialogViewModel>()))
-                .Returns(true)
-                .Callback((INotifyPropertyChanged ownerViewModel, IModalDialogViewModel addTextDialogViewModel) =>
-                    ((AddTextDialogViewModel)addTextDialogViewModel).Text = "Some text");
+        // Act
+        viewModel.ImplicitShowDialogCommand.Execute(null);
 
-            var expected = new[]
-            {
-                "Some text"
-            };
+        // Assert
+        Assert.Equal(expected, viewModel.Texts);
+    }
 
-            // Act
-            viewModel.ImplicitShowDialogCommand.Execute(null);
+    [Fact]
+    public void ImplicitAddTextUnsuccessful()
+    {
+        // Arrange
+        var dialogService = new Mock<IDialogService>();
+        var viewModel = new MainWindowViewModel(dialogService.Object);
 
-            // Assert
-            Assert.Equal(expected, viewModel.Texts);
-        }
+        dialogService
+            .Setup(mock => mock.ShowDialog(viewModel, It.IsAny<AddTextDialogViewModel>()))
+            .Returns(false);
 
-        [Fact]
-        public void ImplicitAddTextUnsuccessful()
+        // Act
+        viewModel.ImplicitShowDialogCommand.Execute(null);
+
+        // Assert
+        Assert.Empty(viewModel.Texts);
+    }
+
+    [Fact]
+    public void ExplicitAddTextSuccessful()
+    {
+        // Arrange
+        var dialogService = new Mock<IDialogService>();
+        var viewModel = new MainWindowViewModel(dialogService.Object);
+
+        dialogService
+            .Setup(mock => mock.ShowDialog<AddTextDialog>(viewModel, It.IsAny<AddTextDialogViewModel>()))
+            .Returns(true)
+            .Callback((INotifyPropertyChanged ownerViewModel, IModalDialogViewModel addTextDialogViewModel) =>
+                ((AddTextDialogViewModel)addTextDialogViewModel).Text = "Some text");
+
+        var expected = new[]
         {
-            // Arrange
-            var dialogService = new Mock<IDialogService>();
-            var viewModel = new MainWindowViewModel(dialogService.Object);
+            "Some text"
+        };
 
-            dialogService
-                .Setup(mock => mock.ShowDialog(viewModel, It.IsAny<AddTextDialogViewModel>()))
-                .Returns(false);
+        // Act
+        viewModel.ExplicitShowDialogCommand.Execute(null);
 
-            // Act
-            viewModel.ImplicitShowDialogCommand.Execute(null);
+        // Assert
+        Assert.Equal(expected, viewModel.Texts);
+    }
 
-            // Assert
-            Assert.Empty(viewModel.Texts);
-        }
+    [Fact]
+    public void ExplicitAddTextUnsuccessful()
+    {
+        // Arrange
+        var dialogService = new Mock<IDialogService>();
+        var viewModel = new MainWindowViewModel(dialogService.Object);
 
-        [Fact]
-        public void ExplicitAddTextSuccessful()
-        {
-            // Arrange
-            var dialogService = new Mock<IDialogService>();
-            var viewModel = new MainWindowViewModel(dialogService.Object);
+        dialogService
+            .Setup(mock => mock.ShowDialog<AddTextDialog>(viewModel, It.IsAny<AddTextDialogViewModel>()))
+            .Returns(false);
 
-            dialogService
-                .Setup(mock => mock.ShowDialog<AddTextDialog>(viewModel, It.IsAny<AddTextDialogViewModel>()))
-                .Returns(true)
-                .Callback((INotifyPropertyChanged ownerViewModel, IModalDialogViewModel addTextDialogViewModel) =>
-                    ((AddTextDialogViewModel)addTextDialogViewModel).Text = "Some text");
+        // Act
+        viewModel.ExplicitShowDialogCommand.Execute(null);
 
-            var expected = new[]
-            {
-                "Some text"
-            };
-
-            // Act
-            viewModel.ExplicitShowDialogCommand.Execute(null);
-
-            // Assert
-            Assert.Equal(expected, viewModel.Texts);
-        }
-
-        [Fact]
-        public void ExplicitAddTextUnsuccessful()
-        {
-            // Arrange
-            var dialogService = new Mock<IDialogService>();
-            var viewModel = new MainWindowViewModel(dialogService.Object);
-
-            dialogService
-                .Setup(mock => mock.ShowDialog<AddTextDialog>(viewModel, It.IsAny<AddTextDialogViewModel>()))
-                .Returns(false);
-
-            // Act
-            viewModel.ExplicitShowDialogCommand.Execute(null);
-
-            // Assert
-            Assert.Empty(viewModel.Texts);
-        }
+        // Assert
+        Assert.Empty(viewModel.Texts);
     }
 }

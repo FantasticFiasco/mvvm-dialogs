@@ -6,42 +6,41 @@ using MvvmDialogs;
 using MvvmDialogs.FrameworkDialogs.FolderBrowser;
 using IOPath = System.IO.Path;
 
-namespace Demo.FolderBrowserDialog
+namespace Demo.FolderBrowserDialog;
+
+public class MainWindowViewModel : ObservableObject
 {
-    public class MainWindowViewModel : ObservableObject
+    private readonly IDialogService dialogService;
+
+    private string? path;
+
+    public MainWindowViewModel(IDialogService dialogService)
     {
-        private readonly IDialogService dialogService;
+        this.dialogService = dialogService;
 
-        private string? path;
+        BrowseFolderCommand = new RelayCommand(BrowseFolder);
+    }
 
-        public MainWindowViewModel(IDialogService dialogService)
+    public string? Path
+    {
+        get => path;
+        private set => SetProperty(ref path, value);
+    }
+
+    public ICommand BrowseFolderCommand { get; }
+
+    private void BrowseFolder()
+    {
+        var settings = new FolderBrowserDialogSettings
         {
-            this.dialogService = dialogService;
+            Description = "This is a description",
+            SelectedPath = IOPath.GetDirectoryName(Assembly.GetExecutingAssembly().Location)!
+        };
 
-            BrowseFolderCommand = new RelayCommand(BrowseFolder);
-        }
-
-        public string? Path
+        bool? success = dialogService.ShowFolderBrowserDialog(this, settings);
+        if (success == true)
         {
-            get => path;
-            private set => SetProperty(ref path, value);
-        }
-
-        public ICommand BrowseFolderCommand { get; }
-
-        private void BrowseFolder()
-        {
-            var settings = new FolderBrowserDialogSettings
-            {
-                Description = "This is a description",
-                SelectedPath = IOPath.GetDirectoryName(Assembly.GetExecutingAssembly().Location)!
-            };
-
-            bool? success = dialogService.ShowFolderBrowserDialog(this, settings);
-            if (success == true)
-            {
-                Path = settings.SelectedPath;
-            }
+            Path = settings.SelectedPath;
         }
     }
 }

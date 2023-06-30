@@ -1,10 +1,9 @@
-﻿namespace Demo.ModalDialog
+﻿namespace Demo.ModalDialog;
+
+public partial class MainWindow
 {
-    public partial class MainWindow
+    public MainWindow()
     {
-        public MainWindow()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
     }
 }

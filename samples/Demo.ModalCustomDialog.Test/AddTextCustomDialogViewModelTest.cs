@@ -1,26 +1,25 @@
 ﻿using Xunit;
 
-namespace Demo.ModalCustomDialog
+namespace Demo.ModalCustomDialog;
+
+public class AddTextCustomDialogViewModelTest
 {
-    public class AddTextCustomDialogViewModelTest
+    [Theory]
+    [InlineData("Some text", true)]
+    [InlineData("", null)]
+    [InlineData(null, null)]
+    public void Ok(string text, bool? expectedDialogResult)
     {
-        [Theory]
-        [InlineData("Some text", true)]
-        [InlineData("", null)]
-        [InlineData(null, null)]
-        public void Ok(string text, bool? expectedDialogResult)
+        // Arrange
+        var viewModel = new AddTextCustomDialogViewModel
         {
-            // Arrange
-            var viewModel = new AddTextCustomDialogViewModel
-            {
-                Text = text
-            };
+            Text = text
+        };
 
-            // Act
-            viewModel.OkCommand.Execute(null);
+        // Act
+        viewModel.OkCommand.Execute(null);
 
-            // Assert
-            Assert.Equal(expectedDialogResult, viewModel.DialogResult);
-        }
+        // Assert
+        Assert.Equal(expectedDialogResult, viewModel.DialogResult);
     }
 }
