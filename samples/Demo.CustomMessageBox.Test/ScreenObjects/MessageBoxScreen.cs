@@ -12,9 +12,9 @@ namespace Demo.CustomMessageBox.ScreenObjects
 
         public string Caption => Window.Title;
 
-        public bool IsOKButtonVisible => DefaultOKButton != null;
+        public bool IsOKButtonVisible => ElementWithTextExists(OK);
 
-        public bool IsCancelButtonVisible => DefaultCancelButton != null;
+        public bool IsCancelButtonVisible => ElementWithTextExists(Cancel);
 
         public void ClickOK()
         {

@@ -14,7 +14,7 @@ namespace Demo.CustomFolderBrowserDialog.ScreenObjects
         private TextBox PathTextBox => ElementByAutomationId<TextBox>("RQ_N2kIsN0C39sxTonCRtA");
         private Button BrowseButton => ElementByAutomationId<Button>("TTK4W3coCE2skIHpcUe97Q");
 
-        public string? FileName => PathTextBox.Text;
+        public string FileName => PathTextBox.Text;
 
         public BrowseFolderScreen ClickBrowse()
         {
