@@ -30,7 +30,14 @@ public static class Logger
         set => writer = value ?? throw new ArgumentNullException(nameof(value));
     }
 
-    internal static void Write(
+    /// <summary>
+    /// Writes message to <see cref="Logger.Writer"/>.
+    /// </summary>
+    /// <param name="message">Message to log.</param>
+    /// <param name="callerFilePath">Calling file path.</param>
+    /// <param name="callerMemberName">Calling member name.</param>
+    /// <exception cref="ArgumentNullException" />
+    public static void Write(
         string message,
         [CallerFilePath] string callerFilePath = "",
         [CallerMemberName] string callerMemberName = "")

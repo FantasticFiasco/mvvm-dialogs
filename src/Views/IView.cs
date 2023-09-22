@@ -5,7 +5,7 @@ namespace MvvmDialogs.Views;
 /// <summary>
 /// Interface describing a view in WPF.
 /// </summary>
-internal interface IView
+public interface IView
 {
     /// <summary>
     /// Occurs when the view is laid out, rendered, and ready for interaction.
