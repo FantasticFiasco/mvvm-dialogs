@@ -277,7 +277,8 @@ public class DialogService : IDialogService
     /// </exception>
     protected virtual Window FindOwnerWindow(INotifyPropertyChanged viewModel)
     {
-        IView? view = DialogServiceViews.Views.SingleOrDefault(
+        var threadId = System.Windows.Threading.Dispatcher.CurrentDispatcher.Thread.ManagedThreadId;
+        var view = DialogServiceViews.Views.SingleOrDefault(
             registeredView =>
                 registeredView.Source.IsLoaded &&
                 ReferenceEquals(registeredView.DataContext, viewModel));

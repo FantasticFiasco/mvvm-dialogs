@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -18,7 +19,7 @@ public static class DialogServiceViews
     /// <summary>
     /// The registered views.
     /// </summary>
-    private static readonly List<IView> InternalViews = new List<IView>();
+    private static readonly ConcurrentDictionary<ViewKey, IView> InternalViews = new ConcurrentDictionary<ViewKey, IView>();
 
     #region Attached properties
 
@@ -84,10 +85,20 @@ public static class DialogServiceViews
     /// <summary>
     /// Gets the registered views.
     /// </summary>
-    internal static IEnumerable<IView> Views =>
-        InternalViews
-            .Where(view => view.IsAlive)
+    internal static IEnumerable<IView> Views
+    {
+        get
+        {
+            var threadId = System.Windows.Threading.Dispatcher.CurrentDispatcher.Thread.ManagedThreadId;
+            return InternalViews
+            .Where(view =>
+                    view.Key.ThreadId == threadId &&
+                    view.Value.IsAlive)
+            .Select(view => view.Value)
             .ToArray();
+        }
+    }
+        
 
     /// <summary>
     /// Registers specified view.
@@ -113,12 +124,16 @@ public static class DialogServiceViews
         // only register for the event once, thus the un-registration of any prior
         // registrations.
         owner.Closed -= OwnerClosed;
+        owner.Closing -= OwnerClosing;
+        owner.Closing += OwnerClosing;
         owner.Closed += OwnerClosed;
 
         Logger.Write($"Register view {view.Id}");
-        InternalViews.Add(view);
+        var threadId = System.Windows.Threading.Dispatcher.CurrentDispatcher.Thread.ManagedThreadId;
+        InternalViews.TryAdd(new ViewKey { ThreadId = threadId, ViewId = view.Id }, view);
         Logger.Write($"Registered view {view.Id} ({InternalViews.Count} registered)");
     }
+
 
     /// <summary>
     /// Clears the registered views.
@@ -141,7 +156,8 @@ public static class DialogServiceViews
         PruneInternalViews();
 
         Logger.Write($"Unregister view {view.Id}");
-        InternalViews.RemoveAll(registeredView => ReferenceEquals(registeredView.Source, view.Source));
+        var threadId = System.Windows.Threading.Dispatcher.CurrentDispatcher.Thread.ManagedThreadId;
+        InternalViews.TryRemove(new ViewKey { ThreadId = threadId, ViewId = view.Id }, out _);
         Logger.Write($"Unregistered view {view.Id} ({InternalViews.Count} registered)");
     }
 
@@ -168,6 +184,25 @@ public static class DialogServiceViews
         }
     }
 
+    private static void OwnerClosing(object? sender, CancelEventArgs e)
+    {
+        if (sender is Window owner)
+        {
+            var ownerThread = owner.Dispatcher.Thread.ManagedThreadId;
+            // Find views acting within closed window
+            IView[] windowViews = Views
+                .Where(view => ReferenceEquals(view.GetOwner(), owner))
+                .ToArray();
+
+            // Unregister Views in window
+            foreach (IView windowView in windowViews)
+            {
+                Logger.Write($"Window containing view {windowView.Id} closed");
+                Unregister(windowView);
+            }
+        }
+    }
+
     /// <summary>
     /// Handles owner window closed. All views acting within the closed window should be
     /// unregistered.
@@ -176,6 +211,7 @@ public static class DialogServiceViews
     {
         if (sender is Window owner)
         {
+            var ownerThread = owner.Dispatcher.Thread.ManagedThreadId;
             // Find views acting within closed window
             IView[] windowViews = Views
                 .Where(view => ReferenceEquals(view.GetOwner(), owner))
@@ -193,7 +229,11 @@ public static class DialogServiceViews
     private static void PruneInternalViews()
     {
         Logger.Write($"Before pruning ({InternalViews.Count} registered)");
-        InternalViews.RemoveAll(reference => !reference.IsAlive);
+        var entriesToRemove = InternalViews.Where(entry => !entry.Value.IsAlive);
+        foreach (var entry in entriesToRemove)
+        {
+            InternalViews.TryRemove(entry.Key, out _);
+        }
         Logger.Write($"After pruning ({InternalViews.Count} registered)");
     }
 }
