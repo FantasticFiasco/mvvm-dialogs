@@ -85,20 +85,13 @@ public static class DialogServiceViews
     /// <summary>
     /// Gets the registered views.
     /// </summary>
-    internal static IEnumerable<IView> Views
-    {
-        get
-        {
-            var threadId = System.Windows.Threading.Dispatcher.CurrentDispatcher.Thread.ManagedThreadId;
-            return InternalViews
+    internal static IEnumerable<IView> Views => InternalViews
             .Where(view =>
-                    view.Key.ThreadId == threadId &&
+                    view.Key.ThreadId == System.Windows.Threading.Dispatcher.CurrentDispatcher.Thread.ManagedThreadId &&
                     view.Value.IsAlive)
             .Select(view => view.Value)
             .ToArray();
-        }
-    }
-        
+
 
     /// <summary>
     /// Registers specified view.
