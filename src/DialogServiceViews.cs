@@ -124,8 +124,6 @@ public static class DialogServiceViews
         // only register for the event once, thus the un-registration of any prior
         // registrations.
         owner.Closed -= OwnerClosed;
-        owner.Closing -= OwnerClosing;
-        owner.Closing += OwnerClosing;
         owner.Closed += OwnerClosed;
 
         Logger.Write($"Register view {view.Id}");
@@ -180,25 +178,6 @@ public static class DialogServiceViews
             else
             {
                 Register(new ViewWrapper(frameworkElement));
-            }
-        }
-    }
-
-    private static void OwnerClosing(object? sender, CancelEventArgs e)
-    {
-        if (sender is Window owner)
-        {
-            var ownerThread = owner.Dispatcher.Thread.ManagedThreadId;
-            // Find views acting within closed window
-            IView[] windowViews = Views
-                .Where(view => ReferenceEquals(view.GetOwner(), owner))
-                .ToArray();
-
-            // Unregister Views in window
-            foreach (IView windowView in windowViews)
-            {
-                Logger.Write($"Window containing view {windowView.Id} closed");
-                Unregister(windowView);
             }
         }
     }
