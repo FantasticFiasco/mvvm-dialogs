@@ -1,6 +1,9 @@
-﻿using System.Windows;
+﻿using System.Diagnostics;
+using System.Windows;
 using Moq;
 using MvvmDialogs.Views;
+using System.Linq;
+using System.Collections.Generic;
 
 namespace MvvmDialogs;
 
@@ -109,6 +112,52 @@ public class DialogServiceViewsTest : IDisposable
     }
 
     [StaFact]
+    public void RegisterLoadedViewOnMultipleThreads()
+    {
+        // Arrange
+        List<Thread> threads = new List<Thread>();
+        int numberOfViews = 10;
+        for (var i = 0; i < numberOfViews - 1; i++)
+        {
+            Thread newThread = new Thread(new ParameterizedThreadStart(CreateViewOnSeparateThreadHelper));
+            newThread.SetApartmentState(ApartmentState.STA);
+            newThread.Start();
+            threads.Add(newThread);
+        }
+
+        while (threads.Any(thread => thread.IsAlive))
+        {
+            Thread.Sleep(50);
+        }
+
+        var view = new Mock<FrameworkElementMock>();
+        view
+            .Setup(mock => mock.IsAlive)
+            .Returns(true);
+        view
+            .Setup(mock => mock.GetOwner())
+            .Returns(new Window());
+
+        var expected = new[]
+        {
+            view.Object
+        };
+
+        // Act
+        DialogServiceViews.Register(view.Object);
+
+        // Assert
+        // We expect the number of views registered to be higher than what is
+        // returned via the DialogServiceViews.Views property since the property
+        // only returns the views that are on the existing thread.
+        Assert.Multiple(() =>
+        {
+            Assert.Equal(numberOfViews, DialogServiceViews.ViewCount);
+            Assert.Equal(expected, DialogServiceViews.Views);
+        });
+    }
+
+    [StaFact]
     public void UnregisterLoadedView()
     {
         // Arrange
@@ -195,6 +244,19 @@ public class DialogServiceViewsTest : IDisposable
             
         // Assert
         Assert.Empty(DialogServiceViews.Views);
+    }
+
+    private void CreateViewOnSeparateThreadHelper(object data)
+    {
+        var view = new Mock<FrameworkElementMock>();
+        view
+            .Setup(mock => mock.IsAlive)
+            .Returns(true);
+        view
+            .Setup(mock => mock.GetOwner())
+            .Returns(new Window() { DataContext = "New Thread Window" });
+
+        DialogServiceViews.Register(view.Object);
     }
 
     #region Helper classes
