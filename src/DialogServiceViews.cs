@@ -83,7 +83,7 @@ public static class DialogServiceViews
     #endregion
 
     /// <summary>
-    /// Gets the registered views.
+    /// Gets the registered views on the current thread.
     /// </summary>
     internal static IEnumerable<IView> Views => InternalViews
             .Where(view =>
@@ -92,6 +92,10 @@ public static class DialogServiceViews
             .Select(view => view.Value)
             .ToArray();
 
+    /// <summary>
+    /// Gets the total count of the registered views
+    /// </summary>
+    internal static int ViewCount => InternalViews.Count;
 
     /// <summary>
     /// Registers specified view.
