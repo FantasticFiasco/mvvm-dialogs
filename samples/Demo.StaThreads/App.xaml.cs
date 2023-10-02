@@ -19,10 +19,10 @@ public partial class App : Application
                 .AddTransient<MainWindowViewModel>()
                 .BuildServiceProvider());
 
-        for (var i = 0; i < 2; i++)
+        for (var id = 0; id < 2; id++)
         {
-            var windowThread = new WindowThread(i);
-
+            var windowThread = new WindowThread(id);
+            
             var thread = new Thread(windowThread.Run);
             thread.SetApartmentState(ApartmentState.STA);
             thread.Start();
@@ -43,13 +43,9 @@ public partial class App : Application
             var mainWindow = new MainWindow();
             mainWindow.Title += $" (id {id})";
             mainWindow.DataContext = Ioc.Default.GetRequiredService<MainWindowViewModel>();
-            
+
             mainWindow.Show();
-
-            // Let's make sure that the windows doesn't stack up on top of each other
-            mainWindow.Left += 100 * id;
-            mainWindow.Top += 100 * id;
-
+            
             Dispatcher.Run();
         }
     }
