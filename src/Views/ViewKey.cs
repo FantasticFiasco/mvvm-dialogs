@@ -11,8 +11,8 @@
         public int ThreadId { get; set; }
 
         /// <summary>
-        /// 
+        /// View HashCode
         /// </summary>
-        public int ViewId { get; set; }
+        public int ViewHashCode { get; set; }
     }
 }

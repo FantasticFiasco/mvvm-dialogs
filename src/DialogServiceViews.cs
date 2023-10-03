@@ -125,8 +125,14 @@ public static class DialogServiceViews
 
         Logger.Write($"Register view {view.Id}");
         var threadId = System.Windows.Threading.Dispatcher.CurrentDispatcher.Thread.ManagedThreadId;
-        InternalViews.TryAdd(new ViewKey { ThreadId = threadId, ViewId = view.Id }, view);
-        Logger.Write($"Registered view {view.Id} ({InternalViews.Count} registered)");
+        if (InternalViews.TryAdd(new ViewKey { ThreadId = threadId, ViewHashCode = view.GetHashCode() }, view))
+        {
+            Logger.Write($"Registered view {view.Id} ({InternalViews.Count} registered)");
+        }
+        else
+        {
+            Logger.Write($"Failed to register view {view.Id} ({InternalViews.Count} registered)");
+        }
     }
 
 
@@ -152,8 +158,14 @@ public static class DialogServiceViews
 
         Logger.Write($"Unregister view {view.Id}");
         var threadId = System.Windows.Threading.Dispatcher.CurrentDispatcher.Thread.ManagedThreadId;
-        InternalViews.TryRemove(new ViewKey { ThreadId = threadId, ViewId = view.Id }, out _);
-        Logger.Write($"Unregistered view {view.Id} ({InternalViews.Count} registered)");
+        if (InternalViews.TryRemove(new ViewKey { ThreadId = threadId, ViewHashCode = view.GetHashCode() }, out _))
+        {
+            Logger.Write($"Unregistered view {view.Id} ({InternalViews.Count} registered)");
+        }
+        else
+        {
+            Logger.Write($"Attempted to unregister view {view.Id} but failed ({InternalViews.Count} registered)");
+        }
     }
 
     /// <summary>
