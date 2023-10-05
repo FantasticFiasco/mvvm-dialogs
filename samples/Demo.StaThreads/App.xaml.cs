@@ -11,8 +11,6 @@ public partial class App : Application
 {
     protected override void OnStartup(StartupEventArgs e)
     {
-        base.OnStartup(e);
-
         Ioc.Default.ConfigureServices(
             new ServiceCollection()
                 .AddSingleton<IDialogService, DialogService>()

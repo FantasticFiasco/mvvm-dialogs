@@ -11,7 +11,6 @@ public class MessageBoxScreen : Screen
     }
 
     private Label MessageLabel => ElementByAutomationId<Label>("65535");
-        
 
     public string Caption => Window.Title;
 
@@ -26,10 +25,5 @@ public class MessageBoxScreen : Screen
     public void ClickOK()
     {
         DefaultOKButton.Click();
-    }
-
-    public void ClickCancel()
-    {
-        DefaultCancelButton.Click();
     }
 }
