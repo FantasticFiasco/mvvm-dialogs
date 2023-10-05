@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows;
+using System.Windows.Threading;
 using MvvmDialogs.Logging;
 using MvvmDialogs.Views;
 
@@ -87,7 +88,7 @@ public static class DialogServiceViews
     /// </summary>
     internal static IEnumerable<IView> Views => InternalViews
             .Where(view =>
-                    view.Key.ThreadId == System.Windows.Threading.Dispatcher.CurrentDispatcher.Thread.ManagedThreadId &&
+                    view.Key.ThreadId == Dispatcher.CurrentDispatcher.Thread.ManagedThreadId &&
                     view.Value.IsAlive)
             .Select(view => view.Value)
             .ToArray();
@@ -124,7 +125,7 @@ public static class DialogServiceViews
         owner.Closed += OwnerClosed;
 
         Logger.Write($"Register view {view.Id}");
-        var threadId = System.Windows.Threading.Dispatcher.CurrentDispatcher.Thread.ManagedThreadId;
+        int threadId = Dispatcher.CurrentDispatcher.Thread.ManagedThreadId;
         if (InternalViews.TryAdd(new ViewKey { ThreadId = threadId, ViewHashCode = view.GetHashCode() }, view))
         {
             Logger.Write($"Registered view {view.Id} ({InternalViews.Count} registered)");
@@ -157,7 +158,7 @@ public static class DialogServiceViews
         PruneInternalViews();
 
         Logger.Write($"Unregister view {view.Id}");
-        var threadId = System.Windows.Threading.Dispatcher.CurrentDispatcher.Thread.ManagedThreadId;
+        int threadId = Dispatcher.CurrentDispatcher.Thread.ManagedThreadId;
         if (InternalViews.TryRemove(new ViewKey { ThreadId = threadId, ViewHashCode = view.GetHashCode() }, out _))
         {
             Logger.Write($"Unregistered view {view.Id} ({InternalViews.Count} registered)");
