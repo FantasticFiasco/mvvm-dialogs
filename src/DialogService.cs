@@ -11,6 +11,7 @@ using MvvmDialogs.FrameworkDialogs.OpenFile;
 using MvvmDialogs.FrameworkDialogs.SaveFile;
 using MvvmDialogs.Logging;
 using MvvmDialogs.Reflection;
+using MvvmDialogs.Views;
 
 namespace MvvmDialogs;
 
@@ -276,8 +277,7 @@ public class DialogService : IDialogService
     /// </exception>
     protected virtual Window FindOwnerWindow(INotifyPropertyChanged viewModel)
     {
-        var threadId = System.Windows.Threading.Dispatcher.CurrentDispatcher.Thread.ManagedThreadId;
-        var view = DialogServiceViews.Views.SingleOrDefault(
+        IView? view = DialogServiceViews.Views.SingleOrDefault(
             registeredView =>
                 registeredView.Source.IsLoaded &&
                 ReferenceEquals(registeredView.DataContext, viewModel));
