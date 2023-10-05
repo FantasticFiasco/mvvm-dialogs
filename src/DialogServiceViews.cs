@@ -199,7 +199,6 @@ public static class DialogServiceViews
     {
         if (sender is Window owner)
         {
-            var ownerThread = owner.Dispatcher.Thread.ManagedThreadId;
             // Find views acting within closed window
             IView[] windowViews = Views
                 .Where(view => ReferenceEquals(view.GetOwner(), owner))
