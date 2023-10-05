@@ -11,7 +11,6 @@ using MvvmDialogs.FrameworkDialogs.OpenFile;
 using MvvmDialogs.FrameworkDialogs.SaveFile;
 using MvvmDialogs.Logging;
 using MvvmDialogs.Reflection;
-using MvvmDialogs.Views;
 
 namespace MvvmDialogs;
 

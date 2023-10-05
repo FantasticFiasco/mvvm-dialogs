@@ -1,9 +1,6 @@
-﻿using System.Diagnostics;
-using System.Windows;
+﻿using System.Windows;
 using Moq;
 using MvvmDialogs.Views;
-using System.Linq;
-using System.Collections.Generic;
 
 namespace MvvmDialogs;
 
