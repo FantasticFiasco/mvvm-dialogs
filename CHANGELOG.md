@@ -6,7 +6,7 @@ This project adheres to [Semantic Versioning](http://semver.org/) and is followi
 
 ## Unreleased
 
-## 9.1.1 - 2023-10-07
+## 9.1.2 - 2023-10-07
 
 ### :syringe: Fixed
 
