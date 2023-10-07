@@ -127,6 +127,23 @@ Before opening a Pull Request (PR), please consider the following guidelines:
 
 And finally when you are satisfied with your changes, open a new PR.
 
+## Creating a release
+
+Update the following files:
+
+- `CHANGELOG.md`
+- `Directory.Build.props`
+
+Commit the files with a git commit message saying `release v<major>.<minor>.<patch>`, and then run the following commands:
+
+```sh
+git tag -a v<major>.<minor>.<patch> -m v<major>.<minor>.<patch> -s
+git push --follow-tags
+```
+
+- The NuGet package and its symbols will be pushed by CD
+- Update the GitHub release with the information found in `CHANGELOG.md`
+
 [issues]: https://github.com/FantasticFiasco/mvvm-dialogs/issues
 [issues_new]: https://github.com/FantasticFiasco/mvvm-dialogs/issues/new
 [issues_bugs]: https://github.com/FantasticFiasco/mvvm-dialogs/issues?q=label%3Abug
