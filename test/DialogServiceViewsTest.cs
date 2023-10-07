@@ -139,7 +139,7 @@ public class DialogServiceViewsTest : IDisposable
         newThread.SetApartmentState(ApartmentState.STA);
         newThread.Start();
 
-        // Wait for the second view
+        // Wait for the registration of the second view
         waiter.WaitOne();
 
         var expectedOnCurrentThread = new[]
