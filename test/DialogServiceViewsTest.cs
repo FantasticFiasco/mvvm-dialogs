@@ -112,46 +112,49 @@ public class DialogServiceViewsTest : IDisposable
     public void RegisterLoadedViewOnMultipleThreads()
     {
         // Arrange
-        List<Thread> threads = new List<Thread>();
-        int numberOfViews = 10;
-        for (var i = 0; i < numberOfViews - 1; i++)
+        Mock<FrameworkElementMock> ViewProvider()
         {
-            Thread newThread = new Thread(new ParameterizedThreadStart(CreateViewOnSeparateThreadHelper));
-            newThread.SetApartmentState(ApartmentState.STA);
-            newThread.Start();
-            threads.Add(newThread);
+            var view = new Mock<FrameworkElementMock>();
+            view.Setup(mock => mock.IsAlive)
+                .Returns(true);
+            view.Setup(mock => mock.GetOwner())
+                .Returns(new Window());
+
+            return view;
         }
 
-        while (threads.Any(thread => thread.IsAlive))
-        {
-            Thread.Sleep(50);
-        }
+        var firstView = ViewProvider();
+        var secondView = ViewProvider();
 
-        var view = new Mock<FrameworkElementMock>();
-        view
-            .Setup(mock => mock.IsAlive)
-            .Returns(true);
-        view
-            .Setup(mock => mock.GetOwner())
-            .Returns(new Window());
+        var waiter = new ManualResetEvent(false);
+        
+        // Create and register a second view on a new thread
+        var newThread = new Thread(
+            () =>
+            {
+                DialogServiceViews.Register(secondView.Object);
+                waiter.Set();
+            });
 
-        var expected = new[]
+        newThread.SetApartmentState(ApartmentState.STA);
+        newThread.Start();
+
+        // Wait for the second view
+        waiter.WaitOne();
+
+        var expectedOnCurrentThread = new[]
         {
-            view.Object
+            firstView.Object
         };
 
+        var expectedCountOnAllThreads = 2;
+
         // Act
-        DialogServiceViews.Register(view.Object);
+        DialogServiceViews.Register(firstView.Object);
 
         // Assert
-        // We expect the number of views registered to be higher than what is
-        // returned via the DialogServiceViews.Views property since the property
-        // only returns the views that are on the existing thread.
-        Assert.Multiple(() =>
-        {
-            Assert.Equal(numberOfViews, DialogServiceViews.AllViews.Count());
-            Assert.Equal(expected, DialogServiceViews.Views);
-        });
+        Assert.Equal(expectedOnCurrentThread, DialogServiceViews.Views);
+        Assert.Equal(expectedCountOnAllThreads, DialogServiceViews.AllViews.Count());
     }
 
     [StaFact]
@@ -241,19 +244,6 @@ public class DialogServiceViewsTest : IDisposable
             
         // Assert
         Assert.Empty(DialogServiceViews.Views);
-    }
-
-    private void CreateViewOnSeparateThreadHelper(object data)
-    {
-        var view = new Mock<FrameworkElementMock>();
-        view
-            .Setup(mock => mock.IsAlive)
-            .Returns(true);
-        view
-            .Setup(mock => mock.GetOwner())
-            .Returns(new Window() { DataContext = "New Thread Window" });
-
-        DialogServiceViews.Register(view.Object);
     }
 
     #region Helper classes
