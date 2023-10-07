@@ -109,6 +109,55 @@ public class DialogServiceViewsTest : IDisposable
     }
 
     [StaFact]
+    public void RegisterLoadedViewOnMultipleThreads()
+    {
+        // Arrange
+        Mock<FrameworkElementMock> ViewProvider()
+        {
+            var view = new Mock<FrameworkElementMock>();
+            view.Setup(mock => mock.IsAlive)
+                .Returns(true);
+            view.Setup(mock => mock.GetOwner())
+                .Returns(new Window());
+
+            return view;
+        }
+
+        var firstView = ViewProvider();
+        var secondView = ViewProvider();
+
+        var waiter = new ManualResetEvent(false);
+        
+        // Create and register a second view on a new thread
+        var newThread = new Thread(
+            () =>
+            {
+                DialogServiceViews.Register(secondView.Object);
+                waiter.Set();
+            });
+
+        newThread.SetApartmentState(ApartmentState.STA);
+        newThread.Start();
+
+        // Wait for the registration of the second view
+        waiter.WaitOne();
+
+        var expectedOnCurrentThread = new[]
+        {
+            firstView.Object
+        };
+
+        var expectedCountOnAllThreads = 2;
+
+        // Act
+        DialogServiceViews.Register(firstView.Object);
+
+        // Assert
+        Assert.Equal(expectedOnCurrentThread, DialogServiceViews.Views);
+        Assert.Equal(expectedCountOnAllThreads, DialogServiceViews.AllViews.Count());
+    }
+
+    [StaFact]
     public void UnregisterLoadedView()
     {
         // Arrange

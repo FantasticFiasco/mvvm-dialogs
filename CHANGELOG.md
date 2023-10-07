@@ -6,6 +6,10 @@ This project adheres to [Semantic Versioning](http://semver.org/) and is followi
 
 ## Unreleased
 
+### :syringe: Fixed
+
+- [#263](https://github.com/FantasticFiasco/mvvm-dialogs/issues/263) Exception is thrown when used in a multiple Single Threaded Apartment (STA) application (contributed by [@HeedfulCrayon](https://github.com/HeedfulCrayon))
+
 ## 9.1.0 - 2022-09-26
 
 ### :zap: Added

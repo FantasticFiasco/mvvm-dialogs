@@ -37,6 +37,14 @@ public class Application : IDisposable
         return window;
     }
 
+    public Window GetMainWindowThatStartsWith(string title)
+    {
+        var window = app.GetMainWindow(automation, TimeSpan.FromSeconds(3));
+        Assert.StartsWith(title, window.Title);
+
+        return window;
+    }
+
     public void Dispose()
     {
         app.Close();
