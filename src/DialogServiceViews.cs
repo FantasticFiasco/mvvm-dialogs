@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -20,7 +19,9 @@ public static class DialogServiceViews
     /// <summary>
     /// The registered views.
     /// </summary>
-    private static readonly ConcurrentDictionary<ViewKey, IView> InternalViews = new ConcurrentDictionary<ViewKey, IView>();
+    private static readonly List<ThreadedView> InternalViews = new List<ThreadedView>();
+
+    private static readonly object SyncRoot = new object();
 
     #region Attached properties
 
@@ -86,17 +87,38 @@ public static class DialogServiceViews
     /// <summary>
     /// Gets the registered views on the current thread.
     /// </summary>
-    internal static IEnumerable<IView> Views => InternalViews
-            .Where(view =>
-                    view.Key.ThreadId == Dispatcher.CurrentDispatcher.Thread.ManagedThreadId &&
-                    view.Value.IsAlive)
-            .Select(view => view.Value)
-            .ToArray();
+    internal static IEnumerable<IView> Views
+    {
+        get
+        {
+            lock (SyncRoot)
+            {
+                return InternalViews
+                    .Where(threadedView =>
+                        threadedView.ThreadId == Dispatcher.CurrentDispatcher.Thread.ManagedThreadId &&
+                        threadedView.View.IsAlive)
+                    .Select(view => view.View)
+                    .ToArray();
+            }
+        }
+    }
 
     /// <summary>
-    /// Gets the total count of the registered views
+    /// Gets the registered views on all thread.
     /// </summary>
-    internal static int ViewCount => InternalViews.Count;
+    internal static IEnumerable<IView> AllViews
+    {
+        get
+        {
+            lock (SyncRoot)
+            {
+                return InternalViews
+                    .Where(threadedView => threadedView.View.IsAlive)
+                    .Select(view => view.View)
+                    .ToArray();
+            }
+        }
+    }
 
     /// <summary>
     /// Registers specified view.
@@ -126,14 +148,15 @@ public static class DialogServiceViews
 
         Logger.Write($"Register view {view.Id}");
         int threadId = Dispatcher.CurrentDispatcher.Thread.ManagedThreadId;
-        if (InternalViews.TryAdd(new ViewKey { ThreadId = threadId, ViewHashCode = view.GetHashCode() }, view))
+        int count;
+
+        lock (SyncRoot)
         {
-            Logger.Write($"Registered view {view.Id} ({InternalViews.Count} registered)");
+            InternalViews.Add(new ThreadedView(view, threadId));
+            count = InternalViews.Count;
         }
-        else
-        {
-            Logger.Write($"Failed to register view {view.Id} ({InternalViews.Count} registered)");
-        }
+
+        Logger.Write($"Registered view {view.Id} ({count} registered)");
     }
 
 
@@ -143,7 +166,12 @@ public static class DialogServiceViews
     internal static void Clear()
     {
         Logger.Write("Clearing views");
-        InternalViews.Clear();
+
+        lock (SyncRoot)
+        {
+            InternalViews.Clear();
+        }
+            
         Logger.Write("Cleared views");
     }
 
@@ -159,14 +187,18 @@ public static class DialogServiceViews
 
         Logger.Write($"Unregister view {view.Id}");
         int threadId = Dispatcher.CurrentDispatcher.Thread.ManagedThreadId;
-        if (InternalViews.TryRemove(new ViewKey { ThreadId = threadId, ViewHashCode = view.GetHashCode() }, out _))
+        int count;
+
+        lock (SyncRoot)
         {
-            Logger.Write($"Unregistered view {view.Id} ({InternalViews.Count} registered)");
+            InternalViews.RemoveAll(threadedView =>
+                threadedView.ThreadId == threadId &&
+                ReferenceEquals(threadedView.View.Source, view.Source));
+
+            count = InternalViews.Count;
         }
-        else
-        {
-            Logger.Write($"Attempted to unregister view {view.Id} but failed ({InternalViews.Count} registered)");
-        }
+
+        Logger.Write($"Unregistered view {view.Id} ({count} registered)");
     }
 
     /// <summary>
@@ -216,12 +248,30 @@ public static class DialogServiceViews
 
     private static void PruneInternalViews()
     {
-        Logger.Write($"Before pruning ({InternalViews.Count} registered)");
-        var entriesToRemove = InternalViews.Where(entry => !entry.Value.IsAlive);
-        foreach (var entry in entriesToRemove)
+        int beforeCount;
+        int afterCount;
+
+        lock (SyncRoot)
         {
-            InternalViews.TryRemove(entry.Key, out _);
+            beforeCount = InternalViews.Count;
+            InternalViews.RemoveAll(threadView => !threadView.View.IsAlive);
+            afterCount = InternalViews.Count;
         }
-        Logger.Write($"After pruning ({InternalViews.Count} registered)");
+
+        Logger.Write($"Before pruning ({beforeCount} registered)");
+        Logger.Write($"After pruning ({afterCount} registered)");
+    }
+
+    private class ThreadedView
+    {
+        public ThreadedView(IView view, int threadId)
+        {
+            View = view;
+            ThreadId = threadId;
+        }
+
+        public IView View { get; }
+
+        public int ThreadId { get; }
     }
 }

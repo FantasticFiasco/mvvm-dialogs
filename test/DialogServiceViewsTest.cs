@@ -149,7 +149,7 @@ public class DialogServiceViewsTest : IDisposable
         // only returns the views that are on the existing thread.
         Assert.Multiple(() =>
         {
-            Assert.Equal(numberOfViews, DialogServiceViews.ViewCount);
+            Assert.Equal(numberOfViews, DialogServiceViews.AllViews.Count());
             Assert.Equal(expected, DialogServiceViews.Views);
         });
     }
