@@ -9,7 +9,7 @@
     <license type="expression">Apache-2.0</license>
     <projectUrl>https://github.com/FantasticFiasco/mvvm-dialogs</projectUrl>
     <icon>images\icon_64x64.png</icon>
-    <copyright>Copyright © 2009-2025 MVVM Dialogs contributors</copyright>
+    <copyright>Copyright © 2009-2026 MVVM Dialogs contributors</copyright>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Framework simplifying the concept of opening dialogs from a view model when using MVVM in WPF.</description>
     <releaseNotes>For release notes, please see the change log on GitHub.</releaseNotes>

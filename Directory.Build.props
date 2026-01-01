@@ -6,7 +6,7 @@
     <Authors>Mattias Kindborg</Authors>
     <Company>FantasticFiasco</Company>
     <Product>MVVM Dialogs</Product>
-    <Copyright>Copyright © 2009-2025 MVVM Dialogs contributors</Copyright>
+    <Copyright>Copyright © 2009-2026 MVVM Dialogs contributors</Copyright>
     <LangVersion>latest</LangVersion>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
